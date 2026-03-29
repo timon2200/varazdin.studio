@@ -1,0 +1,168 @@
+/* ============================================================
+   Catalogue — Ambient Background & Row Layout
+   ============================================================ */
+
+#catalogue {
+  padding-top: 24px;
+  padding-bottom: 80px;
+  position: relative;
+}
+
+/* Breathing ambient glow behind all rows */
+#catalogue::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 600px;
+  background: radial-gradient(ellipse at center, rgba(100, 70, 10, 0.07) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  animation: ambientPulse 8s ease-in-out infinite;
+}
+
+@keyframes ambientPulse {
+  0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.15); }
+}
+
+/* ── Carousel Row ── */
+
+.row-section {
+  margin-bottom: var(--section-gap);
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s var(--ease-entrance), transform 0.7s var(--ease-entrance);
+  position: relative;
+  z-index: 1;
+}
+
+.row-section.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.row-header {
+  padding: 0 var(--page-pad);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.row-label {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--cream);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Animated gold bar — grows in when row enters view */
+.row-label::before {
+  content: '';
+  display: block;
+  width: 3px;
+  height: 0px;
+  background: linear-gradient(180deg, var(--gold-bright), var(--gold-deep));
+  border-radius: 2px;
+  flex-shrink: 0;
+  transition: height 0.5s var(--ease-entrance) 0.2s;
+  box-shadow: 0 0 8px var(--gold-glow);
+}
+
+.row-section.in-view .row-label::before {
+  height: 18px;
+}
+
+.row-count {
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  color: var(--cream-muted);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  margin-left: 2px;
+}
+
+/* Scrollable track */
+.row-track-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.row-track-wrapper::before,
+.row-track-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 70px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.row-track-wrapper::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--green-deep) 0%, transparent 100%);
+}
+
+.row-track-wrapper::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--green-deep) 0%, transparent 100%);
+}
+
+.row-track {
+  display: flex;
+  gap: var(--card-gap);
+  padding: 72px var(--page-pad);
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  cursor: grab;
+  --hover-shift: 98px;
+  --hover-shift-edge: 196px;
+}
+
+.row-track::-webkit-scrollbar { display: none; }
+.row-track.dragging { cursor: grabbing; scroll-behavior: auto; }
+
+/* Arrow buttons */
+.row-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(8, 22, 14, 0.7);
+  border: 1px solid rgba(160,120,40,0.3);
+  color: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--t-fast) ease, background var(--t-fast) ease, transform var(--t-fast) ease, box-shadow var(--t-fast) ease;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  cursor: pointer;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.4);
+}
+
+.row-track-wrapper:hover .row-arrow { opacity: 1; }
+.row-arrow:hover {
+  background: rgba(14, 35, 22, 0.9);
+  border-color: var(--gold-mid);
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5), 0 0 12px rgba(180,140,50,0.15);
+}
+.row-arrow-left  { left: 10px; }
+.row-arrow-right { right: 10px; }

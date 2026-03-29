@@ -1,0 +1,380 @@
+/* ============================================================
+   Modal — Glass Sheet (Legacy / Reference)
+   Note: The modal was replaced by the expanded view player,
+   but styles are retained for potential future use.
+   ============================================================ */
+
+#modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 14, 8, 0.75);
+  z-index: var(--z-overlay);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  backdrop-filter: blur(10px) saturate(140%);
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
+}
+
+#modal-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#modal {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-height: 92vh;
+  z-index: var(--z-modal);
+  background: rgba(8, 22, 14, 0.88);
+  backdrop-filter: blur(32px) saturate(160%);
+  -webkit-backdrop-filter: blur(32px) saturate(160%);
+  border-radius: 16px 16px 0 0;
+  border-top: 1px solid rgba(180, 140, 60, 0.28);
+  box-shadow:
+    0 -4px 80px rgba(0,0,0,0.7),
+    inset 0 1px 0 rgba(255,210,100,0.09);
+  transform: translateY(100%);
+  transition: transform 0.55s cubic-bezier(0.32, 0.72, 0, 1);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold-deep) transparent;
+}
+
+#modal.open {
+  transform: translateY(0);
+}
+
+/* Pull handle */
+#modal::before {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 4px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 9999px;
+  margin: 12px auto 0;
+}
+
+.modal-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 60vh;
+}
+
+/* Modal hero image */
+.modal-visual {
+  position: relative;
+  overflow: hidden;
+  min-height: 400px;
+}
+
+.modal-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.04);
+  transition: transform 0.7s var(--ease-cinematic);
+}
+
+#modal.open .modal-visual img {
+  transform: scale(1.0);
+}
+
+.modal-visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent 55%, rgba(8,22,14,0.9) 100%),
+    linear-gradient(to top, rgba(4,14,8,0.7) 0%, transparent 45%);
+}
+
+/* Modal content — all children animated via sequenced classes */
+.modal-content {
+  padding: 48px 48px 48px 40px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Staggered entrance: each element starts hidden */
+.modal-type,
+.modal-title,
+.modal-subtitle,
+.modal-tagline,
+.modal-description,
+.modal-meta-grid,
+.modal-badges {
+  opacity: 0;
+  transform: translateY(16px);
+  filter: blur(4px);
+  will-change: opacity, transform, filter;
+}
+
+/* In-sequence classes applied by JS setTimeout chain */
+.modal-type.reveal    { animation: modalReveal 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.modal-title.reveal   { animation: modalReveal 0.65s cubic-bezier(0.16, 1, 0.30, 1) forwards; }
+.modal-subtitle.reveal { animation: modalReveal 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.modal-tagline.reveal  { animation: modalReveal 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.modal-description.reveal { animation: modalReveal 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.modal-meta-grid.reveal { animation: modalReveal 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.modal-badges.reveal   { animation: badgeSpringReveal 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+
+@keyframes modalReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes badgeSpringReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+  0% { transform: translateY(16px) scale(0.92); }
+}
+
+/* Close button — glass circle */
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.14);
+  color: var(--cream-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--t-fast) ease, color var(--t-fast) ease, transform var(--t-normal) ease, box-shadow var(--t-fast) ease;
+  z-index: 2;
+  cursor: pointer;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.modal-close svg {
+  transition: transform 0.2s ease;
+}
+
+.modal-close:hover {
+  background: rgba(255,255,255,0.14);
+  border-color: rgba(180,140,60,0.4);
+  color: var(--white);
+  box-shadow: 0 0 16px rgba(180,140,60,0.15);
+}
+
+.modal-close:hover svg {
+  transform: rotate(90deg) scale(1.1);
+}
+
+.modal-type {
+  font-family: var(--font-ui);
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-mid);
+  margin-bottom: 10px;
+}
+
+.modal-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.7rem);
+  font-weight: 700;
+  line-height: 1.08;
+  margin-bottom: 6px;
+  background: linear-gradient(
+    100deg,
+    hsl(43,72%,58%) 0%,
+    hsl(47,90%,78%) 42%,
+    hsl(45,80%,60%) 58%,
+    hsl(43,72%,58%) 100%
+  );
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: goldShimmerSweep 7s ease-in-out 1.5s infinite;
+}
+
+.modal-subtitle {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  color: var(--gold-foil);
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+
+.modal-tagline {
+  font-family: var(--font-body);
+  font-size: 1.08rem;
+  font-style: italic;
+  color: var(--gold-bright);
+  margin-bottom: 18px;
+  line-height: 1.55;
+  padding-left: 16px;
+  border-left: 2px solid var(--gold-deep);
+}
+
+.modal-description {
+  font-size: 0.97rem;
+  line-height: 1.78;
+  color: var(--cream-dim);
+  font-weight: 300;
+  margin-bottom: 28px;
+  flex: 1;
+}
+
+.modal-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 28px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+
+.modal-meta-item label {
+  font-family: var(--font-ui);
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cream-muted);
+  display: block;
+  margin-bottom: 3px;
+}
+
+.modal-meta-item span {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--cream);
+}
+
+.modal-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 20px;
+}
+
+.modal-badge {
+  padding: 5px 12px;
+  border: 1px solid rgba(160,120,40,0.35);
+  border-radius: 9999px;
+  font-family: var(--font-ui);
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-foil);
+  background: rgba(140,100,30,0.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* ── Modal YouTube Buttons ── */
+
+/* Overlay on the modal visual — centered play button */
+.modal-visual-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-watch-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px 14px 22px;
+  background: rgba(255, 0, 0, 0.85);
+  border: 1px solid rgba(255, 80, 80, 0.4);
+  border-radius: 9999px;
+  color: #fff;
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow:
+    0 4px 28px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(255, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(8px) scale(0.95);
+  animation: modalWatchReveal 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.8s forwards;
+}
+
+.modal-watch-btn:hover {
+  background: rgba(255, 20, 20, 0.95);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow:
+    0 8px 36px rgba(0, 0, 0, 0.6),
+    0 0 60px rgba(255, 0, 0, 0.35);
+}
+
+.modal-watch-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+  flex-shrink: 0;
+}
+
+@keyframes modalWatchReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Inline YouTube link in modal content */
+.modal-yt-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  margin-bottom: 22px;
+  background: rgba(255, 0, 0, 0.12);
+  border: 1px solid rgba(255, 60, 60, 0.25);
+  border-radius: 9999px;
+  color: #ff4444;
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  width: fit-content;
+  transition: all 0.25s ease;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: modalReveal 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.75s forwards;
+}
+
+.modal-yt-link:hover {
+  background: rgba(255, 0, 0, 0.22);
+  border-color: rgba(255, 60, 60, 0.5);
+  color: #ff6666;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(255, 0, 0, 0.15);
+}
+
+.modal-yt-link svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  flex-shrink: 0;
+}

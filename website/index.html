@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Studio Varaždin — Cinematic production studio from northern Croatia. Documentary films, immersive experiences, music videos, and destination storytelling. Led by director Timon Terzić.">
+  <meta property="og:title" content="Studio Varaždin — Cinematic Portfolio">
+  <meta property="og:description" content="Story first. Technology second. A portfolio of films, experiences, and moments crafted for Croatia and the world.">
+  <meta property="og:type" content="website">
+  <title>Studio Varaždin — Cinematic Portfolio</title>
+
+  <!-- Preconnect fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Styles (order matters: tokens first, then components, responsive last) -->
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/nav.css">
+  <link rel="stylesheet" href="styles/hero.css">
+  <link rel="stylesheet" href="styles/catalogue.css">
+  <link rel="stylesheet" href="styles/cards.css">
+  <link rel="stylesheet" href="styles/modal.css">
+  <link rel="stylesheet" href="styles/player.css">
+  <link rel="stylesheet" href="styles/footer.css">
+  <link rel="stylesheet" href="styles/responsive.css">
+</head>
+
+<body>
+
+  <!-- ══════════════════════ NAVIGATION ══════════════════════ -->
+  <nav id="site-nav" aria-label="Main navigation">
+
+    <!-- Ornate Signboard Header -->
+    <div class="nav-signboard">
+      
+      <!-- Ornate Border Framing (Top Level) -->
+      <div class="signboard-frame">
+        <div class="frame-corner top-left"></div>
+        <div class="frame-corner top-right"></div>
+        <div class="frame-corner bottom-left"></div>
+        <div class="frame-corner bottom-right"></div>
+      </div>
+
+      <!-- Left Links -->
+      <ul class="nav-links nav-links-left" role="list">
+        <li><a href="#catalogue" id="nav-films">Films</a></li>
+        <li><a href="#about" id="nav-about">About</a></li>
+      </ul>
+
+      <!-- Central Huge Logo -->
+      <a href="#" class="nav-logo-grand" aria-label="Studio Varaždin — Home">
+        <span class="logo-varazdin">Varaždin</span>
+        <span class="logo-studio">Studio</span>
+      </a>
+
+      <!-- Right Links & Hamburger -->
+      <div class="nav-right-cluster">
+        <ul class="nav-links nav-links-right" role="list">
+          <li><a href="mailto:timon.terzic@gmail.com" id="nav-contact" class="btn-contact-gold">Contact</a></li>
+        </ul>
+
+        <!-- Mobile hamburger -->
+        <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+    </div>
+
+  </nav>
+
+  <!-- ══════════════════════ HERO ══════════════════════════ -->
+  <section id="hero" aria-label="Featured projects">
+
+    <!-- Slide images (populated by JS) -->
+    <div class="hero-slides" aria-hidden="true"></div>
+
+    <!-- Dynamic color tint layer -->
+    <div class="hero-tint" aria-hidden="true"></div>
+
+    <!-- Content -->
+    <div class="hero-content">
+      <div class="hero-badge" aria-live="polite">Documentary</div>
+      <h1 class="hero-title">Studio Varaždin</h1>
+      <div class="hero-subtitle">Cinematic Portfolio</div>
+      <p class="hero-description">Every story begins with a human emotion. The camera follows.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" id="hero-cta-view" data-project-id="">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+          View Project
+        </button>
+        <button class="btn-secondary" id="hero-cta-all" onclick="document.getElementById('catalogue').scrollIntoView({behavior:'smooth'})">
+          Browse All Films
+        </button>
+      </div>
+    </div>
+
+    <!-- Progress capsule (populated by JS) -->
+    <div class="hero-progress" aria-label="Hero slides navigation">
+      <div class="hero-progress-dots" role="list"></div>
+    </div>
+
+    <!-- Scroll hint -->
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <polyline points="6,9 12,15 18,9"/>
+      </svg>
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════ CATALOGUE ══════════════════════ -->
+  <main id="catalogue" aria-label="Project catalogue">
+    <!-- Rows injected by JS -->
+  </main>
+
+  <!-- ══════════════════════ ABOUT ══════════════════════════ -->
+  <section id="about" class="about-section">
+    <hr class="gold-rule">
+    <h2 class="about-heading">About Studio Varaždin</h2>
+    <p class="about-text">
+      Studio Varaždin — operating under the company <strong>Lotus RC</strong>, led by director <strong>Timon Terzić</strong> — is a creative production studio based in Varaždin, Croatia. The studio specialises in cinematic documentary film, immersive physical experience design, music video production, and AI-augmented storytelling.
+    </p>
+    <p class="about-quote">
+      "Story first, technology second. Every project begins with a human emotion, a dramatic tension, or a journey. Technical tools serve the story — not the other way around."
+    </p>
+    <div class="about-actions">
+      <a href="mailto:timon.terzic@gmail.com" class="btn-primary" id="about-contact-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+        Get in Touch
+      </a>
+      <a href="tel:+385911111200" class="btn-secondary" id="about-phone-btn">
+        +385 91 111 1200
+      </a>
+    </div>
+    <hr class="gold-rule">
+  </section>
+
+  <!-- ══════════════════════ FOOTER ══════════════════════════ -->
+  <footer id="site-footer">
+    <div>
+      <p class="footer-brand">Studio Varaždin</p>
+      <p class="footer-tagline" style="margin-top: 6px;">Story first. Technology second.</p>
+    </div>
+    <ul class="footer-links" role="list">
+      <li><a href="mailto:timon.terzic@gmail.com" id="footer-email">Email</a></li>
+      <li><a href="tel:+385911111200" id="footer-phone">+385 91 111 1200</a></li>
+    </ul>
+    <p class="footer-copy">© 2025 Lotus RC d.o.o. — Varaždin, Croatia</p>
+  </footer>
+
+  <!-- ══════════════════════ PROJECT EXPANDED VIEW ═══════════════════════════ -->
+  <div id="project-expanded-view" aria-hidden="true" class="player-idle">
+    <div class="expanded-media-layer" id="expanded-media-layer"></div>
+    
+    <!-- Netflix-Style Custom Player UI -->
+    <div class="custom-player-ui" id="custom-player-ui">
+      <!-- Top Gradient / Back Button -->
+      <div class="player-top-bar">
+        <button class="player-back-btn" id="player-back-btn" aria-label="Back to portfolio" style="view-transition-name: project-close-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"/>
+            <polyline points="12 19 5 12 12 5"/>
+          </svg>
+        </button>
+        <span class="player-top-title" id="player-top-title">Project</span>
+      </div>
+
+      <!-- Play state overlay (huge play icon that pulses and fades out) -->
+      <div class="player-center-state" id="player-center-state">
+        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="currentColor"/></svg>
+      </div>
+
+
+
+      <!-- Bottom Controls -->
+      <div class="player-bottom-bar">
+        <!-- Progress Bar -->
+        <div class="player-timeline-wrapper" id="player-timeline-wrapper">
+          <div class="player-timeline-bg"></div>
+          <div class="player-timeline-fill" id="player-timeline-fill"></div>
+          <div class="player-timeline-handle" id="player-timeline-handle"></div>
+        </div>
+
+        <div class="player-controls-row">
+          <div class="player-controls-left">
+            <button class="player-icon-btn" id="player-play-btn" aria-label="Play/Pause">
+              <svg viewBox="0 0 24 24" class="icon-play"><polygon points="5,3 19,12 5,21" fill="currentColor"/></svg>
+            </button>
+            
+            <!-- Volume Wrapper -->
+            <div class="player-vol-wrapper">
+              <button class="player-icon-btn" id="player-vol-btn" aria-label="Mute/Unmute">
+                <svg viewBox="0 0 24 24" class="icon-vol" fill="currentColor"><path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM3 9v6h4l5 5V4L7 9H3zm16 3c0 3.28-2.01 6.22-5 7.43v2.06c4.01-1.37 7-4.8 7-9.49s-2.99-8.12-7-9.49v2.06c2.99 1.21 5 4.15 5 7.43z"/></svg>
+              </button>
+              <div class="player-vol-slider-container">
+                <input type="range" class="player-vol-slider" id="player-vol-slider" min="0" max="100" value="100" step="1" aria-label="Volume">
+              </div>
+            </div>
+
+            <span class="player-time" id="player-time-display">0:00 / 0:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Description Card Layer -->
+    <div class="expanded-glass-layer" id="expanded-glass-layer"></div>
+  </div>
+
+  <!-- Scripts (order matters: data → animations → modules → orchestrator) -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="scripts/data.js"></script>
+  <script src="scripts/animations.js"></script>
+  <script src="scripts/hero.js"></script>
+  <script src="scripts/catalogue.js"></script>
+  <script src="scripts/player.js"></script>
+  <script src="scripts/nav.js"></script>
+  <script src="scripts/scroll-effects.js"></script>
+  <script src="scripts/main.js"></script>
+
+</body>
+</html>

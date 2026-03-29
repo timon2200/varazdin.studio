@@ -1,0 +1,137 @@
+/* ============================================================
+   Responsive — All Media Queries
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .modal-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-visual {
+    min-height: 260px;
+    max-height: 300px;
+  }
+
+  .modal-content {
+    padding: 32px 24px;
+  }
+
+  .modal-meta-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-pill {
+    width: calc(100% - 24px);
+    padding: 0 8px 0 14px;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: min(320px, 85vw);
+    height: 100vh;
+    background: rgba(6,18,11,0.96);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-left: 1px solid rgba(160,120,40,0.2);
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 80px 32px 32px;
+    transition: right var(--t-slow) var(--ease-cinematic);
+    box-shadow: -10px 0 60px rgba(0,0,0,0.6);
+    gap: 8px;
+    border-radius: 0;
+  }
+
+  #site-nav.nav-open .nav-links {
+    right: 0;
+  }
+
+  .nav-links a {
+    font-size: 1.1rem;
+    letter-spacing: 0.12em;
+    width: 100%;
+    padding: 10px 16px;
+    border-radius: 8px;
+  }
+
+  .nav-links li:last-child a {
+    border-radius: 8px;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .hero-description {
+    display: none;
+  }
+
+  #hero {
+    height: 65vh;
+  }
+
+  .row-track {
+    --hover-shift: 33px;
+    --hover-shift-edge: 66px;
+  }
+
+  .project-card {
+    flex: 0 0 440px;
+  }
+
+  .project-card:hover {
+    transform: scale(1.15);
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --page-pad: 16px;
+    --row-pad-v: 16px;
+  }
+
+  .row-track {
+    --hover-shift: 15px;
+    --hover-shift-edge: 30px;
+  }
+
+  .project-card {
+    flex: 0 0 360px;
+  }
+
+  .project-card:hover {
+    transform: scale(1.08);
+  }
+
+  .hero-title {
+    font-size: 1.8rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #site-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Landscape Mode overrides for expanded view */
+@media (orientation: landscape) and (max-width: 900px), (max-height: 500px) {
+  #project-expanded-view.is-active .glass-content-box {
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+  
+  #project-expanded-view.is-active .expanded-close-btn {
+    top: 20px;
+    right: 20px;
+    background: rgba(0,0,0,0.5);
+    border-color: rgba(255,255,255,0.2);
+  }
+}

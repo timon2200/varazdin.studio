@@ -1,0 +1,548 @@
+/* ============================================================
+   Project Expanded View & Netflix-Style Custom Player UI
+   ============================================================ */
+
+/* ── Expanded View Container ── */
+
+#project-expanded-view {
+  position: fixed;
+  z-index: 10000;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  pointer-events: none;
+  visibility: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  overscroll-behavior: none;
+}
+
+#project-expanded-view.is-active {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Base layer for media (image or video) */
+.expanded-media-layer {
+  position: sticky;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  overflow: hidden;
+  background-color: #040810;
+  z-index: 1;
+}
+
+/* Image inside media layer */
+.expanded-media-layer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+}
+
+/* Video iframe inside media layer */
+.expanded-media-layer iframe {
+  width: 100vw;
+  height: 56.25vw;
+  min-width: 177.77vh;
+  min-height: 100vh;
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.5s ease 0.5s;
+}
+
+#project-expanded-view.is-active .expanded-media-layer iframe {
+  opacity: 1;
+}
+
+/* ── Seamless Scrollable Info Area ── */
+
+.expanded-glass-layer {
+  position: relative;
+  z-index: 10010;
+  margin-top: 0;
+  min-height: 100vh;
+  padding: 80px 10%;
+  background: linear-gradient(
+    to bottom,
+    transparent 0px,
+    rgba(4, 8, 16, 0) 80px,
+    rgba(4, 8, 16, 0.6) 150px,
+    rgba(4, 8, 16, 0.98) 220px,
+    #040810 280px,
+    #040810 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  pointer-events: auto;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+#project-expanded-view.is-active .expanded-glass-layer {
+  opacity: 1;
+}
+
+/* ── Typography — seamless, no card ── */
+
+.glass-content-box {
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+  background: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+/* No static transform, handled by stagger */
+
+/* ── Staggered Scroll Classes ── */
+.glass-stagger {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.2, 1, 0.3, 1), transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.glass-stagger.glass-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.expanded-media-inner {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: center top;
+  will-change: transform, opacity;
+}
+
+
+.glass-category {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #8ab4f8;
+  margin-bottom: 16px;
+}
+
+.glass-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--white);
+  margin-bottom: 20px;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.5);
+  background: linear-gradient(100deg, #fff 0%, #b3d4ff 40%, #ffffff 60%, #fff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: goldShimmerSweep 8s linear infinite;
+}
+
+.glass-client {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  letter-spacing: 0.15em;
+  color: #c4d8f9;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+
+.glass-description {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  line-height: 1.85;
+  color: #e2eafc;
+  font-weight: 300;
+}
+
+/* ── Close button - Top Right ── */
+
+.expanded-close-btn {
+  position: fixed;
+  top: 40px;
+  right: 40px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(10, 25, 50, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(150, 200, 255, 0.3);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10001;
+  opacity: 0;
+  transform: rotate(-90deg);
+  transition: all 0.3s ease;
+}
+
+.expanded-close-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+#project-expanded-view.is-active .expanded-close-btn {
+  opacity: 1;
+  transform: rotate(0);
+  transition: all 0.6s cubic-bezier(0.2, 1, 0.3, 1) 0.6s;
+}
+
+.expanded-close-btn:hover {
+  background: rgba(20, 50, 100, 0.6);
+  border-color: rgba(200, 230, 255, 0.8);
+  transform: scale(1.1) rotate(90deg) !important;
+}
+
+/* ── View Transitions API Rules ── */
+
+::view-transition-old(project-image-expand),
+::view-transition-new(project-image-expand) {
+  animation-duration: 0.6s;
+  animation-timing-function: cubic-bezier(0.25, 1, 0.3, 1);
+  object-fit: cover;
+  border-radius: 0;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(project-glass),
+::view-transition-new(project-glass),
+::view-transition-old(project-close-btn),
+::view-transition-new(project-close-btn) {
+  animation-duration: 0.4s;
+  animation-timing-function: ease-in-out;
+}
+
+::view-transition-group(project-glass),
+::view-transition-group(project-close-btn) {
+  animation-duration: 0.4s;
+}
+
+::view-transition-new(root) {
+  animation-duration: 0.6s;
+}
+
+/* ════════════════════════════════════════════════════════════
+   Netflix-Style Custom Player UI
+   ════════════════════════════════════════════════════════════ */
+
+.custom-player-ui {
+  position: fixed;
+  top: 0; left: 0; right: 0; height: 100vh;
+  z-index: 10005;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+#project-expanded-view.is-active .custom-player-ui {
+  opacity: 1;
+}
+
+#project-expanded-view.player-idle .custom-player-ui {
+  opacity: 0;
+}
+
+/* Re-enable pointer events for inner interactive elements */
+.player-top-bar, .player-bottom-bar, .player-center-state {
+  pointer-events: auto;
+}
+
+/* Hide cursor when idle */
+#project-expanded-view.player-idle {
+  cursor: none;
+}
+
+/* ── Top Bar: Back Button & Title ── */
+
+.player-top-bar {
+  display: flex;
+  align-items: center;
+  padding: 40px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 100%);
+  gap: 24px;
+}
+
+.player-back-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, color 0.3s ease;
+  width: 50px;
+  height: 50px;
+}
+
+.player-back-btn svg {
+  width: 32px;
+  height: 32px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+.player-back-btn:hover {
+  transform: scale(1.1) translateX(-4px);
+  color: var(--gold-bright);
+}
+
+.player-top-title {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.9);
+  text-transform: uppercase;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+}
+
+/* ── Center State Overlay (Play/Pause Pulse) ── */
+
+.player-center-state {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.5);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.player-center-state.pulse {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.player-center-state svg {
+  width: 36px;
+  height: 36px;
+  margin-left: 4px;
+}
+
+/* ── Bottom Bar ── */
+
+.player-bottom-bar {
+  padding: 0 40px 30px;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 60%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Timeline */
+.player-timeline-wrapper {
+  position: relative;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  flex-grow: 1;
+}
+
+.player-timeline-bg {
+  width: 100%;
+  height: 4px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 2px;
+  transition: height 0.2s ease;
+}
+
+.player-timeline-fill {
+  position: absolute;
+  left: 0;
+  height: 4px;
+  background: var(--gold-mid);
+  border-radius: 2px;
+  width: 0%;
+  transition: height 0.2s ease, width 0.1s linear;
+}
+
+.player-timeline-handle {
+  position: absolute;
+  left: 0%;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--gold-bright);
+  transform: translate(-50%, 0) scale(0);
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  transition: transform 0.2s cubic-bezier(0.2, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.player-timeline-wrapper:hover .player-timeline-bg,
+.player-timeline-wrapper:hover .player-timeline-fill {
+  height: 8px;
+}
+
+.player-timeline-wrapper:hover .player-timeline-handle {
+  transform: translate(-50%, 0) scale(1);
+}
+
+/* Controls Row */
+.player-controls-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.player-controls-left, .player-controls-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.player-icon-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, color 0.2s ease;
+  padding: 0;
+}
+
+.player-icon-btn svg {
+  width: 32px;
+  height: 32px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+.player-icon-btn:hover {
+  transform: scale(1.15);
+  color: var(--gold-bright);
+}
+
+/* Volume Slider */
+.player-vol-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.player-vol-slider-container {
+  width: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: width 0.3s cubic-bezier(0.2, 1, 0.3, 1), opacity 0.3s ease, margin-left 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.player-vol-wrapper:hover .player-vol-slider-container {
+  width: 80px;
+  opacity: 1;
+  margin-left: 8px;
+}
+
+.player-vol-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  margin: 0;
+}
+
+.player-vol-slider::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  background: transparent;
+}
+
+.player-vol-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  background: var(--gold-bright);
+  cursor: pointer;
+  margin-top: -4px;
+}
+
+.player-vol-slider::-moz-range-track {
+  width: 100%;
+  height: 4px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 2px;
+}
+
+.player-vol-slider::-moz-range-thumb {
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  background: var(--gold-bright);
+  cursor: pointer;
+  border: none;
+}
+
+.player-time {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.9);
+  font-weight: 500;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+  min-width: 90px;
+}
+
+.player-btn-text {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.player-btn-text svg {
+  width: 18px;
+  height: 18px;
+}
+
+.player-btn-text:hover {
+  background: rgba(255,255,255,0.25);
+  transform: scale(1.05);
+  border-color: rgba(255,255,255,0.4);
+}
+
+

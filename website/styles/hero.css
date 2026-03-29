@@ -1,0 +1,323 @@
+/* ============================================================
+   Hero Section
+   ============================================================ */
+
+#hero {
+  position: relative;
+  width: 100%;
+  height: var(--hero-height);
+  min-height: 520px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+/* Ambient background halo */
+#hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 8% 80%, rgba(140, 100, 20, 0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 50% at 90% 20%, rgba(20, 60, 40, 0.18) 0%, transparent 70%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.hero-slides {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 30%;
+  opacity: 0;
+  will-change: opacity, transform;
+  transform: scale(1.06);
+  transition: opacity 1.0s ease, transform 9s linear;
+}
+
+.hero-slide.active {
+  opacity: 1;
+  transform: scale(1.0);
+}
+
+/* Gradient overlays */
+.hero-slide::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(5,18,10,0.1) 0%,
+    rgba(5,18,10,0.05) 25%,
+    rgba(5,18,10,0.55) 60%,
+    rgba(5,18,10,0.97) 100%
+  );
+}
+
+.hero-slide::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(5,18,10,0.80) 0%,
+    rgba(5,18,10,0.35) 45%,
+    transparent 100%
+  );
+}
+
+/* Dynamic color tint per project */
+.hero-tint {
+  position: absolute;
+  inset: 0;
+  opacity: 0.14;
+  mix-blend-mode: color;
+  transition: background 1.0s ease;
+  z-index: 1;
+}
+
+/* ── Hero Content ── */
+.hero-content {
+  position: relative;
+  z-index: 4;
+  padding: 0 var(--page-pad) 64px;
+  max-width: 680px;
+}
+
+/* All hero text children start hidden — JS triggers individual reveals */
+.hero-badge,
+.hero-title,
+.hero-subtitle,
+.hero-description,
+.hero-actions {
+  opacity: 0;
+}
+
+/* Badge */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+  margin-bottom: 14px;
+  padding: 5px 14px 5px 10px;
+  background: rgba(140, 100, 30, 0.18);
+  border: 1px solid rgba(180, 140, 60, 0.3);
+  border-radius: 9999px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.hero-badge::before {
+  content: '';
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold-mid);
+  box-shadow: 0 0 6px var(--gold-mid);
+  flex-shrink: 0;
+  animation: badgePulse 2.5s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+/* Title — fog lift base state */
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5.5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.08;
+  color: var(--white);
+  text-shadow: 0 2px 32px rgba(0,0,0,0.6);
+  margin-bottom: 8px;
+  /* Shimmer background — activated via class */
+  background: linear-gradient(
+    100deg,
+    hsl(43,72%,58%) 0%,
+    hsl(47,90%,78%) 38%,
+    hsl(45,85%,62%) 55%,
+    hsl(43,72%,58%) 100%
+  );
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gold shimmer animation — applied via JS class after reveal */
+.hero-title.shimmer {
+  animation: goldShimmerSweep 8s ease-in-out infinite;
+}
+
+@keyframes goldShimmerSweep {
+  0%, 60%   { background-position: 0% center; }
+  80%        { background-position: 100% center; }
+  100%       { background-position: 0% center; }
+}
+
+.hero-subtitle {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  letter-spacing: 0.14em;
+  font-weight: 400;
+  color: var(--gold-foil);
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+
+.hero-description {
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--cream-dim);
+  font-weight: 400;
+  margin-bottom: 32px;
+  max-width: 500px;
+}
+
+/* Word-stagger spans inserted by JS */
+.hero-description .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(6px);
+  will-change: opacity, transform;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* ── Buttons ── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 28px;
+  background: linear-gradient(135deg, hsl(43,72%,38%), hsl(44,78%,46%));
+  color: var(--green-void);
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 9999px;
+  transition: all var(--t-fast) ease;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,220,100,0.2);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, hsl(44,78%,46%), hsl(47,85%,60%));
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px rgba(0,0,0,0.4), 0 0 20px rgba(180,140,50,0.25), inset 0 1px 0 rgba(255,220,100,0.3);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: var(--cream);
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 9999px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all var(--t-fast) ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(180, 140, 60, 0.5);
+  color: var(--gold-bright);
+  transform: translateY(-1px);
+}
+
+/* ── Hero Progress — Capsule Indicator ── */
+.hero-progress {
+  position: absolute;
+  bottom: 28px;
+  right: var(--page-pad);
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.hero-progress-dots {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.hero-dot {
+  width: 28px;
+  height: 3px;
+  border-radius: 9999px;
+  background: rgba(255,255,255,0.2);
+  cursor: pointer;
+  padding: 0;
+  transition: background var(--t-normal) ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gold-mid);
+  transform: scaleX(0);
+  transform-origin: left;
+  border-radius: inherit;
+  transition: transform 0ms linear;
+}
+
+.hero-dot.active::after {
+  transform: scaleX(1);
+  transition: transform 6000ms linear;
+}
+
+/* Hero scroll hint */
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  opacity: 0.4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.hero-scroll-hint svg {
+  animation: hintBounce 2.2s ease-in-out infinite;
+}
+
+@keyframes hintBounce {
+  0%, 100% { transform: translateY(0); opacity: 0.4; }
+  50% { transform: translateY(7px); opacity: 0.8; }
+}

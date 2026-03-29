@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Studio Varaždin — Cinematic production studio from northern Croatia. Documentary films, immersive experiences, music videos, and destination storytelling. Led by director Timon Terzić.">
+  <meta property="og:title" content="Studio Varaždin — Cinematic Portfolio">
+  <meta property="og:description" content="Story first. Technology second.">
+  <meta property="og:type" content="website">
+  <title>Studio Varaždin — Cinematic Portfolio</title>
+</head>
+
+<body>
+
+  <!-- ══════════════════════ NAVIGATION ══════════════════════ -->
+  <nav id="site-nav" aria-label="Main navigation">
+    <div class="nav-pill">
+
+      <a href="#" class="nav-logo" aria-label="Studio Varaždin — Home">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M20 2 L36 10 L36 26 Q36 36 20 38 Q4 36 4 26 L4 10 Z"
+                fill="none" stroke="hsl(43,72%,48%)" stroke-width="1.5"/>
+          <path d="M20 2 L36 10 L36 26 Q36 36 20 38 Q4 36 4 26 L4 10 Z"
+                fill="url(#sg)" opacity="0.15"/>
+          <text x="20" y="26" text-anchor="middle"
+                font-family="Cinzel, serif" font-size="14" font-weight="700"
+                fill="hsl(47,85%,62%)" letter-spacing="0">V</text>
+          <defs>
+            <linearGradient id="sg" x1="20" y1="2" x2="20" y2="38" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="hsl(43,72%,48%)"/>
+              <stop offset="100%" stop-color="hsl(150,38%,12%)"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div>
+          <span class="nav-logo-text">Studio Varaždin</span>
+          <span class="nav-logo-sub">Lotus RC &bull; Est. 2022</span>
+        </div>
+      </a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="#catalogue" id="nav-films">Films</a></li>
+        <li><a href="#about" id="nav-about">About</a></li>
+        <li><a href="mailto:timon.terzic@gmail.com" id="nav-contact">Contact</a></li>
+      </ul>
+
+      <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+    </div>
+  </nav>
+
+  <!-- ══════════════════════ HERO ══════════════════════════ -->
+  <section id="hero" aria-label="Featured projects">
+    <div class="hero-slides" aria-hidden="true"></div>
+    <div class="hero-tint" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <div class="hero-badge">Documentary</div>
+      <h1 class="hero-title">Studio Varaždin</h1>
+      <div class="hero-subtitle">Cinematic Portfolio</div>
+      <p class="hero-description">Every story begins with a human emotion. The camera follows.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" id="hero-cta-view" data-project-id="">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5,3 19,12 5,21"/>
+          </svg>
+          View Project
+        </button>
+        <button class="btn-secondary" id="hero-cta-all">
+          Browse All Films
+        </button>
+      </div>
+    </div>
+
+    <div class="hero-progress" aria-label="Hero slides navigation">
+      <div class="hero-progress-dots" role="list"></div>
+    </div>
+
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <polyline points="6,9 12,15 18,9"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ══════════════════════ CATALOGUE ══════════════════════ -->
+  <main id="catalogue" aria-label="Project catalogue"></main>
+
+  <!-- ══════════════════════ ABOUT ══════════════════════════ -->
+  <section id="about" style="padding: 80px var(--page-pad); max-width: 860px; margin: 0 auto;">
+    <hr class="gold-rule">
+    <h2 style="font-family: var(--font-heading); font-size: 1.7rem; color: var(--white); margin-bottom: 20px; letter-spacing: 0.07em; text-transform: uppercase;">
+      About Studio Varaždin
+    </h2>
+    <p style="font-family: var(--font-body); font-size: 1.1rem; line-height: 1.85; color: var(--cream-dim); font-weight: 300; margin-bottom: 20px;">
+      Studio Varaždin — operating under <strong style="color:var(--cream)">Lotus RC</strong>, led by director <strong style="color:var(--cream)">Timon Terzić</strong> — is a cinematic production studio based in Varaždin, Croatia. The studio specialises in documentary film, immersive physical experience design, music video production, and AI-augmented storytelling.
+    </p>
+    <p style="font-family: var(--font-body); font-size: 1.05rem; line-height: 1.85; color: var(--cream-muted); font-weight: 300; margin-bottom: 36px; font-style: italic;">
+      "Story first, technology second. Every project begins with a human emotion, a dramatic tension, or a journey."
+    </p>
+    <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+      <a href="mailto:timon.terzic@gmail.com" class="btn-primary" id="about-contact-btn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,12 2,6"/>
+        </svg>
+        Get in Touch
+      </a>
+    </div>
+    <hr class="gold-rule">
+  </section>
+
+  <!-- ══════════════════════ FOOTER ══════════════════════════ -->
+  <footer id="site-footer">
+    <div>
+      <p class="footer-brand">Studio Varaždin</p>
+      <p class="footer-tagline">Story first. Technology second.</p>
+    </div>
+    <ul class="footer-links" role="list">
+      <li><a href="mailto:timon.terzic@gmail.com" id="footer-email">timon.terzic@gmail.com</a></li>
+    </ul>
+    <p class="footer-copy">© 2025 Lotus RC d.o.o. — Varaždin, Croatia</p>
+  </footer>
+
+  <!-- ══════════════════════ MODAL ══════════════════════════ -->
+  <div id="modal-overlay" aria-hidden="true"></div>
+  <div id="modal" role="dialog" aria-modal="true" aria-label="Project details">
+    <div class="modal-inner"></div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

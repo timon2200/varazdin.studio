@@ -1,0 +1,107 @@
+/* ============================================================
+   Footer & Gold Rule Divider
+   ============================================================ */
+
+#site-footer {
+  border-top: 1px solid var(--green-border);
+  padding: 48px var(--page-pad) 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-brand {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  color: var(--gold-mid);
+  text-transform: uppercase;
+}
+
+.footer-tagline {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--cream-muted);
+}
+
+.footer-copy {
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  color: var(--cream-muted);
+  letter-spacing: 0.08em;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+.footer-links a {
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: var(--cream-muted);
+  text-transform: uppercase;
+  transition: color var(--t-fast) ease;
+}
+
+.footer-links a:hover { color: var(--gold-bright); }
+
+/* ── Gold Rule Divider ── */
+
+.gold-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-deep), transparent);
+  border: none;
+  margin: var(--section-gap) 0;
+}
+
+/* ── About Section (extracted from inline styles) ── */
+
+.about-section {
+  padding: 80px var(--page-pad);
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.about-heading {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  color: var(--white);
+  margin-bottom: 20px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.about-text {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  line-height: 1.85;
+  color: var(--cream-dim);
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+
+.about-text strong {
+  color: var(--cream);
+}
+
+.about-quote {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--cream-muted);
+  font-weight: 300;
+  margin-bottom: 36px;
+  font-style: italic;
+}
+
+.about-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}

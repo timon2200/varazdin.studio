@@ -1,0 +1,205 @@
+/* ============================================================
+   Navigation — Ornate Signboard Header
+   ============================================================ */
+
+#site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-nav);
+  display: flex;
+  justify-content: center;
+  padding: 12px var(--page-pad);
+  pointer-events: none;
+  transition: padding 0.5s var(--ease-cinematic);
+}
+
+/* The Signboard */
+.nav-signboard {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  background: linear-gradient(135deg, rgba(8, 20, 12, 0.98), rgba(4, 10, 6, 0.99));
+  border: 1px solid rgba(180, 140, 60, 0.4);
+  box-shadow: 
+    0 24px 64px rgba(0,0,0,0.8),
+    inset 0 0 0 1px rgba(255,210,100,0.1),
+    inset 0 0 20px rgba(180,140,60,0.15);
+  border-radius: 4px;
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: auto;
+  transition: all 0.5s var(--ease-cinematic);
+  transform-origin: top center;
+}
+
+#site-nav.scrolled {
+  padding: 0;
+}
+
+#site-nav.scrolled .nav-signboard {
+  max-width: 100%;
+  border-radius: 0;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  padding: 8px var(--page-pad);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.9);
+}
+
+/* Framing & Corner Ornaments */
+.signboard-frame {
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(180, 140, 60, 0.25);
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+#site-nav.scrolled .signboard-frame {
+  opacity: 0;
+}
+
+/* Decorative corner pieces */
+.frame-corner {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--gold-mid);
+}
+.frame-corner.top-left { top: -2px; left: -2px; border-right: none; border-bottom: none; }
+.frame-corner.top-right { top: -2px; right: -2px; border-left: none; border-bottom: none; }
+.frame-corner.bottom-left { bottom: -2px; left: -2px; border-right: none; border-top: none; }
+.frame-corner.bottom-right { bottom: -2px; right: -2px; border-left: none; border-top: none; }
+
+/* Grand Logo */
+.nav-logo-grand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transform: translateY(-2px);
+  transition: transform 0.5s var(--ease-cinematic);
+}
+
+#site-nav.scrolled .nav-logo-grand {
+  transform: scale(0.65) translateY(0);
+}
+
+.logo-varazdin {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  letter-spacing: 0.35em;
+  font-weight: 600;
+  color: var(--gold-bright);
+  text-transform: uppercase;
+  margin-bottom: -4px;
+}
+
+.logo-studio {
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-transform: uppercase;
+  background: linear-gradient(
+    180deg,
+    hsl(43,80%,75%) 0%,
+    hsl(43,72%,48%) 50%,
+    hsl(45,85%,30%) 51%,
+    hsl(43,72%,48%) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 4px 12px rgba(0,0,0,0.6);
+}
+
+/* Nav links left and right */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  list-style: none;
+  flex: 1;
+}
+
+.nav-links-left {
+  justify-content: flex-start;
+}
+.nav-links-right {
+  justify-content: flex-end;
+}
+
+.nav-links a {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--cream-dim);
+  transition: color var(--t-fast) ease, text-shadow var(--t-fast) ease;
+  position: relative;
+  text-decoration: none;
+}
+
+.nav-links a:hover,
+.nav-links a:focus {
+  color: var(--gold-bright);
+  text-shadow: 0 0 12px rgba(180, 140, 60, 0.4);
+}
+
+/* Gold Contact Button */
+.btn-contact-gold {
+  padding: 8px 18px;
+  background: linear-gradient(135deg, rgba(140, 100, 30, 0.15), rgba(180, 140, 60, 0.05));
+  border: 1px solid rgba(180, 140, 60, 0.5);
+  border-radius: 2px;
+  color: var(--gold-bright) !important;
+}
+
+.btn-contact-gold:hover {
+  background: linear-gradient(135deg, rgba(180, 140, 60, 0.3), rgba(140, 100, 30, 0.1));
+  border-color: var(--gold-bright);
+  box-shadow: 0 0 16px rgba(180, 140, 60, 0.2);
+}
+
+/* Right Cluster for Mobile Toggle */
+.nav-right-cluster {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+  gap: 20px;
+}
+
+/* Mobile hamburger */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+  z-index: 2;
+  cursor: pointer;
+  pointer-events: auto;
+  border: none;
+  background: transparent;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--gold-mid);
+  transition: transform var(--t-normal) ease, opacity var(--t-fast) ease;
+}
+
+/* Mobile menu open state */
+#site-nav.nav-open .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+#site-nav.nav-open .nav-toggle span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+#site-nav.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
