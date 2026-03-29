@@ -4,7 +4,7 @@
 
 @media (max-width: 900px) {
   /* Mobile Project Expanded View (Vertical Mode) */
-  #project-expanded-view.is-active .expanded-media-layer {
+  #project-expanded-view.is-active:not(.is-fullscreen) .expanded-media-layer {
     position: relative;
     top: 0;
     height: 56.25vw;
@@ -12,15 +12,15 @@
     z-index: 10;
   }
   
-  #project-expanded-view.is-active .custom-player-ui {
+  #project-expanded-view.is-active:not(.is-fullscreen) .custom-player-ui {
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 56.25vw;
   }
   
-  #project-expanded-view.is-active .expanded-media-layer img,
-  #project-expanded-view.is-active .expanded-media-layer iframe,
-  #project-expanded-view.is-active #yt-player-target {
+  #project-expanded-view.is-active:not(.is-fullscreen) .expanded-media-layer img,
+  #project-expanded-view.is-active:not(.is-fullscreen) .expanded-media-layer iframe,
+  #project-expanded-view.is-active:not(.is-fullscreen) #yt-player-target {
     min-width: unset !important;
     min-height: unset !important;
     width: 100vw !important;
@@ -31,7 +31,7 @@
     position: absolute !important;
   }
 
-  #project-expanded-view.is-active .expanded-media-inner {
+  #project-expanded-view.is-active:not(.is-fullscreen) .expanded-media-inner {
     transform: none !important;
     opacity: 1 !important;
   }
