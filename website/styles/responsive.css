@@ -5,11 +5,17 @@
 @media (max-width: 900px) {
   /* Mobile Project Expanded View (Vertical Mode) */
   #project-expanded-view.is-active .expanded-media-layer {
-    position: sticky;
+    position: relative;
     top: 0;
     height: 56.25vw;
     min-height: unset;
     z-index: 10;
+  }
+  
+  #project-expanded-view.is-active .custom-player-ui {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 56.25vw;
   }
   
   #project-expanded-view.is-active .expanded-media-layer img,
@@ -36,6 +42,14 @@
     padding: 24px 20px 140px;
     background: transparent;
     margin-top: 0;
+    opacity: 1; /* Ensure glass layer background doesn't try to fade in slow if overridden */
+  }
+
+  /* Text must be visible immediately on mobile */
+  .glass-stagger {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 
   .glass-title {

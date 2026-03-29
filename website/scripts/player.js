@@ -145,7 +145,7 @@ function initYoutubePlayer(vidId) {
     videoId: vidId,
     playerVars: {
       autoplay: 1,
-      mute: 0,
+      mute: window.innerWidth <= 900 ? 1 : 0,
       controls: 0,
       loop: 1,
       playlist: vidId,
@@ -172,7 +172,14 @@ function initYoutubePlayer(vidId) {
 }
 
 function onPlayerReady(event) {
-  isVideoMuted = false;
+  if (window.innerWidth <= 900) {
+    isVideoMuted = true;
+    document.querySelectorAll('.icon-vol').forEach(el => el.innerHTML = '<path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM3 9v6h4l5 5V4L7 9H3zm16 3c0 3.28-2.01 6.22-5 7.43v2.06c4.01-1.37 7-4.8 7-9.49s-2.99-8.12-7-9.49v2.06c2.99 1.21 5 4.15 5 7.43z"/>');
+    const slider = document.getElementById('player-vol-slider');
+    if (slider) slider.value = 0;
+  } else {
+    isVideoMuted = false;
+  }
   isVideoPlaying = true;
   event.target.playVideo();
   startScrubberUpdate();
@@ -341,6 +348,13 @@ document.addEventListener('DOMContentLoaded', () => {
 function handleExpandedScroll(e) {
   const view = e.currentTarget;
   if (!view.classList.contains('is-active')) return;
+  
+  // Disable scale and stagger on mobile so elements are native flow and visible.
+  if (window.innerWidth <= 900) {
+    const staggers = document.querySelectorAll('.glass-stagger');
+    staggers.forEach(el => el.classList.add('glass-visible'));
+    return;
+  }
   
   const scrollY = view.scrollTop;
   
