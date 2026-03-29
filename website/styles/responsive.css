@@ -40,7 +40,7 @@
   #project-expanded-view.is-active .expanded-glass-layer {
     min-height: unset;
     padding: 24px 20px 140px;
-    background: transparent;
+    background: #040810;
     margin-top: 0;
     opacity: 1; /* Ensure glass layer background doesn't try to fade in slow if overridden */
   }
