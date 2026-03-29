@@ -93,6 +93,7 @@ function initGlobalEvents() {
   document.getElementById('player-play-btn')?.addEventListener('click', togglePlay);
   document.getElementById('player-vol-btn')?.addEventListener('click', toggleMute);
   document.getElementById('player-center-state')?.addEventListener('click', togglePlay);
+  document.getElementById('player-fullscreen-btn')?.addEventListener('click', toggleFullscreen);
   
   document.getElementById('player-vol-slider')?.addEventListener('input', (e) => {
     if (typeof setVolume === 'function') {

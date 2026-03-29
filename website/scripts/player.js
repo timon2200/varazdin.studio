@@ -164,15 +164,6 @@ function initYoutubePlayer(vidId) {
   setTimeout(() => {
     const iframe = document.getElementById('yt-player-target');
     if (iframe) {
-      iframe.style.width = '100vw';
-      iframe.style.height = '56.25vw';
-      iframe.style.minWidth = '177.77vh';
-      iframe.style.minHeight = '100vh';
-      iframe.style.position = 'absolute';
-      iframe.style.top = '50%';
-      iframe.style.left = '50%';
-      iframe.style.transform = 'translate(-50%, -50%)';
-      iframe.style.pointerEvents = 'none';
       iframe.style.opacity = '0';
       iframe.style.transition = 'opacity 1.5s ease 0.5s';
       setTimeout(() => iframe.style.opacity = '1', 50);
@@ -279,6 +270,36 @@ function setVolume(vol) {
     document.querySelectorAll('.icon-vol').forEach(el => el.innerHTML = '<path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM3 9v6h4l5 5V4L7 9H3zm16 3c0 3.28-2.01 6.22-5 7.43v2.06c4.01-1.37 7-4.8 7-9.49s-2.99-8.12-7-9.49v2.06c2.99 1.21 5 4.15 5 7.43z"/>');
   }
 }
+
+// ════════════════════════════════════════════════════════════
+// FULLSCREEN
+// ════════════════════════════════════════════════════════════
+
+function toggleFullscreen() {
+  const elem = document.getElementById('project-expanded-view');
+  if (!document.fullscreenElement) {
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) {
+      elem.webkitRequestFullscreen();
+    }
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    }
+  }
+}
+
+document.addEventListener('fullscreenchange', () => {
+  const view = document.getElementById('project-expanded-view');
+  if (document.fullscreenElement) {
+    view.classList.add('is-fullscreen');
+  } else {
+    view.classList.remove('is-fullscreen');
+  }
+});
 
 // ════════════════════════════════════════════════════════════
 // IDLE TIMER & CENTER PULSE

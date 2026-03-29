@@ -42,7 +42,8 @@
 }
 
 /* Video iframe inside media layer */
-.expanded-media-layer iframe {
+.expanded-media-layer iframe,
+#yt-player-target {
   width: 100vw;
   height: 56.25vw;
   min-width: 177.77vh;
@@ -55,7 +56,8 @@
   transition: opacity 1.5s ease 0.5s;
 }
 
-#project-expanded-view.is-active .expanded-media-layer iframe {
+#project-expanded-view.is-active .expanded-media-layer iframe,
+#project-expanded-view.is-active #yt-player-target {
   opacity: 1;
 }
 
@@ -345,6 +347,31 @@
   width: 36px;
   height: 36px;
   margin-left: 4px;
+}
+
+/* ── Fullscreen overrides ── */
+#project-expanded-view.is-fullscreen .expanded-media-layer {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  z-index: 10;
+}
+#project-expanded-view.is-fullscreen .expanded-media-layer iframe,
+#project-expanded-view.is-fullscreen #yt-player-target {
+  min-width: 177.77vh !important;
+  min-height: 100vh !important;
+  width: 100vw !important;
+  height: 56.25vw !important;
+  top: 50% !important; left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  position: absolute !important;
+}
+#project-expanded-view.is-fullscreen .expanded-glass-layer {
+  display: none;
+}
+#project-expanded-view.is-fullscreen .player-top-bar {
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* ── Bottom Bar ── */
