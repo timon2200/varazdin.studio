@@ -29,7 +29,7 @@ const PROJECTS = [
     subtitle: "One-Take FPV Tour",
     year: 2024,
     client: "Rimac Automobili",
-    category: "immersive",
+    category: "campaign",
     type: "FPV Drone Tour",
     duration: "~2 min",
     director: "Timon Terzić",
@@ -431,7 +431,7 @@ const PROJECTS = [
     subtitle: "Faculty of Organization and Informatics",
     year: 2023,
     client: "FOI",
-    category: "event",
+    category: "institutional",
     type: "Event Film",
     duration: "~2 min",
     director: "Timon Terzić",
@@ -470,9 +470,10 @@ const PROJECTS = [
 ];
 
 // Category row definitions — order matters
+const RECOMMENDED_IDS = ["mint-2024", "trakostyan-2025", "fvd-2024", "vudrag-dubai-2025"];
 const ROWS = [
+  { id: "recommended",  label: "Recommended",                    filter: p => RECOMMENDED_IDS.includes(p.id) },
   { id: "documentary",  label: "Documentary & Portrait Films",  filter: p => ["documentary"].includes(p.category) },
-  { id: "immersive",    label: "Immersive Experiences",          filter: p => p.category === "immersive" },
   { id: "short-film",   label: "Historical Drama & Short Films", filter: p => p.category === "short-film" },
   { id: "festival",     label: "Festival & Event Films",         filter: p => ["festival", "event"].includes(p.category) },
   { id: "music-video",  label: "Music Videos",                   filter: p => p.category === "music-video" },
