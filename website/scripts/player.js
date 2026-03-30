@@ -151,7 +151,7 @@ function initYoutubePlayer(vidId) {
     videoId: vidId,
     playerVars: {
       autoplay: 1,
-      mute: mobile ? 1 : 0,
+      mute: 0,                    // start with sound (user click = gesture)
       controls: mobile ? 1 : 0,   // native controls on mobile → real fullscreen
       loop: 1,
       playlist: vidId,
@@ -179,14 +179,17 @@ function initYoutubePlayer(vidId) {
 }
 
 function onPlayerReady(event) {
+  // Unmute and set volume — user click satisfies autoplay policy
+  event.target.unMute();
+  event.target.setVolume(100);
+  isVideoMuted = false;
+
   if (window.innerWidth <= 900) {
-    isVideoMuted = true;
     // Hide custom player UI on mobile — native YouTube controls handle everything
     const customUI = document.getElementById('custom-player-ui');
     if (customUI) customUI.style.display = 'none';
-  } else {
-    isVideoMuted = false;
   }
+
   isVideoPlaying = true;
   event.target.playVideo();
   startScrubberUpdate();
