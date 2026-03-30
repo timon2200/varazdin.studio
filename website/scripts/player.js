@@ -110,6 +110,9 @@ function closeProject() {
     expandedView.classList.remove('is-active');
     expandedView.classList.remove('is-fullscreen');
     document.body.style.overflow = '';
+    // Restore custom player UI visibility for next open
+    const customUI = document.getElementById('custom-player-ui');
+    if (customUI) customUI.style.display = '';
     expandedMedia.innerHTML = '';
     expandedGlass.innerHTML = '';
     if (expandedView) expandedView.scrollTo(0, 0);
@@ -142,19 +145,22 @@ function initYoutubePlayer(vidId) {
     return;
   }
   
+  const mobile = window.innerWidth <= 900;
+
   ytPlayer = new YT.Player('yt-player-target', {
     videoId: vidId,
     playerVars: {
       autoplay: 1,
-      mute: window.innerWidth <= 900 ? 1 : 0,
-      controls: 0,
+      mute: mobile ? 1 : 0,
+      controls: mobile ? 1 : 0,   // native controls on mobile → real fullscreen
       loop: 1,
       playlist: vidId,
       playsinline: 1,
       rel: 0,
       modestbranding: 1,
       showinfo: 0,
-      iv_load_policy: 3
+      iv_load_policy: 3,
+      fs: 1                       // allow native fullscreen
     },
     events: {
       onReady: onPlayerReady,
@@ -175,9 +181,9 @@ function initYoutubePlayer(vidId) {
 function onPlayerReady(event) {
   if (window.innerWidth <= 900) {
     isVideoMuted = true;
-    document.querySelectorAll('.icon-vol').forEach(el => el.innerHTML = '<path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM3 9v6h4l5 5V4L7 9H3zm16 3c0 3.28-2.01 6.22-5 7.43v2.06c4.01-1.37 7-4.8 7-9.49s-2.99-8.12-7-9.49v2.06c2.99 1.21 5 4.15 5 7.43z"/>');
-    const slider = document.getElementById('player-vol-slider');
-    if (slider) slider.value = 0;
+    // Hide custom player UI on mobile — native YouTube controls handle everything
+    const customUI = document.getElementById('custom-player-ui');
+    if (customUI) customUI.style.display = 'none';
   } else {
     isVideoMuted = false;
   }
@@ -288,14 +294,12 @@ function toggleFullscreen() {
   const isFs = document.fullscreenElement || document.webkitFullscreenElement;
 
   if (isFs) {
-    // Exit fullscreen
     if (document.exitFullscreen) {
       document.exitFullscreen();
     } else if (document.webkitExitFullscreen) {
       document.webkitExitFullscreen();
     }
   } else {
-    // Enter native fullscreen (hides browser chrome on all platforms)
     const fsPromise = elem.requestFullscreen
       ? elem.requestFullscreen()
       : elem.webkitRequestFullscreen
@@ -304,16 +308,15 @@ function toggleFullscreen() {
 
     if (fsPromise && typeof fsPromise.catch === 'function') {
       fsPromise.catch(() => {
-        // Fallback: CSS-only simulated fullscreen if API fails
         elem.classList.toggle('is-fullscreen');
       });
     } else if (!elem.requestFullscreen && !elem.webkitRequestFullscreen) {
-      // No API at all — use CSS fallback
       elem.classList.toggle('is-fullscreen');
     }
   }
 }
 
+// Desktop fullscreen event listeners
 document.addEventListener('fullscreenchange', () => {
   const view = document.getElementById('project-expanded-view');
   if (document.fullscreenElement) {

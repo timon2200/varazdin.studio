@@ -103,6 +103,12 @@
     height: 100vh;
   }
 
+  /* ── Native YouTube controls on mobile — iframe must receive touches ── */
+  #project-expanded-view.is-active .expanded-media-layer iframe,
+  #project-expanded-view.is-active #yt-player-target {
+    pointer-events: auto !important;
+  }
+
   .modal-inner {
     grid-template-columns: 1fr;
   }
