@@ -339,27 +339,7 @@ const PROJECTS = [
     badges: ["ZEISS Partnership", "Documentary", "International"],
     youtubeUrl: null
   },
-  {
-    id: "advent-lift-2024",
-    title: "The Advent Lift",
-    subtitle: "Journey to the North Pole",
-    year: 2024,
-    client: "Varaždin Tourist Board",
-    category: "immersive",
-    type: "Immersive Physical Experience",
-    duration: "3 min live",
-    director: "Timon Terzić",
-    team: ["Timon Terzić", "Hrvoje Hegedušić"],
-    thumbnail: "assets/images/advent-lift.png",
-    heroImage: "assets/images/advent-lift.png",
-    themeColor: "hsl(210, 60%, 14%)",
-    tagline: "Step inside. The North Pole is closer than you think.",
-    description: "Not a film — a world. A custom-engineered immersive Christmas elevator transports 6–8 visitors on a 3-minute journey to the North Pole using spatial audio, synchronised LED lighting, fog machines, and a cinematic video experience. Studio Varaždin designed everything: the narrative, the automation system, the set construction specifications, and the sensory choreography. One of Advent u Varaždinu 2024's most-shared attractions.",
-    awards: ["Most Innovative Experience 2024"],
-    featured: true,
-    badges: ["Immersive", "Interactive", "Physical Installation"],
-    youtubeUrl: null
-  },
+
   {
     id: "stefany-2025",
     title: "Otrov i Med",
