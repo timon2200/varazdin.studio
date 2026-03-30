@@ -108,6 +108,7 @@ function closeProject() {
   
   const updateDOM = () => {
     expandedView.classList.remove('is-active');
+    expandedView.classList.remove('is-fullscreen');
     document.body.style.overflow = '';
     expandedMedia.innerHTML = '';
     expandedGlass.innerHTML = '';
@@ -284,17 +285,26 @@ function setVolume(vol) {
 
 function toggleFullscreen() {
   const elem = document.getElementById('project-expanded-view');
-  if (!document.fullscreenElement) {
-    if (elem.requestFullscreen) {
-      elem.requestFullscreen();
-    } else if (elem.webkitRequestFullscreen) {
-      elem.webkitRequestFullscreen();
-    }
+  const isMobile = window.innerWidth <= 900;
+
+  if (isMobile) {
+    // Mobile: toggle simulated fullscreen via CSS class
+    // (iOS doesn't support Fullscreen API on iframes)
+    elem.classList.toggle('is-fullscreen');
   } else {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
+    // Desktop: use native Fullscreen API
+    if (!document.fullscreenElement) {
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+      } else if (elem.webkitRequestFullscreen) {
+        elem.webkitRequestFullscreen();
+      }
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      }
     }
   }
 }

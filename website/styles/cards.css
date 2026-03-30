@@ -30,35 +30,50 @@
     z-index 0ms 0ms;
 }
 
+/* ── Kill ALL hover effects while dragging ── */
+.row-track.dragging .project-card,
+.row-track.dragging .project-card:hover {
+  transform: none !important;
+  z-index: var(--z-base) !important;
+  transition: none !important;
+}
+
+.row-track.dragging .card-image { box-shadow: var(--shadow-card) !important; }
+.row-track.dragging .card-image img { transform: none !important; filter: none !important; }
+.row-track.dragging .card-image::after { opacity: 0 !important; }
+.row-track.dragging .card-play { opacity: 0 !important; }
+.row-track.dragging .card-info { opacity: 0 !important; transform: translateY(6px) !important; }
+.row-track.dragging .card-title { filter: blur(4px) !important; }
+
 /* ── Netflix-style sibling accommodation ──
    Cards before the hovered card shift left,
    cards after it shift right, making room. */
-.row-track:has(.project-card:hover) .project-card:not(:hover) {
+.row-track:not(.dragging):has(.project-card:hover) .project-card:not(:hover) {
   transition:
     transform var(--t-normal) var(--ease-cinematic),
     z-index 0ms calc(var(--t-normal) + 10ms);
 }
 
 /* Cards BEFORE the hovered card → shift left */
-.row-track:has(.project-card:hover) .project-card {
+.row-track:not(.dragging):has(.project-card:hover) .project-card {
   transform: translateX(calc(-1 * var(--hover-shift)));
 }
 
 /* The hovered card itself stays scaled (overrides the above) */
-.row-track:has(.project-card:hover) .project-card:hover {
+.row-track:not(.dragging):has(.project-card:hover) .project-card:hover {
   transform: scale(1.35);
 }
 
-.row-track:has(.project-card:hover) .project-card:hover ~ .project-card {
+.row-track:not(.dragging):has(.project-card:hover) .project-card:hover ~ .project-card {
   transform: translateX(var(--hover-shift));
 }
 
 /* ── Edge Cards Special Shifts ── */
-.row-track:has(.project-card:first-child:hover) .project-card:not(:hover) {
+.row-track:not(.dragging):has(.project-card:first-child:hover) .project-card:not(:hover) {
   transform: translateX(var(--hover-shift-edge));
 }
 
-.row-track:has(.project-card:last-child:hover) .project-card:not(:hover) {
+.row-track:not(.dragging):has(.project-card:last-child:hover) .project-card:not(:hover) {
   transform: translateX(calc(-1 * var(--hover-shift-edge)));
 }
 

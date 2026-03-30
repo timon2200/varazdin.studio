@@ -3,12 +3,20 @@
    ============================================================ */
 
 @media (max-width: 900px) {
+  /* Mobile: solid bg + flex column so glass fills remaining space */
+  #project-expanded-view.is-active {
+    background: #040810;
+    display: flex;
+    flex-direction: column;
+  }
+
   /* Mobile Project Expanded View (Vertical Mode) */
   #project-expanded-view.is-active:not(.is-fullscreen) .expanded-media-layer {
     position: relative;
     top: 0;
     height: 56.25vw;
     min-height: unset;
+    flex-shrink: 0;
     z-index: 10;
   }
   
@@ -36,16 +44,17 @@
     opacity: 1 !important;
   }
 
-  /* Reset the background of glass on mobile so it doesn't do the complex scroll fade */
+  /* Glass layer fills remaining viewport — no page bleed-through */
   #project-expanded-view.is-active .expanded-glass-layer {
-    min-height: unset;
+    flex: 1 0 auto;
+    min-height: calc(100vh - 56.25vw);
     padding: 24px 20px 140px;
     background: #040810;
     margin-top: 0;
-    opacity: 1; /* Ensure glass layer background doesn't try to fade in slow if overridden */
+    opacity: 1;
   }
 
-  /* Text must be visible immediately on mobile */
+  /* Text must be visible immediately on mobile — no stagger/scroll reveal */
   .glass-stagger {
     opacity: 1 !important;
     transform: none !important;
@@ -66,6 +75,32 @@
   
   .player-bottom-bar {
     padding: 0 20px 20px;
+  }
+
+  /* ── Mobile simulated fullscreen (iOS can't FS iframes) ── */
+  #project-expanded-view.is-active.is-fullscreen .expanded-media-layer {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: 10;
+  }
+  #project-expanded-view.is-active.is-fullscreen .expanded-media-layer iframe,
+  #project-expanded-view.is-active.is-fullscreen #yt-player-target {
+    min-width: 177.77vh !important;
+    min-height: 100vh !important;
+    width: 100vw !important;
+    height: 56.25vw !important;
+    top: 50% !important; left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    position: absolute !important;
+  }
+  #project-expanded-view.is-active.is-fullscreen .expanded-glass-layer {
+    display: none;
+  }
+  #project-expanded-view.is-active.is-fullscreen .custom-player-ui {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 100vh;
   }
 
   .modal-inner {
@@ -150,6 +185,41 @@
   .project-card:hover,
   .row-track:has(.project-card:hover) .project-card:hover {
     transform: none;
+  }
+
+  /* ── Always-visible card title on mobile ── */
+  .card-image::after {
+    opacity: 1 !important;
+    height: 55%;
+    background: linear-gradient(to top, rgba(5,18,10,0.92) 0%, rgba(5,18,10,0.3) 70%, transparent 100%);
+  }
+
+  .card-info {
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: auto;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-top: none;
+    padding: 10px 10px 9px;
+  }
+
+  .card-title {
+    filter: none !important;
+    font-size: 0.72rem;
+  }
+
+  .card-meta {
+    font-size: 0.55rem;
+  }
+
+  .card-tagline {
+    display: none;
+  }
+
+  .card-play {
+    opacity: 0 !important;
   }
 }
 
