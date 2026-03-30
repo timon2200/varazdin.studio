@@ -149,6 +149,8 @@ function enableDragScroll(el) {
     touchStartX = e.touches[0].clientX;
     scrollLeft = el.scrollLeft;
     didMove = false;
+    el.classList.add('dragging');
+    cancelAnimationFrame(rafId);
   }, { passive: true });
 
   el.addEventListener('touchmove', e => {
@@ -157,6 +159,7 @@ function enableDragScroll(el) {
   }, { passive: true });
 
   el.addEventListener('touchend', () => {
+    el.classList.remove('dragging');
     if (didMove) {
       isDragging = true;
       setTimeout(() => { isDragging = false; }, 50);

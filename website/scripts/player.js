@@ -285,26 +285,31 @@ function setVolume(vol) {
 
 function toggleFullscreen() {
   const elem = document.getElementById('project-expanded-view');
-  const isMobile = window.innerWidth <= 900;
+  const isFs = document.fullscreenElement || document.webkitFullscreenElement;
 
-  if (isMobile) {
-    // Mobile: toggle simulated fullscreen via CSS class
-    // (iOS doesn't support Fullscreen API on iframes)
-    elem.classList.toggle('is-fullscreen');
+  if (isFs) {
+    // Exit fullscreen
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    }
   } else {
-    // Desktop: use native Fullscreen API
-    if (!document.fullscreenElement) {
-      if (elem.requestFullscreen) {
-        elem.requestFullscreen();
-      } else if (elem.webkitRequestFullscreen) {
-        elem.webkitRequestFullscreen();
-      }
-    } else {
-      if (document.exitFullscreen) {
-        document.exitFullscreen();
-      } else if (document.webkitExitFullscreen) {
-        document.webkitExitFullscreen();
-      }
+    // Enter native fullscreen (hides browser chrome on all platforms)
+    const fsPromise = elem.requestFullscreen
+      ? elem.requestFullscreen()
+      : elem.webkitRequestFullscreen
+        ? elem.webkitRequestFullscreen()
+        : null;
+
+    if (fsPromise && typeof fsPromise.catch === 'function') {
+      fsPromise.catch(() => {
+        // Fallback: CSS-only simulated fullscreen if API fails
+        elem.classList.toggle('is-fullscreen');
+      });
+    } else if (!elem.requestFullscreen && !elem.webkitRequestFullscreen) {
+      // No API at all — use CSS fallback
+      elem.classList.toggle('is-fullscreen');
     }
   }
 }
@@ -312,6 +317,15 @@ function toggleFullscreen() {
 document.addEventListener('fullscreenchange', () => {
   const view = document.getElementById('project-expanded-view');
   if (document.fullscreenElement) {
+    view.classList.add('is-fullscreen');
+  } else {
+    view.classList.remove('is-fullscreen');
+  }
+});
+
+document.addEventListener('webkitfullscreenchange', () => {
+  const view = document.getElementById('project-expanded-view');
+  if (document.webkitFullscreenElement) {
     view.classList.add('is-fullscreen');
   } else {
     view.classList.remove('is-fullscreen');

@@ -190,8 +190,8 @@
   /* ── Always-visible card title on mobile ── */
   .card-image::after {
     opacity: 1 !important;
-    height: 55%;
-    background: linear-gradient(to top, rgba(5,18,10,0.92) 0%, rgba(5,18,10,0.3) 70%, transparent 100%);
+    height: 65%;
+    background: linear-gradient(to top, rgba(2,10,6,0.95) 0%, rgba(2,10,6,0.6) 50%, transparent 100%);
   }
 
   .card-info {
@@ -202,16 +202,18 @@
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
     border-top: none;
-    padding: 10px 10px 9px;
+    padding: 10px 12px 10px;
   }
 
   .card-title {
     filter: none !important;
-    font-size: 0.72rem;
+    font-size: 0.78rem;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.8), 0 0 12px rgba(0,0,0,0.5);
   }
 
   .card-meta {
     font-size: 0.55rem;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.7);
   }
 
   .card-tagline {
@@ -219,6 +221,18 @@
   }
 
   .card-play {
+    opacity: 0 !important;
+  }
+
+  /* Disable ALL hover effects on mobile — touch has no hover */
+  .project-card:hover .card-image {
+    box-shadow: var(--shadow-card) !important;
+  }
+  .project-card:hover .card-image img {
+    transform: none !important;
+    filter: none !important;
+  }
+  .project-card:hover .card-play {
     opacity: 0 !important;
   }
 }
