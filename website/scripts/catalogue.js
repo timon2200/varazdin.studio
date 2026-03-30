@@ -87,6 +87,7 @@ function buildCard(project) {
 function enableDragScroll(el) {
   let isDown = false, startX, scrollLeft, velX = 0, lastX, lastT, rafId, didMove = false;
 
+  // ── Mouse-based drag (desktop only) ──────────────────────
   el.addEventListener('mousedown', e => {
     isDown = true;
     didMove = false;
@@ -143,26 +144,30 @@ function enableDragScroll(el) {
     }
   });
 
-  // Touch
+  // ── Touch — native scroll-snap handles the swipe ─────────
+  // On touch devices, we DON'T manually set scrollLeft.
+  // CSS scroll-snap + native momentum does all the work.
+  // We only track whether the user swiped (to prevent accidental
+  // card clicks at the end of a drag gesture).
+  const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+
+  if (!isTouchDevice) return; // Desktop mouse already handled above
+
   let touchStartX;
-  el.addEventListener('touchstart', e => {
-    touchStartX = e.touches[0].clientX;
-    scrollLeft = el.scrollLeft;
+  el.addEventListener('touchstart', () => {
     didMove = false;
-    el.classList.add('dragging');
-    cancelAnimationFrame(rafId);
+    touchStartX = null;
   }, { passive: true });
 
   el.addEventListener('touchmove', e => {
-    if (Math.abs(e.touches[0].clientX - touchStartX) > 5) didMove = true;
-    el.scrollLeft = scrollLeft + (touchStartX - e.touches[0].clientX);
+    if (touchStartX === null) touchStartX = e.touches[0].clientX;
+    if (Math.abs(e.touches[0].clientX - touchStartX) > 8) didMove = true;
   }, { passive: true });
 
   el.addEventListener('touchend', () => {
-    el.classList.remove('dragging');
     if (didMove) {
       isDragging = true;
-      setTimeout(() => { isDragging = false; }, 50);
+      setTimeout(() => { isDragging = false; }, 80);
     }
   });
 }

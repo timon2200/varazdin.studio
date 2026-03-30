@@ -173,13 +173,21 @@
     height: 65vh;
   }
 
+  /* ── Scroll-snap carousel track ── */
   .row-track {
     --hover-shift: 0px;
     --hover-shift-edge: 0px;
+    padding: 16px var(--page-pad);
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: var(--page-pad);
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
   }
 
+  /* ── Viewport-relative card sizing ── */
   .project-card {
-    flex: 0 0 440px;
+    flex: 0 0 calc(85vw);
+    scroll-snap-align: start;
   }
 
   .project-card:hover,
@@ -187,11 +195,22 @@
     transform: none;
   }
 
+  /* ── Hide arrow buttons — touch users swipe ── */
+  .row-arrow {
+    display: none !important;
+  }
+
+  /* ── Reduce fade edges on mobile ── */
+  .row-track-wrapper::before,
+  .row-track-wrapper::after {
+    width: 28px;
+  }
+
   /* ── Always-visible card title on mobile ── */
   .card-image::after {
     opacity: 1 !important;
-    height: 65%;
-    background: linear-gradient(to top, rgba(2,10,6,0.95) 0%, rgba(2,10,6,0.6) 50%, transparent 100%);
+    height: 70%;
+    background: linear-gradient(to top, rgba(2,10,6,0.97) 0%, rgba(2,10,6,0.75) 40%, rgba(2,10,6,0.3) 65%, transparent 100%);
   }
 
   .card-info {
@@ -202,18 +221,20 @@
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
     border-top: none;
-    padding: 10px 12px 10px;
+    padding: 14px 16px 14px;
   }
 
   .card-title {
     filter: none !important;
-    font-size: 0.78rem;
-    text-shadow: 0 1px 4px rgba(0,0,0,0.8), 0 0 12px rgba(0,0,0,0.5);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.9), 0 0 16px rgba(0,0,0,0.6);
   }
 
   .card-meta {
-    font-size: 0.55rem;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+    font-size: 0.65rem;
+    margin-top: 2px;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.8);
   }
 
   .card-tagline {
@@ -246,10 +267,11 @@
   .row-track {
     --hover-shift: 0px;
     --hover-shift-edge: 0px;
+    scroll-padding-left: 16px;
   }
 
   .project-card {
-    flex: 0 0 360px;
+    flex: 0 0 calc(88vw);
   }
 
   .project-card:hover,
