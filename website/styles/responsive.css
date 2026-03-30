@@ -192,7 +192,9 @@
 
   .project-card:hover,
   .row-track:has(.project-card:hover) .project-card:hover {
-    transform: none;
+    transform: none !important;
+    z-index: var(--z-base) !important;
+    transition: none !important;
   }
 
   /* ── Hide arrow buttons — touch users swipe ── */
@@ -276,7 +278,9 @@
 
   .project-card:hover,
   .row-track:has(.project-card:hover) .project-card:hover {
-    transform: none;
+    transform: none !important;
+    z-index: var(--z-base) !important;
+    transition: none !important;
   }
 
   .hero-title {
