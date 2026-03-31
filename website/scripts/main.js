@@ -61,6 +61,13 @@ function initGlobalEvents() {
     if (e.key === 'Escape' && activeProject) closeProject();
   });
 
+  // Browser back button → close project instead of leaving site
+  window.addEventListener('popstate', (e) => {
+    if (activeProject) {
+      closeProject(true); // true = triggered by popstate, don't call history.back()
+    }
+  });
+
   // Hero CTA → open project
   document.getElementById('hero-cta-view')?.addEventListener('click', e => {
     const id = e.currentTarget.dataset.projectId;
@@ -85,11 +92,14 @@ function initGlobalEvents() {
     exView.addEventListener('mousemove', resetIdleTimer);
     exView.addEventListener('click', (e) => {
       if (e.target.closest('button') || e.target.closest('.player-timeline-wrapper') || e.target.closest('.player-vol-slider-container')) return;
+      // Don't toggle play if the user was drag-dismissing
+      if (window._isDismissDragging && window._isDismissDragging()) return;
       togglePlay();
     });
   }
 
-  document.getElementById('player-back-btn')?.addEventListener('click', closeProject);
+  document.getElementById('player-back-btn')?.addEventListener('click', () => closeProject());
+  document.getElementById('expanded-close-btn')?.addEventListener('click', () => closeProject());
   document.getElementById('player-play-btn')?.addEventListener('click', togglePlay);
   document.getElementById('player-vol-btn')?.addEventListener('click', toggleMute);
   document.getElementById('player-center-state')?.addEventListener('click', togglePlay);

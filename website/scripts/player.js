@@ -75,6 +75,9 @@ function openProject(projectId, cardEl) {
     document.body.style.overflow = 'hidden';
     if (typeof resetIdleTimer === 'function') resetIdleTimer();
 
+    // Push history state so browser back button closes the project
+    history.pushState({ projectOpen: true, projectId: project.id }, '', '');
+
     if (hasYoutube) {
       setTimeout(() => initYoutubePlayer(vidId), 50);
     }
@@ -95,8 +98,13 @@ function openProject(projectId, cardEl) {
   }
 }
 
-function closeProject() {
+function closeProject(fromPopState) {
   if (!activeProject) return;
+  
+  // If not triggered by popstate, go back in history to clean up the pushed state
+  if (!fromPopState && history.state && history.state.projectOpen) {
+    history.back();
+  }
   
   stopScrubberUpdate();
   clearTimeout(idleTimeout);
@@ -372,7 +380,29 @@ document.addEventListener('DOMContentLoaded', () => {
     localExpandedView.addEventListener('scroll', handleExpandedScroll, { passive: true });
   }
 
-  // No big unmute button listener anymore
+  // Handle orientation changes while a project is open
+  const handleOrientationChange = () => {
+    if (!activeProject) return;
+    const customUI = document.getElementById('custom-player-ui');
+    if (!customUI) return;
+    
+    const isLandscape = window.matchMedia('(orientation: landscape)').matches;
+    const isNarrow = window.innerWidth <= 900 || window.innerHeight <= 500;
+    
+    if (isNarrow && !isLandscape) {
+      // Portrait mobile — hide custom UI, use native YouTube controls
+      customUI.style.display = 'none';
+    } else {
+      // Landscape or desktop — show custom UI
+      customUI.style.display = '';
+    }
+  };
+
+  window.addEventListener('orientationchange', () => {
+    // Delay to let the browser finish rotating
+    setTimeout(handleOrientationChange, 150);
+  });
+  window.addEventListener('resize', handleOrientationChange);
 });
 
 function handleExpandedScroll(e) {
@@ -412,3 +442,281 @@ function handleExpandedScroll(e) {
     }
   });
 }
+
+// ════════════════════════════════════════════════════════════
+// SWIPE-DOWN-TO-DISMISS (YouTube-style)
+// ════════════════════════════════════════════════════════════
+
+(function initSwipeToDismiss() {
+  let dragStartY = 0;
+  let dragStartX = 0;
+  let dragCurrentY = 0;
+  let dragStartTime = 0;
+  let isDismissDragging = false;
+  let directionLocked = false;  // once we decide horizontal vs vertical, lock it
+  let isVerticalDrag = false;
+
+  const DISMISS_THRESHOLD = 0.25;  // 25% of viewport height
+  const VELOCITY_THRESHOLD = 800;  // px/s — fast flick = instant dismiss
+  const LOCK_DISTANCE = 10;        // px before we lock direction
+
+  function getExpandedView() {
+    return document.getElementById('project-expanded-view');
+  }
+
+  function shouldIgnoreTarget(target) {
+    // Don't interfere with interactive elements, iframes, scrubber, sliders
+    return target.closest('button') ||
+           target.closest('iframe') ||
+           target.closest('.player-timeline-wrapper') ||
+           target.closest('.player-vol-slider-container') ||
+           target.closest('input') ||
+           target.closest('a');
+  }
+
+  function applyDragTransform(deltaY) {
+    const view = getExpandedView();
+    if (!view) return;
+
+    // Only allow dragging downward (deltaY > 0)
+    const clampedDelta = Math.max(0, deltaY);
+    const vh = window.innerHeight;
+    const progress = Math.min(clampedDelta / vh, 1);
+
+    // Scale: 1 → 0.85 as you drag down
+    const scale = 1 - progress * 0.15;
+    // Opacity: 1 → 0.4
+    const opacity = 1 - progress * 0.6;
+    // Border radius grows as it shrinks (like iOS app switcher)
+    const radius = progress * 24;
+
+    view.style.transition = 'none';
+    view.style.transform = `translateY(${clampedDelta}px) scale(${scale})`;
+    view.style.opacity = opacity;
+    view.style.borderRadius = `${radius}px`;
+  }
+
+  function resetDragTransform(animate) {
+    const view = getExpandedView();
+    if (!view) return;
+
+    if (animate) {
+      view.style.transition = 'transform 0.35s cubic-bezier(0.2, 1, 0.3, 1), opacity 0.35s ease, border-radius 0.35s ease';
+    }
+    view.style.transform = '';
+    view.style.opacity = '';
+    view.style.borderRadius = '';
+
+    if (animate) {
+      setTimeout(() => {
+        view.style.transition = '';
+      }, 350);
+    }
+  }
+
+  function dismissWithAnimation() {
+    const view = getExpandedView();
+    if (!view) return;
+
+    const vh = window.innerHeight;
+    view.style.transition = 'transform 0.35s cubic-bezier(0.4, 0, 1, 1), opacity 0.3s ease';
+    view.style.transform = `translateY(${vh}px) scale(0.8)`;
+    view.style.opacity = '0';
+
+    setTimeout(() => {
+      view.style.transition = '';
+      view.style.transform = '';
+      view.style.opacity = '';
+      view.style.borderRadius = '';
+      closeProject();
+    }, 350);
+  }
+
+  // ── Touch Events ──
+
+  function onTouchStart(e) {
+    const view = getExpandedView();
+    if (!view || !view.classList.contains('is-active')) return;
+    if (shouldIgnoreTarget(e.target)) return;
+
+    // On mobile portrait, only allow dismiss drag on the media layer area (top portion)
+    // On desktop/landscape, allow anywhere
+    const touch = e.touches[0];
+    dragStartY = touch.clientY;
+    dragStartX = touch.clientX;
+    dragCurrentY = touch.clientY;
+    dragStartTime = Date.now();
+    isDismissDragging = false;
+    directionLocked = false;
+    isVerticalDrag = false;
+  }
+
+  function onTouchMove(e) {
+    const view = getExpandedView();
+    if (!view || !view.classList.contains('is-active')) return;
+    if (dragStartY === 0) return;
+
+    const touch = e.touches[0];
+    const deltaY = touch.clientY - dragStartY;
+    const deltaX = touch.clientX - dragStartX;
+
+    // Direction lock: once we move enough, decide if this is a vertical or horizontal gesture
+    if (!directionLocked) {
+      const absDeltaY = Math.abs(deltaY);
+      const absDeltaX = Math.abs(deltaX);
+      const totalDelta = Math.sqrt(absDeltaY * absDeltaY + absDeltaX * absDeltaX);
+
+      if (totalDelta > LOCK_DISTANCE) {
+        directionLocked = true;
+        isVerticalDrag = absDeltaY > absDeltaX;
+      }
+
+      if (!directionLocked) return;
+    }
+
+    // If horizontal, ignore
+    if (!isVerticalDrag) return;
+
+    // Only care about downward drags
+    if (deltaY <= 0) {
+      if (isDismissDragging) {
+        resetDragTransform(false);
+        isDismissDragging = false;
+      }
+      return;
+    }
+
+    // On mobile portrait, check if the user is scrolling the glass layer content
+    // If the expanded view has scroll and scrollTop > 0, don't dismiss
+    if (view.scrollTop > 5) return;
+
+    isDismissDragging = true;
+    dragCurrentY = touch.clientY;
+    e.preventDefault();  // prevent scroll
+    applyDragTransform(deltaY);
+  }
+
+  function onTouchEnd(e) {
+    if (!isDismissDragging) {
+      dragStartY = 0;
+      return;
+    }
+
+    const deltaY = dragCurrentY - dragStartY;
+    const elapsed = (Date.now() - dragStartTime) / 1000; // seconds
+    const velocity = deltaY / elapsed;  // px/s
+    const vh = window.innerHeight;
+    const progress = deltaY / vh;
+
+    if (progress > DISMISS_THRESHOLD || velocity > VELOCITY_THRESHOLD) {
+      dismissWithAnimation();
+    } else {
+      resetDragTransform(true);
+    }
+
+    isDismissDragging = false;
+    directionLocked = false;
+    isVerticalDrag = false;
+    dragStartY = 0;
+  }
+
+  // ── Mouse Events (desktop) ──
+
+  let isMouseDragging = false;
+
+  function onMouseDown(e) {
+    const view = getExpandedView();
+    if (!view || !view.classList.contains('is-active')) return;
+    if (shouldIgnoreTarget(e.target)) return;
+    if (e.button !== 0) return;  // left click only
+
+    dragStartY = e.clientY;
+    dragStartX = e.clientX;
+    dragCurrentY = e.clientY;
+    dragStartTime = Date.now();
+    isMouseDragging = false;
+    isDismissDragging = false;
+    directionLocked = false;
+    isVerticalDrag = false;
+  }
+
+  function onMouseMove(e) {
+    if (dragStartY === 0) return;
+
+    const deltaY = e.clientY - dragStartY;
+    const deltaX = e.clientX - dragStartX;
+
+    if (!directionLocked) {
+      const totalDelta = Math.sqrt(deltaY * deltaY + deltaX * deltaX);
+      if (totalDelta > LOCK_DISTANCE) {
+        directionLocked = true;
+        isVerticalDrag = Math.abs(deltaY) > Math.abs(deltaX);
+      }
+      if (!directionLocked) return;
+    }
+
+    if (!isVerticalDrag) return;
+    if (deltaY <= 0) {
+      if (isDismissDragging) {
+        resetDragTransform(false);
+        isDismissDragging = false;
+      }
+      return;
+    }
+
+    const view = getExpandedView();
+    if (view && view.scrollTop > 5) return;
+
+    isDismissDragging = true;
+    isMouseDragging = true;
+    dragCurrentY = e.clientY;
+    e.preventDefault();
+    applyDragTransform(deltaY);
+  }
+
+  function onMouseUp(e) {
+    if (!isDismissDragging) {
+      dragStartY = 0;
+      return;
+    }
+
+    const deltaY = dragCurrentY - dragStartY;
+    const elapsed = (Date.now() - dragStartTime) / 1000;
+    const velocity = deltaY / elapsed;
+    const vh = window.innerHeight;
+    const progress = deltaY / vh;
+
+    if (progress > DISMISS_THRESHOLD || velocity > VELOCITY_THRESHOLD) {
+      dismissWithAnimation();
+    } else {
+      resetDragTransform(true);
+    }
+
+    isDismissDragging = false;
+    isMouseDragging = false;
+    directionLocked = false;
+    isVerticalDrag = false;
+    dragStartY = 0;
+  }
+
+  // ── Bind Events ──
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const view = document.getElementById('project-expanded-view');
+    if (!view) return;
+
+    // Touch
+    view.addEventListener('touchstart', onTouchStart, { passive: true });
+    view.addEventListener('touchmove', onTouchMove, { passive: false });
+    view.addEventListener('touchend', onTouchEnd, { passive: true });
+    view.addEventListener('touchcancel', onTouchEnd, { passive: true });
+
+    // Mouse
+    view.addEventListener('mousedown', onMouseDown);
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+  });
+
+  // Expose a way to check if dismiss drag is active (to prevent togglePlay on click)
+  window._isDismissDragging = () => isMouseDragging || isDismissDragging;
+})();
