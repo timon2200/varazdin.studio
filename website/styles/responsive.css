@@ -386,7 +386,7 @@
     pointer-events: none !important;
   }
   
-  #project-expanded-view.is-active .expanded-close-btn {
+  .expanded-close-btn.is-visible {
     top: 20px;
     right: 20px;
     background: rgba(0,0,0,0.5);

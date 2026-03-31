@@ -152,16 +152,20 @@
   </footer>
 
   <!-- ══════════════════════ PROJECT EXPANDED VIEW ═══════════════════════════ -->
+
+  <!-- Dismiss backdrop — dims the page behind the dragged view -->
+  <div id="dismiss-backdrop" aria-hidden="true"></div>
+
+  <!-- Close button lives OUTSIDE the expanded view so transforms don't break position:fixed -->
+  <button class="expanded-close-btn" id="expanded-close-btn" aria-label="Close project">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="18" y1="6" x2="6" y2="18"/>
+      <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+
   <div id="project-expanded-view" aria-hidden="true" class="player-idle">
     <div class="expanded-media-layer" id="expanded-media-layer"></div>
-
-    <!-- Standalone Close Button (always visible, even when custom-player-ui is hidden on mobile) -->
-    <button class="expanded-close-btn" id="expanded-close-btn" aria-label="Close project">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="18" y1="6" x2="6" y2="18"/>
-        <line x1="6" y1="6" x2="18" y2="18"/>
-      </svg>
-    </button>
     
     <!-- Netflix-Style Custom Player UI -->
     <div class="custom-player-ui" id="custom-player-ui">
@@ -180,8 +184,6 @@
       <div class="player-center-state" id="player-center-state">
         <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="currentColor"/></svg>
       </div>
-
-
 
       <!-- Bottom Controls -->
       <div class="player-bottom-bar">

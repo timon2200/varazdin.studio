@@ -68,6 +68,10 @@ function openProject(projectId, cardEl) {
     expandedView.classList.add('is-active');
     expandedView.classList.remove('player-idle');
     expandedGlass.classList.remove('is-minimized');
+
+    // Show the external close button
+    const closeBtn = document.getElementById('expanded-close-btn');
+    if (closeBtn) closeBtn.classList.add('is-visible');
     
     // Default unmuted icon
     document.querySelectorAll('.icon-vol').forEach(el => el.innerHTML = '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>');
@@ -113,6 +117,24 @@ function closeProject(fromPopState) {
     ytPlayer.destroy();
     ytPlayer = null;
   }
+
+  // Hide external close button
+  const closeBtn = document.getElementById('expanded-close-btn');
+  if (closeBtn) closeBtn.classList.remove('is-visible');
+
+  // Hide dismiss backdrop
+  const backdrop = document.getElementById('dismiss-backdrop');
+  if (backdrop) {
+    backdrop.classList.remove('is-visible');
+    backdrop.style.opacity = '';
+  }
+
+  // Clear any leftover drag transforms
+  expandedView.style.transform = '';
+  expandedView.style.opacity = '';
+  expandedView.style.borderRadius = '';
+  expandedView.style.transition = '';
+  expandedView.style.overflow = '';
   
   const updateDOM = () => {
     expandedView.classList.remove('is-active');
@@ -448,275 +470,266 @@ function handleExpandedScroll(e) {
 // ════════════════════════════════════════════════════════════
 
 (function initSwipeToDismiss() {
-  let dragStartY = 0;
-  let dragStartX = 0;
-  let dragCurrentY = 0;
-  let dragStartTime = 0;
-  let isDismissDragging = false;
-  let directionLocked = false;  // once we decide horizontal vs vertical, lock it
-  let isVerticalDrag = false;
+  let startY = 0;
+  let startX = 0;
+  let currentY = 0;
+  let startTime = 0;
+  let dragging = false;
+  let locked = false;
+  let vertical = false;
+  let wasMouseDrag = false;
 
-  const DISMISS_THRESHOLD = 0.25;  // 25% of viewport height
-  const VELOCITY_THRESHOLD = 800;  // px/s — fast flick = instant dismiss
-  const LOCK_DISTANCE = 10;        // px before we lock direction
+  const THRESHOLD = 0.20;       // 20% of viewport = dismiss
+  const VELOCITY_THRESH = 600;  // px/s fast flick
+  const LOCK_PX = 12;           // px before direction lock
 
-  function getExpandedView() {
+  function getView() {
     return document.getElementById('project-expanded-view');
   }
 
-  function shouldIgnoreTarget(target) {
-    // Don't interfere with interactive elements, iframes, scrubber, sliders
-    return target.closest('button') ||
-           target.closest('iframe') ||
-           target.closest('.player-timeline-wrapper') ||
-           target.closest('.player-vol-slider-container') ||
-           target.closest('input') ||
-           target.closest('a');
+  function skipTarget(t) {
+    // Never interfere with buttons, iframes, inputs, links, scrubber, volume
+    return t.closest('button') ||
+           t.closest('iframe') ||
+           t.closest('.player-timeline-wrapper') ||
+           t.closest('.player-vol-slider-container') ||
+           t.closest('input') ||
+           t.closest('a');
   }
 
-  function applyDragTransform(deltaY) {
-    const view = getExpandedView();
+  // ── Visual feedback ──
+
+  function applyDrag(dy) {
+    const view = getView();
     if (!view) return;
 
-    // Only allow dragging downward (deltaY > 0)
-    const clampedDelta = Math.max(0, deltaY);
+    const clamped = Math.max(0, dy);
     const vh = window.innerHeight;
-    const progress = Math.min(clampedDelta / vh, 1);
+    const p = Math.min(clamped / vh, 1); // 0..1 progress
 
-    // Scale: 1 → 0.85 as you drag down
-    const scale = 1 - progress * 0.15;
-    // Opacity: 1 → 0.4
-    const opacity = 1 - progress * 0.6;
-    // Border radius grows as it shrinks (like iOS app switcher)
-    const radius = progress * 24;
+    const scale = 1 - p * 0.12;
+    const opacity = 1 - p * 0.5;
+    const radius = p * 20;
 
+    // Lock scroll during drag so content doesn't shift
+    view.style.overflow = 'hidden';
     view.style.transition = 'none';
-    view.style.transform = `translateY(${clampedDelta}px) scale(${scale})`;
+    view.style.transform = `translateY(${clamped}px) scale(${scale})`;
     view.style.opacity = opacity;
     view.style.borderRadius = `${radius}px`;
+
+    // Backdrop: fade in as user drags
+    const bd = document.getElementById('dismiss-backdrop');
+    if (bd) {
+      bd.classList.add('is-visible');
+      bd.style.opacity = 0.6 * p;  // 0 → 0.6
+    }
+
+    // Sync close button opacity down
+    const cb = document.getElementById('expanded-close-btn');
+    if (cb) cb.style.opacity = Math.max(0, 1 - p * 2);
   }
 
-  function resetDragTransform(animate) {
-    const view = getExpandedView();
+  function snapBack() {
+    const view = getView();
     if (!view) return;
 
-    if (animate) {
-      view.style.transition = 'transform 0.35s cubic-bezier(0.2, 1, 0.3, 1), opacity 0.35s ease, border-radius 0.35s ease';
-    }
+    view.style.transition = 'transform 0.35s cubic-bezier(0.2,1,0.3,1), opacity 0.35s ease, border-radius 0.35s ease';
     view.style.transform = '';
     view.style.opacity = '';
     view.style.borderRadius = '';
 
-    if (animate) {
-      setTimeout(() => {
-        view.style.transition = '';
-      }, 350);
+    const bd = document.getElementById('dismiss-backdrop');
+    if (bd) {
+      bd.style.transition = 'opacity 0.35s ease';
+      bd.style.opacity = '0';
     }
+
+    const cb = document.getElementById('expanded-close-btn');
+    if (cb) cb.style.opacity = '';
+
+    setTimeout(() => {
+      if (view) {
+        view.style.transition = '';
+        view.style.overflow = '';
+      }
+      if (bd) {
+        bd.classList.remove('is-visible');
+        bd.style.transition = '';
+        bd.style.opacity = '';
+      }
+    }, 380);
   }
 
-  function dismissWithAnimation() {
-    const view = getExpandedView();
+  function animateDismiss() {
+    const view = getView();
     if (!view) return;
 
     const vh = window.innerHeight;
-    view.style.transition = 'transform 0.35s cubic-bezier(0.4, 0, 1, 1), opacity 0.3s ease';
-    view.style.transform = `translateY(${vh}px) scale(0.8)`;
+    view.style.transition = 'transform 0.3s cubic-bezier(0.4,0,1,1), opacity 0.25s ease';
+    view.style.transform = `translateY(${vh}px) scale(0.85)`;
     view.style.opacity = '0';
 
+    const bd = document.getElementById('dismiss-backdrop');
+    if (bd) {
+      bd.style.transition = 'opacity 0.3s ease';
+      bd.style.opacity = '0';
+    }
+
+    const cb = document.getElementById('expanded-close-btn');
+    if (cb) cb.style.opacity = '0';
+
     setTimeout(() => {
+      // Clean up all inline styles before closeProject resets
       view.style.transition = '';
       view.style.transform = '';
       view.style.opacity = '';
       view.style.borderRadius = '';
-      closeProject();
-    }, 350);
-  }
-
-  // ── Touch Events ──
-
-  function onTouchStart(e) {
-    const view = getExpandedView();
-    if (!view || !view.classList.contains('is-active')) return;
-    if (shouldIgnoreTarget(e.target)) return;
-
-    // On mobile portrait, only allow dismiss drag on the media layer area (top portion)
-    // On desktop/landscape, allow anywhere
-    const touch = e.touches[0];
-    dragStartY = touch.clientY;
-    dragStartX = touch.clientX;
-    dragCurrentY = touch.clientY;
-    dragStartTime = Date.now();
-    isDismissDragging = false;
-    directionLocked = false;
-    isVerticalDrag = false;
-  }
-
-  function onTouchMove(e) {
-    const view = getExpandedView();
-    if (!view || !view.classList.contains('is-active')) return;
-    if (dragStartY === 0) return;
-
-    const touch = e.touches[0];
-    const deltaY = touch.clientY - dragStartY;
-    const deltaX = touch.clientX - dragStartX;
-
-    // Direction lock: once we move enough, decide if this is a vertical or horizontal gesture
-    if (!directionLocked) {
-      const absDeltaY = Math.abs(deltaY);
-      const absDeltaX = Math.abs(deltaX);
-      const totalDelta = Math.sqrt(absDeltaY * absDeltaY + absDeltaX * absDeltaX);
-
-      if (totalDelta > LOCK_DISTANCE) {
-        directionLocked = true;
-        isVerticalDrag = absDeltaY > absDeltaX;
+      view.style.overflow = '';
+      if (bd) {
+        bd.classList.remove('is-visible');
+        bd.style.transition = '';
+        bd.style.opacity = '';
       }
+      if (cb) cb.style.opacity = '';
+      closeProject();
+    }, 320);
+  }
 
-      if (!directionLocked) return;
+  function finishDrag() {
+    const dy = currentY - startY;
+    const dt = (Date.now() - startTime) / 1000 || 0.01;
+    const vel = dy / dt;
+    const p = dy / window.innerHeight;
+
+    if (p > THRESHOLD || vel > VELOCITY_THRESH) {
+      animateDismiss();
+    } else {
+      snapBack();
+    }
+  }
+
+  // ── TOUCH ──
+
+  function onTS(e) {
+    const view = getView();
+    if (!view || !view.classList.contains('is-active')) return;
+    if (skipTarget(e.target)) return;
+
+    const t = e.touches[0];
+    startY = t.clientY;
+    startX = t.clientX;
+    currentY = t.clientY;
+    startTime = Date.now();
+    dragging = false;
+    locked = false;
+    vertical = false;
+  }
+
+  function onTM(e) {
+    const view = getView();
+    if (!view || !view.classList.contains('is-active')) return;
+    if (startY === 0) return;
+
+    const t = e.touches[0];
+    const dy = t.clientY - startY;
+    const dx = t.clientX - startX;
+
+    // Direction lock
+    if (!locked) {
+      if (Math.sqrt(dy * dy + dx * dx) > LOCK_PX) {
+        locked = true;
+        vertical = Math.abs(dy) > Math.abs(dx);
+      } else {
+        return;
+      }
     }
 
-    // If horizontal, ignore
-    if (!isVerticalDrag) return;
-
-    // Only care about downward drags
-    if (deltaY <= 0) {
-      if (isDismissDragging) {
-        resetDragTransform(false);
-        isDismissDragging = false;
-      }
+    if (!vertical || dy <= 0) {
+      if (dragging) { snapBack(); dragging = false; }
       return;
     }
 
-    // On mobile portrait, check if the user is scrolling the glass layer content
-    // If the expanded view has scroll and scrollTop > 0, don't dismiss
+    // Only dismiss if scrolled to the top
     if (view.scrollTop > 5) return;
 
-    isDismissDragging = true;
-    dragCurrentY = touch.clientY;
-    e.preventDefault();  // prevent scroll
-    applyDragTransform(deltaY);
+    dragging = true;
+    currentY = t.clientY;
+    e.preventDefault();
+    applyDrag(dy);
   }
 
-  function onTouchEnd(e) {
-    if (!isDismissDragging) {
-      dragStartY = 0;
-      return;
-    }
-
-    const deltaY = dragCurrentY - dragStartY;
-    const elapsed = (Date.now() - dragStartTime) / 1000; // seconds
-    const velocity = deltaY / elapsed;  // px/s
-    const vh = window.innerHeight;
-    const progress = deltaY / vh;
-
-    if (progress > DISMISS_THRESHOLD || velocity > VELOCITY_THRESHOLD) {
-      dismissWithAnimation();
-    } else {
-      resetDragTransform(true);
-    }
-
-    isDismissDragging = false;
-    directionLocked = false;
-    isVerticalDrag = false;
-    dragStartY = 0;
+  function onTE() {
+    if (!dragging) { startY = 0; return; }
+    finishDrag();
+    dragging = false; locked = false; vertical = false; startY = 0;
   }
 
-  // ── Mouse Events (desktop) ──
+  // ── MOUSE (desktop) ──
 
-  let isMouseDragging = false;
-
-  function onMouseDown(e) {
-    const view = getExpandedView();
+  function onMD(e) {
+    const view = getView();
     if (!view || !view.classList.contains('is-active')) return;
-    if (shouldIgnoreTarget(e.target)) return;
-    if (e.button !== 0) return;  // left click only
+    if (skipTarget(e.target)) return;
+    if (e.button !== 0) return;
 
-    dragStartY = e.clientY;
-    dragStartX = e.clientX;
-    dragCurrentY = e.clientY;
-    dragStartTime = Date.now();
-    isMouseDragging = false;
-    isDismissDragging = false;
-    directionLocked = false;
-    isVerticalDrag = false;
+    startY = e.clientY;
+    startX = e.clientX;
+    currentY = e.clientY;
+    startTime = Date.now();
+    dragging = false; wasMouseDrag = false;
+    locked = false; vertical = false;
   }
 
-  function onMouseMove(e) {
-    if (dragStartY === 0) return;
+  function onMM(e) {
+    if (startY === 0) return;
 
-    const deltaY = e.clientY - dragStartY;
-    const deltaX = e.clientX - dragStartX;
+    const dy = e.clientY - startY;
+    const dx = e.clientX - startX;
 
-    if (!directionLocked) {
-      const totalDelta = Math.sqrt(deltaY * deltaY + deltaX * deltaX);
-      if (totalDelta > LOCK_DISTANCE) {
-        directionLocked = true;
-        isVerticalDrag = Math.abs(deltaY) > Math.abs(deltaX);
-      }
-      if (!directionLocked) return;
+    if (!locked) {
+      if (Math.sqrt(dy * dy + dx * dx) > LOCK_PX) {
+        locked = true;
+        vertical = Math.abs(dy) > Math.abs(dx);
+      } else { return; }
     }
 
-    if (!isVerticalDrag) return;
-    if (deltaY <= 0) {
-      if (isDismissDragging) {
-        resetDragTransform(false);
-        isDismissDragging = false;
-      }
+    if (!vertical || dy <= 0) {
+      if (dragging) { snapBack(); dragging = false; wasMouseDrag = false; }
       return;
     }
 
-    const view = getExpandedView();
+    const view = getView();
     if (view && view.scrollTop > 5) return;
 
-    isDismissDragging = true;
-    isMouseDragging = true;
-    dragCurrentY = e.clientY;
+    dragging = true; wasMouseDrag = true;
+    currentY = e.clientY;
     e.preventDefault();
-    applyDragTransform(deltaY);
+    applyDrag(dy);
   }
 
-  function onMouseUp(e) {
-    if (!isDismissDragging) {
-      dragStartY = 0;
-      return;
-    }
-
-    const deltaY = dragCurrentY - dragStartY;
-    const elapsed = (Date.now() - dragStartTime) / 1000;
-    const velocity = deltaY / elapsed;
-    const vh = window.innerHeight;
-    const progress = deltaY / vh;
-
-    if (progress > DISMISS_THRESHOLD || velocity > VELOCITY_THRESHOLD) {
-      dismissWithAnimation();
-    } else {
-      resetDragTransform(true);
-    }
-
-    isDismissDragging = false;
-    isMouseDragging = false;
-    directionLocked = false;
-    isVerticalDrag = false;
-    dragStartY = 0;
+  function onMU() {
+    if (!dragging) { startY = 0; return; }
+    finishDrag();
+    dragging = false; wasMouseDrag = false;
+    locked = false; vertical = false; startY = 0;
   }
 
-  // ── Bind Events ──
+  // ── Bind ──
 
   document.addEventListener('DOMContentLoaded', () => {
     const view = document.getElementById('project-expanded-view');
     if (!view) return;
 
-    // Touch
-    view.addEventListener('touchstart', onTouchStart, { passive: true });
-    view.addEventListener('touchmove', onTouchMove, { passive: false });
-    view.addEventListener('touchend', onTouchEnd, { passive: true });
-    view.addEventListener('touchcancel', onTouchEnd, { passive: true });
+    view.addEventListener('touchstart', onTS, { passive: true });
+    view.addEventListener('touchmove', onTM, { passive: false });
+    view.addEventListener('touchend', onTE, { passive: true });
+    view.addEventListener('touchcancel', onTE, { passive: true });
 
-    // Mouse
-    view.addEventListener('mousedown', onMouseDown);
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseUp);
+    view.addEventListener('mousedown', onMD);
+    document.addEventListener('mousemove', onMM);
+    document.addEventListener('mouseup', onMU);
   });
 
-  // Expose a way to check if dismiss drag is active (to prevent togglePlay on click)
-  window._isDismissDragging = () => isMouseDragging || isDismissDragging;
+  window._isDismissDragging = () => dragging || wasMouseDrag;
 })();

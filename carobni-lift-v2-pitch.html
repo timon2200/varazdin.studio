@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Čarobni Lift Djeda Mraza — V2 Pitch</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg:#0a0c10;--surface:#12151c;--border:#1e2430;
+--gold:#d4a853;--gold-dim:#8a6d2b;--snow:#e8eaf0;--frost:#7eb8da;
+--red:#c0392b;--green:#1a5c38;--green-light:#27ae60;
+}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--snow);font-family:'Inter',sans-serif}
+.deck{position:relative;width:100%;height:100%}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 80px;opacity:0;pointer-events:none;transition:opacity .6s ease,transform .6s ease;transform:translateY(30px)}
+.slide.active{opacity:1;pointer-events:auto;transform:translateY(0)}
+/* Title */
+.slide-title{text-align:center}
+.slide-title .badge{display:inline-block;padding:6px 20px;border:1px solid var(--gold-dim);border-radius:100px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:24px}
+.slide-title h1{font-family:'Playfair Display',serif;font-size:clamp(36px,5.5vw,72px);font-weight:900;line-height:1.1;background:linear-gradient(135deg,var(--gold),#f0d68a,var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:16px}
+.slide-title .subtitle{font-size:clamp(14px,1.8vw,20px);color:var(--frost);font-weight:300;letter-spacing:1px}
+.slide-title .meta{margin-top:40px;font-size:13px;color:#556;letter-spacing:1px}
+/* Section slides */
+.slide h2{font-family:'Playfair Display',serif;font-size:clamp(28px,3.5vw,48px);font-weight:700;margin-bottom:8px;color:var(--snow)}
+.slide .section-num{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;font-weight:600}
+.slide p,.slide li{font-size:clamp(14px,1.4vw,18px);line-height:1.7;color:#a0a8b8;max-width:800px}
+.slide ul{list-style:none;margin-top:20px}
+.slide li{padding:8px 0;padding-left:28px;position:relative}
+.slide li::before{content:'';position:absolute;left:0;top:16px;width:12px;height:2px;background:var(--gold)}
+/* Cards grid */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-top:32px;max-width:900px;width:100%}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;transition:border-color .3s}
+.card:hover{border-color:var(--gold-dim)}
+.card .icon{font-size:28px;margin-bottom:12px}
+.card h3{font-size:15px;font-weight:600;color:var(--snow);margin-bottom:6px}
+.card p{font-size:13px;color:#778;line-height:1.5}
+/* Journey */
+.journey{display:flex;flex-direction:column;gap:0;margin-top:28px;max-width:700px;width:100%}
+.journey-step{display:flex;align-items:flex-start;gap:20px;position:relative;padding-bottom:24px}
+.journey-step::before{content:'';position:absolute;left:15px;top:32px;bottom:0;width:1px;background:var(--border)}
+.journey-step:last-child::before{display:none}
+.journey-dot{width:32px;height:32px;border-radius:50%;border:2px solid var(--gold-dim);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--gold);flex-shrink:0;background:var(--bg);z-index:1}
+.journey-text h4{font-size:15px;color:var(--snow);font-weight:600;margin-bottom:2px}
+.journey-text p{font-size:13px;color:#778;line-height:1.5}
+/* Two col */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:28px;max-width:900px;width:100%}
+.two-col .col h3{font-size:16px;color:var(--gold);margin-bottom:12px;font-weight:600}
+/* Nav */
+.nav{position:fixed;bottom:32px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:16px;z-index:100}
+.nav button{background:var(--surface);border:1px solid var(--border);color:var(--snow);width:44px;height:44px;border-radius:50%;cursor:pointer;font-size:18px;transition:all .2s;display:flex;align-items:center;justify-content:center}
+.nav button:hover{border-color:var(--gold);color:var(--gold)}
+.nav .counter{font-size:12px;color:#556;letter-spacing:2px;min-width:60px;text-align:center}
+/* Progress */
+.progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--frost));transition:width .4s ease;z-index:100}
+/* Snowflakes */
+.snow-container{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.snowflake{position:absolute;color:rgba(255,255,255,.15);font-size:14px;animation:fall linear infinite}
+@keyframes fall{0%{transform:translateY(-10vh) rotate(0deg)}100%{transform:translateY(110vh) rotate(360deg)}}
+@media(max-width:768px){
+.slide{padding:40px 24px}
+.two-col,.cards{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="snow-container" id="snow"></div>
+<div class="deck" id="deck">
+
+<!-- SLIDE 0: Title -->
+<div class="slide slide-title active">
+<div class="badge">Studio Varaždin × Advent 2026</div>
+<h1>Čarobni Lift<br>Djeda Mraza</h1>
+<p class="subtitle">Verzija 2.0 — Immersive Dark Ride Experience</p>
+<p class="meta">VARAŽDIN &nbsp;·&nbsp; ADVENT &nbsp;·&nbsp; IMMERSIVE</p>
+</div>
+
+<!-- SLIDE 1: Vision -->
+<div class="slide">
+<p class="section-num">Vizija</p>
+<h2>Od lifta do podzemnog grada</h2>
+<p style="margin-top:16px">Čarobni Lift V2 transformira jednostavan adventski lift u potpuno imerzivni dark ride — vožnju po tračnicama kroz podzemni božićni svijet ispod Varaždina. Posjetitelji ne biraju kat. Oni propadaju u čaroliju.</p>
+<div class="cards">
+<div class="card"><div class="icon">🎭</div><h3>Narativ</h3><p>Dramatična kvar-sekvenca pretvara se u otkriće skrivenog božićnog grada</p></div>
+<div class="card"><div class="icon">🚂</div><h3>Dark Ride</h3><p>Lift postaje vagonet na tračnicama koji putuje kroz višestruke sobe</p></div>
+<div class="card"><div class="icon">🎅</div><h3>Susret</h3><p>Putovanje završava osobnim susretom s Djedom Mrazom</p></div>
+</div>
+</div>
+
+<!-- SLIDE 2: Journey -->
+<div class="slide">
+<p class="section-num">Putovanje</p>
+<h2>Mapa iskustva</h2>
+<div class="journey">
+<div class="journey-step"><div class="journey-dot">1</div><div class="journey-text"><h4>Ulaz u lift</h4><p>Kazaljka s ručicom — posjetitelji biraju "kat"</p></div></div>
+<div class="journey-step"><div class="journey-dot">2</div><div class="journey-text"><h4>Kvar & propadanje</h4><p>Alarmi, vibracije, podni ekran simulira pad u dubinu</p></div></div>
+<div class="journey-step"><div class="journey-dot">3</div><div class="journey-text"><h4>Tunel</h4><p>Halogene žarulje se pale — stari ukrasi prelaze u moderne</p></div></div>
+<div class="journey-step"><div class="journey-dot">4</div><div class="journey-text"><h4>Podzemni božićni grad</h4><p>Zvjezdano nebo od lampica, barokna arhitektura, veliki bor</p></div></div>
+<div class="journey-step"><div class="journey-dot">5</div><div class="journey-text"><h4>Tvornica igračaka</h4><p>Vilenjaci pripremaju i slažu igračke za Božić</p></div></div>
+<div class="journey-step"><div class="journey-dot">6</div><div class="journey-text"><h4>Hangar sobova</h4><p>Hranjenje, češljanje i priprema sobova za let</p></div></div>
+<div class="journey-step"><div class="journey-dot">7</div><div class="journey-text"><h4>Saunica — Djed Mraz</h4><p>Osobni susret, poziv u kućicu</p></div></div>
+<div class="journey-step"><div class="journey-dot">8</div><div class="journey-text"><h4>Izlaz → Kućica</h4><p>Vrata se otvaraju — stigli ste kod Djeda Mraza</p></div></div>
+</div>
+</div>
+
+<!-- SLIDE 3: Act 1 -->
+<div class="slide">
+<p class="section-num">Čin I</p>
+<h2>Ulazak & kvar</h2>
+<p style="margin-top:16px">Posjetitelji ulaze u lift. Na zidu je stara željezničarska kazaljka s ručicom — "Odaberite kat". Zvono odzvanja dok povlače ručicu. Naravno, povuku krivo.</p>
+<div class="cards" style="margin-top:24px">
+<div class="card"><div class="icon">🔔</div><h3>Ručica & zvono</h3><p>Taktilna interakcija — posjetitelj pokreće radnju</p></div>
+<div class="card"><div class="icon">⚠️</div><h3>Neispravna komanda</h3><p>Alarmi, crvena svjetla, drhtanje lifta</p></div>
+<div class="card"><div class="icon">📺</div><h3>Podni ekran (V2 NEW)</h3><p>Pod "nestaje" — vizualni pad u dubinu</p></div>
+<div class="card"><div class="icon">🔊</div><h3>Bass shakeri (V2 NEW)</h3><p>Fizički osjećaj udarca pri "slijetanju"</p></div>
+</div>
+</div>
+
+<!-- SLIDE 4: Act 2 -->
+<div class="slide">
+<p class="section-num">Čin II</p>
+<h2>Tunel & tranzicija</h2>
+<p style="margin-top:16px">Mrak. Tišina. Jeka. Zatim — <em>ding, ding, ding</em> — stare halogene žarulje se pale jedna po jedna. Tunel se otkriva. Daleko, daleko — svjetlo.</p>
+<div class="two-col">
+<div class="col">
+<h3>Bočni ekrani</h3>
+<ul>
+<li>Stari ukrasi prekriveni paučinom</li>
+<li>Postupna tranzicija u modernije ukrase</li>
+<li>Crescendo svjetla i boja</li>
+</ul>
+</div>
+<div class="col">
+<h3>Senzorni dizajn</h3>
+<ul>
+<li>Zvuk halogenih žarulja — autentični "ding"</li>
+<li>Od tišine do ambijentalne glazbe</li>
+<li>Temperatura: hladno → toplo</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- SLIDE 5: Act 3 -->
+<div class="slide">
+<p class="section-num">Čin III</p>
+<h2>Podzemni Božićni Grad</h2>
+<p style="margin-top:16px">Izlazak iz tunela u otvoreni podzemni prostor. Ogroman božićni grad u više slojeva. Nebo od lampica. Varaždinska barokna arhitektura. Veliki bor u centru.</p>
+<div class="cards">
+<div class="card"><div class="icon">✨</div><h3>Zvjezdano nebo</h3><p>Tisuće lampica stvaraju iluziju noćnog neba duboko pod zemljom</p></div>
+<div class="card"><div class="icon">🏛️</div><h3>Barokna arhitektura</h3><p>Varaždinsko Gospodsko zdanje u minijaturi — prepoznatljiv identitet</p></div>
+<div class="card"><div class="icon">🎄</div><h3>Centralni bor</h3><p>Monumentalni ukrašeni bor kao vizualna sidra točka grada</p></div>
+<div class="card"><div class="icon">🚃</div><h3>Tračnički sustav</h3><p>Drugi liftovi-vlakići vidljivi kako kruže gradom</p></div>
+</div>
+</div>
+
+<!-- SLIDE 6: Stations -->
+<div class="slide">
+<p class="section-num">Čin IV</p>
+<h2>Postaje</h2>
+<div class="two-col">
+<div class="col">
+<h3>🏭 Tvornica igračaka</h3>
+<ul>
+<li>Vilenjaci slažu i pakiraju igračke</li>
+<li>Razgovori, dogovaranje, žamor rada</li>
+<li>Trake, kutije, alati — živi set</li>
+</ul>
+<h3 style="margin-top:24px">🦌 Hangar sobova</h3>
+<ul>
+<li>Vilenjaci hrane i češljaju sobove</li>
+<li>Priprema za veliku noć</li>
+<li>Topla rasvjeta, mirni zvukovi</li>
+</ul>
+</div>
+<div class="col">
+<h3>🧖 Saunica Djeda Mraza</h3>
+<ul>
+<li>Lift staje — osobni trenutak</li>
+<li>Djed Mraz se obraća posjetiteljima</li>
+<li>Poziv: "Dođite me posjetiti u kućicu!"</li>
+<li>Odlazi s druge strane — vrata se otvaraju</li>
+</ul>
+<h3 style="margin-top:24px">🚪 Izlaz</h3>
+<ul>
+<li>Iskustvo završava besprijekorno</li>
+<li>Posjetitelji izlaze direktno u Kućicu Djeda Mraza</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- SLIDE 7: V2 Upgrades -->
+<div class="slide">
+<p class="section-num">Što je novo</p>
+<h2>V2 nadogradnje</h2>
+<div class="cards">
+<div class="card" style="border-color:var(--gold-dim)"><div class="icon">📺</div><h3>Podni LED ekran</h3><p>Vizualni efekt propadanja kroz pod lifta — ključni wow-moment verzije 2</p></div>
+<div class="card" style="border-color:var(--gold-dim)"><div class="icon">🔊</div><h3>Bass shakeri</h3><p>Taktilni transduceri pod podom stvaraju fizički osjećaj udarca i kretanja</p></div>
+<div class="card" style="border-color:var(--gold-dim)"><div class="icon">🎬</div><h3>Bočni ekrani</h3><p>Prošireni video sadržaj — tunel, ukrasi, podzemni grad na LED panelima</p></div>
+<div class="card" style="border-color:var(--gold-dim)"><div class="icon">🌟</div><h3>Višestruke sobe</h3><p>Proširenje iz jedne sobe u potpuni dark ride s postajama</p></div>
+</div>
+</div>
+
+<!-- SLIDE 8: Closing -->
+<div class="slide slide-title">
+<div class="badge">Čarobni Lift V2</div>
+<h1>Propadni<br>u čaroliju.</h1>
+<p class="subtitle">Advent Varaždin 2026</p>
+<p class="meta">STUDIO VARAŽDIN &nbsp;·&nbsp; LOTUS RC</p>
+</div>
+
+</div>
+
+<!-- Navigation -->
+<div class="nav">
+<button id="prev" aria-label="Previous">←</button>
+<span class="counter" id="counter">1 / 9</span>
+<button id="next" aria-label="Next">→</button>
+</div>
+
+<script>
+const slides=document.querySelectorAll('.slide');
+const progress=document.getElementById('progress');
+const counter=document.getElementById('counter');
+let current=0;
+function go(i){
+if(i<0||i>=slides.length)return;
+slides[current].classList.remove('active');
+current=i;
+slides[current].classList.add('active');
+progress.style.width=((current/(slides.length-1))*100)+'%';
+counter.textContent=`${current+1} / ${slides.length}`;
+}
+document.getElementById('prev').onclick=()=>go(current-1);
+document.getElementById('next').onclick=()=>go(current+1);
+document.addEventListener('keydown',e=>{
+if(e.key==='ArrowRight'||e.key===' ')go(current+1);
+if(e.key==='ArrowLeft')go(current-1);
+});
+// Touch
+let tx=0;
+document.addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+document.addEventListener('touchend',e=>{
+const d=e.changedTouches[0].clientX-tx;
+if(Math.abs(d)>50){d<0?go(current+1):go(current-1)}
+});
+// Snow
+const sc=document.getElementById('snow');
+for(let i=0;i<25;i++){
+const s=document.createElement('div');
+s.className='snowflake';s.textContent='❄';
+s.style.left=Math.random()*100+'%';
+s.style.fontSize=(8+Math.random()*12)+'px';
+s.style.animationDuration=(8+Math.random()*12)+'s';
+s.style.animationDelay=Math.random()*10+'s';
+sc.appendChild(s);
+}
+go(0);
+</script>
+</body>
+</html>
