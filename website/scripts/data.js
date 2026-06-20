@@ -3,6 +3,27 @@
 
 const PROJECTS = [
   {
+    id: "pozar-varazdin-2026",
+    title: "Požar u Varaždinu",
+    subtitle: "Prema stvarnoj legendi",
+    year: 2026,
+    client: "Grad Varaždin / Varaždin Tourist Board",
+    category: "short-film",
+    type: "AI Concept Trailer",
+    duration: "~2 min",
+    director: "Timon Terzić",
+    team: ["Timon Terzić"],
+    thumbnail: "assets/images/pozar u varazdinu.webp",
+    heroImage: "assets/images/pozar u varazdinu.webp",
+    themeColor: "hsl(14, 60%, 15%)",
+    tagline: "A single spark consumed the capital. A legend forged in ash.",
+    description: "On April 25, 1776, a single spark from a peasant's pipe turned Croatia's baroque capital to ash. Commemorating the 250th anniversary of the Great Fire of Varaždin, this cinematic concept trailer uses cutting-edge AI worldbuilding to visualize the fury of the flames and the resilience of a city reborn from the embers.",
+    awards: [],
+    featured: true,
+    badges: ["AI Concept Trailer", "Historical Drama", "1776"],
+    youtubeUrl: "https://www.youtube.com/watch?v=69Wc4emDr6E"
+  },
+  {
     id: "advent-varazdin-2024",
     title: "Advent u Varaždinu",
     subtitle: "Aftermovie 2024",
