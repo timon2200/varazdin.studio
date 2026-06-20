@@ -243,7 +243,8 @@ export const PROJECTS = [
     description: "A fairytale-structured short film following ten-year-old Ema and her mother as a magical pop-up book transports them into the love stories of northern Croatia's castles. At Trakošćan, a knight rides off to war; at Veliki Tabor, a feudal lord falls for a peasant girl; at the Varaždin citadel, time defeats a love too patient to survive it; at Čakovec, a family's warmth fills the courtyard with mud and laughter.",
     awards: [],
     featured: false,
-    badges: ["In Production", "Fairytale Drama", "Castles"]
+    badges: ["Fairytale Drama", "Castles", "2025"],
+    youtubeUrl: "https://www.youtube.com/watch?v=-qODRzvZPFc"
   },
   {
     id: "fvd-2024",

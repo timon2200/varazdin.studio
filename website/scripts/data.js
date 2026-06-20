@@ -63,7 +63,7 @@ const PROJECTS = [
     awards: [],
     featured: true,
     badges: ["Fairytale Drama", "Castles", "2025"],
-    youtubeUrl: "https://www.youtube.com/watch?v=FzO1Pa5Tf30"
+    youtubeUrl: "https://www.youtube.com/watch?v=-qODRzvZPFc"
   },
   {
     id: "vudrag-dubai-2025",

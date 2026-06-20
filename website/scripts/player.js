@@ -120,7 +120,10 @@ function closeProject(fromPopState) {
 
   // Hide external close button
   const closeBtn = document.getElementById('expanded-close-btn');
-  if (closeBtn) closeBtn.classList.remove('is-visible');
+  if (closeBtn) {
+    closeBtn.classList.remove('is-visible');
+    closeBtn.style.opacity = '';
+  }
 
   // Hide dismiss backdrop
   const backdrop = document.getElementById('dismiss-backdrop');
@@ -129,12 +132,11 @@ function closeProject(fromPopState) {
     backdrop.style.opacity = '';
   }
 
-  // Clear any leftover drag transforms
-  expandedView.style.transform = '';
-  expandedView.style.opacity = '';
-  expandedView.style.borderRadius = '';
-  expandedView.style.transition = '';
-  expandedView.style.overflow = '';
+  // Clear GSAP-managed transforms
+  if (expandedView) {
+    gsap.set(expandedView, { clearProps: 'y,scaleX,scaleY,opacity,borderRadius' });
+    expandedView.style.overflow = '';
+  }
   
   const updateDOM = () => {
     expandedView.classList.remove('is-active');
@@ -466,270 +468,206 @@ function handleExpandedScroll(e) {
 }
 
 // ════════════════════════════════════════════════════════════
-// SWIPE-DOWN-TO-DISMISS (YouTube-style)
+// SWIPE-DOWN-TO-DISMISS — GSAP Draggable (YouTube-style)
 // ════════════════════════════════════════════════════════════
 
 (function initSwipeToDismiss() {
-  let startY = 0;
-  let startX = 0;
-  let currentY = 0;
-  let startTime = 0;
-  let dragging = false;
-  let locked = false;
-  let vertical = false;
-  let wasMouseDrag = false;
+  // State
+  let _dismissDragging = false;
+  let _dragStartTime = 0;
+  let _dragStartY = 0;
 
-  const THRESHOLD = 0.20;       // 20% of viewport = dismiss
-  const VELOCITY_THRESH = 600;  // px/s fast flick
-  const LOCK_PX = 12;           // px before direction lock
+  const THRESHOLD = 0.20;       // 20% of viewport height = dismiss
+  const VELOCITY_THRESH = 600;  // px/s fast-flick threshold
 
-  function getView() {
-    return document.getElementById('project-expanded-view');
+  // Expose drag state for play-toggle guard in main.js
+  window._isDismissDragging = () => _dismissDragging;
+
+  function isSkipTarget(el) {
+    return el.closest('button') ||
+           el.closest('iframe') ||
+           el.closest('.player-timeline-wrapper') ||
+           el.closest('.player-vol-slider-container') ||
+           el.closest('input') ||
+           el.closest('a');
   }
-
-  function skipTarget(t) {
-    // Never interfere with buttons, iframes, inputs, links, scrubber, volume
-    return t.closest('button') ||
-           t.closest('iframe') ||
-           t.closest('.player-timeline-wrapper') ||
-           t.closest('.player-vol-slider-container') ||
-           t.closest('input') ||
-           t.closest('a');
-  }
-
-  // ── Visual feedback ──
-
-  function applyDrag(dy) {
-    const view = getView();
-    if (!view) return;
-
-    const clamped = Math.max(0, dy);
-    const vh = window.innerHeight;
-    const p = Math.min(clamped / vh, 1); // 0..1 progress
-
-    const scale = 1 - p * 0.12;
-    const opacity = 1 - p * 0.5;
-    const radius = p * 20;
-
-    // Lock scroll during drag so content doesn't shift
-    view.style.overflow = 'hidden';
-    view.style.transition = 'none';
-    view.style.transform = `translateY(${clamped}px) scale(${scale})`;
-    view.style.opacity = opacity;
-    view.style.borderRadius = `${radius}px`;
-
-    // Backdrop: fade in as user drags
-    const bd = document.getElementById('dismiss-backdrop');
-    if (bd) {
-      bd.classList.add('is-visible');
-      bd.style.opacity = 0.6 * p;  // 0 → 0.6
-    }
-
-    // Sync close button opacity down
-    const cb = document.getElementById('expanded-close-btn');
-    if (cb) cb.style.opacity = Math.max(0, 1 - p * 2);
-  }
-
-  function snapBack() {
-    const view = getView();
-    if (!view) return;
-
-    view.style.transition = 'transform 0.35s cubic-bezier(0.2,1,0.3,1), opacity 0.35s ease, border-radius 0.35s ease';
-    view.style.transform = '';
-    view.style.opacity = '';
-    view.style.borderRadius = '';
-
-    const bd = document.getElementById('dismiss-backdrop');
-    if (bd) {
-      bd.style.transition = 'opacity 0.35s ease';
-      bd.style.opacity = '0';
-    }
-
-    const cb = document.getElementById('expanded-close-btn');
-    if (cb) cb.style.opacity = '';
-
-    setTimeout(() => {
-      if (view) {
-        view.style.transition = '';
-        view.style.overflow = '';
-      }
-      if (bd) {
-        bd.classList.remove('is-visible');
-        bd.style.transition = '';
-        bd.style.opacity = '';
-      }
-    }, 380);
-  }
-
-  function animateDismiss() {
-    const view = getView();
-    if (!view) return;
-
-    const vh = window.innerHeight;
-    view.style.transition = 'transform 0.3s cubic-bezier(0.4,0,1,1), opacity 0.25s ease';
-    view.style.transform = `translateY(${vh}px) scale(0.85)`;
-    view.style.opacity = '0';
-
-    const bd = document.getElementById('dismiss-backdrop');
-    if (bd) {
-      bd.style.transition = 'opacity 0.3s ease';
-      bd.style.opacity = '0';
-    }
-
-    const cb = document.getElementById('expanded-close-btn');
-    if (cb) cb.style.opacity = '0';
-
-    setTimeout(() => {
-      // Clean up all inline styles before closeProject resets
-      view.style.transition = '';
-      view.style.transform = '';
-      view.style.opacity = '';
-      view.style.borderRadius = '';
-      view.style.overflow = '';
-      if (bd) {
-        bd.classList.remove('is-visible');
-        bd.style.transition = '';
-        bd.style.opacity = '';
-      }
-      if (cb) cb.style.opacity = '';
-      closeProject();
-    }, 320);
-  }
-
-  function finishDrag() {
-    const dy = currentY - startY;
-    const dt = (Date.now() - startTime) / 1000 || 0.01;
-    const vel = dy / dt;
-    const p = dy / window.innerHeight;
-
-    if (p > THRESHOLD || vel > VELOCITY_THRESH) {
-      animateDismiss();
-    } else {
-      snapBack();
-    }
-  }
-
-  // ── TOUCH ──
-
-  function onTS(e) {
-    const view = getView();
-    if (!view || !view.classList.contains('is-active')) return;
-    if (skipTarget(e.target)) return;
-
-    const t = e.touches[0];
-    startY = t.clientY;
-    startX = t.clientX;
-    currentY = t.clientY;
-    startTime = Date.now();
-    dragging = false;
-    locked = false;
-    vertical = false;
-  }
-
-  function onTM(e) {
-    const view = getView();
-    if (!view || !view.classList.contains('is-active')) return;
-    if (startY === 0) return;
-
-    const t = e.touches[0];
-    const dy = t.clientY - startY;
-    const dx = t.clientX - startX;
-
-    // Direction lock
-    if (!locked) {
-      if (Math.sqrt(dy * dy + dx * dx) > LOCK_PX) {
-        locked = true;
-        vertical = Math.abs(dy) > Math.abs(dx);
-      } else {
-        return;
-      }
-    }
-
-    if (!vertical || dy <= 0) {
-      if (dragging) { snapBack(); dragging = false; }
-      return;
-    }
-
-    // Only dismiss if scrolled to the top
-    if (view.scrollTop > 5) return;
-
-    dragging = true;
-    currentY = t.clientY;
-    e.preventDefault();
-    applyDrag(dy);
-  }
-
-  function onTE() {
-    if (!dragging) { startY = 0; return; }
-    finishDrag();
-    dragging = false; locked = false; vertical = false; startY = 0;
-  }
-
-  // ── MOUSE (desktop) ──
-
-  function onMD(e) {
-    const view = getView();
-    if (!view || !view.classList.contains('is-active')) return;
-    if (skipTarget(e.target)) return;
-    if (e.button !== 0) return;
-
-    startY = e.clientY;
-    startX = e.clientX;
-    currentY = e.clientY;
-    startTime = Date.now();
-    dragging = false; wasMouseDrag = false;
-    locked = false; vertical = false;
-  }
-
-  function onMM(e) {
-    if (startY === 0) return;
-
-    const dy = e.clientY - startY;
-    const dx = e.clientX - startX;
-
-    if (!locked) {
-      if (Math.sqrt(dy * dy + dx * dx) > LOCK_PX) {
-        locked = true;
-        vertical = Math.abs(dy) > Math.abs(dx);
-      } else { return; }
-    }
-
-    if (!vertical || dy <= 0) {
-      if (dragging) { snapBack(); dragging = false; wasMouseDrag = false; }
-      return;
-    }
-
-    const view = getView();
-    if (view && view.scrollTop > 5) return;
-
-    dragging = true; wasMouseDrag = true;
-    currentY = e.clientY;
-    e.preventDefault();
-    applyDrag(dy);
-  }
-
-  function onMU() {
-    if (!dragging) { startY = 0; return; }
-    finishDrag();
-    dragging = false; wasMouseDrag = false;
-    locked = false; vertical = false; startY = 0;
-  }
-
-  // ── Bind ──
 
   document.addEventListener('DOMContentLoaded', () => {
+    gsap.registerPlugin(Draggable);
+
     const view = document.getElementById('project-expanded-view');
     if (!view) return;
 
-    view.addEventListener('touchstart', onTS, { passive: true });
-    view.addEventListener('touchmove', onTM, { passive: false });
-    view.addEventListener('touchend', onTE, { passive: true });
-    view.addEventListener('touchcancel', onTE, { passive: true });
+    Draggable.create(view, {
+      type: 'y',
+      lockAxis: true,
+      zIndexBoost: false,
+      allowEventDefault: true,    // don't eat scroll events
 
-    view.addEventListener('mousedown', onMD);
-    document.addEventListener('mousemove', onMM);
-    document.addEventListener('mouseup', onMU);
+      // ── Press: gate the drag ──
+      onPress: function (e) {
+        // Bail if the view isn't open
+        if (!view.classList.contains('is-active')) {
+          this.endDrag(e);
+          return;
+        }
+        // Don't hijack interactive children
+        if (isSkipTarget(e.target)) {
+          this.endDrag(e);
+          return;
+        }
+        // Don't start a dismiss drag if user has scrolled down
+        if (view.scrollTop > 5) {
+          this.endDrag(e);
+          return;
+        }
+
+        _dragStartTime = Date.now();
+        _dragStartY = e.clientY || (e.touches && e.touches[0] ? e.touches[0].clientY : 0);
+      },
+
+      // ── Drag: live visual feedback ──
+      onDrag: function () {
+        const dy = this.y;
+
+        // Only allow downward drag
+        if (dy <= 0) {
+          gsap.set(view, { y: 0 });
+          return;
+        }
+
+        // Don't start visual dismiss if scrolled
+        if (view.scrollTop > 5) {
+          gsap.set(view, { y: 0 });
+          this.endDrag();
+          return;
+        }
+
+        _dismissDragging = true;
+
+        const vh = window.innerHeight;
+        const p = Math.min(dy / vh, 1); // 0..1 progress
+
+        const scale  = 1 - p * 0.12;     // 1 → 0.88
+        const opac   = 1 - p * 0.5;      // 1 → 0.5
+        const radius = p * 24;           // 0 → 24px
+
+        // Lock scroll so content doesn't shift while dragging
+        view.style.overflow = 'hidden';
+
+        gsap.set(view, {
+          scaleX: scale,
+          scaleY: scale,
+          opacity: opac,
+          borderRadius: radius + 'px'
+        });
+
+        // Backdrop: fade in proportionally
+        const bd = document.getElementById('dismiss-backdrop');
+        if (bd) {
+          bd.classList.add('is-visible');
+          bd.style.opacity = 0.6 * p;
+        }
+
+        // Fade close button as user drags
+        const cb = document.getElementById('expanded-close-btn');
+        if (cb) cb.style.opacity = Math.max(0, 1 - p * 2);
+      },
+
+      // ── Release: dismiss or snap back ──
+      onDragEnd: function () {
+        const dy = this.y;
+        const dt = (Date.now() - _dragStartTime) / 1000 || 0.01;
+        const vel = dy / dt;            // px/s
+        const p = dy / window.innerHeight;
+
+        // Only consider downward motion
+        if (dy <= 0 || !_dismissDragging) {
+          _snapBack(view);
+          return;
+        }
+
+        if (p > THRESHOLD || vel > VELOCITY_THRESH) {
+          _animateDismiss(view, dy);
+        } else {
+          _snapBack(view);
+        }
+      }
+    });
   });
 
-  window._isDismissDragging = () => dragging || wasMouseDrag;
+  // ── Animate dismiss (slide off + close) ──
+  function _animateDismiss(view) {
+    const vh = window.innerHeight;
+    const bd = document.getElementById('dismiss-backdrop');
+    const cb = document.getElementById('expanded-close-btn');
+
+    gsap.to(view, {
+      y: vh,
+      scaleX: 0.85,
+      scaleY: 0.85,
+      opacity: 0,
+      duration: 0.3,
+      ease: 'power2.in',
+      onComplete: () => {
+        // Reset GSAP props
+        gsap.set(view, { clearProps: 'y,scaleX,scaleY,opacity,borderRadius' });
+        view.style.overflow = '';
+
+        if (bd) {
+          bd.classList.remove('is-visible');
+          bd.style.opacity = '';
+        }
+        if (cb) cb.style.opacity = '';
+
+        _dismissDragging = false;
+        closeProject();
+      }
+    });
+
+    // Fade backdrop in parallel
+    if (bd) {
+      gsap.to(bd, { opacity: 0, duration: 0.3, ease: 'power2.in' });
+    }
+    if (cb) {
+      gsap.to(cb, { opacity: 0, duration: 0.15 });
+    }
+  }
+
+  // ── Snap back to fullscreen position ──
+  function _snapBack(view) {
+    const bd = document.getElementById('dismiss-backdrop');
+    const cb = document.getElementById('expanded-close-btn');
+
+    gsap.to(view, {
+      y: 0,
+      scaleX: 1,
+      scaleY: 1,
+      opacity: 1,
+      borderRadius: '0px',
+      duration: 0.4,
+      ease: 'power3.out',
+      onComplete: () => {
+        gsap.set(view, { clearProps: 'y,scaleX,scaleY,opacity,borderRadius' });
+        view.style.overflow = '';
+        _dismissDragging = false;
+      }
+    });
+
+    if (bd) {
+      gsap.to(bd, {
+        opacity: 0,
+        duration: 0.35,
+        ease: 'power2.out',
+        onComplete: () => {
+          bd.classList.remove('is-visible');
+          bd.style.opacity = '';
+        }
+      });
+    }
+
+    if (cb) {
+      gsap.to(cb, { opacity: 1, duration: 0.3 });
+    }
+  }
 })();

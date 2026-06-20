@@ -155,7 +155,7 @@ The production required full period costuming for over fifteen performers, locat
 ---
 
 ### 100 Dvoraca Sjevera Hrvatske — Film Script & Concept
-**Client:** Castle Network of Northern Croatia | **Type:** Cinematic Drama / Tourism Film | **Year:** 2025 (In Progress)
+**Client:** Castle Network of Northern Croatia | **Type:** Cinematic Drama / Tourism Film | **Year:** 2025
 
 A fairytale-structured cinematic short film that tells the love stories and tragedies hidden inside four of northern Croatia's most iconic castles — Trakošćan, Veliki Tabor, Stari Grad Varaždin, and Stari Grad Čakovec — through the eyes of a ten-year-old girl named **Ema** and her mother.
 
@@ -169,7 +169,7 @@ Four love stories unfold across the castles:
 
 The film is designed to work on multiple levels: as a cinematic attraction for families visiting the castles, as a premium souvenir pop-up book, and as a flagship piece of cultural heritage promotion for the northern Croatian tourism network.
 
-**Status:** In production (script complete, pre-production active) | **Format:** Cinematic short film + pop-up book companion
+**Status:** Completed | **Format:** Cinematic short film + pop-up book companion
 
 ---
 

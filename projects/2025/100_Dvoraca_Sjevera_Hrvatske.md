@@ -7,13 +7,14 @@
 | Field | Value |
 |-------|-------|
 | **Year** | 2025 |
-| **Status** | In progress |
+| **Status** | Completed |
 | **Price** | — |
 | **Deadline** | 2025-04-16 |
 | **Created** | 2024-07-05 |
 | **Last Edited** | 2025-12-26 |
 | **Notion URL** | [100 Dvoraca Sjevera Hrvatske](https://www.notion.so/100-Dvoraca-Sjevera-Hrvatske-68d2bfd2f4444f6298cdaea4ca9c98b7) |
 | **Public URL** | [100 Dvoraca Sjevera Hrvatske](https://lotus-rc.notion.site/100-Dvoraca-Sjevera-Hrvatske-68d2bfd2f4444f6298cdaea4ca9c98b7) |
+| **YouTube URL** | [100 Dvoraca Sjevera Hrvatske](https://www.youtube.com/watch?v=-qODRzvZPFc) |
 
 ## Notes
 
