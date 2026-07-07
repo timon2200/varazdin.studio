@@ -3,6 +3,27 @@
 
 const PROJECTS = [
   {
+    id: "ivanec-ivancica-2026",
+    title: "Ivanec i Ivančica",
+    subtitle: "630 Godina — Između Legende i Opstanka",
+    year: 2026,
+    client: "Grad Ivanec",
+    category: "documentary",
+    type: "Historical Documentary",
+    duration: "~10 min",
+    director: "Timon Terzić",
+    team: ["Timon Terzić", "Ljiljana Risek (script)", "Kristijan Petrović (narrator)", "Sven Danko", "Dario Mikulek", "Bojan Horvat"],
+    thumbnail: "assets/images/ivanec-ivancica-2026.webp",
+    heroImage: "assets/images/ivanec-ivancica-2026.webp",
+    themeColor: "hsl(130, 35%, 12%)",
+    tagline: "When God forgot a village, he gave it a mountain to remember.",
+    description: "A cinematic odyssey through 630 years of Ivanec's written history — from the volcanic fires that forged Ivančica to the Maltese knights who guarded its passes, from a Celtic altar lost in the forest of Turjač to the dynamited Vražja Pećina. Shot across multi-day productions with torchlit night sets, FPV root-level flights, horseback riders, and advanced VFX, the film is both a love letter to a mountain and a cry to save it from the quarries that wound its springs, forests, and silence.",
+    awards: [],
+    featured: true,
+    badges: ["630th Anniversary", "Historical", "Ecology"],
+    youtubeUrl: "https://www.youtube.com/watch?v=IAs_jbORbuY"
+  },
+  {
     id: "pozar-varazdin-2026",
     title: "Požar u Varaždinu",
     subtitle: "Prema stvarnoj legendi",
