@@ -27,6 +27,15 @@ function initScrollObserver() {
   }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
 
   document.querySelectorAll('.row-section, .reveal-up').forEach(el => observer.observe(el));
+
+  // Gold shimmer on the About heading repaints text every frame — only let
+  // it run while the heading is actually in the viewport.
+  const aboutHeading = document.querySelector('.about-heading');
+  if (aboutHeading) {
+    new IntersectionObserver(([entry]) => {
+      aboutHeading.classList.toggle('shimmer-live', entry.isIntersecting);
+    }).observe(aboutHeading);
+  }
 }
 
 // ════════════════════════════════════════════════════════════
@@ -34,17 +43,23 @@ function initScrollObserver() {
 // ════════════════════════════════════════════════════════════
 
 function initAmbientScroll() {
-  // Create a fixed ambient glow overlay
-  const glow = document.createElement('div');
-  glow.style.cssText = `
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    z-index:0;
-    transition: background 1.2s ease;
-    background: radial-gradient(ellipse 60% 50% at 50% 60%, rgba(100,70,10,0.06) 0%, transparent 70%);
-  `;
-  document.body.prepend(glow);
+  // Two stacked fixed layers, crossfaded by OPACITY when the dominant
+  // section changes. Transitioning `background` (the old approach) repaints
+  // the entire viewport every frame for the 1.2s of every crossfade;
+  // opacity crossfades run purely on the compositor.
+  const makeLayer = (color, opacity) => {
+    const el = document.createElement('div');
+    el.style.cssText = `
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:0;
+      opacity:${opacity};
+      transition: opacity 1.2s ease;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, ${color} 0%, transparent 70%);
+    `;
+    return el;
+  };
 
   const COLORS = {
     top:         'rgba(130,90,15,0.07)',
@@ -55,7 +70,16 @@ function initAmbientScroll() {
     bottom:      'rgba(100,70,10,0.06)',
   };
 
-  window.addEventListener('scroll', () => {
+  let front = makeLayer(COLORS.top, 1);
+  let back  = makeLayer(COLORS.top, 0);
+  document.body.prepend(back);
+  document.body.prepend(front);
+
+  let current = 'top';
+  let ticking = false;
+
+  const update = () => {
+    ticking = false;
     const winHeight = window.innerHeight;
 
     // Find which section dominates the center of viewport
@@ -70,6 +94,18 @@ function initAmbientScroll() {
       }
     }
 
-    glow.style.background = `radial-gradient(ellipse 70% 60% at 50% 50%, ${COLORS[dominant] || COLORS.top} 0%, transparent 70%)`;
+    if (dominant === current) return;
+    current = dominant;
+
+    back.style.background = `radial-gradient(ellipse 70% 60% at 50% 50%, ${COLORS[dominant]} 0%, transparent 70%)`;
+    back.style.opacity  = '1';
+    front.style.opacity = '0';
+    [front, back] = [back, front];
+  };
+
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
   }, { passive: true });
 }

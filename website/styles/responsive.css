@@ -444,3 +444,18 @@
     display: none !important;
   }
 }
+
+/* ════════════════════════════════════════════════════════════
+   REDUCED MOTION — kill all decorative animation for users
+   who ask for it (also a battery/GPU saver)
+   ════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

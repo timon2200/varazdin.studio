@@ -57,7 +57,7 @@ function buildCard(project) {
 
   card.innerHTML = `
     <div class="card-image">
-      <img src="${project.thumbnail}" alt="${project.title}" loading="lazy">
+      <img src="${project.thumbnail}" alt="${project.title}" loading="lazy" decoding="async">
       <div class="card-play">${PLAY_ICON}</div>
       <div class="card-info">
         <div class="card-title">${project.title}</div>

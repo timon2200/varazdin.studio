@@ -115,3 +115,35 @@ function resetHeroTimer() {
   clearInterval(heroTimer);
   startHeroTimer();
 }
+
+// ── Pause the slideshow when it can't be seen ───────────────
+// The hero otherwise animates a full-viewport layer forever (9s Ken Burns
+// on a 6s cycle = never idle), even scrolled away or in a hidden tab.
+
+let heroInView = true;
+
+function setHeroRunning(running) {
+  const hero = document.getElementById('hero');
+  if (running) {
+    hero.classList.remove('hero-paused');
+    resetHeroTimer();
+  } else {
+    hero.classList.add('hero-paused');
+    clearInterval(heroTimer);
+    heroTimer = null;
+  }
+}
+
+function initHeroPause() {
+  const hero = document.getElementById('hero');
+  if (!hero || !FEATURED.length) return;
+
+  new IntersectionObserver(([entry]) => {
+    heroInView = entry.isIntersecting;
+    setHeroRunning(heroInView && !document.hidden);
+  }, { threshold: 0.05 }).observe(hero);
+
+  document.addEventListener('visibilitychange', () => {
+    setHeroRunning(heroInView && !document.hidden);
+  });
+}

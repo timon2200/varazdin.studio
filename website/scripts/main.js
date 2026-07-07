@@ -133,6 +133,7 @@ function initGlobalEvents() {
 
 function init() {
   buildHero();
+  initHeroPause();
   buildCatalogue();
   initNav();
   initGlobalEvents();

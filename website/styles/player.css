@@ -353,6 +353,12 @@
   animation: hintBounce 2.2s ease-in-out infinite;
 }
 
+/* opacity:0 does NOT stop an animation — without this the hint's bounce
+   runs (and burns compositor frames) 24/7 while the hint is hidden */
+.player-scroll-hint:not(.is-visible) svg {
+  animation-play-state: paused;
+}
+
 /* While the viewer is watching (controls idle-faded), keep the hint
    present but whisper-quiet; hide it entirely in fullscreen. */
 body:has(#project-expanded-view.player-idle) .player-scroll-hint.is-visible {

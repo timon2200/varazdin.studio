@@ -29,20 +29,33 @@
   inset: 0;
 }
 
+/* Inactive slides: no will-change (each promoted slide holds a full-viewport
+   GPU layer), and no long transform transition — the outgoing slide only
+   crossfades; its zoom resets in one step after the 1s fade ends. */
 .hero-slide {
   position: absolute;
   inset: 0;
   background-size: cover;
   background-position: center 30%;
   opacity: 0;
-  will-change: opacity, transform;
   transform: scale(1.06);
-  transition: opacity 1.0s ease, transform 9s linear;
+  transition: opacity 1.0s ease, transform 0s linear 1s;
 }
 
 .hero-slide.active {
   opacity: 1;
   transform: scale(1.0);
+  will-change: opacity, transform;
+  transition: opacity 1.0s ease, transform 9s linear;
+}
+
+/* Freeze every hero animation (Ken Burns, shimmer, badge pulse, scroll hint)
+   while the hero is offscreen or the tab is hidden — see initHeroPause() */
+#hero.hero-paused *,
+#hero.hero-paused *::before,
+#hero.hero-paused *::after {
+  animation-play-state: paused !important;
+  transition: none !important;
 }
 
 /* Gradient overlays */

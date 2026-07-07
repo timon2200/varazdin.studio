@@ -198,6 +198,30 @@ Each project in `data.js` follows this shape:
 - **About section reveals**: blocks tagged `.reveal-up` are observed by the
   same IntersectionObserver as `.row-section` (see `scroll-effects.js`).
 
+## Performance Guardrails (GPU)
+
+The site must let the GPU idle when the user isn't looking at something animated.
+These rules were established after the site pegged GPUs by animating 24/7:
+
+- **No unconditionally-infinite animations.** Every `animation: … infinite` must be
+  gated: the hero pauses via `#hero.hero-paused` (toggled by `initHeroPause()` in
+  `hero.js` on IntersectionObserver + `visibilitychange`), the About heading shimmer
+  runs only with `.shimmer-live` (toggled in `scroll-effects.js`), and the player
+  scroll-hint bounce is paused via `:not(.is-visible)`. `opacity: 0` does NOT stop
+  an animation — gate with `animation-play-state` or class removal.
+- **`will-change` is temporary.** Only `.hero-slide.active` gets `will-change`;
+  the animation helpers in `animations.js` set `willChange = 'auto'` when done.
+- **Long transitions only toward the visible state.** Card image Ken Burns (7s) and
+  the hero slide zoom (9s) apply only on the hover/active rule; the base rule uses a
+  short (or delayed-snap) transition so nothing animates invisibly for seconds.
+- **No always-visible `backdrop-filter`.** Blur regions re-blur every scroll frame;
+  card badges use a more opaque solid background instead. Backdrop blur is fine on
+  hover-only / open-only surfaces (card info tray, player chrome, mobile menu).
+- **Full-screen layers crossfade by opacity, never by `background`.** The scroll
+  ambient glow uses two fixed layers swapped by opacity (`initAmbientScroll()`).
+- **Images ship as WebP** (`assets/images/`), ~1600px max; thumbnails are
+  `loading="lazy" decoding="async"`.
+
 ## Known Issues
 
 - **Modal CSS retained**: The old modal styles in `modal.css` are unused in the current UI (replaced by expanded view) but retained for potential future use

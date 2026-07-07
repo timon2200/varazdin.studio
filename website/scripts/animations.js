@@ -38,7 +38,12 @@ function fogLift(el, {
     el.style.transform = 'translateY(0)';
     el.style.filter    = 'blur(0)';
 
-    setTimeout(resolve, duration + delay);
+    // Release the GPU layer once done — will-change left in place pins a
+    // composited layer per element, and these re-run every hero cycle.
+    setTimeout(() => {
+      el.style.willChange = 'auto';
+      resolve();
+    }, duration + delay);
   });
 }
 
@@ -81,6 +86,11 @@ function wordStagger(el, { delay = 0, wordDelay = 42, duration = 500 } = {}) {
     w.style.opacity = '1';
     w.style.transform = 'translateY(0)';
   });
+
+  // Release per-word GPU layers after the last word settles
+  setTimeout(() => {
+    el.querySelectorAll('.word').forEach(w => { w.style.willChange = 'auto'; });
+  }, delay + words.length * wordDelay + duration);
 }
 
 /**
@@ -104,4 +114,6 @@ function springPop(el, { delay = 0 } = {}) {
   el.style.opacity   = '1';
   el.style.transform = 'translateY(0) scale(1)';
   el.style.filter    = 'blur(0)';
+
+  setTimeout(() => { el.style.willChange = 'auto'; }, delay + 420);
 }

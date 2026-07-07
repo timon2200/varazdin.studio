@@ -96,7 +96,14 @@
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  /* background-position animation = per-frame repaint; only run it while
+     the heading is actually on screen (.shimmer-live via scroll-effects.js) */
   animation: goldShimmerSweep 8s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+.about-heading.shimmer-live {
+  animation-play-state: running;
 }
 
 .about-text {
