@@ -45,7 +45,7 @@
   top: 0; left: 0;
   width: 100vw; height: 100vh;
   overflow: hidden;
-  background-color: #040810;
+  background-color: var(--cinema-void);
   z-index: 1;
 }
 
@@ -89,11 +89,11 @@
   background: linear-gradient(
     to bottom,
     transparent 0px,
-    rgba(4, 8, 16, 0) 80px,
-    rgba(4, 8, 16, 0.6) 150px,
-    rgba(4, 8, 16, 0.98) 220px,
-    #040810 280px,
-    #040810 100%
+    rgba(6, 9, 8, 0) 80px,
+    rgba(6, 9, 8, 0.6) 150px,
+    rgba(6, 9, 8, 0.98) 220px,
+    #060908 280px,
+    #060908 100%
   );
   display: flex;
   flex-direction: column;
@@ -148,9 +148,9 @@
   font-family: var(--font-ui);
   font-size: 0.85rem;
   font-weight: 600;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: #8ab4f8;
+  color: var(--gold-bright);
   margin-bottom: 16px;
 }
 
@@ -161,30 +161,100 @@
   line-height: 1.05;
   color: var(--white);
   margin-bottom: 20px;
-  text-shadow: 0 4px 24px rgba(0,0,0,0.5);
-  background: linear-gradient(100deg, #fff 0%, #b3d4ff 40%, #ffffff 60%, #fff 100%);
-  background-size: 200% auto;
+  background: linear-gradient(
+    100deg,
+    hsl(43,72%,58%) 0%,
+    hsl(47,90%,80%) 38%,
+    hsl(45,85%,62%) 55%,
+    hsl(43,72%,58%) 100%
+  );
+  background-size: 250% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: goldShimmerSweep 8s linear infinite;
 }
 
-.glass-client {
-  font-family: var(--font-heading);
-  font-size: 1.1rem;
-  letter-spacing: 0.15em;
-  color: #c4d8f9;
+/* Year · type · duration row under the title */
+.glass-meta {
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  margin-bottom: 32px;
+  color: var(--gold-foil);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 36px;
+}
+
+.glass-meta-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--gold-deep);
+  flex-shrink: 0;
 }
 
 .glass-description {
   font-family: var(--font-body);
-  font-size: 1.15rem;
+  font-size: 1.3rem;
   line-height: 1.85;
-  color: #e2eafc;
-  font-weight: 300;
+  color: var(--cream);
+  font-weight: 400;
+  max-width: 720px;
+  margin-bottom: 48px;
+}
+
+/* Credits table — Client / Director / Team / Recognition */
+.glass-credits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px 40px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(180, 140, 60, 0.25);
+  margin-bottom: 36px;
+}
+
+.credit-label {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--cream-muted);
+  margin-bottom: 8px;
+}
+
+.credit-value {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 1.02rem;
+  line-height: 1.5;
+  color: var(--cream);
+}
+
+/* Badge chips */
+.glass-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.glass-chip {
+  padding: 7px 16px;
+  border: 1px solid rgba(180, 140, 60, 0.4);
+  border-radius: 9999px;
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-foil);
+  background: rgba(140, 100, 30, 0.12);
 }
 
 /* ── Close button - Top Right (lives outside #project-expanded-view) ── */
@@ -196,10 +266,10 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: rgba(10, 25, 50, 0.4);
+  background: rgba(10, 22, 14, 0.5);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(150, 200, 255, 0.3);
+  border: 1px solid rgba(200, 160, 70, 0.35);
   color: #fff;
   cursor: pointer;
   display: flex;
@@ -226,9 +296,71 @@
 }
 
 .expanded-close-btn:hover {
-  background: rgba(20, 50, 100, 0.6);
-  border-color: rgba(200, 230, 255, 0.8);
+  background: rgba(20, 42, 26, 0.7);
+  border-color: var(--gold-bright);
   transform: scale(1.1) rotate(90deg) !important;
+}
+
+/* ── "About this film" scroll hint ──
+   Lives OUTSIDE #project-expanded-view (like the close button) so the
+   dismiss-drag transform can't break its fixed positioning. Tells the
+   viewer there is a story below the fold — the #1 discoverability fix. */
+
+.player-scroll-hint {
+  position: fixed;
+  bottom: 96px;
+  left: 50%;
+  transform: translate(-50%, 12px);
+  z-index: 10008;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 22px;
+  border-radius: 9999px;
+  background: rgba(8, 18, 12, 0.55);
+  border: 1px solid rgba(200, 160, 70, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: var(--cream);
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease, transform 0.5s var(--ease-entrance),
+              background 0.2s ease, border-color 0.2s ease;
+}
+
+.player-scroll-hint.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+  transition-delay: 1.2s, 1.2s, 0s, 0s;
+}
+
+.player-scroll-hint:hover {
+  background: rgba(16, 32, 20, 0.75);
+  border-color: var(--gold-bright);
+  color: var(--gold-bright);
+}
+
+.player-scroll-hint svg {
+  width: 15px;
+  height: 15px;
+  animation: hintBounce 2.2s ease-in-out infinite;
+}
+
+/* While the viewer is watching (controls idle-faded), keep the hint
+   present but whisper-quiet; hide it entirely in fullscreen. */
+body:has(#project-expanded-view.player-idle) .player-scroll-hint.is-visible {
+  opacity: 0.35;
+}
+
+body:has(#project-expanded-view.is-fullscreen) .player-scroll-hint {
+  display: none;
 }
 
 /* ── View Transitions API Rules ── */

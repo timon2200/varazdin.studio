@@ -6,6 +6,34 @@
   padding-top: 24px;
   padding-bottom: 80px;
   position: relative;
+  scroll-margin-top: 90px;
+}
+
+/* ── Catalogue Intro Heading ── */
+
+.catalogue-intro {
+  padding: 40px var(--page-pad) 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.catalogue-eyebrow {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-mid);
+  margin-bottom: 10px;
+}
+
+.catalogue-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--cream);
+  text-transform: uppercase;
 }
 
 /* Breathing ambient glow behind all rows */
@@ -44,6 +72,12 @@
   transform: translateY(0);
 }
 
+/* Lift the section containing a hovered card above its siblings so the
+   scaled card can't be hit-tested underneath the next row's track padding */
+.row-section:has(.project-card:hover) {
+  z-index: 2;
+}
+
 .row-header {
   padding: 0 var(--page-pad);
   margin-bottom: 16px;
@@ -55,7 +89,7 @@
 
 .row-label {
   font-family: var(--font-heading);
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   color: var(--cream);
@@ -84,17 +118,17 @@
 
 .row-count {
   font-family: var(--font-ui);
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   color: var(--cream-muted);
   font-weight: 400;
   letter-spacing: 0.05em;
   margin-left: 2px;
 }
 
-/* Scrollable track */
+/* Scrollable track — NO overflow:hidden here: the track itself is the
+   scroll container, and clipping the wrapper shears off hover shadows. */
 .row-track-wrapper {
   position: relative;
-  overflow: hidden;
 }
 
 .row-track-wrapper::before,
@@ -118,17 +152,22 @@
   background: linear-gradient(270deg, var(--green-deep) 0%, transparent 100%);
 }
 
+/* The vertical padding is the breathing room for the hover scale AND its
+   drop shadow (scale 1.22 on a 270px-tall card ≈ 30px overflow per side,
+   plus ~72px of shadow spread below). Negative margins reclaim the space
+   visually — the padding lives inside the scroll container so nothing clips. */
 .row-track {
   display: flex;
   gap: var(--card-gap);
-  padding: 72px var(--page-pad);
+  padding: 104px var(--page-pad);
+  margin: -72px 0;
   overflow-x: auto;
   scroll-behavior: smooth;
   scrollbar-width: none;
   -ms-overflow-style: none;
   cursor: grab;
-  --hover-shift: 98px;
-  --hover-shift-edge: 196px;
+  --hover-shift: 53px;
+  --hover-shift-edge: 106px;
 }
 
 .row-track::-webkit-scrollbar { display: none; }

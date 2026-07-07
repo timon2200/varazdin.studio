@@ -100,6 +100,7 @@ function initGlobalEvents() {
 
   document.getElementById('player-back-btn')?.addEventListener('click', () => closeProject());
   document.getElementById('expanded-close-btn')?.addEventListener('click', () => closeProject());
+  document.getElementById('player-scroll-hint')?.addEventListener('click', scrollToFilmDetails);
   document.getElementById('player-play-btn')?.addEventListener('click', togglePlay);
   document.getElementById('player-vol-btn')?.addEventListener('click', toggleMute);
   document.getElementById('player-center-state')?.addEventListener('click', togglePlay);

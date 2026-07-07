@@ -52,12 +52,35 @@ function openProject(projectId, cardEl) {
     const descRaw = project.description || '';
     const descHtml = descRaw.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>');
 
+    const teamHtml = (project.team || []).length > 1
+      ? `<div><span class="credit-label">Team</span><span class="credit-value">${project.team.join(', ')}</span></div>`
+      : '';
+    const awardsHtml = (project.awards || []).length
+      ? `<div><span class="credit-label">Recognition</span><span class="credit-value">${project.awards.join(' · ')}</span></div>`
+      : '';
+    const chipsHtml = (project.badges || []).length
+      ? `<div class="glass-chips glass-stagger">${project.badges.map(b => `<span class="glass-chip">${b}</span>`).join('')}</div>`
+      : '';
+
     expandedGlass.innerHTML = `
       <div class="glass-content-box" style="view-transition-name: project-glass">
         <div class="glass-category glass-stagger">${CATEGORY_LABELS[project.category] || project.type}</div>
         <div class="glass-title glass-stagger">${project.title}</div>
-        <div class="glass-client glass-stagger">Client: ${project.client || 'Studio Varaždin'}</div>
+        <div class="glass-meta glass-stagger">
+          <span>${project.year}</span>
+          <span class="glass-meta-dot"></span>
+          <span>${project.type}</span>
+          <span class="glass-meta-dot"></span>
+          <span>${project.duration}</span>
+        </div>
         <div class="glass-description glass-stagger">${descHtml}</div>
+        <div class="glass-credits glass-stagger">
+          <div><span class="credit-label">Client</span><span class="credit-value">${project.client || 'Studio Varaždin'}</span></div>
+          <div><span class="credit-label">Director</span><span class="credit-value">${project.director || 'Timon Terzić'}</span></div>
+          ${teamHtml}
+          ${awardsHtml}
+        </div>
+        ${chipsHtml}
       </div>
     `;
 
@@ -72,6 +95,9 @@ function openProject(projectId, cardEl) {
     // Show the external close button
     const closeBtn = document.getElementById('expanded-close-btn');
     if (closeBtn) closeBtn.classList.add('is-visible');
+
+    // Show the "About this film" scroll hint (CSS hides it on mobile/landscape)
+    setScrollHint(true);
     
     // Default unmuted icon
     document.querySelectorAll('.icon-vol').forEach(el => el.innerHTML = '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>');
@@ -124,6 +150,11 @@ function closeProject(fromPopState) {
     closeBtn.classList.remove('is-visible');
     closeBtn.style.opacity = '';
   }
+
+  // Hide scroll hint
+  setScrollHint(false);
+  const hintEl = document.getElementById('player-scroll-hint');
+  if (hintEl) hintEl.style.opacity = '';
 
   // Hide dismiss backdrop
   const backdrop = document.getElementById('dismiss-backdrop');
@@ -395,6 +426,21 @@ function showCenterPulse(svgHtml) {
 }
 
 // ════════════════════════════════════════════════════════════
+// "ABOUT THIS FILM" SCROLL HINT
+// ════════════════════════════════════════════════════════════
+
+function setScrollHint(visible) {
+  const hint = document.getElementById('player-scroll-hint');
+  if (!hint) return;
+  hint.classList.toggle('is-visible', visible);
+}
+
+function scrollToFilmDetails() {
+  if (!expandedView) return;
+  expandedView.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+}
+
+// ════════════════════════════════════════════════════════════
 // SCROLL EFFECTS (Parallax & Stagger)
 // ════════════════════════════════════════════════════════════
 
@@ -441,7 +487,11 @@ function handleExpandedScroll(e) {
   }
   
   const scrollY = view.scrollTop;
-  
+
+  // Hide the "About this film" hint once the viewer has found the content;
+  // bring it back when they return to the top.
+  if (activeProject) setScrollHint(scrollY < 80);
+
   // 1. Scale and fade media to fall into the background
   const innerMedia = document.getElementById('expanded-media-inner');
   if (innerMedia) {
@@ -569,9 +619,11 @@ function handleExpandedScroll(e) {
           bd.style.opacity = 0.6 * p;
         }
 
-        // Fade close button as user drags
+        // Fade close button and scroll hint as user drags
         const cb = document.getElementById('expanded-close-btn');
         if (cb) cb.style.opacity = Math.max(0, 1 - p * 2);
+        const hint = document.getElementById('player-scroll-hint');
+        if (hint) hint.style.opacity = Math.max(0, 1 - p * 2);
       },
 
       // ── Release: dismiss or snap back ──
@@ -638,6 +690,8 @@ function handleExpandedScroll(e) {
   function _snapBack(view) {
     const bd = document.getElementById('dismiss-backdrop');
     const cb = document.getElementById('expanded-close-btn');
+    const hint = document.getElementById('player-scroll-hint');
+    if (hint) gsap.to(hint, { opacity: 1, duration: 0.3, clearProps: 'opacity' });
 
     gsap.to(view, {
       y: 0,

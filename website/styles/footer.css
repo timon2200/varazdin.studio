@@ -29,7 +29,7 @@
 
 .footer-copy {
   font-family: var(--font-ui);
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   color: var(--cream-muted);
   letter-spacing: 0.08em;
 }
@@ -42,9 +42,9 @@
 
 .footer-links a {
   font-family: var(--font-ui);
-  font-size: 0.68rem;
+  font-size: 0.78rem;
   letter-spacing: 0.1em;
-  color: var(--cream-muted);
+  color: var(--cream-dim);
   text-transform: uppercase;
   transition: color var(--t-fast) ease;
 }
@@ -60,48 +60,194 @@
   margin: var(--section-gap) 0;
 }
 
-/* ── About Section (extracted from inline styles) ── */
+/* ── About Section ── */
 
 .about-section {
-  padding: 80px var(--page-pad);
-  max-width: 860px;
+  padding: 96px var(--page-pad) 80px;
+  max-width: 1100px;
   margin: 0 auto;
+  scroll-margin-top: 90px;
+}
+
+.about-eyebrow {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-mid);
+  margin-bottom: 14px;
 }
 
 .about-heading {
-  font-family: var(--font-heading);
-  font-size: 1.8rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 4vw, 3.2rem);
+  line-height: 1.15;
   color: var(--white);
-  margin-bottom: 20px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  margin-bottom: 28px;
+  background: linear-gradient(
+    100deg,
+    hsl(43,72%,58%) 0%,
+    hsl(47,90%,80%) 38%,
+    hsl(45,85%,62%) 55%,
+    hsl(43,72%,58%) 100%
+  );
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: goldShimmerSweep 8s ease-in-out infinite;
 }
 
 .about-text {
   font-family: var(--font-body);
-  font-size: 1.1rem;
-  line-height: 1.85;
-  color: var(--cream-dim);
-  font-weight: 300;
+  font-size: 1.3rem;
+  line-height: 1.8;
+  color: var(--cream);
+  font-weight: 400;
   margin-bottom: 20px;
+  max-width: 780px;
 }
 
 .about-text strong {
-  color: var(--cream);
+  color: var(--gold-foil);
+  font-weight: 600;
 }
 
-.about-quote {
-  font-family: var(--font-body);
-  font-size: 1.05rem;
-  line-height: 1.85;
+/* ── Stats band ── */
+
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin: 56px 0;
+  padding: 36px 0;
+  border-top: 1px solid var(--green-border);
+  border-bottom: 1px solid var(--green-border);
+}
+
+.stat-number {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.6vw, 3rem);
+  color: var(--gold-bright);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.stat-label {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cream-dim);
+  line-height: 1.5;
+}
+
+/* ── Capabilities grid ── */
+
+.about-capabilities {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 64px;
+}
+
+.capability-card {
+  padding: 28px 26px;
+  background: linear-gradient(160deg, rgba(20, 40, 28, 0.35), rgba(8, 20, 12, 0.5));
+  border: 1px solid var(--green-border);
+  border-radius: 6px;
+  transition: border-color var(--t-normal) ease, transform var(--t-normal) var(--ease-cinematic), box-shadow var(--t-normal) ease;
+}
+
+.capability-card:hover {
+  border-color: var(--gold-border);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 24px rgba(160,120,40,0.08);
+}
+
+.capability-title {
+  font-family: var(--font-heading);
+  font-size: 1.02rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold-foil);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.capability-title::before {
+  content: '';
+  display: block;
+  width: 18px;
+  height: 1px;
+  background: var(--gold-mid);
+  flex-shrink: 0;
+}
+
+.capability-desc {
+  font-family: var(--font-ui);
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--cream-dim);
+  font-weight: 400;
+}
+
+/* ── Clients strip ── */
+
+.about-clients {
+  margin-bottom: 64px;
+}
+
+.clients-label {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
   color: var(--cream-muted);
-  font-weight: 300;
-  margin-bottom: 36px;
-  font-style: italic;
+  margin-bottom: 22px;
+}
+
+.clients-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 40px;
+  list-style: none;
+}
+
+.clients-list li {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cream-dim);
+  transition: color var(--t-fast) ease;
+}
+
+.clients-list li:hover {
+  color: var(--gold-bright);
 }
 
 .about-actions {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
+}
+
+/* ── Scroll reveal for about blocks ── */
+
+.reveal-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s var(--ease-entrance), transform 0.8s var(--ease-entrance);
+}
+
+.reveal-up.in-view {
+  opacity: 1;
+  transform: translateY(0);
 }

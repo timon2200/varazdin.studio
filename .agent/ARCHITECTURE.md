@@ -183,7 +183,21 @@ Each project in `data.js` follows this shape:
 
 ---
 
+## Layout Gotchas
+
+- **Row hover shadows**: `.row-track-wrapper` must NOT get `overflow: hidden` —
+  the track itself is the scroll container. The track's large vertical padding
+  (104px) is the breathing room for the 1.22× hover scale + drop shadow, and
+  negative vertical margins (`margin: -72px 0`) reclaim the space visually.
+  Shrinking that padding re-introduces clipped shadows.
+- **Player scroll hint**: `#player-scroll-hint` (the "About this film" pill)
+  lives OUTSIDE `#project-expanded-view`, like the close button, so the GSAP
+  drag-to-dismiss transform can't break its `position: fixed`. Shown on open,
+  hidden once `scrollTop > 80` (see `setScrollHint` in `player.js`), hidden by
+  CSS on mobile/landscape where the description is already in flow.
+- **About section reveals**: blocks tagged `.reveal-up` are observed by the
+  same IntersectionObserver as `.row-section` (see `scroll-effects.js`).
+
 ## Known Issues
 
-- **Missing images**: 7 thumbnails referenced in `data.js` don't exist on disk (`advent-sonica.png`, `dvorista-sjevera.png`, `foi-promo.png`, `carobni-grad.png`, `irma-dora.png`, `stefany-eden.png`, `stare-fotke.png`)
 - **Modal CSS retained**: The old modal styles in `modal.css` are unused in the current UI (replaced by expanded view) but retained for potential future use

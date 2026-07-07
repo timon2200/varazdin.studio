@@ -26,7 +26,7 @@ function initScrollObserver() {
     });
   }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
 
-  document.querySelectorAll('.row-section').forEach(el => observer.observe(el));
+  document.querySelectorAll('.row-section, .reveal-up').forEach(el => observer.observe(el));
 }
 
 // ════════════════════════════════════════════════════════════

@@ -21,11 +21,14 @@
   --green-hover:    hsl(147, 24%, 22%);
   --green-border:   hsla(148, 30%, 40%, 0.20);
 
-  --cream:          hsl(48, 25%, 90%);
-  --cream-dim:      hsl(48, 15%, 70%);
-  --cream-muted:    hsl(48, 10%, 50%);
+  --cream:          hsl(48, 30%, 93%);
+  --cream-dim:      hsl(48, 20%, 79%);
+  --cream-muted:    hsl(48, 12%, 64%);
   --burgundy:       hsl(345, 60%, 22%);
   --white:          #ffffff;
+
+  /* Near-black cinema backdrop for the expanded film view */
+  --cinema-void:    hsl(160, 20%, 3%);
 
   /* ── Typography ── */
   --font-display:   'Cinzel Decorative', serif;
@@ -92,6 +95,22 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   line-height: 1.6;
+}
+
+/* Cinematic film grain — sits above page content, below the expanded film view */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 700;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+::selection {
+  background: var(--gold-deep);
+  color: var(--cream);
 }
 
 img {

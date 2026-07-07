@@ -4,7 +4,7 @@
 
 .project-card {
   position: relative;
-  flex: 0 0 560px;
+  flex: 0 0 480px;
   aspect-ratio: 16 / 9;
   border-radius: 6px;
   overflow: visible;
@@ -23,7 +23,7 @@
 .project-card:only-child  { transform-origin: left center; }
 
 .project-card:hover {
-  transform: scale(1.35);
+  transform: scale(1.22);
   z-index: var(--z-card-hover);
   transition:
     transform var(--t-normal) var(--ease-cinematic),
@@ -61,7 +61,7 @@
 
 /* The hovered card itself stays scaled (overrides the above) */
 .row-track:not(.dragging):has(.project-card:hover) .project-card:hover {
-  transform: scale(1.35);
+  transform: scale(1.22);
 }
 
 .row-track:not(.dragging):has(.project-card:hover) .project-card:hover ~ .project-card {
@@ -167,16 +167,16 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 14px 12px 11px;
+  padding: 15px 16px 13px;
   opacity: 0;
   transform: translateY(6px);
   transition: opacity 220ms ease 60ms, transform 220ms var(--ease-entrance) 60ms;
   pointer-events: none;
   /* Frosted glass chamber */
-  background: rgba(6, 18, 12, 0.55);
-  backdrop-filter: blur(18px) saturate(140%);
-  -webkit-backdrop-filter: blur(18px) saturate(140%);
-  border-top: 1px solid rgba(160,120,40,0.2);
+  background: rgba(5, 14, 9, 0.78);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border-top: 1px solid rgba(160,120,40,0.25);
   border-radius: 0 0 6px 6px;
 }
 
@@ -187,11 +187,11 @@
 
 .card-title {
   font-family: var(--font-heading);
-  font-size: 0.78rem;
+  font-size: 0.98rem;
   font-weight: 600;
   color: var(--white);
   line-height: 1.2;
-  margin-bottom: 4px;
+  margin-bottom: 5px;
   letter-spacing: 0.04em;
   /* Micro blur-to-sharp */
   filter: blur(4px);
@@ -204,7 +204,7 @@
 
 .card-meta {
   font-family: var(--font-ui);
-  font-size: 0.6rem;
+  font-size: 0.72rem;
   color: var(--gold-foil);
   letter-spacing: 0.08em;
   display: flex;
@@ -221,10 +221,10 @@
 }
 
 .card-tagline {
-  font-size: 0.63rem;
+  font-size: 0.85rem;
   color: var(--cream-dim);
   font-style: italic;
-  margin-top: 3px;
+  margin-top: 4px;
   line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 1;
@@ -236,14 +236,14 @@
 /* Category badge */
 .card-badge {
   position: absolute;
-  top: 8px;
-  left: 8px;
-  padding: 3px 10px;
-  background: rgba(8,22,14,0.72);
-  border: 1px solid rgba(160,120,40,0.3);
+  top: 10px;
+  left: 10px;
+  padding: 4px 12px;
+  background: rgba(8,22,14,0.78);
+  border: 1px solid rgba(160,120,40,0.35);
   border-radius: 9999px;
   font-family: var(--font-ui);
-  font-size: 0.52rem;
+  font-size: 0.62rem;
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;

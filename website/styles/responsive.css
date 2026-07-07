@@ -5,9 +5,14 @@
 @media (max-width: 900px) {
   /* Mobile: solid bg + flex column so glass fills remaining space */
   #project-expanded-view.is-active {
-    background: #040810;
+    background: var(--cinema-void);
     display: flex;
     flex-direction: column;
+  }
+
+  /* Description is already visible below the video on mobile — no hint needed */
+  .player-scroll-hint {
+    display: none !important;
   }
 
   /* Mobile Project Expanded View (Vertical Mode) */
@@ -48,8 +53,8 @@
   #project-expanded-view.is-active .expanded-glass-layer {
     flex: 1 0 auto;
     min-height: calc(100vh - 56.25vw);
-    padding: 24px 20px 140px;
-    background: #040810;
+    padding: 28px 20px 140px;
+    background: var(--cinema-void);
     margin-top: 0;
     opacity: 1;
   }
@@ -64,9 +69,22 @@
   .glass-title {
     font-size: 2.2rem;
   }
-  
+
+  .glass-meta {
+    font-size: 0.8rem;
+    margin-bottom: 24px;
+  }
+
   .glass-description {
-    font-size: 1.05rem;
+    font-size: 1.1rem;
+    margin-bottom: 32px;
+  }
+
+  .glass-credits {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding-top: 24px;
+    margin-bottom: 28px;
   }
   
   .player-top-bar {
@@ -185,6 +203,11 @@
     display: none;
   }
 
+  /* Touch users scroll instinctively — the hint just collides with the CTAs */
+  .hero-scroll-hint {
+    display: none;
+  }
+
   #hero {
     height: 65vh;
   }
@@ -194,6 +217,7 @@
     --hover-shift: 0px;
     --hover-shift-edge: 0px;
     padding: 16px var(--page-pad);
+    margin: 0;
     scroll-snap-type: x mandatory;
     scroll-padding-left: var(--page-pad);
     overscroll-behavior-x: contain;
@@ -274,6 +298,16 @@
   .project-card:hover .card-play {
     opacity: 0 !important;
   }
+
+  /* ── About section ── */
+  .about-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 24px;
+  }
+
+  .about-capabilities {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 600px) {
@@ -311,6 +345,18 @@
   #site-footer {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .about-capabilities {
+    grid-template-columns: 1fr;
+  }
+
+  .clients-list {
+    gap: 12px 28px;
+  }
+
+  .clients-list li {
+    font-size: 0.92rem;
   }
 }
 
@@ -391,5 +437,10 @@
     right: 20px;
     background: rgba(0,0,0,0.5);
     border-color: rgba(255,255,255,0.2);
+  }
+
+  /* Glass layer is hidden in landscape — nothing to scroll to */
+  .player-scroll-hint {
+    display: none !important;
   }
 }
