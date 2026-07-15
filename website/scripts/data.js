@@ -329,15 +329,15 @@ const PROJECTS = [
     duration: "7 min",
     director: "Timon Terzić",
     team: ["Dario Mikulek", "Dorian Domiter", "Sven Danko", "Ivica Hozmec", "Luka Ivić", "Stella Grbec"],
-    thumbnail: "assets/images/spancirfest.webp",
-    heroImage: "assets/images/spancirfest.webp",
+    thumbnail: "assets/images/spancirfest-25.webp",
+    heroImage: "assets/images/spancirfest-25.webp",
     themeColor: "hsl(38, 70%, 25%)",
     tagline: "A city. Ten days. Four stories.",
     description: "For the 25th anniversary of Croatia's largest street festival, Studio Varaždin crafted a seven-minute multi-narrative cinematic experience. Four interlocking human stories — a lost child, a sketching artist, a young couple, a street musician — unfold against the baroque splendour of Varaždin. The festival itself becomes a fifth protagonist, alive with butterfly ornaments, fire performers, and the electric energy of a city in celebration.",
     awards: ["Festival Special Commission"],
     featured: false,
     badges: ["25th Edition", "Multi-Narrative", "Festival Film"],
-    youtubeUrl: null
+    youtubeUrl: "https://www.youtube.com/watch?v=ihAaaoEdaA8"
   },
   {
     id: "advent-varazdin-2023",
