@@ -11,6 +11,9 @@
 'use strict';
 
 function buildCatalogue() {
+  const fallback = document.getElementById('catalogue-fallback');
+  if (fallback) fallback.remove();
+
   ROWS.forEach(row => {
     const filtered = PROJECTS.filter(row.filter);
     if (!filtered.length) return;

@@ -201,3 +201,43 @@
 }
 .row-arrow-left  { left: 10px; }
 .row-arrow-right { right: 10px; }
+
+/* ── Static Fallback for Search Engines & Non-JS ── */
+.catalogue-fallback {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  padding: 24px var(--page-pad);
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+
+.fallback-card {
+  background: rgba(12, 28, 18, 0.7);
+  border: 1px solid rgba(160, 120, 40, 0.25);
+  border-radius: 4px;
+  padding: 20px;
+}
+
+.fallback-card h3 {
+  font-family: var(--font-heading);
+  color: var(--cream);
+  font-size: 1.15rem;
+  margin-bottom: 6px;
+}
+
+.fallback-card .fallback-meta {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  color: var(--gold-mid);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.fallback-card p {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
