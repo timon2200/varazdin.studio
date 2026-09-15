@@ -1,0 +1,516 @@
+/**
+ * Studio Varaždin — Cyber-Medieval Brutalist Swiper Styling
+ * Design System inspired by SV Print - Silent Knight Studio Black.
+ */
+
+:root {
+  --bg-dark: #080A09;
+  --card-bg: #101412;
+  --card-border: #222B25;
+  --red-crimson: #E60000;
+  --red-bright: #FF1E27;
+  --red-oxblood: #4E110C;
+  --gold-rich: #D0A041;
+  --gold-cream: #F6CF65;
+  --gold-antique: #B8842B;
+  --text-main: #FFFFFF;
+  --text-muted: #8F9E95;
+  --text-dim: #4B5951;
+  --radius-card: 22px;
+  --radius-btn: 50%;
+  --spring-easing: linear(0, 0.016 0.5%, 0.06 1%, 0.226 2%, 1.116 5.4%, 1.375 6.6%, 1.527 7.7%, 1.565 8.2%, 1.585 8.8%, 1.581 9.3%, 1.559 9.8%, 1.458 10.9%, 0.937 14.3%, 0.784 15.5%, 0.693 16.6%, 0.67 17.1%, 0.657 17.7%, 0.671 18.7%, 0.729 19.8%, 1.042 23.3%, 1.13 24.5%, 1.182 25.6%, 1.201 26.7%, 1.192 27.7%, 1.156 28.8%, 0.977 32.2%, 0.925 33.4%, 0.894 34.5%, 0.882 35.6%, 0.887 36.6%, 0.907 37.7%, 1.045 42.4%, 1.069 44.5%, 1.059 46.3%, 0.979 50.9%, 0.96 53.4%, 0.966 55.3%, 1.013 59.9%, 1.024 62.3%, 0.986 71.2%, 1.008 79.9%, 0.995 88.9%, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* App Wrapper */
+.app-container {
+  width: 100%;
+  max-width: 1440px;
+  min-height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 10;
+  padding: 16px 20px;
+}
+
+/* Header HUD */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(14, 18, 16, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  margin-bottom: 12px;
+}
+
+.brand-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-sigil {
+  font-family: 'Cinzel', serif, Georgia;
+  font-weight: 900;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  color: var(--text-main);
+  text-transform: uppercase;
+}
+
+.brand-sub {
+  font-size: 0.72rem;
+  letter-spacing: 1.5px;
+  color: var(--gold-rich);
+  font-family: monospace;
+  border-left: 1px solid #334037;
+  padding-left: 8px;
+}
+
+.header-center {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Category Filter Tabs */
+.category-tabs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 4px;
+}
+.category-tabs::-webkit-scrollbar { display: none; }
+
+.tab-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.tab-btn:hover {
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tab-btn.active {
+  color: #080A09;
+  background: var(--gold-rich);
+  border-color: var(--gold-cream);
+  box-shadow: 0 0 12px rgba(208, 160, 65, 0.35);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.telemetry-counter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: monospace;
+  font-size: 0.85rem;
+  color: var(--text-main);
+  background: rgba(0, 0, 0, 0.4);
+  padding: 6px 12px;
+  border-radius: 10px;
+  border: 1px solid #232C26;
+}
+
+.telemetry-counter strong {
+  color: var(--gold-cream);
+}
+
+.icon-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--card-border);
+  color: var(--text-muted);
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.icon-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-main);
+  border-color: var(--gold-rich);
+}
+
+/* Main Layout Grid */
+.main-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  flex: 1;
+  gap: 20px;
+}
+
+@media (min-width: 1024px) {
+  .main-layout {
+    display: grid;
+    grid-template-columns: 500px 1fr;
+    align-items: start;
+    gap: 28px;
+    padding-top: 10px;
+  }
+}
+
+/* Swiper Column */
+.swiper-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 440px;
+  position: relative;
+  margin: 0 auto;
+}
+
+/* Card Stack Container */
+.card-stack-container {
+  width: 100%;
+  max-width: 400px;
+  height: 520px;
+  position: relative;
+  perspective: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+@media (max-height: 780px) {
+  .card-stack-container {
+    height: 440px;
+  }
+}
+
+@media (max-width: 440px) {
+  .app-container {
+    padding: 8px 10px;
+  }
+  .card-stack-container {
+    height: 480px;
+    max-width: 100%;
+  }
+  .app-header {
+    padding: 8px 10px;
+    margin-bottom: 8px;
+  }
+}
+
+/* Individual T-Shirt Card */
+.tshirt-card {
+  position: absolute;
+  width: 100%;
+  max-width: 420px;
+  height: 100%;
+  border-radius: var(--radius-card);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  overflow: hidden;
+  touch-action: none;
+  cursor: grab;
+  will-change: transform, opacity;
+}
+
+.tshirt-card:active {
+  cursor: grabbing;
+}
+
+.tshirt-card.is-dragging {
+  box-shadow: 0 35px 60px rgba(0, 0, 0, 0.9), 0 0 25px rgba(230, 0, 0, 0.25) !important;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: 
+    radial-gradient(circle at 50% 30%, #171E19 0%, #0D110F 100%);
+}
+
+.card-photo-wrapper {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 16px;
+  overflow: hidden;
+}
+
+.tshirt-artwork {
+  width: 92%;
+  height: 92%;
+  object-fit: contain;
+  filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.85));
+  pointer-events: none;
+  transition: transform 0.3s ease;
+}
+
+/* Dynamic Interaction Stamps */
+.stamp {
+  position: absolute;
+  top: 36px;
+  padding: 10px 22px;
+  border-radius: 12px;
+  font-weight: 900;
+  font-size: 1.4rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  border: 4px solid;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 50;
+  transform: rotate(-12deg);
+  transition: opacity 0.12s ease;
+  backdrop-filter: blur(4px);
+}
+
+.stamp-like {
+  right: 28px;
+  color: #10B981;
+  border-color: #10B981;
+  background: rgba(16, 185, 129, 0.15);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+  transform: rotate(12deg);
+}
+
+.stamp-nope {
+  left: 28px;
+  color: var(--red-bright);
+  border-color: var(--red-bright);
+  background: rgba(255, 30, 39, 0.15);
+  box-shadow: 0 0 20px rgba(255, 30, 39, 0.4);
+  transform: rotate(-12deg);
+}
+
+.stamp-superlike {
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.1);
+  color: var(--gold-cream);
+  border-color: var(--gold-rich);
+  background: rgba(208, 160, 65, 0.25);
+  box-shadow: 0 0 30px rgba(246, 207, 101, 0.6);
+  font-size: 1.6rem;
+}
+
+/* Card Bottom HUD */
+.card-hud {
+  padding: 16px 20px;
+  background: rgba(8, 10, 9, 0.85);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid #1E2721;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hud-category {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--gold-rich);
+  font-family: monospace;
+}
+
+.hud-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-top: 2px;
+  letter-spacing: 0.5px;
+}
+
+.hud-tag {
+  font-size: 0.7rem;
+  font-family: monospace;
+  color: var(--text-dim);
+  border: 1px solid #232D27;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+/* Controls Bar */
+.controls-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  width: 100%;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-btn);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease;
+}
+
+.action-btn:active {
+  transform: scale(0.88);
+}
+
+.action-btn svg {
+  pointer-events: none;
+}
+
+/* Button Variants */
+.btn-undo {
+  width: 52px;
+  height: 52px;
+  background: #141A16;
+  border: 1px solid #2A352E;
+  color: var(--text-muted);
+}
+.btn-undo:hover {
+  color: var(--text-main);
+  border-color: var(--text-muted);
+}
+.btn-undo:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-pass {
+  width: 64px;
+  height: 64px;
+  background: rgba(230, 0, 0, 0.12);
+  border: 2px solid var(--red-crimson);
+  color: var(--red-bright);
+}
+.btn-pass:hover {
+  background: var(--red-crimson);
+  color: #FFFFFF;
+  box-shadow: 0 0 25px rgba(230, 0, 0, 0.6);
+  transform: scale(1.08);
+}
+
+.btn-superlike {
+  width: 56px;
+  height: 56px;
+  background: rgba(208, 160, 65, 0.12);
+  border: 2px solid var(--gold-rich);
+  color: var(--gold-cream);
+}
+.btn-superlike:hover {
+  background: var(--gold-rich);
+  color: #080A09;
+  box-shadow: 0 0 25px rgba(246, 207, 101, 0.7);
+  transform: scale(1.08);
+}
+
+.btn-like {
+  width: 72px;
+  height: 72px;
+  background: var(--red-bright);
+  border: 2px solid #FF4D4D;
+  color: #FFFFFF;
+  box-shadow: 0 8px 24px rgba(255, 30, 39, 0.45);
+}
+.btn-like:hover {
+  background: #FF0010;
+  box-shadow: 0 10px 30px rgba(255, 30, 39, 0.7);
+  transform: scale(1.08);
+}
+
+.btn-info {
+  width: 52px;
+  height: 52px;
+  background: #141A16;
+  border: 1px solid #2A352E;
+  color: var(--text-muted);
+}
+.btn-info:hover {
+  color: var(--gold-rich);
+  border-color: var(--gold-rich);
+}
+
+/* Card Entrance Cascade */
+@keyframes cardEntrance {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 50px, 0) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.card-entrance {
+  animation: cardEntrance 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Deck Empty Screen */
+.deck-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  padding: 30px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-card);
+}
+.empty-title {
+  color: var(--gold-rich);
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+.empty-sub {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
