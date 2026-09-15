@@ -1,7 +1,9 @@
 /**
  * Studio Varaždin — Card Engine (Tinder-style 3D Physics Swiper)
- * 60fps gesture-driven swipe stack with modern linear() spring curves.
+ * 60fps gesture-driven swipe stack with modern linear() spring curves and dynamic adaptive ordering.
  */
+
+import { DynamicDeckOrdering } from './deck-ordering.js';
 
 export class CardEngine {
   constructor(options = {}) {
@@ -9,6 +11,7 @@ export class CardEngine {
     this.catalog = options.catalog || [];
     this.analytics = options.analytics;
     this.audioHaptics = options.audioHaptics;
+    this.orderingEngine = options.orderingEngine || new DynamicDeckOrdering();
     this.onVoteCallback = options.onVote || (() => {});
     this.onDeckEmptyCallback = options.onDeckEmpty || (() => {});
     this.onCardChangeCallback = options.onCardChange || (() => {});
@@ -67,12 +70,12 @@ export class CardEngine {
 
   setDeck(items, filter = 'ALL') {
     this.activeFilter = filter;
-    let filtered = filter === 'ALL' 
-      ? [...items] 
-      : items.filter(it => it.category.toUpperCase() === filter.toUpperCase());
+    
+    // Compute dynamic order using UCB1 + Exploitation + Session Affinity + Category Diversity
+    const globalStats = this.analytics ? (this.analytics.statsCache || this.analytics.computeLocalStats()) : {};
+    const sessionVotes = this.analytics ? this.analytics.sessionVotes : [];
 
-    // Keep Silent Knight pinned first if in ALL/Artwear
-    this.deck = filtered;
+    this.deck = this.orderingEngine.orderDeck(items, globalStats, sessionVotes, filter);
     this.renderDeck();
   }
 
@@ -345,6 +348,11 @@ export class CardEngine {
 
     this.currentIndex++;
 
+    // Dynamic Tail Re-ordering: Adapt the unseen cards in the queue to newly learned user preferences
+    if (this.currentIndex % 3 === 0 && this.currentIndex + this.VISIBLE_DEPTH < this.deck.length) {
+      this.reorderUnseenTail();
+    }
+
     // Re-slot the remaining visible stack
     for (let i = this.currentIndex; i <= this.currentIndex + this.VISIBLE_DEPTH && i < this.cardsEl.length; i++) {
       this.applySlotTransform(this.cardsEl[i], i);
@@ -358,6 +366,23 @@ export class CardEngine {
         this.onDeckEmptyCallback();
       }, 350);
     }
+  }
+
+  /**
+   * Dynamically re-ranks cards beyond the currently visible stack without shifting visible cards.
+   */
+  reorderUnseenTail() {
+    const splitIndex = this.currentIndex + this.VISIBLE_DEPTH + 1;
+    if (splitIndex >= this.deck.length) return;
+
+    const visibleHead = this.deck.slice(0, splitIndex);
+    const unseenTail = this.deck.slice(splitIndex);
+
+    const globalStats = this.analytics ? (this.analytics.statsCache || this.analytics.computeLocalStats()) : {};
+    const sessionVotes = this.analytics ? this.analytics.sessionVotes : [];
+
+    const reorderedTail = this.orderingEngine.orderDeck(unseenTail, globalStats, sessionVotes, this.activeFilter);
+    this.deck = [...visibleHead, ...reorderedTail];
   }
 
   undo() {
@@ -407,10 +432,10 @@ export class CardEngine {
   }
 
   shuffle() {
-    for (let i = this.deck.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [this.deck[i], this.deck[j]] = [this.deck[j], this.deck[i]];
-    }
+    // Re-run dynamic adaptive ordering with fresh stochastic jitter
+    const globalStats = this.analytics ? (this.analytics.statsCache || this.analytics.computeLocalStats()) : {};
+    const sessionVotes = this.analytics ? this.analytics.sessionVotes : [];
+    this.deck = this.orderingEngine.orderDeck(this.catalog, globalStats, sessionVotes, this.activeFilter);
     this.renderDeck();
   }
 }
