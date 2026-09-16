@@ -106,7 +106,8 @@ export class ShareCardGenerator {
       if (item) {
         // Load and draw thumbnail image
         try {
-          const img = await this.loadImage(item.image);
+          const imgUrl = this.resolveImageUrl(item);
+          const img = await this.loadImage(imgUrl);
           // Draw shirt artwork
           ctx.drawImage(img, 120, y + 80, 260, 280);
         } catch (e) {
@@ -170,6 +171,16 @@ export class ShareCardGenerator {
     ctx.moveTo(x, y - 15);
     ctx.lineTo(x, y + 15);
     ctx.stroke();
+  }
+
+  resolveImageUrl(item) {
+    if (!item) return '';
+    let raw = typeof item === 'string' ? item : (item.image || '');
+    if (!raw && item.title) {
+      raw = `assets/optimized/${item.title}.webp`;
+    }
+    const opt = raw.includes('assets/optimized/') ? raw : raw.replace('assets/designs/', 'assets/optimized/').replace(/\.(png|jpg)$/, '.webp');
+    return encodeURI(opt);
   }
 
   loadImage(src) {

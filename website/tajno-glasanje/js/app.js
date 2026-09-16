@@ -253,10 +253,10 @@ class SwiperApp {
         cardEl.className = `podium-card ${i === 0 ? 'podium-first' : ''}`;
 
         if (fav) {
-          const optSrc = fav.image.includes('assets/optimized/') ? fav.image : fav.image.replace('assets/designs/', 'assets/optimized/').replace(/\.(png|jpg)$/, '.webp');
+          const optSrc = this.resolveImageUrl(fav);
           cardEl.innerHTML = `
             <span class="podium-place">${i === 0 ? '★ 1. MJESTO' : `${i + 1}. MJESTO`}</span>
-            <img src="${encodeURI(optSrc)}" class="podium-img" alt="${fav.title}">
+            <img src="${optSrc}" class="podium-img" alt="${fav.title}">
             <p class="podium-name">${fav.title}</p>
           `;
         } else {
@@ -271,6 +271,18 @@ class SwiperApp {
     }
 
     modalPodium.classList.add('active');
+  }
+
+  resolveImageUrl(itemOrImage) {
+    if (!itemOrImage) return '';
+    let raw = typeof itemOrImage === 'string' ? itemOrImage : (itemOrImage.image || '');
+    if (!raw && typeof itemOrImage === 'object') {
+      const found = this.catalog.find(c => (itemOrImage.id && c.id === itemOrImage.id) || (itemOrImage.title && c.title === itemOrImage.title) || (itemOrImage.slug && c.slug === itemOrImage.slug));
+      if (found) raw = found.image;
+    }
+    if (!raw) return '';
+    const opt = raw.includes('assets/optimized/') ? raw : raw.replace('assets/designs/', 'assets/optimized/').replace(/\.(png|jpg)$/, '.webp');
+    return encodeURI(opt);
   }
 
   async refreshLeaderboard() {
@@ -302,13 +314,13 @@ class SwiperApp {
     const maxScore = topItems[0] ? topItems[0].score || 1 : 1;
 
     topItems.forEach((it, idx) => {
-      const optSrc = it.image ? (it.image.includes('assets/optimized/') ? it.image : it.image.replace('assets/designs/', 'assets/optimized/').replace(/\.(png|jpg)$/, '.webp')) : '';
+      const optSrc = this.resolveImageUrl(it);
       const fillPct = Math.max(8, Math.round((it.score / maxScore) * 100));
       const rankRow = document.createElement('div');
       rankRow.className = `rank-item rank-${idx + 1}`;
       rankRow.innerHTML = `
         <div class="rank-number">#${idx + 1}</div>
-        <img src="${encodeURI(optSrc)}" class="rank-thumb" alt="${it.title}" loading="lazy">
+        <img src="${optSrc}" class="rank-thumb" alt="${it.title}" loading="lazy">
         <div class="rank-info">
           <div class="rank-title">${it.title}</div>
           <div class="rank-bar-wrapper">
@@ -356,7 +368,7 @@ class SwiperApp {
     const infoCat = document.getElementById('infoCategory');
     const infoDesc = document.getElementById('infoDesc');
 
-    if (infoImg) infoImg.src = this.currentItem.image;
+    if (infoImg) infoImg.src = this.resolveImageUrl(this.currentItem);
     if (infoTitle) infoTitle.textContent = this.currentItem.title;
     if (infoCat) infoCat.textContent = `${this.currentItem.category.toUpperCase()} SERIES`;
     if (infoDesc) infoDesc.textContent = this.currentItem.description;
@@ -368,7 +380,7 @@ class SwiperApp {
     const modalZoom = document.getElementById('modalZoom');
     const zoomImg = document.getElementById('zoomImage');
     if (zoomImg && modalZoom) {
-      zoomImg.src = encodeURI(imgSrc);
+      zoomImg.src = this.resolveImageUrl(imgSrc);
       modalZoom.classList.add('active');
     }
   }
@@ -390,13 +402,13 @@ class SwiperApp {
       `;
     } else {
       favorites.forEach(fav => {
-        const optSrc = fav.image.includes('assets/optimized/') ? fav.image : fav.image.replace('assets/designs/', 'assets/optimized/').replace(/\.(png|jpg)$/, '.webp');
+        const optSrc = this.resolveImageUrl(fav);
         const card = document.createElement('div');
         card.className = 'podium-card';
         card.style.position = 'relative';
         card.innerHTML = `
           ${fav.isSuperlike ? '<span style="position:absolute; top:6px; right:6px; color:#F6CF65; font-size:0.85rem;">★</span>' : ''}
-          <img src="${encodeURI(optSrc)}" class="podium-img" alt="${fav.title}">
+          <img src="${optSrc}" class="podium-img" alt="${fav.title}">
           <p class="podium-name">${fav.title}</p>
         `;
         favGrid.appendChild(card);

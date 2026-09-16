@@ -55,6 +55,7 @@ export class AnalyticsEngine {
       slug: item.slug,
       title: item.title,
       category: item.category,
+      image: item.image || '',
       action: action,
       timestamp: Date.now(),
       sessionId: this.sessionId

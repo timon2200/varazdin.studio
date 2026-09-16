@@ -47,6 +47,7 @@ if (!$data || !isset($data['id']) || !isset($data['action'])) {
 
 $itemId = trim($data['id']);
 $itemTitle = isset($data['title']) ? trim($data['title']) : $itemId;
+$itemImage = isset($data['image']) ? trim($data['image']) : '';
 $action = in_array($data['action'], ['like', 'pass', 'superlike']) ? $data['action'] : 'like';
 $category = isset($data['category']) ? trim($data['category']) : 'General';
 $sessionId = isset($data['sessionId']) ? trim($data['sessionId']) : 'anon';
@@ -92,11 +93,16 @@ if (flock($fp, LOCK_EX)) {
             'id' => $itemId,
             'title' => $itemTitle,
             'category' => $category,
+            'image' => $itemImage,
             'likes' => 0,
             'passes' => 0,
             'superlikes' => 0,
             'score' => 0
         ];
+    } else {
+        if (!empty($itemImage) && empty($store['items'][$itemId]['image'])) {
+            $store['items'][$itemId]['image'] = $itemImage;
+        }
     }
 
     // Update action count
