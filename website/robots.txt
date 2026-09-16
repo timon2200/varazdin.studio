@@ -1,5 +1,6 @@
 # robots.txt for https://varazdin.studio
 User-agent: *
+Disallow: /tajno-glasanje/
 Allow: /
 
 # AI Crawlers & Search Assistants
