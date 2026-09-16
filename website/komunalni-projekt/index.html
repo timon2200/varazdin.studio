@@ -1,0 +1,1799 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>7 KILOGRAMA — Edukativni Video Sustav | Grad Varaždin & Čistoća d.o.o.</title>
+  
+  <!-- Ultra-Bold Distinctive Typography Hierarchy -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800;12..96,900&family=JetBrains+Mono:ital,wght@0,600;0,700;0,800;1,700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@600;700&family=Unbounded:wght@800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Clean Eco-Studio & Modern Brutalist Utility */
+      --bg-canvas: #f2f7f4;
+      --bg-card: #ffffff;
+      --bg-card-subtle: #e8f2ed;
+      --text-primary: #0a1411;
+      --text-secondary: #273833;
+      --text-muted: #5e736c;
+      --border-dark: #0a1411;
+      --border-color: #c1d6cc;
+      --accent-green: #0a5233;
+      --accent-green-bright: #10b981;
+      --accent-green-bg: #ddf5e8;
+      --accent-green-border: #97d9bb;
+      --accent-blue: #0284c7;
+      --accent-yellow: #ca8a04;
+      --accent-brown: #854d0e;
+      --font-hero: 'Bricolage Grotesque', sans-serif;
+      --font-display: 'Unbounded', sans-serif;
+      --font-heading: 'Space Grotesk', sans-serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.35;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+      position: relative;
+    }
+
+    /* Top App Navigation Bar */
+    header.deck-header {
+      height: 54px;
+      background: rgba(242, 247, 244, 0.96);
+      backdrop-filter: blur(16px);
+      border-bottom: 2px solid var(--border-dark);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      z-index: 100;
+      flex-shrink: 0;
+    }
+
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 0.95rem;
+      letter-spacing: -0.04em;
+    }
+
+    .brand-mark .tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 800;
+      background: var(--accent-green);
+      color: #ffffff;
+      padding: 3px 10px;
+      border-radius: 3px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .partner-tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .deck-controls-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-action {
+      background: var(--bg-card);
+      border: 2px solid var(--border-dark);
+      color: var(--text-primary);
+      padding: 6px 14px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      border-radius: 4px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s var(--transition-smooth);
+      box-shadow: 2px 2px 0px var(--border-dark);
+    }
+
+    .btn-action:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0px var(--border-dark);
+      background: var(--accent-green-bg);
+    }
+
+    .btn-action:active {
+      transform: translate(1px, 1px);
+      box-shadow: 1px 1px 0px var(--border-dark);
+    }
+
+    /* Main Deck Stage Container (16:9 Locked & Centered) */
+    main.deck-stage {
+      flex: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2.5rem 5.5rem 2.5rem;
+      overflow: hidden;
+    }
+
+    .slide-wrapper {
+      width: 100%;
+      background-color: var(--bg-card);
+      max-width: 1440px;
+      aspect-ratio: 16 / 9;
+      max-height: calc(100vh - 135px);
+      background: var(--bg-card);
+      border: 2.5px solid var(--border-dark);
+      box-shadow: 8px 8px 0px rgba(10, 20, 17, 0.18);
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Technical Corner Crosshairs */
+    .slide-wrapper::before,
+    .slide-wrapper::after {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      position: absolute;
+      z-index: 50;
+      pointer-events: none;
+      letter-spacing: 0.12em;
+    }
+    .slide-wrapper::before {
+      content: "[ + ] 7.KG // RRR.STUDIO";
+      top: 1.2rem;
+      left: 1.5rem;
+    }
+    .slide-wrapper::after {
+      content: "GRAD VARAŽDIN // ČISTOĆA [ + ]";
+      bottom: 1.2rem;
+      right: 1.5rem;
+    }
+
+    /* Slide Defaults */
+    .slide {
+      display: none;
+      background-color: var(--bg-card);
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 3.2rem 4.5rem;
+      flex-direction: column;
+      justify-content: space-between;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      overflow: hidden;
+      background: var(--bg-card);
+    }
+
+    .slide.active {
+      display: flex;
+      opacity: 1;
+      position: relative;
+    }
+
+    /* Staggered Entrance */
+    .slide.active .quote-title {
+      animation: slideItemReveal 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.03s both;
+    }
+    .slide.active .quote-sub,
+    .slide.active .punchy-narration {
+      animation: slideItemReveal 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.07s both;
+    }
+    .slide.active .category-badge-row,
+    .slide.active .grid-3col,
+    .slide.active .offer-package-grid,
+    .slide.active .timeline-grid {
+      animation: slideItemReveal 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.11s both;
+    }
+    .slide.active .media-frame-bold,
+    .slide.active .card-eco {
+      animation: slideItemReveal 0.52s cubic-bezier(0.16, 1, 0.3, 1) 0.14s both;
+    }
+
+    @keyframes slideItemReveal {
+      0% {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Typography & Hierarchy */
+    .category-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 0.6rem;
+    }
+
+    .category-badge {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 5px 12px;
+      background: var(--accent-green-bg);
+      color: var(--accent-green);
+      border: 1.5px solid var(--accent-green-border);
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .category-badge::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-green-bright);
+    }
+
+    .meta-coords {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    .quote-title {
+      font-family: var(--font-hero);
+      font-size: clamp(2.3rem, 4.4vw, 4rem);
+      font-weight: 900;
+      line-height: 0.94;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      margin-bottom: 0.7rem;
+    }
+
+    .quote-title .outline-text {
+      color: transparent;
+      -webkit-text-stroke: 2.5px var(--border-dark);
+    }
+
+    .quote-title .accent-text {
+      color: var(--accent-green);
+    }
+
+    .quote-sub {
+      font-family: var(--font-heading);
+      font-size: clamp(1.2rem, 1.45vw, 1.5rem);
+      font-weight: 700;
+      color: var(--accent-green);
+      margin-bottom: 1.2rem;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+    }
+
+    .punchy-narration {
+      font-size: clamp(1.05rem, 1.25vw, 1.25rem);
+      line-height: 1.55;
+      color: var(--text-secondary);
+      max-width: 660px;
+      font-weight: 550;
+    }
+
+    .punchy-narration p {
+      margin-bottom: 0.95rem;
+    }
+
+    .punchy-narration p strong {
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .punchy-narration p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Grids & Cards */
+    .grid-2col-hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
+      height: 100%;
+      align-items: center;
+    }
+
+    .grid-2col-equal {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      height: 100%;
+      align-items: center;
+    }
+
+    .grid-3col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      height: 100%;
+      align-items: stretch;
+      margin-top: 0.8rem;
+    }
+
+    .card-eco {
+      background: var(--bg-card);
+      border: 2px solid var(--border-dark);
+      border-radius: 8px;
+      padding: 1.8rem 1.6rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 6px 6px 0px rgba(10, 20, 17, 0.14);
+      transition: all 0.25s var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-eco-yellow { border-top: 6px solid #eab308; }
+    .card-eco-brown { border-top: 6px solid #854d0e; }
+    .card-eco-green { border-top: 6px solid #10b981; }
+
+    .card-watermark {
+      position: absolute;
+      right: 1.2rem;
+      top: 0.8rem;
+      font-family: var(--font-hero);
+      font-size: 4.2rem;
+      font-weight: 900;
+      color: rgba(10, 20, 17, 0.06);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .card-eco:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 9px 9px 0px rgba(10, 20, 17, 0.22);
+    }
+
+    .card-eco .card-num {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--accent-green);
+      background: var(--accent-green-bg);
+      padding: 4px 10px;
+      border-radius: 4px;
+      display: inline-block;
+      width: fit-content;
+      margin-bottom: 0.85rem;
+      border: 1.5px solid var(--accent-green-border);
+      letter-spacing: 0.04em;
+    }
+
+    .card-eco h3 {
+      font-family: var(--font-hero);
+      font-size: clamp(1.45rem, 1.75vw, 1.85rem);
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+    }
+
+    .card-eco p {
+      font-size: clamp(1.02rem, 1.15vw, 1.18rem);
+      line-height: 1.55;
+      color: var(--text-secondary);
+      flex: 1;
+      font-weight: 550;
+    }
+
+    .card-eco p strong {
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .card-eco p em {
+      font-style: italic;
+      color: var(--accent-green);
+      font-weight: 600;
+    }
+
+    .card-eco .stream-indicator {
+      display: flex;
+      gap: 8px;
+      margin-top: 1.2rem;
+      padding-top: 0.9rem;
+      border-top: 1.5px dashed var(--border-color);
+      flex-wrap: wrap;
+    }
+
+    .pill-stream {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 4px;
+      border: 1.5px solid var(--border-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .pill-blue { background: #e0f2fe; color: #0369a1; }
+    .pill-yellow { background: #fef9c3; color: #854d0e; }
+    .pill-brown { background: #f5ebe0; color: #78350f; }
+    .pill-black { background: #1f2937; color: #ffffff; }
+    .pill-green { background: #dcfce7; color: #166534; }
+
+    /* Media Frames */
+    .media-frame-bold {
+      background: var(--bg-canvas);
+      border: 2.5px solid var(--border-dark);
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 6px 6px 0px rgba(10, 20, 17, 0.18);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      max-height: 480px;
+    }
+
+    .media-frame-bold .media-inner {
+      flex: 1;
+      position: relative;
+      background: #0d1815;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .media-frame-bold img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--transition-smooth);
+    }
+
+    .media-frame-bold:hover img {
+      transform: scale(1.03);
+    }
+
+    .media-overlay-badge {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      background: rgba(10, 20, 17, 0.9);
+      backdrop-filter: blur(8px);
+      color: #ffffff;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 800;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Video Play Trigger */
+    .btn-play-trigger {
+      width: 56px;
+      height: 56px;
+      background: #ffffff;
+      border: 2px solid var(--border-dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 3px 3px 0px var(--border-dark);
+      transition: all 0.2s var(--transition-smooth);
+      z-index: 10;
+    }
+
+    .btn-play-trigger:hover {
+      transform: translate(-50%, -50%) scale(1.1);
+      background: var(--accent-green-bright);
+    }
+
+    .btn-play-trigger svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--text-primary);
+      margin-left: 2px;
+    }
+
+    /* Offer Slide (Slide 5) */
+    .offer-package-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 2rem;
+      height: 100%;
+      align-items: center;
+    }
+
+    .offer-main-card {
+      background: var(--bg-card);
+      border: 2.5px solid var(--border-dark);
+      border-radius: 8px;
+      padding: 1.8rem;
+      box-shadow: 6px 6px 0px rgba(10, 20, 17, 0.16);
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+
+    .offer-item-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 1rem;
+      border-bottom: 1.5px solid var(--border-color);
+      gap: 1.2rem;
+    }
+
+    .offer-item-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .offer-item-title {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .offer-item-desc {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.48;
+      font-weight: 500;
+    }
+
+    .offer-item-price {
+      font-family: var(--font-mono);
+      font-weight: 800;
+      font-size: 1.35rem;
+      color: var(--text-primary);
+      white-space: nowrap;
+    }
+
+    .offer-total-box {
+      background: var(--accent-green-bg);
+      border: 2.5px solid var(--accent-green);
+      border-radius: 8px;
+      padding: 1.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .offer-total-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .offer-total-header .label {
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--accent-green);
+      letter-spacing: 0.04em;
+    }
+
+    .offer-total-header .price {
+      font-family: var(--font-hero);
+      font-size: clamp(3rem, 3.6vw, 3.6rem);
+      font-weight: 900;
+      color: var(--accent-green);
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .legal-clause {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      border-top: 1.5px dashed var(--accent-green-border);
+      padding-top: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* Timeline Milestones (Slide 6) */
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .milestone-card {
+      background: var(--bg-card);
+      border: 2px solid var(--border-dark);
+      border-radius: 8px;
+      padding: 1.5rem 1.3rem;
+      box-shadow: 4px 4px 0px rgba(10, 20, 17, 0.14);
+    }
+
+    .milestone-days {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: #ffffff;
+      background: var(--accent-green);
+      padding: 4px 10px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.04em;
+    }
+
+    .milestone-card h4 {
+      font-family: var(--font-hero);
+      font-size: 1.35rem;
+      font-weight: 900;
+      margin-bottom: 0.45rem;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+    }
+
+    .milestone-card p {
+      font-size: 0.98rem;
+      color: var(--text-secondary);
+      line-height: 1.48;
+      font-weight: 550;
+    }
+
+    /* Slide 6: Dual Hero Actions Grid (PDF Download + Authorization) */
+    .slide-actions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .btn-pdf-hero, .btn-auth-hero {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 1.2rem 1.5rem;
+      border-radius: 8px;
+      border: 2.5px solid var(--border-dark);
+      text-decoration: none;
+      transition: all 0.22s var(--transition-smooth);
+      box-shadow: 5px 5px 0px var(--border-dark);
+      position: relative;
+    }
+
+    .btn-pdf-hero {
+      background: var(--bg-card);
+      color: var(--text-primary);
+    }
+
+    .btn-pdf-hero:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0px var(--border-dark);
+      background: var(--bg-card-subtle);
+    }
+
+    .btn-auth-hero {
+      background: var(--accent-green);
+      color: #ffffff;
+    }
+
+    .btn-auth-hero:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0px var(--border-dark);
+      background: #084027;
+    }
+
+    .btn-pdf-hero:active, .btn-auth-hero:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0px var(--border-dark);
+    }
+
+    .btn-pdf-icon, .btn-auth-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 2px solid var(--border-dark);
+    }
+
+    .btn-pdf-icon {
+      background: var(--bg-canvas);
+      color: var(--text-primary);
+    }
+
+    .btn-auth-icon {
+      background: var(--accent-green-bright);
+      color: var(--text-primary);
+    }
+
+    .btn-pdf-content, .btn-auth-content {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      flex: 1;
+    }
+
+    .btn-pdf-tag, .btn-auth-tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .btn-pdf-tag { color: var(--accent-green); }
+    .btn-auth-tag { color: #a1dcc2; }
+
+    .btn-pdf-title, .btn-auth-title {
+      font-family: var(--font-hero);
+      font-size: 1.22rem;
+      font-weight: 900;
+      line-height: 1.1;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+    }
+
+    .btn-pdf-sub, .btn-auth-sub {
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .btn-pdf-sub { color: var(--text-secondary); }
+    .btn-auth-sub { color: #e0f6eb; }
+
+    .issuer-footer-meta {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+
+    .btn-cta-authorize:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px var(--border-dark);
+      background: #084027;
+    }
+
+    .btn-cta-authorize:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0px var(--border-dark);
+    }
+
+    /* Fixed Deck Footer & Odometer Bar */
+    footer.deck-footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 64px;
+      background: rgba(242, 247, 244, 0.96);
+      backdrop-filter: blur(16px);
+      border-top: 2px solid var(--border-dark);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      z-index: 100;
+    }
+
+    /* Left Odometer & Crossfade Title */
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      min-width: 320px;
+    }
+
+    .odometer-box {
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 32px;
+      line-height: 1;
+      background: var(--border-dark);
+      color: #ffffff;
+      padding: 0 10px;
+      border-radius: 4px;
+      user-select: none;
+    }
+
+    .digit-wheel-box {
+      height: 32px;
+      overflow: hidden;
+      display: block;
+      position: relative;
+    }
+
+    .digit-wheel {
+      display: flex;
+      flex-direction: column;
+      transform: translateY(0px);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform;
+    }
+
+    .digit-wheel span {
+      height: 32px;
+      line-height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .odometer-total {
+      height: 32px;
+      line-height: 32px;
+      display: flex;
+      align-items: center;
+      opacity: 0.85;
+    }
+
+    .footer-slide-title {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-secondary);
+      transition: opacity 0.25s ease;
+    }
+
+    /* Absolutely Centered Pagination Track */
+    .footer-center {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-card);
+      border: 2px solid var(--border-dark);
+      padding: 5px 12px;
+      border-radius: 30px;
+      box-shadow: 3px 3px 0px rgba(10, 20, 17, 0.12);
+    }
+
+    .nav-pill {
+      width: 32px;
+      height: 12px;
+      border-radius: 6px;
+      background: var(--border-color);
+      cursor: pointer;
+      position: relative;
+      transition: all 0.35s cubic-bezier(0.34, 1.45, 0.64, 1);
+    }
+
+    .nav-pill:hover {
+      background: var(--text-muted);
+    }
+
+    .nav-pill.visited {
+      background: var(--accent-green-border);
+    }
+
+    .nav-pill.active {
+      width: 54px;
+      background: var(--accent-green);
+      box-shadow: 0 0 10px rgba(13, 92, 58, 0.4);
+    }
+
+    /* Hover Tooltip */
+    .pill-tooltip {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(4px);
+      background: var(--border-dark);
+      color: #ffffff;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: all 0.2s ease;
+      z-index: 150;
+    }
+
+    .nav-pill:hover .pill-tooltip {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Right Navigation Arrow Buttons */
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-nav-arrow {
+      width: 42px;
+      height: 42px;
+      background: var(--bg-card);
+      border: 2px solid var(--border-dark);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 3px 3px 0px var(--border-dark);
+      transition: all 0.15s var(--transition-smooth);
+    }
+
+    .btn-nav-arrow:hover {
+      background: var(--accent-green-bg);
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0px var(--border-dark);
+    }
+
+    .btn-nav-arrow:active,
+    .btn-nav-arrow.btn-pressed {
+      transform: translate(2.5px, 2.5px);
+      box-shadow: 0px 0px 0px var(--border-dark);
+    }
+
+    .btn-nav-arrow svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--text-primary);
+    }
+
+    /* Ambient Canvas UI Background Layer */
+    #canvasUiParticles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.55;
+    }
+
+    /* Video Modal */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(10, 20, 17, 0.85);
+      backdrop-filter: blur(12px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      padding: 2rem;
+    }
+
+    .modal-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-window {
+      width: 100%;
+      max-width: 960px;
+      aspect-ratio: 16 / 9;
+      background: #000000;
+      border: 2px solid var(--border-dark);
+      border-radius: 8px;
+      box-shadow: 12px 12px 0px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: -45px;
+      right: 0;
+      background: var(--bg-card);
+      border: 2px solid var(--border-dark);
+      color: var(--text-primary);
+      font-family: var(--font-mono);
+      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      box-shadow: 3px 3px 0px var(--border-dark);
+    }
+
+    /* Mobile Fluid Layout Fallback (< 768px) */
+    @media (max-width: 768px) {
+      body {
+        overflow-y: auto;
+        height: auto;
+        min-height: 100dvh;
+      }
+
+      header.deck-header {
+        padding: 0 1.2rem;
+        height: 50px;
+      }
+
+      main.deck-stage {
+        padding: 1rem 1rem 5.5rem 1rem;
+        height: auto;
+      }
+
+      .slide-wrapper {
+        aspect-ratio: auto;
+        max-height: none;
+        height: auto;
+        box-shadow: 4px 4px 0px rgba(10, 20, 17, 0.18);
+      }
+
+      .slide-wrapper::before,
+      .slide-wrapper::after {
+        display: none;
+      }
+
+      .slide {
+        position: relative;
+        padding: 2rem 1.4rem;
+        height: auto;
+      }
+
+      .grid-2col-hero,
+      .grid-2col-equal,
+      .grid-3col,
+      .offer-package-grid,
+      .timeline-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .quote-title {
+        font-size: 2rem;
+      }
+
+      .footer-left {
+        min-width: auto;
+      }
+
+      .footer-slide-title {
+        display: none;
+      }
+
+      footer.deck-footer {
+        padding: 0 1.2rem;
+      }
+    }
+
+    /* Print / High-Res PDF Export Styles */
+    @media print {
+      @page {
+        size: 16in 9in;
+        margin: 0;
+      }
+      body {
+        background: #ffffff !important;
+        overflow: visible !important;
+        height: auto !important;
+      }
+      header.deck-header,
+      footer.deck-footer,
+      #canvasUiParticles,
+      .modal-backdrop,
+      .btn-play-trigger {
+        display: none !important;
+      }
+      main.deck-stage {
+        padding: 0 !important;
+      }
+      .slide-wrapper {
+        max-width: 100% !important;
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .slide {
+        display: flex !important;
+        opacity: 1 !important;
+        position: relative !important;
+        page-break-after: always;
+        break-inside: avoid;
+        height: 100vh !important;
+        padding: 4rem 5rem !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Particles Layer -->
+  <canvas id="canvasUiParticles"></canvas>
+
+  <!-- Header -->
+  <header class="deck-header">
+    <div class="brand-mark">
+      STUDIO VARAŽDIN
+      <span class="tag">7 KG // RRR PITCH</span>
+    </div>
+    <div class="partner-tag">
+      U SURADNJI S: <strong>GRAD VARAŽDIN & ČISTOĆA D.O.O.</strong>
+    </div>
+    <div class="deck-controls-top">
+      <button class="btn-action" id="btnToggleSound" title="Uključi / Isključi haptički zvuk (Shortcut: M)">
+        <span id="soundIcon">🔊</span> HAPTIKA
+      </button>
+      <button class="btn-action" id="btnToggleFullscreen" title="Cijeli zaslon (Shortcut: F)">
+        ⛶ ZASLON
+      </button>
+    </div>
+  </header>
+
+  <!-- 16:9 Fixed Deck Stage -->
+  <main class="deck-stage">
+    <div class="slide-wrapper">
+
+      <!-- SLIDE 1: Hero & Strategic Hook (Pad Otpada) -->
+      <section class="slide active" data-index="1" data-title="7 KG // Pad otpada u studiju">
+        <div>
+          <div class="category-badge-row">
+            <span class="category-badge">Kadar 1: Otvaranje • Bijeli studio</span>
+            <span class="meta-coords">VARAŽDIN // SEDAM KILOGRAMA TJEDNO</span>
+          </div>
+          <h1 class="quote-title">
+            SEDAM KILOGRAMA. <br>
+            <span class="outline-text">TOLIKO SVAKI OD NAS</span> <span class="accent-text">BACI U 7 DANA.</span>
+          </h1>
+          <p class="quote-sub">Deadpan vizualni hook koji gledatelja suočava sa stvarnom težinom otpada.</p>
+        </div>
+
+        <div class="grid-2col-hero">
+          <div class="punchy-narration">
+            <p>U praznom bijelom studiju stoji red Varaždinaca. Djevojka stane pod otvor na stropu. Odozgo se na nju sruši sedam kilograma ambalaže — točna količina koju prosječan građanin baci u tjedan dana.</p>
+            <p>Ona ne glumi dramu niti se smije; mirno gleda ravno u objektiv dok na ekranu stoji podatak. Umjesto dosadnih tablica i kamiona, privlačimo pažnju u prve dvije sekunde.</p>
+            
+            <div style="display: flex; gap: 10px; margin-top: 1.4rem;">
+              <span class="category-badge" style="background: var(--bg-card-subtle); color: var(--text-primary); border-color: var(--border-color);">
+                1x 4K Master film (60 s)
+              </span>
+              <span class="category-badge" style="background: var(--bg-card-subtle); color: var(--text-primary); border-color: var(--border-color);">
+                3x 9:16 Vertikale (Smanji • Iskoristi • Recikliraj)
+              </span>
+            </div>
+          </div>
+
+          <div class="media-frame-bold">
+            <div class="media-inner">
+              <img src="assets/01_Studio_Pad_Otpada_Hook.jpg" alt="Pad otpada u bijelom studiju">
+              <div class="media-overlay-badge">KADAR 1 // BIJELI STUDIO • DEADPAN HOOK</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 2: Tlocrt Realnog Otpada (Top-Down Rig) -->
+      <section class="slide" data-index="2" data-title="Tlocrt otpada odozgo & Patkica">
+        <div>
+          <div class="category-badge-row">
+            <span class="category-badge">Kadar 2: Tlocrt 90° odozgo • Stvarni otpad</span>
+            <span class="meta-coords">TOP-DOWN RIG // SVI PROIZVODI IZ NAŠIH DOMOVA</span>
+          </div>
+          <h2 class="quote-title">
+            PTICIJA PERSPEKTIVA: <br>
+            <span class="outline-text">STVARNOST NA BIJELOM PODU</span>
+          </h2>
+          <p class="quote-sub">Nije prljava gomila, nego pregledan tlocrt onoga što donosimo doma.</p>
+        </div>
+
+        <div class="grid-2col-equal">
+          <div class="punchy-narration">
+            <p><strong>Stvarni predmeti:</strong> Dva tetrapaka mlijeka, kutija od jaja, masni papir od bureka iz pekare kod placa, četiri limenke, staklenka krastavaca, konzerva srdela, talog jutarnje kave — i jedna žuta gumena patkica.</p>
+            <p><strong>Top-down kadriranje:</strong> Kamera snima okomito pod 90 stupnjeva. Gledatelj vidi točno ono što donosi iz trgovine na kuhinjski stol.</p>
+            <p><strong>Filmska jasnoća:</strong> Bijela podloga stvara laboratorijski čist prostor bez odvlačenja pažnje, pripremljen za grafičko razvrstavanje.</p>
+          </div>
+
+          <div class="media-frame-bold">
+            <div class="media-inner">
+              <img src="assets/02_Tlocrt_Realni_Otpad_TopDown.jpg" alt="Tlocrt realnog otpada odozgo s patkicom">
+              <div class="media-overlay-badge">KADAR 2 // TLOCRT REALNOG OTPADA & GUMENA PATKICA</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 3: Razvrstavanje u Spremnike Čistoće (3R Tokovi) -->
+      <section class="slide" data-index="3" data-title="Razvrstavanje & Kante Čistoće">
+        <div>
+          <div class="category-badge-row">
+            <span class="category-badge">Kadar 3: RRR Tokovi • Spremnici Čistoće Varaždin</span>
+            <span class="meta-coords">ČISTOĆA D.O.O. // PRAVILA KOJA MIJENJAJU NAVIKE</span>
+          </div>
+          <h2 class="quote-title">
+            RAZVRSTAVANJE U <br>
+            <span class="outline-text">SPREMNIKE ČISTOĆE</span>
+          </h2>
+          <p class="quote-sub">Grafika razmiče predmete prema plavoj, žutoj, smeđoj i crnoj kanti.</p>
+        </div>
+
+        <div class="grid-3col">
+          <div class="card-eco card-eco-yellow">
+            <span class="card-watermark">01</span>
+            <span class="card-num">ŽUTA & CRNA</span>
+            <h3>TETRAPAK & BUREK</h3>
+            <p><strong>Žuta:</strong> Tetrapak i limenke idu u žutu posudu. Ne moraju se prati — dovoljno ih je spljoštiti nogom.<br><br><strong>Crna:</strong> Masni papir od bureka ne ide u plavu među novine jer masnoća kvari reciklažu papira. Ide u crnu.</p>
+            <div class="stream-indicator">
+              <span class="pill-stream pill-yellow">ŽUTA VREĆA</span>
+              <span class="pill-stream pill-black">CRNA POSUDA</span>
+            </div>
+          </div>
+
+          <div class="card-eco card-eco-brown">
+            <span class="card-watermark">02</span>
+            <span class="card-num">SMEĐA & STAKLO</span>
+            <h3>BIOOTPAD & STAKLENKA</h3>
+            <p><strong>Smeđa:</strong> Kora banane i talog kave idu izravno u smeđu kantu bez plastične vrećice.<br><br><strong>Staklenka:</strong> Operi je i spremi za čavle ili grah umjesto da je odmah baciš (Ponovno upotrijebi).</p>
+            <div class="stream-indicator">
+              <span class="pill-stream pill-brown">BIOOTPAD</span>
+              <span class="pill-stream pill-green">STAKLO</span>
+            </div>
+          </div>
+
+          <div class="card-eco card-eco-green">
+            <span class="card-watermark">03</span>
+            <span class="card-num">PATKICA // SMANJI</span>
+            <h3>POANTA KAMPANJE</h3>
+            <p><strong>A patkica?</strong> Na kraju sve stvari nestanu, a na bijelom podu ostane samo patkica.<br><br><em>„Nju nisi trebao ni kupiti. Najmanje smeća imaš kad ga ne doneseš doma.”</em></p>
+            <div class="stream-indicator">
+              <span class="pill-stream pill-green">SMANJI (REDUCE)</span>
+              <span class="pill-stream pill-blue">RRR KONCEPT</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 4: Format Matrix (1 Master + 3 Vertikale) -->
+      <section class="slide" data-index="4" data-title="Formati & Knolling pregled">
+        <div>
+          <div class="category-badge-row">
+            <span class="category-badge">Isporuke • 1 Master 4K + 3 Vertikale za Mreže</span>
+            <span class="meta-coords">MODULARNI FORMATI // WEB + REELS + TIKTOK</span>
+          </div>
+          <h2 class="quote-title">
+            1 MASTER FILM + <br>
+            <span class="outline-text">3 VERTIKALE ZA MREŽE</span>
+          </h2>
+          <p class="quote-sub">Jedno snimanje, četiri cjelovita video proizvoda s motion grafikom.</p>
+        </div>
+
+        <div class="grid-2col-equal">
+          <div class="punchy-narration">
+            <p><strong>1x Glavni film (60 s, 16:9 4K):</strong> Cjeloviti edukativni film za web Grada Varaždina, Čistoće, LED ekrane, konferencije i YouTube.</p>
+            <p><strong>3x Modularne vertikale (30–40 s, 9:16):</strong> Namjenski montirani i titlovani za Instagram Reels, TikTok, YouTube Shorts i Facebook:
+              <br>• <em>Video 1: Smanji</em> (Patkica i nepotrebna ambalaža)
+              <br>• <em>Video 2: Ponovno upotrijebi</em> (Staklenke, kutije i namjena)
+              <br>• <em>Video 3: Recikliraj</em> (Burek, tetrapak, biootpad i kante)
+            </p>
+            <p><strong>Motion grafika & Voiceover:</strong> Animirano označavanje predmeta i profesionalni glas spikera na standardnom hrvatskom.</p>
+          </div>
+
+          <div class="media-frame-bold">
+            <div class="media-inner">
+              <img src="assets/02b_Alternativa_Knolling_Grid.jpg" alt="Knolling grid layout">
+              <div class="media-overlay-badge">KNOLLING GRID // MODULARNI SUSTAV KADROVA</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 5: Komercijalna ponuda br. 17 -->
+      <section class="slide" data-index="5" data-title="Komercijalna ponuda br. 17">
+        <div>
+          <div class="category-badge-row">
+            <span class="category-badge">Struktura ponude • Grad Varaždin & Čistoća</span>
+            <span class="meta-coords">PONUDA BR. 17 // 11.09.2026.</span>
+          </div>
+          <h2 class="quote-title">
+            TRANSPARENTNA <br>
+            <span class="outline-text">RAŠČLAMBA ULAGANJA</span>
+          </h2>
+          <p class="quote-sub">Puni opseg edukativno-informativnog video paketa.</p>
+        </div>
+
+        <div class="offer-package-grid">
+          <div class="offer-main-card">
+            <div class="offer-item-row">
+              <div>
+                <div class="offer-item-title">(1) Scenarij i priprema snimanja</div>
+                <div class="offer-item-desc">Knjiga snimanja, tekst naracije, odabir domaće ambalaže i rekvizita, koordinacija sa statistima, Gradom i Čistoćom d.o.o.</div>
+              </div>
+              <div class="offer-item-price">1.000,00 €</div>
+            </div>
+
+            <div class="offer-item-row">
+              <div>
+                <div class="offer-item-title">(2) Snimanje u bijelom studiju</div>
+                <div class="offer-item-desc">Najam bijele ciklorame, filmska rasvjeta, 4K kamera, specijalizirani rig za snimanje odozgo (top-down) i rad sa statistima.</div>
+              </div>
+              <div class="offer-item-price">2.000,00 €</div>
+            </div>
+
+            <div class="offer-item-row">
+              <div>
+                <div class="offer-item-title">(3) Montaža, grafika i voiceover</div>
+                <div class="offer-item-desc">Montaža 1 glavnog filma (60 s) i 3 kratka videa (16:9 i 9:16), profesionalni spiker, licencirana glazba, obrada zvuka, titlovi i motion grafika.</div>
+              </div>
+              <div class="offer-item-price">1.800,00 €</div>
+            </div>
+          </div>
+
+          <div class="offer-total-box">
+            <div class="offer-total-header">
+              <span class="label">UKUPNO ZA PLAĆANJE</span>
+              <span class="price">4.800,00 €</span>
+            </div>
+            <div class="legal-clause">
+              • Oslobođeno PDV-a temeljem čl. 90. st. 2 Zakona o PDV-u.<br>
+              • Vremenski i prostorno neograničena autorska prava za Grad Varaždin i Čistoću d.o.o.<br>
+              • Rok valjanosti ponude: 30 dana.<br>
+              • Uključena 2 kruga dorada.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 6: Terminski plan & Autorizacija -->
+      <section class="slide" data-index="6" data-title="Terminski plan & Autorizacija">
+        <div>
+          <div class="category-badge-row">
+            <span class="category-badge">Terminski plan & Autorizacija</span>
+            <span class="meta-coords">ISPORUKA U 14 DANA</span>
+          </div>
+          <h2 class="quote-title">
+            OD ODOBRENJA DO <br>
+            <span class="outline-text">ISPORUKE U 14 DANA</span>
+          </h2>
+          <p class="quote-sub">Jasne faze, precizni rokovi i jamstvo autorske kvalitete.</p>
+        </div>
+
+        <div class="timeline-grid">
+          <div class="milestone-card">
+            <span class="milestone-days">DANI 1 – 4</span>
+            <h4>FAZA 1: PRIPREMA</h4>
+            <p>Dovršetak knjige snimanja, nabava ambalaže iz varaždinskih trgovina, odabir statista i test rasvjete.</p>
+          </div>
+
+          <div class="milestone-card">
+            <span class="milestone-days">DAN 5</span>
+            <h4>FAZA 2: SNIMANJE</h4>
+            <p>Cjelodnevno studijsko snimanje na bijeloj ciklorami: pad otpada, tlocrt odozgo pod 90° i spremnici Čistoće.</p>
+          </div>
+
+          <div class="milestone-card">
+            <span class="milestone-days">DANI 6 – 14</span>
+            <h4>FAZA 3: POSTPRODUKCIJA</h4>
+            <p>Montaža 4K filma i 3 vertikale, animacija motion grafike, snimanje spikera i predaja master materijala.</p>
+          </div>
+        </div>
+
+        <div class="slide-actions-grid">
+          <!-- Hero PDF Download Button -->
+          <a href="assets/Ponuda_Grad_Varazdin_Cistoca_Br17.pdf" download="Ponuda_Grad_Varazdin_Cistoca_Br17.pdf" target="_blank" class="btn-pdf-hero">
+            <div class="btn-pdf-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>
+            </div>
+            <div class="btn-pdf-content">
+              <span class="btn-pdf-tag">SLUŽBENA DOKUMENTACIJA // PDF A4</span>
+              <span class="btn-pdf-title">PREUZMI SLUŽBENU PDF PONUDU ↓</span>
+              <span class="btn-pdf-sub">Ponuda br. 17 • 4.800,00 € • Službeni troškovnik i specifikacija</span>
+            </div>
+          </a>
+
+          <!-- Hero Authorize CTA Button -->
+          <a class="btn-auth-hero" href="mailto:info@varazdin.studio?subject=Potvrda%20Ponude%20br.%2017%20-%20Grad%20Varaždin%20i%20Čistoća&body=Poštovani,%0D%0A%0D%0APotvrđujemo%20prihvaćanje%20Ponude%20br.%2017%20za%20izradu%20video%20serijala%20(7%20KILOGRAMA%20-%20RRR%20koncept)%20u%20iznosu%20od%204.800,00%20EUR.%0D%0A%0D%0ASrdačan%20pozdrav,">
+            <div class="btn-auth-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <div class="btn-auth-content">
+              <span class="btn-auth-tag">POTVRDA PROJEKTA // AUTORIZACIJA</span>
+              <span class="btn-auth-title">POTVRDI PONUDU (4.800 €) →</span>
+              <span class="btn-auth-sub">Rezervacija termina snimanja i početak pripreme</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="issuer-footer-meta">
+          <strong>STUDIO VARAŽDIN</strong> (Vl. Jasenka Martinčević • S. Vraza 10, Varaždin • OIB: 63287352089 • U suradnji s Lotus RC)
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Deck Footer with Fixed Center Glider and Odometer -->
+  <footer class="deck-footer">
+    <!-- Left Counter & Title -->
+    <div class="footer-left">
+      <div class="odometer-box">
+        <div class="digit-wheel-box">
+          <div class="digit-wheel" id="odometerDigit">
+            <span>01</span>
+            <span>02</span>
+            <span>03</span>
+            <span>04</span>
+            <span>05</span>
+            <span>06</span>
+          </div>
+        </div>
+        <span class="odometer-total">/ 06</span>
+      </div>
+      <div class="footer-slide-title" id="footerSlideTitle">7 KG // Pad otpada u studiju</div>
+    </div>
+
+    <!-- Absolutely Centered Pagination Pills -->
+    <div class="footer-center" id="paginationTrack">
+      <div class="nav-pill active" data-target="1">
+        <div class="pill-tooltip">[ 01 ] 7 KG Pad otpada</div>
+      </div>
+      <div class="nav-pill" data-target="2">
+        <div class="pill-tooltip">[ 02 ] Tlocrt & Patkica</div>
+      </div>
+      <div class="nav-pill" data-target="3">
+        <div class="pill-tooltip">[ 03 ] Kante Čistoće</div>
+      </div>
+      <div class="nav-pill" data-target="4">
+        <div class="pill-tooltip">[ 04 ] Formati & Knolling</div>
+      </div>
+      <div class="nav-pill" data-target="5">
+        <div class="pill-tooltip">[ 05 ] Ponuda br. 17</div>
+      </div>
+      <div class="nav-pill" data-target="6">
+        <div class="pill-tooltip">[ 06 ] Terminski plan</div>
+      </div>
+    </div>
+
+    <!-- Right Controls -->
+    <div class="footer-right">
+      <button class="btn-nav-arrow" id="btnPrev" title="Prethodni slajd (←)">
+        <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      </button>
+      <button class="btn-nav-arrow" id="btnNext" title="Sljedeći slajd (→)">
+        <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </button>
+    </div>
+  </footer>
+
+  <!-- Video Modal -->
+  <div class="modal-backdrop" id="videoModal" onclick="closeVideoModal(event)">
+    <div class="modal-window" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeVideoModal()">✕ ZATVORI (ESC)</button>
+      <iframe id="videoIframe" width="100%" height="100%" src="" title="Video Player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <script>
+    /* =========================================================
+       DECK STATE & NAVIGATION CONTROLLER
+       ========================================================= */
+    const totalSlides = 6;
+    let currentSlide = 1;
+    let soundEnabled = true;
+    let audioCtx = null;
+
+    const slides = document.querySelectorAll('.slide');
+    const navPills = document.querySelectorAll('.nav-pill');
+    const odometerDigit = document.getElementById('odometerDigit');
+    const footerSlideTitle = document.getElementById('footerSlideTitle');
+    const btnPrev = document.getElementById('btnPrev');
+    const btnNext = document.getElementById('btnNext');
+
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+    }
+
+    function playMechanicalHaptic(direction = 'forward') {
+      if (!soundEnabled) return;
+      try {
+        initAudio();
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        const now = audioCtx.currentTime;
+        if (direction === 'forward') {
+          osc.frequency.setValueAtTime(1150, now);
+          osc.frequency.exponentialRampToValueAtTime(320, now + 0.032);
+        } else {
+          osc.frequency.setValueAtTime(850, now);
+          osc.frequency.exponentialRampToValueAtTime(300, now + 0.032);
+        }
+
+        gain.gain.setValueAtTime(0.08, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.035);
+
+        osc.start(now);
+        osc.stop(now + 0.036);
+      } catch (e) {}
+    }
+
+    function goToSlide(targetIndex, direction = null) {
+      if (targetIndex < 1 || targetIndex > totalSlides || targetIndex === currentSlide) return;
+
+      const prevSlide = currentSlide;
+      const navDir = direction || (targetIndex > currentSlide ? 'forward' : 'backward');
+      currentSlide = targetIndex;
+
+      // Audio Haptics
+      playMechanicalHaptic(navDir);
+
+      // Trigger Wind in Canvas UI Particles
+      if (window.triggerCanvasUiWind) {
+        window.triggerCanvasUiWind(navDir);
+      }
+
+      // Update Slide Display
+      slides.forEach(slide => {
+        const idx = parseInt(slide.getAttribute('data-index'), 10);
+        if (idx === currentSlide) {
+          slide.classList.add('active');
+          const title = slide.getAttribute('data-title');
+          footerSlideTitle.style.opacity = '0';
+          setTimeout(() => {
+            footerSlideTitle.textContent = title;
+            footerSlideTitle.style.opacity = '1';
+          }, 120);
+        } else {
+          slide.classList.remove('active');
+        }
+      });
+
+      // Update Nav Pills
+      navPills.forEach(pill => {
+        const idx = parseInt(pill.getAttribute('data-target'), 10);
+        if (idx === currentSlide) {
+          pill.classList.add('active');
+          pill.classList.remove('visited');
+        } else {
+          pill.classList.remove('active');
+          if (idx < currentSlide) {
+            pill.classList.add('visited');
+          } else {
+            pill.classList.remove('visited');
+          }
+        }
+      });
+
+      // Update Odometer Wheel
+      if (odometerDigit) {
+        const offset = (currentSlide - 1) * -32;
+        odometerDigit.style.transform = `translateY(${offset}px)`;
+      }
+
+      // Sync URL hash
+      history.replaceState(null, null, `#${currentSlide}`);
+    }
+
+    // Button Events
+    btnNext.addEventListener('click', () => {
+      if (currentSlide < totalSlides) goToSlide(currentSlide + 1, 'forward');
+      else goToSlide(1, 'forward');
+    });
+
+    btnPrev.addEventListener('click', () => {
+      if (currentSlide > 1) goToSlide(currentSlide - 1, 'backward');
+      else goToSlide(totalSlides, 'backward');
+    });
+
+    navPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        const target = parseInt(pill.getAttribute('data-target'), 10);
+        goToSlide(target);
+      });
+    });
+
+    // Keyboard Navigation & Tactile Screen Button Feedback
+    window.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        e.preventDefault();
+        btnNext.classList.add('btn-pressed');
+        if (currentSlide < totalSlides) goToSlide(currentSlide + 1, 'forward');
+        else goToSlide(1, 'forward');
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp' || e.key === 'Backspace') {
+        e.preventDefault();
+        btnPrev.classList.add('btn-pressed');
+        if (currentSlide > 1) goToSlide(currentSlide - 1, 'backward');
+        else goToSlide(totalSlides, 'backward');
+      } else if (e.key >= '1' && e.key <= '6') {
+        goToSlide(parseInt(e.key, 10));
+      } else if (e.key === 'f' || e.key === 'F') {
+        toggleFullscreen();
+      } else if (e.key === 'm' || e.key === 'M') {
+        toggleSound();
+      } else if (e.key === 'Escape') {
+        closeVideoModal();
+      }
+    });
+
+    window.addEventListener('keyup', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        btnNext.classList.remove('btn-pressed');
+      } else if (e.key === 'ArrowLeft' || e.key === 'Backspace') {
+        btnPrev.classList.remove('btn-pressed');
+      }
+    });
+
+    // Sound Toggle
+    function toggleSound() {
+      soundEnabled = !soundEnabled;
+      const icon = document.getElementById('soundIcon');
+      if (icon) {
+        icon.textContent = soundEnabled ? '🔊' : '🔇';
+      }
+    }
+    document.getElementById('btnToggleSound').addEventListener('click', toggleSound);
+
+    // Fullscreen Toggle
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    }
+    document.getElementById('btnToggleFullscreen').addEventListener('click', toggleFullscreen);
+
+    // Video Modal Handlers
+    function openVideoModal(videoId) {
+      const modal = document.getElementById('videoModal');
+      const iframe = document.getElementById('videoIframe');
+      iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&enablejsapi=1`;
+      modal.classList.add('open');
+    }
+
+    function closeVideoModal(e) {
+      const modal = document.getElementById('videoModal');
+      const iframe = document.getElementById('videoIframe');
+      iframe.src = '';
+      modal.classList.remove('open');
+    }
+
+    /* =========================================================
+       CANVAS UI AMBIENT PARTICLES
+       ========================================================= */
+    (function initParticles() {
+      const canvas = document.getElementById('canvasUiParticles');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let width = (canvas.width = window.innerWidth);
+      let height = (canvas.height = window.innerHeight);
+
+      window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      });
+
+      const particleCount = 55;
+      const particles = [];
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: Math.random() * 2 + 1,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
+          alpha: Math.random() * 0.4 + 0.15
+        });
+      }
+
+      window.triggerCanvasUiWind = function(direction) {
+        const force = direction === 'forward' ? 3.0 : -3.0;
+        particles.forEach(p => {
+          p.vx += force;
+        });
+      };
+
+      function render() {
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = '#0a5233';
+
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+
+          p.vx *= 0.96;
+          p.vy *= 0.96;
+
+          if (p.x < 0) p.x = width;
+          if (p.x > width) p.x = 0;
+          if (p.y < 0) p.y = height;
+          if (p.y > height) p.y = 0;
+
+          ctx.globalAlpha = p.alpha;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fill();
+        });
+
+        requestAnimationFrame(render);
+      }
+      render();
+    })();
+
+    // Initial Hash Check
+    if (window.location.hash) {
+      const h = parseInt(window.location.hash.replace('#', ''), 10);
+      if (h >= 1 && h <= totalSlides) {
+        goToSlide(h);
+      }
+    }
+  </script>
+</body>
+</html>

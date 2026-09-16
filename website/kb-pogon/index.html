@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KB D.O.O. — Video Pitch | Studio Varaždin</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,500;0,700;0,800;1,700&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Syne:wght@700;800;900&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-canvas: #171E19;
+      --bg-card: #1f2722;
+      --bg-card-subtle: #2c362f;
+      --text-primary: #F5EFE3;
+      --text-secondary: #c8d0ca;
+      --text-muted: #829288;
+      --border-dark: #2c362f;
+      --border-color: #3d4b41;
+      --accent-green: #D0A041;
+      --accent-green-bright: #F6CF65;
+      --accent-green-bg: rgba(208, 160, 65, 0.15);
+      --accent-green-border: rgba(208, 160, 65, 0.4);
+      --font-hero: 'Syne', sans-serif;
+      --font-display: 'Unbounded', sans-serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.35;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+      position: relative;
+    }
+
+    header.deck-header {
+      height: 54px;
+      background: rgba(242, 247, 244, 0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 2px solid var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      z-index: 100;
+      flex-shrink: 0;
+    }
+
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 0.95rem;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-mark .tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 800;
+      background: var(--accent-green);
+      color: #ffffff;
+      padding: 3px 10px;
+      border-radius: 3px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .deck-controls-top { display: flex; align-items: center; gap: 12px; }
+
+    .btn-action {
+      background: var(--bg-card);
+      border: 2px solid var(--text-primary);
+      color: var(--text-primary);
+      padding: 6px 14px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      border-radius: 4px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s var(--transition-smooth);
+      box-shadow: 2px 2px 0px var(--text-primary);
+    }
+
+    .btn-action:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0px var(--text-primary);
+      background: var(--accent-green-bg);
+    }
+
+    main.deck-stage {
+      flex: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2.5rem 5.5rem 2.5rem;
+      overflow: hidden;
+    }
+
+    .slide-wrapper {
+      width: 100%;
+      background-color: var(--bg-card);
+      max-width: 1440px;
+      aspect-ratio: 16 / 9;
+      max-height: calc(100vh - 135px);
+      background: var(--bg-card);
+      border: 2px solid var(--text-primary);
+      box-shadow: 8px 8px 0px rgba(13, 24, 21, 0.16);
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .slide {
+      display: none;
+      background-color: var(--bg-card);
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 3.5rem 4.5rem;
+      flex-direction: column;
+      justify-content: space-between;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      overflow: hidden;
+    }
+
+    .slide.active { display: flex; opacity: 1; position: relative; }
+
+    .category-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 0.75rem;
+    }
+
+    .category-badge {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      background: var(--accent-green-bg);
+      color: var(--accent-green);
+      border: 1px solid var(--accent-green-border);
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .category-badge::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-green-bright);
+    }
+
+    .meta-coords {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+
+    .quote-title {
+      font-family: var(--font-hero);
+      font-size: clamp(2rem, 3.8vw, 3.4rem);
+      font-weight: 900;
+      line-height: 0.96;
+      letter-spacing: -0.035em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      margin-bottom: 0.8rem;
+    }
+
+    .quote-title .outline-text {
+      color: transparent;
+      -webkit-text-stroke: 2px var(--text-primary);
+    }
+
+    .quote-sub {
+      font-family: var(--font-sans);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--accent-green);
+      margin-bottom: 1.2rem;
+      line-height: 1.3;
+    }
+
+    .punchy-narration {
+      font-size: 0.95rem;
+      line-height: 1.48;
+      color: var(--text-secondary);
+      max-width: 620px;
+    }
+
+    .grid-2col-hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3.5rem;
+      height: 100%;
+      align-items: center;
+    }
+
+    .grid-3col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      height: 100%;
+      align-items: stretch;
+      margin-top: 1rem;
+    }
+
+    .card-eco {
+      background: var(--bg-card);
+      border: 2px solid var(--border-dark);
+      border-radius: 6px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 4px 4px 0px rgba(13, 24, 21, 0.12);
+    }
+
+    .card-eco .card-num {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--accent-green);
+      background: var(--accent-green-bg);
+      padding: 2px 8px;
+      border-radius: 3px;
+      display: inline-block;
+      width: fit-content;
+      margin-bottom: 0.8rem;
+    }
+
+    .card-eco h3 {
+      font-family: var(--font-hero);
+      font-size: 1.35rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 0.6rem;
+      text-transform: uppercase;
+    }
+
+    .card-eco p {
+      font-size: 0.88rem;
+      line-height: 1.42;
+      color: var(--text-secondary);
+    }
+
+    .media-frame-bold {
+      background: var(--bg-canvas);
+      border: 2px solid var(--border-dark);
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 6px 6px 0px rgba(13, 24, 21, 0.16);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      max-height: 480px;
+    }
+
+    .media-frame-bold .media-inner {
+      flex: 1;
+      position: relative;
+      background: #0d1815;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .media-frame-bold img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .offer-package-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 2rem;
+      height: 100%;
+      align-items: center;
+    }
+
+    .offer-main-card {
+      background: var(--bg-card);
+      border: 2px solid var(--border-dark);
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 6px 6px 0px rgba(13, 24, 21, 0.16);
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .offer-item-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 0.9rem;
+      border-bottom: 1px solid var(--border-color);
+      gap: 1rem;
+    }
+
+    .offer-total-box {
+      background: var(--accent-green-bg);
+      border: 2px solid var(--accent-green);
+      border-radius: 6px;
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .offer-total-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .offer-total-header .price {
+      font-family: var(--font-hero);
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--accent-green);
+    }
+
+    footer.deck-footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 64px;
+      background: rgba(242, 247, 244, 0.96);
+      backdrop-filter: blur(16px);
+      border-top: 2px solid var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      z-index: 100;
+    }
+
+    .footer-left { display: flex; align-items: center; gap: 16px; min-width: 320px; }
+
+    .odometer-box {
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 32px;
+      line-height: 1;
+      background: var(--text-primary);
+      color: #ffffff;
+      padding: 0 10px;
+      border-radius: 4px;
+      user-select: none;
+    }
+
+    .digit-wheel-box {
+      height: 32px;
+      overflow: hidden;
+      display: block;
+      position: relative;
+    }
+
+    .digit-wheel {
+      display: flex;
+      flex-direction: column;
+      transform: translateY(0px);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform;
+    }
+
+    .digit-wheel span {
+      height: 32px;
+      line-height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .odometer-total {
+      height: 32px;
+      line-height: 32px;
+      display: flex;
+      align-items: center;
+      opacity: 0.85;
+    }
+
+    .footer-center {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-card);
+      border: 2px solid var(--border-dark);
+      padding: 5px 12px;
+      border-radius: 30px;
+      box-shadow: 3px 3px 0px rgba(13, 24, 21, 0.12);
+    }
+
+    .nav-pill {
+      width: 32px;
+      height: 12px;
+      border-radius: 6px;
+      background: var(--border-color);
+      cursor: pointer;
+      position: relative;
+      transition: all 0.35s cubic-bezier(0.34, 1.45, 0.64, 1);
+    }
+
+    .nav-pill:hover { background: var(--text-muted); }
+    .nav-pill.visited { background: var(--accent-green-border); }
+    .nav-pill.active {
+      width: 54px;
+      background: var(--accent-green);
+      box-shadow: 0 0 10px rgba(13, 92, 58, 0.4);
+    }
+
+    .btn-nav-arrow {
+      width: 42px;
+      height: 42px;
+      background: var(--bg-card);
+      border: 2px solid var(--border-dark);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 3px 3px 0px var(--border-dark);
+    }
+
+    /* Slide 6: Dual Hero Actions Grid (PDF Download + Authorization) */
+    .slide-actions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1.8rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .btn-pdf-hero, .btn-auth-hero {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 1.2rem 1.5rem;
+      border-radius: 8px;
+      border: 2.5px solid var(--border-dark);
+      text-decoration: none;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 5px 5px 0px var(--border-dark);
+      position: relative;
+    }
+
+    .btn-pdf-hero {
+      background: var(--bg-card);
+      color: var(--text-primary);
+    }
+
+    .btn-pdf-hero:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0px var(--border-dark);
+      background: var(--bg-card-subtle);
+    }
+
+    .btn-auth-hero {
+      background: var(--accent-green);
+      color: #ffffff;
+    }
+
+    .btn-auth-hero:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0px var(--border-dark);
+      background: #084027;
+    }
+
+    .btn-pdf-hero:active, .btn-auth-hero:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0px var(--border-dark);
+    }
+
+    .btn-pdf-icon, .btn-auth-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 2px solid var(--border-dark);
+    }
+
+    .btn-pdf-icon {
+      background: var(--bg-canvas);
+      color: var(--text-primary);
+    }
+
+    .btn-auth-icon {
+      background: var(--accent-green-bright);
+      color: var(--text-primary);
+    }
+
+    .btn-pdf-content, .btn-auth-content {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      flex: 1;
+    }
+
+    .btn-pdf-tag, .btn-auth-tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .btn-pdf-tag { color: var(--accent-green); }
+    .btn-auth-tag { color: #a1dcc2; }
+
+    .btn-pdf-title, .btn-auth-title {
+      font-family: var(--font-hero);
+      font-size: 1.22rem;
+      font-weight: 900;
+      line-height: 1.1;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+    }
+
+    .btn-pdf-sub, .btn-auth-sub {
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .btn-pdf-sub { color: var(--text-secondary); }
+    .btn-auth-sub { color: #e0f6eb; }
+
+    .issuer-footer-meta {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-align: center;
+      letter-spacing: 0.02em;
+      margin-top: 0.5rem;
+    }
+
+    #canvasUiParticles {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.55;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(13, 24, 21, 0.85);
+      backdrop-filter: blur(12px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .modal-backdrop.open { opacity: 1; pointer-events: auto; }
+
+    @media (max-width: 768px) {
+      body { overflow-y: auto; height: auto; min-height: 100dvh; }
+      main.deck-stage { padding: 1rem; }
+      .slide-wrapper { aspect-ratio: auto; max-height: none; height: auto; }
+      .slide { position: relative; padding: 1.5rem; }
+      .grid-2col-hero, .grid-3col, .offer-package-grid { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      @page { size: 16in 9in; margin: 0; }
+      body { background: #fff !important; }
+      header, footer, #canvasUiParticles { display: none !important; }
+      .slide { display: flex !important; page-break-after: always; height: 100vh !important; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvasUiParticles"></canvas>
+
+  <header class="deck-header">
+    <div class="brand-mark">
+      STUDIO VARAŽDIN
+      <span class="tag">KB D.O.O. PITCH</span>
+    </div>
+    <div class="deck-controls-top">
+      <button class="btn-action" id="btnToggleSound"><span id="soundIcon">🔊</span> HAPTIKA</button>
+      <button class="btn-action" id="btnToggleFullscreen">⛶ ZASLON</button>
+    </div>
+  </header>
+
+  <main class="deck-stage">
+    <div class="slide-wrapper">
+      <!-- Generated Slides Injection -->
+      
+    <!-- SLIDE 1: Hero -->
+    <section class="slide active" data-index="1" data-title="Strateška Vizija">
+      <div>
+        <div class="category-badge-row">
+          <span class="category-badge">KB D.O.O.</span>
+          <span class="meta-coords">PREZENTACIJA PROJEKTA</span>
+        </div>
+        <h1 class="quote-title">AUTORSKI VIDEO PRISTUP <br><span class="outline-text">VRHUNSKE PRODUKCIJE</span></h1>
+        <p class="quote-sub">Jasna priča koja povezuje ljude, tehnologiju i ciljeve.</p>
+      </div>
+      <div class="grid-2col-hero">
+        <div class="punchy-narration">
+          <p>Ovaj projekt donosi novi produkcijski standard: umjesto generičkog korporativnog videa, gradimo preciznu vizualnu priču s jasnim ritmom i konkretnom svrhom.</p>
+          <p>Svaki kadar je promišljen, od dizajnirane rasvjete i filmske optike do precizne postprodukcije prilagođene svim digitalnim kanalima.</p>
+        </div>
+        <div class="media-frame-bold">
+          <div class="media-inner">
+            <img src="assets/thumb_kovnica_novca.jpg" alt="Production Excellence">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: Koncept -->
+    <section class="slide" data-index="2" data-title="Koncept & Tehnologija">
+      <div>
+        <div class="category-badge-row">
+          <span class="category-badge">Produkcija • 4K Standard</span>
+        </div>
+        <h2 class="quote-title">TEHNOLOGIJA I <br><span class="outline-text">FILMSKA PRECIZNOST</span></h2>
+        <p class="quote-sub">Vrhunska oprema, kontrola svjetla i dinamični kadrovi.</p>
+      </div>
+      <div class="grid-3col">
+        <div class="card-eco">
+          <span class="card-num">01 / KAMERA</span>
+          <h3>4K CINEMA OPTIKA</h3>
+          <p>Filmski senzori visoke dinamike i namjenska rasvjeta koja naglašava detalje i profesionalnost.</p>
+        </div>
+        <div class="card-eco">
+          <span class="card-num">02 / DRON & FPV</span>
+          <h3>ZRAČNA KINEMATOGRAFIJA</h3>
+          <p>Kadrovi visoke dinamike iz zraka i kroz unutrašnjost prostora pod potpunom kontrolom.</p>
+        </div>
+        <div class="card-eco">
+          <span class="card-num">03 / ZVUK</span>
+          <h3>STUDIJSKI SOUND DESIGN</h3>
+          <p>Profesionalna naracija, autorski zvučni efekti i licencirana glazbena podloga.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: Formati -->
+    <section class="slide" data-index="3" data-title="Isporuke & Formati">
+      <div>
+        <div class="category-badge-row">
+          <span class="category-badge">Formati • 16:9 & 9:16</span>
+        </div>
+        <h2 class="quote-title">FORMATI ZA <br><span class="outline-text">SVE DIGITALNE KANALE</span></h2>
+        <p class="quote-sub">Kompletna pokrivenost weba, društvenih mreža i javnih projekcija.</p>
+      </div>
+      <div class="grid-3col">
+        <div class="card-eco">
+          <span class="card-num">01 / MASTER</span>
+          <h3>16:9 HERO FILM</h3>
+          <p>Glavni reprezentativni film za web stranicu, evente i poslovne partnere.</p>
+        </div>
+        <div class="card-eco">
+          <span class="card-num">02 / VERTIKALE</span>
+          <h3>9:16 ZA MREŽE</h3>
+          <p>Optimizirani vertikalni rezovi za Reels, TikTok, YouTube Shorts i oglasne kampanje.</p>
+        </div>
+        <div class="card-eco">
+          <span class="card-num">03 / ARHIVA</span>
+          <h3>4K MASTER DOKUMENTACIJA</h3>
+          <p>Isporuka cjelokupnog montiranog i sirovog materijala u punoj 4K razlučivosti.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: Metodologija -->
+    <section class="slide" data-index="4" data-title="Metodologija Rada">
+      <div>
+        <div class="category-badge-row">
+          <span class="category-badge">Pristup • 3 Faze</span>
+        </div>
+        <h2 class="quote-title">PROVJERENI PROCES <br><span class="outline-text">BEZ IZNENAĐENJA</span></h2>
+        <p class="quote-sub">Od scenarija do finalne predaje uz jasne rokove.</p>
+      </div>
+      <div class="grid-3col">
+        <div class="card-eco">
+          <span class="card-num">FAZA 1</span>
+          <h3>PREDPRODUKCIJA</h3>
+          <p>Scenarij, knjiga snimanja, odabir lokacija i detaljna koordinacija s vašim timom.</p>
+        </div>
+        <div class="card-eco">
+          <span class="card-num">FAZA 2</span>
+          <h3>SNIMANJE</h3>
+          <p>Efikasna i diskretna produkcija na lokaciji uz poštovanje svih vaših radnih procesa.</p>
+        </div>
+        <div class="card-eco">
+          <span class="card-num">FAZA 3</span>
+          <h3>POSTPRODUKCIJA</h3>
+          <p>Montaža, kolor korekcija, glazba, voiceover i 2 uključena kruga dorada prije isporuke.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: Ponuda -->
+    <section class="slide" data-index="5" data-title="Komercijalna Ponuda">
+      <div>
+        <div class="category-badge-row">
+          <span class="category-badge">Ponuda br. 16 • 01.09.2026.</span>
+        </div>
+        <h2 class="quote-title">TRANSPARENTNA <br><span class="outline-text">RAŠČLAMBA ULAGANJA</span></h2>
+        <p class="quote-sub">Puni opseg angažmana i isporuka.</p>
+      </div>
+      <div class="offer-package-grid">
+        <div class="offer-main-card">
+          
+        <div class="offer-item-row">
+          <div>
+            <div style="font-weight:800; font-size:0.95rem; margin-bottom:2px;">(1) PredprodukcijaPOPIS ISPORUKA:Koncept, scenarij i plan snimanja, obilazak pogona u Sračincu.Smjer: dinamičan, moderan i emotivan film s naglaskom na ljude itehnologiju, u povodu 35 godina tvrtke.1700,00700,00</div>
+            <div style="font-size:0.82rem; color:var(--text-secondary);"></div>
+          </div>
+          <div style="font-family:var(--font-mono); font-weight:800; font-size:1.05rem;">700,00 €</div>
+        </div>
+        
+        <div class="offer-item-row">
+          <div>
+            <div style="font-weight:800; font-size:0.95rem; margin-bottom:2px;">(2) Snimanje — 2 danaPOPIS ISPORUKA:Proizvodna hala, skladište, showroom i uredi. Snimanje rada, ljudi itehnologije; gimbal, dizajnirana rasvjeta, FPV/dron kadrovi, zlatnisati. Snimanje u 4K.12.600,002.600,00</div>
+            <div style="font-size:0.82rem; color:var(--text-secondary);"></div>
+          </div>
+          <div style="font-family:var(--font-mono); font-weight:800; font-size:1.05rem;">2.600,00 €</div>
+        </div>
+        
+        <div class="offer-item-row">
+          <div>
+            <div style="font-weight:800; font-size:0.95rem; margin-bottom:2px;">(3) Montaža i postprodukcija — korporativni videoPOPIS ISPORUKA:Korporativni video trajanja cca 2 minute (4K): kolor, zvuk,licencirana glazba, grafika i titlovi. Uz glavnu verziju isporučujemoprilagodbe za web i društvene mreže.11.200,001.200,00</div>
+            <div style="font-size:0.82rem; color:var(--text-secondary);"></div>
+          </div>
+          <div style="font-family:var(--font-mono); font-weight:800; font-size:1.05rem;">1.200,00 €</div>
+        </div>
+        
+        <div class="offer-item-row">
+          <div>
+            <div style="font-weight:800; font-size:0.95rem; margin-bottom:2px;">(4) Snimanje eventa — 2.10.2026.POPIS ISPORUKA:Otvorenje nove proizvodno-skladišne hale, 16:30–02:00, cca 230uzvanika. Dva snimatelja kroz cijeli event: okupljanje, govori,obilazak hale, večera i zabava. Snimanje u 4K, već pri snimanjuprilagođeno vertikalnom kadru.11.400,001.400,00</div>
+            <div style="font-size:0.82rem; color:var(--text-secondary);"></div>
+          </div>
+          <div style="font-family:var(--font-mono); font-weight:800; font-size:1.05rem;">1.400,00 €</div>
+        </div>
+        
+        <div class="offer-item-row">
+          <div>
+            <div style="font-weight:800; font-size:0.95rem; margin-bottom:2px;">(5) Montaža i postprodukcija — aftermovie & video za mrežePOPIS ISPORUKA:Aftermovie 60–90 s + 3 vertikalna videa (9:16) za Reels, Stories ioglase. Svi formati pripremljeni tako da se bez kompromisakadriraju i u 1:1. Kolor, zvuk, glazba.1700,00700,00</div>
+            <div style="font-size:0.82rem; color:var(--text-secondary);"></div>
+          </div>
+          <div style="font-family:var(--font-mono); font-weight:800; font-size:1.05rem;">700,00 €</div>
+        </div>
+        
+        <div class="offer-item-row">
+          <div>
+            <div style="font-weight:800; font-size:0.95rem; margin-bottom:2px;">(6) Fotografiranje eventa — 2.10.2026.POPIS ISPORUKA:Fotografiranje otvorenja hale kroz cijeli event (okupljanje, službenidio, obilazak hale, večera i zabava). Isporuka selektiranih iobrađenih fotografija u visokoj rezoluciji.1600,00600,00</div>
+            <div style="font-size:0.82rem; color:var(--text-secondary);"></div>
+          </div>
+          <div style="font-family:var(--font-mono); font-weight:800; font-size:1.05rem;">600,00 €</div>
+        </div>
+        
+        <div class="offer-item-row">
+          <div>
+            <div style="font-weight:800; font-size:0.95rem; margin-bottom:2px;">(7) Predaja materijala i prava korištenjaPOPIS ISPORUKA:Kompletan sirovi i montirani materijal u najvišoj kvaliteti (4K masterdatoteke, HDD/SSD arhiva) te sva prava korištenja prelaze nanaručitelja bez ograničenja.10,000,00</div>
+            <div style="font-size:0.82rem; color:var(--text-secondary);"></div>
+          </div>
+          <div style="font-family:var(--font-mono); font-weight:800; font-size:1.05rem;">0,00 €</div>
+        </div>
+        
+        <div class="offer-item-row">
+          <div>
+            <div style="font-weight:800; font-size:0.95rem; margin-bottom:2px;">(8) Popust na paket uslugaPOPIS ISPORUKA:Paketni popust na cjelokupnu produkciju: korporativni filmpovodom 35 godina tvrtke te video i foto pokrivanje eventaotvorenja.1−1.400,00−1.400,00</div>
+            <div style="font-size:0.82rem; color:var(--text-secondary);"></div>
+          </div>
+          <div style="font-family:var(--font-mono); font-weight:800; font-size:1.05rem;">1.400,00 €</div>
+        </div>
+        
+        </div>
+        <div class="offer-total-box">
+          <div class="offer-total-header">
+            <span style="font-family:var(--font-mono); font-size:0.85rem; font-weight:800;">UKUPNO ZA PLAĆANJE</span>
+            <span class="price">5.800,00 EUR</span>
+          </div>
+          <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-secondary); line-height:1.4; border-top:1px dashed var(--accent-green-border); padding-top:0.6rem;">
+            • Oslobođeno PDV-a temeljem članka 90. st. 2 Zakona o PDV-u.<br>
+            • Neograničena autorska prava korištenja.<br>
+            • Rok valjanosti ponude: 30 dana.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: Autorizacija -->
+    <section class="slide" data-index="6" data-title="Autorizacija & Partnerstvo">
+      <div>
+        <div class="category-badge-row">
+          <span class="category-badge">Partnerstvo & Rokovi</span>
+        </div>
+      <div class="slide-actions-grid">
+        <!-- Hero PDF Download Button -->
+        <a href="assets/Ponuda_KB_Pogon_Br16.pdf" download="Ponuda_KB_Pogon_Br16.pdf" target="_blank" class="btn-pdf-hero">
+          <div class="btn-pdf-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>
+          </div>
+          <div class="btn-pdf-content">
+            <span class="btn-pdf-tag">SLUŽBENA DOKUMENTACIJA // PDF A4</span>
+            <span class="btn-pdf-title">PREUZMI SLUŽBENU PDF PONUDU ↓</span>
+            <span class="btn-pdf-sub">Ponuda br. 16 • 5.800,00 € • Službeni troškovnik i specifikacija</span>
+          </div>
+        </a>
+
+        <!-- Hero Authorize CTA Button -->
+        <a class="btn-auth-hero" href="mailto:info@varazdin.studio?subject=Potvrda%20Ponude%20-%20KB%20d.o.o.&body=Poštovani,%0D%0A%0D%0APotvrđujemo%20prihvaćanje%20ponude%20u%20iznosu%20od%205.800,00%20EUR.%0D%0A%0D%0ASrdačan%20pozdrav,">
+          <div class="btn-auth-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div class="btn-auth-content">
+            <span class="btn-auth-tag">POTVRDA PROJEKTA // AUTORIZACIJA</span>
+            <span class="btn-auth-title">POTVRDI PONUDU (5.800 €) →</span>
+            <span class="btn-auth-sub">Rezervacija termina snimanja i početak pripreme</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="issuer-footer-meta">
+        <strong>STUDIO VARAŽDIN</strong> (Vl. Jasenka Martinčević • S. Vraza 10, Varaždin • OIB: 63287352089 • U suradnji s Lotus RC)
+      </div>
+    </section>
+    
+    </div>
+  </main>
+
+  <footer class="deck-footer">
+    <div class="footer-left">
+      <div class="odometer-box">
+        <div class="digit-wheel-box">
+          <div class="digit-wheel" id="odometerDigit">
+            <span>01</span><span>02</span><span>03</span><span>04</span><span>05</span><span>06</span>
+          </div>
+        </div>
+        <span class="odometer-total">/ 06</span>
+      </div>
+      <div class="footer-slide-title" id="footerSlideTitle">Strateška Vizija</div>
+    </div>
+
+    <div class="footer-center" id="paginationTrack">
+      <div class="nav-pill active" data-target="1"></div>
+      <div class="nav-pill" data-target="2"></div>
+      <div class="nav-pill" data-target="3"></div>
+      <div class="nav-pill" data-target="4"></div>
+      <div class="nav-pill" data-target="5"></div>
+      <div class="nav-pill" data-target="6"></div>
+    </div>
+
+    <div class="footer-right">
+      <button class="btn-nav-arrow" id="btnPrev">
+        <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:var(--text-primary)"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      </button>
+      <button class="btn-nav-arrow" id="btnNext">
+        <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:var(--text-primary)"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </button>
+    </div>
+  </footer>
+
+  <div class="modal-backdrop" id="videoModal"></div>
+
+  <script>
+    const totalSlides = 6;
+    let currentSlide = 1;
+    let soundEnabled = true;
+    let audioCtx = null;
+
+    const slides = document.querySelectorAll('.slide');
+    const navPills = document.querySelectorAll('.nav-pill');
+    const odometerDigit = document.getElementById('odometerDigit');
+    const footerSlideTitle = document.getElementById('footerSlideTitle');
+    const btnPrev = document.getElementById('btnPrev');
+    const btnNext = document.getElementById('btnNext');
+
+    function playMechanicalHaptic(direction = 'forward') {
+      if (!soundEnabled) return;
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        const now = audioCtx.currentTime;
+        osc.frequency.setValueAtTime(direction === 'forward' ? 1100 : 850, now);
+        osc.frequency.exponentialRampToValueAtTime(300, now + 0.032);
+        gain.gain.setValueAtTime(0.08, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.035);
+        osc.start(now);
+        osc.stop(now + 0.036);
+      } catch (e) {}
+    }
+
+    function goToSlide(targetIndex, direction = null) {
+      if (targetIndex < 1 || targetIndex > totalSlides || targetIndex === currentSlide) return;
+      const navDir = direction || (targetIndex > currentSlide ? 'forward' : 'backward');
+      currentSlide = targetIndex;
+      playMechanicalHaptic(navDir);
+
+      if (window.triggerCanvasUiWind) window.triggerCanvasUiWind(navDir);
+
+      slides.forEach(slide => {
+        const idx = parseInt(slide.getAttribute('data-index'), 10);
+        if (idx === currentSlide) {
+          slide.classList.add('active');
+          footerSlideTitle.textContent = slide.getAttribute('data-title');
+        } else {
+          slide.classList.remove('active');
+        }
+      });
+
+      navPills.forEach(pill => {
+        const idx = parseInt(pill.getAttribute('data-target'), 10);
+        if (idx === currentSlide) {
+          pill.classList.add('active');
+          pill.classList.remove('visited');
+        } else {
+          pill.classList.remove('active');
+          if (idx < currentSlide) {
+            pill.classList.add('visited');
+          } else {
+            pill.classList.remove('visited');
+          }
+        }
+      });
+
+      if (odometerDigit) odometerDigit.style.transform = `translateY(${(currentSlide - 1) * -32}px)`;
+    }
+
+    btnNext.addEventListener('click', () => { goToSlide(currentSlide < totalSlides ? currentSlide + 1 : 1, 'forward'); });
+    btnPrev.addEventListener('click', () => { goToSlide(currentSlide > 1 ? currentSlide - 1 : totalSlides, 'backward'); });
+    navPills.forEach(pill => pill.addEventListener('click', () => goToSlide(parseInt(pill.getAttribute('data-target'), 10))));
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); goToSlide(currentSlide < totalSlides ? currentSlide + 1 : 1, 'forward'); }
+      else if (e.key === 'ArrowLeft') { e.preventDefault(); goToSlide(currentSlide > 1 ? currentSlide - 1 : totalSlides, 'backward'); }
+      else if (e.key >= '1' && e.key <= '6') { goToSlide(parseInt(e.key, 10)); }
+    });
+
+    // Canvas Particles
+    (function initParticles() {
+      const canvas = document.getElementById('canvasUiParticles');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let width = (canvas.width = window.innerWidth);
+      let height = (canvas.height = window.innerHeight);
+      const particles = Array.from({ length: 45 }, () => ({
+        x: Math.random() * width, y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4,
+        radius: Math.random() * 2 + 1, alpha: Math.random() * 0.3 + 0.15
+      }));
+
+      window.triggerCanvasUiWind = (dir) => {
+        const f = dir === 'forward' ? 2.5 : -2.5;
+        particles.forEach(p => p.vx += f);
+      };
+
+      function render() {
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = '#D0A041';
+        particles.forEach(p => {
+          p.x += p.vx; p.y += p.vy;
+          p.vx *= 0.96; p.vy *= 0.96;
+          if (p.x < 0) p.x = width; if (p.x > width) p.x = 0;
+          if (p.y < 0) p.y = height; if (p.y > height) p.y = 0;
+          ctx.globalAlpha = p.alpha;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fill();
+        });
+        requestAnimationFrame(render);
+      }
+      render();
+    })();
+  </script>
+</body>
+</html>

@@ -1,6 +1,265 @@
 {
-  "totalVotes": 0,
-  "uniqueVoters": [],
-  "items": {},
+  "totalVotes": 33,
+  "uniqueVoters": [
+    "usr_6cp05b71mu4l05w1"
+  ],
+  "items": {
+    "sv-009": {
+      "id": "sv-009",
+      "title": "Inspired By Craft Black",
+      "likes": 0,
+      "passes": 1,
+      "superlikes": 0,
+      "score": 0
+    },
+    "sv-018": {
+      "id": "sv-018",
+      "title": "Elon Copy",
+      "likes": 0,
+      "passes": 1,
+      "superlikes": 0,
+      "score": 0
+    },
+    "sv-003": {
+      "id": "sv-003",
+      "title": "Creative Block Franjevacki Toranj",
+      "likes": 0,
+      "passes": 1,
+      "superlikes": 0,
+      "score": 0
+    },
+    "sv-016": {
+      "id": "sv-016",
+      "title": "Maker Archives White",
+      "likes": 1,
+      "passes": 0,
+      "superlikes": 0,
+      "score": 1
+    },
+    "sv-004": {
+      "id": "sv-004",
+      "title": "Creative Collective Croatia Ccc",
+      "likes": 1,
+      "passes": 0,
+      "superlikes": 0,
+      "score": 1
+    },
+    "sv-002": {
+      "id": "sv-002",
+      "title": "Creative Block Franjevacki Toranj Copy",
+      "likes": 1,
+      "passes": 0,
+      "superlikes": 0,
+      "score": 1
+    },
+    "sv-013": {
+      "id": "sv-013",
+      "title": "Inspired By Studio Black",
+      "likes": 0,
+      "passes": 1,
+      "superlikes": 0,
+      "score": 0
+    },
+    "sv-015": {
+      "id": "sv-015",
+      "title": "Knights Vow Cream",
+      "likes": 1,
+      "passes": 0,
+      "superlikes": 0,
+      "score": 1
+    },
+    "sv-022": {
+      "id": "sv-022",
+      "title": "Knight Cuvar Prica",
+      "likes": 0,
+      "passes": 1,
+      "superlikes": 0,
+      "score": 0
+    },
+    "sv-023": {
+      "id": "sv-023",
+      "title": "Panorama Anno 1776",
+      "likes": 0,
+      "passes": 1,
+      "superlikes": 0,
+      "score": 0
+    },
+    "sv-026": {
+      "id": "sv-026",
+      "title": "Vijecnica Grad Baroka",
+      "likes": 0,
+      "passes": 1,
+      "superlikes": 0,
+      "score": 0
+    },
+    "sv-021": {
+      "id": "sv-021",
+      "title": "Film Crew Story First",
+      "likes": 0,
+      "passes": 1,
+      "superlikes": 0,
+      "score": 0
+    },
+    "sv-025": {
+      "id": "sv-025",
+      "title": "Typographic 1209",
+      "likes": 0,
+      "passes": 1,
+      "superlikes": 0,
+      "score": 0
+    },
+    "sv-024": {
+      "id": "sv-024",
+      "title": "Stari Grad 1181",
+      "likes": 0,
+      "passes": 1,
+      "superlikes": 0,
+      "score": 0
+    },
+    "sv-033": {
+      "id": "sv-033",
+      "title": "Story First",
+      "likes": 0,
+      "passes": 2,
+      "superlikes": 0,
+      "score": 0
+    },
+    "sv-034": {
+      "id": "sv-034",
+      "title": "Tisina Na Setu",
+      "likes": 0,
+      "passes": 1,
+      "superlikes": 0,
+      "score": 0
+    },
+    "sv-030": {
+      "id": "sv-030",
+      "title": "Pisemo Svjetlom",
+      "likes": 0,
+      "passes": 1,
+      "superlikes": 0,
+      "score": 0
+    },
+    "sv-032": {
+      "id": "sv-032",
+      "title": "Redatelj",
+      "likes": 0,
+      "passes": 1,
+      "superlikes": 0,
+      "score": 0
+    },
+    "sv-027": {
+      "id": "sv-027",
+      "title": "Akcija Clapperboard",
+      "likes": 0,
+      "passes": 1,
+      "superlikes": 0,
+      "score": 0
+    },
+    "sv-029": {
+      "id": "sv-029",
+      "title": "Film Reel Filigree",
+      "likes": 0,
+      "passes": 1,
+      "superlikes": 0,
+      "score": 0
+    },
+    "sv-028": {
+      "id": "sv-028",
+      "title": "Camera Coat Of Arms",
+      "likes": 0,
+      "passes": 1,
+      "superlikes": 0,
+      "score": 0
+    },
+    "sv-031": {
+      "id": "sv-031",
+      "title": "Production Seal",
+      "likes": 0,
+      "passes": 1,
+      "superlikes": 0,
+      "score": 0
+    },
+    "sv-118": {
+      "id": "sv-118",
+      "title": "Visually Articulate Skyline",
+      "likes": 0,
+      "passes": 1,
+      "superlikes": 0,
+      "score": 0
+    },
+    "sv-074": {
+      "id": "sv-074",
+      "title": "Knight Shot In Back DEDICATION Black",
+      "likes": 1,
+      "passes": 0,
+      "superlikes": 0,
+      "score": 1
+    },
+    "sv-043": {
+      "id": "sv-043",
+      "title": "Cash Value Of Experience 1664x2048",
+      "likes": 0,
+      "passes": 1,
+      "superlikes": 0,
+      "score": 0
+    },
+    "sv-131": {
+      "id": "sv-131",
+      "title": "Ccc Botanical Spec Bounding Box",
+      "likes": 0,
+      "passes": 1,
+      "superlikes": 0,
+      "score": 0
+    },
+    "sv-041": {
+      "id": "sv-041",
+      "title": "Can You Change The Music Peak Comix",
+      "likes": 0,
+      "passes": 1,
+      "superlikes": 0,
+      "score": 0
+    },
+    "sv-103": {
+      "id": "sv-103",
+      "title": "They Who Dance Celestial Grid",
+      "likes": 1,
+      "passes": 0,
+      "superlikes": 0,
+      "score": 1
+    },
+    "sv-104": {
+      "id": "sv-104",
+      "title": "They Who Dance Psychedelic Wave",
+      "likes": 0,
+      "passes": 1,
+      "superlikes": 0,
+      "score": 0
+    },
+    "sv-046": {
+      "id": "sv-046",
+      "title": "Constrained Environment Blueprint",
+      "likes": 0,
+      "passes": 1,
+      "superlikes": 0,
+      "score": 0
+    },
+    "sv-115": {
+      "id": "sv-115",
+      "title": "Utility Spec Print",
+      "likes": 1,
+      "passes": 0,
+      "superlikes": 0,
+      "score": 1
+    },
+    "sv-066": {
+      "id": "sv-066",
+      "title": "Good Work Great Work DEDICATION",
+      "likes": 0,
+      "passes": 1,
+      "superlikes": 0,
+      "score": 0
+    }
+  },
   "recentFeed": []
 }

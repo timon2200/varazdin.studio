@@ -1,0 +1,1788 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>101 MILIJUN — Kronika međimurskog gradilišta | Grad Čakovec & Međimurska županija</title>
+  
+  <!-- Expressive Editorial & Brutalist Typography Hierarchy -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800;12..96,900&family=JetBrains+Mono:ital,wght@0,600;0,700;0,800;1,700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@600;700&family=Unbounded:wght@800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Editorial Canvas & Industrial Brutalist Palette */
+      --bg-canvas: #f4efe4;
+      --bg-card: #fbf7ee;
+      --bg-card-subtle: #eae3d2;
+      --text-primary: #111518;
+      --text-secondary: #2d3748;
+      --text-muted: #718096;
+      --border-dark: #111518;
+      --border-color: #d5ccba;
+      --accent-green: #0a5233;
+      --accent-green-bright: #10b981;
+      --accent-green-bg: #e1ede4;
+      --accent-green-border: #a6cbb4;
+      --accent-blue: #0284c7;
+      --accent-blue-bg: #e0f2fe;
+      --accent-gold: #d97706;
+      --accent-gold-bg: #fef3c7;
+      --font-hero: 'Bricolage Grotesque', sans-serif;
+      --font-display: 'Unbounded', sans-serif;
+      --font-heading: 'Space Grotesk', sans-serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.35;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+      position: relative;
+    }
+
+    /* Top App Navigation Bar */
+    header.deck-header {
+      height: 54px;
+      background: rgba(244, 239, 228, 0.96);
+      backdrop-filter: blur(16px);
+      border-bottom: 2px solid var(--border-dark);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      z-index: 100;
+      flex-shrink: 0;
+    }
+
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 0.95rem;
+      letter-spacing: -0.04em;
+    }
+
+    .brand-mark .tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 800;
+      background: var(--accent-green);
+      color: #ffffff;
+      padding: 3px 10px;
+      border-radius: 3px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .partner-tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .partner-tag strong {
+      color: var(--text-primary);
+    }
+
+    .deck-controls-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-action {
+      background: var(--bg-card);
+      border: 2px solid var(--border-dark);
+      color: var(--text-primary);
+      padding: 6px 14px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      border-radius: 4px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s var(--transition-smooth);
+      box-shadow: 2px 2px 0px var(--border-dark);
+    }
+
+    .btn-action:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0px var(--border-dark);
+      background: var(--accent-green-bg);
+    }
+
+    .btn-action:active {
+      transform: translate(1px, 1px);
+      box-shadow: 1px 1px 0px var(--border-dark);
+    }
+
+    /* Main Deck Stage Container (16:9 Locked & Centered) */
+    main.deck-stage {
+      flex: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2.5rem 5.5rem 2.5rem;
+      overflow: hidden;
+    }
+
+    .slide-wrapper {
+      width: 100%;
+      background-color: var(--bg-card);
+      max-width: 1440px;
+      aspect-ratio: 16 / 9;
+      max-height: calc(100vh - 135px);
+      background: var(--bg-card);
+      border: 2.5px solid var(--border-dark);
+      box-shadow: 8px 8px 0px rgba(17, 21, 24, 0.18);
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Technical Corner Crosshairs */
+    .slide-wrapper::before,
+    .slide-wrapper::after {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      position: absolute;
+      z-index: 50;
+      pointer-events: none;
+      letter-spacing: 0.12em;
+    }
+    .slide-wrapper::before {
+      content: "[ + ] 101.MIL // CK.2026";
+      top: 1.2rem;
+      left: 1.5rem;
+    }
+    .slide-wrapper::after {
+      content: "ČAKOVEC // MEĐIMURJE [ + ]";
+      bottom: 1.2rem;
+      right: 1.5rem;
+    }
+
+    /* Slide Defaults */
+    .slide {
+      display: none;
+      background-color: var(--bg-card);
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 3.2rem 4.5rem;
+      flex-direction: column;
+      justify-content: space-between;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      overflow: hidden;
+      background: var(--bg-card);
+    }
+
+    .slide.active {
+      display: flex;
+      opacity: 1;
+      position: relative;
+    }
+
+    /* Staggered Entrance Animations */
+    .slide.active .quote-title {
+      animation: slideItemReveal 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.03s both;
+    }
+    .slide.active .quote-sub,
+    .slide.active .punchy-narration {
+      animation: slideItemReveal 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.07s both;
+    }
+    .slide.active .category-badge-row,
+    .slide.active .grid-3col,
+    .slide.active .offer-package-grid,
+    .slide.active .timeline-grid {
+      animation: slideItemReveal 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.11s both;
+    }
+    .slide.active .media-frame-bold,
+    .slide.active .card-ck {
+      animation: slideItemReveal 0.52s cubic-bezier(0.16, 1, 0.3, 1) 0.14s both;
+    }
+
+    @keyframes slideItemReveal {
+      0% {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Typography & Hierarchy */
+    .category-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 0.6rem;
+    }
+
+    .category-badge {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 5px 12px;
+      background: var(--accent-green-bg);
+      color: var(--accent-green);
+      border: 1.5px solid var(--accent-green-border);
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .category-badge::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-green-bright);
+    }
+
+    .meta-coords {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    .quote-title {
+      font-family: var(--font-hero);
+      font-size: clamp(2.2rem, 4.1vw, 3.8rem);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      margin-bottom: 0.65rem;
+    }
+
+    .quote-title .outline-text {
+      color: transparent;
+      -webkit-text-stroke: 2.2px var(--border-dark);
+    }
+
+    .quote-title .accent-text {
+      color: var(--accent-green);
+    }
+
+    .quote-sub {
+      font-family: var(--font-heading);
+      font-size: clamp(1.15rem, 1.35vw, 1.45rem);
+      font-weight: 700;
+      color: var(--accent-green);
+      margin-bottom: 1.1rem;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+    }
+
+    .punchy-narration {
+      font-size: clamp(1.02rem, 1.2vw, 1.2rem);
+      line-height: 1.52;
+      color: var(--text-secondary);
+      max-width: 680px;
+      font-weight: 550;
+    }
+
+    .punchy-narration p {
+      margin-bottom: 0.85rem;
+    }
+
+    .punchy-narration p strong {
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .punchy-narration p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Grids & Layouts */
+    .grid-2col-hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 2.8rem;
+      height: 100%;
+      align-items: center;
+    }
+
+    .grid-2col-equal {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.8rem;
+      height: 100%;
+      align-items: center;
+    }
+
+    .grid-3col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.4rem;
+      height: 100%;
+      align-items: stretch;
+      margin-top: 0.6rem;
+    }
+
+    .card-ck {
+      background: var(--bg-card);
+      border: 2px solid var(--border-dark);
+      border-radius: 8px;
+      padding: 1.6rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 5px 5px 0px rgba(17, 21, 24, 0.14);
+      transition: all 0.25s var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-ck-green { border-top: 6px solid #10b981; }
+    .card-ck-blue { border-top: 6px solid #0284c7; }
+    .card-ck-gold { border-top: 6px solid #d97706; }
+
+    .card-watermark {
+      position: absolute;
+      right: 1.1rem;
+      top: 0.6rem;
+      font-family: var(--font-hero);
+      font-size: 4rem;
+      font-weight: 900;
+      color: rgba(17, 21, 24, 0.05);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .card-ck:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0px rgba(17, 21, 24, 0.22);
+    }
+
+    .card-ck .card-num {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--accent-green);
+      background: var(--accent-green-bg);
+      padding: 4px 10px;
+      border-radius: 4px;
+      display: inline-block;
+      width: fit-content;
+      margin-bottom: 0.75rem;
+      border: 1.5px solid var(--accent-green-border);
+      letter-spacing: 0.04em;
+    }
+
+    .card-ck h3 {
+      font-family: var(--font-hero);
+      font-size: clamp(1.35rem, 1.6vw, 1.7rem);
+      font-weight: 900;
+      line-height: 1.08;
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+    }
+
+    .card-ck p {
+      font-size: clamp(0.96rem, 1.08vw, 1.12rem);
+      line-height: 1.5;
+      color: var(--text-secondary);
+      flex: 1;
+      font-weight: 550;
+    }
+
+    .card-ck p strong {
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .card-ck .stream-indicator {
+      display: flex;
+      gap: 8px;
+      margin-top: 1.1rem;
+      padding-top: 0.8rem;
+      border-top: 1.5px dashed var(--border-color);
+      flex-wrap: wrap;
+    }
+
+    .pill-stream {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 4px 9px;
+      border-radius: 4px;
+      border: 1.5px solid var(--border-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .pill-green { background: #dcfce7; color: #166534; }
+    .pill-blue { background: #e0f2fe; color: #0369a1; }
+    .pill-gold { background: #fef3c7; color: #92400e; }
+    .pill-dark { background: #1e293b; color: #ffffff; }
+
+    /* Media Frames */
+    .media-frame-bold {
+      background: var(--bg-canvas);
+      border: 2.5px solid var(--border-dark);
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 6px 6px 0px rgba(17, 21, 24, 0.18);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      max-height: 480px;
+    }
+
+    .media-frame-bold .media-inner {
+      flex: 1;
+      position: relative;
+      background: #0d1815;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .media-frame-bold img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--transition-smooth);
+    }
+
+    .media-frame-bold:hover img {
+      transform: scale(1.03);
+    }
+
+    .media-overlay-badge {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      background: rgba(17, 21, 24, 0.92);
+      backdrop-filter: blur(8px);
+      color: #ffffff;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 800;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Video Play Trigger */
+    .btn-play-trigger {
+      width: 56px;
+      height: 56px;
+      background: #ffffff;
+      border: 2px solid var(--border-dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 3px 3px 0px var(--border-dark);
+      transition: all 0.2s var(--transition-smooth);
+      z-index: 10;
+    }
+
+    .btn-play-trigger:hover {
+      transform: translate(-50%, -50%) scale(1.1);
+      background: var(--accent-green-bright);
+    }
+
+    .btn-play-trigger svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--text-primary);
+      margin-left: 2px;
+    }
+
+    /* Offer Slide Layout (Slide 5) */
+    .offer-package-grid {
+      display: grid;
+      grid-template-columns: 1.18fr 0.82fr;
+      gap: 2rem;
+      height: 100%;
+      align-items: center;
+    }
+
+    .offer-main-card {
+      background: var(--bg-card);
+      border: 2.5px solid var(--border-dark);
+      border-radius: 8px;
+      padding: 1.6rem 1.8rem;
+      box-shadow: 6px 6px 0px rgba(17, 21, 24, 0.16);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .offer-item-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 0.9rem;
+      border-bottom: 1.5px solid var(--border-color);
+      gap: 1.2rem;
+    }
+
+    .offer-item-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .offer-item-title {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--text-primary);
+      margin-bottom: 3px;
+    }
+
+    .offer-item-desc {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.45;
+      font-weight: 500;
+    }
+
+    .offer-item-price {
+      font-family: var(--font-mono);
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: var(--text-primary);
+      white-space: nowrap;
+    }
+
+    .offer-total-box {
+      background: var(--accent-green-bg);
+      border: 2.5px solid var(--accent-green);
+      border-radius: 8px;
+      padding: 1.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .offer-total-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .offer-total-header .label {
+      font-family: var(--font-mono);
+      font-size: 0.92rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--accent-green);
+      letter-spacing: 0.04em;
+    }
+
+    .offer-total-header .price {
+      font-family: var(--font-hero);
+      font-size: clamp(2.8rem, 3.4vw, 3.4rem);
+      font-weight: 900;
+      color: var(--accent-green);
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .legal-clause {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.48;
+      border-top: 1.5px dashed var(--accent-green-border);
+      padding-top: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* Timeline Milestones (Slide 6) */
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.4rem;
+      margin-bottom: 1.3rem;
+    }
+
+    .milestone-card {
+      background: var(--bg-card);
+      border: 2px solid var(--border-dark);
+      border-radius: 8px;
+      padding: 1.4rem 1.2rem;
+      box-shadow: 4px 4px 0px rgba(17, 21, 24, 0.14);
+    }
+
+    .milestone-days {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: #ffffff;
+      background: var(--accent-green);
+      padding: 4px 10px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 0.55rem;
+      letter-spacing: 0.04em;
+    }
+
+    .milestone-card h4 {
+      font-family: var(--font-hero);
+      font-size: 1.3rem;
+      font-weight: 900;
+      margin-bottom: 0.4rem;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+    }
+
+    .milestone-card p {
+      font-size: 0.94rem;
+      color: var(--text-secondary);
+      line-height: 1.45;
+      font-weight: 550;
+    }
+
+    /* Slide 6: Dual Hero Actions Grid (PDF Download + Authorization) */
+    .slide-actions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .btn-pdf-hero, .btn-auth-hero {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 1.1rem 1.4rem;
+      border-radius: 8px;
+      border: 2.5px solid var(--border-dark);
+      text-decoration: none;
+      transition: all 0.22s var(--transition-smooth);
+      box-shadow: 5px 5px 0px var(--border-dark);
+      position: relative;
+    }
+
+    .btn-pdf-hero {
+      background: var(--bg-card);
+      color: var(--text-primary);
+    }
+
+    .btn-pdf-hero:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0px var(--border-dark);
+      background: var(--bg-card-subtle);
+    }
+
+    .btn-auth-hero {
+      background: var(--accent-green);
+      color: #ffffff;
+    }
+
+    .btn-auth-hero:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0px var(--border-dark);
+      background: #084027;
+    }
+
+    .btn-pdf-hero:active, .btn-auth-hero:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0px var(--border-dark);
+    }
+
+    .btn-pdf-icon, .btn-auth-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 2px solid var(--border-dark);
+    }
+
+    .btn-pdf-icon {
+      background: var(--bg-canvas);
+      color: var(--text-primary);
+    }
+
+    .btn-auth-icon {
+      background: var(--accent-green-bright);
+      color: var(--text-primary);
+    }
+
+    .btn-pdf-content, .btn-auth-content {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      flex: 1;
+    }
+
+    .btn-pdf-tag, .btn-auth-tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .btn-pdf-tag { color: var(--accent-green); }
+    .btn-auth-tag { color: #a1dcc2; }
+
+    .btn-pdf-title, .btn-auth-title {
+      font-family: var(--font-hero);
+      font-size: 1.18rem;
+      font-weight: 900;
+      line-height: 1.1;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+    }
+
+    .btn-pdf-sub, .btn-auth-sub {
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .btn-pdf-sub { color: var(--text-secondary); }
+    .btn-auth-sub { color: #e0f6eb; }
+
+    .issuer-footer-meta {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+
+    /* Fixed Deck Footer & Odometer Bar */
+    footer.deck-footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 64px;
+      background: rgba(244, 239, 228, 0.96);
+      backdrop-filter: blur(16px);
+      border-top: 2px solid var(--border-dark);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      z-index: 100;
+    }
+
+    /* Left Odometer & Crossfade Title */
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      min-width: 320px;
+    }
+
+    .odometer-box {
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 32px;
+      line-height: 1;
+      background: var(--border-dark);
+      color: #ffffff;
+      padding: 0 10px;
+      border-radius: 4px;
+      user-select: none;
+    }
+
+    .digit-wheel-box {
+      height: 32px;
+      overflow: hidden;
+      display: block;
+      position: relative;
+    }
+
+    .digit-wheel {
+      display: flex;
+      flex-direction: column;
+      transform: translateY(0px);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform;
+    }
+
+    .digit-wheel span {
+      height: 32px;
+      line-height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .odometer-total {
+      height: 32px;
+      line-height: 32px;
+      display: flex;
+      align-items: center;
+      opacity: 0.85;
+    }
+
+    .footer-slide-title {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-secondary);
+      transition: opacity 0.25s ease;
+    }
+
+    /* Absolutely Centered Pagination Track */
+    .footer-center {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-card);
+      border: 2px solid var(--border-dark);
+      padding: 5px 12px;
+      border-radius: 30px;
+      box-shadow: 3px 3px 0px rgba(17, 21, 24, 0.12);
+    }
+
+    .nav-pill {
+      width: 32px;
+      height: 12px;
+      border-radius: 6px;
+      background: var(--border-color);
+      cursor: pointer;
+      position: relative;
+      transition: all 0.35s cubic-bezier(0.34, 1.45, 0.64, 1);
+    }
+
+    .nav-pill:hover {
+      background: var(--text-muted);
+    }
+
+    .nav-pill.visited {
+      background: var(--accent-green-border);
+    }
+
+    .nav-pill.active {
+      width: 54px;
+      background: var(--accent-green);
+      box-shadow: 0 0 10px rgba(10, 82, 51, 0.4);
+    }
+
+    /* Hover Tooltip */
+    .pill-tooltip {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(4px);
+      background: var(--border-dark);
+      color: #ffffff;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: all 0.2s ease;
+      z-index: 150;
+    }
+
+    .nav-pill:hover .pill-tooltip {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Right Navigation Arrow Buttons */
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-nav-arrow {
+      width: 42px;
+      height: 42px;
+      background: var(--bg-card);
+      border: 2px solid var(--border-dark);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 3px 3px 0px var(--border-dark);
+      transition: all 0.15s var(--transition-smooth);
+    }
+
+    .btn-nav-arrow:hover {
+      background: var(--accent-green-bg);
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0px var(--border-dark);
+    }
+
+    .btn-nav-arrow:active,
+    .btn-nav-arrow.btn-pressed {
+      transform: translate(2.5px, 2.5px);
+      box-shadow: 0px 0px 0px var(--border-dark);
+    }
+
+    .btn-nav-arrow svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--text-primary);
+    }
+
+    /* Ambient Canvas UI Background Layer */
+    #canvasUiParticles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.55;
+    }
+
+    /* Video Modal */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(17, 21, 24, 0.88);
+      backdrop-filter: blur(12px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      padding: 2rem;
+    }
+
+    .modal-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-window {
+      width: 100%;
+      max-width: 960px;
+      aspect-ratio: 16 / 9;
+      background: #000000;
+      border: 2px solid var(--border-dark);
+      border-radius: 8px;
+      box-shadow: 12px 12px 0px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: -45px;
+      right: 0;
+      background: var(--bg-card);
+      border: 2px solid var(--border-dark);
+      color: var(--text-primary);
+      font-family: var(--font-mono);
+      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      box-shadow: 3px 3px 0px var(--border-dark);
+    }
+
+    /* Mobile Fluid Layout Fallback (< 768px) */
+    @media (max-width: 768px) {
+      body {
+        overflow-y: auto;
+        height: auto;
+        min-height: 100dvh;
+      }
+
+      header.deck-header {
+        padding: 0 1.2rem;
+        height: 50px;
+      }
+
+      main.deck-stage {
+        padding: 1rem 1rem 5.5rem 1rem;
+        height: auto;
+      }
+
+      .slide-wrapper {
+        aspect-ratio: auto;
+        max-height: none;
+        height: auto;
+        box-shadow: 4px 4px 0px rgba(17, 21, 24, 0.18);
+      }
+
+      .slide-wrapper::before,
+      .slide-wrapper::after {
+        display: none;
+      }
+
+      .slide {
+        position: relative;
+        padding: 2rem 1.4rem;
+        height: auto;
+      }
+
+      .grid-2col-hero,
+      .grid-2col-equal,
+      .grid-3col,
+      .offer-package-grid,
+      .timeline-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .quote-title {
+        font-size: 1.95rem;
+      }
+
+      .footer-left {
+        min-width: auto;
+      }
+
+      .footer-slide-title {
+        display: none;
+      }
+
+      footer.deck-footer {
+        padding: 0 1.2rem;
+      }
+    }
+
+    /* Print / High-Res PDF Export Styles */
+    @media print {
+      @page {
+        size: 16in 9in;
+        margin: 0;
+      }
+      body {
+        background: #ffffff !important;
+        overflow: visible !important;
+        height: auto !important;
+      }
+      header.deck-header,
+      footer.deck-footer,
+      #canvasUiParticles,
+      .modal-backdrop,
+      .btn-play-trigger {
+        display: none !important;
+      }
+      main.deck-stage {
+        padding: 0 !important;
+      }
+      .slide-wrapper {
+        max-width: 100% !important;
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .slide {
+        display: flex !important;
+        opacity: 1 !important;
+        position: relative !important;
+        page-break-after: always;
+        break-inside: avoid;
+        height: 100vh !important;
+        padding: 4rem 5rem !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Particles Layer -->
+  <canvas id="canvasUiParticles"></canvas>
+
+  <!-- Header -->
+  <header class="deck-header">
+    <div class="brand-mark">
+      STUDIO VARAŽDIN
+      <span class="tag">101 MILIJUN // ČAKOVEC</span>
+    </div>
+    <div class="partner-tag">
+      DONOSITELJI ODLUKA: <strong>GRAD ČAKOVEC & MEĐIMURSKA ŽUPANIJA</strong>
+    </div>
+    <div class="deck-controls-top">
+      <button class="btn-action" id="btnToggleSound" title="Uključi / Isključi haptički zvuk (Shortcut: M)">
+        <span id="soundIcon">🔊</span> HAPTIKA
+      </button>
+      <button class="btn-action" id="btnToggleFullscreen" title="Cijeli zaslon (Shortcut: F)">
+        ⛶ ZASLON
+      </button>
+    </div>
+  </header>
+
+  <!-- 16:9 Fixed Deck Stage -->
+  <main class="deck-stage">
+    <div class="slide-wrapper">
+
+      <!-- SLIDE 1: Hero & Strategic Hook (101 Milijun Eura) -->
+      <section class="slide active" data-index="1" data-title="101 MILIJUN // Kronika gradilišta">
+        <div>
+          <div class="category-badge-row">
+            <span class="category-badge">Kadar 1: Otvaranje • Međimurski investicijski ciklus</span>
+            <span class="meta-coords">ČAKOVEC // 101 MILIJUN EURA PRORAČUNA</span>
+          </div>
+          <h1 class="quote-title">
+            101 MILIJUN EURA. <br>
+            <span class="outline-text">GRADILIŠTE KOJE MIJENJA</span> <span class="accent-text">SJEVER HRVATSKE.</span>
+          </h1>
+          <p class="quote-sub">Svečana sjednica traži filmski dokument vremena, a ne protokolarno čitanje tablica.</p>
+        </div>
+
+        <div class="grid-2col-hero">
+          <div class="punchy-narration">
+            <p>Proračun Grada Čakovca za 2026. godinu penje se na povijesnih 101 milijun eura dok gradonačelnica Ljerka Cividini i župan Matija Posavec vode najveći val gradnje u novijoj povijesti Međimurja. Umjesto statičnih govora pred platnom, stvaramo ritam koji drži dvoranu budnom.</p>
+            <p>Studio Varaždin uvodi brze FPV prelete kroz armaturu novih škola, spušta makro rasvjetu na arhivske povelje iz šesnaestog stoljeća i povezuje investicije u vizualnu cjelinu.</p>
+            
+            <div style="display: flex; gap: 10px; margin-top: 1.2rem; flex-wrap: wrap;">
+              <span class="category-badge" style="background: var(--bg-card-subtle); color: var(--text-primary); border-color: var(--border-color);">
+                1x 4K Master Vox-film (6 min)
+              </span>
+              <span class="category-badge" style="background: var(--bg-card-subtle); color: var(--text-primary); border-color: var(--border-color);">
+                3x 9:16 Vertikale (Škole • MTČ • Dravsko zlato)
+              </span>
+            </div>
+          </div>
+
+          <div class="media-frame-bold">
+            <div class="media-inner">
+              <img src="assets/01_cakovec_skola_fpv.jpg" alt="Gradilište OŠ Sjever u Čakovcu snimljeno iz zraka">
+              <div class="media-overlay-badge">KADAR 1 // FPV KROZ ARMATURE OŠ SJEVER (7.000 M2)</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 2: Narativna arhitektura i tehnologija (ZEISS Prime & FPV) -->
+      <section class="slide" data-index="2" data-title="ZEISS Prime & Podzemna kovnica">
+        <div>
+          <div class="category-badge-row">
+            <span class="category-badge">Kadar 2: Optika i arhiv • Stari grad i gradilišta</span>
+            <span class="meta-coords">ZEISS CINEMA PRIME // DUBINSKI 3D PARALLAX</span>
+          </div>
+          <h2 class="quote-title">
+            ZEISS PRIME I FPV: <br>
+            <span class="outline-text">OD TAJNE KOVNICE</span> <span class="accent-text">DO ARMATURA ŠKOLE</span>
+          </h2>
+          <p class="quote-sub">Spajamo podzemnu kovačnicu Zrinskih, industrijski MTČ i suvremena radilišta.</p>
+        </div>
+
+        <div class="grid-3col">
+          <div class="card-ck card-ck-green">
+            <span class="card-watermark">01</span>
+            <span class="card-num">POVELJA 1579.</span>
+            <h3>3D ARHIVSKI PARALLAX</h3>
+            <p>Originalnu povelju Juraja IV. Zrinskog iz 1579. godine o proglašenju slobodnog trgovišta Čakovca digitalno rastavljamo na dubinske slojeve s lebdećim voštanim pečatima.</p>
+            <div class="stream-indicator">
+              <span class="pill-stream pill-green">ARHIV MMČ</span>
+              <span class="pill-stream pill-dark">3D KAMERA</span>
+            </div>
+          </div>
+
+          <div class="card-ck card-ck-blue">
+            <span class="card-watermark">02</span>
+            <span class="card-num">FPV PRELETI</span>
+            <h3>PROLAZ KROZ ARMATURU</h3>
+            <p>Dron ulijeće kroz betonske rešetke nove OŠ Sjever na 7.000 četvornih metara i izbija iznad krovova Čakovca prema Dravi, uz zvukove strojeva ukomponirane u glazbu.</p>
+            <div class="stream-indicator">
+              <span class="pill-stream pill-blue">OŠ SJEVER</span>
+              <span class="pill-stream pill-dark">FPV SPEED</span>
+            </div>
+          </div>
+
+          <div class="card-ck card-ck-gold">
+            <span class="card-watermark">03</span>
+            <span class="card-num">ZRINSKI & POZOJ</span>
+            <h3>TAJNA KOVNICA NOVCA</h3>
+            <p>U podzemnim svodovima Starog grada oživljavamo tajnu kovnicu srebrnih nikoljdolaca Nikole i Juraja Zrinskog te legendu o zmaju Pozoju čiji rep leži pod crkvom sv. Nikole.</p>
+            <div class="stream-indicator">
+              <span class="pill-stream pill-gold">NIKOLJDOLCI</span>
+              <span class="pill-stream pill-green">STARI GRAD</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 3: Formati za sve kanale (1 Master 4K + 3 Vertikale) -->
+      <section class="slide" data-index="3" data-title="1 Master film + 3 Vertikale za mreže">
+        <div>
+          <div class="category-badge-row">
+            <span class="category-badge">Distribucija • Kino dvorana + TikTok & Reels</span>
+            <span class="meta-coords">MULTIKANALNA STRATEGIJA // DAN GRADA & ŽUPANIJE</span>
+          </div>
+          <h2 class="quote-title">
+            1 MASTER 4K FILM + <br>
+            <span class="outline-text">3 VERTIKALE ZA MREŽE</span>
+          </h2>
+          <p class="quote-sub">Jedno snimanje donosi središnji film za svečanu sjednicu i cjelogodišnji doseg na mrežama.</p>
+        </div>
+
+        <div class="grid-2col-equal">
+          <div class="punchy-narration">
+            <p><strong>4K Master Vox-film (6 min):</strong> Premijerno prikazivanje na Svečanoj sjednici povodom Dana Međimurske županije (30. travnja) i Dana grada Čakovca (29. svibnja) na velikom platnu Centra za kulturu.</p>
+            <p><strong>3x Modularne 9:16 vertikale:</strong>
+              <br>• <em>Vertikala 1: Školska revolucija</em> (28 milijuna eura NPOO ulaganja, OŠ Sjever, OŠ Ivanovec i jednosmjenska nastava).
+              <br>• <em>Vertikala 2: Novi MTČ kvart</em> (Preobrazba industrijske baštine u moderni zeleni urbani centar).
+              <br>• <em>Vertikala 3: Dravski zlatari i Porcijunkulovo</em> (Ispiranje 24-karatnog zlata uz povelju Marije Terezije iz 1776. godine).
+            </p>
+            <p><strong>Kinetički titlovi i spiker:</strong> Svaka vertikala dolazi s prilagođenom tipografijom i profesionalnim glasom snimljenim u studiju.</p>
+          </div>
+
+          <div class="media-frame-bold">
+            <div class="media-inner">
+              <img src="assets/03_dravski_zlatari_zlato.jpg" alt="Ispiranje 24-karatnog dravskog zlata">
+              <div class="media-overlay-badge">KADAR 3 // DRAVSKI ZLATARI • 24-KARATNO ZLATO (1776.)</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 4: Strateška i edukativna metodologija (Kinetička investicijska karta) -->
+      <section class="slide" data-index="4" data-title="Kinetička karta & MTČ revitalizacija">
+        <div>
+          <div class="category-badge-row">
+            <span class="category-badge">Metodologija • Kinetička investicijska karta Međimurja</span>
+            <span class="meta-coords">INFOGRAFIKA // RAZUMJIV PROSTORNI PREGLED</span>
+          </div>
+          <h2 class="quote-title">
+            KINETIČKA KARTA: <br>
+            <span class="outline-text">KAKO 101 MILIJUN</span> <span class="accent-text">POSTAJE JAVNO ZNANJE</span>
+          </h2>
+          <p class="quote-sub">Kompleksne proračunske stavke pretvaramo u razumljivu prostornu i ljudsku priču.</p>
+        </div>
+
+        <div class="grid-2col-equal">
+          <div class="punchy-narration">
+            <p><strong>3D Model investicija:</strong> Grafički tim raspoređuje 101 milijun eura na animiranu kartu Čakovca i Međimurja, povezujući točke od novih vrtića i kružnih tokova do kapitalnih školskih zgrada.</p>
+            <p><strong>Ljudski fokus:</strong> Umjesto suhoparnih postotaka, u središte kadra stavljamo radnika na skeli, učenika u novom kabinetu i obrtnika koji čuva dravsko zlatarstvo.</p>
+            <p><strong>Akustički dizajn:</strong> Zvučni zapis objedinjuje tutnjavu gradilišta s izvornim međimurskim melodijama izvedenim na živim gudačkim instrumentima.</p>
+          </div>
+
+          <div class="media-frame-bold">
+            <div class="media-inner">
+              <img src="assets/04_mtc_urbani_kvart.jpg" alt="Revitalizacija industrijskog kompleksa MTČ u Čakovcu">
+              <div class="media-overlay-badge">KADAR 4 // URBANISTIČKA PREOBRAZBA BIVŠEG MTČ-A</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 5: Komercijalna ponuda br. 2026-CK-03 -->
+      <section class="slide" data-index="5" data-title="Ponuda br. 2026-CK-03">
+        <div>
+          <div class="category-badge-row">
+            <span class="category-badge">Struktura ponude • Grad Čakovec & Međimurska županija</span>
+            <span class="meta-coords">PONUDA BR. 2026-CK-03 // 16.09.2026.</span>
+          </div>
+          <h2 class="quote-title">
+            TRANSPARENTNA <br>
+            <span class="outline-text">SPECIFIKACIJA ULAGANJA</span>
+          </h2>
+          <p class="quote-sub">Cjeloviti paket: 4K Master film za svečanu sjednicu i 3 vertikale za digitalne kanale.</p>
+        </div>
+
+        <div class="offer-package-grid">
+          <div class="offer-main-card">
+            <div class="offer-item-row">
+              <div>
+                <div class="offer-item-title">(1) Arhivska priprema, scenarij i režija</div>
+                <div class="offer-item-desc">Suradnja s MMČ-om na povelji iz 1579., detaljna knjiga snimanja, lokacijske dozvole, selekcija gradilišta i tekst spikera.</div>
+              </div>
+              <div class="offer-item-price">2.500,00 €</div>
+            </div>
+
+            <div class="offer-item-row">
+              <div>
+                <div class="offer-item-title">(2) Kinematografsko snimanje & FPV piloti</div>
+                <div class="offer-item-desc">4 snimajuća dana s RED/Sony FX kamerama, ZEISS Prime objektivima, filmskom rasvjetom i licenciranim FPV pilotima za gradilišta i Dravu.</div>
+              </div>
+              <div class="offer-item-price">6.000,00 €</div>
+            </div>
+
+            <div class="offer-item-row">
+              <div>
+                <div class="offer-item-title">(3) Postprodukcija, 3D parallax & vertikale</div>
+                <div class="offer-item-desc">Montaža 4K filma (6 min), 3 vertikale (9:16), 3D parallax povelje, kinetička karta 101 milijuna, kolor korekcija i profesionalni spiker.</div>
+              </div>
+              <div class="offer-item-price">5.500,00 €</div>
+            </div>
+          </div>
+
+          <div class="offer-total-box">
+            <div class="offer-total-header">
+              <span class="label">UKUPNO BEZ PDV-A</span>
+              <span class="price">14.000,00 €</span>
+            </div>
+            <div style="font-family: var(--font-mono); font-size: 0.9rem; font-weight: 700; color: var(--accent-green);">
+              PDV (25%): 3.500,00 € • Ukupno s PDV-om: 17.500,00 €
+            </div>
+            <div class="legal-clause">
+              • Vremenski i prostorno neograničena autorska prava za Grad Čakovec, Međimursku županiju, TZ Čakovec i MMČ.<br>
+              • Rok valjanosti ponude: 30 dana.<br>
+              • Uključena 2 kruga dorada u svim formatima.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 6: Terminski plan, Hero PDF download i Autorizacija -->
+      <section class="slide" data-index="6" data-title="Terminski plan & Autorizacija">
+        <div>
+          <div class="category-badge-row">
+            <span class="category-badge">Terminski plan & Autorizacija</span>
+            <span class="meta-coords">PREMIJERA ZA DAN ŽUPANIJE I DAN GRADA</span>
+          </div>
+          <h2 class="quote-title">
+            OD POTVRDE DO <br>
+            <span class="outline-text">PREMIJERE U 30 DANA</span>
+          </h2>
+          <p class="quote-sub">Jasne faze, precizni rokovi i jamstvo autorske kvalitete.</p>
+        </div>
+
+        <div class="timeline-grid">
+          <div class="milestone-card">
+            <span class="milestone-days">DANI 1 – 8</span>
+            <h4>FAZA 1: ARHIV & SCENARIJ</h4>
+            <p>Skeniranje povelje iz 1579. u MMČ-u, koordinacija s voditeljima radova na OŠ Sjever i usklađivanje knjige snimanja s protokolom.</p>
+          </div>
+
+          <div class="milestone-card">
+            <span class="milestone-days">DANI 9 – 18</span>
+            <h4>FAZA 2: TERENSKO SNIMANJE</h4>
+            <p>Četiri dana produkcije: FPV preleti gradilišta, podzemni svodovi Starog grada, bivši pogon MTČ-a i rukavci rijeke Drave.</p>
+          </div>
+
+          <div class="milestone-card">
+            <span class="milestone-days">DANI 19 – 30</span>
+            <h4>FAZA 3: MONTAŽA & PREMIJERA</h4>
+            <p>3D parallax animacija, kinetička karta 101 milijuna, kolor korekcija, snimanje spikera i predaja 4K mastera i 3 vertikale.</p>
+          </div>
+        </div>
+
+        <div class="slide-actions-grid">
+          <!-- Hero PDF Download Button -->
+          <a href="assets/Ponuda_Grad_Cakovec_Medimurje_2026_CK_03.pdf" download="Ponuda_Grad_Cakovec_Medimurje_2026_CK_03.pdf" target="_blank" class="btn-pdf-hero">
+            <div class="btn-pdf-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>
+            </div>
+            <div class="btn-pdf-content">
+              <span class="btn-pdf-tag">SLUŽBENA DOKUMENTACIJA // PDF A4</span>
+              <span class="btn-pdf-title">PREUZMI SLUŽBENU PDF PONUDU ↓</span>
+              <span class="btn-pdf-sub">Ponuda br. 2026-CK-03 • 14.000,00 € + PDV • Službeni troškovnik i stavke</span>
+            </div>
+          </a>
+
+          <!-- Hero Authorize CTA Button -->
+          <a class="btn-auth-hero" href="mailto:info@varazdin.studio?subject=Potvrda%20Ponude%202026-CK-03%20-%20Grad%20%C4%8Cakovec%20i%20Me%C4%91imurska%20%C5%BEupanija&body=Po%C5%A1tovani,%0D%0A%0D%0APotvr%C4%91ujemo%20prihva%C4%87anje%20Ponude%20br.%202026-CK-03%20za%20izradu%20kinematografskog%20Vox-filma%20i%203%20vertikale%20(101%20MILIJUN%20-%20Kronika%20me%C4%91imurskog%20gradili%C5%A1ta)%20u%20iznosu%20od%2014.000,00%20EUR%20%2B%20PDV.%0D%0A%0D%0ASrda%C4%8Dan%20pozdrav,">
+            <div class="btn-auth-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <div class="btn-auth-content">
+              <span class="btn-auth-tag">POTVRDA PROJEKTA // AUTORIZACIJA</span>
+              <span class="btn-auth-title">POTVRDI PONUDU (14.000 € + PDV) →</span>
+              <span class="btn-auth-sub">Rezervacija produkcijskih termina za Dan grada i Županije</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="issuer-footer-meta">
+          <strong>STUDIO VARAŽDIN</strong> (varazdin.studio • info@varazdin.studio • S. Vraza 10, Varaždin • OIB: 63287352089 • Kreativno vodstvo: Timon Terzić)
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Deck Footer with Fixed Center Glider and Odometer -->
+  <footer class="deck-footer">
+    <!-- Left Counter & Title -->
+    <div class="footer-left">
+      <div class="odometer-box">
+        <div class="digit-wheel-box">
+          <div class="digit-wheel" id="odometerDigit">
+            <span>01</span>
+            <span>02</span>
+            <span>03</span>
+            <span>04</span>
+            <span>05</span>
+            <span>06</span>
+          </div>
+        </div>
+        <span class="odometer-total">/ 06</span>
+      </div>
+      <div class="footer-slide-title" id="footerSlideTitle">101 MILIJUN // Kronika gradilišta</div>
+    </div>
+
+    <!-- Absolutely Centered Pagination Pills -->
+    <div class="footer-center" id="paginationTrack">
+      <div class="nav-pill active" data-target="1">
+        <div class="pill-tooltip">[ 01 ] 101 Milijun kronika</div>
+      </div>
+      <div class="nav-pill" data-target="2">
+        <div class="pill-tooltip">[ 02 ] ZEISS Prime & Kovnica</div>
+      </div>
+      <div class="nav-pill" data-target="3">
+        <div class="pill-tooltip">[ 03 ] Formati 4K & Vertikale</div>
+      </div>
+      <div class="nav-pill" data-target="4">
+        <div class="pill-tooltip">[ 04 ] Kinetička karta & MTČ</div>
+      </div>
+      <div class="nav-pill" data-target="5">
+        <div class="pill-tooltip">[ 05 ] Ponuda 2026-CK-03</div>
+      </div>
+      <div class="nav-pill" data-target="6">
+        <div class="pill-tooltip">[ 06 ] Terminski plan & CTA</div>
+      </div>
+    </div>
+
+    <!-- Right Controls -->
+    <div class="footer-right">
+      <button class="btn-nav-arrow" id="btnPrev" title="Prethodni slajd (←)">
+        <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      </button>
+      <button class="btn-nav-arrow" id="btnNext" title="Sljedeći slajd (→)">
+        <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </button>
+    </div>
+  </footer>
+
+  <!-- Video Modal -->
+  <div class="modal-backdrop" id="videoModal" onclick="closeVideoModal(event)">
+    <div class="modal-window" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeVideoModal()">✕ ZATVORI (ESC)</button>
+      <iframe id="videoIframe" width="100%" height="100%" src="" title="Video Player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <script>
+    /* =========================================================
+       DECK STATE & NAVIGATION CONTROLLER
+       ========================================================= */
+    const totalSlides = 6;
+    let currentSlide = 1;
+    let soundEnabled = true;
+    let audioCtx = null;
+
+    const slides = document.querySelectorAll('.slide');
+    const navPills = document.querySelectorAll('.nav-pill');
+    const odometerDigit = document.getElementById('odometerDigit');
+    const footerSlideTitle = document.getElementById('footerSlideTitle');
+    const btnPrev = document.getElementById('btnPrev');
+    const btnNext = document.getElementById('btnNext');
+
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+    }
+
+    function playMechanicalHaptic(direction = 'forward') {
+      if (!soundEnabled) return;
+      try {
+        initAudio();
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        const now = audioCtx.currentTime;
+        if (direction === 'forward') {
+          osc.frequency.setValueAtTime(1150, now);
+          osc.frequency.exponentialRampToValueAtTime(320, now + 0.032);
+        } else {
+          osc.frequency.setValueAtTime(850, now);
+          osc.frequency.exponentialRampToValueAtTime(300, now + 0.032);
+        }
+
+        gain.gain.setValueAtTime(0.08, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.035);
+
+        osc.start(now);
+        osc.stop(now + 0.036);
+      } catch (e) {}
+    }
+
+    function goToSlide(targetIndex, direction = null) {
+      if (targetIndex < 1 || targetIndex > totalSlides || targetIndex === currentSlide) return;
+
+      const prevSlide = currentSlide;
+      const navDir = direction || (targetIndex > currentSlide ? 'forward' : 'backward');
+      currentSlide = targetIndex;
+
+      // Audio Haptics
+      playMechanicalHaptic(navDir);
+
+      // Trigger Wind in Canvas UI Particles
+      if (window.triggerCanvasUiWind) {
+        window.triggerCanvasUiWind(navDir);
+      }
+
+      // Update Slide Display
+      slides.forEach(slide => {
+        const idx = parseInt(slide.getAttribute('data-index'), 10);
+        if (idx === currentSlide) {
+          slide.classList.add('active');
+          const title = slide.getAttribute('data-title');
+          footerSlideTitle.style.opacity = '0';
+          setTimeout(() => {
+            footerSlideTitle.textContent = title;
+            footerSlideTitle.style.opacity = '1';
+          }, 120);
+        } else {
+          slide.classList.remove('active');
+        }
+      });
+
+      // Update Nav Pills
+      navPills.forEach(pill => {
+        const idx = parseInt(pill.getAttribute('data-target'), 10);
+        if (idx === currentSlide) {
+          pill.classList.add('active');
+          pill.classList.remove('visited');
+        } else {
+          pill.classList.remove('active');
+          if (idx < currentSlide) {
+            pill.classList.add('visited');
+          } else {
+            pill.classList.remove('visited');
+          }
+        }
+      });
+
+      // Update Odometer Wheel
+      if (odometerDigit) {
+        const offset = (currentSlide - 1) * -32;
+        odometerDigit.style.transform = `translateY(${offset}px)`;
+      }
+
+      // Sync URL hash
+      history.replaceState(null, null, `#${currentSlide}`);
+    }
+
+    // Button Events
+    btnNext.addEventListener('click', () => {
+      if (currentSlide < totalSlides) goToSlide(currentSlide + 1, 'forward');
+      else goToSlide(1, 'forward');
+    });
+
+    btnPrev.addEventListener('click', () => {
+      if (currentSlide > 1) goToSlide(currentSlide - 1, 'backward');
+      else goToSlide(totalSlides, 'backward');
+    });
+
+    navPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        const target = parseInt(pill.getAttribute('data-target'), 10);
+        goToSlide(target);
+      });
+    });
+
+    // Keyboard Navigation & Tactile Screen Button Feedback
+    window.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        e.preventDefault();
+        btnNext.classList.add('btn-pressed');
+        if (currentSlide < totalSlides) goToSlide(currentSlide + 1, 'forward');
+        else goToSlide(1, 'forward');
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp' || e.key === 'Backspace') {
+        e.preventDefault();
+        btnPrev.classList.add('btn-pressed');
+        if (currentSlide > 1) goToSlide(currentSlide - 1, 'backward');
+        else goToSlide(totalSlides, 'backward');
+      } else if (e.key >= '1' && e.key <= '6') {
+        goToSlide(parseInt(e.key, 10));
+      } else if (e.key === 'f' || e.key === 'F') {
+        toggleFullscreen();
+      } else if (e.key === 'm' || e.key === 'M') {
+        toggleSound();
+      } else if (e.key === 'Escape') {
+        closeVideoModal();
+      }
+    });
+
+    window.addEventListener('keyup', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        btnNext.classList.remove('btn-pressed');
+      } else if (e.key === 'ArrowLeft' || e.key === 'Backspace') {
+        btnPrev.classList.remove('btn-pressed');
+      }
+    });
+
+    // Sound Toggle
+    function toggleSound() {
+      soundEnabled = !soundEnabled;
+      const icon = document.getElementById('soundIcon');
+      if (icon) {
+        icon.textContent = soundEnabled ? '🔊' : '🔇';
+      }
+    }
+    document.getElementById('btnToggleSound').addEventListener('click', toggleSound);
+
+    // Fullscreen Toggle
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    }
+    document.getElementById('btnToggleFullscreen').addEventListener('click', toggleFullscreen);
+
+    // Video Modal Handlers
+    function openVideoModal(videoId) {
+      const modal = document.getElementById('videoModal');
+      const iframe = document.getElementById('videoIframe');
+      iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&enablejsapi=1`;
+      modal.classList.add('open');
+    }
+
+    function closeVideoModal(e) {
+      const modal = document.getElementById('videoModal');
+      const iframe = document.getElementById('videoIframe');
+      iframe.src = '';
+      modal.classList.remove('open');
+    }
+
+    /* =========================================================
+       CANVAS UI AMBIENT PARTICLES (initParticleCanvas)
+       ========================================================= */
+    (function initParticleCanvas() {
+      const canvas = document.getElementById('canvasUiParticles');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let width = (canvas.width = window.innerWidth);
+      let height = (canvas.height = window.innerHeight);
+
+      window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      });
+
+      const particleCount = 55;
+      const particles = [];
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: Math.random() * 2 + 1,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
+          alpha: Math.random() * 0.35 + 0.15
+        });
+      }
+
+      window.triggerCanvasUiWind = function(direction) {
+        const force = direction === 'forward' ? 3.0 : -3.0;
+        particles.forEach(p => {
+          p.vx += force;
+        });
+      };
+
+      function render() {
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = '#0a5233';
+
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+
+          p.vx *= 0.96;
+          p.vy *= 0.96;
+
+          if (p.x < 0) p.x = width;
+          if (p.x > width) p.x = 0;
+          if (p.y < 0) p.y = height;
+          if (p.y > height) p.y = 0;
+
+          ctx.globalAlpha = p.alpha;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fill();
+        });
+
+        requestAnimationFrame(render);
+      }
+      render();
+    })();
+
+    // Initial Hash Check
+    if (window.location.hash) {
+      const h = parseInt(window.location.hash.replace('#', ''), 10);
+      if (h >= 1 && h <= totalSlides) {
+        goToSlide(h);
+      }
+    }
+  </script>
+</body>
+</html>

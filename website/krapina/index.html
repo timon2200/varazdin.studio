@@ -1,0 +1,1775 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TRI KULE NAD KRAPINČICOM — Filmska Produkcija | Krapinsko-zagorska županija & Grad Krapina</title>
+  
+  <!-- Typography Hierarchy: Unbounded, Syne, Plus Jakarta Sans, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,500;0,700;0,800;1,700&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Syne:wght@700;800;900&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Dark Luxury Fire & Stone Theme */
+      --bg-canvas: #121513;
+      --bg-card: #181d19;
+      --bg-card-subtle: #222923;
+      --bg-card-elevated: #28312a;
+      --text-primary: #f5efe3;
+      --text-secondary: #cbd5e1;
+      --text-muted: #8d9c90;
+      --border-dark: #2a342c;
+      --border-color: #38463c;
+      --border-light: rgba(245, 239, 227, 0.12);
+      
+      /* Fire & Ember Accents (Hušnjakovo) */
+      --accent-fire: #ea580c;
+      --accent-fire-bright: #f59e0b;
+      --accent-fire-glow: rgba(234, 88, 12, 0.22);
+      --accent-fire-border: rgba(245, 158, 11, 0.45);
+      --accent-amber: #d97706;
+      --accent-stone: #94a3b8;
+      
+      /* Typography */
+      --font-hero: 'Syne', sans-serif;
+      --font-display: 'Unbounded', sans-serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.35;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+      position: relative;
+    }
+
+    /* Ambient Particle Canvas */
+    #canvasUiParticles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Top Navigation Bar */
+    header.deck-header {
+      height: 52px;
+      background: rgba(18, 21, 19, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1.5px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      z-index: 100;
+      flex-shrink: 0;
+    }
+
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 0.92rem;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+    }
+
+    .brand-mark .tag {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 800;
+      background: var(--accent-fire);
+      color: #ffffff;
+      padding: 2px 8px;
+      border-radius: 3px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: 0 0 12px var(--accent-fire-glow);
+    }
+
+    .partner-tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      letter-spacing: 0.04em;
+    }
+
+    .partner-tag strong {
+      color: var(--text-secondary);
+    }
+
+    .deck-controls-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-action {
+      background: var(--bg-card-subtle);
+      border: 1.5px solid var(--border-color);
+      color: var(--text-primary);
+      padding: 5px 12px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      border-radius: 4px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s var(--transition-smooth);
+    }
+
+    .btn-action:hover {
+      background: var(--bg-card-elevated);
+      border-color: var(--accent-fire-bright);
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px var(--accent-fire-glow);
+    }
+
+    .btn-action:active {
+      transform: translateY(1px);
+    }
+
+    /* Main Deck Stage Container (16:9 Locked) */
+    main.deck-stage {
+      flex: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8rem 2rem 5.2rem 2rem;
+      overflow: hidden;
+      z-index: 10;
+    }
+
+    .slide-wrapper {
+      width: 100%;
+      max-width: 1440px;
+      aspect-ratio: 16 / 9;
+      max-height: calc(100vh - 130px);
+      background: var(--bg-card);
+      border: 2px solid var(--border-color);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(234, 88, 12, 0.15);
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Technical Corner Crosshairs */
+    .slide-wrapper::before,
+    .slide-wrapper::after {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      position: absolute;
+      z-index: 50;
+      pointer-events: none;
+      letter-spacing: 0.12em;
+    }
+    .slide-wrapper::before {
+      content: "[ + ] TRI KULE // KRAPINA.STUDIO";
+      top: 1.1rem;
+      left: 1.4rem;
+    }
+    .slide-wrapper::after {
+      content: "KZŽ // GRAD KRAPINA [ + ]";
+      bottom: 1.1rem;
+      right: 1.4rem;
+    }
+
+    /* Slide Base Styles */
+    .slide {
+      display: none;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 2.8rem 4rem;
+      flex-direction: column;
+      justify-content: space-between;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      overflow: hidden;
+      background: var(--bg-card);
+    }
+
+    .slide.active {
+      display: flex;
+      opacity: 1;
+      position: relative;
+    }
+
+    /* Staggered Element Entrance */
+    .slide.active .quote-title {
+      animation: slideReveal 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.02s both;
+    }
+    .slide.active .quote-sub,
+    .slide.active .punchy-narration {
+      animation: slideReveal 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.06s both;
+    }
+    .slide.active .category-badge-row,
+    .slide.active .grid-3col,
+    .slide.active .offer-package-grid,
+    .slide.active .timeline-grid {
+      animation: slideReveal 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+    }
+    .slide.active .media-frame-bold,
+    .slide.active .card-fire {
+      animation: slideReveal 0.48s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+    }
+
+    @keyframes slideReveal {
+      0% {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Header & Badge Elements */
+    .category-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 0.5rem;
+    }
+
+    .category-badge {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      background: var(--accent-fire-glow);
+      color: var(--accent-fire-bright);
+      border: 1px solid var(--accent-fire-border);
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .category-badge::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-fire);
+      box-shadow: 0 0 6px var(--accent-fire-bright);
+    }
+
+    .meta-coords {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-weight: 800;
+      letter-spacing: 0.05em;
+    }
+
+    .quote-title {
+      font-family: var(--font-hero);
+      font-size: clamp(2rem, 3.6vw, 3.4rem);
+      font-weight: 900;
+      line-height: 0.96;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      margin-bottom: 0.55rem;
+    }
+
+    .quote-title .outline-text {
+      color: transparent;
+      -webkit-text-stroke: 1.5px var(--text-secondary);
+    }
+
+    .quote-title .accent-text {
+      color: var(--accent-fire-bright);
+    }
+
+    .quote-sub {
+      font-family: var(--font-sans);
+      font-size: clamp(1.05rem, 1.3vw, 1.35rem);
+      font-weight: 700;
+      color: var(--text-secondary);
+      margin-bottom: 0.9rem;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+    }
+
+    .punchy-narration {
+      font-size: clamp(0.95rem, 1.1vw, 1.12rem);
+      line-height: 1.52;
+      color: var(--text-secondary);
+      max-width: 680px;
+      font-weight: 500;
+    }
+
+    .punchy-narration p {
+      margin-bottom: 0.8rem;
+    }
+
+    .punchy-narration p strong {
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .punchy-narration p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Grid Layouts */
+    .grid-2col-hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 2.5rem;
+      height: 100%;
+      align-items: center;
+    }
+
+    .grid-2col-equal {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      height: 100%;
+      align-items: center;
+    }
+
+    .grid-3col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.4rem;
+      height: 100%;
+      align-items: stretch;
+      margin-top: 0.6rem;
+    }
+
+    /* Cards */
+    .card-fire {
+      background: var(--bg-card-subtle);
+      border: 1.5px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1.5rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+      transition: all 0.25s var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-fire-orange { border-top: 4px solid var(--accent-fire); }
+    .card-fire-amber { border-top: 4px solid var(--accent-fire-bright); }
+    .card-fire-stone { border-top: 4px solid var(--accent-stone); }
+
+    .card-watermark {
+      position: absolute;
+      right: 1rem;
+      top: 0.6rem;
+      font-family: var(--font-hero);
+      font-size: 3.6rem;
+      font-weight: 900;
+      color: rgba(245, 239, 227, 0.04);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .card-fire:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent-fire-bright);
+      box-shadow: 0 10px 25px rgba(234, 88, 12, 0.15);
+      background: var(--bg-card-elevated);
+    }
+
+    .card-fire .card-num {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--accent-fire-bright);
+      background: var(--accent-fire-glow);
+      padding: 3px 8px;
+      border-radius: 3px;
+      display: inline-block;
+      width: fit-content;
+      margin-bottom: 0.7rem;
+      border: 1px solid var(--accent-fire-border);
+      letter-spacing: 0.04em;
+    }
+
+    .card-fire h3 {
+      font-family: var(--font-hero);
+      font-size: clamp(1.2rem, 1.45vw, 1.55rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    .card-fire p {
+      font-size: clamp(0.92rem, 1.05vw, 1.05rem);
+      line-height: 1.5;
+      color: var(--text-secondary);
+      flex: 1;
+      font-weight: 500;
+    }
+
+    .card-fire p strong {
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .card-fire .stream-indicator {
+      display: flex;
+      gap: 6px;
+      margin-top: 1rem;
+      padding-top: 0.8rem;
+      border-top: 1px dashed var(--border-color);
+      flex-wrap: wrap;
+    }
+
+    .pill-tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 3px;
+      border: 1px solid var(--border-color);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .pill-fire { background: var(--accent-fire-glow); color: var(--accent-fire-bright); border-color: var(--accent-fire-border); }
+    .pill-stone { background: rgba(148, 163, 184, 0.12); color: var(--accent-stone); border-color: rgba(148, 163, 184, 0.3); }
+
+    /* Media Frames */
+    .media-frame-bold {
+      background: var(--bg-card-subtle);
+      border: 2px solid var(--border-color);
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      max-height: 420px;
+    }
+
+    .media-frame-bold .media-inner {
+      flex: 1;
+      position: relative;
+      background: #0d100e;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .media-frame-bold img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--transition-smooth);
+    }
+
+    .media-frame-bold:hover img {
+      transform: scale(1.03);
+    }
+
+    .media-overlay-badge {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 800;
+      background: rgba(18, 21, 19, 0.88);
+      backdrop-filter: blur(8px);
+      color: var(--text-primary);
+      padding: 4px 10px;
+      border-radius: 3px;
+      border: 1px solid var(--border-color);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* Offer Package Grid (Slide 5) */
+    .offer-package-grid {
+      display: grid;
+      grid-template-columns: 1.45fr 1fr;
+      gap: 1.8rem;
+      margin-top: 0.6rem;
+      align-items: stretch;
+    }
+
+    .offer-main-card {
+      background: var(--bg-card-subtle);
+      border: 1.5px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1.3rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.9rem;
+    }
+
+    .offer-item-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .offer-item-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .offer-item-title {
+      font-family: var(--font-sans);
+      font-weight: 800;
+      font-size: 0.98rem;
+      color: var(--text-primary);
+      margin-bottom: 0.2rem;
+    }
+
+    .offer-item-desc {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .offer-item-price {
+      font-family: var(--font-mono);
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--accent-fire-bright);
+      white-space: nowrap;
+      padding-top: 2px;
+    }
+
+    .offer-total-box {
+      background: linear-gradient(145deg, #1f2721 0%, #151a16 100%);
+      border: 1.5px solid var(--accent-fire-border);
+      border-radius: 8px;
+      padding: 1.6rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .offer-total-header .label {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .offer-total-header .price {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 2.7vw, 2.8rem);
+      font-weight: 900;
+      color: var(--accent-fire-bright);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .offer-total-header .price-sub {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      display: block;
+      margin-bottom: 1.2rem;
+    }
+
+    .legal-clause {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.48;
+      border-top: 1px solid var(--border-color);
+      padding-top: 0.9rem;
+    }
+
+    /* Timeline Grid (Slide 6) */
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.1rem;
+      margin: 0.6rem 0 1rem 0;
+    }
+
+    .milestone-card {
+      background: var(--bg-card-subtle);
+      border: 1.5px solid var(--border-color);
+      border-radius: 6px;
+      padding: 1.1rem 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      position: relative;
+    }
+
+    .milestone-card:hover {
+      border-color: var(--accent-fire-bright);
+      background: var(--bg-card-elevated);
+    }
+
+    .milestone-days {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 800;
+      color: var(--accent-fire-bright);
+      background: var(--accent-fire-glow);
+      padding: 2px 7px;
+      border-radius: 3px;
+      display: inline-block;
+      width: fit-content;
+      margin-bottom: 0.5rem;
+      border: 1px solid var(--accent-fire-border);
+    }
+
+    .milestone-card h4 {
+      font-family: var(--font-hero);
+      font-size: 0.98rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+      color: var(--text-primary);
+    }
+
+    .milestone-card p {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.42;
+    }
+
+    /* Dual Hero CTA Actions (Slide 6) */
+    .slide-actions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.4rem;
+      margin-top: 0.5rem;
+    }
+
+    .btn-pdf-hero,
+    .btn-auth-hero {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 1rem 1.4rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.25s var(--transition-smooth);
+      border: 2px solid var(--border-color);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .btn-pdf-hero {
+      background: var(--bg-card-subtle);
+      border-color: var(--border-color);
+      color: var(--text-primary);
+    }
+
+    .btn-pdf-hero:hover {
+      background: var(--bg-card-elevated);
+      border-color: var(--accent-stone);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(203, 213, 225, 0.15);
+    }
+
+    .btn-auth-hero {
+      background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+      border-color: #f97316;
+      color: #ffffff;
+    }
+
+    .btn-auth-hero:hover {
+      background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(234, 88, 12, 0.4);
+    }
+
+    .btn-pdf-icon,
+    .btn-auth-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: rgba(0, 0, 0, 0.25);
+    }
+
+    .btn-pdf-content,
+    .btn-auth-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .btn-pdf-tag,
+    .btn-auth-tag {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.85;
+    }
+
+    .btn-pdf-title,
+    .btn-auth-title {
+      font-family: var(--font-hero);
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+
+    .btn-pdf-sub,
+    .btn-auth-sub {
+      font-size: 0.76rem;
+      opacity: 0.8;
+    }
+
+    .issuer-footer-meta {
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 0.6rem;
+      letter-spacing: 0.03em;
+    }
+
+    .issuer-footer-meta strong {
+      color: var(--text-secondary);
+    }
+
+    /* Deck Footer with Fixed Centered Glider & Odometer */
+    footer.deck-footer {
+      height: 58px;
+      background: rgba(18, 21, 19, 0.95);
+      backdrop-filter: blur(16px);
+      border-top: 1.5px solid var(--border-color);
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      z-index: 100;
+    }
+
+    /* Left Odometer & Slide Title */
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      min-width: 280px;
+    }
+
+    .odometer-box {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      font-family: var(--font-mono);
+      font-weight: 800;
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-color);
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    .digit-wheel-box {
+      height: 20px;
+      overflow: hidden;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .digit-wheel {
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.35s var(--transition-smooth);
+    }
+
+    .digit-wheel span {
+      height: 20px;
+      line-height: 20px;
+      font-size: 0.95rem;
+      color: var(--accent-fire-bright);
+      text-align: center;
+    }
+
+    .odometer-total {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .footer-slide-title {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      letter-spacing: 0.02em;
+      transition: opacity 0.2s ease;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 280px;
+    }
+
+    /* Absolutely Centered Pagination Glider Track */
+    .footer-center {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-color);
+      padding: 6px 10px;
+      border-radius: 20px;
+    }
+
+    .nav-pill {
+      width: 28px;
+      height: 7px;
+      border-radius: 4px;
+      background: rgba(245, 239, 227, 0.2);
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s var(--transition-smooth);
+    }
+
+    .nav-pill:hover {
+      background: rgba(245, 158, 11, 0.5);
+    }
+
+    .nav-pill.active {
+      width: 52px;
+      background: var(--accent-fire);
+      box-shadow: 0 0 10px var(--accent-fire-glow);
+    }
+
+    .nav-pill.visited {
+      background: rgba(245, 158, 11, 0.3);
+    }
+
+    .pill-tooltip {
+      position: absolute;
+      bottom: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%) translateY(4px);
+      background: #1f2621;
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: all 0.2s var(--transition-smooth);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      z-index: 120;
+    }
+
+    .nav-pill:hover .pill-tooltip {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Right Navigation Controls */
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-nav-arrow {
+      width: 36px;
+      height: 36px;
+      background: var(--bg-card-subtle);
+      border: 1.5px solid var(--border-color);
+      color: var(--text-primary);
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s var(--transition-smooth);
+    }
+
+    .btn-nav-arrow svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    .btn-nav-arrow:hover {
+      background: var(--bg-card-elevated);
+      border-color: var(--accent-fire-bright);
+      color: var(--accent-fire-bright);
+      transform: translateY(-1px);
+    }
+
+    .btn-nav-arrow:active,
+    .btn-nav-arrow.btn-pressed {
+      transform: translate(2px, 2px);
+      background: var(--accent-fire);
+      color: #ffffff;
+    }
+
+    /* Video Modal */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-window {
+      width: 100%;
+      max-width: 960px;
+      aspect-ratio: 16 / 9;
+      background: #000000;
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+      overflow: hidden;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    /* Responsive Styles for Mobile (< 768px) */
+    @media (max-width: 768px) {
+      body {
+        overflow-y: auto;
+        height: auto;
+      }
+      header.deck-header {
+        padding: 0 1rem;
+        height: 48px;
+      }
+      .partner-tag {
+        display: none;
+      }
+      main.deck-stage {
+        padding: 1rem 0.8rem 5rem 0.8rem;
+      }
+      .slide-wrapper {
+        aspect-ratio: auto;
+        max-height: none;
+        height: auto;
+      }
+      .slide {
+        position: relative;
+        display: flex !important;
+        opacity: 1 !important;
+        padding: 2rem 1.2rem;
+        border-bottom: 2px solid var(--border-color);
+        height: auto;
+      }
+      .quote-title {
+        font-size: 1.8rem;
+      }
+      .grid-2col-hero,
+      .grid-2col-equal,
+      .grid-3col,
+      .offer-package-grid,
+      .timeline-grid,
+      .slide-actions-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+      footer.deck-footer {
+        display: none;
+      }
+    }
+
+    /* Print Stylesheet for 16:9 PDF Export */
+    @media print {
+      body {
+        background: #121513 !important;
+        color: #f5efe3 !important;
+        overflow: visible;
+      }
+      header.deck-header,
+      footer.deck-footer,
+      #canvasUiParticles {
+        display: none !important;
+      }
+      main.deck-stage {
+        padding: 0 !important;
+      }
+      .slide-wrapper {
+        border: none !important;
+        box-shadow: none !important;
+        max-width: 100% !important;
+      }
+      .slide {
+        display: flex !important;
+        opacity: 1 !important;
+        position: relative !important;
+        page-break-after: always;
+        height: 100vh !important;
+        aspect-ratio: 16 / 9;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Particle Canvas (Fire Embers & Sparks) -->
+  <canvas id="canvasUiParticles"></canvas>
+
+  <!-- Top App Navigation Bar -->
+  <header class="deck-header">
+    <div class="brand-mark">
+      <span>STUDIO VARAŽDIN</span>
+      <span class="tag">PITCH DECK</span>
+    </div>
+
+    <div class="partner-tag">
+      <span>KLIJENT:</span>
+      <strong>KRAPINSKO-ZAGORSKA ŽUPANIJA & GRAD KRAPINA</strong>
+    </div>
+
+    <div class="deck-controls-top">
+      <button class="btn-action" id="btnToggleSound" title="Zvučna haptika (M)">
+        <span id="soundIcon">🔊</span> HAPTIKA [M]
+      </button>
+      <button class="btn-action" id="btnToggleFullscreen" title="Puni zaslon (F)">
+        ⛶ FULLSCREEN [F]
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Deck Stage Container (16:9 Locked) -->
+  <main class="deck-stage">
+    <div class="slide-wrapper">
+
+      <!-- SLIDE 1: Hrabra teza i kontrast (Čeh, Leh, Meh & Koštana vatra) -->
+      <section class="slide active" data-index="1" data-title="Tri kule & Koštana vatra">
+        <div>
+          <div class="category-badge-row">
+            <span class="category-badge">Autorski koncept • Filmska dramaturgija</span>
+            <span class="meta-coords">KRAPINA // 130.000 GODINA OGNJIŠTA // 3 KULE</span>
+          </div>
+          <h1 class="quote-title">
+            TRI KULE NAD KRAPINČICOM. <br>
+            <span class="outline-text">MIT O ČEHU, LEHU I MEHU</span> <span class="accent-text">I KOŠTANA VATRA.</span>
+          </h1>
+          <p class="quote-sub">Koncept mitsko-povijesnog igrano-dokumentarnog filma i vox-formata za Krapinsko-zagorsku županiju i Grad Krapinu.</p>
+        </div>
+
+        <div class="grid-2col-hero">
+          <div class="punchy-narration">
+            <p>Klasični promotivni video prikazuje zgrade odozgo i ponavlja općenite poruke. Na utvrdama Šabac i Psarče tri brata Čeh, Leh i Meh kovali su plan o podjeli slavenskoga svijeta dok je u podnožju tekla Krapinčica. Zazidana sestra Vilina i crna kraljica Barbara Celjska čuvaju strme prolaze u stijeni.</p>
+            <p>Kamera se spušta u vapnenački usjek gdje je 23. kolovoza 1899. Dragutin Gorjanović-Kramberger pronašao 900 fosilnih kostiju i dokazao vatru staru 130.000 godina. Ognjište osvjetljava prahistorijski zloduh i pretvara arheološko nalazište u živu kinematografsku scenu.</p>
+            
+            <div style="display: flex; gap: 8px; margin-top: 1.2rem; flex-wrap: wrap;">
+              <span class="category-badge" style="background: var(--bg-card-subtle); color: var(--text-primary); border-color: var(--border-color);">
+                1x Master film (15 min)
+              </span>
+              <span class="category-badge" style="background: var(--bg-card-subtle); color: var(--text-primary); border-color: var(--border-color);">
+                1x Vox film za Svečanu sjednicu
+              </span>
+              <span class="category-badge" style="background: var(--bg-card-subtle); color: var(--text-primary); border-color: var(--border-color);">
+                3x 9:16 Vertikale
+              </span>
+            </div>
+          </div>
+
+          <div class="media-frame-bold">
+            <div class="media-inner">
+              <img src="assets/01_krapina_ceh_leh_meh.jpg" alt="Čeh, Leh i Meh na stijeni iznad Krapinčice">
+              <div class="media-overlay-badge">KADAR 1 // TRI BRATA NA VRHU PSARČA</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 2: Narativna arhitektura i tehnologija (ZEISS Prime, FPV, 3D Parallax) -->
+      <section class="slide" data-index="2" data-title="Kinematografska tehnologija & FPV">
+        <div>
+          <div class="category-badge-row">
+            <span class="category-badge">Tehnička arhitektura • Kinematografija</span>
+            <span class="meta-coords">ZEISS SUPREME PRIME // FPV DINAMIKA // 3D ARHIVA</span>
+          </div>
+          <h2 class="quote-title">
+            TEHNOLOGIJA ZA NOĆ I STIJENU: <br>
+            <span class="outline-text">ZEISS OPTIKA, FPV PROLAZI</span> <span class="accent-text">I 3D PARALLAX.</span>
+          </h2>
+          <p class="quote-sub">Filmska oprema koja podnosi mrak špilje, strme litice i skeniranje povijesnih dokumenata.</p>
+        </div>
+
+        <div class="grid-3col">
+          <div class="card-fire card-fire-orange">
+            <span class="card-watermark">01</span>
+            <span class="card-num">OPTIKA // T1.5</span>
+            <h3>ZEISS SUPREME PRIME</h3>
+            <p>Filmska stakla s otvorom blende T1.5 snimaju pri prirodnom svjetlu baklji i vatre bez digitalnog šuma. Krambergerova pećina na Hušnjakovu dobiva duboke sjene i topao sjaj žara na vapnencu.</p>
+            <div class="stream-indicator">
+              <span class="pill-tag pill-fire">T1.5 CINEMA LENS</span>
+              <span class="pill-tag pill-stone">LOW-LIGHT 4K</span>
+            </div>
+          </div>
+
+          <div class="card-fire card-fire-amber">
+            <span class="card-watermark">02</span>
+            <span class="card-num">FPV DINAMIKA</span>
+            <h3>AKROBATSKI FPV PROLAZ</h3>
+            <p>FPV dron probija krošnje iznad tjesnaca Krapinčice brzinom od 80 kilometara na sat. Let spaja utvrdu Šabac sa zidinama Psarča i završava u dvorištu Muzeja krapinskih neandertalaca.</p>
+            <div class="stream-indicator">
+              <span class="pill-tag pill-fire">80 KM/H SPEED</span>
+              <span class="pill-tag pill-stone">PROXIMITY FLIGHT</span>
+            </div>
+          </div>
+
+          <div class="card-fire card-fire-stone">
+            <span class="card-watermark">03</span>
+            <span class="card-num">DOKUMENTI // 3D</span>
+            <h3>3D PARALLAX ARHIVA</h3>
+            <p>Gajev pravopis iz 1830. godine i Krambergerovi dnevnici iz 1899. pretvaraju se u višeslojni 3D prostor. Kamera prolazi kroz slojeve papira, rukopisa i crteža fosilne anatomije.</p>
+            <div class="stream-indicator">
+              <span class="pill-tag pill-stone">ILIRSKI POKRET 1830.</span>
+              <span class="pill-tag pill-fire">GORJANOVIĆ 1899.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 3: Format Matrix (1 Master 4K + 1 Vox film + 3 Vertikale) -->
+      <section class="slide" data-index="3" data-title="Formati & Višekanalna distribucija">
+        <div>
+          <div class="category-badge-row">
+            <span class="category-badge">Format Matrix • Višekanalna distribucija</span>
+            <span class="meta-coords">15 MIN KINO MASTER + 7 MIN VOX + 3 VERTIKALE</span>
+          </div>
+          <h2 class="quote-title">
+            DVA GLAVNA FILMA + <br>
+            <span class="outline-text">3 VERTIKALE ZA MREŽE</span> <span class="accent-text">ZA SVE KANALE.</span>
+          </h2>
+          <p class="quote-sub">Jedinstvena produkcija za svečane dvorane, filmske festivale i digitalne mreže.</p>
+        </div>
+
+        <div class="grid-2col-equal">
+          <div class="punchy-narration">
+            <p><strong>Format 2: Mitsko-povijesni igrano-dokumentarni film (15 min, 4K):</strong> Igrano-dokumentarni film donosi priču o Čehu, Lehu i Mehu, Barbari Celjskoj, Hušnjakovu i Ljudevitu Gaju. Film ide na međunarodne festivale i u stalni postav Muzeja krapinskih neandertalaca.</p>
+            <p><strong>Format 1: Vox-film za Svečanu sjednicu (5–7 min, 4K):</strong> Film za Dan županije (23. travnja) i Dan grada (6. prosinca) povezuje povijest s investicijama. Proračun Grada Krapine za 2026. godinu od 32,5 milijuna eura gradi novu zgradu OŠ Ljudevit Gaj, dvoranu Cesarca, SRC Podgora i linijski prijevoz.</p>
+            <p><strong>3x 9:16 Vertikale (30–45 s):</strong>
+              <br>• <em>Epizoda 1: Vatra Hušnjakova</em> (Gorjanović-Kramberger i 130.000 godina staro ognjište)
+              <br>• <em>Epizoda 2: Tri kule</em> (Čeh, Leh, Meh i zazidana sestra Vilina)
+              <br>• <em>Epizoda 3: Gajeva budnica</em> (Krapina 1830. i stvaranje modernog jezika)
+            </p>
+          </div>
+
+          <div class="media-frame-bold">
+            <div class="media-inner">
+              <img src="assets/03_krapina_tri_kule_sabac.jpg" alt="Utvrde Šabac i Psarče iznad tjesnaca">
+              <div class="media-overlay-badge">KADAR 2 // KRAPINSKI TJESNAC I TRI KULE U SUMRAK</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 4: Strateška i edukativna metodologija -->
+      <section class="slide" data-index="4" data-title="Strateško sidro & Donositelji odluka">
+        <div>
+          <div class="category-badge-row">
+            <span class="category-badge">Strateški utjecaj • Donositelji odluka</span>
+            <span class="meta-coords">DAN ŽUPANIJE // DAN GRADA // TJEDAN KAJKAVSKE KULTURE</span>
+          </div>
+          <h2 class="quote-title">
+            STRATEŠKO SIDRO: <br>
+            <span class="outline-text">PROTOKOL, MUZEJI I</span> <span class="accent-text">TJEDAN KAJKAVSKE KULTURE.</span>
+          </h2>
+          <p class="quote-sub">Filmski materijal usklađen s protokolarnim datumima i radom javnih ustanova.</p>
+        </div>
+
+        <div class="grid-3col">
+          <div class="card-fire card-fire-orange">
+            <span class="card-watermark">01</span>
+            <span class="card-num">PROTOKOL</span>
+            <h3>ŽUPANIJA & GRAD</h3>
+            <p>Župan Željko Kolar i gradonačelnik Zoran Gregurović otvaraju Dan županije 23. travnja i Dan grada 6. prosinca filmom koji drži pažnju uzvanika. Na velikom kino platnu smjenjuju se kadrovi zagorskih utvrda i novih gradilišta.</p>
+            <div class="stream-indicator">
+              <span class="pill-tag pill-fire">23. TRAVNJA</span>
+              <span class="pill-tag pill-stone">6. PROSINCA</span>
+            </div>
+          </div>
+
+          <div class="card-fire card-fire-amber">
+            <span class="card-watermark">02</span>
+            <span class="card-num">PROMOCIJA</span>
+            <h3>TURIZAM & KAJKAVŠTINA</h3>
+            <p>Direktorica TZ KZŽ Sanja Škrinjar i direktorica TZ Krapina Nedeljka Vodolšak plasiraju video materijale tijekom rujanskog Tjedna kajkavske kulture. Kratki formati prenose dijalekt, glazbenu baštinu i utvrde na digitalne kanale.</p>
+            <div class="stream-indicator">
+              <span class="pill-tag pill-fire">RUJAN // KAJKAVŠTINA</span>
+              <span class="pill-tag pill-stone">REELS & TIKTOK</span>
+            </div>
+          </div>
+
+          <div class="card-fire card-fire-stone">
+            <span class="card-watermark">03</span>
+            <span class="card-num">EDUKACIJA</span>
+            <h3>MUZEJI HRVATSKOG ZAGORJA</h3>
+            <p>Ravnatelj Jurica Sabol uvodi 4K igrano-dokumentarni film u edukativne programe Muzeja krapinskih neandertalaca. Učenici osnovnih i srednjih škola prate arheološka i povijesna poglavlja kroz vrhunski vizualni zapis.</p>
+            <div class="stream-indicator">
+              <span class="pill-tag pill-stone">HUŠNJAKOVO POSTAV</span>
+              <span class="pill-tag pill-fire">ŠKOLSKI SAT</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 5: Komercijalni paketi i transparentna ponuda br. 2026-KR-05 -->
+      <section class="slide" data-index="5" data-title="Komercijalna ponuda br. 2026-KR-05">
+        <div>
+          <div class="category-badge-row">
+            <span class="category-badge">Struktura ponude • Ponuda br. 2026-KR-05</span>
+            <span class="meta-coords">KRAPINSKO-ZAGORSKA ŽUPANIJA & GRAD KRAPINA</span>
+          </div>
+          <h2 class="quote-title">
+            TRANSPARENTNA RAŠČLAMBA: <br>
+            <span class="outline-text">PRODUKCIJA TRI KULE</span> <span class="accent-text">+ VOX FILM.</span>
+          </h2>
+          <p class="quote-sub">Fiksna cijena bez skrivenih troškova za dva master filma i tri vertikale.</p>
+        </div>
+
+        <div class="offer-package-grid">
+          <div class="offer-main-card">
+            <div class="offer-item-row">
+              <div>
+                <div class="offer-item-title">(1) Dramaturgija, scenarij i arhivsko istraživanje</div>
+                <div class="offer-item-desc">Knjiga snimanja, arhivski rad na mitu o Čehu, Lehu i Mehu, Krambergerovim spisima i Gajevim rukopisima, casting glumaca i koordinacija.</div>
+              </div>
+              <div class="offer-item-price">3.000,00 €</div>
+            </div>
+
+            <div class="offer-item-row">
+              <div>
+                <div class="offer-item-title">(2) Filmsko snimanje (4 snimajuća dana)</div>
+                <div class="offer-item-desc">Glumačka postava u povijesnim kostimima, 4K filmska kamera, ZEISS Prime objektivi, FPV dron, filmska rasvjeta i snimanje na lokacijama Hušnjakovo, Šabac, Psarče i Krapina.</div>
+              </div>
+              <div class="offer-item-price">6.500,00 €</div>
+            </div>
+
+            <div class="offer-item-row">
+              <div>
+                <div class="offer-item-title">(3) Postprodukcija 15-minutnog igrano-dokumentarnog filma</div>
+                <div class="offer-item-desc">Montaža, 3D parallax karata i dokumenata, kolor korekcija, autorska glazba, zvučni dizajn i engleski titlovi za međunarodnu distribuciju.</div>
+              </div>
+              <div class="offer-item-price">4.500,00 €</div>
+            </div>
+
+            <div class="offer-item-row">
+              <div>
+                <div class="offer-item-title">(4) Vox-film za Svečanu sjednicu + 3x 9:16 vertikale</div>
+                <div class="offer-item-desc">Snimanje izjava čelnika i građana, prikaz gradskih investicija (OŠ Ljudevit Gaj, dvorana Cesarca, SRC Podgora), animacija grafika i montaža vertikala.</div>
+              </div>
+              <div class="offer-item-price">2.000,00 €</div>
+            </div>
+          </div>
+
+          <div class="offer-total-box">
+            <div class="offer-total-header">
+              <span class="label">UKUPNO ZA PLAĆANJE</span>
+              <span class="price">16.000,00 €</span>
+              <span class="price-sub">+ PDV (Ponuda br. 2026-KR-05)</span>
+            </div>
+            <div class="legal-clause">
+              • Ponuda broj: 2026-KR-05 • 16. rujna 2026.<br>
+              • Vremenski i prostorno neograničena autorska prava za Krapinsko-zagorsku županiju, Grad Krapinu, TZ KZŽ, TZ Krapina i Muzeje Hrvatskog zagorja.<br>
+              • Isporuka mastera u 4K rezoluciji (ProRes 422HQ i H.265).<br>
+              • Rok valjanosti ponude: 30 dana.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 6: Terminski plan & Autorizacija -->
+      <section class="slide" data-index="6" data-title="Terminski plan & Autorizacija">
+        <div>
+          <div class="category-badge-row">
+            <span class="category-badge">Terminski plan & Autorizacija</span>
+            <span class="meta-coords">ISPORUKA U 45 DANA // HERO CTA</span>
+          </div>
+          <h2 class="quote-title">
+            OD ODOBRENJA DO PREMIJERE: <br>
+            <span class="outline-text">PRODUKCIJA U 4 FAZE</span> <span class="accent-text">ZA DAN ŽUPANIJE.</span>
+          </h2>
+          <p class="quote-sub">Jasni produkcijski koraci i trenutno preuzimanje službene dokumentacije.</p>
+        </div>
+
+        <div class="timeline-grid">
+          <div class="milestone-card">
+            <span class="milestone-days">DANI 1 – 10</span>
+            <h4>FAZA 1: PRIPREMA</h4>
+            <p>Dovršetak knjige snimanja, arhivski odabir dokumenata, casting glumaca za Čeha, Leha i Meha te kostimske probe.</p>
+          </div>
+
+          <div class="milestone-card">
+            <span class="milestone-days">DANI 11 – 25</span>
+            <h4>FAZA 2: SNIMANJE</h4>
+            <p>4 dana snimanja na Hušnjakovu, utvrdama Šabac i Psarče, muzejskim prostorima i lokacijama gradskih projekata.</p>
+          </div>
+
+          <div class="milestone-card">
+            <span class="milestone-days">DANI 26 – 40</span>
+            <h4>FAZA 3: POSTPRODUKCIJA</h4>
+            <p>Montaža 15-minutnog filma i Vox filma, 3D parallax arhive, autorska glazba, zvučni miks i kolor korekcija.</p>
+          </div>
+
+          <div class="milestone-card">
+            <span class="milestone-days">DANI 41 – 45</span>
+            <h4>FAZA 4: MASTERING</h4>
+            <p>Isporuka 4K kino mastera, prilagodba za svečanu dvoranu, izvoz 3 vertikale i predaja arhivskog diska.</p>
+          </div>
+        </div>
+
+        <div class="slide-actions-grid">
+          <!-- Hero PDF Download Button -->
+          <a href="assets/Ponuda_Krapina_Tri_Kule_2026_KR_05.pdf" download="Ponuda_Krapina_Tri_Kule_2026_KR_05.pdf" target="_blank" class="btn-pdf-hero">
+            <div class="btn-pdf-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>
+            </div>
+            <div class="btn-pdf-content">
+              <span class="btn-pdf-tag">SLUŽBENA DOKUMENTACIJA // PDF A4</span>
+              <span class="btn-pdf-title">PREUZMI SLUŽBENU PDF PONUDU ↓</span>
+              <span class="btn-pdf-sub">Ponuda br. 2026-KR-05 • 16.000,00 € + PDV • Službeni troškovnik i specifikacija</span>
+            </div>
+          </a>
+
+          <!-- Hero Authorize CTA Button -->
+          <a class="btn-auth-hero" href="mailto:info@varazdin.studio?subject=Potvrda%20Ponude%202026-KR-05%20-%20Krapinsko-zagorska%20%C5%BEupanija%20i%20Grad%20Krapina&body=Po%C5%A1tovani%2C%0D%0A%0D%0APotvr%C4%91ujemo%20prihva%C4%87anje%20Ponude%20br.%202026-KR-05%20za%20filmsku%20produkciju%20%27TRI%20KULE%20NAD%20KRAPIN%C4%8CICOM%27%20i%20Vox-film%20za%20Sve%C4%8Danu%20sjednicu%20u%20iznosu%20od%2016.000%2C00%20EUR%20%2B%20PDV.%0D%0A%0D%0ASrda%C4%8Dan%20pozdrav%2C">
+            <div class="btn-auth-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <div class="btn-auth-content">
+              <span class="btn-auth-tag">POTVRDA PROJEKTA // AUTORIZACIJA</span>
+              <span class="btn-auth-title">POTVRDI PONUDU (16.000 € + PDV) →</span>
+              <span class="btn-auth-sub">Rezervacija termina snimanja i početak castinga</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="issuer-footer-meta">
+          <strong>STUDIO VARAŽDIN</strong> (Vl. Jasenka Martinčević • S. Vraza 10, Varaždin • OIB: 63287352089 • U suradnji s Timon Terzić & Lotus RC)
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Deck Footer with Fixed Centered Glider and Odometer -->
+  <footer class="deck-footer">
+    <!-- Left Counter & Slide Title -->
+    <div class="footer-left">
+      <div class="odometer-box">
+        <div class="digit-wheel-box">
+          <div class="digit-wheel" id="odometerDigit">
+            <span>01</span>
+            <span>02</span>
+            <span>03</span>
+            <span>04</span>
+            <span>05</span>
+            <span>06</span>
+          </div>
+        </div>
+        <span class="odometer-total">/ 06</span>
+      </div>
+      <div class="footer-slide-title" id="footerSlideTitle">Tri kule & Koštana vatra</div>
+    </div>
+
+    <!-- Absolutely Centered Pagination Pills Glider Track -->
+    <div class="footer-center" id="paginationTrack">
+      <div class="nav-pill active" data-target="1">
+        <div class="pill-tooltip">[ 01 ] Tri kule & Koštana vatra</div>
+      </div>
+      <div class="nav-pill" data-target="2">
+        <div class="pill-tooltip">[ 02 ] Tehnologija & FPV</div>
+      </div>
+      <div class="nav-pill" data-target="3">
+        <div class="pill-tooltip">[ 03 ] Formati & Vertikale</div>
+      </div>
+      <div class="nav-pill" data-target="4">
+        <div class="pill-tooltip">[ 04 ] Strateško sidro</div>
+      </div>
+      <div class="nav-pill" data-target="5">
+        <div class="pill-tooltip">[ 05 ] Ponuda br. 2026-KR-05</div>
+      </div>
+      <div class="nav-pill" data-target="6">
+        <div class="pill-tooltip">[ 06 ] Terminski plan & CTA</div>
+      </div>
+    </div>
+
+    <!-- Right Controls -->
+    <div class="footer-right">
+      <button class="btn-nav-arrow" id="btnPrev" title="Prethodni slajd (←)">
+        <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      </button>
+      <button class="btn-nav-arrow" id="btnNext" title="Sljedeći slajd (→)">
+        <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </button>
+    </div>
+  </footer>
+
+  <!-- Video Modal -->
+  <div class="modal-backdrop" id="videoModal" onclick="closeVideoModal(event)">
+    <div class="modal-window" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeVideoModal()">✕ ZATVORI (ESC)</button>
+      <iframe id="videoIframe" width="100%" height="100%" src="" title="Video Player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <script>
+    /* =========================================================
+       DECK STATE & NAVIGATION CONTROLLER
+       ========================================================= */
+    const totalSlides = 6;
+    let currentSlide = 1;
+    let soundEnabled = true;
+    let audioCtx = null;
+
+    const slides = document.querySelectorAll('.slide');
+    const navPills = document.querySelectorAll('.nav-pill');
+    const odometerDigit = document.getElementById('odometerDigit');
+    const footerSlideTitle = document.getElementById('footerSlideTitle');
+    const btnPrev = document.getElementById('btnPrev');
+    const btnNext = document.getElementById('btnNext');
+
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+    }
+
+    function playMechanicalHaptic(direction = 'forward') {
+      if (!soundEnabled) return;
+      try {
+        initAudio();
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        const now = audioCtx.currentTime;
+        if (direction === 'forward') {
+          osc.frequency.setValueAtTime(1150, now);
+          osc.frequency.exponentialRampToValueAtTime(320, now + 0.032);
+        } else {
+          osc.frequency.setValueAtTime(850, now);
+          osc.frequency.exponentialRampToValueAtTime(300, now + 0.032);
+        }
+
+        gain.gain.setValueAtTime(0.08, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.035);
+
+        osc.start(now);
+        osc.stop(now + 0.036);
+      } catch (e) {}
+    }
+
+    function goToSlide(targetIndex, direction = null) {
+      if (targetIndex < 1 || targetIndex > totalSlides || targetIndex === currentSlide) return;
+
+      const navDir = direction || (targetIndex > currentSlide ? 'forward' : 'backward');
+      currentSlide = targetIndex;
+
+      // Audio Haptics
+      playMechanicalHaptic(navDir);
+
+      // Trigger Wind in Canvas UI Particles
+      if (window.triggerCanvasUiWind) {
+        window.triggerCanvasUiWind(navDir);
+      }
+
+      // Update Slide Display
+      slides.forEach(slide => {
+        const idx = parseInt(slide.getAttribute('data-index'), 10);
+        if (idx === currentSlide) {
+          slide.classList.add('active');
+          const title = slide.getAttribute('data-title');
+          footerSlideTitle.style.opacity = '0';
+          setTimeout(() => {
+            footerSlideTitle.textContent = title;
+            footerSlideTitle.style.opacity = '1';
+          }, 120);
+        } else {
+          slide.classList.remove('active');
+        }
+      });
+
+      // Update Nav Pills
+      navPills.forEach(pill => {
+        const idx = parseInt(pill.getAttribute('data-target'), 10);
+        if (idx === currentSlide) {
+          pill.classList.add('active');
+          pill.classList.remove('visited');
+        } else {
+          pill.classList.remove('active');
+          if (idx < currentSlide) {
+            pill.classList.add('visited');
+          } else {
+            pill.classList.remove('visited');
+          }
+        }
+      });
+
+      // Update Odometer Wheel
+      if (odometerDigit) {
+        const offset = (currentSlide - 1) * -20;
+        odometerDigit.style.transform = `translateY(${offset}px)`;
+      }
+
+      // Sync URL hash
+      history.replaceState(null, null, `#${currentSlide}`);
+    }
+
+    // Button Events
+    btnNext.addEventListener('click', () => {
+      if (currentSlide < totalSlides) goToSlide(currentSlide + 1, 'forward');
+      else goToSlide(1, 'forward');
+    });
+
+    btnPrev.addEventListener('click', () => {
+      if (currentSlide > 1) goToSlide(currentSlide - 1, 'backward');
+      else goToSlide(totalSlides, 'backward');
+    });
+
+    navPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        const target = parseInt(pill.getAttribute('data-target'), 10);
+        goToSlide(target);
+      });
+    });
+
+    // Keyboard Navigation & Tactile Feedback
+    window.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        e.preventDefault();
+        btnNext.classList.add('btn-pressed');
+        if (currentSlide < totalSlides) goToSlide(currentSlide + 1, 'forward');
+        else goToSlide(1, 'forward');
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp' || e.key === 'Backspace') {
+        e.preventDefault();
+        btnPrev.classList.add('btn-pressed');
+        if (currentSlide > 1) goToSlide(currentSlide - 1, 'backward');
+        else goToSlide(totalSlides, 'backward');
+      } else if (e.key >= '1' && e.key <= '6') {
+        goToSlide(parseInt(e.key, 10));
+      } else if (e.key === 'f' || e.key === 'F') {
+        toggleFullscreen();
+      } else if (e.key === 'm' || e.key === 'M') {
+        toggleSound();
+      } else if (e.key === 'Escape') {
+        closeVideoModal();
+      }
+    });
+
+    window.addEventListener('keyup', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        btnNext.classList.remove('btn-pressed');
+      } else if (e.key === 'ArrowLeft' || e.key === 'Backspace') {
+        btnPrev.classList.remove('btn-pressed');
+      }
+    });
+
+    // Sound Toggle
+    function toggleSound() {
+      soundEnabled = !soundEnabled;
+      const icon = document.getElementById('soundIcon');
+      if (icon) {
+        icon.textContent = soundEnabled ? '🔊' : '🔇';
+      }
+    }
+    document.getElementById('btnToggleSound').addEventListener('click', toggleSound);
+
+    // Fullscreen Toggle
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    }
+    document.getElementById('btnToggleFullscreen').addEventListener('click', toggleFullscreen);
+
+    // Video Modal Handlers
+    function openVideoModal(videoId) {
+      const modal = document.getElementById('videoModal');
+      const iframe = document.getElementById('videoIframe');
+      iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&enablejsapi=1`;
+      modal.classList.add('open');
+    }
+
+    function closeVideoModal(e) {
+      const modal = document.getElementById('videoModal');
+      const iframe = document.getElementById('videoIframe');
+      iframe.src = '';
+      modal.classList.remove('open');
+    }
+
+    /* =========================================================
+       CANVAS UI AMBIENT PARTICLES (FIRE EMBERS & SPARKS)
+       ========================================================= */
+    (function initParticleCanvas() {
+      const canvas = document.getElementById('canvasUiParticles');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let width = (canvas.width = window.innerWidth);
+      let height = (canvas.height = window.innerHeight);
+
+      window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      });
+
+      const particleCount = 60;
+      const particles = [];
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: Math.random() * 2.2 + 0.8,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: -Math.random() * 0.6 - 0.2, // Drift upward like hearth sparks
+          alpha: Math.random() * 0.5 + 0.2,
+          color: Math.random() > 0.4 ? '#ea580c' : '#f59e0b'
+        });
+      }
+
+      window.triggerCanvasUiWind = function(direction) {
+        const force = direction === 'forward' ? 3.5 : -3.5;
+        particles.forEach(p => {
+          p.vx += force;
+          p.vy -= 1.0;
+        });
+      };
+
+      function render() {
+        ctx.clearRect(0, 0, width, height);
+
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+
+          p.vx *= 0.97;
+          p.vy *= 0.98;
+          if (p.vy > -0.2) p.vy -= 0.015;
+
+          if (p.x < 0) p.x = width;
+          if (p.x > width) p.x = 0;
+          if (p.y < 0) p.y = height;
+          if (p.y > height) p.y = 0;
+
+          ctx.globalAlpha = p.alpha;
+          ctx.fillStyle = p.color;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fill();
+        });
+
+        requestAnimationFrame(render);
+      }
+      render();
+    })();
+
+    // Initial URL Hash Handling
+    if (window.location.hash) {
+      const h = parseInt(window.location.hash.replace('#', ''), 10);
+      if (h >= 1 && h <= totalSlides) {
+        goToSlide(h);
+      }
+    }
+  </script>
+</body>
+</html>
