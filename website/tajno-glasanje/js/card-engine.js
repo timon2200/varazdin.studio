@@ -112,11 +112,12 @@ export class CardEngine {
         <div class="card-inner">
           <div class="card-photo-wrapper">
             <div class="artwork-frame">
-              <img ${isImmediate ? `src="${safeSrc}"` : `data-src="${safeSrc}"`} 
+              <img src="${safeSrc}" 
                    class="tshirt-artwork" 
                    alt="Studio Varaždin T-Shirt: ${data.title}" 
                    draggable="false" 
-                   ${index === 0 ? 'fetchpriority="high"' : index > 2 ? 'loading="lazy"' : ''}>
+                   loading="${index < 6 ? 'eager' : 'lazy'}"
+                   ${index === 0 ? 'fetchpriority="high"' : ''}>
             </div>
             
             <!-- Dynamic Interaction Stamps -->
@@ -157,20 +158,18 @@ export class CardEngine {
     if (this.cardsEl[0]) {
       this.attachDrag(this.cardsEl[0]);
     }
-    this.preloadAhead(0, 4);
+    this.preloadAhead(0, 8);
     this.notifyCardChange();
   }
 
-  preloadAhead(startIndex, count = 4) {
-    const end = Math.min(startIndex + count, this.cardsEl.length);
+  preloadAhead(startIndex, count = 8) {
+    const end = Math.min(startIndex + count, this.deck.length);
     for (let i = startIndex; i < end; i++) {
-      const card = this.cardsEl[i];
-      if (!card) continue;
-      const img = card.querySelector('.tshirt-artwork');
-      if (img && img.dataset.src && !img.src) {
-        img.src = img.dataset.src;
-        img.removeAttribute('data-src');
-      }
+      const it = this.deck[i];
+      if (!it || !it.image) continue;
+      const raw = it.image.includes('assets/optimized/') ? it.image : it.image.replace('assets/designs/', 'assets/optimized/').replace(/\.(png|jpg)$/, '.webp');
+      const img = new Image();
+      img.src = encodeURI(raw);
     }
   }
 
