@@ -33,7 +33,6 @@ CATEGORY_PREFIX_MAP = {
 def ensure_directories():
     os.makedirs(DROP_DIR, exist_ok=True)
     for target in TARGET_DIRS:
-        os.makedirs(target / "assets" / "designs", exist_ok=True)
         os.makedirs(target / "assets" / "optimized", exist_ok=True)
         os.makedirs(target / "js", exist_ok=True)
 
@@ -115,18 +114,12 @@ def sync_catalog():
         slug = file_path.stem.lower().replace(" ", "_").replace("-", "_")
         slug = "".join(c for c in slug if c.isalnum() or c == "_")
         
-        # Target filenames
-        dest_filename = file_path.name
+        # Target filename
         webp_filename = f"{file_path.stem}.webp"
 
-        # Copy original and optimized to all target directories
+        # Copy optimized WebP to all target directories
         for target in TARGET_DIRS:
-            dest_orig = target / "assets" / "designs" / dest_filename
             dest_opt = target / "assets" / "optimized" / webp_filename
-            
-            if not dest_orig.exists():
-                shutil.copy2(file_path, dest_orig)
-            
             if not dest_opt.exists():
                 optimize_image(file_path, dest_opt)
 
@@ -138,7 +131,7 @@ def sync_catalog():
                 "slug": slug,
                 "title": title,
                 "category": category,
-                "image": f"assets/designs/{dest_filename}",
+                "image": f"assets/optimized/{webp_filename}",
                 "description": f"Autorski {category} dizajn Studio Varaždin & cCc.",
                 "likes": 0,
                 "passes": 0,

@@ -101,22 +101,20 @@ export class CardEngine {
       card.dataset.index = index;
       card.dataset.id = data.id;
 
-      // Prefer optimized WebP with fallback to original high-res
-      const optSrc = data.image.replace('assets/designs/', 'assets/optimized/').replace(/\.(png|jpg)$/, '.webp');
-      const fallbackSrc = data.image;
+      // Use optimized WebP image
+      const optSrc = data.image.includes('assets/optimized/') 
+        ? data.image 
+        : data.image.replace('assets/designs/', 'assets/optimized/').replace(/\.(png|jpg)$/, '.webp');
 
       card.innerHTML = `
         <div class="card-inner">
           <div class="card-photo-wrapper">
             <div class="artwork-frame">
-              <picture>
-                <source srcset="${optSrc}" type="image/webp">
-                <img src="${fallbackSrc}" 
-                     class="tshirt-artwork" 
-                     alt="Studio Varaždin T-Shirt: ${data.title}" 
-                     draggable="false" 
-                     ${index > 2 ? 'loading="lazy"' : 'fetchpriority="high"'}>
-              </picture>
+              <img src="${optSrc}" 
+                   class="tshirt-artwork" 
+                   alt="Studio Varaždin T-Shirt: ${data.title}" 
+                   draggable="false" 
+                   ${index > 2 ? 'loading="lazy"' : 'fetchpriority="high"'}>
             </div>
             
             <!-- Dynamic Interaction Stamps -->

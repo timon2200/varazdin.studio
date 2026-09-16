@@ -4,4 +4,6 @@ Thumbs.db
 node_modules/
 dist/
 scratch_favicon/
+**/assets/designs/
+assets/designs/
 

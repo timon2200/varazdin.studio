@@ -136,7 +136,7 @@ class SwiperApp {
 
     if (btnOpenHighRes) {
       btnOpenHighRes.addEventListener('click', () => {
-        if (this.currentItem) this.openHighResViewer(this.currentItem.image);
+        if (this.currentItem) this.openHighResViewer(this.currentItem.image.includes('assets/optimized/') ? this.currentItem.image : this.currentItem.image.replace('assets/designs/', 'assets/optimized/').replace(/\.(png|jpg)$/, '.webp'));
       });
     }
 
@@ -253,7 +253,7 @@ class SwiperApp {
         cardEl.className = `podium-card ${i === 0 ? 'podium-first' : ''}`;
 
         if (fav) {
-          const optSrc = fav.image.replace('assets/designs/', 'assets/optimized/').replace(/\.(png|jpg)$/, '.webp');
+          const optSrc = fav.image.includes('assets/optimized/') ? fav.image : fav.image.replace('assets/designs/', 'assets/optimized/').replace(/\.(png|jpg)$/, '.webp');
           cardEl.innerHTML = `
             <span class="podium-place">${i === 0 ? '★ 1. MJESTO' : `${i + 1}. MJESTO`}</span>
             <img src="${optSrc}" class="podium-img" alt="${fav.title}">
@@ -302,7 +302,7 @@ class SwiperApp {
     const maxScore = topItems[0] ? topItems[0].score || 1 : 1;
 
     topItems.forEach((it, idx) => {
-      const optSrc = it.image ? it.image.replace('assets/designs/', 'assets/optimized/').replace(/\.(png|jpg)$/, '.webp') : '';
+      const optSrc = it.image ? (it.image.includes('assets/optimized/') ? it.image : it.image.replace('assets/designs/', 'assets/optimized/').replace(/\.(png|jpg)$/, '.webp')) : '';
       const fillPct = Math.max(8, Math.round((it.score / maxScore) * 100));
       const rankRow = document.createElement('div');
       rankRow.className = `rank-item rank-${idx + 1}`;
@@ -390,7 +390,7 @@ class SwiperApp {
       `;
     } else {
       favorites.forEach(fav => {
-        const optSrc = fav.image.replace('assets/designs/', 'assets/optimized/').replace(/\.(png|jpg)$/, '.webp');
+        const optSrc = fav.image.includes('assets/optimized/') ? fav.image : fav.image.replace('assets/designs/', 'assets/optimized/').replace(/\.(png|jpg)$/, '.webp');
         const card = document.createElement('div');
         card.className = 'podium-card';
         card.style.position = 'relative';
