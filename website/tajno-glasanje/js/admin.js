@@ -3,14 +3,17 @@
  * Upravlja vizualnom mrežom, selekcijom i atomskim ažuriranjem kataloga majica.
  */
 
-import { CATALOG_DATA as DEFAULT_CATALOG } from "./catalog-data.js";
+import { CATALOG_DATA as ACTIVE_CATALOG } from "./catalog-data.js";
+import { CATALOG_DATA as MASTER_CATALOG } from "./catalog-data.master.js";
 import { NoiseShader } from "./noise-grain.js";
 
-class CatalogCurator {
+export class CatalogCurator {
   constructor() {
-    this.masterCatalog = [];
-    this.activeCatalog = [];
-    this.selectedIds = new Set();
+    this.masterCatalog = (Array.isArray(MASTER_CATALOG) && MASTER_CATALOG.length > 0) 
+      ? [...MASTER_CATALOG] 
+      : [...ACTIVE_CATALOG];
+    this.activeCatalog = [...ACTIVE_CATALOG];
+    this.selectedIds = new Set(this.activeCatalog.map(it => it.id));
     this.activeCategory = "ALL";
     this.searchQuery = "";
 
@@ -34,42 +37,41 @@ class CatalogCurator {
       grain.init();
     } catch (e) {}
 
-    // 2. Load catalog data from API or static master
-    await this.loadCatalogs();
-
-    // 3. Bind UI event listeners
+    // 2. Bind UI event listeners
     this.bindEvents();
 
-    // 4. Initial Render
+    // 3. Render immediately from local master bundle (instant load)
     this.render();
+
+    // 4. Background sync with backend API if available
+    this.syncWithBackend();
   }
 
-  async loadCatalogs() {
+  async syncWithBackend() {
     try {
       const res = await fetch("api/curate.php?t=" + Date.now());
       if (res.ok) {
         const data = await res.json();
-        if (data.status === "success" && data.master && data.master.length > 0) {
-          this.masterCatalog = data.master;
-          this.activeCatalog = data.active || data.master;
-          this.selectedIds = new Set(this.activeCatalog.map(it => it.id));
-          return;
+        if (data.status === "success") {
+          if (Array.isArray(data.master) && data.master.length > 0) {
+            this.masterCatalog = data.master;
+          }
+          if (Array.isArray(data.active) && data.active.length > 0) {
+            this.activeCatalog = data.active;
+            this.selectedIds = new Set(this.activeCatalog.map(it => it.id));
+            this.render();
+          }
         }
       }
     } catch (e) {
-      console.warn("API curate.php unavailable, falling back to local dataset.", e);
+      // Offline / Static mode: local dataset already rendered
     }
-
-    // Fallback to imported catalog
-    this.masterCatalog = [...DEFAULT_CATALOG];
-    this.activeCatalog = [...DEFAULT_CATALOG];
-    this.selectedIds = new Set(this.masterCatalog.map(it => it.id));
   }
 
   bindEvents() {
     // Category Nav
     document.querySelectorAll(".cat-pill").forEach(pill => {
-      pill.addEventListener("click", (e) => {
+      pill.addEventListener("click", () => {
         document.querySelectorAll(".cat-pill").forEach(p => p.classList.remove("active"));
         pill.classList.add("active");
         this.activeCategory = pill.dataset.cat || "ALL";
@@ -301,7 +303,15 @@ class CatalogCurator {
   }
 }
 
-// Initialize on DOM Ready
-document.addEventListener("DOMContentLoaded", () => {
-  window.catalogCurator = new CatalogCurator();
-});
+// Robust Bootstrap (handles both pre- and post-DOMContentLoaded module execution)
+function initCurator() {
+  if (!window.catalogCurator) {
+    window.catalogCurator = new CatalogCurator();
+  }
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initCurator);
+} else {
+  initCurator();
+}

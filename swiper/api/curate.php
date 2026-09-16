@@ -1,7 +1,7 @@
 <?php
 /**
  * Studio Varaždin — Catalog Curation API
- * Manages active/inactive t-shirt designs in catalog-data.js with master backup.
+ * Robust JSON parser and atomic writer for catalog-data.js and catalog-data.master.js
  */
 
 header("Content-Type: application/json; charset=utf-8");
@@ -18,28 +18,25 @@ $jsDir = dirname(__DIR__) . "/js";
 $catalogFile = $jsDir . "/catalog-data.js";
 $masterFile = $jsDir . "/catalog-data.master.js";
 
+function parseCatalogFile($filePath) {
+    if (!file_exists($filePath)) return [];
+    $content = file_get_contents($filePath);
+    $start = strpos($content, "[");
+    $end = strrpos($content, "]");
+    if ($start !== false && $end !== false && $end > $start) {
+        $jsonStr = substr($content, $start, ($end - $start) + 1);
+        return json_decode($jsonStr, true) ?: [];
+    }
+    return [];
+}
+
 // GET: Return current master and active catalogs
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
-    $masterData = [];
-    $activeData = [];
+    $masterData = parseCatalogFile($masterFile);
+    $activeData = parseCatalogFile($catalogFile);
 
-    if (file_exists($masterFile)) {
-        $content = file_get_contents($masterFile);
-        $jsonStr = preg_replace("/^export\s+const\s+CATALOG_DATA\s*=\s*/", "", trim($content));
-        $jsonStr = rtrim($jsonStr, ";\n ");
-        $masterData = json_decode($jsonStr, true) ?: [];
-    } elseif (file_exists($catalogFile)) {
-        $content = file_get_contents($catalogFile);
-        $jsonStr = preg_replace("/^export\s+const\s+CATALOG_DATA\s*=\s*/", "", trim($content));
-        $jsonStr = rtrim($jsonStr, ";\n ");
-        $masterData = json_decode($jsonStr, true) ?: [];
-    }
-
-    if (file_exists($catalogFile)) {
-        $content = file_get_contents($catalogFile);
-        $jsonStr = preg_replace("/^export\s+const\s+CATALOG_DATA\s*=\s*/", "", trim($content));
-        $jsonStr = rtrim($jsonStr, ";\n ");
-        $activeData = json_decode($jsonStr, true) ?: [];
+    if (empty($masterData) && !empty($activeData)) {
+        $masterData = $activeData;
     }
 
     echo json_encode([
@@ -73,11 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($data["activeItems"]) && is_array($data["activeItems"])) {
         $activeItems = $data["activeItems"];
     } elseif (isset($data["activeIds"]) && is_array($data["activeIds"])) {
-        $masterContent = file_exists($masterFile) ? file_get_contents($masterFile) : file_get_contents($catalogFile);
-        $jsonStr = preg_replace("/^export\s+const\s+CATALOG_DATA\s*=\s*/", "", trim($masterContent));
-        $jsonStr = rtrim($jsonStr, ";\n ");
-        $allMaster = json_decode($jsonStr, true) ?: [];
-
+        $allMaster = parseCatalogFile($masterFile) ?: parseCatalogFile($catalogFile);
         $allowedIds = array_flip($data["activeIds"]);
         foreach ($allMaster as $item) {
             if (isset($allowedIds[$item["id"]])) {
