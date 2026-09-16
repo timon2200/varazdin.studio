@@ -383,34 +383,25 @@ body {
   transition: opacity 0.22s ease, filter 0.22s ease;
 }
 
-.gallery-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  pointer-events: none;
-  transition: border-color 0.2s ease;
+/* Checked state: 75% opacity, 100% on hover, no border frame */
+.gallery-card.is-checked {
+  opacity: 0.75;
+  filter: none;
 }
 
-/* Checked state */
-.gallery-card.is-checked {
+.gallery-card.is-checked:hover {
   opacity: 1;
   filter: none;
 }
 
-.gallery-card.is-checked::after {
-  border: 2px solid rgba(208, 160, 65, 0.65);
-}
-
-/* Unchecked state */
+/* Unchecked state: 100% full opacity, no frame */
 .gallery-card:not(.is-checked) {
-  opacity: 0.18;
-  filter: grayscale(100%) brightness(0.35);
+  opacity: 1;
+  filter: none;
 }
 
-.gallery-card:not(.is-checked):hover {
-  opacity: 0.55;
-  filter: grayscale(40%) brightness(0.7);
+.gallery-card:hover {
+  opacity: 1;
 }
 
 /* Card image */
