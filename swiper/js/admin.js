@@ -5,7 +5,7 @@
 
 import { CATALOG_DATA as ACTIVE_CATALOG } from "./catalog-data.js";
 import { CATALOG_DATA as MASTER_CATALOG } from "./catalog-data.master.js";
-import { NoiseShader } from "./noise-grain.js";
+import { NoiseGrain } from "./noise-grain.js";
 
 export class CatalogCurator {
   constructor() {
@@ -33,14 +33,13 @@ export class CatalogCurator {
   async init() {
     // 1. Initialize film grain texture
     try {
-      const grain = new NoiseShader({ opacity: 0.05, fps: 24 });
-      grain.init();
+      new NoiseGrain({ opacity: 0.05, fps: 24 });
     } catch (e) {}
 
     // 2. Bind UI event listeners
     this.bindEvents();
 
-    // 3. Render immediately from local master bundle (instant load)
+    // 3. Render immediately from local master bundle (instant 0ms load)
     this.render();
 
     // 4. Background sync with backend API if available
@@ -310,8 +309,10 @@ function initCurator() {
   }
 }
 
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initCurator);
-} else {
-  initCurator();
+if (typeof document !== "undefined") {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initCurator);
+  } else {
+    initCurator();
+  }
 }
