@@ -1,0 +1,23 @@
+{
+  "name": "Studio Varaždin",
+  "short_name": "Studio Varaždin",
+  "description": "Studio Varaždin — Cinematic production studio from northern Croatia. Documentary films, immersive experiences, and destination storytelling.",
+  "icons": [
+    {
+      "src": "web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#07150c",
+  "background_color": "#07150c",
+  "display": "standalone",
+  "start_url": "/"
+}
