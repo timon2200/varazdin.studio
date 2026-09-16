@@ -318,5 +318,125 @@ export const CATALOG_DATA = [
       "streetwear",
       "varazdin"
     ]
+  },
+  {
+    "id": "sv-223",
+    "slug": "heritage_combo_02_angels_comix_back",
+    "title": "Heritage Combo 02 - Angels Comix Back",
+    "category": "Creative",
+    "image": "assets/optimized/Heritage_Combo_02_Angels_Comix_Back.webp",
+    "description": "70s comix waveforms x barokni anđeli s trubama.",
+    "likes": 0,
+    "passes": 0,
+    "superlikes": 0,
+    "tags": [
+      "heritage",
+      "angels",
+      "creative",
+      "streetwear",
+      "varazdin"
+    ]
+  },
+  {
+    "id": "sv-224",
+    "slug": "sv_single_02_praying_knight_back",
+    "title": "SV Single 02 - Praying Knight Back",
+    "category": "Creative",
+    "image": "assets/optimized/SV_Single_02_Praying_Knight_Back.webp",
+    "description": "Steel armor praying knight na tamnoj podlozi.",
+    "likes": 0,
+    "passes": 0,
+    "superlikes": 0,
+    "tags": [
+      "knight",
+      "armor",
+      "creative",
+      "streetwear",
+      "varazdin"
+    ]
+  },
+  {
+    "id": "sv-225",
+    "slug": "sv_single_04_riso_rearing_knight_back",
+    "title": "SV Single 04 - Riso Rearing Knight Back",
+    "category": "Creative",
+    "image": "assets/optimized/SV_Single_04_Riso_Rearing_Knight_Back.webp",
+    "description": "Heavy riso stipple rearing charger na crnoj podlozi.",
+    "likes": 0,
+    "passes": 0,
+    "superlikes": 0,
+    "tags": [
+      "knight",
+      "riso",
+      "creative",
+      "streetwear",
+      "varazdin"
+    ]
+  },
+  {
+    "id": "sv-226",
+    "slug": "sv_single_07_gothic_metal_front",
+    "title": "SV Single 07 - Gothic Metal Front",
+    "category": "Front Hits",
+    "image": "assets/optimized/SV_Single_07_Gothic_Metal_Front.webp",
+    "description": "Minimalistički prsni motiv s gotičkom gravurom.",
+    "likes": 0,
+    "passes": 0,
+    "superlikes": 0,
+    "tags": [
+      "front hits",
+      "gothic",
+      "metal",
+      "streetwear",
+      "varazdin"
+    ]
+  },
+  {
+    "id": "sv-227",
+    "slug": "sv_single_04_riso_rearing_knight_front",
+    "title": "SV Single 04 - Riso Rearing Knight Front",
+    "category": "Front Hits",
+    "image": "assets/optimized/SV_Single_04_Riso_Rearing_Knight_Front.webp",
+    "description": "Minimalistički prsni motiv propinjućeg viteza.",
+    "tags": [
+      "front hits",
+      "riso",
+      "knight",
+      "streetwear",
+      "varazdin"
+    ]
+  },
+  {
+    "id": "sv-228",
+    "slug": "sv_single_01_woodcut_knight_front",
+    "title": "SV Single 01 - Woodcut Knight Front",
+    "category": "Front Hits",
+    "image": "assets/optimized/SV_Single_01_Woodcut_Knight_Front.webp",
+    "description": "Minimalistički prsni motiv drvoreznog viteza.",
+    "tags": [
+      "front hits",
+      "woodcut",
+      "knight",
+      "streetwear",
+      "varazdin"
+    ]
+  },
+  {
+    "id": "sv-229",
+    "slug": "sv_4ref_04_rearing_cybergothic_back",
+    "title": "SV 4Ref 04 - Rearing CyberGothic Back",
+    "category": "Creative",
+    "image": "assets/optimized/SV_4Ref_04_Rearing_CyberGothic_Back.webp",
+    "description": "Cyber-gothic charger & reticle kompozicija.",
+    "likes": 0,
+    "passes": 0,
+    "superlikes": 0,
+    "tags": [
+      "cybergothic",
+      "knight",
+      "creative",
+      "streetwear",
+      "varazdin"
+    ]
   }
 ];
