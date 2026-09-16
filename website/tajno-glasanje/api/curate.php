@@ -8,15 +8,24 @@ header("Content-Type: application/json; charset=utf-8");
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Pragma: no-cache");
 
 if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
     http_response_code(200);
     exit;
 }
 
-$jsDir = dirname(__DIR__) . "/js";
+$baseDir = dirname(__DIR__);
+$jsDir = $baseDir . "/js";
+$dataDir = $baseDir . "/api/data";
 $catalogFile = $jsDir . "/catalog-data.js";
 $masterFile = $jsDir . "/catalog-data.master.js";
+$activeJsonFile = $dataDir . "/active-catalog.json";
+
+if (!is_dir($dataDir)) {
+    @mkdir($dataDir, 0755, true);
+}
 
 function parseCatalogFile($filePath) {
     if (!file_exists($filePath)) return [];
@@ -33,7 +42,16 @@ function parseCatalogFile($filePath) {
 // GET: Return current master and active catalogs
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
     $masterData = parseCatalogFile($masterFile);
-    $activeData = parseCatalogFile($catalogFile);
+    $activeData = [];
+
+    if (file_exists($activeJsonFile)) {
+        $jsonRaw = file_get_contents($activeJsonFile);
+        $activeData = json_decode($jsonRaw, true) ?: [];
+    }
+
+    if (empty($activeData)) {
+        $activeData = parseCatalogFile($catalogFile);
+    }
 
     if (empty($masterData) && !empty($activeData)) {
         $masterData = $activeData;
@@ -65,12 +83,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         copy($catalogFile, $masterFile);
     }
 
+    $allMaster = parseCatalogFile($masterFile) ?: parseCatalogFile($catalogFile);
     $activeItems = [];
 
-    if (isset($data["activeItems"]) && is_array($data["activeItems"])) {
+    if (isset($data["activeItems"]) && is_array($data["activeItems"]) && count($data["activeItems"]) > 0) {
         $activeItems = $data["activeItems"];
     } elseif (isset($data["activeIds"]) && is_array($data["activeIds"])) {
-        $allMaster = parseCatalogFile($masterFile) ?: parseCatalogFile($catalogFile);
         $allowedIds = array_flip($data["activeIds"]);
         foreach ($allMaster as $item) {
             if (isset($allowedIds[$item["id"]])) {
@@ -79,12 +97,28 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
 
-    // Write updated catalog-data.js atomically
+    // 1. Write JSON file
+    @file_put_contents($activeJsonFile, json_encode($activeItems, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+
+    // 2. Write updated catalog-data.js atomically
     $jsContent = "export const CATALOG_DATA = " . json_encode($activeItems, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) . ";\n";
-    
     $tmpFile = $catalogFile . ".tmp";
-    if (file_put_contents($tmpFile, $jsContent) !== false) {
-        rename($tmpFile, $catalogFile);
+
+    $writeOk = false;
+    if (@file_put_contents($tmpFile, $jsContent) !== false) {
+        if (@rename($tmpFile, $catalogFile)) {
+            $writeOk = true;
+        }
+    }
+
+    if (!$writeOk) {
+        // Direct write fallback
+        if (@file_put_contents($catalogFile, $jsContent) !== false) {
+            $writeOk = true;
+        }
+    }
+
+    if ($writeOk) {
         echo json_encode([
             "status" => "success",
             "message" => "Katalog je uspješno ažuriran",

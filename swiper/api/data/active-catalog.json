@@ -1,4 +1,4 @@
-export const CATALOG_DATA = [
+[
   {
     "id": "sv-001",
     "slug": "selected_cv_tee_creative_block_1181",
@@ -319,4 +319,4 @@ export const CATALOG_DATA = [
       "varazdin"
     ]
   }
-];
+]

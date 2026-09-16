@@ -82,6 +82,41 @@ class SwiperApp {
 
     // 5. Update initial counter from 0
     this.updateHeaderCounter();
+
+    // 6. Fast background sync with server-curated catalog
+    this.syncCuratedCatalog();
+  }
+
+  async syncCuratedCatalog() {
+    try {
+      const res = await fetch('api/curate.php?t=' + Date.now(), {
+        cache: 'no-store',
+        headers: { 'Pragma': 'no-cache' }
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.status === 'success' && Array.isArray(data.active) && data.active.length > 0) {
+          const currentIds = this.catalog.map(it => it.id).join(',');
+          const serverIds = data.active.map(it => it.id).join(',');
+          if (currentIds !== serverIds) {
+            this.catalog = data.active;
+            try {
+              localStorage.setItem('sv_curated_active_ids', JSON.stringify(data.active.map(it => it.id)));
+            } catch (e) {}
+            if (this.analytics) {
+              this.analytics.catalog = this.catalog;
+            }
+            if (this.cardEngine) {
+              this.cardEngine.catalog = this.catalog;
+              this.cardEngine.setDeck(this.catalog, this.activeCategory);
+            }
+            this.updateHeaderCounter();
+          }
+        }
+      }
+    } catch (e) {
+      // Offline / Static fallback
+    }
   }
 
   bindControls() {
