@@ -110,27 +110,39 @@ export class DynamicDeckOrdering {
       };
     });
 
-    // Sort descending by score
-    scoredCandidates.sort((a, b) => b.score - a.score);
+    const CATEGORY_ORDER = [
+      "SELECTED",
+      "CITY",
+      "STUDIO",
+      "CREATIVE",
+      "GARDA",
+      "TOWERS",
+      "UTILITY",
+      "ARTWEAR",
+      "FRONT HITS",
+      "EXPERIMENTAL"
+    ];
 
-    // Pin Silent Knight Studio Black to position 0 on fresh deck for flagship brand impact
-    if (sessionVotes.length === 0 && filterCategory === 'ALL') {
-      const heroIdx = scoredCandidates.findIndex(c => c.isHero);
-      if (heroIdx > 0) {
-        const [hero] = scoredCandidates.splice(heroIdx, 1);
-        scoredCandidates.unshift(hero);
-      }
-    }
+    const getCatRank = (cat) => {
+      const idx = CATEGORY_ORDER.indexOf((cat || "").toUpperCase());
+      return idx === -1 ? 999 : idx;
+    };
 
-    // 4. Apply Diversity Constraint (Interleaving to prevent visual fatigue)
-    const balancedDeck = this.applyCategoryDiversity(scoredCandidates);
+    // Sort primarily by category sequence, secondarily by score
+    scoredCandidates.sort((a, b) => {
+      const rankDiff = getCatRank(a.category) - getCatRank(b.category);
+      if (rankDiff !== 0) return rankDiff;
+      return b.score - a.score;
+    });
+
+    const orderedDeck = scoredCandidates.map(c => c.item);
 
     // If we only ordered unswiped, append already swiped items at the very end
     if (unswiped.length > 0 && alreadySwiped.length > 0) {
-      return [...balancedDeck, ...alreadySwiped];
+      return [...orderedDeck, ...alreadySwiped];
     }
 
-    return balancedDeck;
+    return orderedDeck;
   }
 
   /**

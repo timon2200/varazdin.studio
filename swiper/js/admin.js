@@ -252,8 +252,10 @@ export class CatalogCurator {
     const badgeAll = document.getElementById("badgeAll");
     if (badgeAll) badgeAll.textContent = active;
 
-    ["Artwear", "Creative", "City", "Garda", "Studio", "Towers"].forEach(cat => {
-      const b = document.getElementById(`badge${cat}`);
+    const categories = ["Selected", "City", "Studio", "Creative", "Garda", "Towers", "Utility", "Artwear", "Front Hits", "Experimental"];
+    categories.forEach(cat => {
+      const badgeId = "badge" + cat.replace(/\s+/g, "");
+      const b = document.getElementById(badgeId);
       if (b) b.textContent = counts[cat] || 0;
     });
   }
