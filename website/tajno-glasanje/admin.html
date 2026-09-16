@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="hr" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Studio Varaždin — Kustoski Panel & Galerija Majica</title>
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  
+  <link rel="icon" type="image/svg+xml" href="../../favicon-dark.svg">
+  <link rel="stylesheet" href="css/grain.css">
+  <link rel="stylesheet" href="css/admin.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Grain canvas texture -->
+  <canvas id="grainCanvas" class="grain-overlay" aria-hidden="true"></canvas>
+
+  <!-- Main App Shell -->
+  <div class="admin-shell">
+    
+    <!-- Top Sticky Control Header -->
+    <header class="admin-header">
+      <div class="admin-header-top">
+        <div class="brand-cluster">
+          <a href="index.html" class="back-link" title="Natrag na Swiper">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m15 18-6-6 6-6"/>
+            </svg>
+            <span>SWIPER</span>
+          </a>
+          <div class="brand-titles">
+            <h1 class="brand-title">KUSTOSKI PANEL</h1>
+            <span class="brand-subtitle">STUDIO VARAŽDIN · cCc. SELEKCIJA</span>
+          </div>
+        </div>
+
+        <!-- Live Selection Counter & Status -->
+        <div class="counter-cluster">
+          <div class="counter-box">
+            <span class="counter-label">AKTIVNO U ŠPILU</span>
+            <div class="counter-numbers">
+              <span id="activeCount" class="counter-active">0</span>
+              <span class="counter-divider">/</span>
+              <span id="totalCount" class="counter-total">0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Primary Actions -->
+        <div class="header-actions">
+          <button id="btnSave" class="btn-primary" title="Spremi odabir u aktivni swiper špil">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+              <polyline points="17 21 17 13 7 13 7 21"/>
+              <polyline points="7 3 7 8 15 8"/>
+            </svg>
+            <span>SPREMI ODABIR</span>
+          </button>
+          <a href="index.html" class="btn-secondary" title="Pregledaj swiper uživo">
+            <span>OTVORI SWIPER</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="5 3 19 12 5 21 5 3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Secondary Toolbar: Filters, Search & Bulk Tools -->
+      <div class="admin-toolbar">
+        <!-- Category Filter Pills -->
+        <nav class="category-nav" id="categoryNav" aria-label="Filter kategorija">
+          <button class="cat-pill active" data-cat="ALL">SVE <span class="cat-badge" id="badgeAll">0</span></button>
+          <button class="cat-pill" data-cat="Artwear">ARTWEAR <span class="cat-badge" id="badgeArtwear">0</span></button>
+          <button class="cat-pill" data-cat="Creative">CREATIVE <span class="cat-badge" id="badgeCreative">0</span></button>
+          <button class="cat-pill" data-cat="City">CITY <span class="cat-badge" id="badgeCity">0</span></button>
+          <button class="cat-pill" data-cat="Garda">GARDA <span class="cat-badge" id="badgeGarda">0</span></button>
+          <button class="cat-pill" data-cat="Studio">STUDIO <span class="cat-badge" id="badgeStudio">0</span></button>
+          <button class="cat-pill" data-cat="Towers">TOWERS <span class="cat-badge" id="badgeTowers">0</span></button>
+        </nav>
+
+        <!-- Right Toolbelt -->
+        <div class="toolbelt">
+          <div class="search-box">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input type="text" id="searchInput" placeholder="Filtriraj majice po nazivu..." autocomplete="off">
+            <button id="searchClear" class="search-clear" style="display:none;" title="Očisti pretragu">&times;</button>
+          </div>
+
+          <div class="bulk-actions">
+            <button id="btnSelectAll" class="btn-tool" title="Označi sve trenutno filtrirane">
+              <span>✓ Sve</span>
+            </button>
+            <button id="btnDeselectAll" class="btn-tool" title="Odznači sve trenutno filtrirane">
+              <span>✕ Poništi</span>
+            </button>
+            <button id="btnInvert" class="btn-tool" title="Obrni odabir">
+              <span>⇄ Obrni</span>
+            </button>
+            <button id="btnSmartDuplicates" class="btn-tool btn-tool-accent" title="Označi samo po 1 unikatni motiv">
+              <span>⚡ Očisti duplikate</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Toast Notification Banner -->
+    <div id="toast" class="toast-banner" role="status" aria-live="polite"></div>
+
+    <!-- Gallery Grid (Edge-to-Edge, Zero Gutter, Strict DTF Ratio) -->
+    <main class="gallery-container">
+      <div id="galleryGrid" class="gallery-grid">
+        <!-- Rendered dynamically by js/admin.js -->
+      </div>
+    </main>
+
+    <!-- Floating Quick Save Footer Bar (Mobile / Responsive) -->
+    <div class="floating-save-bar">
+      <div class="floating-info">
+        <span id="floatingActiveCount">0</span> od <span id="floatingTotalCount">0</span> označeno
+      </div>
+      <button id="btnSaveFloating" class="btn-primary">
+        <span>SPREMI ZA SWIPER</span>
+      </button>
+    </div>
+
+  </div>
+
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>
