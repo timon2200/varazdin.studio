@@ -256,7 +256,7 @@ class SwiperApp {
           const optSrc = fav.image.includes('assets/optimized/') ? fav.image : fav.image.replace('assets/designs/', 'assets/optimized/').replace(/\.(png|jpg)$/, '.webp');
           cardEl.innerHTML = `
             <span class="podium-place">${i === 0 ? '★ 1. MJESTO' : `${i + 1}. MJESTO`}</span>
-            <img src="${optSrc}" class="podium-img" alt="${fav.title}">
+            <img src="${encodeURI(optSrc)}" class="podium-img" alt="${fav.title}">
             <p class="podium-name">${fav.title}</p>
           `;
         } else {
@@ -308,7 +308,7 @@ class SwiperApp {
       rankRow.className = `rank-item rank-${idx + 1}`;
       rankRow.innerHTML = `
         <div class="rank-number">#${idx + 1}</div>
-        <img src="${optSrc}" class="rank-thumb" alt="${it.title}" loading="lazy">
+        <img src="${encodeURI(optSrc)}" class="rank-thumb" alt="${it.title}" loading="lazy">
         <div class="rank-info">
           <div class="rank-title">${it.title}</div>
           <div class="rank-bar-wrapper">
@@ -368,7 +368,7 @@ class SwiperApp {
     const modalZoom = document.getElementById('modalZoom');
     const zoomImg = document.getElementById('zoomImage');
     if (zoomImg && modalZoom) {
-      zoomImg.src = imgSrc;
+      zoomImg.src = encodeURI(imgSrc);
       modalZoom.classList.add('active');
     }
   }
@@ -396,7 +396,7 @@ class SwiperApp {
         card.style.position = 'relative';
         card.innerHTML = `
           ${fav.isSuperlike ? '<span style="position:absolute; top:6px; right:6px; color:#F6CF65; font-size:0.85rem;">★</span>' : ''}
-          <img src="${optSrc}" class="podium-img" alt="${fav.title}">
+          <img src="${encodeURI(optSrc)}" class="podium-img" alt="${fav.title}">
           <p class="podium-name">${fav.title}</p>
         `;
         favGrid.appendChild(card);

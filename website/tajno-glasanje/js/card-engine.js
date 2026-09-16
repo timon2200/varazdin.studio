@@ -101,20 +101,22 @@ export class CardEngine {
       card.dataset.index = index;
       card.dataset.id = data.id;
 
-      // Use optimized WebP image
-      const optSrc = data.image.includes('assets/optimized/') 
+      // Use optimized WebP image with safe URL encoding
+      const rawSrc = data.image.includes('assets/optimized/') 
         ? data.image 
         : data.image.replace('assets/designs/', 'assets/optimized/').replace(/\.(png|jpg)$/, '.webp');
+      const safeSrc = encodeURI(rawSrc);
+      const isImmediate = index < 4;
 
       card.innerHTML = `
         <div class="card-inner">
           <div class="card-photo-wrapper">
             <div class="artwork-frame">
-              <img src="${optSrc}" 
+              <img ${isImmediate ? `src="${safeSrc}"` : `data-src="${safeSrc}"`} 
                    class="tshirt-artwork" 
                    alt="Studio Varaždin T-Shirt: ${data.title}" 
                    draggable="false" 
-                   ${index > 2 ? 'loading="lazy"' : 'fetchpriority="high"'}>
+                   ${index === 0 ? 'fetchpriority="high"' : index > 2 ? 'loading="lazy"' : ''}>
             </div>
             
             <!-- Dynamic Interaction Stamps -->
@@ -155,7 +157,21 @@ export class CardEngine {
     if (this.cardsEl[0]) {
       this.attachDrag(this.cardsEl[0]);
     }
+    this.preloadAhead(0, 4);
     this.notifyCardChange();
+  }
+
+  preloadAhead(startIndex, count = 4) {
+    const end = Math.min(startIndex + count, this.cardsEl.length);
+    for (let i = startIndex; i < end; i++) {
+      const card = this.cardsEl[i];
+      if (!card) continue;
+      const img = card.querySelector('.tshirt-artwork');
+      if (img && img.dataset.src && !img.src) {
+        img.src = img.dataset.src;
+        img.removeAttribute('data-src');
+      }
+    }
   }
 
   applySlotTransform(card, index) {
@@ -347,6 +363,7 @@ export class CardEngine {
     });
 
     this.currentIndex++;
+    this.preloadAhead(this.currentIndex, 4);
 
     // Dynamic Tail Re-ordering: Adapt the unseen cards in the queue to newly learned user preferences
     if (this.currentIndex % 3 === 0 && this.currentIndex + this.VISIBLE_DEPTH < this.deck.length) {
@@ -390,6 +407,7 @@ export class CardEngine {
     if (!last) return;
 
     this.currentIndex = last.index;
+    this.preloadAhead(this.currentIndex, 4);
     const card = this.cardsEl[this.currentIndex];
 
     // Re-enter with spring physics
