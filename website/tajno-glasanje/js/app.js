@@ -13,7 +13,21 @@ import { renderQRCodeToCanvas } from './qr.js';
 
 class SwiperApp {
   constructor() {
-    this.catalog = CATALOG_DATA;
+    let activeCatalog = CATALOG_DATA;
+    try {
+      const rawStored = localStorage.getItem("sv_curated_active_ids");
+      if (rawStored) {
+        const activeIds = new Set(JSON.parse(rawStored));
+        if (activeIds.size > 0) {
+          const filtered = CATALOG_DATA.filter(it => activeIds.has(it.id));
+          if (filtered.length > 0) {
+            activeCatalog = filtered;
+          }
+        }
+      }
+    } catch (e) {}
+
+    this.catalog = activeCatalog;
     this.noiseGrain = null;
     this.audioHaptics = null;
     this.analytics = null;

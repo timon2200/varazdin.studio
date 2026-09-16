@@ -12,8 +12,27 @@ export class CatalogCurator {
     this.masterCatalog = (Array.isArray(MASTER_CATALOG) && MASTER_CATALOG.length > 0) 
       ? [...MASTER_CATALOG] 
       : [...ACTIVE_CATALOG];
-    this.activeCatalog = [...ACTIVE_CATALOG];
-    this.selectedIds = new Set(this.activeCatalog.map(it => it.id));
+    
+    // Check localStorage for previously saved curated selection
+    let savedSelection = null;
+    try {
+      const rawStored = localStorage.getItem("sv_curated_active_ids");
+      if (rawStored) {
+        const parsed = JSON.parse(rawStored);
+        if (Array.isArray(parsed)) {
+          savedSelection = parsed;
+        }
+      }
+    } catch (e) {}
+
+    if (savedSelection !== null) {
+      this.selectedIds = new Set(savedSelection);
+      this.activeCatalog = this.masterCatalog.filter(it => this.selectedIds.has(it.id));
+    } else {
+      this.activeCatalog = [...ACTIVE_CATALOG];
+      this.selectedIds = new Set(this.activeCatalog.map(it => it.id));
+    }
+
     this.activeCategory = "ALL";
     this.searchQuery = "";
 
@@ -55,7 +74,9 @@ export class CatalogCurator {
           if (Array.isArray(data.master) && data.master.length > 0) {
             this.masterCatalog = data.master;
           }
-          if (Array.isArray(data.active) && data.active.length > 0) {
+          // Only overwrite selection if no localStorage preference exists
+          const hasLocalPref = localStorage.getItem("sv_curated_active_ids") !== null;
+          if (!hasLocalPref && Array.isArray(data.active) && data.active.length > 0) {
             this.activeCatalog = data.active;
             this.selectedIds = new Set(this.activeCatalog.map(it => it.id));
             this.render();
@@ -262,8 +283,15 @@ export class CatalogCurator {
 
   async saveCuratedCatalog() {
     const activeItems = this.masterCatalog.filter(it => this.selectedIds.has(it.id));
+    const activeIdsArray = Array.from(this.selectedIds);
+    
+    // Always persist to localStorage first
+    try {
+      localStorage.setItem("sv_curated_active_ids", JSON.stringify(activeIdsArray));
+    } catch (e) {}
+
     const payload = {
-      activeIds: Array.from(this.selectedIds),
+      activeIds: activeIdsArray,
       activeItems: activeItems
     };
 
@@ -282,12 +310,10 @@ export class CatalogCurator {
         const result = await res.json();
         this.showToast(`✓ Spremljeno! Aktivno ${activeItems.length} majica u Swiperu.`);
       } else {
-        throw new Error("API Greška");
+        this.showToast(`✓ Odabir zabilježen (${activeItems.length} majica).`);
       }
     } catch (err) {
-      console.warn("Backend save fallback to localStorage", err);
-      // Fallback: save to localStorage
-      localStorage.setItem("sv_curated_active_ids", JSON.stringify(Array.from(this.selectedIds)));
+      console.info("Saved to local storage:", err);
       this.showToast(`✓ Odabir zabilježen (${activeItems.length} majica).`);
     } finally {
       if (btn) btn.innerHTML = originalText;
