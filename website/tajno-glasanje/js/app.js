@@ -35,6 +35,7 @@ class SwiperApp {
     this.shareCardGen = null;
     this.activeCategory = 'ALL';
     this.currentItem = null;
+    this.isDeckCompleted = false;
 
     this.init();
   }
@@ -46,7 +47,7 @@ class SwiperApp {
     this.analytics = new AnalyticsEngine(this.catalog);
     this.shareCardGen = new ShareCardGenerator();
 
-    // Check URL parameters for reset or category
+    // Check URL parameters for reset
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.has('reset')) {
       await this.analytics.resetAllVotes();
@@ -68,22 +69,16 @@ class SwiperApp {
     // Set initial deck
     this.cardEngine.setDeck(this.catalog, 'ALL');
 
-    // 3. Bind UI Events
+    // 3. Bind UI Events & Controls
     this.bindControls();
-    this.bindCategoryTabs();
     this.bindModals();
     this.bindAudioToggle();
     this.bindKeyboardShortcuts();
 
-    // 4. Live Analytics & Ticker Setup
-    this.analytics.onTicker((feedItem) => this.updateTicker(feedItem));
-    this.refreshLeaderboard();
-    setInterval(() => this.refreshLeaderboard(), 8000); // Polling update
-
-    // 5. Update initial counter from 0
+    // 4. Update initial header vote counter
     this.updateHeaderCounter();
 
-    // 6. Fast background sync with server-curated catalog
+    // 5. Fast background sync with server-curated catalog
     this.syncCuratedCatalog();
   }
 
@@ -108,7 +103,7 @@ class SwiperApp {
             }
             if (this.cardEngine) {
               this.cardEngine.catalog = this.catalog;
-              this.cardEngine.setDeck(this.catalog, this.activeCategory);
+              this.cardEngine.setDeck(this.catalog, 'ALL');
             }
             this.updateHeaderCounter();
           }
@@ -132,42 +127,20 @@ class SwiperApp {
     if (btnUndo) btnUndo.addEventListener('click', () => this.cardEngine.undo());
     if (btnInfo) btnInfo.addEventListener('click', () => this.openInfoModal());
 
-    // Viral Share & Ranking Action Buttons
+    // Viral Share & Action Buttons
     const btnShareViral = document.getElementById('btnShareViral');
+    const btnShareLeaderboard = document.getElementById('btnShareLeaderboard');
     const btnExportStory = document.getElementById('btnExportStory');
     const btnFavorites = document.getElementById('btnFavorites');
     const btnResetVotes = document.getElementById('btnResetVotes');
+    const btnRestartDeck = document.getElementById('btnRestartDeck');
 
     if (btnShareViral) btnShareViral.addEventListener('click', () => this.openShareModal());
+    if (btnShareLeaderboard) btnShareLeaderboard.addEventListener('click', () => this.openShareModal());
     if (btnExportStory) btnExportStory.addEventListener('click', () => this.exportTop3Story());
     if (btnFavorites) btnFavorites.addEventListener('click', () => this.openFavoritesModal());
     if (btnResetVotes) btnResetVotes.addEventListener('click', () => this.confirmResetVotes());
-
-    // Mobile Drawer Toggle Button
-    const btnToggleMobileLeaderboard = document.getElementById('btnToggleMobileLeaderboard');
-    if (btnToggleMobileLeaderboard) {
-      btnToggleMobileLeaderboard.addEventListener('click', () => {
-        const panel = document.querySelector('.analytics-panel');
-        if (panel) {
-          panel.scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-    }
-  }
-
-  bindCategoryTabs() {
-    const tabs = document.querySelectorAll('.tab-btn');
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        const category = tab.dataset.category || 'ALL';
-        this.activeCategory = category;
-        this.cardEngine.setDeck(this.catalog, category);
-        this.refreshLeaderboard();
-        if (this.audioHaptics) this.audioHaptics.playTap();
-      });
-    });
+    if (btnRestartDeck) btnRestartDeck.addEventListener('click', () => this.restartDeck());
   }
 
   bindModals() {
@@ -185,7 +158,7 @@ class SwiperApp {
 
     if (btnOpenHighRes) {
       btnOpenHighRes.addEventListener('click', () => {
-        if (this.currentItem) this.openHighResViewer(this.currentItem.image.includes('assets/optimized/') ? this.currentItem.image : this.currentItem.image.replace('assets/designs/', 'assets/optimized/').replace(/\.(png|jpg)$/, '.webp'));
+        if (this.currentItem) this.openHighResViewer(this.currentItem);
       });
     }
 
@@ -216,20 +189,6 @@ class SwiperApp {
       closeFavorites.addEventListener('click', () => modalFavorites.classList.remove('active'));
       modalFavorites.addEventListener('click', (e) => {
         if (e.target === modalFavorites) modalFavorites.classList.remove('active');
-      });
-    }
-
-    // Podium / Summary Modal
-    const modalPodium = document.getElementById('modalPodium');
-    const closePodium = document.getElementById('closeModalPodium');
-    const btnRestartDeck = document.getElementById('btnRestartDeck');
-    if (closePodium && modalPodium) {
-      closePodium.addEventListener('click', () => modalPodium.classList.remove('active'));
-    }
-    if (btnRestartDeck) {
-      btnRestartDeck.addEventListener('click', () => {
-        if (modalPodium) modalPodium.classList.remove('active');
-        this.cardEngine.shuffle();
       });
     }
 
@@ -282,51 +241,65 @@ class SwiperApp {
 
   handleVote({ item, action, currentIndex, totalCards }) {
     this.updateHeaderCounter();
-    this.refreshLeaderboard();
+    if (this.isDeckCompleted) {
+      this.refreshLeaderboard();
+      this.renderTop3Fan();
+    }
   }
 
+  /**
+   * Called when user finishes swiping the entire deck.
+   * Hides the swiper and reveals the full Leaderboard & Top 3 showcase view!
+   */
   async handleDeckEmpty() {
-    const modalPodium = document.getElementById('modalPodium');
-    if (!modalPodium) return;
+    this.isDeckCompleted = true;
+    
+    const swiperStage = document.getElementById('swiperStage');
+    const leaderboardView = document.getElementById('leaderboardView');
 
-    const favorites = this.analytics.getUserFavorites();
-    const podiumGrid = document.getElementById('podiumGrid');
-
-    if (podiumGrid) {
-      podiumGrid.innerHTML = '';
-      const top3 = favorites.slice(0, 3);
-
-      for (let i = 0; i < 3; i++) {
-        const fav = top3[i];
-        const cardEl = document.createElement('div');
-        cardEl.className = `podium-card ${i === 0 ? 'podium-first' : ''}`;
-
-        if (fav) {
-          const optSrc = this.resolveImageUrl(fav);
-          cardEl.innerHTML = `
-            <span class="podium-place">${i === 0 ? '★ 1. MJESTO' : `${i + 1}. MJESTO`}</span>
-            <img src="${optSrc}" class="podium-img" alt="${fav.title}">
-            <p class="podium-name">${fav.title}</p>
-          `;
-        } else {
-          cardEl.innerHTML = `
-            <span class="podium-place">${i + 1}. MJESTO</span>
-            <div style="height:80px;display:flex;align-items:center;justify-content:center;color:#4B5951;">—</div>
-            <p class="podium-name">—</p>
-          `;
-        }
-        podiumGrid.appendChild(cardEl);
-      }
+    if (swiperStage) swiperStage.style.display = 'none';
+    if (leaderboardView) {
+      leaderboardView.style.display = 'flex';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    modalPodium.classList.add('active');
+    try {
+      if (this.audioHaptics) {
+        this.audioHaptics.playSwipe('superlike');
+      }
+    } catch (e) {}
+
+    await this.renderTop3Fan();
+    await this.refreshLeaderboard();
+  }
+
+  /**
+   * Resets the deck and brings the user back to the centered swiper view.
+   */
+  restartDeck() {
+    this.isDeckCompleted = false;
+
+    const swiperStage = document.getElementById('swiperStage');
+    const leaderboardView = document.getElementById('leaderboardView');
+
+    if (leaderboardView) leaderboardView.style.display = 'none';
+    if (swiperStage) {
+      swiperStage.style.display = 'flex';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    this.cardEngine.shuffle();
   }
 
   resolveImageUrl(itemOrImage) {
     if (!itemOrImage) return '';
     let raw = typeof itemOrImage === 'string' ? itemOrImage : (itemOrImage.image || '');
     if (!raw && typeof itemOrImage === 'object') {
-      const found = this.catalog.find(c => (itemOrImage.id && c.id === itemOrImage.id) || (itemOrImage.title && c.title === itemOrImage.title) || (itemOrImage.slug && c.slug === itemOrImage.slug));
+      const found = this.catalog.find(c => 
+        (itemOrImage.id && c.id === itemOrImage.id) || 
+        (itemOrImage.title && c.title === itemOrImage.title) || 
+        (itemOrImage.slug && c.slug === itemOrImage.slug)
+      );
       if (found) raw = found.image;
     }
     if (!raw) return '';
@@ -334,39 +307,116 @@ class SwiperApp {
     return encodeURI(opt);
   }
 
+  /**
+   * Renders the Top 3 Featured Cards in the staggered fan layout:
+   * Left: Rank #2 (Rotated -20deg, middle vertical height)
+   * Center: Rank #1 (Rotated 2deg, HIGHEST vertical height)
+   * Right: Rank #3 (Rotated 23deg, LOWEST vertical height)
+   */
+  async renderTop3Fan() {
+    const fanContainer = document.getElementById('top3CardsFan');
+    if (!fanContainer) return;
+
+    const stats = await this.analytics.fetchGlobalStats();
+    let topRanked = stats.topRanked || [];
+
+    // Fallback if no votes recorded yet
+    if (topRanked.length === 0) {
+      const favs = this.analytics.getUserFavorites();
+      topRanked = favs.length > 0 ? favs : this.catalog.slice(0, 3);
+    }
+
+    const rank1 = topRanked[0] || this.catalog[0] || null;
+    const rank2 = topRanked[1] || this.catalog[1] || null;
+    const rank3 = topRanked[2] || this.catalog[2] || null;
+
+    fanContainer.innerHTML = '';
+
+    // Card 2 (Left): -20deg, middle height
+    if (rank2) {
+      const card2El = this.createFanCardElement(rank2, 2, 'fan-rank-2', '★ #2 MJESTO');
+      fanContainer.appendChild(card2El);
+    }
+
+    // Card 1 (Center): 2deg, HIGHEST height
+    if (rank1) {
+      const card1El = this.createFanCardElement(rank1, 1, 'fan-rank-1', '👑 #1 FAVORIT');
+      fanContainer.appendChild(card1El);
+    }
+
+    // Card 3 (Right): 23deg, LOWEST height
+    if (rank3) {
+      const card3El = this.createFanCardElement(rank3, 3, 'fan-rank-3', '★ #3 MJESTO');
+      fanContainer.appendChild(card3El);
+    }
+  }
+
+  createFanCardElement(item, rankNum, modifierClass, badgeText) {
+    const card = document.createElement('div');
+    card.className = `fan-card ${modifierClass}`;
+    card.title = `Klikni za puni 2K prikaz: ${item.title}`;
+
+    const optSrc = this.resolveImageUrl(item);
+    const scoreVal = item.score !== undefined ? item.score : (item.likes || 0);
+    const scoreText = scoreVal + ' PTS';
+    const approvalText = (item.approvalRate !== undefined ? item.approvalRate : 100) + '% Sviđanja';
+
+    card.innerHTML = `
+      <span class="fan-badge">${badgeText}</span>
+      <div class="fan-img-wrap">
+        <img src="${optSrc}" class="fan-img" alt="${item.title}" loading="lazy">
+      </div>
+      <div class="fan-title">${item.title}</div>
+      <div class="fan-score">
+        <span>${scoreText}</span>
+        <small>${approvalText}</small>
+      </div>
+    `;
+
+    card.addEventListener('click', () => {
+      this.openHighResViewer(item);
+    });
+
+    return card;
+  }
+
+  /**
+   * Renders the Leaderboard ranking list with BIGGER thumbnails (88px)
+   */
   async refreshLeaderboard() {
     const stats = await this.analytics.fetchGlobalStats();
     const listEl = document.getElementById('leaderboardList');
+    const totalVotesLabel = document.getElementById('leaderboardTotalVotesLabel');
     if (!listEl) return;
 
     let items = stats.topRanked || [];
-    
-    // Filter by active category if selected
-    if (this.activeCategory !== 'ALL') {
-      items = items.filter(it => it.category.toUpperCase() === this.activeCategory.toUpperCase());
+
+    if (totalVotesLabel) {
+      totalVotesLabel.textContent = `GLASOVA: ${(stats.totalVotes || items.length).toLocaleString()}`;
     }
 
     listEl.innerHTML = '';
 
     if (!items.length) {
       listEl.innerHTML = `
-        <div style="text-align:center; padding: 28px 16px; color: var(--text-muted); background: #0B0E0D; border: 1px dashed #1E2721; border-radius: 12px;">
-          <div style="font-size: 1.5rem; margin-bottom: 6px;">⚔️</div>
+        <div style="text-align:center; padding: 28px 16px; color: var(--text-muted); background: #0B0E0D; border: 1px dashed #1E2721; border-radius: 14px;">
+          <div style="font-size: 1.6rem; margin-bottom: 6px;">⚔️</div>
           <p style="font-weight: 700; color: var(--gold-rich); margin-bottom: 4px;">GLASANJE JE UPRAVO OTVORENO</p>
-          <p style="font-size: 0.8rem;">Povuci prvu majicu desno (Like) ili gore (Superlike) za ulazak na rang listu!</p>
+          <p style="font-size: 0.85rem;">Glasaj za motive u špilu za ulazak na rang listu!</p>
         </div>
       `;
       return;
     }
 
-    const topItems = items.slice(0, 10);
-    const maxScore = topItems[0] ? topItems[0].score || 1 : 1;
+    const maxScore = items[0] ? (items[0].score || 1) : 1;
 
-    topItems.forEach((it, idx) => {
+    items.forEach((it, idx) => {
       const optSrc = this.resolveImageUrl(it);
-      const fillPct = Math.max(8, Math.round((it.score / maxScore) * 100));
+      const fillPct = Math.max(8, Math.round(((it.score || 0) / maxScore) * 100));
       const rankRow = document.createElement('div');
       rankRow.className = `rank-item rank-${idx + 1}`;
+      rankRow.title = `Klikni za puni 2K prikaz: ${it.title}`;
+
       rankRow.innerHTML = `
         <div class="rank-number">#${idx + 1}</div>
         <img src="${optSrc}" class="rank-thumb" alt="${it.title}" loading="lazy">
@@ -381,24 +431,13 @@ class SwiperApp {
           <small>${it.approvalRate || 100}% SVIĐANJA</small>
         </div>
       `;
+
+      rankRow.addEventListener('click', () => {
+        this.openHighResViewer(it);
+      });
+
       listEl.appendChild(rankRow);
     });
-
-    // Update Recent Activity Ticker
-    if (stats.recentActivity && stats.recentActivity[0]) {
-      this.updateTicker(stats.recentActivity[0]);
-    }
-  }
-
-  updateTicker(feedItem) {
-    const tickerContent = document.getElementById('tickerContent');
-    if (!tickerContent) return;
-
-    tickerContent.style.opacity = '0';
-    setTimeout(() => {
-      tickerContent.innerHTML = `<strong>${feedItem.user}</strong> ${feedItem.action} <span style="color:#D0A041;">${feedItem.item}</span> <span style="opacity:0.6;font-size:0.7rem;">(${feedItem.time})</span>`;
-      tickerContent.style.opacity = '1';
-    }, 180);
   }
 
   updateHeaderCounter() {
@@ -419,17 +458,17 @@ class SwiperApp {
 
     if (infoImg) infoImg.src = this.resolveImageUrl(this.currentItem);
     if (infoTitle) infoTitle.textContent = this.currentItem.title;
-    if (infoCat) infoCat.textContent = `${this.currentItem.category.toUpperCase()} SERIES`;
+    if (infoCat) infoCat.textContent = `${(this.currentItem.category || 'ARTWEAR').toUpperCase()} SERIES`;
     if (infoDesc) infoDesc.textContent = this.currentItem.description;
 
     if (modalInfo) modalInfo.classList.add('active');
   }
 
-  openHighResViewer(imgSrc) {
+  openHighResViewer(itemOrSrc) {
     const modalZoom = document.getElementById('modalZoom');
     const zoomImg = document.getElementById('zoomImage');
     if (zoomImg && modalZoom) {
-      zoomImg.src = this.resolveImageUrl(imgSrc);
+      zoomImg.src = this.resolveImageUrl(itemOrSrc);
       modalZoom.classList.add('active');
     }
   }
@@ -460,6 +499,7 @@ class SwiperApp {
           <img src="${optSrc}" class="podium-img" alt="${fav.title}">
           <p class="podium-name">${fav.title}</p>
         `;
+        card.addEventListener('click', () => this.openHighResViewer(fav));
         favGrid.appendChild(card);
       });
     }
@@ -482,15 +522,24 @@ class SwiperApp {
   async confirmResetVotes() {
     if (confirm('Želiš li poništiti sve glasove i započeti glasanje od 0?')) {
       await this.analytics.resetAllVotes();
-      this.cardEngine.setDeck(this.catalog, this.activeCategory);
+      this.cardEngine.setDeck(this.catalog, 'ALL');
       this.updateHeaderCounter();
-      this.refreshLeaderboard();
+      if (this.isDeckCompleted) {
+        this.renderTop3Fan();
+        this.refreshLeaderboard();
+      }
       this.showToast('✓ Svi glasovi su uspješno resetirani na 0!');
     }
   }
 
   async exportTop3Story() {
-    const favorites = this.analytics.getUserFavorites();
+    const stats = await this.analytics.fetchGlobalStats();
+    let favorites = this.analytics.getUserFavorites();
+
+    if (!favorites.length && stats.topRanked && stats.topRanked.length > 0) {
+      favorites = stats.topRanked.slice(0, 3);
+    }
+
     if (!favorites.length) {
       this.showToast('⚠️ Prvo glasaj za barem jedan dizajn!');
       return;

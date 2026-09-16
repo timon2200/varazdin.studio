@@ -56,6 +56,10 @@ export class AudioHaptics {
     } catch (e) {}
   }
 
+  playSuperlike() {
+    this.playSwipe('superlike');
+  }
+
   playSwipe(direction = 'right') {
     if (!this.soundEnabled) return;
     this.ensureContext();

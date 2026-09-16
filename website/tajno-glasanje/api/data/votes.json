@@ -1,5 +1,5 @@
 {
-  "totalVotes": 33,
+  "totalVotes": 45,
   "uniqueVoters": [
     "usr_6cp05b71mu4l05w1"
   ],
@@ -255,6 +255,102 @@
     "sv-066": {
       "id": "sv-066",
       "title": "Good Work Great Work DEDICATION",
+      "likes": 0,
+      "passes": 1,
+      "superlikes": 0,
+      "score": 0
+    },
+    "sv-017": {
+      "id": "sv-017",
+      "title": "Silent Knight Studio Black",
+      "likes": 1,
+      "passes": 0,
+      "superlikes": 0,
+      "score": 1
+    },
+    "sv-007": {
+      "id": "sv-007",
+      "title": "Not Overthinking Storyboard Collage",
+      "likes": 1,
+      "passes": 0,
+      "superlikes": 0,
+      "score": 1
+    },
+    "sv-006": {
+      "id": "sv-006",
+      "title": "Knight Thumbs Up Water",
+      "likes": 1,
+      "passes": 0,
+      "superlikes": 0,
+      "score": 1
+    },
+    "sv-012": {
+      "id": "sv-012",
+      "title": "Garda Purgar Sigil White",
+      "likes": 0,
+      "passes": 1,
+      "superlikes": 0,
+      "score": 0
+    },
+    "sv-020": {
+      "id": "sv-020",
+      "title": "Write Studio Ins",
+      "likes": 0,
+      "passes": 1,
+      "superlikes": 0,
+      "score": 0
+    },
+    "sv-019": {
+      "id": "sv-019",
+      "title": "Remove The Text Up Top On",
+      "likes": 1,
+      "passes": 0,
+      "superlikes": 0,
+      "score": 1
+    },
+    "sv-008": {
+      "id": "sv-008",
+      "title": "Visually Articulate Skyline",
+      "likes": 1,
+      "passes": 0,
+      "superlikes": 0,
+      "score": 1
+    },
+    "sv-010": {
+      "id": "sv-010",
+      "title": "Teratomorpha Sigil White",
+      "likes": 1,
+      "passes": 0,
+      "superlikes": 0,
+      "score": 1
+    },
+    "sv-005": {
+      "id": "sv-005",
+      "title": "Good Work Great Work Folk Silhouette",
+      "likes": 0,
+      "passes": 1,
+      "superlikes": 0,
+      "score": 0
+    },
+    "sv-001": {
+      "id": "sv-001",
+      "title": "Creative Block 1181",
+      "likes": 0,
+      "passes": 1,
+      "superlikes": 0,
+      "score": 0
+    },
+    "sv-014": {
+      "id": "sv-014",
+      "title": "Knight Sigil White",
+      "likes": 0,
+      "passes": 1,
+      "superlikes": 0,
+      "score": 0
+    },
+    "sv-011": {
+      "id": "sv-011",
+      "title": "Fisheye Ambition Black",
       "likes": 0,
       "passes": 1,
       "superlikes": 0,
