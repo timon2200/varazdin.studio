@@ -8,7 +8,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,500;0,700;0,800;1,700&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Syne:wght@700;800;900&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,500;0,700;0,800;1,700&family=Outfit:wght@700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Space+Grotesk:wght@700&family=Syne:wght@700;800;900&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet">
 
   <!-- Presentation Styles -->
   <style>
@@ -25,8 +25,8 @@
   --accent-green-bright: #10b981;
   --accent-green-bg: #e0f6eb;
   --accent-green-border: #a1dcc2;
-  --font-hero: 'Syne', sans-serif;
-  --font-display: 'Unbounded', sans-serif;
+  --font-hero: 'Plus Jakarta Sans', sans-serif;
+  --font-display: 'Plus Jakarta Sans', sans-serif;
   --font-sans: 'Plus Jakarta Sans', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
   --particle-color: #0d5c3a;
@@ -47,8 +47,8 @@
   --accent-green-bright: #177331;
   --accent-green-bg: #e1ede4;
   --accent-green-border: #a6cbb4;
-  --font-hero: 'Syne', sans-serif;
-  --font-display: 'Unbounded', sans-serif;
+  --font-hero: 'Plus Jakarta Sans', sans-serif;
+  --font-display: 'Plus Jakarta Sans', sans-serif;
   --font-sans: 'Plus Jakarta Sans', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
   --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
@@ -746,7 +746,7 @@ footer.deck-footer {
   font-size: clamp(1.8rem, 3.4vw, 3.2rem);
   font-weight: 900;
   line-height: 0.98;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.035em;
   margin-bottom: 0.5rem;
   text-transform: uppercase;
 }
@@ -761,8 +761,11 @@ footer.deck-footer {
 }
 
 .outline-text {
+  font-family: var(--font-hero);
+  font-weight: 900;
   color: transparent;
   -webkit-text-stroke: 1.5px var(--text-primary);
+  letter-spacing: -0.02em;
 }
 
 .highlight {
