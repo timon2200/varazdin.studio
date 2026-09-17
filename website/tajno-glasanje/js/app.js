@@ -316,13 +316,13 @@ class SwiperApp {
 
     if (retroLeft) {
       retroLeft.addEventListener('click', () => {
-        if (this.compareEngine) this.compareEngine.discardCard('right');
+        if (this.compareEngine) this.compareEngine.discardCard('left');
       });
     }
 
     if (retroRight) {
       retroRight.addEventListener('click', () => {
-        if (this.compareEngine) this.compareEngine.discardCard('left');
+        if (this.compareEngine) this.compareEngine.discardCard('right');
       });
     }
   }
@@ -968,14 +968,14 @@ class SwiperApp {
           e.preventDefault();
           const chip = document.getElementById('retroDuelLeft');
           if (chip) chip.classList.add('is-pressed');
-          this.compareEngine.discardCard('right');
+          this.compareEngine.discardCard('left');
           return;
         }
         if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') {
           e.preventDefault();
           const chip = document.getElementById('retroDuelRight');
           if (chip) chip.classList.add('is-pressed');
-          this.compareEngine.discardCard('left');
+          this.compareEngine.discardCard('right');
           return;
         }
         if (e.key === ' ' || e.code === 'Space') {

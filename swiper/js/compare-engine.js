@@ -144,7 +144,7 @@ export class CompareEngine {
     const isChampion = this.winnerSide === side;
     const streak = isChampion ? (side === 'left' ? this.leftStreak : this.rightStreak) : 0;
     const optSrc = this.resolveImageUrl(item);
-    const keyHint = side === 'left' ? 'MAKNI [ → ]' : 'MAKNI [ ← ]';
+    const keyHint = side === 'left' ? 'MAKNI [ ← ]' : 'MAKNI [ → ]';
 
     return `
       <article class="duel-card ${isChampion ? 'is-champion' : ''}" data-side="${side}" data-id="${item.id}">
@@ -152,7 +152,7 @@ export class CompareEngine {
         ${isChampion ? `<div class="duel-crown-badge">👑 DEFENDING ${streak > 1 ? `(${streak}x)` : ''}</div>` : ''}
 
         <!-- Big Hero Visual Container -->
-        <div class="duel-img-wrap" title="Klikni ili povuci za uklanjanje (${side === 'left' ? '→' : '←'})">
+        <div class="duel-img-wrap" title="Klikni ili povuci za uklanjanje (${side === 'left' ? '←' : '→'})">
           <img src="${optSrc}" alt="${item.title}" class="duel-img" draggable="false" loading="eager">
           <div class="scanline-overlay"></div>
           
@@ -398,13 +398,13 @@ export class CompareEngine {
         loserCard.style.opacity = '0';
       } else {
         // Click or Arrow Key: dramatic directional fly away!
-        // Left card flies right (following MAKNI [ → ]), Right card flies left (following MAKNI [ ← ])
-        const flyToRight = (side === 'left');
+        // Left card flies left (MAKNI [ ← ]), Right card flies right (MAKNI [ → ])
+        const flyToLeft = (side === 'left');
         const screenW = typeof window !== 'undefined' ? window.innerWidth : 1200;
         const flyDistance = Math.max(screenW * 0.85, 850);
-        const endX = flyToRight ? flyDistance : -flyDistance;
+        const endX = flyToLeft ? -flyDistance : flyDistance;
         const endY = -50;
-        const endRot = flyToRight ? 26 : -26;
+        const endRot = flyToLeft ? -26 : 26;
 
         loserCard.style.transition = 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.36s ease 0.04s, box-shadow 0.3s ease';
         loserCard.style.transform = `translate3d(${endX}px, ${endY}px, 0px) rotate(${endRot}deg) scale(0.92)`;
