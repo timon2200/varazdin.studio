@@ -7,7 +7,6 @@
   <meta name="description" content="Službeni centralni dashboard i katalog interaktivnih 16:9 prezentacijskih mikrosajtova i ponuda Studija Varaždin.">
   <meta name="robots" content="noindex, nofollow">
   
-  <!-- Dynamic Favicon & Icons -->
   <link rel="icon" type="image/svg+xml" href="https://varazdin.studio/favicon.svg">
   <link rel="apple-touch-icon" href="https://varazdin.studio/apple-touch-icon.png">
 
@@ -18,48 +17,46 @@
 
   <style>
     /* ==========================================================================
-       DASHBOARD STYLES & DESIGN TOKENS
-       Studio Varaždin Brutalist & Editorial Aesthetics
+       MERIDIAN 16 WARM EDITORIAL CANVAS DESIGN TOKENS & PAPER TEXTURE
        ========================================================================== */
     :root {
-      --bg-canvas: #09120e;
-      --bg-surface: #101c17;
-      --bg-card: #15241e;
-      --bg-card-hover: #1a2d26;
-      --bg-card-subtle: #0d1713;
+      --bg-canvas: #f4efe4;
+      --bg-card: #fbf7ee;
+      --bg-card-subtle: #eae3d2;
+      --bg-card-dark: #0d1815;
       
-      --text-primary: #f2f7f4;
-      --text-secondary: #a7bbb3;
-      --text-muted: #647a74;
+      --text-primary: #111518;
+      --text-secondary: #3b454e;
+      --text-muted: #79828a;
+      --text-light: #f4efe4;
       
-      --border-dark: #050b08;
-      --border-color: #20352c;
-      --border-light: #2c483c;
+      --border-dark: #111518;
+      --border-color: #d5ccba;
+      --border-strong: #111518;
       
-      --accent-green: #10b981;
-      --accent-green-bright: #34d399;
-      --accent-green-bg: rgba(16, 185, 129, 0.12);
-      --accent-green-border: rgba(16, 185, 129, 0.35);
+      --accent-green: #11421f;
+      --accent-green-bright: #177331;
+      --accent-green-bg: #e1ede4;
+      --accent-green-border: #a6cbb4;
       
-      --accent-gold: #d4a34b;
-      --accent-gold-bright: #fbbf24;
-      --accent-gold-bg: rgba(212, 163, 75, 0.12);
-      --accent-gold-border: rgba(212, 163, 75, 0.35);
+      --accent-emerald: #10b981;
+      --accent-emerald-bg: rgba(16, 185, 129, 0.12);
       
-      --accent-blue: #38bdf8;
-      --accent-blue-bg: rgba(56, 189, 248, 0.12);
-      --accent-blue-border: rgba(56, 189, 248, 0.35);
+      --accent-gold: #c9933b;
+      --accent-gold-bg: #faeed4;
+      --accent-gold-border: #e3c485;
       
       --font-heading: 'Syne', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
       
       --radius-sm: 4px;
-      --radius-md: 8px;
-      --radius-lg: 12px;
+      --radius-md: 6px;
+      --radius-lg: 10px;
       
       --shadow-brutal: 4px 4px 0px var(--border-dark);
-      --shadow-brutal-hover: 6px 6px 0px var(--border-dark);
+      --shadow-brutal-hover: 7px 7px 0px var(--border-dark);
+      --shadow-brutal-dark: 5px 5px 0px #060b09;
       --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -84,6 +81,36 @@
       position: relative;
     }
 
+    /* Paper texture background layer */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(#111518 0.65px, transparent 0.65px),
+        radial-gradient(#111518 0.65px, var(--bg-canvas) 0.65px);
+      background-size: 26px 26px;
+      background-position: 0 0, 13px 13px;
+      opacity: 0.032;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Paper subtle grain overlay */
+    .paper-noise-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.038;
+      background: repeating-radial-gradient(#000 0 0.0001%, #fff 0 0.0002%);
+      mix-blend-mode: multiply;
+    }
+
+    /* Ambient CanvasUI particles */
     #canvasUiParticles {
       position: fixed;
       top: 0;
@@ -91,25 +118,27 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
-      z-index: 1;
+      z-index: 2;
     }
 
     .dashboard-wrapper {
       position: relative;
-      z-index: 2;
+      z-index: 3;
       max-width: 1440px;
       margin: 0 auto;
-      padding: 1.75rem 2rem 4rem 2rem;
+      padding: 2rem 2.25rem 5rem 2.25rem;
     }
 
-    /* HEADER */
+    /* ==========================================================================
+       HEADER & NAVIGATION
+       ========================================================================== */
     .dashboard-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding-bottom: 1.5rem;
-      border-bottom: 2px solid var(--border-color);
-      margin-bottom: 2rem;
+      border-bottom: 2px solid var(--border-dark);
+      margin-bottom: 2.25rem;
     }
 
     .header-brand-group {
@@ -119,24 +148,24 @@
     }
 
     .brand-emblem-box {
-      width: 44px;
-      height: 44px;
-      background: var(--bg-card);
-      border: 2px solid var(--accent-green);
+      width: 48px;
+      height: 48px;
+      background: var(--accent-green);
+      border: 2px solid var(--border-dark);
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: var(--radius-sm);
       box-shadow: 3px 3px 0px var(--border-dark);
-      font-family: var(--font-mono);
-      font-weight: 800;
-      font-size: 1.2rem;
-      color: var(--accent-green-bright);
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 1.35rem;
+      color: #f4efe4;
     }
 
     .brand-title-group h1 {
       font-family: var(--font-heading);
-      font-size: 1.35rem;
+      font-size: 1.45rem;
       font-weight: 900;
       letter-spacing: -0.02em;
       text-transform: uppercase;
@@ -146,9 +175,9 @@
 
     .brand-breadcrumb {
       font-family: var(--font-mono);
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--accent-green-bright);
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--accent-green);
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
@@ -156,84 +185,96 @@
     .header-controls-group {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 0.85rem;
     }
 
     .status-pill {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.45rem 0.85rem;
+      padding: 0.48rem 0.9rem;
       background: var(--accent-green-bg);
-      border: 1.5px solid var(--accent-green-border);
+      border: 2px solid var(--border-dark);
       border-radius: var(--radius-sm);
       font-family: var(--font-mono);
       font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--accent-green-bright);
+      font-weight: 800;
+      color: var(--accent-green);
       letter-spacing: 0.05em;
+      box-shadow: 2px 2px 0px var(--border-dark);
     }
 
     .status-dot {
       width: 8px;
       height: 8px;
-      background: var(--accent-green-bright);
+      background: var(--accent-green);
       border-radius: 50%;
-      box-shadow: 0 0 8px var(--accent-green-bright);
-      animation: pulseGreen 2s infinite ease-in-out;
+      box-shadow: 0 0 6px rgba(17, 66, 31, 0.6);
+      animation: pulseDot 2s infinite ease-in-out;
     }
 
-    @keyframes pulseGreen {
+    @keyframes pulseDot {
       0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.85); }
+      50% { opacity: 0.4; transform: scale(0.85); }
     }
 
     .btn-header-tool {
       background: var(--bg-card);
-      border: 1.5px solid var(--border-color);
-      color: var(--text-secondary);
-      padding: 0.45rem 0.75rem;
+      border: 2px solid var(--border-dark);
+      color: var(--text-primary);
+      padding: 0.48rem 0.85rem;
       border-radius: var(--radius-sm);
       font-family: var(--font-mono);
       font-size: 0.75rem;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 0.4rem;
-      transition: all 0.2s var(--transition-smooth);
-      box-shadow: 2px 2px 0px var(--border-dark);
-    }
-
-    .btn-header-tool:hover {
-      color: var(--text-primary);
-      border-color: var(--text-secondary);
-      transform: translate(-1px, -1px);
+      transition: all 0.18s var(--transition-smooth);
       box-shadow: 3px 3px 0px var(--border-dark);
     }
 
-    .btn-header-tool.active {
-      background: var(--accent-green-bg);
-      color: var(--accent-green-bright);
-      border-color: var(--accent-green);
+    .btn-header-tool:hover {
+      background: var(--bg-card-subtle);
+      transform: translate(-1.5px, -1.5px);
+      box-shadow: 4px 4px 0px var(--border-dark);
     }
 
-    /* METRICS / KPIS */
+    .btn-header-tool:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0px var(--border-dark);
+    }
+
+    .btn-header-tool.active {
+      background: var(--accent-green);
+      color: #f4efe4;
+    }
+
+    /* ==========================================================================
+       METRICS / KPIS
+       ========================================================================== */
     .metrics-bar {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 1.25rem;
-      margin-bottom: 2rem;
+      margin-bottom: 2.25rem;
     }
 
     .metric-card {
-      background: var(--bg-surface);
-      border: 1.5px solid var(--border-color);
+      background: var(--bg-card);
+      border: 2px solid var(--border-dark);
       border-radius: var(--radius-md);
-      padding: 1.2rem 1.4rem;
+      padding: 1.25rem 1.4rem;
       box-shadow: var(--shadow-brutal);
       position: relative;
       overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .metric-card:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: var(--shadow-brutal-hover);
     }
 
     .metric-card::after {
@@ -241,20 +282,20 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 4px;
+      width: 5px;
       height: 100%;
       background: var(--accent-green);
     }
 
     .metric-card.gold::after { background: var(--accent-gold); }
-    .metric-card.blue::after { background: var(--accent-blue); }
+    .metric-card.signature::after { background: var(--accent-emerald); }
 
     .metric-label {
       font-family: var(--font-mono);
-      font-size: 0.75rem;
-      font-weight: 700;
+      font-size: 0.72rem;
+      font-weight: 800;
       color: var(--text-muted);
-      letter-spacing: 0.06em;
+      letter-spacing: 0.07em;
       text-transform: uppercase;
       margin-bottom: 0.35rem;
       display: flex;
@@ -264,7 +305,7 @@
 
     .metric-val {
       font-family: var(--font-heading);
-      font-size: 1.75rem;
+      font-size: 1.85rem;
       font-weight: 900;
       color: var(--text-primary);
       letter-spacing: -0.02em;
@@ -274,16 +315,19 @@
     .metric-sub {
       font-size: 0.78rem;
       color: var(--text-secondary);
-      margin-top: 0.25rem;
+      margin-top: 0.3rem;
+      font-weight: 500;
     }
 
-    /* CONTROLS TOOLBAR */
+    /* ==========================================================================
+       CONTROLS & FILTER TOOLBAR
+       ========================================================================== */
     .controls-toolbar {
-      background: var(--bg-surface);
-      border: 1.5px solid var(--border-color);
+      background: var(--bg-card);
+      border: 2px solid var(--border-dark);
       border-radius: var(--radius-md);
       padding: 1rem 1.25rem;
-      margin-bottom: 2rem;
+      margin-bottom: 2.25rem;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
@@ -310,18 +354,20 @@
 
     .search-input {
       width: 100%;
-      background: var(--bg-card);
-      border: 1.5px solid var(--border-color);
+      background: var(--bg-card-subtle);
+      border: 2px solid var(--border-dark);
       border-radius: var(--radius-sm);
       padding: 0.65rem 2.4rem 0.65rem 2.6rem;
       font-family: var(--font-body);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
+      font-weight: 600;
       color: var(--text-primary);
       outline: none;
       transition: all 0.2s var(--transition-smooth);
     }
 
     .search-input:focus {
+      background: #ffffff;
       border-color: var(--accent-green);
       box-shadow: 0 0 0 3px var(--accent-green-bg);
     }
@@ -333,10 +379,10 @@
       transform: translateY(-50%);
       font-family: var(--font-mono);
       font-size: 0.7rem;
-      font-weight: 700;
+      font-weight: 800;
       color: var(--text-muted);
-      background: var(--bg-surface);
-      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      border: 1px solid var(--border-dark);
       padding: 0.15rem 0.4rem;
       border-radius: 3px;
       pointer-events: none;
@@ -349,27 +395,33 @@
     }
 
     .filter-pill {
-      background: var(--bg-card);
-      border: 1.5px solid var(--border-color);
-      color: var(--text-secondary);
+      background: var(--bg-card-subtle);
+      border: 2px solid var(--border-dark);
+      color: var(--text-primary);
       font-family: var(--font-mono);
       font-size: 0.75rem;
-      font-weight: 700;
-      padding: 0.5rem 0.9rem;
+      font-weight: 800;
+      padding: 0.52rem 0.95rem;
       border-radius: var(--radius-sm);
       cursor: pointer;
-      transition: all 0.2s var(--transition-smooth);
+      box-shadow: 2px 2px 0px var(--border-dark);
+      transition: all 0.18s var(--transition-smooth);
     }
 
     .filter-pill:hover {
-      color: var(--text-primary);
-      border-color: var(--text-secondary);
+      background: #ffffff;
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0px var(--border-dark);
+    }
+
+    .filter-pill:active {
+      transform: translate(2px, 2px);
+      box-shadow: 0px 0px 0px var(--border-dark);
     }
 
     .filter-pill.active {
-      background: var(--accent-green-bg);
-      color: var(--accent-green-bright);
-      border-color: var(--accent-green);
+      background: var(--accent-green);
+      color: #f4efe4;
     }
 
     .sort-select-wrapper {
@@ -379,32 +431,34 @@
     }
 
     .sort-select {
-      background: var(--bg-card);
-      border: 1.5px solid var(--border-color);
+      background: var(--bg-card-subtle);
+      border: 2px solid var(--border-dark);
       color: var(--text-primary);
       font-family: var(--font-mono);
       font-size: 0.75rem;
-      font-weight: 700;
-      padding: 0.5rem 0.8rem;
+      font-weight: 800;
+      padding: 0.55rem 0.85rem;
       border-radius: var(--radius-sm);
       outline: none;
       cursor: pointer;
+      box-shadow: 2px 2px 0px var(--border-dark);
     }
 
     .view-toggle-group {
       display: flex;
       gap: 0.35rem;
-      background: var(--bg-card);
+      background: var(--bg-card-subtle);
       padding: 0.3rem;
       border-radius: var(--radius-sm);
-      border: 1.5px solid var(--border-color);
+      border: 2px solid var(--border-dark);
+      box-shadow: 2px 2px 0px var(--border-dark);
     }
 
     .btn-view-toggle {
       background: transparent;
       border: none;
       color: var(--text-muted);
-      padding: 0.4rem 0.65rem;
+      padding: 0.4rem 0.7rem;
       border-radius: 3px;
       cursor: pointer;
       display: flex;
@@ -412,8 +466,8 @@
       gap: 0.35rem;
       font-family: var(--font-mono);
       font-size: 0.75rem;
-      font-weight: 700;
-      transition: all 0.2s var(--transition-smooth);
+      font-weight: 800;
+      transition: all 0.18s var(--transition-smooth);
     }
 
     .btn-view-toggle:hover {
@@ -422,31 +476,43 @@
 
     .btn-view-toggle.active {
       background: var(--accent-green);
-      color: var(--border-dark);
+      color: #f4efe4;
     }
 
-    /* GRID VIEW */
+    /* ==========================================================================
+       GRID VIEW (CARDS & CANVASUI HOVER DITHER)
+       ========================================================================== */
     .decks-grid-view {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-      gap: 1.75rem;
+      grid-template-columns: repeat(auto-fill, minmax(390px, 1fr));
+      gap: 2rem;
     }
 
     .deck-card {
       background: var(--bg-card);
-      border: 2px solid var(--border-color);
+      border: 2px solid var(--border-dark);
       border-radius: var(--radius-md);
       overflow: hidden;
       box-shadow: var(--shadow-brutal);
       display: flex;
       flex-direction: column;
-      transition: transform 0.25s var(--transition-smooth), box-shadow 0.25s var(--transition-smooth), border-color 0.25s var(--transition-smooth);
+      position: relative;
+      transition: transform 0.25s var(--transition-smooth), box-shadow 0.25s var(--transition-smooth);
     }
 
     .deck-card:hover {
       transform: translate(-3px, -3px);
       box-shadow: var(--shadow-brutal-hover);
-      border-color: var(--accent-green);
+    }
+
+    /* Signature dark card styling */
+    .deck-card.signature-card {
+      background: var(--bg-card);
+      border: 2.5px solid var(--border-dark);
+    }
+
+    .deck-card.signature-card .pricing-amount {
+      color: var(--accent-green);
     }
 
     .card-media-wrapper {
@@ -456,29 +522,57 @@
       background: #000;
       overflow: hidden;
       cursor: pointer;
+      border-bottom: 2px solid var(--border-dark);
     }
 
     .card-thumb {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.4s var(--transition-smooth);
+      display: block;
+      transition: transform 0.45s var(--transition-smooth);
     }
 
     .card-media-wrapper:hover .card-thumb {
-      transform: scale(1.05);
+      transform: scale(1.04);
+    }
+
+    /* CanvasUI Bayer Dither dynamic layer */
+    .dither-canvas-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 4;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      mix-blend-mode: screen;
+    }
+
+    /* Scanline effect */
+    .scanline-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+      background-size: 100% 4px;
+      z-index: 3;
+      pointer-events: none;
+      opacity: 0.4;
     }
 
     .card-media-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(9, 18, 14, 0.6);
+      background: rgba(17, 21, 24, 0.55);
       opacity: 0;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: opacity 0.25s var(--transition-smooth);
       backdrop-filter: blur(2px);
+      z-index: 5;
     }
 
     .card-media-wrapper:hover .card-media-overlay {
@@ -486,18 +580,19 @@
     }
 
     .preview-cta-chip {
-      background: var(--accent-green);
+      background: #fbf7ee;
       color: var(--border-dark);
+      border: 2px solid var(--border-dark);
       font-family: var(--font-mono);
       font-weight: 800;
       font-size: 0.78rem;
       letter-spacing: 0.05em;
-      padding: 0.55rem 1rem;
+      padding: 0.55rem 1.1rem;
       border-radius: var(--radius-sm);
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      box-shadow: 4px 4px 0px var(--border-dark);
       transform: translateY(6px);
       transition: transform 0.25s var(--transition-smooth);
     }
@@ -517,15 +612,16 @@
       padding: 0.35rem 0.65rem;
       border-radius: var(--radius-sm);
       text-transform: uppercase;
-      z-index: 2;
+      border: 1.5px solid var(--border-dark);
+      box-shadow: 2px 2px 0px var(--border-dark);
+      z-index: 6;
     }
 
-    .badge-gold { background: var(--accent-gold); color: #000; }
-    .badge-green { background: var(--accent-green); color: #000; }
-    .badge-blue { background: var(--accent-blue); color: #000; }
+    .badge-gold { background: var(--accent-gold); color: #111518; }
+    .badge-green { background: var(--accent-green-bg); color: var(--accent-green); }
 
     .card-content {
-      padding: 1.35rem;
+      padding: 1.45rem;
       display: flex;
       flex-direction: column;
       flex: 1;
@@ -536,14 +632,14 @@
       justify-content: space-between;
       align-items: center;
       gap: 0.75rem;
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.65rem;
     }
 
     .card-client-name {
       font-family: var(--font-mono);
       font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--accent-green-bright);
+      font-weight: 800;
+      color: var(--accent-green);
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
@@ -551,9 +647,10 @@
     .card-sector-pill {
       font-family: var(--font-mono);
       font-size: 0.68rem;
-      color: var(--text-muted);
-      background: var(--bg-surface);
-      padding: 0.15rem 0.45rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      background: var(--bg-card-subtle);
+      padding: 0.18rem 0.5rem;
       border-radius: 3px;
       border: 1px solid var(--border-color);
       white-space: nowrap;
@@ -561,7 +658,7 @@
 
     .card-title {
       font-family: var(--font-heading);
-      font-size: 1.15rem;
+      font-size: 1.22rem;
       font-weight: 800;
       color: var(--text-primary);
       line-height: 1.25;
@@ -573,10 +670,11 @@
     }
 
     .card-tagline {
-      font-size: 0.85rem;
+      font-size: 0.86rem;
       color: var(--text-secondary);
       line-height: 1.45;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.35rem;
+      font-weight: 500;
       flex: 1;
       display: -webkit-box;
       -webkit-line-clamp: 2;
@@ -585,11 +683,12 @@
     }
 
     .card-pricing-box {
-      background: var(--bg-surface);
-      border: 1.5px solid var(--border-color);
+      background: var(--bg-card-subtle);
+      border: 2px solid var(--border-dark);
       border-radius: var(--radius-sm);
-      padding: 0.85rem 1rem;
-      margin-bottom: 1.25rem;
+      padding: 0.9rem 1.1rem;
+      margin-bottom: 1.35rem;
+      box-shadow: 2px 2px 0px var(--border-dark);
     }
 
     .pricing-label-row {
@@ -603,14 +702,15 @@
     .pricing-label {
       font-family: var(--font-mono);
       font-size: 0.68rem;
-      font-weight: 700;
+      font-weight: 800;
       color: var(--text-muted);
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
     }
 
     .pricing-options-hint {
       font-size: 0.72rem;
       color: var(--text-secondary);
+      font-weight: 600;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -618,7 +718,7 @@
 
     .pricing-amount {
       font-family: var(--font-mono);
-      font-size: 1.25rem;
+      font-size: 1.35rem;
       font-weight: 800;
       color: var(--text-primary);
       letter-spacing: -0.01em;
@@ -627,48 +727,52 @@
     .card-actions-wrapper {
       display: flex;
       flex-direction: column;
-      gap: 0.45rem;
+      gap: 0.5rem;
     }
 
     .actions-row-primary {
       display: grid;
       grid-template-columns: 1.3fr 1fr;
-      gap: 0.45rem;
+      gap: 0.5rem;
     }
 
     .actions-row-secondary {
       display: grid;
-      grid-template-columns: 1.4fr 42px 42px;
-      gap: 0.45rem;
+      grid-template-columns: 1.4fr 44px 44px;
+      gap: 0.5rem;
     }
 
     .btn-card-action {
       border-radius: var(--radius-sm);
       font-family: var(--font-mono);
       font-size: 0.75rem;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 0.03em;
-      padding: 0.58rem 0.5rem;
+      padding: 0.62rem 0.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 0.4rem;
       cursor: pointer;
       text-decoration: none;
-      transition: all 0.2s var(--transition-smooth);
-      border: 1.5px solid transparent;
+      transition: all 0.18s var(--transition-smooth);
+      border: 2px solid var(--border-dark);
       box-shadow: 2px 2px 0px var(--border-dark);
+    }
+
+    .btn-card-action:hover {
+      transform: translate(-1.5px, -1.5px);
+      box-shadow: 3.5px 3.5px 0px var(--border-dark);
     }
 
     .btn-card-action:active {
       transform: translate(2px, 2px);
-      box-shadow: none;
+      box-shadow: 0px 0px 0px var(--border-dark);
     }
 
     .btn-primary {
       background: var(--accent-green);
-      color: var(--border-dark);
-      border-color: var(--accent-green);
+      color: #f4efe4;
     }
 
     .btn-primary:hover {
@@ -676,43 +780,41 @@
     }
 
     .btn-secondary {
-      background: var(--bg-surface);
+      background: #ffffff;
       color: var(--text-primary);
-      border-color: var(--border-color);
     }
 
     .btn-secondary:hover {
-      border-color: var(--text-primary);
+      background: var(--bg-card-subtle);
     }
 
     .btn-subtle {
       background: var(--bg-card-subtle);
-      color: var(--text-secondary);
-      border-color: var(--border-color);
+      color: var(--text-primary);
     }
 
     .btn-subtle:hover {
-      color: var(--text-primary);
-      border-color: var(--text-secondary);
+      background: #ffffff;
     }
 
     .btn-icon {
-      background: var(--bg-surface);
-      color: var(--text-secondary);
-      border-color: var(--border-color);
+      background: #ffffff;
+      color: var(--text-primary);
       padding: 0;
     }
 
     .btn-icon:hover {
-      color: var(--text-primary);
-      border-color: var(--text-primary);
+      background: var(--accent-green-bg);
+      color: var(--accent-green);
     }
 
-    /* LIST VIEW */
+    /* ==========================================================================
+       LIST VIEW (TABLE)
+       ========================================================================== */
     .decks-list-view {
       display: none;
       background: var(--bg-card);
-      border: 2px solid var(--border-color);
+      border: 2px solid var(--border-dark);
       border-radius: var(--radius-md);
       overflow: hidden;
       box-shadow: var(--shadow-brutal);
@@ -725,19 +827,19 @@
     }
 
     .dashboard-table th {
-      background: var(--bg-surface);
-      padding: 0.9rem 1rem;
+      background: var(--bg-card-subtle);
+      padding: 1rem 1.1rem;
       font-family: var(--font-mono);
       font-size: 0.75rem;
       font-weight: 800;
       color: var(--text-muted);
-      letter-spacing: 0.06em;
+      letter-spacing: 0.07em;
       text-transform: uppercase;
-      border-bottom: 2px solid var(--border-color);
+      border-bottom: 2px solid var(--border-dark);
     }
 
     .dashboard-table td {
-      padding: 1rem;
+      padding: 1.1rem;
       border-bottom: 1px solid var(--border-color);
       vertical-align: middle;
     }
@@ -747,51 +849,62 @@
     }
 
     .deck-list-row:hover {
-      background: var(--bg-card-hover);
+      background: #ffffff;
+    }
+
+    .row-thumb-wrapper {
+      width: 84px;
+      aspect-ratio: 16 / 9;
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--border-dark);
+      cursor: pointer;
     }
 
     .row-thumb {
-      width: 80px;
-      aspect-ratio: 16 / 9;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border-color);
-      cursor: pointer;
+      display: block;
     }
 
     .row-client-badge {
       font-family: var(--font-mono);
       font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--accent-green-bright);
+      font-weight: 800;
+      color: var(--accent-green);
     }
 
     .row-title-link {
       font-family: var(--font-heading);
       font-weight: 800;
-      font-size: 0.95rem;
+      font-size: 1rem;
       color: var(--text-primary);
       text-decoration: none;
       display: block;
       line-height: 1.25;
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.25rem;
     }
 
     .row-title-link:hover {
-      color: var(--accent-green-bright);
+      color: var(--accent-green);
+      text-decoration: underline;
     }
 
     .row-tagline-snippet {
       font-size: 0.78rem;
       color: var(--text-muted);
+      font-weight: 500;
       display: block;
     }
 
     .row-sector-pill {
       font-family: var(--font-mono);
       font-size: 0.72rem;
+      font-weight: 700;
       color: var(--text-secondary);
-      background: var(--bg-surface);
+      background: var(--bg-card-subtle);
       padding: 0.25rem 0.55rem;
       border-radius: 3px;
       border: 1px solid var(--border-color);
@@ -800,7 +913,7 @@
 
     .row-price-primary {
       font-family: var(--font-mono);
-      font-size: 0.95rem;
+      font-size: 1rem;
       font-weight: 800;
       color: var(--text-primary);
     }
@@ -808,34 +921,44 @@
     .row-price-sub {
       font-size: 0.72rem;
       color: var(--text-muted);
+      font-weight: 600;
     }
 
     .row-actions-group {
       display: flex;
       align-items: center;
       gap: 0.45rem;
+      justify-content: flex-end;
     }
 
     .btn-row-action {
-      padding: 0.45rem 0.65rem;
+      padding: 0.48rem 0.7rem;
       font-family: var(--font-mono);
       font-size: 0.72rem;
-      font-weight: 700;
+      font-weight: 800;
       border-radius: var(--radius-sm);
       cursor: pointer;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      border: 1.5px solid transparent;
-      transition: all 0.2s;
+      border: 1.5px solid var(--border-dark);
+      box-shadow: 2px 2px 0px var(--border-dark);
+      transition: all 0.18s;
     }
 
-    /* MODAL PREVIEW & QR */
+    .btn-row-action:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0px var(--border-dark);
+    }
+
+    /* ==========================================================================
+       MODAL PREVIEW & QR CODE
+       ========================================================================== */
     .dashboard-modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(5, 11, 8, 0.88);
+      background: rgba(17, 21, 24, 0.85);
       backdrop-filter: blur(8px);
       z-index: 1000;
       display: none;
@@ -853,9 +976,9 @@
 
     .modal-frame {
       background: var(--bg-card);
-      border: 2px solid var(--accent-green);
+      border: 3px solid var(--border-dark);
       border-radius: var(--radius-md);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 8px 8px 0px var(--border-dark);
+      box-shadow: 10px 10px 0px var(--border-dark);
       width: 100%;
       max-width: 1200px;
       display: flex;
@@ -865,7 +988,7 @@
     }
 
     @keyframes modalPop {
-      0% { transform: scale(0.95) translateY(20px); opacity: 0; }
+      0% { transform: scale(0.96) translateY(15px); opacity: 0; }
       100% { transform: scale(1) translateY(0); opacity: 1; }
     }
 
@@ -873,9 +996,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.9rem 1.25rem;
-      background: var(--bg-surface);
-      border-bottom: 1.5px solid var(--border-color);
+      padding: 0.95rem 1.35rem;
+      background: var(--bg-card-subtle);
+      border-bottom: 2px solid var(--border-dark);
     }
 
     .modal-title-box {
@@ -886,8 +1009,8 @@
 
     .modal-title {
       font-family: var(--font-heading);
-      font-size: 1.1rem;
-      font-weight: 800;
+      font-size: 1.15rem;
+      font-weight: 900;
       color: var(--text-primary);
     }
 
@@ -898,36 +1021,38 @@
     }
 
     .btn-modal-action {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      color: var(--text-secondary);
-      padding: 0.4rem 0.65rem;
-      border-radius: var(--radius-sm);
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      font-weight: 700;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-      text-decoration: none;
-    }
-
-    .btn-modal-action:hover {
+      background: #ffffff;
+      border: 2px solid var(--border-dark);
       color: var(--text-primary);
-      border-color: var(--text-primary);
-    }
-
-    .btn-modal-close {
-      background: rgba(239, 68, 68, 0.15);
-      border: 1px solid rgba(239, 68, 68, 0.4);
-      color: #ef4444;
-      padding: 0.4rem 0.65rem;
+      padding: 0.45rem 0.75rem;
       border-radius: var(--radius-sm);
       font-family: var(--font-mono);
       font-size: 0.75rem;
       font-weight: 800;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      text-decoration: none;
+      box-shadow: 2px 2px 0px var(--border-dark);
+    }
+
+    .btn-modal-action:hover {
+      background: var(--accent-green-bg);
+      color: var(--accent-green);
+    }
+
+    .btn-modal-close {
+      background: #fee2e2;
+      border: 2px solid var(--border-dark);
+      color: #b91c1c;
+      padding: 0.45rem 0.75rem;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 2px 2px 0px var(--border-dark);
     }
 
     .btn-modal-close:hover {
@@ -951,33 +1076,35 @@
     .qr-modal-frame {
       max-width: 440px;
       text-align: center;
-      padding: 2rem;
+      padding: 2.25rem;
       background: var(--bg-card);
-      border: 2px solid var(--accent-green);
+      border: 3px solid var(--border-dark);
       border-radius: var(--radius-md);
-      box-shadow: var(--shadow-brutal-hover);
+      box-shadow: 10px 10px 0px var(--border-dark);
     }
 
     .qr-modal-title {
       font-family: var(--font-heading);
-      font-size: 1.35rem;
+      font-size: 1.4rem;
       font-weight: 900;
       margin-bottom: 0.5rem;
     }
 
     .qr-modal-sub {
-      font-size: 0.85rem;
+      font-size: 0.86rem;
       color: var(--text-secondary);
       margin-bottom: 1.5rem;
+      font-weight: 500;
     }
 
     .qr-code-box {
       background: #ffffff;
       padding: 1.25rem;
+      border: 2px solid var(--border-dark);
       border-radius: var(--radius-sm);
       display: inline-block;
       margin-bottom: 1.5rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      box-shadow: 4px 4px 0px var(--border-dark);
     }
 
     .qr-code-box img {
@@ -989,32 +1116,34 @@
     .qr-url-box {
       font-family: var(--font-mono);
       font-size: 0.8rem;
-      background: var(--bg-surface);
-      border: 1px solid var(--border-color);
-      padding: 0.6rem 0.85rem;
+      font-weight: 700;
+      background: var(--bg-card-subtle);
+      border: 2px solid var(--border-dark);
+      padding: 0.65rem 0.85rem;
       border-radius: var(--radius-sm);
-      color: var(--accent-green-bright);
+      color: var(--accent-green);
       word-break: break-all;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.35rem;
     }
 
     .toast-pill {
       position: fixed;
-      bottom: 2rem;
-      right: 2rem;
+      bottom: 2.5rem;
+      right: 2.5rem;
       background: var(--accent-green);
-      color: var(--border-dark);
+      color: #f4efe4;
+      border: 2px solid var(--border-dark);
       font-family: var(--font-mono);
       font-weight: 800;
       font-size: 0.85rem;
-      padding: 0.75rem 1.25rem;
+      padding: 0.85rem 1.35rem;
       border-radius: var(--radius-sm);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 4px 4px 0px var(--border-dark);
+      box-shadow: 6px 6px 0px var(--border-dark);
       z-index: 2000;
       display: flex;
       align-items: center;
-      gap: 0.6rem;
-      transform: translateY(100px);
+      gap: 0.65rem;
+      transform: translateY(120px);
       opacity: 0;
       transition: all 0.3s var(--transition-smooth);
       pointer-events: none;
@@ -1071,6 +1200,10 @@
 </head>
 <body>
 
+  <!-- Paper noise texture -->
+  <div class="paper-noise-overlay"></div>
+
+  <!-- Ambient CanvasUI particles -->
   <canvas id="canvasUiParticles"></canvas>
 
   <div class="dashboard-wrapper">
@@ -1117,7 +1250,7 @@
         <div class="metric-sub">Zbroj punih produkcijskih paketa</div>
       </div>
 
-      <div class="metric-card blue">
+      <div class="metric-card signature">
         <div class="metric-label">
           <span>SEKTORI & INDUSTRIJE</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
@@ -1176,8 +1309,8 @@
     <!-- GRID VIEW CONTAINER -->
     <main class="decks-grid-view" id="decksGridView">
       
-        <article class="deck-card" data-slug="meridian16" data-folder="Meridian16_Prezentacija" data-sector="industry" data-client="meridian 16" data-title="meridian 16 — cinematic film pitch | studio varaždin" data-price="17000">
-          <div class="card-media-wrapper" onclick="openPreviewModal('meridian16', 'Meridian16_Prezentacija', 'Meridian 16 — Cinematic Film Pitch | Studio Varaždin', 'https://varazdin.studio/meridian16/')">
+        <article class="deck-card signature-card" data-slug="meridian16" data-folder="Meridian16_Prezentacija" data-sector="industry" data-client="meridian 16" data-title="meridian 16 — cinematic film pitch | studio varaždin" data-price="17000">
+          <div class="card-media-wrapper canvas-dither-target" onclick="openPreviewModal('meridian16', 'Meridian16_Prezentacija', 'Meridian 16 — Cinematic Film Pitch | Studio Varaždin', 'https://varazdin.studio/meridian16/')">
             <img src="assets/thumbnails/thumb_meridian16.jpg" alt="Meridian 16 — Cinematic Film Pitch | Studio Varaždin" class="card-thumb" loading="lazy" onerror="this.src='../Meridian16_Prezentacija/slike/meridian_fpv_interior_flow.jpg'">
             <div class="card-media-overlay">
               <span class="preview-cta-chip">
@@ -1186,6 +1319,7 @@
               </span>
             </div>
             <span class="card-tag badge-gold">SIGNATURE PACK</span>
+            <div class="scanline-overlay"></div>
           </div>
 
           <div class="card-content">
@@ -1237,7 +1371,7 @@
         </article>
         
         <article class="deck-card" data-slug="komunalni-projekt" data-folder="Komunalni_Prezentacija" data-sector="eco" data-client="grad varaždin & čistoća d.o.o." data-title="7 kilograma — edukativni video sustav | grad varaždin & čistoća d.o.o." data-price="4800">
-          <div class="card-media-wrapper" onclick="openPreviewModal('komunalni-projekt', 'Komunalni_Prezentacija', '7 KILOGRAMA — Edukativni Video Sustav | Grad Varaždin & Čistoća d.o.o.', 'https://varazdin.studio/komunalni-projekt/')">
+          <div class="card-media-wrapper canvas-dither-target" onclick="openPreviewModal('komunalni-projekt', 'Komunalni_Prezentacija', '7 KILOGRAMA — Edukativni Video Sustav | Grad Varaždin & Čistoća d.o.o.', 'https://varazdin.studio/komunalni-projekt/')">
             <img src="assets/thumbnails/thumb_komunalni-projekt.jpg" alt="7 KILOGRAMA — Edukativni Video Sustav | Grad Varaždin & Čistoća d.o.o." class="card-thumb" loading="lazy" onerror="this.src='../Komunalni_Prezentacija/assets/01_Studio_Pad_Otpada_Hook.jpg'">
             <div class="card-media-overlay">
               <span class="preview-cta-chip">
@@ -1246,6 +1380,7 @@
               </span>
             </div>
             <span class="card-tag badge-green">JAVNI SEKTOR</span>
+            <div class="scanline-overlay"></div>
           </div>
 
           <div class="card-content">
@@ -1297,7 +1432,7 @@
         </article>
         
         <article class="deck-card" data-slug="cakovec" data-folder="Cakovec_Prezentacija" data-sector="heritage" data-client="grad čakovec & međimurska županija" data-title="101 milijun — kronika međimurskog gradilišta" data-price="17500">
-          <div class="card-media-wrapper" onclick="openPreviewModal('cakovec', 'Cakovec_Prezentacija', '101 MILIJUN — Kronika međimurskog gradilišta', 'https://varazdin.studio/cakovec/')">
+          <div class="card-media-wrapper canvas-dither-target" onclick="openPreviewModal('cakovec', 'Cakovec_Prezentacija', '101 MILIJUN — Kronika međimurskog gradilišta', 'https://varazdin.studio/cakovec/')">
             <img src="assets/thumbnails/thumb_cakovec.jpg" alt="101 MILIJUN — Kronika međimurskog gradilišta" class="card-thumb" loading="lazy" onerror="this.src='../Cakovec_Prezentacija/assets/01_cakovec_skola_fpv.jpg'">
             <div class="card-media-overlay">
               <span class="preview-cta-chip">
@@ -1305,7 +1440,8 @@
                 BRZI PREGLED (16:9)
               </span>
             </div>
-            <span class="card-tag badge-blue">INFRASTRUKTURA</span>
+            <span class="card-tag badge-green">INFRASTRUKTURA</span>
+            <div class="scanline-overlay"></div>
           </div>
 
           <div class="card-content">
@@ -1356,8 +1492,8 @@
           </div>
         </article>
         
-        <article class="deck-card" data-slug="djurdjevac" data-folder="Djurdjevac_Prezentacija" data-sector="heritage" data-client="grad đurđevac & tz đurđevac" data-title="opsada wasserburga 1552. — picokijada & novo jezero" data-price="20000">
-          <div class="card-media-wrapper" onclick="openPreviewModal('djurdjevac', 'Djurdjevac_Prezentacija', 'OPSADA WASSERBURGA 1552. — Picokijada & Novo jezero', 'https://varazdin.studio/djurdjevac/')">
+        <article class="deck-card signature-card" data-slug="djurdjevac" data-folder="Djurdjevac_Prezentacija" data-sector="heritage" data-client="grad đurđevac & tz đurđevac" data-title="opsada wasserburga 1552. — picokijada & novo jezero" data-price="20000">
+          <div class="card-media-wrapper canvas-dither-target" onclick="openPreviewModal('djurdjevac', 'Djurdjevac_Prezentacija', 'OPSADA WASSERBURGA 1552. — Picokijada & Novo jezero', 'https://varazdin.studio/djurdjevac/')">
             <img src="assets/thumbnails/thumb_djurdjevac.jpg" alt="OPSADA WASSERBURGA 1552. — Picokijada & Novo jezero" class="card-thumb" loading="lazy" onerror="this.src='../Djurdjevac_Prezentacija/assets/01_djurdjevac_wasserburg_1552.jpg'">
             <div class="card-media-overlay">
               <span class="preview-cta-chip">
@@ -1366,6 +1502,7 @@
               </span>
             </div>
             <span class="card-tag badge-gold">TURIZAM & SPEKTAKL</span>
+            <div class="scanline-overlay"></div>
           </div>
 
           <div class="card-content">
@@ -1417,7 +1554,7 @@
         </article>
         
         <article class="deck-card" data-slug="krapina" data-folder="Krapina_Prezentacija" data-sector="heritage" data-client="krapinsko-zagorska županija & grad krapina" data-title="tri kule nad krapinčicom — filmska produkcija" data-price="16000">
-          <div class="card-media-wrapper" onclick="openPreviewModal('krapina', 'Krapina_Prezentacija', 'TRI KULE NAD KRAPINČICOM — Filmska Produkcija', 'https://varazdin.studio/krapina/')">
+          <div class="card-media-wrapper canvas-dither-target" onclick="openPreviewModal('krapina', 'Krapina_Prezentacija', 'TRI KULE NAD KRAPINČICOM — Filmska Produkcija', 'https://varazdin.studio/krapina/')">
             <img src="assets/thumbnails/thumb_krapina.jpg" alt="TRI KULE NAD KRAPINČICOM — Filmska Produkcija" class="card-thumb" loading="lazy" onerror="this.src='../Krapina_Prezentacija/assets/01_krapina_ceh_leh_meh.jpg'">
             <div class="card-media-overlay">
               <span class="preview-cta-chip">
@@ -1425,7 +1562,8 @@
                 BRZI PREGLED (16:9)
               </span>
             </div>
-            <span class="card-tag badge-blue">KULTURNA BAŠTINA</span>
+            <span class="card-tag badge-green">KULTURNA BAŠTINA</span>
+            <div class="scanline-overlay"></div>
           </div>
 
           <div class="card-content">
@@ -1476,8 +1614,8 @@
           </div>
         </article>
         
-        <article class="deck-card" data-slug="samobor" data-folder="Samobor_Prezentacija" data-sector="heritage" data-client="grad samobor & tz samobor" data-title="vrudnik & samobor 2026 — kinematografski pitch" data-price="30000">
-          <div class="card-media-wrapper" onclick="openPreviewModal('samobor', 'Samobor_Prezentacija', 'VRUDNIK & Samobor 2026 — Kinematografski Pitch', 'https://varazdin.studio/samobor/')">
+        <article class="deck-card signature-card" data-slug="samobor" data-folder="Samobor_Prezentacija" data-sector="heritage" data-client="grad samobor & tz samobor" data-title="vrudnik & samobor 2026 — kinematografski pitch" data-price="30000">
+          <div class="card-media-wrapper canvas-dither-target" onclick="openPreviewModal('samobor', 'Samobor_Prezentacija', 'VRUDNIK & Samobor 2026 — Kinematografski Pitch', 'https://varazdin.studio/samobor/')">
             <img src="assets/thumbnails/thumb_samobor.jpg" alt="VRUDNIK & Samobor 2026 — Kinematografski Pitch" class="card-thumb" loading="lazy" onerror="this.src='../Samobor_Prezentacija/assets/01_vrudnik_rov_kokel_1540.jpg'">
             <div class="card-media-overlay">
               <span class="preview-cta-chip">
@@ -1486,6 +1624,7 @@
               </span>
             </div>
             <span class="card-tag badge-gold">VR & FILM</span>
+            <div class="scanline-overlay"></div>
           </div>
 
           <div class="card-content">
@@ -1537,7 +1676,7 @@
         </article>
         
         <article class="deck-card" data-slug="ogulin" data-folder="Ogulin_Prezentacija" data-sector="heritage" data-client="grad ogulin & tz ogulin" data-title="korijeni ponora — zavičaj bajki & frankopani" data-price="24000">
-          <div class="card-media-wrapper" onclick="openPreviewModal('ogulin', 'Ogulin_Prezentacija', 'KORIJENI PONORA — Zavičaj bajki & Frankopani', 'https://varazdin.studio/ogulin/')">
+          <div class="card-media-wrapper canvas-dither-target" onclick="openPreviewModal('ogulin', 'Ogulin_Prezentacija', 'KORIJENI PONORA — Zavičaj bajki & Frankopani', 'https://varazdin.studio/ogulin/')">
             <img src="assets/thumbnails/thumb_ogulin.jpg" alt="KORIJENI PONORA — Zavičaj bajki & Frankopani" class="card-thumb" loading="lazy" onerror="this.src='../Ogulin_Prezentacija/assets/dvorac_ogulin.webp'">
             <div class="card-media-overlay">
               <span class="preview-cta-chip">
@@ -1545,7 +1684,8 @@
                 BRZI PREGLED (16:9)
               </span>
             </div>
-            <span class="card-tag badge-blue">DESTINACIJSKI FILM</span>
+            <span class="card-tag badge-green">DESTINACIJSKI FILM</span>
+            <div class="scanline-overlay"></div>
           </div>
 
           <div class="card-content">
@@ -1597,7 +1737,7 @@
         </article>
         
         <article class="deck-card" data-slug="kb-pogon" data-folder="Kb-pogon_Prezentacija" data-sector="industry" data-client="kb d.o.o. pogon" data-title="kb d.o.o. — industrijski video pitch" data-price="5800">
-          <div class="card-media-wrapper" onclick="openPreviewModal('kb-pogon', 'Kb-pogon_Prezentacija', 'KB D.O.O. — Industrijski Video Pitch', 'https://varazdin.studio/kb-pogon/')">
+          <div class="card-media-wrapper canvas-dither-target" onclick="openPreviewModal('kb-pogon', 'Kb-pogon_Prezentacija', 'KB D.O.O. — Industrijski Video Pitch', 'https://varazdin.studio/kb-pogon/')">
             <img src="assets/thumbnails/thumb_kb-pogon.jpg" alt="KB D.O.O. — Industrijski Video Pitch" class="card-thumb" loading="lazy" onerror="this.src='../Kb-pogon_Prezentacija/assets/meridian_fpv_interior_flow.jpg'">
             <div class="card-media-overlay">
               <span class="preview-cta-chip">
@@ -1606,6 +1746,7 @@
               </span>
             </div>
             <span class="card-tag badge-green">INDUSTRIJA</span>
+            <div class="scanline-overlay"></div>
           </div>
 
           <div class="card-content">
@@ -1675,7 +1816,9 @@
           
         <tr class="deck-list-row" data-slug="meridian16" data-folder="Meridian16_Prezentacija" data-sector="industry" data-client="meridian 16" data-title="meridian 16 — cinematic film pitch | studio varaždin" data-price="17000">
           <td class="col-thumb">
-            <img src="assets/thumbnails/thumb_meridian16.jpg" alt="Meridian 16 — Cinematic Film Pitch | Studio Varaždin" class="row-thumb" onclick="openPreviewModal('meridian16', 'Meridian16_Prezentacija', 'Meridian 16 — Cinematic Film Pitch | Studio Varaždin', 'https://varazdin.studio/meridian16/')" onerror="this.src='../Meridian16_Prezentacija/slike/meridian_fpv_interior_flow.jpg'">
+            <div class="row-thumb-wrapper canvas-dither-target" onclick="openPreviewModal('meridian16', 'Meridian16_Prezentacija', 'Meridian 16 — Cinematic Film Pitch | Studio Varaždin', 'https://varazdin.studio/meridian16/')">
+              <img src="assets/thumbnails/thumb_meridian16.jpg" alt="Meridian 16 — Cinematic Film Pitch | Studio Varaždin" class="row-thumb" onerror="this.src='../Meridian16_Prezentacija/slike/meridian_fpv_interior_flow.jpg'">
+            </div>
           </td>
           <td class="col-client">
             <span class="row-client-badge">Meridian 16</span>
@@ -1714,7 +1857,9 @@
         
         <tr class="deck-list-row" data-slug="komunalni-projekt" data-folder="Komunalni_Prezentacija" data-sector="eco" data-client="grad varaždin & čistoća d.o.o." data-title="7 kilograma — edukativni video sustav | grad varaždin & čistoća d.o.o." data-price="4800">
           <td class="col-thumb">
-            <img src="assets/thumbnails/thumb_komunalni-projekt.jpg" alt="7 KILOGRAMA — Edukativni Video Sustav | Grad Varaždin & Čistoća d.o.o." class="row-thumb" onclick="openPreviewModal('komunalni-projekt', 'Komunalni_Prezentacija', '7 KILOGRAMA — Edukativni Video Sustav | Grad Varaždin & Čistoća d.o.o.', 'https://varazdin.studio/komunalni-projekt/')" onerror="this.src='../Komunalni_Prezentacija/assets/01_Studio_Pad_Otpada_Hook.jpg'">
+            <div class="row-thumb-wrapper canvas-dither-target" onclick="openPreviewModal('komunalni-projekt', 'Komunalni_Prezentacija', '7 KILOGRAMA — Edukativni Video Sustav | Grad Varaždin & Čistoća d.o.o.', 'https://varazdin.studio/komunalni-projekt/')">
+              <img src="assets/thumbnails/thumb_komunalni-projekt.jpg" alt="7 KILOGRAMA — Edukativni Video Sustav | Grad Varaždin & Čistoća d.o.o." class="row-thumb" onerror="this.src='../Komunalni_Prezentacija/assets/01_Studio_Pad_Otpada_Hook.jpg'">
+            </div>
           </td>
           <td class="col-client">
             <span class="row-client-badge">Grad Varaždin & Čistoća d.o.o.</span>
@@ -1753,7 +1898,9 @@
         
         <tr class="deck-list-row" data-slug="cakovec" data-folder="Cakovec_Prezentacija" data-sector="heritage" data-client="grad čakovec & međimurska županija" data-title="101 milijun — kronika međimurskog gradilišta" data-price="17500">
           <td class="col-thumb">
-            <img src="assets/thumbnails/thumb_cakovec.jpg" alt="101 MILIJUN — Kronika međimurskog gradilišta" class="row-thumb" onclick="openPreviewModal('cakovec', 'Cakovec_Prezentacija', '101 MILIJUN — Kronika međimurskog gradilišta', 'https://varazdin.studio/cakovec/')" onerror="this.src='../Cakovec_Prezentacija/assets/01_cakovec_skola_fpv.jpg'">
+            <div class="row-thumb-wrapper canvas-dither-target" onclick="openPreviewModal('cakovec', 'Cakovec_Prezentacija', '101 MILIJUN — Kronika međimurskog gradilišta', 'https://varazdin.studio/cakovec/')">
+              <img src="assets/thumbnails/thumb_cakovec.jpg" alt="101 MILIJUN — Kronika međimurskog gradilišta" class="row-thumb" onerror="this.src='../Cakovec_Prezentacija/assets/01_cakovec_skola_fpv.jpg'">
+            </div>
           </td>
           <td class="col-client">
             <span class="row-client-badge">Grad Čakovec & Međimurska županija</span>
@@ -1792,7 +1939,9 @@
         
         <tr class="deck-list-row" data-slug="djurdjevac" data-folder="Djurdjevac_Prezentacija" data-sector="heritage" data-client="grad đurđevac & tz đurđevac" data-title="opsada wasserburga 1552. — picokijada & novo jezero" data-price="20000">
           <td class="col-thumb">
-            <img src="assets/thumbnails/thumb_djurdjevac.jpg" alt="OPSADA WASSERBURGA 1552. — Picokijada & Novo jezero" class="row-thumb" onclick="openPreviewModal('djurdjevac', 'Djurdjevac_Prezentacija', 'OPSADA WASSERBURGA 1552. — Picokijada & Novo jezero', 'https://varazdin.studio/djurdjevac/')" onerror="this.src='../Djurdjevac_Prezentacija/assets/01_djurdjevac_wasserburg_1552.jpg'">
+            <div class="row-thumb-wrapper canvas-dither-target" onclick="openPreviewModal('djurdjevac', 'Djurdjevac_Prezentacija', 'OPSADA WASSERBURGA 1552. — Picokijada & Novo jezero', 'https://varazdin.studio/djurdjevac/')">
+              <img src="assets/thumbnails/thumb_djurdjevac.jpg" alt="OPSADA WASSERBURGA 1552. — Picokijada & Novo jezero" class="row-thumb" onerror="this.src='../Djurdjevac_Prezentacija/assets/01_djurdjevac_wasserburg_1552.jpg'">
+            </div>
           </td>
           <td class="col-client">
             <span class="row-client-badge">Grad Đurđevac & TZ Đurđevac</span>
@@ -1831,7 +1980,9 @@
         
         <tr class="deck-list-row" data-slug="krapina" data-folder="Krapina_Prezentacija" data-sector="heritage" data-client="krapinsko-zagorska županija & grad krapina" data-title="tri kule nad krapinčicom — filmska produkcija" data-price="16000">
           <td class="col-thumb">
-            <img src="assets/thumbnails/thumb_krapina.jpg" alt="TRI KULE NAD KRAPINČICOM — Filmska Produkcija" class="row-thumb" onclick="openPreviewModal('krapina', 'Krapina_Prezentacija', 'TRI KULE NAD KRAPINČICOM — Filmska Produkcija', 'https://varazdin.studio/krapina/')" onerror="this.src='../Krapina_Prezentacija/assets/01_krapina_ceh_leh_meh.jpg'">
+            <div class="row-thumb-wrapper canvas-dither-target" onclick="openPreviewModal('krapina', 'Krapina_Prezentacija', 'TRI KULE NAD KRAPINČICOM — Filmska Produkcija', 'https://varazdin.studio/krapina/')">
+              <img src="assets/thumbnails/thumb_krapina.jpg" alt="TRI KULE NAD KRAPINČICOM — Filmska Produkcija" class="row-thumb" onerror="this.src='../Krapina_Prezentacija/assets/01_krapina_ceh_leh_meh.jpg'">
+            </div>
           </td>
           <td class="col-client">
             <span class="row-client-badge">Krapinsko-zagorska županija & Grad Krapina</span>
@@ -1870,7 +2021,9 @@
         
         <tr class="deck-list-row" data-slug="samobor" data-folder="Samobor_Prezentacija" data-sector="heritage" data-client="grad samobor & tz samobor" data-title="vrudnik & samobor 2026 — kinematografski pitch" data-price="30000">
           <td class="col-thumb">
-            <img src="assets/thumbnails/thumb_samobor.jpg" alt="VRUDNIK & Samobor 2026 — Kinematografski Pitch" class="row-thumb" onclick="openPreviewModal('samobor', 'Samobor_Prezentacija', 'VRUDNIK & Samobor 2026 — Kinematografski Pitch', 'https://varazdin.studio/samobor/')" onerror="this.src='../Samobor_Prezentacija/assets/01_vrudnik_rov_kokel_1540.jpg'">
+            <div class="row-thumb-wrapper canvas-dither-target" onclick="openPreviewModal('samobor', 'Samobor_Prezentacija', 'VRUDNIK & Samobor 2026 — Kinematografski Pitch', 'https://varazdin.studio/samobor/')">
+              <img src="assets/thumbnails/thumb_samobor.jpg" alt="VRUDNIK & Samobor 2026 — Kinematografski Pitch" class="row-thumb" onerror="this.src='../Samobor_Prezentacija/assets/01_vrudnik_rov_kokel_1540.jpg'">
+            </div>
           </td>
           <td class="col-client">
             <span class="row-client-badge">Grad Samobor & TZ Samobor</span>
@@ -1909,7 +2062,9 @@
         
         <tr class="deck-list-row" data-slug="ogulin" data-folder="Ogulin_Prezentacija" data-sector="heritage" data-client="grad ogulin & tz ogulin" data-title="korijeni ponora — zavičaj bajki & frankopani" data-price="24000">
           <td class="col-thumb">
-            <img src="assets/thumbnails/thumb_ogulin.jpg" alt="KORIJENI PONORA — Zavičaj bajki & Frankopani" class="row-thumb" onclick="openPreviewModal('ogulin', 'Ogulin_Prezentacija', 'KORIJENI PONORA — Zavičaj bajki & Frankopani', 'https://varazdin.studio/ogulin/')" onerror="this.src='../Ogulin_Prezentacija/assets/dvorac_ogulin.webp'">
+            <div class="row-thumb-wrapper canvas-dither-target" onclick="openPreviewModal('ogulin', 'Ogulin_Prezentacija', 'KORIJENI PONORA — Zavičaj bajki & Frankopani', 'https://varazdin.studio/ogulin/')">
+              <img src="assets/thumbnails/thumb_ogulin.jpg" alt="KORIJENI PONORA — Zavičaj bajki & Frankopani" class="row-thumb" onerror="this.src='../Ogulin_Prezentacija/assets/dvorac_ogulin.webp'">
+            </div>
           </td>
           <td class="col-client">
             <span class="row-client-badge">Grad Ogulin & TZ Ogulin</span>
@@ -1948,7 +2103,9 @@
         
         <tr class="deck-list-row" data-slug="kb-pogon" data-folder="Kb-pogon_Prezentacija" data-sector="industry" data-client="kb d.o.o. pogon" data-title="kb d.o.o. — industrijski video pitch" data-price="5800">
           <td class="col-thumb">
-            <img src="assets/thumbnails/thumb_kb-pogon.jpg" alt="KB D.O.O. — Industrijski Video Pitch" class="row-thumb" onclick="openPreviewModal('kb-pogon', 'Kb-pogon_Prezentacija', 'KB D.O.O. — Industrijski Video Pitch', 'https://varazdin.studio/kb-pogon/')" onerror="this.src='../Kb-pogon_Prezentacija/assets/meridian_fpv_interior_flow.jpg'">
+            <div class="row-thumb-wrapper canvas-dither-target" onclick="openPreviewModal('kb-pogon', 'Kb-pogon_Prezentacija', 'KB D.O.O. — Industrijski Video Pitch', 'https://varazdin.studio/kb-pogon/')">
+              <img src="assets/thumbnails/thumb_kb-pogon.jpg" alt="KB D.O.O. — Industrijski Video Pitch" class="row-thumb" onerror="this.src='../Kb-pogon_Prezentacija/assets/meridian_fpv_interior_flow.jpg'">
+            </div>
           </td>
           <td class="col-client">
             <span class="row-client-badge">KB d.o.o. Pogon</span>
@@ -2038,9 +2195,9 @@
     <span id="toastMessage">Poveznica kopirana u međuspremnik!</span>
   </div>
 
-  <!-- DASHBOARD JAVASCRIPT LOGIC -->
+  <!-- DASHBOARD JAVASCRIPT & CANVASUI HOVER ENGINE -->
   <script>
-    /* Audio Haptic Engine */
+    /* Web Audio Haptic Engine */
     let audioCtx = null;
     let audioMuted = false;
 
@@ -2096,6 +2253,7 @@
     /* View Switch: Grid vs List */
     function switchView(mode) {
       playHapticClick(800, 400);
+      if (window.triggerWind) window.triggerWind();
       const grid = document.getElementById('decksGridView');
       const list = document.getElementById('decksListView');
       const btnGrid = document.getElementById('btnViewGrid');
@@ -2121,6 +2279,7 @@
 
     function setFilter(filter, el) {
       playHapticClick(950, 450);
+      if (window.triggerWind) window.triggerWind();
       currentFilter = filter;
       document.querySelectorAll('.filter-pill').forEach(btn => btn.classList.remove('active'));
       if (el) el.classList.add('active');
@@ -2160,7 +2319,6 @@
         return matchesSector && matchesQuery;
       };
 
-      // Sort items
       const sortFn = (a, b) => {
         if (currentSort === 'price-desc') {
           return parseFloat(b.getAttribute('data-price')) - parseFloat(a.getAttribute('data-price'));
@@ -2171,7 +2329,7 @@
         } else if (currentSort === 'client-za') {
           return (b.getAttribute('data-client') || '').localeCompare(a.getAttribute('data-client') || '');
         }
-        return 0; // default
+        return 0;
       };
 
       cards.sort(sortFn);
@@ -2265,7 +2423,7 @@
       titleEl.textContent = title;
       urlText.textContent = liveUrl;
       
-      img.src = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&margin=10&color=09120e&bgcolor=ffffff&data=' + encodeURIComponent(liveUrl);
+      img.src = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&margin=10&color=111518&bgcolor=fbf7ee&data=' + encodeURIComponent(liveUrl);
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
@@ -2289,14 +2447,21 @@
       }
     }
 
-    /* Ambient Canvas Particles */
+    /* ==========================================================================
+       CANVASUI AMBIENT PARTICLES (Meridian 16 Racing Green & Amber Embers)
+       ========================================================================== */
     (function initParticles() {
       const canvas = document.getElementById('canvasUiParticles');
       if (!canvas) return;
       const ctx = canvas.getContext('2d');
       let width, height;
       let particles = [];
-      const particleCount = 35;
+      const particleCount = 45;
+      let wind = 0;
+
+      window.triggerWind = function() {
+        wind = -6;
+      };
 
       function resize() {
         width = canvas.width = window.innerWidth;
@@ -2309,20 +2474,42 @@
         particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          vx: (Math.random() - 0.5) * 0.4,
-          vy: (Math.random() - 0.5) * 0.4,
-          size: Math.random() * 1.5 + 0.8,
-          alpha: Math.random() * 0.35 + 0.1
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.35,
+          size: Math.random() * 1.8 + 0.8,
+          alpha: Math.random() * 0.3 + 0.12,
+          color: Math.random() > 0.4 ? '17, 66, 31' : '201, 147, 59'
         });
       }
 
+      let mouseX = width / 2;
+      let mouseY = height / 2;
+      window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      }, { passive: true });
+
       function draw() {
         ctx.clearRect(0, 0, width, height);
-        ctx.fillStyle = '#10b981';
+        wind *= 0.95;
 
         for (let p of particles) {
+          const dx = p.x - mouseX;
+          const dy = p.y - mouseY;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 120 && dist > 0) {
+            const force = (1 - dist / 120) * 0.5;
+            p.vx += (dx / dist) * force;
+            p.vy += (dy / dist) * force;
+          }
+
+          p.vx += wind * 0.05;
           p.x += p.vx;
           p.y += p.vy;
+
+          p.vx *= 0.98;
+          p.vy *= 0.98;
+          p.y -= 0.12;
 
           if (p.x < 0) p.x = width;
           if (p.x > width) p.x = 0;
@@ -2330,6 +2517,7 @@
           if (p.y > height) p.y = 0;
 
           ctx.globalAlpha = p.alpha;
+          ctx.fillStyle = `rgb(${p.color})`;
           ctx.beginPath();
           ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
           ctx.fill();
@@ -2337,6 +2525,104 @@
         requestAnimationFrame(draw);
       }
       draw();
+    })();
+
+    /* ==========================================================================
+       CANVASUI 4x4 BAYER DITHER HOVER LENS (Retro Dither on Media Cards)
+       ========================================================================== */
+    (function initCanvasUiBayerDither() {
+      const bayerMatrix4x4 = [
+        0, 8, 2, 10,
+        12, 4, 14, 6,
+        3, 11, 1, 9,
+        15, 7, 13, 5
+      ];
+
+      const targets = document.querySelectorAll('.canvas-dither-target');
+      targets.forEach((container) => {
+        if (container.querySelector('.dither-canvas-layer')) return;
+
+        const canvas = document.createElement('canvas');
+        canvas.className = 'dither-canvas-layer';
+        container.appendChild(canvas);
+
+        let isHovered = false;
+        let mouseX = -999;
+        let mouseY = -999;
+        const targetImg = container.querySelector('img');
+
+        container.addEventListener('mouseenter', () => {
+          isHovered = true;
+          canvas.style.opacity = '1';
+          canvas.width = container.clientWidth;
+          canvas.height = container.clientHeight;
+        });
+
+        container.addEventListener('mouseleave', () => {
+          isHovered = false;
+          canvas.style.opacity = '0';
+        });
+
+        container.addEventListener('mousemove', (e) => {
+          const rect = container.getBoundingClientRect();
+          mouseX = e.clientX - rect.left;
+          mouseY = e.clientY - rect.top;
+          renderDither();
+        }, { passive: true });
+
+        function renderDither() {
+          if (!isHovered || !targetImg) return;
+          const w = canvas.width;
+          const h = canvas.height;
+          if (w === 0 || h === 0) return;
+          const ctx = canvas.getContext('2d');
+
+          const scale = 0.25;
+          const sw = Math.floor(w * scale);
+          const sh = Math.floor(h * scale);
+          if (sw <= 0 || sh <= 0) return;
+
+          const offCanvas = document.createElement('canvas');
+          offCanvas.width = sw;
+          offCanvas.height = sh;
+          const offCtx = offCanvas.getContext('2d');
+
+          try {
+            offCtx.drawImage(targetImg, 0, 0, sw, sh);
+            const imgData = offCtx.getImageData(0, 0, sw, sh);
+            const data = imgData.data;
+
+            ctx.clearRect(0, 0, w, h);
+            const lensRadius = 135;
+
+            for (let y = 0; y < sh; y++) {
+              for (let x = 0; x < sw; x++) {
+                const idx = (y * sw + x) * 4;
+                const r = data[idx];
+                const g = data[idx + 1];
+                const b = data[idx + 2];
+                const lum = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+
+                const screenX = x / scale;
+                const screenY = y / scale;
+                const dist = Math.sqrt((screenX - mouseX) ** 2 + (screenY - mouseY) ** 2);
+
+                if (dist < lensRadius) {
+                  const feather = Math.cos((dist / lensRadius) * (Math.PI / 2));
+                  const bayerVal = (bayerMatrix4x4[(y % 4) * 4 + (x % 4)] + 0.5) / 16;
+                  const levels = 4;
+                  const quantized = Math.floor(lum * levels + (lum > bayerVal ? 0.5 : 0)) / levels;
+                  
+                  const finalVal = Math.floor(quantized * 255);
+                  // Warm amber-green dither hue to match Meridian 16 palette
+                  ctx.fillStyle = `rgba(${finalVal}, ${Math.floor(finalVal * 0.95)}, ${Math.floor(finalVal * 0.85)}, ${feather * 0.85})`;
+                  ctx.fillRect(screenX, screenY, 1 / scale, 1 / scale);
+                }
+              }
+            }
+          } catch (err) {}
+        }
+      });
     })();
   </script>
 </body>
