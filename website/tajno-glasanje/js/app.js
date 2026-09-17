@@ -229,12 +229,13 @@ class SwiperApp {
   }
 
   /* ==========================================================================
-     VIEW SWITCHER (SWIPER 🎴 VS DVOBOJ ⚔️ VS GRID ▦)
+     VIEW SWITCHER (SWIPER 🎴 VS DVOBOJ ⚔️ VS GRID ▦ VS POREDAK 🏆)
      ========================================================================== */
   bindViewSwitcher() {
     const btnSwiper = document.getElementById('viewBtnSwiper');
     const btnCompare = document.getElementById('viewBtnCompare');
     const btnGrid = document.getElementById('viewBtnGrid');
+    const btnLeaderboard = document.getElementById('viewBtnLeaderboard');
     const btnJumpToGrid = document.getElementById('btnJumpToGrid');
 
     if (btnSwiper) {
@@ -245,6 +246,9 @@ class SwiperApp {
     }
     if (btnGrid) {
       btnGrid.addEventListener('click', () => this.setView('grid'));
+    }
+    if (btnLeaderboard) {
+      btnLeaderboard.addEventListener('click', () => this.setView('leaderboard'));
     }
     if (btnJumpToGrid) {
       btnJumpToGrid.addEventListener('click', () => this.setView('grid'));
@@ -260,23 +264,24 @@ class SwiperApp {
     const btnSwiper = document.getElementById('viewBtnSwiper');
     const btnCompare = document.getElementById('viewBtnCompare');
     const btnGrid = document.getElementById('viewBtnGrid');
+    const btnLeaderboard = document.getElementById('viewBtnLeaderboard');
 
     if (btnSwiper) btnSwiper.classList.toggle('active', viewName === 'swiper');
     if (btnCompare) btnCompare.classList.toggle('active', viewName === 'compare');
     if (btnGrid) btnGrid.classList.toggle('active', viewName === 'grid');
+    if (btnLeaderboard) btnLeaderboard.classList.toggle('active', viewName === 'leaderboard');
 
+    if (swiperStage) swiperStage.style.display = 'none';
+    if (compareStage) compareStage.style.display = 'none';
+    if (gridView) gridView.style.display = 'none';
     if (leaderboardView) leaderboardView.style.display = 'none';
 
     if (viewName === 'swiper') {
-      if (compareStage) compareStage.style.display = 'none';
-      if (gridView) gridView.style.display = 'none';
       if (swiperStage) {
         swiperStage.style.display = 'flex';
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     } else if (viewName === 'compare') {
-      if (swiperStage) swiperStage.style.display = 'none';
-      if (gridView) gridView.style.display = 'none';
       if (compareStage) {
         compareStage.style.display = 'flex';
         if (this.compareEngine && !this.compareEngine.leftItem) {
@@ -285,13 +290,18 @@ class SwiperApp {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     } else if (viewName === 'grid') {
-      if (swiperStage) swiperStage.style.display = 'none';
-      if (compareStage) compareStage.style.display = 'none';
       if (gridView) {
         gridView.style.display = 'flex';
         this.renderGridView();
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
+    } else if (viewName === 'leaderboard') {
+      if (leaderboardView) {
+        leaderboardView.style.display = 'flex';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      this.renderTop3Fan();
+      this.refreshLeaderboard();
     }
 
     if (this.audioHaptics) this.audioHaptics.playClick();
@@ -306,13 +316,13 @@ class SwiperApp {
 
     if (retroLeft) {
       retroLeft.addEventListener('click', () => {
-        if (this.compareEngine) this.compareEngine.discardCard('left');
+        if (this.compareEngine) this.compareEngine.discardCard('right');
       });
     }
 
     if (retroRight) {
       retroRight.addEventListener('click', () => {
-        if (this.compareEngine) this.compareEngine.discardCard('right');
+        if (this.compareEngine) this.compareEngine.discardCard('left');
       });
     }
   }
@@ -794,39 +804,8 @@ class SwiperApp {
     if (btnRestartDeck) btnRestartDeck.addEventListener('click', () => this.restartDeck());
   }
 
-  async openLeaderboardView() {
-    this.currentView = 'leaderboard';
-    const swiperStage = document.getElementById('swiperStage');
-    const gridView = document.getElementById('catalogGridView');
-    const leaderboardView = document.getElementById('leaderboardView');
-    const btnSwiper = document.getElementById('viewBtnSwiper');
-    const btnGrid = document.getElementById('viewBtnGrid');
-
-    if (btnSwiper && btnGrid) {
-      btnSwiper.classList.remove('active');
-      btnGrid.classList.remove('active');
-    }
-
-    if (swiperStage) swiperStage.style.display = 'none';
-    if (gridView) gridView.style.display = 'none';
-    if (leaderboardView) {
-      leaderboardView.style.display = 'flex';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    if (this.audioHaptics) this.audioHaptics.playClick();
-
-    try {
-      await this.renderTop3Fan();
-    } catch (e) {
-      console.warn('renderTop3Fan error:', e);
-    }
-
-    try {
-      await this.refreshLeaderboard();
-    } catch (e) {
-      console.warn('refreshLeaderboard error:', e);
-    }
+  openLeaderboardView() {
+    this.setView('leaderboard');
   }
 
   bindModals() {
@@ -949,7 +928,7 @@ class SwiperApp {
 
       if (/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
 
-      // 1, 2, 3 to switch views directly
+      // 1, 2, 3, 4 to switch views directly
       if (e.key === '1') {
         e.preventDefault();
         this.setView('swiper');
@@ -965,6 +944,11 @@ class SwiperApp {
         this.setView('grid');
         return;
       }
+      if (e.key === '4' || e.key === 'l' || e.key === 'L') {
+        e.preventDefault();
+        this.setView('leaderboard');
+        return;
+      }
 
       // ⌘K or / to focus search
       if ((e.metaKey && e.key === 'k') || (e.ctrlKey && e.key === 'k') || e.key === '/') {
@@ -978,20 +962,20 @@ class SwiperApp {
         return;
       }
 
-      // In Compare / Duel mode keyboard handling
+      // In Compare / Duel mode keyboard handling (Directional: arrow key indicates exit direction)
       if (this.currentView === 'compare' && this.compareEngine) {
         if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') {
           e.preventDefault();
           const chip = document.getElementById('retroDuelLeft');
           if (chip) chip.classList.add('is-pressed');
-          this.compareEngine.discardCard('left');
+          this.compareEngine.discardCard('right');
           return;
         }
         if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') {
           e.preventDefault();
           const chip = document.getElementById('retroDuelRight');
           if (chip) chip.classList.add('is-pressed');
-          this.compareEngine.discardCard('right');
+          this.compareEngine.discardCard('left');
           return;
         }
         if (e.key === ' ' || e.code === 'Space') {
@@ -1141,13 +1125,19 @@ class SwiperApp {
     const fanContainer = document.getElementById('top3CardsFan');
     if (!fanContainer) return;
 
-    const stats = await this.analytics.fetchGlobalStats();
-    let topRanked = stats.topRanked || [];
+    let topRanked = [];
+    try {
+      const stats = await this.analytics.fetchGlobalStats();
+      if (stats && Array.isArray(stats.topRanked) && stats.topRanked.length > 0) {
+        topRanked = stats.topRanked;
+      }
+    } catch (e) {
+      console.warn('fetchGlobalStats failed in top3 fan:', e);
+    }
 
-    // Fallback if no votes recorded yet
-    if (topRanked.length === 0) {
-      const favs = this.analytics.getUserFavorites();
-      topRanked = favs.length > 0 ? favs : this.catalog.slice(0, 3);
+    // Fallback: sort catalog by score descending
+    if (!topRanked || topRanked.length === 0) {
+      topRanked = [...this.catalog].sort((a, b) => (b.score || 0) - (a.score || 0) || (b.totalVotes || 0) - (a.totalVotes || 0));
     }
 
     const rank1 = topRanked[0] || this.catalog[0] || null;
@@ -1181,7 +1171,7 @@ class SwiperApp {
     card.title = `Klikni za puni 2K prikaz: ${item.title}`;
 
     const optSrc = this.resolveImageUrl(item);
-    const scoreVal = item.score !== undefined ? item.score : (item.likes || 0);
+    const scoreVal = item.score !== undefined ? item.score : ((item.likes || 0) + ((item.superlikes || 0) * 3));
     const scoreText = scoreVal + ' PTS';
     const badgeClass = rankNum === 1 ? 'fan-badge-1' : rankNum === 2 ? 'fan-badge-2' : 'fan-badge-3';
 
@@ -1241,7 +1231,9 @@ class SwiperApp {
       items.sort((a, b) => (b.score || 0) - (a.score || 0) || (b.totalVotes || 0) - (a.totalVotes || 0));
     }
 
-    const grandTotal = (stats && stats.totalVotes) ? stats.totalVotes : items.reduce((acc, it) => acc + (it.totalVotes || 0), 0) || 2254;
+    const grandTotal = (stats && typeof stats.totalVotes === 'number' && stats.totalVotes > 0)
+      ? stats.totalVotes
+      : (items.reduce((acc, it) => acc + (it.totalVotes || 0), 0) || 2254);
 
     if (totalVotesLabel) {
       totalVotesLabel.textContent = `GLASOVA: ${grandTotal.toLocaleString('hr-HR')}`;

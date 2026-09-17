@@ -134,7 +134,7 @@ export class CompareEngine {
     const isChampion = this.winnerSide === side;
     const streak = isChampion ? (side === 'left' ? this.leftStreak : this.rightStreak) : 0;
     const optSrc = this.resolveImageUrl(item);
-    const keyHint = side === 'left' ? 'MAKNI [ ← ]' : 'MAKNI [ → ]';
+    const keyHint = side === 'left' ? 'MAKNI [ → ]' : 'MAKNI [ ← ]';
 
     return `
       <article class="duel-card ${isChampion ? 'is-champion' : ''}" data-side="${side}" data-id="${item.id}">
@@ -142,7 +142,7 @@ export class CompareEngine {
         ${isChampion ? `<div class="duel-crown-badge">👑 DEFENDING ${streak > 1 ? `(${streak}x)` : ''}</div>` : ''}
 
         <!-- Big Hero Visual Container -->
-        <div class="duel-img-wrap" title="Klikni ili povuci za uklanjanje (${side === 'left' ? '←' : '→'})">
+        <div class="duel-img-wrap" title="Klikni ili povuci za uklanjanje (${side === 'left' ? '→' : '←'})">
           <img src="${optSrc}" alt="${item.title}" class="duel-img" draggable="false" loading="eager">
           <div class="scanline-overlay"></div>
           
@@ -377,10 +377,10 @@ export class CompareEngine {
       loserCard.style.transform = `translate3d(${dragVector.dx * mult}px, ${dragVector.dy * mult}px, 0px) rotate(${dragVector.dx * 0.1}deg)`;
       loserCard.style.opacity = '0';
     } else if (loserSlot) {
-      // Standard exit animation
+      // Standard directional exit animation (left flies right, right flies left)
       loserSlot.classList.remove('anim-exit-left', 'anim-exit-right');
       void loserSlot.offsetWidth;
-      loserSlot.classList.add(side === 'left' ? 'anim-exit-left' : 'anim-exit-right');
+      loserSlot.classList.add(side === 'left' ? 'anim-exit-right' : 'anim-exit-left');
     }
 
     const currentStreak = winnerSide === 'left' ? this.leftStreak : this.rightStreak;
