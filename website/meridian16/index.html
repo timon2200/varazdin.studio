@@ -127,15 +127,12 @@ main.deck-stage {
   position: absolute;
   top: 0;
   left: 0;
-  padding: clamp(1.6rem, 2.5vw, 2.4rem) clamp(2rem, 3.2vw, 3.5rem);
+  padding: clamp(1.3rem, 2.2vw, 2.1rem) clamp(1.8rem, 2.8vw, 3.2rem);
   flex-direction: column;
   justify-content: space-between;
   opacity: 0;
   transition: opacity 0.25s ease;
-  overflow-y: auto;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-  touch-action: pan-y;
+  overflow: hidden;
   background: var(--bg-card);
   box-sizing: border-box;
 }
@@ -1433,6 +1430,8 @@ footer.deck-footer {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
+  flex: 1 1 0;
+  min-height: 0;
   height: 100%;
 }
 
@@ -1440,15 +1439,18 @@ footer.deck-footer {
   position: relative;
   width: 100%;
   height: 100%;
+  min-height: 0;
   perspective: 1200px;
 }
 
 .cloth-card-canvas {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: -48px;
+  left: -48px;
+  width: calc(100% + 96px);
+  height: calc(100% + 96px);
   pointer-events: none;
-  z-index: 2;
+  z-index: 10;
 }
 
 .offer-box {
@@ -3523,11 +3525,15 @@ function initClothCardPhysics(customRenderers = null) {
     function syncSize() {
       if (window.innerWidth <= 768) return;
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const cw = outputCanvas.clientWidth;
-      const ch = outputCanvas.clientHeight;
-      if (cw < 30 || ch < 30) return;
+      const w = wrapEl.clientWidth;
+      const h = wrapEl.clientHeight;
+      if (w < 30 || h < 30) return;
+
+      const cw = w + BLEED * 2;
+      const ch = h + BLEED * 2;
       const targetW = Math.round(cw * dpr);
       const targetH = Math.round(ch * dpr);
+
       if (outputCanvas.width !== targetW || outputCanvas.height !== targetH || !hasValidTexture) {
         outputCanvas.width = targetW;
         outputCanvas.height = targetH;
@@ -3677,8 +3683,8 @@ function initClothCardPhysics(customRenderers = null) {
     function render() {
       const resW = Math.max(wrapEl.clientWidth, 50);
       const resH = Math.max(wrapEl.clientHeight, 50);
-      const outW = Math.max(outputCanvas.clientWidth, 50);
-      const outH = Math.max(outputCanvas.clientHeight, 50);
+      const outW = resW + BLEED * 2;
+      const outH = resH + BLEED * 2;
       const dark = opts.dark || 0;
 
       gl.bindFramebuffer(gl.FRAMEBUFFER, null);
@@ -4239,7 +4245,7 @@ function renderCardTextureA(canvas, w, h, dpr) {
   ctx.fillText('OPTION A • QUOTE NO. 9', 30, 36);
 
   ctx.fillStyle = '#111518';
-  ctx.font = '900 20px "Syne", sans-serif';
+  ctx.font = '900 20px "Plus Jakarta Sans", sans-serif';
   ctx.fillText('EXPANDED', 22, 65);
   ctx.fillText('PRODUCTION', 22, 86);
 
@@ -4295,7 +4301,7 @@ function renderCardTextureA(canvas, w, h, dpr) {
   ctx.fillText('TOTAL INVESTMENT (QUOTE NO. 9)', 28, boxY + 20);
 
   ctx.fillStyle = '#111518';
-  ctx.font = '900 26px "Syne", sans-serif';
+  ctx.font = '900 26px "Plus Jakarta Sans", sans-serif';
   ctx.fillText('€ 13,000', 28, boxY + 46);
 
   ctx.fillStyle = '#79828a';
@@ -4331,7 +4337,7 @@ function renderCardTextureB(canvas, w, h, dpr) {
 
   // Title
   ctx.fillStyle = '#ffffff';
-  ctx.font = '900 20px "Syne", sans-serif';
+  ctx.font = '900 20px "Plus Jakarta Sans", sans-serif';
   ctx.fillText('FULL VISION', 22, 65);
   ctx.fillText('PACKAGE', 22, 86);
 
@@ -4393,7 +4399,7 @@ function renderCardTextureB(canvas, w, h, dpr) {
   ctx.fillText('TOTAL INVESTMENT (QUOTE NO. 15)', 28, boxY + 20);
 
   ctx.fillStyle = '#ffffff';
-  ctx.font = '900 26px "Syne", sans-serif';
+  ctx.font = '900 26px "Plus Jakarta Sans", sans-serif';
   ctx.fillText('€ 17,000', 28, boxY + 46);
 
   ctx.fillStyle = '#10b981';

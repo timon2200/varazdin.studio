@@ -127,15 +127,12 @@ main.deck-stage {
   position: absolute;
   top: 0;
   left: 0;
-  padding: clamp(1.6rem, 2.5vw, 2.4rem) clamp(2rem, 3.2vw, 3.5rem);
+  padding: clamp(1.3rem, 2.2vw, 2.1rem) clamp(1.8rem, 2.8vw, 3.2rem);
   flex-direction: column;
   justify-content: space-between;
   opacity: 0;
   transition: opacity 0.25s ease;
-  overflow-y: auto;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-  touch-action: pan-y;
+  overflow: hidden;
   background: var(--bg-card);
   box-sizing: border-box;
 }
@@ -2814,11 +2811,15 @@ function initClothCardPhysics(customRenderers = null) {
     function syncSize() {
       if (window.innerWidth <= 768) return;
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const cw = outputCanvas.clientWidth;
-      const ch = outputCanvas.clientHeight;
-      if (cw < 30 || ch < 30) return;
+      const w = wrapEl.clientWidth;
+      const h = wrapEl.clientHeight;
+      if (w < 30 || h < 30) return;
+
+      const cw = w + BLEED * 2;
+      const ch = h + BLEED * 2;
       const targetW = Math.round(cw * dpr);
       const targetH = Math.round(ch * dpr);
+
       if (outputCanvas.width !== targetW || outputCanvas.height !== targetH || !hasValidTexture) {
         outputCanvas.width = targetW;
         outputCanvas.height = targetH;
@@ -2968,8 +2969,8 @@ function initClothCardPhysics(customRenderers = null) {
     function render() {
       const resW = Math.max(wrapEl.clientWidth, 50);
       const resH = Math.max(wrapEl.clientHeight, 50);
-      const outW = Math.max(outputCanvas.clientWidth, 50);
-      const outH = Math.max(outputCanvas.clientHeight, 50);
+      const outW = resW + BLEED * 2;
+      const outH = resH + BLEED * 2;
       const dark = opts.dark || 0;
 
       gl.bindFramebuffer(gl.FRAMEBUFFER, null);
