@@ -594,11 +594,15 @@ html[data-theme="dark"] .telemetry-counter strong {
     text-transform: uppercase;
   }
 
-  /* Mode Switcher 2x2 Grid */
+  /* Mode Switcher Grid */
   .mobile-modes-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 8px;
+  }
+
+  .mobile-modes-grid .mobile-nav-btn:nth-child(3):last-child {
+    grid-column: span 2;
   }
 
   .mobile-nav-btn {
