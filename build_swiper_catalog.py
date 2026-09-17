@@ -186,10 +186,20 @@ TITLE_MAP = {
     'SV_Utility_10_Magazine_Label_Front': 'SV Utility 10 — Magazine Label Front Hit',
 
     # Tarot Lovers Back
-    'SV_Lovers_03_Kneeling_Martyr_Back': 'The Lovers Betrayal — Kneeling Martyr',
+    'SV_Lovers_01_Dark_Comix_Blade_Back': 'The Lovers 01 — Dark Comix Blade',
+    'SV_Lovers_02_Dedication_Fatal_Kiss_Back': 'The Lovers 02 — Fatal Kiss Dedication',
+    'SV_Lovers_03_Kneeling_Martyr_Back': 'The Lovers 03 — Kneeling Martyr',
+    'SV_Lovers_04_Acid_Riso_Betrayal_Back': 'The Lovers 04 — Acid Riso Betrayal',
+    'SV_Lovers_05_Rebirth_Sacrifice_Back': 'The Lovers 05 — Rebirth Sacrifice',
+    'SV_Lovers_06_Anamorphic_Split_Back': 'The Lovers 06 — Anamorphic Split',
 
     # Tarot Lovers Front
-    'SV_Lovers_03_Kneeling_Martyr_Front': 'The Lovers — Martyr Front Hit',
+    'SV_Lovers_01_Dark_Comix_Blade_Front': 'The Lovers 01 — Blade Front Hit',
+    'SV_Lovers_02_Dedication_Fatal_Kiss_Front': 'The Lovers 02 — Fatal Kiss Front Hit',
+    'SV_Lovers_03_Kneeling_Martyr_Front': 'The Lovers 03 — Martyr Front Hit',
+    'SV_Lovers_04_Acid_Riso_Betrayal_Front': 'The Lovers 04 — Acid Betrayal Front Hit',
+    'SV_Lovers_05_Rebirth_Sacrifice_Front': 'The Lovers 05 — Rebirth Front Hit',
+    'SV_Lovers_06_Anamorphic_Split_Front': 'The Lovers 06 — Anamorphic Front Hit',
 
     # Minimal Series
     'Front Minimal - Creative Collective Center Chest Black': 'cCc — Center Chest Minimal Black',
@@ -388,6 +398,34 @@ def build_catalog():
     catalog_data = []
     updated_votes_items = {}
 
+    # Load canonical Round 1 ID mapping to guarantee persistent IDs and order
+    canonical_leaderboard_file = TAJNO_DIR / "api" / "data" / "round1-results-leaderboard.json"
+    canonical_id_by_img = {}
+    if canonical_leaderboard_file.exists():
+        try:
+            lb_data = json.loads(canonical_leaderboard_file.read_text(encoding='utf-8'))
+            for r_it in lb_data.get('rankedItems', []):
+                img_path = r_it.get('image', '').replace('\\/', '/')
+                if img_path:
+                    canonical_id_by_img[img_path] = r_it['id']
+                    canonical_id_by_img[Path(img_path).name.lower()] = r_it['id']
+        except Exception as e:
+            print(f"  [!] Note: Could not parse round1-results-leaderboard.json: {e}")
+
+    # Fallback to votes_round_1.json
+    if not canonical_id_by_img:
+        v1_file = TAJNO_DIR / "api" / "data" / "votes_round_1.json"
+        if v1_file.exists():
+            try:
+                v1_data = json.loads(v1_file.read_text(encoding='utf-8'))
+                for v_id, v_item in v1_data.get('items', {}).items():
+                    img_path = v_item.get('image', '').replace('\\/', '/')
+                    if img_path:
+                        canonical_id_by_img[img_path] = v_id
+                        canonical_id_by_img[Path(img_path).name.lower()] = v_id
+            except Exception as e:
+                print(f"  [!] Note: Could not parse votes_round_1.json: {e}")
+
     for idx, item in enumerate(collected_items, start=1):
         clean_name = item['stem']
         clean_name = re.sub(r'\s*1664x2048', '', clean_name).strip()
@@ -410,7 +448,7 @@ def build_catalog():
             tags.extend(["lovers", "tarot", "ideas-cant-die"])
         
         rel_img = f"assets/optimized/{webp_name}"
-        item_id = f"sv-{idx:03d}"
+        item_id = canonical_id_by_img.get(rel_img) or canonical_id_by_img.get(webp_name.lower()) or f"sv-{idx:03d}"
 
         # Match with existing votes
         v = existing_votes.get(rel_img) or existing_votes.get(item_id)
@@ -447,6 +485,9 @@ def build_catalog():
             "image": rel_img,
             "impressions": impressions
         }
+
+    # Sort catalog_data canonically by ID (sv-001 -> sv-347)
+    catalog_data.sort(key=lambda x: int(x['id'].split('-')[1]) if '-' in x['id'] and x['id'].split('-')[1].isdigit() else 9999)
 
     print(f"  -> Optimized {opt_count} new WebP images.")
 

@@ -357,7 +357,7 @@ export class CatalogCurator {
       const passes = st.passes !== undefined ? st.passes : (item.passes || 0);
       const score = st.score !== undefined ? st.score : (likes + (superlikes * 3));
       const totalVotes = st.totalVotes !== undefined ? st.totalVotes : (likes + superlikes + passes);
-      const approvalRate = st.approvalRate !== undefined ? st.approvalRate : (totalVotes > 0 ? Math.round(((likes + superlikes) / totalVotes) * 100) : 0);
+      const bayesianMean = st.bayesianMean !== undefined ? st.bayesianMean : (item.bayesianMean || 0);
 
       return {
         ...item,
@@ -366,7 +366,8 @@ export class CatalogCurator {
         _statPasses: passes,
         _statScore: score,
         _statTotalVotes: totalVotes,
-        _statApproval: approvalRate
+        _statApproval: approvalRate,
+        _statBayesian: bayesianMean
       };
     });
 
@@ -402,15 +403,15 @@ export class CatalogCurator {
 
     // Sorting
     if (this.sortOption === "score-desc" || this.voteFilter === "top20") {
-      filtered.sort((a, b) => b._statScore - a._statScore || b._statTotalVotes - a._statTotalVotes);
+      filtered.sort((a, b) => b._statScore - a._statScore || (b._statBayesian || 0) - (a._statBayesian || 0) || (b._statApproval || 0) - (a._statApproval || 0) || b._statTotalVotes - a._statTotalVotes);
     } else if (this.sortOption === "likes-desc") {
-      filtered.sort((a, b) => b._statLikes - a._statLikes || b._statScore - a._statScore);
+      filtered.sort((a, b) => b._statLikes - a._statLikes || b._statScore - a._statScore || (b._statBayesian || 0) - (a._statBayesian || 0));
     } else if (this.sortOption === "super-desc") {
-      filtered.sort((a, b) => b._statSuper - a._statSuper || b._statScore - a._statScore);
+      filtered.sort((a, b) => b._statSuper - a._statSuper || b._statScore - a._statScore || (b._statBayesian || 0) - (a._statBayesian || 0));
     } else if (this.sortOption === "votes-desc") {
       filtered.sort((a, b) => b._statTotalVotes - a._statTotalVotes || b._statScore - a._statScore);
     } else if (this.sortOption === "approval-desc") {
-      filtered.sort((a, b) => b._statApproval - a._statApproval || b._statScore - a._statScore);
+      filtered.sort((a, b) => b._statApproval - a._statApproval || b._statScore - a._statScore || (b._statBayesian || 0) - (a._statBayesian || 0));
     } else if (this.sortOption === "title-asc") {
       filtered.sort((a, b) => (a.title || "").localeCompare(b.title || ""));
     }

@@ -1892,7 +1892,29 @@
     },
     "sv-172": {
       "id": "sv-172",
-      "title": "The Lovers Betrayal — Kneeling Martyr",
+      "title": "The Lovers 01 — Dark Comix Blade",
+      "category": "Creative",
+      "likes": 0,
+      "passes": 5,
+      "superlikes": 1,
+      "score": 3,
+      "image": "assets/optimized/SV_Lovers_01_Dark_Comix_Blade_Back.webp",
+      "impressions": 6
+    },
+    "sv-173": {
+      "id": "sv-173",
+      "title": "The Lovers 02 — Fatal Kiss Dedication",
+      "category": "Creative",
+      "likes": 2,
+      "passes": 4,
+      "superlikes": 1,
+      "score": 5,
+      "image": "assets/optimized/SV_Lovers_02_Dedication_Fatal_Kiss_Back.webp",
+      "impressions": 7
+    },
+    "sv-174": {
+      "id": "sv-174",
+      "title": "The Lovers 03 — Kneeling Martyr",
       "category": "Creative",
       "likes": 2,
       "passes": 4,
@@ -1901,8 +1923,41 @@
       "image": "assets/optimized/SV_Lovers_03_Kneeling_Martyr_Back.webp",
       "impressions": 6
     },
-    "sv-173": {
-      "id": "sv-173",
+    "sv-175": {
+      "id": "sv-175",
+      "title": "The Lovers 04 — Acid Riso Betrayal",
+      "category": "Creative",
+      "likes": 2,
+      "passes": 4,
+      "superlikes": 0,
+      "score": 2,
+      "image": "assets/optimized/SV_Lovers_04_Acid_Riso_Betrayal_Back.webp",
+      "impressions": 6
+    },
+    "sv-176": {
+      "id": "sv-176",
+      "title": "The Lovers 05 — Rebirth Sacrifice",
+      "category": "Creative",
+      "likes": 0,
+      "passes": 6,
+      "superlikes": 0,
+      "score": 0,
+      "image": "assets/optimized/SV_Lovers_05_Rebirth_Sacrifice_Back.webp",
+      "impressions": 6
+    },
+    "sv-177": {
+      "id": "sv-177",
+      "title": "The Lovers 06 — Anamorphic Split",
+      "category": "Creative",
+      "likes": 0,
+      "passes": 6,
+      "superlikes": 0,
+      "score": 0,
+      "image": "assets/optimized/SV_Lovers_06_Anamorphic_Split_Back.webp",
+      "impressions": 6
+    },
+    "sv-178": {
+      "id": "sv-178",
       "title": "They Who Dance",
       "category": "Creative",
       "likes": 0,
@@ -1912,8 +1967,8 @@
       "image": "assets/optimized/CV Tee - They Who Dance.webp",
       "impressions": 6
     },
-    "sv-174": {
-      "id": "sv-174",
+    "sv-179": {
+      "id": "sv-179",
       "title": "They Who Dance Celestial Grid",
       "category": "Creative",
       "likes": 0,
@@ -1923,8 +1978,8 @@
       "image": "assets/optimized/CV Tee - They Who Dance Celestial Grid.webp",
       "impressions": 6
     },
-    "sv-175": {
-      "id": "sv-175",
+    "sv-180": {
+      "id": "sv-180",
       "title": "They Who Dance Kinetic Back",
       "category": "Creative",
       "likes": 0,
@@ -1934,8 +1989,8 @@
       "image": "assets/optimized/CV Tee - They Who Dance Kinetic - Back.webp",
       "impressions": 6
     },
-    "sv-176": {
-      "id": "sv-176",
+    "sv-181": {
+      "id": "sv-181",
       "title": "They Who Dance Music",
       "category": "Creative",
       "likes": 0,
@@ -1945,8 +2000,8 @@
       "image": "assets/optimized/CV Tee - They Who Dance Music.webp",
       "impressions": 7
     },
-    "sv-177": {
-      "id": "sv-177",
+    "sv-182": {
+      "id": "sv-182",
       "title": "They Who Dance Psychedelic Wave",
       "category": "Creative",
       "likes": 2,
@@ -1956,8 +2011,8 @@
       "image": "assets/optimized/CV Tee - They Who Dance Psychedelic Wave.webp",
       "impressions": 6
     },
-    "sv-178": {
-      "id": "sv-178",
+    "sv-183": {
+      "id": "sv-183",
       "title": "They Who Dance Rider Waves",
       "category": "Creative",
       "likes": 0,
@@ -1967,8 +2022,8 @@
       "image": "assets/optimized/CV Tee - They Who Dance Rider Waves.webp",
       "impressions": 6
     },
-    "sv-179": {
-      "id": "sv-179",
+    "sv-184": {
+      "id": "sv-184",
       "title": "Utility Spec DTF Bold Black On White",
       "category": "Creative",
       "likes": 1,
@@ -1978,8 +2033,8 @@
       "image": "assets/optimized/CV Tee - Utility Spec DTF Bold - Black on White.webp",
       "impressions": 7
     },
-    "sv-180": {
-      "id": "sv-180",
+    "sv-185": {
+      "id": "sv-185",
       "title": "Utility Spec DTF Bold White On Black",
       "category": "Creative",
       "likes": 2,
@@ -1989,8 +2044,8 @@
       "image": "assets/optimized/CV Tee - Utility Spec DTF Bold - White on Black.webp",
       "impressions": 7
     },
-    "sv-181": {
-      "id": "sv-181",
+    "sv-186": {
+      "id": "sv-186",
       "title": "Utility Spec Print",
       "category": "Creative",
       "likes": 3,
@@ -2000,8 +2055,8 @@
       "image": "assets/optimized/CV Tee - Utility Spec Print.webp",
       "impressions": 7
     },
-    "sv-182": {
-      "id": "sv-182",
+    "sv-187": {
+      "id": "sv-187",
       "title": "Utility Spec Print Black On White Runover",
       "category": "Creative",
       "likes": 1,
@@ -2011,8 +2066,8 @@
       "image": "assets/optimized/CV Tee - Utility Spec Print - Black on White Runover.webp",
       "impressions": 7
     },
-    "sv-183": {
-      "id": "sv-183",
+    "sv-188": {
+      "id": "sv-188",
       "title": "Utility Spec Print White On Black Brutalist",
       "category": "Creative",
       "likes": 4,
@@ -2022,8 +2077,8 @@
       "image": "assets/optimized/CV Tee - Utility Spec Print - White on Black Brutalist.webp",
       "impressions": 8
     },
-    "sv-184": {
-      "id": "sv-184",
+    "sv-189": {
+      "id": "sv-189",
       "title": "Vertical Spine Type",
       "category": "Creative",
       "likes": 0,
@@ -2033,8 +2088,8 @@
       "image": "assets/optimized/CV Tee - Vertical Spine Type.webp",
       "impressions": 6
     },
-    "sv-185": {
-      "id": "sv-185",
+    "sv-190": {
+      "id": "sv-190",
       "title": "Visually Articulate",
       "category": "Creative",
       "likes": 0,
@@ -2044,8 +2099,8 @@
       "image": "assets/optimized/CV Tee - Visually Articulate.webp",
       "impressions": 6
     },
-    "sv-186": {
-      "id": "sv-186",
+    "sv-191": {
+      "id": "sv-191",
       "title": "Visually Articulate Calibration Back",
       "category": "Creative",
       "likes": 0,
@@ -2055,8 +2110,8 @@
       "image": "assets/optimized/CV Tee - Visually Articulate Calibration - Back.webp",
       "impressions": 6
     },
-    "sv-187": {
-      "id": "sv-187",
+    "sv-192": {
+      "id": "sv-192",
       "title": "Visually Articulate Maker",
       "category": "Creative",
       "likes": 0,
@@ -2066,8 +2121,8 @@
       "image": "assets/optimized/CV Tee - Visually Articulate MAKER.webp",
       "impressions": 6
     },
-    "sv-188": {
-      "id": "sv-188",
+    "sv-193": {
+      "id": "sv-193",
       "title": "Visually Articulate Skyline",
       "category": "Creative",
       "likes": 2,
@@ -2077,8 +2132,8 @@
       "image": "assets/optimized/CV Tee - Visually Articulate Skyline.webp",
       "impressions": 6
     },
-    "sv-189": {
-      "id": "sv-189",
+    "sv-194": {
+      "id": "sv-194",
       "title": "What Keeps You Up At Night",
       "category": "Creative",
       "likes": 1,
@@ -2088,8 +2143,8 @@
       "image": "assets/optimized/CV Tee - What Keeps You Up At Night.webp",
       "impressions": 7
     },
-    "sv-190": {
-      "id": "sv-190",
+    "sv-195": {
+      "id": "sv-195",
       "title": "What Keeps You Up Hud",
       "category": "Creative",
       "likes": 1,
@@ -2099,8 +2154,8 @@
       "image": "assets/optimized/CV Tee - What Keeps You Up HUD.webp",
       "impressions": 6
     },
-    "sv-191": {
-      "id": "sv-191",
+    "sv-196": {
+      "id": "sv-196",
       "title": "When You Cant Fall Asleep Botanical Paf",
       "category": "Creative",
       "likes": 0,
@@ -2110,8 +2165,8 @@
       "image": "assets/optimized/CV Tee - When You Cant Fall Asleep Botanical PAF.webp",
       "impressions": 7
     },
-    "sv-192": {
-      "id": "sv-192",
+    "sv-197": {
+      "id": "sv-197",
       "title": "When You Cant Fall Asleep Cyber Hud",
       "category": "Creative",
       "likes": 0,
@@ -2121,8 +2176,8 @@
       "image": "assets/optimized/CV Tee - When You Cant Fall Asleep Cyber HUD.webp",
       "impressions": 7
     },
-    "sv-193": {
-      "id": "sv-193",
+    "sv-198": {
+      "id": "sv-198",
       "title": "When You Cant Fall Asleep Grgur Nocturne",
       "category": "Creative",
       "likes": 0,
@@ -2132,8 +2187,8 @@
       "image": "assets/optimized/CV Tee - When You Cant Fall Asleep Grgur Nocturne.webp",
       "impressions": 6
     },
-    "sv-194": {
-      "id": "sv-194",
+    "sv-199": {
+      "id": "sv-199",
       "title": "When You Cant Fall Asleep Raw Marker",
       "category": "Creative",
       "likes": 0,
@@ -2143,8 +2198,8 @@
       "image": "assets/optimized/CV Tee - When You Cant Fall Asleep Raw Marker.webp",
       "impressions": 6
     },
-    "sv-195": {
-      "id": "sv-195",
+    "sv-200": {
+      "id": "sv-200",
       "title": "When You Cant Fall Asleep Sculpture Maker",
       "category": "Creative",
       "likes": 0,
@@ -2154,8 +2209,8 @@
       "image": "assets/optimized/CV Tee - When You Cant Fall Asleep Sculpture MAKER.webp",
       "impressions": 6
     },
-    "sv-196": {
-      "id": "sv-196",
+    "sv-201": {
+      "id": "sv-201",
       "title": "When You Cant Fall Asleep Star Chart",
       "category": "Creative",
       "likes": 0,
@@ -2165,8 +2220,8 @@
       "image": "assets/optimized/CV Tee - When You Cant Fall Asleep Star Chart.webp",
       "impressions": 6
     },
-    "sv-197": {
-      "id": "sv-197",
+    "sv-202": {
+      "id": "sv-202",
       "title": "the Alchemist Magic Work",
       "category": "Creative",
       "likes": 0,
@@ -2176,8 +2231,8 @@
       "image": "assets/optimized/CV Tee - The Alchemist Magic Work.webp",
       "impressions": 7
     },
-    "sv-198": {
-      "id": "sv-198",
+    "sv-203": {
+      "id": "sv-203",
       "title": "the Lovers Betrayal Tarot",
       "category": "Creative",
       "likes": 0,
@@ -2187,8 +2242,8 @@
       "image": "assets/optimized/CV Tee - The Lovers Betrayal Tarot.webp",
       "impressions": 6
     },
-    "sv-199": {
-      "id": "sv-199",
+    "sv-204": {
+      "id": "sv-204",
       "title": "the Magic Alchemist Tarot",
       "category": "Creative",
       "likes": 0,
@@ -2198,8 +2253,8 @@
       "image": "assets/optimized/CV Tee - The Magic Alchemist Tarot.webp",
       "impressions": 6
     },
-    "sv-200": {
-      "id": "sv-200",
+    "sv-205": {
+      "id": "sv-205",
       "title": "the Magic Alchemist Tarot Back",
       "category": "Creative",
       "likes": 0,
@@ -2209,8 +2264,8 @@
       "image": "assets/optimized/CV Tee - The Magic Alchemist Tarot - Back.webp",
       "impressions": 6
     },
-    "sv-201": {
-      "id": "sv-201",
+    "sv-206": {
+      "id": "sv-206",
       "title": "the Magic Botanical Lithograph",
       "category": "Creative",
       "likes": 0,
@@ -2220,8 +2275,8 @@
       "image": "assets/optimized/CV Tee - The Magic Botanical Lithograph.webp",
       "impressions": 6
     },
-    "sv-202": {
-      "id": "sv-202",
+    "sv-207": {
+      "id": "sv-207",
       "title": "the Magic Dragon Red Seals",
       "category": "Creative",
       "likes": 1,
@@ -2231,8 +2286,8 @@
       "image": "assets/optimized/CV Tee - The Magic Dragon Red Seals.webp",
       "impressions": 6
     },
-    "sv-203": {
-      "id": "sv-203",
+    "sv-208": {
+      "id": "sv-208",
       "title": "the Magic in Work You Avoid",
       "category": "Creative",
       "likes": 0,
@@ -2242,8 +2297,8 @@
       "image": "assets/optimized/CV Tee - The Magic In Work You Avoid.webp",
       "impressions": 6
     },
-    "sv-204": {
-      "id": "sv-204",
+    "sv-209": {
+      "id": "sv-209",
       "title": "Atelier Alchimia 1181",
       "category": "Artwear",
       "likes": 0,
@@ -2253,8 +2308,8 @@
       "image": "assets/optimized/SV Artwear - Atelier Alchimia 1181.webp",
       "impressions": 6
     },
-    "sv-205": {
-      "id": "sv-205",
+    "sv-210": {
+      "id": "sv-210",
       "title": "Atelier Modular Green",
       "category": "Artwear",
       "likes": 1,
@@ -2264,8 +2319,8 @@
       "image": "assets/optimized/SV Artwear - Atelier Modular Green.webp",
       "impressions": 8
     },
-    "sv-206": {
-      "id": "sv-206",
+    "sv-211": {
+      "id": "sv-211",
       "title": "Beram Galija 1474",
       "category": "Artwear",
       "likes": 0,
@@ -2275,8 +2330,8 @@
       "image": "assets/optimized/SV Tee - Beram Galija 1474.webp",
       "impressions": 6
     },
-    "sv-207": {
-      "id": "sv-207",
+    "sv-212": {
+      "id": "sv-212",
       "title": "Fisheye Ambition Black",
       "category": "Artwear",
       "likes": 2,
@@ -2286,8 +2341,8 @@
       "image": "assets/optimized/SV Print - Fisheye Ambition Black.webp",
       "impressions": 7
     },
-    "sv-208": {
-      "id": "sv-208",
+    "sv-213": {
+      "id": "sv-213",
       "title": "Garda Purgar Flare",
       "category": "Artwear",
       "likes": 0,
@@ -2297,8 +2352,8 @@
       "image": "assets/optimized/SV Print - Garda Purgar Flare.webp",
       "impressions": 7
     },
-    "sv-209": {
-      "id": "sv-209",
+    "sv-214": {
+      "id": "sv-214",
       "title": "Garda Purgar Sigil White",
       "category": "Artwear",
       "likes": 0,
@@ -2308,8 +2363,8 @@
       "image": "assets/optimized/SV Print - Garda Purgar Sigil White.webp",
       "impressions": 6
     },
-    "sv-210": {
-      "id": "sv-210",
+    "sv-215": {
+      "id": "sv-215",
       "title": "Garda Purgar Sunburst",
       "category": "Artwear",
       "likes": 1,
@@ -2319,8 +2374,8 @@
       "image": "assets/optimized/SV Print - Garda Purgar Sunburst.webp",
       "impressions": 6
     },
-    "sv-211": {
-      "id": "sv-211",
+    "sv-216": {
+      "id": "sv-216",
       "title": "Glagolitic Initial S Gryphon",
       "category": "Artwear",
       "likes": 0,
@@ -2330,8 +2385,8 @@
       "image": "assets/optimized/SV Tee - Glagolitic Initial S Gryphon.webp",
       "impressions": 6
     },
-    "sv-212": {
-      "id": "sv-212",
+    "sv-217": {
+      "id": "sv-217",
       "title": "Glagolitic Tarot Ideas Cant Die",
       "category": "Artwear",
       "likes": 0,
@@ -2341,8 +2396,8 @@
       "image": "assets/optimized/SV Tee - Glagolitic Tarot Ideas Cant Die.webp",
       "impressions": 6
     },
-    "sv-213": {
-      "id": "sv-213",
+    "sv-218": {
+      "id": "sv-218",
       "title": "Guardian of Radimlja",
       "category": "Artwear",
       "likes": 0,
@@ -2352,8 +2407,8 @@
       "image": "assets/optimized/SV Artwear - Guardian of Radimlja.webp",
       "impressions": 6
     },
-    "sv-214": {
-      "id": "sv-214",
+    "sv-219": {
+      "id": "sv-219",
       "title": "Inspired By Craft Black",
       "category": "Artwear",
       "likes": 2,
@@ -2363,8 +2418,8 @@
       "image": "assets/optimized/SV Artwear - Inspired By Craft Black.webp",
       "impressions": 6
     },
-    "sv-215": {
-      "id": "sv-215",
+    "sv-220": {
+      "id": "sv-220",
       "title": "Inspired By Studio Black",
       "category": "Artwear",
       "likes": 2,
@@ -2374,8 +2429,8 @@
       "image": "assets/optimized/SV Print - Inspired By Studio Black.webp",
       "impressions": 6
     },
-    "sv-216": {
-      "id": "sv-216",
+    "sv-221": {
+      "id": "sv-221",
       "title": "Kameni Vitez Radimlja",
       "category": "Artwear",
       "likes": 0,
@@ -2385,8 +2440,8 @@
       "image": "assets/optimized/SV Tee - Kameni Vitez Radimlja.webp",
       "impressions": 6
     },
-    "sv-217": {
-      "id": "sv-217",
+    "sv-222": {
+      "id": "sv-222",
       "title": "Knight Sigil White",
       "category": "Artwear",
       "likes": 6,
@@ -2396,8 +2451,8 @@
       "image": "assets/optimized/SV Print - Knight Sigil White.webp",
       "impressions": 9
     },
-    "sv-218": {
-      "id": "sv-218",
+    "sv-223": {
+      "id": "sv-223",
       "title": "Knights Vow Cream",
       "category": "Artwear",
       "likes": 1,
@@ -2407,8 +2462,8 @@
       "image": "assets/optimized/SV Artwear - Knights Vow Cream.webp",
       "impressions": 7
     },
-    "sv-219": {
-      "id": "sv-219",
+    "sv-224": {
+      "id": "sv-224",
       "title": "Knights Vow Cream",
       "category": "Artwear",
       "likes": 1,
@@ -2418,8 +2473,8 @@
       "image": "assets/optimized/SV Print - Knights Vow Cream.webp",
       "impressions": 7
     },
-    "sv-220": {
-      "id": "sv-220",
+    "sv-225": {
+      "id": "sv-225",
       "title": "Maker Archives White",
       "category": "Artwear",
       "likes": 2,
@@ -2429,8 +2484,8 @@
       "image": "assets/optimized/SV Print - Maker Archives White.webp",
       "impressions": 7
     },
-    "sv-221": {
-      "id": "sv-221",
+    "sv-226": {
+      "id": "sv-226",
       "title": "Perun Sacred Geometry",
       "category": "Artwear",
       "likes": 0,
@@ -2440,8 +2495,8 @@
       "image": "assets/optimized/SV Artwear - Perun Sacred Geometry.webp",
       "impressions": 7
     },
-    "sv-222": {
-      "id": "sv-222",
+    "sv-227": {
+      "id": "sv-227",
       "title": "Perunova Rozeta Gromovnik",
       "category": "Artwear",
       "likes": 1,
@@ -2451,8 +2506,8 @@
       "image": "assets/optimized/SV Tee - Perunova Rozeta Gromovnik.webp",
       "impressions": 7
     },
-    "sv-223": {
-      "id": "sv-223",
+    "sv-228": {
+      "id": "sv-228",
       "title": "Phoenix of 1776",
       "category": "Artwear",
       "likes": 0,
@@ -2462,8 +2517,8 @@
       "image": "assets/optimized/SV Artwear - Phoenix of 1776.webp",
       "impressions": 7
     },
-    "sv-224": {
-      "id": "sv-224",
+    "sv-229": {
+      "id": "sv-229",
       "title": "Pozar Varazdina 1776 Iz Pepela",
       "category": "Artwear",
       "likes": 3,
@@ -2473,8 +2528,8 @@
       "image": "assets/optimized/SV Tee - Pozar Varazdina 1776 Iz Pepela.webp",
       "impressions": 6
     },
-    "sv-225": {
-      "id": "sv-225",
+    "sv-230": {
+      "id": "sv-230",
       "title": "Purgar Straza Night March",
       "category": "Artwear",
       "likes": 1,
@@ -2484,8 +2539,8 @@
       "image": "assets/optimized/SV Tee - Purgar Straza Night March.webp",
       "impressions": 7
     },
-    "sv-226": {
-      "id": "sv-226",
+    "sv-231": {
+      "id": "sv-231",
       "title": "Silent Knight Black",
       "category": "Artwear",
       "likes": 1,
@@ -2495,8 +2550,8 @@
       "image": "assets/optimized/SV Print - Silent Knight Black.webp",
       "impressions": 7
     },
-    "sv-227": {
-      "id": "sv-227",
+    "sv-232": {
+      "id": "sv-232",
       "title": "Silent Knight Studio Black",
       "category": "Artwear",
       "likes": 1,
@@ -2506,8 +2561,8 @@
       "image": "assets/optimized/SV Print - Silent Knight Studio Black.webp",
       "impressions": 6
     },
-    "sv-228": {
-      "id": "sv-228",
+    "sv-233": {
+      "id": "sv-233",
       "title": "Silent Knight Studio Sunburst",
       "category": "Artwear",
       "likes": 1,
@@ -2517,8 +2572,8 @@
       "image": "assets/optimized/SV Print - Silent Knight Studio Sunburst.webp",
       "impressions": 6
     },
-    "sv-229": {
-      "id": "sv-229",
+    "sv-234": {
+      "id": "sv-234",
       "title": "Stari Grad Barokna Kula Master",
       "category": "Artwear",
       "likes": 1,
@@ -2528,8 +2583,8 @@
       "image": "assets/optimized/SV Tee - Stari Grad Barokna Kula Master.webp",
       "impressions": 6
     },
-    "sv-230": {
-      "id": "sv-230",
+    "sv-235": {
+      "id": "sv-235",
       "title": "Studio Guild Pisemo Svjetlom",
       "category": "Artwear",
       "likes": 0,
@@ -2539,8 +2594,8 @@
       "image": "assets/optimized/SV Tee - Studio Guild Pisemo Svjetlom.webp",
       "impressions": 6
     },
-    "sv-231": {
-      "id": "sv-231",
+    "sv-236": {
+      "id": "sv-236",
       "title": "Studio Varazdin GPT2 Dynamic Cluster",
       "category": "Artwear",
       "likes": 0,
@@ -2550,8 +2605,8 @@
       "image": "assets/optimized/T-Shirt - Studio Varazdin GPT2 Dynamic Cluster.webp",
       "impressions": 6
     },
-    "sv-232": {
-      "id": "sv-232",
+    "sv-237": {
+      "id": "sv-237",
       "title": "Studio Varazdin GPT2 Skyline Portrait",
       "category": "Artwear",
       "likes": 1,
@@ -2561,8 +2616,8 @@
       "image": "assets/optimized/T-Shirt - Studio Varazdin GPT2 Skyline Portrait.webp",
       "impressions": 8
     },
-    "sv-233": {
-      "id": "sv-233",
+    "sv-238": {
+      "id": "sv-238",
       "title": "Studio Varazdin GPT2 Totem Portrait",
       "category": "Artwear",
       "likes": 0,
@@ -2572,8 +2627,8 @@
       "image": "assets/optimized/T-Shirt - Studio Varazdin GPT2 Totem Portrait.webp",
       "impressions": 6
     },
-    "sv-234": {
-      "id": "sv-234",
+    "sv-239": {
+      "id": "sv-239",
       "title": "Teratomorpha Sigil White",
       "category": "Artwear",
       "likes": 5,
@@ -2583,8 +2638,8 @@
       "image": "assets/optimized/SV Artwear - Teratomorpha Sigil White.webp",
       "impressions": 9
     },
-    "sv-235": {
-      "id": "sv-235",
+    "sv-240": {
+      "id": "sv-240",
       "title": "Teratomorphic Dragon 1404",
       "category": "Artwear",
       "likes": 0,
@@ -2594,8 +2649,8 @@
       "image": "assets/optimized/SV Artwear - Teratomorphic Dragon 1404.webp",
       "impressions": 6
     },
-    "sv-236": {
-      "id": "sv-236",
+    "sv-241": {
+      "id": "sv-241",
       "title": "Trakostyan Black Queen",
       "category": "Artwear",
       "likes": 0,
@@ -2605,8 +2660,8 @@
       "image": "assets/optimized/SV Tee - Trakostyan Black Queen.webp",
       "impressions": 7
     },
-    "sv-237": {
-      "id": "sv-237",
+    "sv-242": {
+      "id": "sv-242",
       "title": "Varazdin Stari Grad 1181",
       "category": "Artwear",
       "likes": 0,
@@ -2616,8 +2671,8 @@
       "image": "assets/optimized/SV Tee - Varazdin Stari Grad 1181.webp",
       "impressions": 6
     },
-    "sv-238": {
-      "id": "sv-238",
+    "sv-243": {
+      "id": "sv-243",
       "title": "Veles Lord of Sacred Horns",
       "category": "Artwear",
       "likes": 0,
@@ -2627,8 +2682,8 @@
       "image": "assets/optimized/SV Tee - Veles Lord of Sacred Horns.webp",
       "impressions": 6
     },
-    "sv-239": {
-      "id": "sv-239",
+    "sv-244": {
+      "id": "sv-244",
       "title": "Vertical Spine 1181 Black",
       "category": "Artwear",
       "likes": 0,
@@ -2638,8 +2693,8 @@
       "image": "assets/optimized/SV Artwear - Vertical Spine 1181 Black.webp",
       "impressions": 6
     },
-    "sv-240": {
-      "id": "sv-240",
+    "sv-245": {
+      "id": "sv-245",
       "title": "Vitez sa Stecka Master",
       "category": "Artwear",
       "likes": 0,
@@ -2649,8 +2704,8 @@
       "image": "assets/optimized/SV Tee - Vitez sa Stecka Master.webp",
       "impressions": 6
     },
-    "sv-241": {
-      "id": "sv-241",
+    "sv-246": {
+      "id": "sv-246",
       "title": "Zgoscanski Stecak Royal Fortress",
       "category": "Artwear",
       "likes": 0,
@@ -2660,8 +2715,8 @@
       "image": "assets/optimized/SV Tee - Zgoscanski Stecak Royal Fortress.webp",
       "impressions": 7
     },
-    "sv-242": {
-      "id": "sv-242",
+    "sv-247": {
+      "id": "sv-247",
       "title": "Zmaj Hrvojev Misal Ultra",
       "category": "Artwear",
       "likes": 0,
@@ -2671,8 +2726,8 @@
       "image": "assets/optimized/SV Tee - Zmaj Hrvojev Misal Ultra.webp",
       "impressions": 7
     },
-    "sv-243": {
-      "id": "sv-243",
+    "sv-248": {
+      "id": "sv-248",
       "title": "Zmaj Hrvojeva Misala",
       "category": "Artwear",
       "likes": 1,
@@ -2682,8 +2737,8 @@
       "image": "assets/optimized/SV Tee - Zmaj Hrvojeva Misala.webp",
       "impressions": 6
     },
-    "sv-244": {
-      "id": "sv-244",
+    "sv-249": {
+      "id": "sv-249",
       "title": "35MM Film Frame Timecode",
       "category": "Front Hits",
       "likes": 0,
@@ -2693,8 +2748,8 @@
       "image": "assets/optimized/Front Hit - 35mm Film Frame Timecode.webp",
       "impressions": 6
     },
-    "sv-245": {
-      "id": "sv-245",
+    "sv-250": {
+      "id": "sv-250",
       "title": "CCC Middle Ground Blueprint Front",
       "category": "Front Hits",
       "likes": 0,
@@ -2704,8 +2759,8 @@
       "image": "assets/optimized/Front Hit - cCc - Middle Ground Blueprint - Front.webp",
       "impressions": 6
     },
-    "sv-246": {
-      "id": "sv-246",
+    "sv-251": {
+      "id": "sv-251",
       "title": "CCC They Who Dance Front",
       "category": "Front Hits",
       "likes": 1,
@@ -2715,8 +2770,8 @@
       "image": "assets/optimized/Front Hit - cCc - They Who Dance - Front.webp",
       "impressions": 6
     },
-    "sv-247": {
-      "id": "sv-247",
+    "sv-252": {
+      "id": "sv-252",
       "title": "Can You Change the Music Comix Front",
       "category": "Front Hits",
       "likes": 0,
@@ -2726,8 +2781,8 @@
       "image": "assets/optimized/Front Hit - Can You Change The Music Comix - Front.webp",
       "impressions": 6
     },
-    "sv-248": {
-      "id": "sv-248",
+    "sv-253": {
+      "id": "sv-253",
       "title": "Cash Value Guilloche Front",
       "category": "Front Hits",
       "likes": 2,
@@ -2737,8 +2792,8 @@
       "image": "assets/optimized/Front Hit - Cash Value Guilloche - Front.webp",
       "impressions": 6
     },
-    "sv-249": {
-      "id": "sv-249",
+    "sv-254": {
+      "id": "sv-254",
       "title": "Ccc. Swiss Pocket Spec",
       "category": "Front Hits",
       "likes": 1,
@@ -2748,8 +2803,8 @@
       "image": "assets/optimized/Front Hit - cCc. Swiss Pocket Spec.webp",
       "impressions": 7
     },
-    "sv-250": {
-      "id": "sv-250",
+    "sv-255": {
+      "id": "sv-255",
       "title": "Collab 01 — The Alchemist Front Hit",
       "category": "Front Hits",
       "likes": 2,
@@ -2759,8 +2814,8 @@
       "image": "assets/optimized/Collab_01_Studio_Varazdin_Alchemist_Laborer_Front.webp",
       "impressions": 6
     },
-    "sv-251": {
-      "id": "sv-251",
+    "sv-256": {
+      "id": "sv-256",
       "title": "Collab 02 — Middle Ground Front Hit",
       "category": "Front Hits",
       "likes": 1,
@@ -2770,8 +2825,8 @@
       "image": "assets/optimized/Collab_02_cCc_Middle_Ground_Horizon_Front.webp",
       "impressions": 6
     },
-    "sv-252": {
-      "id": "sv-252",
+    "sv-257": {
+      "id": "sv-257",
       "title": "Collab 03 — Morska Dekla Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -2781,8 +2836,8 @@
       "image": "assets/optimized/Collab_03_cCc_Morska_Dekla_Siren_Front.webp",
       "impressions": 6
     },
-    "sv-253": {
-      "id": "sv-253",
+    "sv-258": {
+      "id": "sv-258",
       "title": "Collab 03 — Semiotic Matrix Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -2792,8 +2847,8 @@
       "image": "assets/optimized/Collab_03_Studio_Varazdin_Semiotic_Matrix_Front.webp",
       "impressions": 6
     },
-    "sv-254": {
-      "id": "sv-254",
+    "sv-259": {
+      "id": "sv-259",
       "title": "Collab 04 — Fire 1776 Front Hit",
       "category": "Front Hits",
       "likes": 2,
@@ -2803,8 +2858,8 @@
       "image": "assets/optimized/Collab_04_Studio_Varazdin_Fire_1776_Disaster_Front.webp",
       "impressions": 7
     },
-    "sv-255": {
-      "id": "sv-255",
+    "sv-260": {
+      "id": "sv-260",
       "title": "Collab 04 — Kinetic Madmen Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -2814,8 +2869,8 @@
       "image": "assets/optimized/Collab_04_cCc_Kinetic_Madmen_Front.webp",
       "impressions": 6
     },
-    "sv-256": {
-      "id": "sv-256",
+    "sv-261": {
+      "id": "sv-261",
       "title": "Collab 05 — Midnight Reticle Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -2825,8 +2880,8 @@
       "image": "assets/optimized/Collab_05_Studio_Varazdin_Midnight_Reticle_Front.webp",
       "impressions": 6
     },
-    "sv-257": {
-      "id": "sv-257",
+    "sv-262": {
+      "id": "sv-262",
       "title": "Collab 05 — Sleeping Angels Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -2836,8 +2891,8 @@
       "image": "assets/optimized/Collab_05_cCc_Sleeping_Angels_Acid_Front.webp",
       "impressions": 6
     },
-    "sv-258": {
-      "id": "sv-258",
+    "sv-263": {
+      "id": "sv-263",
       "title": "Collab 06 — Constrained Monolith Front Hit",
       "category": "Front Hits",
       "likes": 1,
@@ -2847,8 +2902,8 @@
       "image": "assets/optimized/Collab_06_cCc_Constrained_Monolith_Front.webp",
       "impressions": 6
     },
-    "sv-259": {
-      "id": "sv-259",
+    "sv-264": {
+      "id": "sv-264",
       "title": "Collab 06 — Vischer Panorama Front Hit",
       "category": "Front Hits",
       "likes": 1,
@@ -2858,8 +2913,8 @@
       "image": "assets/optimized/Collab_06_Studio_Varazdin_Vischer_Panorama_Front.webp",
       "impressions": 6
     },
-    "sv-260": {
-      "id": "sv-260",
+    "sv-265": {
+      "id": "sv-265",
       "title": "Collab 07 — Mountain Editor Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -2869,8 +2924,8 @@
       "image": "assets/optimized/Collab_07_Studio_Varazdin_Mountain_Editor_Front.webp",
       "impressions": 6
     },
-    "sv-261": {
-      "id": "sv-261",
+    "sv-266": {
+      "id": "sv-266",
       "title": "Collab 08 — Iron Turtle Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -2880,8 +2935,8 @@
       "image": "assets/optimized/Collab_08_cCc_Iron_Turtle_Guild_Front.webp",
       "impressions": 6
     },
-    "sv-262": {
-      "id": "sv-262",
+    "sv-267": {
+      "id": "sv-267",
       "title": "Constrained Environment Blueprint Front",
       "category": "Front Hits",
       "likes": 0,
@@ -2891,8 +2946,8 @@
       "image": "assets/optimized/Front Hit - Constrained Environment Blueprint - Front.webp",
       "impressions": 6
     },
-    "sv-263": {
-      "id": "sv-263",
+    "sv-268": {
+      "id": "sv-268",
       "title": "Creative Block 1181 Front",
       "category": "Front Hits",
       "likes": 0,
@@ -2902,8 +2957,8 @@
       "image": "assets/optimized/Front Hit - Creative Block 1181 - Front.webp",
       "impressions": 7
     },
-    "sv-264": {
-      "id": "sv-264",
+    "sv-269": {
+      "id": "sv-269",
       "title": "Cyber 3d Angled SV Monogram",
       "category": "Front Hits",
       "likes": 2,
@@ -2913,8 +2968,8 @@
       "image": "assets/optimized/Front Hit - Cyber 3D Angled SV Monogram.webp",
       "impressions": 7
     },
-    "sv-265": {
-      "id": "sv-265",
+    "sv-270": {
+      "id": "sv-270",
       "title": "Deadpan Knight Arrow Cartoon",
       "category": "Front Hits",
       "likes": 1,
@@ -2924,8 +2979,8 @@
       "image": "assets/optimized/Front Hit - Deadpan Knight Arrow Cartoon.webp",
       "impressions": 7
     },
-    "sv-266": {
-      "id": "sv-266",
+    "sv-271": {
+      "id": "sv-271",
       "title": "Everything Says Something Matrix Front",
       "category": "Front Hits",
       "likes": 0,
@@ -2935,8 +2990,8 @@
       "image": "assets/optimized/Front Hit - Everything Says Something Matrix - Front.webp",
       "impressions": 6
     },
-    "sv-267": {
-      "id": "sv-267",
+    "sv-272": {
+      "id": "sv-272",
       "title": "Good Work Great Work Anvil Front",
       "category": "Front Hits",
       "likes": 0,
@@ -2946,8 +3001,8 @@
       "image": "assets/optimized/Front Hit - Good Work Great Work Anvil - Front.webp",
       "impressions": 6
     },
-    "sv-268": {
-      "id": "sv-268",
+    "sv-273": {
+      "id": "sv-273",
       "title": "Grgur Ninski Pointing Finger Icon",
       "category": "Front Hits",
       "likes": 3,
@@ -2957,8 +3012,8 @@
       "image": "assets/optimized/Front Hit - Grgur Ninski Pointing Finger Icon.webp",
       "impressions": 8
     },
-    "sv-269": {
-      "id": "sv-269",
+    "sv-274": {
+      "id": "sv-274",
       "title": "Heritage Combo 01 — St. Florian Spec Front Hit",
       "category": "Front Hits",
       "likes": 1,
@@ -2968,8 +3023,8 @@
       "image": "assets/optimized/Heritage_Combo_01_Florijan_Brutalist_Front.webp",
       "impressions": 6
     },
-    "sv-270": {
-      "id": "sv-270",
+    "sv-275": {
+      "id": "sv-275",
       "title": "Heritage Combo 02 — Angelic Soundwave Front Hit",
       "category": "Front Hits",
       "likes": 2,
@@ -2979,8 +3034,8 @@
       "image": "assets/optimized/Heritage_Combo_02_Angels_Comix_Front.webp",
       "impressions": 7
     },
-    "sv-271": {
-      "id": "sv-271",
+    "sv-276": {
+      "id": "sv-276",
       "title": "Heritage Combo 03 — Probitati 1842 Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -2990,8 +3045,8 @@
       "image": "assets/optimized/Heritage_Combo_03_Erdody_GothicLitho_Front.webp",
       "impressions": 6
     },
-    "sv-272": {
-      "id": "sv-272",
+    "sv-277": {
+      "id": "sv-277",
       "title": "Heritage Combo 04 — Cherub Nocturne Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3001,8 +3056,8 @@
       "image": "assets/optimized/Heritage_Combo_04_BaroqueAngel_Botanical_Front.webp",
       "impressions": 6
     },
-    "sv-273": {
-      "id": "sv-273",
+    "sv-278": {
+      "id": "sv-278",
       "title": "Horizontal Barcode Chest Tape",
       "category": "Front Hits",
       "likes": 2,
@@ -3012,8 +3067,8 @@
       "image": "assets/optimized/Front Hit - Horizontal Barcode Chest Tape.webp",
       "impressions": 6
     },
-    "sv-274": {
-      "id": "sv-274",
+    "sv-279": {
+      "id": "sv-279",
       "title": "Kittl Warped Circular Badge",
       "category": "Front Hits",
       "likes": 2,
@@ -3023,8 +3078,8 @@
       "image": "assets/optimized/Front Hit - Kittl Warped Circular Badge.webp",
       "impressions": 7
     },
-    "sv-275": {
-      "id": "sv-275",
+    "sv-280": {
+      "id": "sv-280",
       "title": "Knight Helmet Minimal Icon",
       "category": "Front Hits",
       "likes": 1,
@@ -3034,8 +3089,8 @@
       "image": "assets/optimized/Front Hit - Knight Helmet Minimal Icon.webp",
       "impressions": 6
     },
-    "sv-276": {
-      "id": "sv-276",
+    "sv-281": {
+      "id": "sv-281",
       "title": "Knight Helmet — Pure Minimal Icon",
       "category": "Front Hits",
       "likes": 0,
@@ -3045,8 +3100,8 @@
       "image": "assets/optimized/Front Minimal - Knight Helmet Pure Minimal Icon.webp",
       "impressions": 6
     },
-    "sv-277": {
-      "id": "sv-277",
+    "sv-282": {
+      "id": "sv-282",
       "title": "Middle Ground Blueprint Front",
       "category": "Front Hits",
       "likes": 1,
@@ -3056,8 +3111,8 @@
       "image": "assets/optimized/Front Hit - Middle Ground Blueprint - Front.webp",
       "impressions": 6
     },
-    "sv-278": {
-      "id": "sv-278",
+    "sv-283": {
+      "id": "sv-283",
       "title": "Nocturne Dreams 0300 Front",
       "category": "Front Hits",
       "likes": 0,
@@ -3067,8 +3122,8 @@
       "image": "assets/optimized/Front Hit - Nocturne Dreams 0300 - Front.webp",
       "impressions": 6
     },
-    "sv-279": {
-      "id": "sv-279",
+    "sv-284": {
+      "id": "sv-284",
       "title": "Optical Lens Calibration Target",
       "category": "Front Hits",
       "likes": 1,
@@ -3078,8 +3133,8 @@
       "image": "assets/optimized/Front Hit - Optical Lens Calibration Target.webp",
       "impressions": 6
     },
-    "sv-280": {
-      "id": "sv-280",
+    "sv-285": {
+      "id": "sv-285",
       "title": "Paf Botanical Oak Branch",
       "category": "Front Hits",
       "likes": 1,
@@ -3089,8 +3144,8 @@
       "image": "assets/optimized/Front Hit - PAF Botanical Oak Branch.webp",
       "impressions": 6
     },
-    "sv-281": {
-      "id": "sv-281",
+    "sv-286": {
+      "id": "sv-286",
       "title": "Philosopher Knight Front",
       "category": "Front Hits",
       "likes": 0,
@@ -3100,8 +3155,8 @@
       "image": "assets/optimized/Front Hit - Philosopher Knight - Front.webp",
       "impressions": 6
     },
-    "sv-282": {
-      "id": "sv-282",
+    "sv-287": {
+      "id": "sv-287",
       "title": "SV 4Ref 01 — Side Quest Front Hit",
       "category": "Front Hits",
       "likes": 2,
@@ -3111,8 +3166,8 @@
       "image": "assets/optimized/SV_4Ref_01_SideQuest_Woodcut_Front.webp",
       "impressions": 7
     },
-    "sv-283": {
-      "id": "sv-283",
+    "sv-288": {
+      "id": "sv-288",
       "title": "SV 4Ref 02 — Praying Guardian Front Hit",
       "category": "Front Hits",
       "likes": 1,
@@ -3122,8 +3177,8 @@
       "image": "assets/optimized/SV_4Ref_02_Praying_Guardian_Riso_Front.webp",
       "impressions": 7
     },
-    "sv-284": {
-      "id": "sv-284",
+    "sv-289": {
+      "id": "sv-289",
       "title": "SV 4Ref 03 — Dual Knights Front Hit",
       "category": "Front Hits",
       "likes": 1,
@@ -3133,8 +3188,8 @@
       "image": "assets/optimized/SV_4Ref_03_Dual_Knights_Vigil_Front.webp",
       "impressions": 7
     },
-    "sv-285": {
-      "id": "sv-285",
+    "sv-290": {
+      "id": "sv-290",
       "title": "SV 4Ref 04 — CyberGothic Front Hit",
       "category": "Front Hits",
       "likes": 1,
@@ -3144,8 +3199,8 @@
       "image": "assets/optimized/SV_4Ref_04_Rearing_CyberGothic_Front.webp",
       "impressions": 6
     },
-    "sv-286": {
-      "id": "sv-286",
+    "sv-291": {
+      "id": "sv-291",
       "title": "SV 4Ref 05 — Grand Synthesis Front Hit",
       "category": "Front Hits",
       "likes": 2,
@@ -3155,8 +3210,8 @@
       "image": "assets/optimized/SV_4Ref_05_Grand_Synthesis_Master_Front.webp",
       "impressions": 7
     },
-    "sv-287": {
-      "id": "sv-287",
+    "sv-292": {
+      "id": "sv-292",
       "title": "SV Maker Signature Script",
       "category": "Front Hits",
       "likes": 3,
@@ -3166,8 +3221,8 @@
       "image": "assets/optimized/Front Hit - SV MAKER Signature Script.webp",
       "impressions": 8
     },
-    "sv-288": {
-      "id": "sv-288",
+    "sv-293": {
+      "id": "sv-293",
       "title": "SV Single 01 — Woodcut Knight Front Hit",
       "category": "Front Hits",
       "likes": 5,
@@ -3177,8 +3232,8 @@
       "image": "assets/optimized/SV_Single_01_Woodcut_Knight_Front.webp",
       "impressions": 8
     },
-    "sv-289": {
-      "id": "sv-289",
+    "sv-294": {
+      "id": "sv-294",
       "title": "SV Single 02 — Praying Knight Front Hit",
       "category": "Front Hits",
       "likes": 1,
@@ -3188,8 +3243,8 @@
       "image": "assets/optimized/SV_Single_02_Praying_Knight_Front.webp",
       "impressions": 6
     },
-    "sv-290": {
-      "id": "sv-290",
+    "sv-295": {
+      "id": "sv-295",
       "title": "SV Single 03 — Brutalist Sigil Front Hit",
       "category": "Front Hits",
       "likes": 2,
@@ -3199,8 +3254,8 @@
       "image": "assets/optimized/SV_Single_03_Sigil_Brutalist_Front.webp",
       "impressions": 7
     },
-    "sv-291": {
-      "id": "sv-291",
+    "sv-296": {
+      "id": "sv-296",
       "title": "SV Single 04 — Rearing Knight Front Hit",
       "category": "Front Hits",
       "likes": 3,
@@ -3210,8 +3265,8 @@
       "image": "assets/optimized/SV_Single_04_Riso_Rearing_Knight_Front.webp",
       "impressions": 9
     },
-    "sv-292": {
-      "id": "sv-292",
+    "sv-297": {
+      "id": "sv-297",
       "title": "SV Single 05 — Spray Stencil Front Hit",
       "category": "Front Hits",
       "likes": 1,
@@ -3221,8 +3276,8 @@
       "image": "assets/optimized/SV_Single_05_Spray_Stencil_Front.webp",
       "impressions": 6
     },
-    "sv-293": {
-      "id": "sv-293",
+    "sv-298": {
+      "id": "sv-298",
       "title": "SV Single 06 — Botanical Arch Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3232,8 +3287,8 @@
       "image": "assets/optimized/SV_Single_06_Botanical_Arch_Front.webp",
       "impressions": 6
     },
-    "sv-294": {
-      "id": "sv-294",
+    "sv-299": {
+      "id": "sv-299",
       "title": "SV Single 07 — Gothic Metal Front Hit",
       "category": "Front Hits",
       "likes": 1,
@@ -3243,8 +3298,8 @@
       "image": "assets/optimized/SV_Single_07_Gothic_Metal_Front.webp",
       "impressions": 7
     },
-    "sv-295": {
-      "id": "sv-295",
+    "sv-300": {
+      "id": "sv-300",
       "title": "SV Single 08 — Acid Pop Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3254,8 +3309,8 @@
       "image": "assets/optimized/SV_Single_08_Acid_Pop_Front.webp",
       "impressions": 6
     },
-    "sv-296": {
-      "id": "sv-296",
+    "sv-301": {
+      "id": "sv-301",
       "title": "SV Single 09 — Comix Ink Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3265,8 +3320,8 @@
       "image": "assets/optimized/SV_Single_09_Comix_Ink_Front.webp",
       "impressions": 6
     },
-    "sv-297": {
-      "id": "sv-297",
+    "sv-302": {
+      "id": "sv-302",
       "title": "SV Utility 01 — Viewfinder Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3276,8 +3331,8 @@
       "image": "assets/optimized/SV_Utility_01_Viewfinder_Front.webp",
       "impressions": 6
     },
-    "sv-298": {
-      "id": "sv-298",
+    "sv-303": {
+      "id": "sv-303",
       "title": "SV Utility 02 — Lens Specs Front Hit",
       "category": "Front Hits",
       "likes": 1,
@@ -3287,8 +3342,8 @@
       "image": "assets/optimized/SV_Utility_02_Lens_Specs_Front.webp",
       "impressions": 6
     },
-    "sv-299": {
-      "id": "sv-299",
+    "sv-304": {
+      "id": "sv-304",
       "title": "SV Utility 03 — Spine Stencil Front Hit",
       "category": "Front Hits",
       "likes": 2,
@@ -3298,8 +3353,8 @@
       "image": "assets/optimized/SV_Utility_03_Spine_Stencil_Front.webp",
       "impressions": 6
     },
-    "sv-300": {
-      "id": "sv-300",
+    "sv-305": {
+      "id": "sv-305",
       "title": "SV Utility 04 — Brutalist Grid Front Hit",
       "category": "Front Hits",
       "likes": 3,
@@ -3309,8 +3364,8 @@
       "image": "assets/optimized/SV_Utility_04_Brutalist_Grid_Front.webp",
       "impressions": 6
     },
-    "sv-301": {
-      "id": "sv-301",
+    "sv-306": {
+      "id": "sv-306",
       "title": "SV Utility 05 — Slate Box Front Hit",
       "category": "Front Hits",
       "likes": 1,
@@ -3320,8 +3375,8 @@
       "image": "assets/optimized/SV_Utility_05_Slate_Box_Front.webp",
       "impressions": 7
     },
-    "sv-302": {
-      "id": "sv-302",
+    "sv-307": {
+      "id": "sv-307",
       "title": "SV Utility 06 — Timecode Horizon Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3331,8 +3386,8 @@
       "image": "assets/optimized/SV_Utility_06_Timecode_Horizon_Front.webp",
       "impressions": 6
     },
-    "sv-303": {
-      "id": "sv-303",
+    "sv-308": {
+      "id": "sv-308",
       "title": "SV Utility 07 — Film Lab Seal Front Hit",
       "category": "Front Hits",
       "likes": 1,
@@ -3342,8 +3397,8 @@
       "image": "assets/optimized/SV_Utility_07_Lab_Seal_Front.webp",
       "impressions": 8
     },
-    "sv-304": {
-      "id": "sv-304",
+    "sv-309": {
+      "id": "sv-309",
       "title": "SV Utility 08 — Swiss Manifest Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3353,8 +3408,8 @@
       "image": "assets/optimized/SV_Utility_08_Swiss_Manifest_Front.webp",
       "impressions": 6
     },
-    "sv-305": {
-      "id": "sv-305",
+    "sv-310": {
+      "id": "sv-310",
       "title": "SV Utility 09 — Audio Waveform Front Hit",
       "category": "Front Hits",
       "likes": 1,
@@ -3364,8 +3419,8 @@
       "image": "assets/optimized/SV_Utility_09_Audio_Waveform_Front.webp",
       "impressions": 7
     },
-    "sv-306": {
-      "id": "sv-306",
+    "sv-311": {
+      "id": "sv-311",
       "title": "SV Utility 10 — Magazine Label Front Hit",
       "category": "Front Hits",
       "likes": 1,
@@ -3375,8 +3430,8 @@
       "image": "assets/optimized/SV_Utility_10_Magazine_Label_Front.webp",
       "impressions": 6
     },
-    "sv-307": {
-      "id": "sv-307",
+    "sv-312": {
+      "id": "sv-312",
       "title": "Stari Grad Fortress Vector Icon",
       "category": "Front Hits",
       "likes": 0,
@@ -3386,8 +3441,8 @@
       "image": "assets/optimized/Front Hit - Stari Grad Fortress Vector Icon.webp",
       "impressions": 6
     },
-    "sv-308": {
-      "id": "sv-308",
+    "sv-313": {
+      "id": "sv-313",
       "title": "Studio Nicholson Tech Spec",
       "category": "Front Hits",
       "likes": 0,
@@ -3397,8 +3452,8 @@
       "image": "assets/optimized/Front Hit - Studio Nicholson Tech Spec.webp",
       "impressions": 6
     },
-    "sv-309": {
-      "id": "sv-309",
+    "sv-314": {
+      "id": "sv-314",
       "title": "Studio Varazdin Cash Value Guilloche Front",
       "category": "Front Hits",
       "likes": 0,
@@ -3408,8 +3463,8 @@
       "image": "assets/optimized/Front Hit - Studio Varazdin - Cash Value Guilloche - Front.webp",
       "impressions": 6
     },
-    "sv-310": {
-      "id": "sv-310",
+    "sv-315": {
+      "id": "sv-315",
       "title": "Studio Varazdin Good Work Great Work Front",
       "category": "Front Hits",
       "likes": 1,
@@ -3419,8 +3474,8 @@
       "image": "assets/optimized/Front Hit - Studio Varazdin - Good Work Great Work - Front.webp",
       "impressions": 6
     },
-    "sv-311": {
-      "id": "sv-311",
+    "sv-316": {
+      "id": "sv-316",
       "title": "Studio Varazdin Nocturne Dreams Front",
       "category": "Front Hits",
       "likes": 0,
@@ -3430,8 +3485,8 @@
       "image": "assets/optimized/Front Hit - Studio Varazdin - Nocturne Dreams - Front.webp",
       "impressions": 6
     },
-    "sv-312": {
-      "id": "sv-312",
+    "sv-317": {
+      "id": "sv-317",
       "title": "Studio Varazdin Part of CCC",
       "category": "Front Hits",
       "likes": 2,
@@ -3441,8 +3496,8 @@
       "image": "assets/optimized/Front Minimal - Studio Varazdin Part of cCc.webp",
       "impressions": 6
     },
-    "sv-313": {
-      "id": "sv-313",
+    "sv-318": {
+      "id": "sv-318",
       "title": "Studio Varazdin Philosopher Knight Front",
       "category": "Front Hits",
       "likes": 0,
@@ -3452,8 +3507,8 @@
       "image": "assets/optimized/Front Hit - Studio Varazdin - Philosopher Knight - Front.webp",
       "impressions": 6
     },
-    "sv-314": {
-      "id": "sv-314",
+    "sv-319": {
+      "id": "sv-319",
       "title": "Studio Varaždin — Center Chest Large",
       "category": "Front Hits",
       "likes": 2,
@@ -3463,8 +3518,8 @@
       "image": "assets/optimized/Front Minimal - Studio Varazdin Center Chest Large.webp",
       "impressions": 6
     },
-    "sv-315": {
-      "id": "sv-315",
+    "sv-320": {
+      "id": "sv-320",
       "title": "Studio Varaždin — Minimal Bounding Box",
       "category": "Front Hits",
       "likes": 2,
@@ -3474,8 +3529,8 @@
       "image": "assets/optimized/Front Minimal - Studio Varazdin Minimal Box.webp",
       "impressions": 7
     },
-    "sv-316": {
-      "id": "sv-316",
+    "sv-321": {
+      "id": "sv-321",
       "title": "Studio Varaždin — Red Dot Accent",
       "category": "Front Hits",
       "likes": 2,
@@ -3485,8 +3540,8 @@
       "image": "assets/optimized/Front Minimal - Studio Varazdin Red Dot Accent.webp",
       "impressions": 7
     },
-    "sv-317": {
-      "id": "sv-317",
+    "sv-322": {
+      "id": "sv-322",
       "title": "Studio Varaždin — Stacked Two-Tone",
       "category": "Front Hits",
       "likes": 2,
@@ -3496,9 +3551,31 @@
       "image": "assets/optimized/Front Minimal - Studio Varazdin Stacked Two-Tone.webp",
       "impressions": 6
     },
-    "sv-318": {
-      "id": "sv-318",
-      "title": "The Lovers — Martyr Front Hit",
+    "sv-323": {
+      "id": "sv-323",
+      "title": "The Lovers 01 — Blade Front Hit",
+      "category": "Front Hits",
+      "likes": 2,
+      "passes": 4,
+      "superlikes": 0,
+      "score": 2,
+      "image": "assets/optimized/SV_Lovers_01_Dark_Comix_Blade_Front.webp",
+      "impressions": 6
+    },
+    "sv-324": {
+      "id": "sv-324",
+      "title": "The Lovers 02 — Fatal Kiss Front Hit",
+      "category": "Front Hits",
+      "likes": 2,
+      "passes": 5,
+      "superlikes": 0,
+      "score": 2,
+      "image": "assets/optimized/SV_Lovers_02_Dedication_Fatal_Kiss_Front.webp",
+      "impressions": 7
+    },
+    "sv-325": {
+      "id": "sv-325",
+      "title": "The Lovers 03 — Martyr Front Hit",
       "category": "Front Hits",
       "likes": 3,
       "passes": 4,
@@ -3507,8 +3584,41 @@
       "image": "assets/optimized/SV_Lovers_03_Kneeling_Martyr_Front.webp",
       "impressions": 8
     },
-    "sv-319": {
-      "id": "sv-319",
+    "sv-326": {
+      "id": "sv-326",
+      "title": "The Lovers 04 — Acid Betrayal Front Hit",
+      "category": "Front Hits",
+      "likes": 1,
+      "passes": 6,
+      "superlikes": 0,
+      "score": 1,
+      "image": "assets/optimized/SV_Lovers_04_Acid_Riso_Betrayal_Front.webp",
+      "impressions": 7
+    },
+    "sv-327": {
+      "id": "sv-327",
+      "title": "The Lovers 05 — Rebirth Front Hit",
+      "category": "Front Hits",
+      "likes": 0,
+      "passes": 6,
+      "superlikes": 0,
+      "score": 0,
+      "image": "assets/optimized/SV_Lovers_05_Rebirth_Sacrifice_Front.webp",
+      "impressions": 6
+    },
+    "sv-328": {
+      "id": "sv-328",
+      "title": "The Lovers 06 — Anamorphic Front Hit",
+      "category": "Front Hits",
+      "likes": 0,
+      "passes": 6,
+      "superlikes": 0,
+      "score": 0,
+      "image": "assets/optimized/SV_Lovers_06_Anamorphic_Split_Front.webp",
+      "impressions": 6
+    },
+    "sv-329": {
+      "id": "sv-329",
       "title": "They Who Dance Kinetic Front",
       "category": "Front Hits",
       "likes": 1,
@@ -3518,8 +3628,8 @@
       "image": "assets/optimized/Front Hit - They Who Dance Kinetic - Front.webp",
       "impressions": 7
     },
-    "sv-320": {
-      "id": "sv-320",
+    "sv-330": {
+      "id": "sv-330",
       "title": "Varaždin — Pure Red Script",
       "category": "Front Hits",
       "likes": 3,
@@ -3529,8 +3639,8 @@
       "image": "assets/optimized/Front Minimal - Varazdin Pure Red Script.webp",
       "impressions": 7
     },
-    "sv-321": {
-      "id": "sv-321",
+    "sv-331": {
+      "id": "sv-331",
       "title": "Vermilion Red Seal Stamp",
       "category": "Front Hits",
       "likes": 1,
@@ -3540,8 +3650,8 @@
       "image": "assets/optimized/Front Hit - Vermilion Red Seal Stamp.webp",
       "impressions": 6
     },
-    "sv-322": {
-      "id": "sv-322",
+    "sv-332": {
+      "id": "sv-332",
       "title": "Visually Articulate Calibration Front",
       "category": "Front Hits",
       "likes": 0,
@@ -3551,8 +3661,8 @@
       "image": "assets/optimized/Front Hit - Visually Articulate Calibration - Front.webp",
       "impressions": 6
     },
-    "sv-323": {
-      "id": "sv-323",
+    "sv-333": {
+      "id": "sv-333",
       "title": "cCc — Center Chest Minimal Black",
       "category": "Front Hits",
       "likes": 2,
@@ -3562,8 +3672,8 @@
       "image": "assets/optimized/Front Minimal - Creative Collective Center Chest Black.webp",
       "impressions": 6
     },
-    "sv-324": {
-      "id": "sv-324",
+    "sv-334": {
+      "id": "sv-334",
       "title": "cCc — Minimal Bounding Box",
       "category": "Front Hits",
       "likes": 2,
@@ -3573,8 +3683,8 @@
       "image": "assets/optimized/Front Minimal - Creative Collective Minimal Box.webp",
       "impressions": 7
     },
-    "sv-325": {
-      "id": "sv-325",
+    "sv-335": {
+      "id": "sv-335",
       "title": "cCc. — Monogram Creative Collective",
       "category": "Front Hits",
       "likes": 2,
@@ -3584,8 +3694,8 @@
       "image": "assets/optimized/Front Minimal - cCc. Monogram Creative Collective.webp",
       "impressions": 8
     },
-    "sv-326": {
-      "id": "sv-326",
+    "sv-336": {
+      "id": "sv-336",
       "title": "studio varaždin — Lowercase Minimal Black",
       "category": "Front Hits",
       "likes": 3,
@@ -3595,8 +3705,8 @@
       "image": "assets/optimized/Front Minimal - Studio Varazdin Lowercase Black.webp",
       "impressions": 7
     },
-    "sv-327": {
-      "id": "sv-327",
+    "sv-337": {
+      "id": "sv-337",
       "title": "studio varaždin — Lowercase Minimal Bone",
       "category": "Front Hits",
       "likes": 1,
@@ -3606,8 +3716,8 @@
       "image": "assets/optimized/Front Minimal - Studio Varazdin Lowercase Bone.webp",
       "impressions": 6
     },
-    "sv-328": {
-      "id": "sv-328",
+    "sv-338": {
+      "id": "sv-338",
       "title": "the Magic Alchemist Tarot Front",
       "category": "Front Hits",
       "likes": 1,
@@ -3617,8 +3727,8 @@
       "image": "assets/optimized/Front Hit - The Magic Alchemist Tarot - Front.webp",
       "impressions": 6
     },
-    "sv-329": {
-      "id": "sv-329",
+    "sv-339": {
+      "id": "sv-339",
       "title": "Design 1 Knight GPT Image 2",
       "category": "Experimental",
       "likes": 0,
@@ -3628,8 +3738,8 @@
       "image": "assets/optimized/design_1_knight__gpt-image-2.webp",
       "impressions": 6
     },
-    "sv-330": {
-      "id": "sv-330",
+    "sv-340": {
+      "id": "sv-340",
       "title": "Design 1 Knight GPT Image 2.5 Flare",
       "category": "Experimental",
       "likes": 0,
@@ -3639,8 +3749,8 @@
       "image": "assets/optimized/design_1_knight__gpt-image-2.5-flare.webp",
       "impressions": 6
     },
-    "sv-331": {
-      "id": "sv-331",
+    "sv-341": {
+      "id": "sv-341",
       "title": "Design 1 Knight GPT Image 2.5 Sunburst",
       "category": "Experimental",
       "likes": 0,
@@ -3650,8 +3760,8 @@
       "image": "assets/optimized/design_1_knight__gpt-image-2.5-sunburst.webp",
       "impressions": 6
     },
-    "sv-332": {
-      "id": "sv-332",
+    "sv-342": {
+      "id": "sv-342",
       "title": "Design 2 Stari Grad GPT Image 2",
       "category": "Experimental",
       "likes": 4,
@@ -3661,8 +3771,8 @@
       "image": "assets/optimized/design_2_stari_grad__gpt-image-2.webp",
       "impressions": 8
     },
-    "sv-333": {
-      "id": "sv-333",
+    "sv-343": {
+      "id": "sv-343",
       "title": "Design 2 Stari Grad GPT Image 2.5 Flare",
       "category": "Experimental",
       "likes": 1,
@@ -3672,8 +3782,8 @@
       "image": "assets/optimized/design_2_stari_grad__gpt-image-2.5-flare.webp",
       "impressions": 7
     },
-    "sv-334": {
-      "id": "sv-334",
+    "sv-344": {
+      "id": "sv-344",
       "title": "Design 2 Stari Grad GPT Image 2.5 Sunburst",
       "category": "Experimental",
       "likes": 3,
@@ -3683,8 +3793,8 @@
       "image": "assets/optimized/design_2_stari_grad__gpt-image-2.5-sunburst.webp",
       "impressions": 8
     },
-    "sv-335": {
-      "id": "sv-335",
+    "sv-345": {
+      "id": "sv-345",
       "title": "Design 3 Church Towers GPT Image 2",
       "category": "Experimental",
       "likes": 1,
@@ -3694,8 +3804,8 @@
       "image": "assets/optimized/design_3_church_towers__gpt-image-2.webp",
       "impressions": 6
     },
-    "sv-336": {
-      "id": "sv-336",
+    "sv-346": {
+      "id": "sv-346",
       "title": "Design 3 Church Towers GPT Image 2.5 Flare",
       "category": "Experimental",
       "likes": 1,
@@ -3705,8 +3815,8 @@
       "image": "assets/optimized/design_3_church_towers__gpt-image-2.5-flare.webp",
       "impressions": 7
     },
-    "sv-337": {
-      "id": "sv-337",
+    "sv-347": {
+      "id": "sv-347",
       "title": "Design 3 Church Towers GPT Image 2.5 Sunburst",
       "category": "Experimental",
       "likes": 0,
