@@ -91,6 +91,19 @@ export class CardEngine {
     });
   }
 
+  resolveImageUrl(itemOrImage) {
+    if (!itemOrImage) return '';
+    let raw = typeof itemOrImage === 'string' ? itemOrImage : (itemOrImage.image || '');
+    if (!raw && typeof itemOrImage === 'object' && itemOrImage.title) {
+      raw = `assets/optimized/${itemOrImage.title}.webp`;
+    }
+    if (!raw) return '';
+    const opt = raw.includes('assets/optimized/') 
+      ? raw 
+      : raw.replace('assets/designs/', 'assets/optimized/').replace(/\.(png|jpg)$/, '.webp');
+    return encodeURI(opt);
+  }
+
   setDeck(items, filter = 'ALL') {
     this.activeFilter = filter;
     
@@ -128,10 +141,7 @@ export class CardEngine {
       }
 
       // Use optimized WebP image with safe URL encoding
-      const rawSrc = data.image.includes('assets/optimized/') 
-        ? data.image 
-        : data.image.replace('assets/designs/', 'assets/optimized/').replace(/\.(png|jpg)$/, '.webp');
-      const safeSrc = encodeURI(rawSrc);
+      const safeSrc = this.resolveImageUrl(data);
 
       const hasComment = this.commentsManager ? this.commentsManager.hasComment(data.id) : false;
 
@@ -202,10 +212,11 @@ export class CardEngine {
     const end = Math.min(startIndex + count, this.deck.length);
     for (let i = startIndex; i < end; i++) {
       const it = this.deck[i];
-      if (!it || !it.image) continue;
-      const raw = it.image.includes('assets/optimized/') ? it.image : it.image.replace('assets/designs/', 'assets/optimized/').replace(/\.(png|jpg)$/, '.webp');
+      if (!it) continue;
+      const safeSrc = this.resolveImageUrl(it);
+      if (!safeSrc) continue;
       const img = new Image();
-      img.src = encodeURI(raw);
+      img.src = safeSrc;
     }
   }
 
@@ -622,10 +633,7 @@ export class CardEngine {
       card.dataset.phase = data._orderingMeta.phase;
     }
 
-    const rawSrc = data.image.includes('assets/optimized/') 
-      ? data.image 
-      : data.image.replace('assets/designs/', 'assets/optimized/').replace(/\.(png|jpg)$/, '.webp');
-    const safeSrc = encodeURI(rawSrc);
+    const safeSrc = this.resolveImageUrl(data);
 
     const img = card.querySelector('.tshirt-artwork');
     if (img) {
