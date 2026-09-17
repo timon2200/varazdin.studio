@@ -248,6 +248,9 @@ export class CompareEngine {
     let startTime = 0;
     let activePointerId = null;
 
+    const slot = side === 'left' ? this.container.querySelector('#slotLeft') : this.container.querySelector('#slotRight');
+    const underlyingCard = slot ? slot.querySelector('.duel-underlying-card') : null;
+
     const onPointerDown = (e) => {
       if (this.isAnimating) return;
       if (e.target.closest('.duel-zoom-btn')) return;
@@ -279,7 +282,7 @@ export class CompareEngine {
       dy = e.clientY - startY;
       const dist = Math.hypot(dx, dy);
 
-      if (dist > 8) {
+      if (dist > 6) {
         hasMoved = true;
         card.classList.add('is-dragging');
       }
@@ -288,8 +291,25 @@ export class CompareEngine {
         if (e.cancelable) e.preventDefault();
         const rot = dx * 0.045;
         card.style.transform = `translate3d(${dx}px, ${dy}px, 0px) rotate(${rot}deg)`;
-        const opacityRatio = Math.max(0.35, 1 - dist / 360);
+        const opacityRatio = Math.max(0.4, 1 - dist / 380);
         card.style.opacity = String(opacityRatio);
+
+        // Dynamically lift the underlying card into place as user drags top card
+        if (underlyingCard) {
+          const q = Math.min(dist / 140, 1);
+          const restX = side === 'left' ? 5 : -5;
+          const restY = 7;
+          const restRot = side === 'left' ? -1.5 : 1.5;
+          const restScale = 0.985;
+
+          const curX = restX * (1 - q);
+          const curY = restY * (1 - q);
+          const curRot = restRot * (1 - q);
+          const curScale = restScale + (1 - restScale) * q;
+
+          underlyingCard.style.transition = 'none';
+          underlyingCard.style.transform = `translate3d(${curX}px, ${curY}px, 0px) rotate(${curRot}deg) scale(${curScale})`;
+        }
       }
     };
 
@@ -312,9 +332,14 @@ export class CompareEngine {
       isDragging = false;
       card.classList.remove('is-dragging');
       cleanUp();
-      card.style.transition = 'transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.25s ease';
+      card.style.transition = 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease';
       card.style.transform = '';
       card.style.opacity = '';
+
+      if (underlyingCard) {
+        underlyingCard.style.transition = 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1)';
+        underlyingCard.style.transform = '';
+      }
     };
 
     const onPointerEnd = (e) => {
@@ -328,16 +353,21 @@ export class CompareEngine {
       const velocity = dist / Math.max(duration, 1);
 
       // Swipe away in ANY direction or fast flick -> discard!
-      if (hasMoved && (dist > 50 || velocity > 0.32)) {
+      if (hasMoved && (dist > 45 || velocity > 0.3)) {
         this.discardCard(side, { dx, dy });
-      } else if (!hasMoved || dist < 12) {
+      } else if (!hasMoved || dist < 10) {
         // Direct click / tap on card -> discard this card!
         this.discardCard(side);
       } else {
         // Spring back if drag was cancelled/too small
-        card.style.transition = 'transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.25s ease';
+        card.style.transition = 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease';
         card.style.transform = '';
         card.style.opacity = '';
+
+        if (underlyingCard) {
+          underlyingCard.style.transition = 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1)';
+          underlyingCard.style.transform = '';
+        }
       }
     };
 
@@ -412,7 +442,8 @@ export class CompareEngine {
     }
 
     if (loserUnderlying) {
-      // Spring underlying challenger card smoothly up into active position
+      // Smoothly bring underlying challenger card into primary position
+      loserUnderlying.style.transition = 'transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease';
       loserUnderlying.style.transform = 'translate3d(0, 0, 0) rotate(0deg) scale(1)';
     }
 
@@ -432,7 +463,7 @@ export class CompareEngine {
         const endY = dragVector.dy * factor;
         const endRot = Math.max(-35, Math.min(35, dragVector.dx * 0.08));
 
-        loserCard.style.transition = 'transform 0.44s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, box-shadow 0.3s ease';
+        loserCard.style.transition = 'transform 0.42s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.34s ease, box-shadow 0.3s ease';
         loserCard.style.transform = `translate3d(${endX}px, ${endY}px, 0px) rotate(${endRot}deg) scale(0.9)`;
         loserCard.style.opacity = '0';
       } else {
@@ -445,7 +476,7 @@ export class CompareEngine {
         const endY = -50;
         const endRot = flyToLeft ? -26 : 26;
 
-        loserCard.style.transition = 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.36s ease 0.04s, box-shadow 0.3s ease';
+        loserCard.style.transition = 'transform 0.42s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.34s ease 0.04s, box-shadow 0.3s ease';
         loserCard.style.transform = `translate3d(${endX}px, ${endY}px, 0px) rotate(${endRot}deg) scale(0.92)`;
         loserCard.style.opacity = '0';
       }
@@ -466,21 +497,11 @@ export class CompareEngine {
         }
 
         this.renderArena();
-
-        const newSlot = loserSide === 'left' ? this.container.querySelector('#slotLeft') : this.container.querySelector('#slotRight');
-        const newCard = newSlot ? newSlot.querySelector('.duel-card') : null;
-        if (newCard) {
-          newCard.classList.add('anim-card-enter');
-          newCard.addEventListener('animationend', () => {
-            newCard.classList.remove('anim-card-enter');
-          }, { once: true });
-        }
-
         this.isAnimating = false;
       } else {
         this.handleDeckComplete(winnerItem, currentStreak);
       }
-    }, 390);
+    }, 380);
   }
 
   /**
