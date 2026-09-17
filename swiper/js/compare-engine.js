@@ -140,10 +140,19 @@ export class CompareEngine {
     this.bindArenaEvents();
   }
 
+  getKeyHintHtml(side) {
+    const isLeft = side === 'left';
+    const arrowSvg = isLeft
+      ? `<svg class="bold-arrow-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="square" stroke-linejoin="miter"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>`
+      : `<svg class="bold-arrow-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="square" stroke-linejoin="miter"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`;
+
+    return `<span>MAKNI</span> <span class="duel-key-bracket">[</span> ${arrowSvg} <span class="duel-key-bracket">]</span>`;
+  }
+
   createUnderlyingCardHtml(item, side) {
     if (!item) return '';
     const optSrc = this.resolveImageUrl(item);
-    const keyHint = side === 'left' ? 'MAKNI [ ← ]' : 'MAKNI [ → ]';
+    const keyHint = this.getKeyHintHtml(side);
 
     return `
       <div class="duel-underlying-card" data-side="${side}">
@@ -168,7 +177,7 @@ export class CompareEngine {
     const isChampion = this.winnerSide === side;
     const streak = isChampion ? (side === 'left' ? this.leftStreak : this.rightStreak) : 0;
     const optSrc = this.resolveImageUrl(item);
-    const keyHint = side === 'left' ? 'MAKNI [ ← ]' : 'MAKNI [ → ]';
+    const keyHint = this.getKeyHintHtml(side);
 
     return `
       <article class="duel-card ${isChampion ? 'is-champion' : ''}" data-side="${side}" data-id="${item.id}">

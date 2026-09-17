@@ -310,14 +310,32 @@
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 900;
-  letter-spacing: 0.04em;
-  color: var(--text-muted);
-  background: var(--bg-glass);
+  letter-spacing: 0.05em;
+  color: var(--text-primary);
+  background: var(--bg-card);
   border: 1.5px solid var(--border-dark);
-  padding: 0.25rem 0.65rem;
+  padding: 0.28rem 0.65rem;
   border-radius: var(--radius-xs);
   pointer-events: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: var(--shadow-bold-xs);
   transition: all 0.2s var(--transition-smooth);
+}
+
+.duel-key-hint .bold-arrow-svg {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+  color: currentColor;
+  stroke: currentColor;
+}
+
+.duel-key-bracket {
+  color: var(--text-muted);
+  font-weight: 800;
+  font-family: var(--font-mono);
 }
 
 .duel-card:hover .duel-key-hint {
@@ -326,10 +344,18 @@
   border-color: #991b1b;
 }
 
+.duel-card:hover .duel-key-hint .duel-key-bracket {
+  color: rgba(255, 255, 255, 0.85);
+}
+
 .duel-card.is-champion:hover .duel-key-hint {
   background: #ef4444;
   color: #ffffff;
   border-color: #991b1b;
+}
+
+.duel-card.is-champion:hover .duel-key-hint .duel-key-bracket {
+  color: rgba(255, 255, 255, 0.85);
 }
 
 /* Card Meta & Bold Condensed Title */
