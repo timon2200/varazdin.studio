@@ -351,10 +351,12 @@ export class CatalogCurator {
     });
 
     let filtered = items.filter(item => {
-      if (this.activeCategory === "Comments") {
+      if (this.activeCategory === "Selected") {
+        if (!this.selectedIds.has(item.id)) return false;
+      } else if (this.activeCategory === "Comments") {
         if (!this.commentsManager || !this.commentsManager.hasComment(item.id)) return false;
       } else if (this.activeCategory !== "ALL") {
-        if (item.category.toUpperCase() !== this.activeCategory.toUpperCase()) {
+        if ((item.category || "").toUpperCase() !== this.activeCategory.toUpperCase()) {
           return false;
         }
       }
@@ -732,20 +734,23 @@ export class CatalogCurator {
     if (this.floatingActiveEl) this.floatingActiveEl.textContent = active;
     if (this.floatingTotalEl) this.floatingTotalEl.textContent = total;
 
-    const counts = {};
+    const categoryTotals = {};
     this.masterCatalog.forEach(it => {
       const c = it.category;
-      counts[c] = (counts[c] || 0) + (this.selectedIds.has(it.id) ? 1 : 0);
+      categoryTotals[c] = (categoryTotals[c] || 0) + 1;
     });
 
     const badgeAll = document.getElementById("badgeAll");
-    if (badgeAll) badgeAll.textContent = active;
+    if (badgeAll) badgeAll.textContent = total;
 
-    const categories = ["Selected", "City", "Studio", "Creative", "Garda", "Towers", "Utility", "Artwear", "Front Hits", "Experimental"];
+    const badgeSelected = document.getElementById("badgeSelected");
+    if (badgeSelected) badgeSelected.textContent = active;
+
+    const categories = ["City", "Studio", "Creative", "Garda", "Towers", "Utility", "Artwear", "Front Hits", "Experimental"];
     categories.forEach(cat => {
       const badgeId = "badge" + cat.replace(/\s+/g, "");
       const b = document.getElementById(badgeId);
-      if (b) b.textContent = counts[cat] || 0;
+      if (b) b.textContent = categoryTotals[cat] || 0;
     });
 
     const badgeComments = document.getElementById("badgeComments");

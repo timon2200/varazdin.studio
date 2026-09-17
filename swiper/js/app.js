@@ -509,7 +509,7 @@ class SwiperApp {
   updateCategoryBadges() {
     const counts = {
       ALL: this.catalog.length,
-      Selected: 0,
+      Selected: this.catalog.length,
       City: 0,
       Studio: 0,
       Creative: 0,
@@ -589,6 +589,9 @@ class SwiperApp {
         if (!favSet.has(item.id)) return false;
       } else if (this.activeGridCategory === 'Comments') {
         if (!this.commentsManager || !this.commentsManager.hasComment(item.id)) return false;
+      } else if (this.activeGridCategory === 'Selected') {
+        // Active swiper catalog represents curated items
+        return true;
       } else if (this.activeGridCategory !== 'ALL') {
         if ((item.category || '').toLowerCase() !== this.activeGridCategory.toLowerCase()) {
           return false;

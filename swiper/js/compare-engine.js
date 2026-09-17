@@ -53,7 +53,7 @@ export class CompareEngine {
     this.isCompleted = false;
 
     let filtered = [...this.catalog];
-    if (filter !== 'ALL') {
+    if (filter !== 'ALL' && filter !== 'Selected') {
       filtered = filtered.filter(it => (it.category || '').toLowerCase() === filter.toLowerCase());
     }
 
