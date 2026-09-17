@@ -97,8 +97,11 @@ export class CompareEngine {
   renderArena() {
     if (!this.container || !this.leftItem || !this.rightItem) return;
 
-    const streakCount = this.winnerSide === 'left' ? this.leftStreak : this.winnerSide === 'right' ? this.rightStreak : 0;
-    const isStreak = streakCount > 1;
+    // Update Counter badge in header bar if present
+    const duelCounterEl = document.getElementById('duelCounter');
+    if (duelCounterEl) {
+      duelCounterEl.textContent = `#${this.matchupIndex} · ${this.queue.length} PREOSTALO`;
+    }
 
     this.container.innerHTML = `
       <!-- Main 1-on-1 Battle Arena Grid -->
@@ -131,7 +134,7 @@ export class CompareEngine {
     const isChampion = this.winnerSide === side;
     const streak = isChampion ? (side === 'left' ? this.leftStreak : this.rightStreak) : 0;
     const optSrc = this.resolveImageUrl(item);
-    const keyHint = side === 'left' ? 'A' : 'D';
+    const keyHint = side === 'left' ? 'MAKNI [ ← ]' : 'MAKNI [ → ]';
 
     return `
       <article class="duel-card ${isChampion ? 'is-champion' : ''}" data-side="${side}" data-id="${item.id}">
@@ -139,13 +142,13 @@ export class CompareEngine {
         ${isChampion ? `<div class="duel-crown-badge">👑 DEFENDING ${streak > 1 ? `(${streak}x)` : ''}</div>` : ''}
 
         <!-- Big Hero Visual Container -->
-        <div class="duel-img-wrap" title="Klikni za odabir (${keyHint})">
-          <img src="${optSrc}" alt="${item.title}" class="duel-img" loading="eager">
+        <div class="duel-img-wrap" title="Klikni ili povuci za uklanjanje (${side === 'left' ? '←' : '→'})">
+          <img src="${optSrc}" alt="${item.title}" class="duel-img" draggable="false" loading="eager">
           <div class="scanline-overlay"></div>
           
           <div class="duel-key-hint">${keyHint}</div>
           
-          <button class="duel-zoom-btn" title="2K Zoom" aria-label="Zoom">
+          <button class="duel-zoom-btn" title="2K Zoom" aria-label="Zoom" type="button">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -165,65 +168,159 @@ export class CompareEngine {
   bindArenaEvents() {
     const slotLeft = this.container.querySelector('#slotLeft');
     const slotRight = this.container.querySelector('#slotRight');
-    const btnUndo = this.container.querySelector('#btnDuelUndo');
-    const btnSkip = this.container.querySelector('#btnDuelSkip');
-    const btnRestart = this.container.querySelector('#btnDuelRestart');
-    const catNav = this.container.querySelector('#duelCategoryNav');
+    const cardLeft = slotLeft ? slotLeft.querySelector('.duel-card') : null;
+    const cardRight = slotRight ? slotRight.querySelector('.duel-card') : null;
 
-    if (catNav) {
-      catNav.addEventListener('click', (e) => {
-        const btn = e.target.closest('.duel-pill-btn');
-        if (!btn) return;
-        const cat = btn.dataset.cat || 'ALL';
-        this.setDeck(this.catalog, cat);
-        if (this.audioHaptics) this.audioHaptics.playClick();
-      });
-    }
-
-    if (slotLeft) {
-      slotLeft.addEventListener('click', (e) => {
-        if (e.target.closest('.duel-zoom-btn')) {
+    if (cardLeft) {
+      const zoomBtn = cardLeft.querySelector('.duel-zoom-btn');
+      if (zoomBtn) {
+        zoomBtn.addEventListener('click', (e) => {
           e.stopPropagation();
+          e.preventDefault();
           this.onImageClickCallback(this.leftItem);
-          return;
-        }
-        this.selectWinner('left');
-      });
+        });
+        zoomBtn.addEventListener('pointerdown', (e) => e.stopPropagation());
+      }
+      this.attachCardGestures(cardLeft, 'left');
     }
 
-    if (slotRight) {
-      slotRight.addEventListener('click', (e) => {
-        if (e.target.closest('.duel-zoom-btn')) {
+    if (cardRight) {
+      const zoomBtn = cardRight.querySelector('.duel-zoom-btn');
+      if (zoomBtn) {
+        zoomBtn.addEventListener('click', (e) => {
           e.stopPropagation();
+          e.preventDefault();
           this.onImageClickCallback(this.rightItem);
-          return;
-        }
-        this.selectWinner('right');
-      });
-    }
-
-    if (btnUndo) {
-      btnUndo.addEventListener('click', () => this.undo());
-    }
-
-    if (btnSkip) {
-      btnSkip.addEventListener('click', () => this.skipPair());
-    }
-
-    if (btnRestart) {
-      btnRestart.addEventListener('click', () => this.restart());
+        });
+        zoomBtn.addEventListener('pointerdown', (e) => e.stopPropagation());
+      }
+      this.attachCardGestures(cardRight, 'right');
     }
   }
 
   /**
-   * User selects the winning card ('left' | 'right').
+   * Attach high-performance pointer drag / swipe / click gesture to a duel card.
+   * Swiping or clicking a card marks it for removal (discard), keeping the other defending.
    */
-  async selectWinner(side) {
+  attachCardGestures(card, side) {
+    if (!card) return;
+
+    let startX = 0;
+    let startY = 0;
+    let dx = 0;
+    let dy = 0;
+    let isDragging = false;
+    let hasMoved = false;
+    let startTime = 0;
+    let activePointerId = null;
+
+    const onPointerDown = (e) => {
+      if (this.isAnimating) return;
+      if (e.target.closest('.duel-zoom-btn')) return;
+      if (e.button !== undefined && e.button !== 0) return;
+
+      startX = e.clientX;
+      startY = e.clientY;
+      startTime = performance.now();
+      dx = 0;
+      dy = 0;
+      isDragging = true;
+      hasMoved = false;
+      activePointerId = e.pointerId;
+
+      try {
+        if (card.setPointerCapture) card.setPointerCapture(e.pointerId);
+      } catch (_) {}
+
+      window.addEventListener('pointermove', onPointerMove, { passive: false });
+      window.addEventListener('pointerup', onPointerEnd);
+      window.addEventListener('pointercancel', onPointerCancel);
+    };
+
+    const onPointerMove = (e) => {
+      if (!isDragging || (activePointerId !== null && e.pointerId !== activePointerId)) return;
+
+      dx = e.clientX - startX;
+      dy = e.clientY - startY;
+      const dist = Math.hypot(dx, dy);
+
+      if (dist > 8) {
+        hasMoved = true;
+        card.classList.add('is-dragging');
+      }
+
+      if (hasMoved) {
+        if (e.cancelable) e.preventDefault();
+        const rot = dx * 0.045;
+        card.style.transform = `translate3d(${dx}px, ${dy}px, 0px) rotate(${rot}deg)`;
+        const opacityRatio = Math.max(0.35, 1 - dist / 360);
+        card.style.opacity = String(opacityRatio);
+      }
+    };
+
+    const cleanUp = () => {
+      window.removeEventListener('pointermove', onPointerMove);
+      window.removeEventListener('pointerup', onPointerEnd);
+      window.removeEventListener('pointercancel', onPointerCancel);
+      if (activePointerId !== null) {
+        try {
+          if (card.releasePointerCapture && card.hasPointerCapture(activePointerId)) {
+            card.releasePointerCapture(activePointerId);
+          }
+        } catch (_) {}
+      }
+      activePointerId = null;
+    };
+
+    const onPointerCancel = () => {
+      if (!isDragging) return;
+      isDragging = false;
+      card.classList.remove('is-dragging');
+      cleanUp();
+      card.style.transition = 'transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.25s ease';
+      card.style.transform = '';
+      card.style.opacity = '';
+    };
+
+    const onPointerEnd = (e) => {
+      if (!isDragging || (activePointerId !== null && e.pointerId !== activePointerId)) return;
+      isDragging = false;
+      card.classList.remove('is-dragging');
+      cleanUp();
+
+      const dist = Math.hypot(dx, dy);
+      const duration = performance.now() - startTime;
+      const velocity = dist / Math.max(duration, 1);
+
+      // Swipe away in ANY direction or fast flick -> discard!
+      if (hasMoved && (dist > 50 || velocity > 0.32)) {
+        this.discardCard(side, { dx, dy });
+      } else if (!hasMoved || dist < 12) {
+        // Direct click / tap on card -> discard this card!
+        this.discardCard(side);
+      } else {
+        // Spring back if drag was cancelled/too small
+        card.style.transition = 'transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.25s ease';
+        card.style.transform = '';
+        card.style.opacity = '';
+      }
+    };
+
+    card.addEventListener('pointerdown', onPointerDown);
+  }
+
+  /**
+   * User discards a card (side = 'left' | 'right').
+   * The other card becomes/remains the defending champion.
+   */
+  async discardCard(side, dragVector = null) {
     if (this.isAnimating || !this.leftItem || !this.rightItem) return;
     this.isAnimating = true;
 
-    const winnerItem = side === 'left' ? this.leftItem : this.rightItem;
-    const loserItem = side === 'left' ? this.rightItem : this.leftItem;
+    const loserSide = side;
+    const winnerSide = side === 'left' ? 'right' : 'left';
+    const loserItem = side === 'left' ? this.leftItem : this.rightItem;
+    const winnerItem = side === 'left' ? this.rightItem : this.leftItem;
 
     // Push previous state onto history stack
     this.history.push({
@@ -239,7 +336,7 @@ export class CompareEngine {
     });
 
     // Update streaks
-    if (side === 'left') {
+    if (winnerSide === 'left') {
       this.leftStreak = (this.winnerSide === 'left' ? this.leftStreak : 0) + 1;
       this.rightStreak = 0;
       this.winnerSide = 'left';
@@ -251,7 +348,7 @@ export class CompareEngine {
 
     // Audio Haptic
     if (this.audioHaptics) {
-      this.audioHaptics.playSwipe('like');
+      this.audioHaptics.playSwipe('pass');
     }
 
     // Telemetry
@@ -260,13 +357,12 @@ export class CompareEngine {
       await this.analytics.recordVote(loserItem, 'pass');
     }
 
-    this.onVoteCallback({ winnerItem, loserItem, side });
+    this.onVoteCallback({ winnerItem, loserItem, winnerSide, loserSide });
 
-    // Execute animations
-    const slotLeft = this.container.querySelector('#slotLeft');
-    const slotRight = this.container.querySelector('#slotRight');
-    const winnerSlot = side === 'left' ? slotLeft : slotRight;
-    const loserSlot = side === 'left' ? slotRight : slotLeft;
+    // Animate cards
+    const loserSlot = side === 'left' ? this.container.querySelector('#slotLeft') : this.container.querySelector('#slotRight');
+    const winnerSlot = side === 'left' ? this.container.querySelector('#slotRight') : this.container.querySelector('#slotLeft');
+    const loserCard = loserSlot ? loserSlot.querySelector('.duel-card') : null;
 
     if (winnerSlot) {
       winnerSlot.classList.remove('anim-winner-pulse');
@@ -274,31 +370,38 @@ export class CompareEngine {
       winnerSlot.classList.add('anim-winner-pulse');
     }
 
-    if (loserSlot) {
+    if (loserCard && dragVector && Math.hypot(dragVector.dx, dragVector.dy) > 10) {
+      // Swiped via drag gesture in any direction: fly out along vector
+      const mult = 3.5;
+      loserCard.style.transition = 'transform 0.28s var(--spring-easing), opacity 0.22s ease';
+      loserCard.style.transform = `translate3d(${dragVector.dx * mult}px, ${dragVector.dy * mult}px, 0px) rotate(${dragVector.dx * 0.1}deg)`;
+      loserCard.style.opacity = '0';
+    } else if (loserSlot) {
+      // Standard exit animation
       loserSlot.classList.remove('anim-exit-left', 'anim-exit-right');
       void loserSlot.offsetWidth;
-      loserSlot.classList.add(side === 'left' ? 'anim-exit-right' : 'anim-exit-left');
+      loserSlot.classList.add(side === 'left' ? 'anim-exit-left' : 'anim-exit-right');
     }
 
-    const currentStreak = side === 'left' ? this.leftStreak : this.rightStreak;
-    this.showToast(currentStreak > 1 ? `👑 ${currentStreak}x ${winnerItem.title}` : `✓ ${winnerItem.title}`);
+    const currentStreak = winnerSide === 'left' ? this.leftStreak : this.rightStreak;
+    this.showToast(currentStreak > 1 ? `👑 ${currentStreak}x ${winnerItem.title}` : `✕ Maknuto: ${loserItem.title}`);
 
     setTimeout(() => {
       if (this.queue.length > 0) {
         const nextChallenger = this.queue.shift();
         this.matchupIndex++;
 
-        if (side === 'left') {
-          this.rightItem = nextChallenger;
-        } else {
+        if (loserSide === 'left') {
           this.leftItem = nextChallenger;
+        } else {
+          this.rightItem = nextChallenger;
         }
 
         this.renderArena();
 
-        const newSlot = side === 'left' ? this.container.querySelector('#slotRight') : this.container.querySelector('#slotLeft');
+        const newSlot = loserSide === 'left' ? this.container.querySelector('#slotLeft') : this.container.querySelector('#slotRight');
         if (newSlot) {
-          newSlot.classList.add(side === 'left' ? 'anim-enter-right' : 'anim-enter-left');
+          newSlot.classList.add(loserSide === 'left' ? 'anim-enter-left' : 'anim-enter-right');
         }
 
         this.isAnimating = false;
@@ -306,6 +409,14 @@ export class CompareEngine {
         this.handleDeckComplete(winnerItem, currentStreak);
       }
     }, 240);
+  }
+
+  /**
+   * Backwards compatible selector
+   */
+  selectWinner(winnerSide) {
+    const loserSide = winnerSide === 'left' ? 'right' : 'left';
+    return this.discardCard(loserSide);
   }
 
   undo() {

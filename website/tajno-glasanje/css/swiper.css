@@ -454,6 +454,175 @@ html[data-theme="dark"] .telemetry-counter strong {
   text-transform: uppercase;
 }
 
+/* ==========================================================================
+   RETRO ARCADE KEYBOARD CONTROLS BAR
+   ========================================================================== */
+.retro-hints-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.retro-key-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 7px 3px 4px;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--bg-card-subtle);
+  border: 1.5px solid var(--border-dark);
+  box-shadow: var(--shadow-bold-xs);
+  cursor: pointer;
+  outline: none;
+  text-decoration: none;
+  line-height: 1;
+  transition: transform 0.12s var(--transition-smooth), box-shadow 0.12s var(--transition-smooth), background 0.12s ease;
+}
+
+.retro-key-chip:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-bold-sm);
+}
+
+.retro-key-chip:active,
+.retro-key-chip.is-pressed {
+  transform: translateY(1.5px) !important;
+  box-shadow: 0px 0px 0px transparent !important;
+}
+
+.retro-key-chip:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 1px;
+}
+
+/* Keycap element inside chip */
+.retro-kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  background: var(--bg-card);
+  border: 1.5px solid currentColor;
+  box-shadow: 0 1.5px 0 var(--border-dark);
+  color: inherit;
+  font-family: var(--font-mono);
+  font-weight: 900;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+.retro-kbd svg {
+  display: block;
+  stroke: currentColor;
+}
+
+.retro-key-chip:active .retro-kbd,
+.retro-key-chip.is-pressed .retro-kbd {
+  box-shadow: none;
+  transform: translateY(1px);
+}
+
+.retro-label {
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: inherit;
+}
+
+/* 1. PASS (Left Arrow / A) -> RED */
+.chip-pass {
+  color: var(--accent-red);
+  background: var(--accent-red-bg);
+  border-color: var(--accent-red-border);
+}
+html[data-theme="dark"] .chip-pass {
+  color: var(--accent-red-bright);
+}
+.chip-pass .retro-kbd {
+  border-color: var(--accent-red-border);
+  box-shadow: 0 1.5px 0 var(--border-dark);
+}
+.chip-pass:hover {
+  background: rgba(255, 107, 107, 0.22);
+  border-color: var(--accent-red-bright);
+}
+.chip-pass.is-pressed {
+  background: var(--accent-red-bright) !important;
+  color: #000 !important;
+}
+
+/* 2. SUPERLIKE (Up Arrow / W) -> GOLD / STAR YELLOW */
+.chip-super {
+  color: var(--accent-gold);
+  background: var(--accent-gold-bg);
+  border-color: var(--accent-gold-border);
+}
+html[data-theme="dark"] .chip-super {
+  color: var(--accent-gold-bright);
+}
+.chip-super .retro-kbd {
+  border-color: var(--accent-gold-border);
+  box-shadow: 0 1.5px 0 var(--border-dark);
+}
+.chip-super:hover {
+  background: rgba(229, 176, 88, 0.22);
+  border-color: var(--accent-gold-bright);
+}
+.chip-super.is-pressed {
+  background: var(--accent-gold-bright) !important;
+  color: #000 !important;
+}
+
+/* 3. LIKE (Right Arrow / D) -> EMERALD GREEN */
+.chip-like {
+  color: var(--accent-green);
+  background: var(--accent-green-bg);
+  border-color: var(--accent-green-border);
+}
+html[data-theme="dark"] .chip-like {
+  color: var(--accent-green-bright);
+}
+.chip-like .retro-kbd {
+  border-color: var(--accent-green-border);
+  box-shadow: 0 1.5px 0 var(--border-dark);
+}
+.chip-like:hover {
+  background: rgba(16, 185, 129, 0.22);
+  border-color: var(--accent-green-bright);
+}
+.chip-like.is-pressed {
+  background: var(--accent-green-bright) !important;
+  color: #000 !important;
+}
+
+@media (max-width: 440px) {
+  .retro-hints-bar {
+    gap: 4px;
+  }
+  .retro-key-chip {
+    padding: 2.5px 5px 2.5px 3px;
+    font-size: 0.62rem;
+  }
+  .retro-label {
+    font-size: 0.62rem;
+  }
+  .retro-kbd {
+    width: 16px;
+    height: 16px;
+  }
+}
+
 .swipe-count {
   font-family: var(--font-mono);
   font-size: 0.78rem;

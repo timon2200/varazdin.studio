@@ -186,20 +186,10 @@ TITLE_MAP = {
     'SV_Utility_10_Magazine_Label_Front': 'SV Utility 10 — Magazine Label Front Hit',
 
     # Tarot Lovers Back
-    'SV_Lovers_01_Dark_Comix_Blade_Back': 'The Lovers 01 — Dark Comix Blade',
-    'SV_Lovers_02_Dedication_Fatal_Kiss_Back': 'The Lovers 02 — Fatal Kiss Dedication',
-    'SV_Lovers_03_Kneeling_Martyr_Back': 'The Lovers 03 — Kneeling Martyr',
-    'SV_Lovers_04_Acid_Riso_Betrayal_Back': 'The Lovers 04 — Acid Riso Betrayal',
-    'SV_Lovers_05_Rebirth_Sacrifice_Back': 'The Lovers 05 — Rebirth Sacrifice',
-    'SV_Lovers_06_Anamorphic_Split_Back': 'The Lovers 06 — Anamorphic Split',
+    'SV_Lovers_03_Kneeling_Martyr_Back': 'The Lovers Betrayal — Kneeling Martyr',
 
     # Tarot Lovers Front
-    'SV_Lovers_01_Dark_Comix_Blade_Front': 'The Lovers 01 — Blade Front Hit',
-    'SV_Lovers_02_Dedication_Fatal_Kiss_Front': 'The Lovers 02 — Fatal Kiss Front Hit',
-    'SV_Lovers_03_Kneeling_Martyr_Front': 'The Lovers 03 — Martyr Front Hit',
-    'SV_Lovers_04_Acid_Riso_Betrayal_Front': 'The Lovers 04 — Acid Betrayal Front Hit',
-    'SV_Lovers_05_Rebirth_Sacrifice_Front': 'The Lovers 05 — Rebirth Front Hit',
-    'SV_Lovers_06_Anamorphic_Split_Front': 'The Lovers 06 — Anamorphic Front Hit',
+    'SV_Lovers_03_Kneeling_Martyr_Front': 'The Lovers — Martyr Front Hit',
 
     # Minimal Series
     'Front Minimal - Creative Collective Center Chest Black': 'cCc — Center Chest Minimal Black',
@@ -214,6 +204,11 @@ TITLE_MAP = {
     'Front Minimal - Studio Varazdin Stacked Two-Tone': 'Studio Varaždin — Stacked Two-Tone',
     'Front Minimal - Varazdin Pure Red Script': 'Varaždin — Pure Red Script',
     'Front Minimal - cCc. Monogram Creative Collective': 'cCc. — Monogram Creative Collective'
+}
+
+DESCRIPTION_MAP = {
+    'SV_Lovers_03_Kneeling_Martyr_Back': 'Poljubac i oštrica u istoj sekundi. Oklopnik kleči na koplju dok mu dlanovi klize niz dršku, a ona drži krvavi vrh što izbija iz prsiju.',
+    'SV_Lovers_03_Kneeling_Martyr_Front': 'Minimalistički prsni motiv — The Lovers & Ideas Can\'t Die.'
 }
 
 def get_hash(path: Path) -> str:
@@ -254,6 +249,8 @@ def clean_title(stem: str) -> str:
     return ' '.join(words)
 
 def generate_description(stem: str, category: str, title: str) -> str:
+    if stem in DESCRIPTION_MAP:
+        return DESCRIPTION_MAP[stem]
     if category == "City":
         return f"Arhitektonska veduta i urbani motiv Varaždina — {title}."
     elif category == "Studio":
@@ -366,11 +363,31 @@ def build_catalog():
         (target / "assets" / "optimized").mkdir(parents=True, exist_ok=True)
         (target / "js").mkdir(parents=True, exist_ok=True)
 
+    # Load existing votes if available to preserve baseline scores
+    votes_file = SWIPER_DIR / "api" / "data" / "votes.json"
+    existing_votes = {}
+    total_votes_count = 2254
+    unique_voters = []
+    if votes_file.exists():
+        try:
+            v_json = json.loads(votes_file.read_text(encoding='utf-8'))
+            total_votes_count = v_json.get('totalVotes', 2254)
+            unique_voters = v_json.get('uniqueVoters', [])
+            for k, v in v_json.get('items', {}).items():
+                img_key = v.get('image', '').replace('\\/', '/')
+                if img_key:
+                    existing_votes[img_key] = v
+                existing_votes[k] = v
+        except Exception as e:
+            print(f"  [!] Note: Could not parse votes.json: {e}")
+
     print("\n[2/5] Optimizing missing WebP assets to all targets...")
     opt_count = 0
     valid_webp_filenames = set()
 
     catalog_data = []
+    updated_votes_items = {}
+
     for idx, item in enumerate(collected_items, start=1):
         clean_name = item['stem']
         clean_name = re.sub(r'\s*1664x2048', '', clean_name).strip()
@@ -380,7 +397,7 @@ def build_catalog():
         # Optimize for each target if not already present or out of date
         for target in TARGET_DIRS:
             dest = target / "assets" / "optimized" / webp_name
-            if not dest.exists():
+            if not dest.exists() or dest.stat().st_mtime < item['path'].stat().st_mtime:
                 optimize_image(item['path'], dest)
                 opt_count += 1
 
@@ -388,19 +405,48 @@ def build_catalog():
         slug = re.sub(r'[^a-z0-9]+', '_', clean_name.lower()).strip('_')
         desc = generate_description(item['stem'], item['category'], title)
         
+        tags = [item['category'].lower(), "streetwear", "varazdin"]
+        if "lovers" in clean_name.lower():
+            tags.extend(["lovers", "tarot", "ideas-cant-die"])
+        
+        rel_img = f"assets/optimized/{webp_name}"
+        item_id = f"sv-{idx:03d}"
+
+        # Match with existing votes
+        v = existing_votes.get(rel_img) or existing_votes.get(item_id)
+        likes = v.get('likes', 0) if v else 0
+        passes = v.get('passes', 0) if v else 0
+        superlikes = v.get('superlikes', 0) if v else 0
+        score = v.get('score', likes + (superlikes * 3)) if v else (likes + (superlikes * 3))
+        impressions = v.get('impressions', likes + passes + superlikes) if v else (likes + passes + superlikes)
+
         entry = {
-            "id": f"sv-{idx:03d}",
+            "id": item_id,
             "slug": slug,
             "title": title,
             "category": item['category'],
-            "image": f"assets/optimized/{webp_name}",
+            "image": rel_img,
             "description": desc,
-            "likes": 0,
-            "passes": 0,
-            "superlikes": 0,
-            "tags": [item['category'].lower(), "streetwear", "varazdin"]
+            "likes": likes,
+            "passes": passes,
+            "superlikes": superlikes,
+            "score": score,
+            "totalVotes": likes + passes + superlikes,
+            "tags": tags
         }
         catalog_data.append(entry)
+
+        updated_votes_items[item_id] = {
+            "id": item_id,
+            "title": title,
+            "category": item['category'],
+            "likes": likes,
+            "passes": passes,
+            "superlikes": superlikes,
+            "score": score,
+            "image": rel_img,
+            "impressions": impressions
+        }
 
     print(f"  -> Optimized {opt_count} new WebP images.")
 
@@ -433,6 +479,15 @@ def build_catalog():
         active_json = target / "api" / "data" / "active-catalog.json"
         active_json.parent.mkdir(parents=True, exist_ok=True)
         active_json.write_text(json.dumps(catalog_data, indent=2, ensure_ascii=False), encoding="utf-8")
+
+        # Write synchronized votes.json
+        votes_out = {
+            "totalVotes": total_votes_count,
+            "uniqueVoters": unique_voters,
+            "items": updated_votes_items
+        }
+        target_votes_file = target / "api" / "data" / "votes.json"
+        target_votes_file.write_text(json.dumps(votes_out, indent=2, ensure_ascii=False), encoding="utf-8")
 
     print("\n[5/5] Final Catalog Statistics:")
     by_cat = defaultdict(int)

@@ -55,16 +55,35 @@ export class CardEngine {
 
       if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') {
         e.preventDefault();
+        const chip = document.getElementById('retroKeyPass');
+        if (chip) chip.classList.add('is-pressed');
         this.swipeAction('left');
       } else if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') {
         e.preventDefault();
+        const chip = document.getElementById('retroKeyLike');
+        if (chip) chip.classList.add('is-pressed');
         this.swipeAction('right');
       } else if (e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') {
         e.preventDefault();
+        const chip = document.getElementById('retroKeySuper');
+        if (chip) chip.classList.add('is-pressed');
         this.swipeAction('superlike');
       } else if (e.key === 'u' || e.key === 'U' || (e.ctrlKey && e.key === 'z')) {
         e.preventDefault();
         this.undo();
+      }
+    });
+
+    document.addEventListener('keyup', (e) => {
+      if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') {
+        const chip = document.getElementById('retroKeyPass');
+        if (chip) chip.classList.remove('is-pressed');
+      } else if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') {
+        const chip = document.getElementById('retroKeyLike');
+        if (chip) chip.classList.remove('is-pressed');
+      } else if (e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') {
+        const chip = document.getElementById('retroKeySuper');
+        if (chip) chip.classList.remove('is-pressed');
       }
     });
   }

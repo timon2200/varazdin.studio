@@ -301,18 +301,18 @@ class SwiperApp {
      DUEL & COMPARISON VIEW (1 NA 1 DVOBOJ)
      ========================================================================== */
   initDuelView() {
-    const catNav = document.getElementById('duelCategoryNav');
-    if (catNav) {
-      catNav.addEventListener('click', (e) => {
-        const btn = e.target.closest('.cat-pill');
-        if (!btn) return;
-        catNav.querySelectorAll('.cat-pill').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        this.activeDuelCategory = btn.dataset.cat || 'ALL';
-        if (this.compareEngine) {
-          this.compareEngine.setDeck(this.catalog, this.activeDuelCategory);
-        }
-        if (this.audioHaptics) this.audioHaptics.playClick();
+    const retroLeft = document.getElementById('retroDuelLeft');
+    const retroRight = document.getElementById('retroDuelRight');
+
+    if (retroLeft) {
+      retroLeft.addEventListener('click', () => {
+        if (this.compareEngine) this.compareEngine.discardCard('left');
+      });
+    }
+
+    if (retroRight) {
+      retroRight.addEventListener('click', () => {
+        if (this.compareEngine) this.compareEngine.discardCard('right');
       });
     }
   }
@@ -747,11 +747,19 @@ class SwiperApp {
     const btnUndo = document.getElementById('btnUndo');
     const btnInfo = document.getElementById('btnInfo');
 
+    const retroPass = document.getElementById('retroKeyPass');
+    const retroSuper = document.getElementById('retroKeySuper');
+    const retroLike = document.getElementById('retroKeyLike');
+
     if (btnPass) btnPass.addEventListener('click', () => this.cardEngine.swipeAction('left'));
     if (btnLike) btnLike.addEventListener('click', () => this.cardEngine.swipeAction('right'));
     if (btnSuper) btnSuper.addEventListener('click', () => this.cardEngine.swipeAction('superlike'));
     if (btnUndo) btnUndo.addEventListener('click', () => this.cardEngine.undo());
     if (btnInfo) btnInfo.addEventListener('click', () => this.openInfoModal());
+
+    if (retroPass) retroPass.addEventListener('click', () => this.cardEngine.swipeAction('left'));
+    if (retroSuper) retroSuper.addEventListener('click', () => this.cardEngine.swipeAction('superlike'));
+    if (retroLike) retroLike.addEventListener('click', () => this.cardEngine.swipeAction('right'));
 
     // Swiper Bottom Bar & Header: Open Leaderboard
     const btnOpenLeaderboard = document.getElementById('btnOpenLeaderboard');
@@ -974,12 +982,16 @@ class SwiperApp {
       if (this.currentView === 'compare' && this.compareEngine) {
         if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') {
           e.preventDefault();
-          this.compareEngine.selectWinner('left');
+          const chip = document.getElementById('retroDuelLeft');
+          if (chip) chip.classList.add('is-pressed');
+          this.compareEngine.discardCard('left');
           return;
         }
         if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') {
           e.preventDefault();
-          this.compareEngine.selectWinner('right');
+          const chip = document.getElementById('retroDuelRight');
+          if (chip) chip.classList.add('is-pressed');
+          this.compareEngine.discardCard('right');
           return;
         }
         if (e.key === ' ' || e.code === 'Space') {
@@ -1011,6 +1023,16 @@ class SwiperApp {
         const nextView = this.currentView === 'swiper' ? 'compare' : this.currentView === 'compare' ? 'grid' : 'swiper';
         this.setView(nextView);
         return;
+      }
+    });
+
+    document.addEventListener('keyup', (e) => {
+      if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') {
+        const chip = document.getElementById('retroDuelLeft');
+        if (chip) chip.classList.remove('is-pressed');
+      } else if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') {
+        const chip = document.getElementById('retroDuelRight');
+        if (chip) chip.classList.remove('is-pressed');
       }
     });
   }

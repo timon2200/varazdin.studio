@@ -85,6 +85,17 @@
           </svg>
           <span>MREŽA</span>
         </button>
+        <button id="viewBtnLeaderboard" class="view-btn" data-view="leaderboard" title="Poredak majica i rang lista uživo (4)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+            <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+            <path d="M4 22h16"></path>
+            <path d="M10 14.66V17c0 .55-.45 1-1 1H7c-.55 0-1-.45-1-1v-2.34"></path>
+            <path d="M14 14.66V17c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-2.34"></path>
+            <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+          </svg>
+          <span>POREDAK</span>
+        </button>
       </div>
 
       <div class="header-right">
@@ -92,7 +103,7 @@
         <button id="btnHeaderLeaderboard" class="telemetry-counter" title="Pogledaj rang listu i poredak uživo" aria-label="Otvori rang listu">
           <span id="headerRoundBadge" style="font-family:'JetBrains Mono', monospace; font-size:0.68rem; font-weight:800; color:var(--accent-gold-bright); background:var(--accent-gold-bg); border:1px solid var(--accent-gold-border); padding:2px 6px; border-radius:3px; letter-spacing:0.04em;">1. KOLO</span>
           <span class="live-dot" aria-hidden="true"></span>
-          <span>GLASOVA: <strong id="headerVoteCount">0</strong></span>
+          <span>GLASOVA: <strong id="headerVoteCount">2.254</strong></span>
         </button>
 
         <!-- Theme Toggle Button (Light / Dark) -->
@@ -150,7 +161,35 @@
         
         <!-- Swiper Progress / Card Counter -->
         <div class="swiper-counter-bar">
-          <span class="swipe-hint">SWIPE DESNO = LIKE · LIJEVO = PASS · GORE = SUPERLIKE</span>
+          <div class="retro-hints-bar" role="toolbar" aria-label="Tipkovničke prečice za glasanje">
+            <button type="button" id="retroKeyPass" class="retro-key-chip chip-pass" title="Lijeva strelica (←) ili A: Pass" aria-label="Preskoči motiv (Lijeva strelica)">
+              <kbd class="retro-kbd">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="19" y1="12" x2="5" y2="12"></line>
+                  <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+              </kbd>
+              <span class="retro-label">PASS</span>
+            </button>
+            <button type="button" id="retroKeySuper" class="retro-key-chip chip-super" title="Gornja strelica (↑) ili W: Superlike" aria-label="Superlike motiv (Gornja strelica)">
+              <kbd class="retro-kbd">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="19" x2="12" y2="5"></line>
+                  <polyline points="5 12 12 5 19 12"></polyline>
+                </svg>
+              </kbd>
+              <span class="retro-label">SUPERLIKE</span>
+            </button>
+            <button type="button" id="retroKeyLike" class="retro-key-chip chip-like" title="Desna strelica (→) ili D: Like" aria-label="Sviđa mi se motiv (Desna strelica)">
+              <kbd class="retro-kbd">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </kbd>
+              <span class="retro-label">LIKE</span>
+            </button>
+          </div>
           <span id="cardCounter" class="swipe-count">1 / --</span>
         </div>
 
@@ -203,20 +242,37 @@
 
         </div>
 
-        <!-- Bottom Swiper Bar: Quick Leaderboard Access -->
-        <div class="swiper-bottom-bar">
-          <button id="btnOpenLeaderboard" class="btn-check-leaderboard" title="Pogledaj trenutne rezultate i poredak uživo">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-            </svg>
-            <span>🏆 POGLEDAJ RANG LISTU UŽIVO</span>
-          </button>
-        </div>
-
       </section>
 
       <!-- STAGE 2: 1-on-1 King of the Hill Duel Stage (Dvoboj) -->
       <section id="compareStage" class="compare-stage" style="display: none;" aria-label="Dvoboj majica 1 na 1">
+        
+        <!-- Dvoboj Counter & Hint Bar -->
+        <div class="duel-counter-bar">
+          <div class="retro-hints-bar" role="toolbar" aria-label="Tipkovničke prečice za dvoboj">
+            <button type="button" id="retroDuelLeft" class="retro-key-chip chip-pass" title="Klikni lijevu sliku ili pritisni ← / A za uklanjanje" aria-label="Makni lijevu sliku">
+              <kbd class="retro-kbd">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="19" y1="12" x2="5" y2="12"></line>
+                  <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+              </kbd>
+              <span class="retro-label">MAKNI LIJEVU</span>
+            </button>
+            <button type="button" id="retroDuelRight" class="retro-key-chip chip-pass" title="Klikni desnu sliku ili pritisni → / D za uklanjanje" aria-label="Makni desnu sliku">
+              <kbd class="retro-kbd">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </kbd>
+              <span class="retro-label">MAKNI DESNU</span>
+            </button>
+          </div>
+          <span class="duel-hint-subtle">KLIKNI ILI POVUCI SLIKU KOJU ŽELIŠ MAKNUTI</span>
+          <span id="duelCounter" class="swipe-count">#1 · --</span>
+        </div>
+
         <div id="duelArenaContainer" class="duel-arena-container">
           <!-- Populated dynamically by CompareEngine -->
         </div>
@@ -298,7 +354,7 @@
             <span class="live-dot" aria-hidden="true"></span> RANG LISTA UŽIVO
           </div>
           <h1 class="leaderboard-headline">REZULTATI GLASANJA & RANG LISTA</h1>
-          <p class="leaderboard-subtitle">Ovo su pobjednički motivi s najviše glasova i bodova zajednice.</p>
+          <p class="leaderboard-subtitle">Poredak i rezultati svih autorskih motiva sortirani po ukupnim bodovima i glasovima zajednice.</p>
         </div>
 
         <!-- Featured Top 3 Interactive Fan Section -->
@@ -366,7 +422,7 @@
               <span class="section-sub-label">SORTIRANO PO UKUPNIM BODOVIMA</span>
             </div>
             <div class="leaderboard-header-right">
-              <span id="leaderboardTotalVotesLabel" class="hud-tag">GLASOVA: 0</span>
+              <span id="leaderboardTotalVotesLabel" class="hud-tag">GLASOVA: 2.254</span>
             </div>
           </div>
 
