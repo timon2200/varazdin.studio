@@ -1,6 +1,6 @@
 /**
  * Studio Varaždin — Compare Engine (1-on-1 King of the Hill Duel)
- * Pairwise elimination matchup system with 60fps animations, streak tracking, and undo support.
+ * Ultra-minimalist, bold, high-contrast typography, zero-fluff pairwise comparison.
  * Zero external dependencies — pure Vanilla ES6 module.
  */
 
@@ -29,11 +29,10 @@ export class CompareEngine {
     this.isAnimating = false;
     this.isCompleted = false;
 
-    this.initDOM();
-  }
-
-  initDOM() {
-    if (!this.container) return;
+    this.categories = [
+      'ALL', 'Selected', 'City', 'Studio', 'Creative', 
+      'Garda', 'Towers', 'Utility', 'Artwear', 'Front Hits', 'Experimental'
+    ];
   }
 
   /**
@@ -60,17 +59,16 @@ export class CompareEngine {
       return;
     }
 
-    // Shuffle deck intelligently using Fisher-Yates with balanced entropy
+    // Shuffle deck
     this.deck = this.shuffleArray([...filtered]);
     this.totalInitialDeckSize = this.deck.length;
 
-    // First card on Left (initial champion), second on Right (first challenger)
+    // First card on Left, second on Right
     this.leftItem = this.deck[0];
     this.rightItem = this.deck[1];
     this.queue = this.deck.slice(2);
 
     this.renderArena();
-    this.updateHUD();
   }
 
   shuffleArray(arr) {
@@ -85,123 +83,46 @@ export class CompareEngine {
     if (!this.container) return;
     this.container.innerHTML = `
       <div class="duel-empty-card">
-        <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">⚔️</div>
-        <h3 class="empty-title">NEDOVOLJNO MOTIVA ZA DVOBOJ</h3>
-        <p class="empty-sub">Za usporedbu je potrebno barem 2 motiva. Odabrana kategorija (${this.activeFilter}) ima ${count} motiva.</p>
-        <button class="duel-btn-restart" id="btnDuelResetFilter">PRIKAŽI SVE KATEGORIJE</button>
+        <h3 class="duel-empty-title">NEDOVOLJNO MOTIVA</h3>
+        <p class="duel-empty-sub">Kategorija [${this.activeFilter}] ima samo ${count} motiv. Potrebno je barem 2.</p>
+        <button class="duel-pill-btn active" id="btnDuelResetFilter">PRIKAŽI SVE</button>
       </div>
     `;
     const btn = this.container.querySelector('#btnDuelResetFilter');
     if (btn) {
-      btn.addEventListener('click', () => {
-        this.setDeck(this.catalog, 'ALL');
-        const catNav = document.getElementById('duelCategoryNav');
-        if (catNav) {
-          catNav.querySelectorAll('.cat-pill').forEach(b => b.classList.toggle('active', b.dataset.cat === 'ALL'));
-        }
-      });
+      btn.addEventListener('click', () => this.setDeck(this.catalog, 'ALL'));
     }
   }
 
   renderArena() {
-    if (!this.container) return;
+    if (!this.container || !this.leftItem || !this.rightItem) return;
+
+    const streakCount = this.winnerSide === 'left' ? this.leftStreak : this.winnerSide === 'right' ? this.rightStreak : 0;
+    const isStreak = streakCount > 1;
 
     this.container.innerHTML = `
-      <!-- Duel HUD & Stats Topbar -->
-      <div class="duel-hud-card">
-        <div class="duel-hud-left">
-          <div class="duel-pill-counter">
-            <span class="live-dot" aria-hidden="true"></span>
-            <span>DVOBOJ <strong id="duelCurrentIndex">#${this.matchupIndex}</strong></span>
-          </div>
-          <span class="duel-remaining-badge" id="duelRemainingCount">Preostalo izazivača: ${this.queue.length}</span>
-        </div>
-
-        <div class="duel-hud-center">
-          <div id="duelReigningStreakBadge" class="duel-streak-banner ${this.winnerSide ? 'active' : ''}">
-            ${this.getReigningStreakText()}
-          </div>
-        </div>
-
-        <div class="duel-hud-right">
-          <button id="btnDuelUndo" class="duel-tool-btn" title="Vrati prethodni dvoboj (U)" ${this.history.length === 0 ? 'disabled' : ''}>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 7v6h6"></path>
-              <path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"></path>
-            </svg>
-            <span>VRATI</span>
-          </button>
-          
-          <button id="btnDuelSkip" class="duel-tool-btn" title="Preskoči oba motiva (Space)">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="13 17 18 12 13 7"></polyline>
-              <polyline points="6 17 11 12 6 7"></polyline>
-            </svg>
-            <span>PRESKOČI</span>
-          </button>
-
-          <button id="btnDuelRestart" class="duel-tool-btn" title="Promiješaj i kreni iznova">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
-              <polyline points="1 4 1 10 7 10"></polyline>
-            </svg>
-            <span>PROMIJEŠAJ</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Main 1-on-1 Battle Arena -->
+      <!-- Main 1-on-1 Battle Arena Grid -->
       <div class="duel-arena-grid">
         
-        <!-- Left Fighter Slot -->
+        <!-- Left Card Slot -->
         <div class="duel-card-slot slot-left" id="slotLeft">
           ${this.createCardHtml(this.leftItem, 'left')}
         </div>
 
-        <!-- Center VS Matrix Divider -->
-        <div class="duel-vs-divider">
-          <div class="duel-vs-badge">
-            <span class="vs-glow"></span>
-            <span class="vs-text">VS</span>
-          </div>
-          <div class="duel-kbd-hints">
-            <span>[ A / ← ]</span>
-            <span style="opacity:0.4;">·</span>
-            <span>[ D / → ]</span>
-          </div>
+        <!-- Minimalist VS Separator -->
+        <div class="duel-vs-box">
+          <span class="duel-vs-text">VS</span>
         </div>
 
-        <!-- Right Fighter Slot -->
+        <!-- Right Card Slot -->
         <div class="duel-card-slot slot-right" id="slotRight">
           ${this.createCardHtml(this.rightItem, 'right')}
         </div>
 
       </div>
-
-      <!-- Quick Tips Bar -->
-      <div class="duel-footer-hints">
-        <span>💡 SAVJET: Odaberi bolju karticu klikom ili tipkama <strong>A</strong> (Lijeva) / <strong>D</strong> (Desna). Pobjednik ostaje na mjestu i brani naslov!</span>
-      </div>
     `;
 
     this.bindArenaEvents();
-  }
-
-  getReigningStreakText() {
-    if (!this.winnerSide) {
-      return `⚔️ PRVI DVOBOJ · ODABERI POBJEDNIKA`;
-    }
-    const currentStreak = this.winnerSide === 'left' ? this.leftStreak : this.rightStreak;
-    const championItem = this.winnerSide === 'left' ? this.leftItem : this.rightItem;
-    const title = championItem ? championItem.title : 'Branitelj';
-    
-    if (currentStreak <= 1) {
-      return `👑 NOVI BRANITELJ: <strong>${title}</strong> (1 POBJEDA)`;
-    } else if (currentStreak >= 5) {
-      return `🔥 NEZAUSTAVLJIV NIZ: <strong>${title}</strong> (👑 ${currentStreak} POBJEDA ZAREDOM!)`;
-    } else {
-      return `👑 BRANITELJ NASLOVA: <strong>${title}</strong> (${currentStreak} POBJEDE ZAREDOM)`;
-    }
   }
 
   createCardHtml(item, side) {
@@ -209,55 +130,32 @@ export class CompareEngine {
 
     const isChampion = this.winnerSide === side;
     const streak = isChampion ? (side === 'left' ? this.leftStreak : this.rightStreak) : 0;
-    const isChallenger = this.winnerSide && !isChampion;
     const optSrc = this.resolveImageUrl(item);
-    const cat = (item.category || 'ARTWEAR').toUpperCase();
-
-    const badgeHtml = isChampion 
-      ? `<div class="duel-card-crown-banner"><span class="crown-icon">👑</span> BRANITELJ NASLOVA ${streak > 1 ? `· ${streak} POBJEDE` : ''}</div>`
-      : isChallenger 
-        ? `<div class="duel-card-challenger-banner"><span class="bolt-icon">⚡</span> IZAZIVAČ</div>`
-        : `<div class="duel-card-initial-banner">⚔️ KANDIDAT</div>`;
-
-    const keyHint = side === 'left' ? 'A / ←' : 'D / →';
+    const keyHint = side === 'left' ? 'A' : 'D';
 
     return `
-      <article class="duel-card ${isChampion ? 'is-champion' : ''} ${isChallenger ? 'is-challenger' : ''}" data-side="${side}" data-id="${item.id}">
+      <article class="duel-card ${isChampion ? 'is-champion' : ''}" data-side="${side}" data-id="${item.id}">
         
-        <!-- Header Tag Bar -->
-        <div class="duel-card-header">
-          <span class="card-tag ${cat === 'SELECTED' ? 'badge-gold' : cat === 'CITY' ? 'badge-blue' : 'badge-green'}">[ ${cat} ]</span>
-          <span class="duel-card-id">#${item.id || 'sv'}</span>
-        </div>
+        ${isChampion ? `<div class="duel-crown-badge">👑 DEFENDING ${streak > 1 ? `(${streak}x)` : ''}</div>` : ''}
 
-        ${badgeHtml}
-
-        <!-- Image Container with Click-to-Zoom -->
-        <div class="duel-card-image-wrap" title="Klikni za 2K zoom pregled">
-          <img src="${optSrc}" alt="${item.title}" class="duel-card-img" loading="eager">
+        <!-- Big Hero Visual Container -->
+        <div class="duel-img-wrap" title="Klikni za odabir (${keyHint})">
+          <img src="${optSrc}" alt="${item.title}" class="duel-img" loading="eager">
           <div class="scanline-overlay"></div>
-          <button class="duel-zoom-overlay-btn" title="Otvori 2K punu sliku" aria-label="2K Zoom">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          
+          <div class="duel-key-hint">${keyHint}</div>
+          
+          <button class="duel-zoom-btn" title="2K Zoom" aria-label="Zoom">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
           </button>
         </div>
 
-        <!-- Info & Description -->
-        <div class="duel-card-info">
-          <span class="duel-cat-sub">${cat} SERIES · cCc</span>
-          <h3 class="duel-card-title">${item.title}</h3>
-          <p class="duel-card-desc">${item.description || 'Autorski Studio Varaždin street-wear dizajn.'}</p>
-        </div>
-
-        <!-- Huge Tactile Choice CTA Button -->
-        <div class="duel-card-action-bar">
-          <button class="duel-btn-choose duel-btn-choose-${side}" data-side="${side}">
-            <span class="btn-choose-icon">${side === 'left' ? '👈' : '👉'}</span>
-            <span class="btn-choose-text">BOLJA MI JE OVA</span>
-            <span class="btn-choose-kbd">${keyHint}</span>
-          </button>
+        <!-- Bold Condensed Title -->
+        <div class="duel-card-meta">
+          <h2 class="duel-title-condensed">${item.title}</h2>
         </div>
 
       </article>
@@ -270,11 +168,21 @@ export class CompareEngine {
     const btnUndo = this.container.querySelector('#btnDuelUndo');
     const btnSkip = this.container.querySelector('#btnDuelSkip');
     const btnRestart = this.container.querySelector('#btnDuelRestart');
+    const catNav = this.container.querySelector('#duelCategoryNav');
 
-    // Clicking anywhere on Left Card or its choose button chooses Left
+    if (catNav) {
+      catNav.addEventListener('click', (e) => {
+        const btn = e.target.closest('.duel-pill-btn');
+        if (!btn) return;
+        const cat = btn.dataset.cat || 'ALL';
+        this.setDeck(this.catalog, cat);
+        if (this.audioHaptics) this.audioHaptics.playClick();
+      });
+    }
+
     if (slotLeft) {
       slotLeft.addEventListener('click', (e) => {
-        if (e.target.closest('.duel-zoom-overlay-btn')) {
+        if (e.target.closest('.duel-zoom-btn')) {
           e.stopPropagation();
           this.onImageClickCallback(this.leftItem);
           return;
@@ -283,10 +191,9 @@ export class CompareEngine {
       });
     }
 
-    // Clicking anywhere on Right Card or its choose button chooses Right
     if (slotRight) {
       slotRight.addEventListener('click', (e) => {
-        if (e.target.closest('.duel-zoom-overlay-btn')) {
+        if (e.target.closest('.duel-zoom-btn')) {
           e.stopPropagation();
           this.onImageClickCallback(this.rightItem);
           return;
@@ -331,7 +238,7 @@ export class CompareEngine {
       loserId: loserItem.id
     });
 
-    // Update streaks and king of the hill state
+    // Update streaks
     if (side === 'left') {
       this.leftStreak = (this.winnerSide === 'left' ? this.leftStreak : 0) + 1;
       this.rightStreak = 0;
@@ -342,12 +249,12 @@ export class CompareEngine {
       this.winnerSide = 'right';
     }
 
-    // Trigger Audio Haptic
+    // Audio Haptic
     if (this.audioHaptics) {
       this.audioHaptics.playSwipe('like');
     }
 
-    // Record Telemetry Votes
+    // Telemetry
     if (this.analytics) {
       await this.analytics.recordVote(winnerItem, 'like');
       await this.analytics.recordVote(loserItem, 'pass');
@@ -355,7 +262,7 @@ export class CompareEngine {
 
     this.onVoteCallback({ winnerItem, loserItem, side });
 
-    // Execute 60fps animations
+    // Execute animations
     const slotLeft = this.container.querySelector('#slotLeft');
     const slotRight = this.container.querySelector('#slotRight');
     const winnerSlot = side === 'left' ? slotLeft : slotRight;
@@ -363,7 +270,7 @@ export class CompareEngine {
 
     if (winnerSlot) {
       winnerSlot.classList.remove('anim-winner-pulse');
-      void winnerSlot.offsetWidth; // force reflow
+      void winnerSlot.offsetWidth;
       winnerSlot.classList.add('anim-winner-pulse');
     }
 
@@ -374,13 +281,8 @@ export class CompareEngine {
     }
 
     const currentStreak = side === 'left' ? this.leftStreak : this.rightStreak;
-    if (currentStreak === 1) {
-      this.showToast(`👑 Novi branitelj: ${winnerItem.title}`);
-    } else {
-      this.showToast(`🔥 ${currentStreak}. pobjeda zaredom: ${winnerItem.title}!`);
-    }
+    this.showToast(currentStreak > 1 ? `👑 ${currentStreak}x ${winnerItem.title}` : `✓ ${winnerItem.title}`);
 
-    // Wait for exit animation to finish before bringing the next challenger
     setTimeout(() => {
       if (this.queue.length > 0) {
         const nextChallenger = this.queue.shift();
@@ -394,24 +296,18 @@ export class CompareEngine {
 
         this.renderArena();
 
-        // Animate entrance of the new challenger
         const newSlot = side === 'left' ? this.container.querySelector('#slotRight') : this.container.querySelector('#slotLeft');
         if (newSlot) {
           newSlot.classList.add(side === 'left' ? 'anim-enter-right' : 'anim-enter-left');
         }
 
-        this.updateHUD();
         this.isAnimating = false;
       } else {
-        // Deck completed! Celebrate the Grand Champion
         this.handleDeckComplete(winnerItem, currentStreak);
       }
-    }, 280);
+    }, 240);
   }
 
-  /**
-   * Undo the last duel decision.
-   */
   undo() {
     if (this.isAnimating || this.history.length === 0) return;
     const prevState = this.history.pop();
@@ -429,13 +325,9 @@ export class CompareEngine {
     }
 
     this.renderArena();
-    this.updateHUD();
-    this.showToast('⤾ Vraćeno na prethodni dvoboj');
+    this.showToast('⤾ UNDO');
   }
 
-  /**
-   * Skip current pair and draw two fresh cards.
-   */
   skipPair() {
     if (this.isAnimating) return;
     if (this.queue.length >= 2) {
@@ -458,42 +350,18 @@ export class CompareEngine {
 
       if (this.audioHaptics) this.audioHaptics.playClick();
       this.renderArena();
-      this.updateHUD();
-      this.showToast('⇆ Izvučena dva nova motiva');
+      this.showToast('⇆ SKIP');
     } else {
-      this.showToast('⚠️ Nema dovoljno preostalih motiva u špilu.');
+      this.showToast('⚠️ Kraj špila');
     }
   }
 
-  /**
-   * Restart the duel deck.
-   */
   restart() {
     this.setDeck(this.catalog, this.activeFilter);
     if (this.audioHaptics) this.audioHaptics.playClick();
-    this.showToast('↺ Špil promiješan i ponovno pokrenut!');
+    this.showToast('↺ RESTART');
   }
 
-  updateHUD() {
-    const currentIndexEl = document.getElementById('duelCurrentIndex');
-    const remainingEl = document.getElementById('duelRemainingCount');
-    const streakEl = document.getElementById('duelReigningStreakBadge');
-    const btnUndo = document.getElementById('btnDuelUndo');
-
-    if (currentIndexEl) currentIndexEl.textContent = `#${this.matchupIndex}`;
-    if (remainingEl) remainingEl.textContent = `Preostalo izazivača: ${this.queue.length}`;
-    if (streakEl) {
-      streakEl.innerHTML = this.getReigningStreakText();
-      streakEl.className = `duel-streak-banner ${this.winnerSide ? 'active' : ''}`;
-    }
-    if (btnUndo) {
-      btnUndo.disabled = this.history.length === 0;
-    }
-  }
-
-  /**
-   * End of deck coronation ceremony.
-   */
   handleDeckComplete(ultimateWinner, finalStreak) {
     this.isCompleted = true;
     this.isAnimating = false;
@@ -505,38 +373,26 @@ export class CompareEngine {
     this.container.innerHTML = `
       <div class="duel-completion-card">
         <div class="completion-crown-glow">👑</div>
-        <span class="completion-eyebrow">KRAJ TURNIRA · SVI IZAZIVAČI SU SUČELJENI</span>
-        <h2 class="completion-headline">VRHOVNI POBJEDNIK DVOBOJA</h2>
+        <span class="duel-tag-mono duel-gold-text">FINAL CHAMPION</span>
+        <h2 class="duel-title-condensed" style="font-size:2rem;">${ultimateWinner.title}</h2>
         
         <div class="duel-champion-showcase">
-          <div class="showcase-img-box" id="btnShowcaseZoom" title="Klikni za 2K zoom">
+          <div class="showcase-img-box" id="btnShowcaseZoom" title="2K Zoom">
             <img src="${optSrc}" alt="${ultimateWinner.title}">
             <div class="scanline-overlay"></div>
           </div>
-          <div class="showcase-info">
-            <span class="card-tag badge-gold">[ ${cat} ]</span>
-            <h3 class="showcase-title">${ultimateWinner.title}</h3>
-            <p class="showcase-desc">${ultimateWinner.description || 'Pobjednički Studio Varaždin street-wear motiv.'}</p>
-            <div class="showcase-streak-pill">
-              🔥 OBRANIO TRON KROZ ${finalStreak} POBJEDA ZAREDOM!
-            </div>
+          <div class="duel-tag-mono duel-gold-text" style="padding:4px 10px; background:var(--accent-gold-bg); border-radius:4px;">
+            🔥 ${finalStreak} WINS IN A ROW
           </div>
         </div>
 
-        <div class="duel-completion-actions">
-          <button id="btnRestartCompletedDuel" class="share-btn share-btn-gold">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
-              <polyline points="1 4 1 10 7 10"></polyline>
-            </svg>
-            PROMIJEŠAJ & IGRAJ PONOVO
+        <div class="duel-actions-mini" style="margin-top:1rem; gap:12px;">
+          <button id="btnRestartCompletedDuel" class="duel-pill-btn active" style="padding:10px 20px; font-size:0.9rem;">
+            ↺ PONOVNO
           </button>
           
-          <button id="btnDuelViewLeaderboard" class="share-btn share-btn-primary">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-            </svg>
-            POGLEDAJ RANG LISTU UŽIVO
+          <button id="btnDuelViewLeaderboard" class="duel-pill-btn" style="padding:10px 20px; font-size:0.9rem;">
+            🏆 RANG LISTA
           </button>
         </div>
       </div>
