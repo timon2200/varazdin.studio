@@ -89,7 +89,30 @@
   transition: transform 0.28s var(--spring-easing), opacity 0.25s ease;
 }
 
+/* Underlying Challenger Card (Visible beneath active card while it flies away) */
+.duel-underlying-card {
+  position: absolute;
+  inset: 0;
+  background: var(--bg-card);
+  border: 2.5px solid var(--border-dark);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-bold-md);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  z-index: 4;
+  transition: transform 0.38s var(--spring-easing), opacity 0.3s ease;
+}
+
 /* Slot Left: subtle angled fanning to the left */
+.slot-left .duel-underlying-card {
+  transform: translate3d(5px, 7px, -8px) rotate(-1.5deg) scale(0.985);
+}
+
 .slot-left .stack-layer-1 {
   transform: translate3d(5px, 7px, -8px) rotate(-1.5deg) scale(0.985);
   background: var(--bg-card-subtle);
@@ -115,6 +138,10 @@
 }
 
 /* Slot Right: subtle angled fanning to the right */
+.slot-right .duel-underlying-card {
+  transform: translate3d(-5px, 7px, -8px) rotate(1.5deg) scale(0.985);
+}
+
 .slot-right .stack-layer-1 {
   transform: translate3d(-5px, 7px, -8px) rotate(1.5deg) scale(0.985);
   background: var(--bg-card-subtle);

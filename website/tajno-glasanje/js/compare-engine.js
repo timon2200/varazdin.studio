@@ -103,9 +103,11 @@ export class CompareEngine {
       duelCounterEl.textContent = `#${this.matchupIndex} · ${this.queue.length} PREOSTALO`;
     }
 
+    const nextChallenger = this.queue.length > 0 ? this.queue[0] : null;
     const stackLayer3 = this.queue.length >= 3 ? '<div class="duel-deck-stack-layer stack-layer-3"></div>' : '';
     const stackLayer2 = this.queue.length >= 2 ? '<div class="duel-deck-stack-layer stack-layer-2"></div>' : '';
-    const stackLayer1 = this.queue.length >= 1 ? '<div class="duel-deck-stack-layer stack-layer-1"></div>' : '';
+    const underlyingLeft = nextChallenger ? this.createUnderlyingCardHtml(nextChallenger, 'left') : '';
+    const underlyingRight = nextChallenger ? this.createUnderlyingCardHtml(nextChallenger, 'right') : '';
 
     this.container.innerHTML = `
       <!-- Main 1-on-1 Battle Arena Grid (Dual Deck Stack) -->
@@ -115,7 +117,7 @@ export class CompareEngine {
         <div class="duel-card-slot slot-left" id="slotLeft">
           ${stackLayer3}
           ${stackLayer2}
-          ${stackLayer1}
+          ${underlyingLeft}
           ${this.createCardHtml(this.leftItem, 'left')}
         </div>
 
@@ -128,7 +130,7 @@ export class CompareEngine {
         <div class="duel-card-slot slot-right" id="slotRight">
           ${stackLayer3}
           ${stackLayer2}
-          ${stackLayer1}
+          ${underlyingRight}
           ${this.createCardHtml(this.rightItem, 'right')}
         </div>
 
@@ -136,6 +138,28 @@ export class CompareEngine {
     `;
 
     this.bindArenaEvents();
+  }
+
+  createUnderlyingCardHtml(item, side) {
+    if (!item) return '';
+    const optSrc = this.resolveImageUrl(item);
+    const keyHint = side === 'left' ? 'MAKNI [ ← ]' : 'MAKNI [ → ]';
+
+    return `
+      <div class="duel-underlying-card" data-side="${side}">
+        <!-- Big Hero Visual Container -->
+        <div class="duel-img-wrap">
+          <img src="${optSrc}" alt="${item.title}" class="duel-img" draggable="false" loading="eager">
+          <div class="scanline-overlay"></div>
+          <div class="duel-key-hint">${keyHint}</div>
+        </div>
+
+        <!-- Bold Condensed Title -->
+        <div class="duel-card-meta">
+          <h2 class="duel-title-condensed">${item.title}</h2>
+        </div>
+      </div>
+    `;
   }
 
   createCardHtml(item, side) {
@@ -374,6 +398,7 @@ export class CompareEngine {
     const winnerSlot = side === 'left' ? this.container.querySelector('#slotRight') : this.container.querySelector('#slotLeft');
     const loserCard = loserSlot ? loserSlot.querySelector('.duel-card') : null;
     const winnerCard = winnerSlot ? winnerSlot.querySelector('.duel-card') : null;
+    const loserUnderlying = loserSlot ? loserSlot.querySelector('.duel-underlying-card') : null;
 
     if (winnerCard) {
       winnerCard.classList.remove('anim-winner-pulse', 'anim-card-enter');
@@ -382,6 +407,11 @@ export class CompareEngine {
       winnerCard.addEventListener('animationend', () => {
         winnerCard.classList.remove('anim-winner-pulse');
       }, { once: true });
+    }
+
+    if (loserUnderlying) {
+      // Spring underlying challenger card smoothly up into active position
+      loserUnderlying.style.transform = 'translate3d(0, 0, 0) rotate(0deg) scale(1)';
     }
 
     if (loserCard) {
