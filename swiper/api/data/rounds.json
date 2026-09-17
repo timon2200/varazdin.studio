@@ -1,0 +1,18 @@
+{
+  "activeRound": 1,
+  "rounds": [
+    {
+      "id": 1,
+      "name": "1. Kolo — Selekcija Cijelog Špila",
+      "description": "Glasanje za svih 347 autorskih motiva",
+      "status": "completed",
+      "totalVotes": 2254,
+      "uniqueVoters": 5,
+      "totalItems": 347,
+      "dateStarted": "2026-09-16",
+      "dateCompleted": "2026-09-17",
+      "dataFile": "votes-round1-snapshot.json",
+      "leaderboardFile": "round1-results-leaderboard.json"
+    }
+  ]
+}

@@ -56,6 +56,10 @@
 
         <!-- Live Selection Counter & Status -->
         <div class="counter-cluster">
+          <div class="round-status-pill" id="adminRoundBadge" title="Status kola i glasova">
+            <span class="live-pulse-dot"></span>
+            <span id="adminRoundStatusText">1. KOLO · 2.254 GLASA</span>
+          </div>
           <div class="counter-box">
             <span class="counter-label">AKTIVNO U ŠPILU</span>
             <div class="counter-numbers">
@@ -68,6 +72,15 @@
 
         <!-- Primary Actions & Theme Toggle -->
         <div class="header-actions">
+          <button id="btnLeaderboardModal" class="btn-secondary" title="Pregledaj rezultate i rang listu">
+            <span>📊 RANG LISTA</span>
+          </button>
+          <button id="btnExportCsv" class="btn-secondary" title="Preuzmi rezultate u Excel/CSV formatu">
+            <span>📥 CSV</span>
+          </button>
+          <button id="btnAdvanceRoundModal" class="btn-secondary btn-tool-gold" title="Pokreni 2. kolo s odabranim finalistima">
+            <span>🏁 POKRENI 2. KOLO</span>
+          </button>
           <button id="btnThemeToggleAdmin" class="btn-secondary" title="Prebaci temu (Light / Dark)">
             <span id="adminThemeIcon">🌙 Dark</span>
           </button>
@@ -105,6 +118,29 @@
           <button class="cat-pill" data-cat="Experimental">EXPERIMENTAL <span class="cat-badge" id="badgeExperimental">0</span></button>
         </nav>
 
+        <!-- Sort & Vote Filter Controls -->
+        <div class="admin-sort-bar">
+          <div class="sort-group">
+            <label for="adminSortSelect" class="admin-sort-label">POREDAJ PO:</label>
+            <select id="adminSortSelect" class="admin-select">
+              <option value="default">⚡ ZADANI REDOSLIJED</option>
+              <option value="score-desc">🏆 NAJVIŠE BODOVA (SKOR)</option>
+              <option value="likes-desc">♥ NAJVIŠE LAJKOVA</option>
+              <option value="super-desc">★ NAJVIŠE SUPERLIKE</option>
+              <option value="votes-desc">📊 UKUPNO GLASOVA</option>
+              <option value="approval-desc">📈 NAJVEĆE ODOBRAVANJE (%)</option>
+              <option value="title-asc">🔤 NAZIV (A-Z)</option>
+            </select>
+          </div>
+
+          <div class="vote-filter-group" id="adminVoteFilterGroup">
+            <button class="vote-pill active" data-votefilter="all">SVI</button>
+            <button class="vote-pill" data-votefilter="voted">S GLASOVIMA (>0)</button>
+            <button class="vote-pill" data-votefilter="top20">TOP 20 PO BODOVIMA</button>
+            <button class="vote-pill" data-votefilter="unvoted">BEZ GLASOVA (0)</button>
+          </div>
+        </div>
+
         <!-- Right Toolbelt -->
         <div class="toolbelt">
           <div class="search-box">
@@ -117,6 +153,16 @@
           </div>
 
           <div class="bulk-actions">
+            <!-- Finalist Quick Picks -->
+            <button id="btnTop20" class="btn-tool btn-tool-gold" title="Označi Top 20 finalista iz 1. kola">
+              <span>🏆 Top 20</span>
+            </button>
+            <button id="btnTop30" class="btn-tool btn-tool-gold" title="Označi Top 30 finalista iz 1. kola">
+              <span>🏆 Top 30</span>
+            </button>
+            <button id="btnTop50" class="btn-tool btn-tool-gold" title="Označi Top 50 finalista iz 1. kola">
+              <span>🏆 Top 50</span>
+            </button>
             <button id="btnSelectAll" class="btn-tool" title="Označi sve trenutno filtrirane">
               <span>✓ Sve</span>
             </button>
@@ -165,7 +211,7 @@
 
   </div>
 
-  <!-- Modal: High-Res 2K Zoom Lightbox -->
+  <!-- Modal: High-Res 2K Zoom Lightbox with Gallery Arrow Navigation -->
   <div id="modalZoom" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Puna rezolucija" style="display:none;">
     <div class="modal-zoom-content">
       <div class="modal-zoom-header">
@@ -173,11 +219,106 @@
           <span id="zoomCategory" class="card-category-tag" style="position:static;">CATEGORY</span>
           <h3 id="zoomTitle" class="modal-zoom-title">Naziv Majice</h3>
           <span id="zoomId" class="card-id-tag">#sv-000</span>
+          <span id="zoomPoints" class="zoom-points-badge">0 PTS</span>
         </div>
-        <button id="closeModalZoom" class="modal-close" aria-label="Zatvori">&times;</button>
+        <div class="modal-zoom-header-actions">
+          <span id="zoomCounter" class="lightbox-counter">1 / 1</span>
+          <button id="closeModalZoom" class="modal-close" aria-label="Zatvori">&times;</button>
+        </div>
       </div>
       <div class="modal-zoom-body">
-        <img id="zoomImage" src="" alt="Puna rezolucija" class="modal-zoom-img">
+        <button id="btnAdminLightboxPrev" class="lightbox-nav-btn lightbox-prev" title="Prethodna slika (Lijeva strelica ←)" aria-label="Prethodna slika">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+
+        <div class="lightbox-img-container">
+          <img id="zoomImage" src="" alt="Puna rezolucija" class="modal-zoom-img">
+        </div>
+
+        <button id="btnAdminLightboxNext" class="lightbox-nav-btn lightbox-next" title="Sljedeća slika (Desna strelica →)" aria-label="Sljedeća slika">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-zoom-footer">
+        <span class="lightbox-hint">KORISTI STRELICE TIPKOVNICE (← / →) ZA PREGLED GALERIJE · ESC ZA IZLAZ</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Leaderboard & Results View -->
+  <div id="modalLeaderboard" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Rang Lista Rezultata" style="display:none;">
+    <div class="modal-large-content">
+      <div class="modal-zoom-header">
+        <div class="modal-zoom-header-info">
+          <span class="card-category-tag" style="position:static; background:var(--accent-gold-bg); border-color:var(--accent-gold-border); color:var(--accent-gold-bright);">1. KOLO REZULTATI</span>
+          <h3 class="modal-zoom-title">RANG LISTA & STATISTIKA GLASANJA</h3>
+        </div>
+        <button id="closeModalLeaderboard" class="modal-close" aria-label="Zatvori">&times;</button>
+      </div>
+      <div class="modal-large-body">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; gap:10px; flex-wrap:wrap;">
+          <div style="font-family:'JetBrains Mono', monospace; font-size:0.8rem; color:var(--text-secondary);">
+            Ukupno: <strong id="leadTotalVotes" style="color:var(--text-primary);">2.254</strong> glasova · <strong id="leadTotalVoters" style="color:var(--text-primary);">5</strong> glasača · <strong id="leadTotalItems" style="color:var(--text-primary);">347</strong> motiva
+          </div>
+          <div style="display:flex; gap:8px;">
+            <a href="api/export.php?round=1&format=csv" target="_blank" class="btn-secondary" style="font-size:0.75rem; padding:4px 10px;">📥 Preuzmi CSV</a>
+            <a href="api/export.php?round=1&format=json" target="_blank" class="btn-secondary" style="font-size:0.75rem; padding:4px 10px;">📋 Preuzmi JSON</a>
+          </div>
+        </div>
+        <div class="modal-table-container">
+          <table class="admin-data-table">
+            <thead>
+              <tr>
+                <th>Rang</th>
+                <th>ID</th>
+                <th>Naziv Motiva</th>
+                <th>Kategorija</th>
+                <th>Bodovi</th>
+                <th>★ Superlike</th>
+                <th>❤️ Like</th>
+                <th>✕ Pass</th>
+                <th>Odobrenje</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboardTableBody">
+              <!-- Populated dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Advance to Round 2 Confirmation -->
+  <div id="modalAdvanceRound" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Pokretanje 2. kola" style="display:none;">
+    <div class="modal-large-content" style="max-width:550px;">
+      <div class="modal-zoom-header">
+        <div class="modal-zoom-header-info">
+          <span class="card-category-tag" style="position:static; background:var(--accent-gold-bg); border-color:var(--accent-gold-border); color:var(--accent-gold-bright);">FINALNI KORAK</span>
+          <h3 class="modal-zoom-title">POKRENI 2. KOLO (FINALS)</h3>
+        </div>
+        <button id="closeModalAdvance" class="modal-close" aria-label="Zatvori">&times;</button>
+      </div>
+      <div class="modal-large-body">
+        <div class="modal-advance-box">
+          <p>Trenutno je označeno <strong id="advanceFinalistCount" style="color:var(--accent-gold-bright);">30</strong> finalista za 2. kolo.</p>
+          <ul style="margin:10px 0 10px 20px; font-size:0.8rem; color:var(--text-secondary);">
+            <li>Svi glasovi 1. kola (2.254 glasa) bit će <strong>trajno arhivirani</strong> u povijest.</li>
+            <li>Novi swiper špil sadržavat će <strong>samo odabrane finaliste</strong>.</li>
+            <li>Brojač glasova resetira se na 0 za novi krug glasanja.</li>
+          </ul>
+          <p style="font-size:0.8rem; color:var(--text-muted);">Naziv kola: <strong>2. Kolo — Finale & Finalisti</strong></p>
+        </div>
+      </div>
+      <div class="modal-footer-actions">
+        <button id="btnCancelAdvance" class="btn-secondary">Odustani</button>
+        <button id="btnConfirmAdvance" class="btn-primary btn-tool-gold">
+          <span>POTVRDI & POKRENI 2. KOLO</span>
+        </button>
       </div>
     </div>
   </div>

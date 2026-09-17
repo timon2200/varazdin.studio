@@ -958,26 +958,336 @@ html[data-theme="dark"] .modal-overlay {
   background: var(--accent-gold-bright);
 }
 
-/* Modal: High-Res 2K Zoom Viewer (Full-Viewport Responsive Lightbox) */
-#modalZoom .modal-content {
-  max-width: 95vw !important;
-  max-height: 95vh !important;
-  width: auto !important;
+/* ==========================================================================
+   SWIPER BOTTOM BAR & LEADERBOARD ACCESS
+   ========================================================================== */
+.swiper-bottom-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 1.25rem;
+  z-index: 10;
+}
+
+.btn-check-leaderboard {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--bg-card);
+  color: var(--accent-gold);
+  border: 2px solid var(--border-dark);
+  border-radius: var(--radius-sm);
+  padding: 10px 22px;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: var(--shadow-bold-sm);
+  transition: all 0.18s var(--transition-smooth);
+}
+
+html[data-theme="dark"] .btn-check-leaderboard {
+  color: var(--accent-gold-bright);
+}
+
+.btn-check-leaderboard:hover {
+  background: var(--accent-gold-bg);
+  color: var(--accent-gold-bright);
+  border-color: var(--accent-gold);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-bold-md);
+}
+
+.btn-check-leaderboard:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+.btn-check-leaderboard svg {
+  color: var(--accent-gold);
+  transition: transform 0.2s ease;
+}
+
+.btn-check-leaderboard:hover svg {
+  transform: scale(1.15) rotate(5deg);
+}
+
+/* ==========================================================================
+   GRID CONTROLS & VOTE FILTERS (MREŽA & KATALOG)
+   ========================================================================== */
+.grid-controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 8px 0 4px 0;
+  border-top: 1px solid var(--border-color);
+}
+
+.sort-control-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sort-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.grid-sort-select {
+  background: var(--bg-card-subtle);
+  color: var(--text-primary);
+  border: 1.5px solid var(--border-dark);
+  border-radius: var(--radius-xs);
+  padding: 6px 12px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  outline: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-bold-xs);
+  transition: all 0.15s ease;
+}
+
+.grid-sort-select:focus,
+.grid-sort-select:hover {
+  border-color: var(--accent-green);
+  background: var(--bg-card-elevated);
+}
+
+.vote-filter-pills {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.vote-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  background: var(--bg-card-subtle);
+  color: var(--text-secondary);
+  border: 1.5px solid var(--border-dark);
+  border-radius: var(--radius-xs);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: var(--shadow-bold-xs);
+  transition: all 0.12s ease;
+}
+
+.vote-pill:hover {
+  background: var(--bg-card-elevated);
+  color: var(--text-primary);
+  transform: translate(-1px, -1px);
+}
+
+.vote-pill:active {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+}
+
+.vote-pill.active {
+  background: var(--accent-gold);
+  color: #111518;
+  border-color: var(--border-dark);
+}
+
+/* ==========================================================================
+   MODAL: HIGH-RES 2K ZOOM LIGHTBOX WITH GALLERY ARROW NAVIGATION
+   ========================================================================== */
+#modalZoom {
+  padding: 16px;
+}
+
+#modalZoom .modal-zoom-content {
+  position: relative;
+  max-width: 960px !important;
+  max-height: 94vh !important;
+  width: 100% !important;
   height: auto !important;
   background: var(--bg-card) !important;
   border: 2px solid var(--border-dark) !important;
+  border-radius: var(--radius-sm) !important;
   box-shadow: var(--shadow-bold-modal) !important;
-  padding: 24px !important;
+  padding: 0 !important;
   display: flex !important;
   flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
+  overflow: hidden !important;
 }
 
-#zoomImage {
-  max-width: 90vw !important;
-  max-height: 84vh !important;
-  object-fit: contain !important;
-  border-radius: var(--radius-sm) !important;
-  display: block !important;
+.modal-zoom-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: var(--bg-card-subtle);
+  border-bottom: 2px solid var(--border-dark);
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.modal-zoom-header-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex-wrap: wrap;
+}
+
+.modal-zoom-title {
+  font-family: var(--font-hero);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 400px;
+}
+
+.zoom-points-badge {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  background: var(--accent-green-bg);
+  color: var(--accent-green);
+  border: 1.5px solid var(--accent-green-border);
+  padding: 2px 8px;
+  border-radius: var(--radius-xs);
+  box-shadow: var(--shadow-bold-xs);
+}
+
+html[data-theme="dark"] .zoom-points-badge {
+  color: var(--accent-green-bright);
+}
+
+.modal-zoom-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.lightbox-counter {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 800;
+  background: var(--bg-card);
+  color: var(--text-muted);
+  border: 1.5px solid var(--border-dark);
+  padding: 4px 10px;
+  border-radius: var(--radius-xs);
+  box-shadow: var(--shadow-bold-xs);
+}
+
+.modal-zoom-body {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--card-tshirt-bg);
+  min-height: 380px;
+  max-height: calc(92vh - 110px);
+  padding: 16px;
+  overflow: hidden;
+}
+
+.lightbox-img-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+}
+
+.modal-zoom-img {
+  max-width: 100%;
+  max-height: calc(90vh - 130px);
+  object-fit: contain;
+  border-radius: var(--radius-xs);
+  display: block;
+  transition: transform 0.2s ease, opacity 0.15s ease;
+  user-select: none;
+}
+
+/* Lightbox Navigation Buttons (Floating Left / Right) */
+.lightbox-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 2px solid var(--border-dark);
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-bold-sm);
+  z-index: 20;
+  transition: all 0.15s var(--transition-smooth);
+}
+
+.lightbox-prev {
+  left: 14px;
+}
+
+.lightbox-next {
+  right: 14px;
+}
+
+.lightbox-nav-btn:hover {
+  background: var(--accent-gold);
+  color: #111518;
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: var(--shadow-bold-md);
+}
+
+.lightbox-nav-btn:active {
+  transform: translateY(-50%) translate(2px, 2px);
+  box-shadow: none;
+}
+
+.modal-zoom-footer {
+  padding: 8px 16px;
+  background: var(--bg-card-subtle);
+  border-top: 1.5px solid var(--border-dark);
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.lightbox-hint {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 640px) {
+  .lightbox-nav-btn {
+    width: 38px;
+    height: 38px;
+  }
+  .lightbox-prev { left: 8px; }
+  .lightbox-next { right: 8px; }
+  .modal-zoom-title { max-width: 200px; font-size: 0.9rem; }
 }

@@ -14,10 +14,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-$dataFile = __DIR__ . '/data/votes.json';
+$dataDir = __DIR__ . '/data';
+$roundsFile = $dataDir . '/rounds.json';
+
+$activeRound = 1;
+$roundsMeta = [];
+if (file_exists($roundsFile)) {
+    $rData = json_decode(file_get_contents($roundsFile), true);
+    if ($rData) {
+        $activeRound = $rData['activeRound'] ?? 1;
+        $roundsMeta = $rData['rounds'] ?? [];
+    }
+}
+
+$roundParam = isset($_GET['round']) ? trim($_GET['round']) : 'active';
+$dataFile = $dataDir . '/votes.json';
+$currentViewingRound = $activeRound;
+
+if ($roundParam !== 'active' && is_numeric($roundParam)) {
+    $currentViewingRound = (int)$roundParam;
+    $possibleSnapshot = $dataDir . '/votes_round_' . $currentViewingRound . '.json';
+    $possibleSnapshotAlt = $dataDir . '/votes-round' . $currentViewingRound . '-snapshot.json';
+    if (file_exists($possibleSnapshot)) {
+        $dataFile = $possibleSnapshot;
+    } elseif (file_exists($possibleSnapshotAlt)) {
+        $dataFile = $possibleSnapshotAlt;
+    }
+}
 
 if (!file_exists($dataFile)) {
     echo json_encode([
+        'round' => $currentViewingRound,
+        'activeRound' => $activeRound,
         'totalVotes' => 0,
         'uniqueVoters' => 0,
         'topRanked' => [],
@@ -63,6 +91,8 @@ if (flock($fp, LOCK_SH)) {
     });
 
     echo json_encode([
+        'round' => $currentViewingRound,
+        'activeRound' => $activeRound,
         'totalVotes' => $store['totalVotes'] ?? count($items),
         'uniqueVoters' => isset($store['uniqueVoters']) ? count($store['uniqueVoters']) : 0,
         'topRanked' => $items,

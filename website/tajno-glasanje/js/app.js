@@ -38,7 +38,13 @@ class SwiperApp {
     this.currentTheme = 'light';  // 'light' | 'dark'
     this.activeGridCategory = 'ALL';
     this.gridSearchQuery = '';
+    this.gridSortOption = 'default'; // 'default' | 'score-desc' | 'likes-desc' | 'super-desc' | 'votes-desc' | 'title-asc'
+    this.gridVoteFilter = 'all';     // 'all' | 'voted' | 'top10'
     
+    this.activeLightboxList = [];
+    this.lightboxCurrentIndex = 0;
+    this.currentFilteredGridItems = [];
+
     this.currentItem = null;
     this.isDeckCompleted = false;
     this.customFavorites = new Set();
@@ -233,6 +239,8 @@ class SwiperApp {
     const searchInput = document.getElementById('gridSearchInput');
     const searchClear = document.getElementById('gridSearchClear');
     const catNav = document.getElementById('gridCategoryNav');
+    const sortSelect = document.getElementById('gridSortSelect');
+    const votePills = document.getElementById('gridVoteFilterPills');
 
     if (searchInput) {
       searchInput.addEventListener('input', (e) => {
@@ -259,6 +267,26 @@ class SwiperApp {
         catNav.querySelectorAll('.cat-pill').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         this.activeGridCategory = btn.dataset.cat || 'ALL';
+        this.renderGridView();
+        if (this.audioHaptics) this.audioHaptics.playClick();
+      });
+    }
+
+    if (sortSelect) {
+      sortSelect.addEventListener('change', (e) => {
+        this.gridSortOption = e.target.value;
+        this.renderGridView();
+        if (this.audioHaptics) this.audioHaptics.playClick();
+      });
+    }
+
+    if (votePills) {
+      votePills.addEventListener('click', (e) => {
+        const btn = e.target.closest('.vote-pill');
+        if (!btn) return;
+        votePills.querySelectorAll('.vote-pill').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        this.gridVoteFilter = btn.dataset.votefilter || 'all';
         this.renderGridView();
         if (this.audioHaptics) this.audioHaptics.playClick();
       });
@@ -316,7 +344,28 @@ class SwiperApp {
     this.updateCategoryBadges();
     const favSet = this.getAllUserFavoritesSet();
 
-    let filtered = this.catalog.filter(item => {
+    let itemsWithScores = this.catalog.map(item => {
+      const localLikes = this.analytics ? this.analytics.sessionVotes.filter(v => v.id === item.id && v.action === 'like').length : 0;
+      const localSuper = this.analytics ? this.analytics.sessionVotes.filter(v => v.id === item.id && v.action === 'superlike').length : 0;
+      const localPass = this.analytics ? this.analytics.sessionVotes.filter(v => v.id === item.id && v.action === 'pass').length : 0;
+      
+      const totalL = (item.likes || 0) + localLikes;
+      const totalS = (item.superlikes || 0) + localSuper;
+      const totalP = (item.passes || 0) + localPass;
+      const totalScore = totalL + (totalS * 3);
+      const totalVotes = totalL + totalS + totalP;
+
+      return {
+        ...item,
+        _localLikes: totalL,
+        _localSuper: totalS,
+        _localPass: totalP,
+        _calculatedScore: totalScore,
+        _calculatedVotes: totalVotes
+      };
+    });
+
+    let filtered = itemsWithScores.filter(item => {
       // Category Filter
       if (this.activeGridCategory === 'Favorites') {
         if (!favSet.has(item.id)) return false;
@@ -324,6 +373,11 @@ class SwiperApp {
         if ((item.category || '').toLowerCase() !== this.activeGridCategory.toLowerCase()) {
           return false;
         }
+      }
+
+      // Vote Filter (all, voted, top10)
+      if (this.gridVoteFilter === 'voted') {
+        if (item._calculatedVotes <= 0) return false;
       }
 
       // Text Search Filter
@@ -338,6 +392,25 @@ class SwiperApp {
       return true;
     });
 
+    // Sorting
+    if (this.gridSortOption === 'score-desc' || this.gridVoteFilter === 'top10') {
+      filtered.sort((a, b) => b._calculatedScore - a._calculatedScore || b._calculatedVotes - a._calculatedVotes);
+    } else if (this.gridSortOption === 'likes-desc') {
+      filtered.sort((a, b) => b._localLikes - a._localLikes || b._calculatedScore - a._calculatedScore);
+    } else if (this.gridSortOption === 'super-desc') {
+      filtered.sort((a, b) => b._localSuper - a._localSuper || b._calculatedScore - a._calculatedScore);
+    } else if (this.gridSortOption === 'votes-desc') {
+      filtered.sort((a, b) => b._calculatedVotes - a._calculatedVotes || b._calculatedScore - a._calculatedScore);
+    } else if (this.gridSortOption === 'title-asc') {
+      filtered.sort((a, b) => (a.title || '').localeCompare(b.title || ''));
+    }
+
+    if (this.gridVoteFilter === 'top10') {
+      filtered = filtered.slice(0, 10);
+    }
+
+    this.currentFilteredGridItems = filtered;
+
     if (countBadge) {
       countBadge.textContent = filtered.length;
     }
@@ -349,19 +422,19 @@ class SwiperApp {
         <div style="grid-column: 1 / -1; text-align: center; padding: 3rem 1.5rem; background: var(--bg-card); border: 2px dashed var(--border-dark); border-radius: var(--radius-md);">
           <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔍</div>
           <h3 style="font-family: var(--font-hero); font-size: 1.2rem; color: var(--text-primary); margin-bottom: 0.25rem;">NEMA PRONAĐENIH MOTIVA</h3>
-          <p style="font-size: 0.88rem; color: var(--text-muted);">Pokušaj s drugim pojmom pretrage ili odaberi drugu kategoriju.</p>
+          <p style="font-size: 0.88rem; color: var(--text-muted);">Pokušaj s drugim pojmom pretrage ili odaberi drugi filter glasova/kategoriju.</p>
         </div>
       `;
       return;
     }
 
     filtered.forEach(item => {
-      const card = this.createGridCardElement(item, favSet.has(item.id));
+      const card = this.createGridCardElement(item, favSet.has(item.id), filtered);
       container.appendChild(card);
     });
   }
 
-  createGridCardElement(item, isFav) {
+  createGridCardElement(item, isFav, currentList = null) {
     const card = document.createElement('article');
     card.className = 'tshirt-grid-card';
     card.dataset.id = item.id;
@@ -370,10 +443,10 @@ class SwiperApp {
     const cat = item.category || 'ARTWEAR';
     const badgeClass = cat === 'Selected' ? 'badge-gold' : cat === 'City' ? 'badge-blue' : 'badge-green';
 
-    const localLikes = this.analytics ? this.analytics.sessionVotes.filter(v => v.id === item.id && v.action === 'like').length : 0;
-    const localSuper = this.analytics ? this.analytics.sessionVotes.filter(v => v.id === item.id && v.action === 'superlike').length : 0;
-    const localPass = this.analytics ? this.analytics.sessionVotes.filter(v => v.id === item.id && v.action === 'pass').length : 0;
-    const totalScore = (item.likes || 0) + localLikes + ((item.superlikes || 0) + localSuper) * 3;
+    const localLikes = item._localLikes !== undefined ? item._localLikes : ((item.likes || 0) + (this.analytics ? this.analytics.sessionVotes.filter(v => v.id === item.id && v.action === 'like').length : 0));
+    const localSuper = item._localSuper !== undefined ? item._localSuper : ((item.superlikes || 0) + (this.analytics ? this.analytics.sessionVotes.filter(v => v.id === item.id && v.action === 'superlike').length : 0));
+    const localPass = item._localPass !== undefined ? item._localPass : ((item.passes || 0) + (this.analytics ? this.analytics.sessionVotes.filter(v => v.id === item.id && v.action === 'pass').length : 0));
+    const totalScore = item._calculatedScore !== undefined ? item._calculatedScore : (localLikes + (localSuper * 3));
 
     card.innerHTML = `
       <span class="card-tag ${badgeClass}">[ ${cat.toUpperCase()} ]</span>
@@ -529,6 +602,20 @@ class SwiperApp {
      ========================================================================== */
   async syncCuratedCatalog() {
     try {
+      // 1. Sync Active Round
+      const roundsRes = await fetch('api/rounds.php?t=' + Date.now(), { cache: 'no-store' });
+      if (roundsRes.ok) {
+        const roundsData = await roundsRes.json();
+        if (roundsData.status === 'success' && roundsData.activeRound) {
+          const badgeEl = document.getElementById('headerRoundBadge');
+          if (badgeEl) {
+            badgeEl.textContent = `${roundsData.activeRound}. KOLO`;
+          }
+        }
+      }
+    } catch (e) {}
+
+    try {
       const res = await fetch('api/curate.php?t=' + Date.now(), {
         cache: 'no-store',
         headers: { 'Pragma': 'no-cache' }
@@ -579,18 +666,51 @@ class SwiperApp {
     if (btnUndo) btnUndo.addEventListener('click', () => this.cardEngine.undo());
     if (btnInfo) btnInfo.addEventListener('click', () => this.openInfoModal());
 
-    // Viral Share & Action Buttons
+    // Swiper Bottom Bar: Open Leaderboard
+    const btnOpenLeaderboard = document.getElementById('btnOpenLeaderboard');
+    if (btnOpenLeaderboard) {
+      btnOpenLeaderboard.addEventListener('click', () => this.openLeaderboardView());
+    }
+
+    // Leaderboard Action Buttons
+    const btnBackToSwiper = document.getElementById('btnBackToSwiper');
     const btnShareViral = document.getElementById('btnShareViral');
     const btnShareLeaderboard = document.getElementById('btnShareLeaderboard');
     const btnExportStory = document.getElementById('btnExportStory');
     const btnResetVotes = document.getElementById('btnResetVotes');
     const btnRestartDeck = document.getElementById('btnRestartDeck');
 
+    if (btnBackToSwiper) btnBackToSwiper.addEventListener('click', () => this.setView('swiper'));
     if (btnShareViral) btnShareViral.addEventListener('click', () => this.openShareModal());
     if (btnShareLeaderboard) btnShareLeaderboard.addEventListener('click', () => this.openShareModal());
     if (btnExportStory) btnExportStory.addEventListener('click', () => this.exportTop3Story());
     if (btnResetVotes) btnResetVotes.addEventListener('click', () => this.confirmResetVotes());
     if (btnRestartDeck) btnRestartDeck.addEventListener('click', () => this.restartDeck());
+  }
+
+  async openLeaderboardView() {
+    const swiperStage = document.getElementById('swiperStage');
+    const gridView = document.getElementById('catalogGridView');
+    const leaderboardView = document.getElementById('leaderboardView');
+    const btnSwiper = document.getElementById('viewBtnSwiper');
+    const btnGrid = document.getElementById('viewBtnGrid');
+
+    if (btnSwiper && btnGrid) {
+      btnSwiper.classList.remove('active');
+      btnGrid.classList.remove('active');
+    }
+
+    if (swiperStage) swiperStage.style.display = 'none';
+    if (gridView) gridView.style.display = 'none';
+    if (leaderboardView) {
+      leaderboardView.style.display = 'flex';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    if (this.audioHaptics) this.audioHaptics.playClick();
+
+    await this.renderTop3Fan();
+    await this.refreshLeaderboard();
   }
 
   bindModals() {
@@ -612,14 +732,55 @@ class SwiperApp {
       });
     }
 
-    // High Res Viewer Modal
+    // High Res Viewer Modal & Lightbox Controls
     const modalZoom = document.getElementById('modalZoom');
     const closeZoom = document.getElementById('closeModalZoom');
+    const btnPrev = document.getElementById('btnLightboxPrev');
+    const btnNext = document.getElementById('btnLightboxNext');
+
     if (closeZoom && modalZoom) {
-      closeZoom.addEventListener('click', () => modalZoom.classList.remove('active'));
+      closeZoom.addEventListener('click', () => this.closeHighResViewer());
       modalZoom.addEventListener('click', (e) => {
-        if (e.target === modalZoom) modalZoom.classList.remove('active');
+        if (e.target === modalZoom || e.target.classList.contains('lightbox-img-container')) {
+          this.closeHighResViewer();
+        }
       });
+    }
+
+    if (btnPrev) {
+      btnPrev.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.prevLightboxItem();
+      });
+    }
+
+    if (btnNext) {
+      btnNext.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.nextLightboxItem();
+      });
+    }
+
+    // Touch swipe support for lightbox on mobile
+    if (modalZoom) {
+      let touchStartX = 0;
+      let touchEndX = 0;
+      modalZoom.addEventListener('touchstart', (e) => {
+        if (e.touches && e.touches[0]) {
+          touchStartX = e.touches[0].clientX;
+        }
+      }, { passive: true });
+
+      modalZoom.addEventListener('touchend', (e) => {
+        if (e.changedTouches && e.changedTouches[0]) {
+          touchEndX = e.changedTouches[0].clientX;
+          const diff = touchEndX - touchStartX;
+          if (Math.abs(diff) > 40) {
+            if (diff > 0) this.prevLightboxItem();
+            else this.nextLightboxItem();
+          }
+        }
+      }, { passive: true });
     }
 
     // Share Modal
@@ -648,8 +809,30 @@ class SwiperApp {
 
   bindKeyboardShortcuts() {
     document.addEventListener('keydown', (e) => {
+      const modalZoom = document.getElementById('modalZoom');
+      const isLightboxActive = modalZoom && modalZoom.classList.contains('active');
+
+      // Lightbox Gallery Arrow Navigation
+      if (isLightboxActive) {
+        if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          this.prevLightboxItem();
+          return;
+        }
+        if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          this.nextLightboxItem();
+          return;
+        }
+        if (e.key === 'Escape') {
+          e.preventDefault();
+          this.closeHighResViewer();
+          return;
+        }
+      }
+
       // ⌘K or / to focus search
-      if ((e.metaKey && e.key === 'k') || (e.ctrlKey && e.key === 'k') || (e.key === '/' && !/^(INPUT|TEXTAREA)$/.test(e.target.tagName))) {
+      if ((e.metaKey && e.key === 'k') || (e.ctrlKey && e.key === 'k') || (e.key === '/' && !/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName))) {
         e.preventDefault();
         this.setView('grid');
         const input = document.getElementById('gridSearchInput');
@@ -665,12 +848,12 @@ class SwiperApp {
       }
 
       // T to toggle theme (if not inside an input)
-      if ((e.key === 't' || e.key === 'T') && !/^(INPUT|TEXTAREA)$/.test(e.target.tagName)) {
+      if ((e.key === 't' || e.key === 'T') && !/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) {
         this.toggleTheme();
       }
 
       // V to toggle view
-      if ((e.key === 'v' || e.key === 'V') && !/^(INPUT|TEXTAREA)$/.test(e.target.tagName)) {
+      if ((e.key === 'v' || e.key === 'V') && !/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) {
         this.setView(this.currentView === 'swiper' ? 'grid' : 'swiper');
       }
     });
@@ -774,7 +957,7 @@ class SwiperApp {
   }
 
   /* ==========================================================================
-     TOP 3 FAN & LEADERBOARD RENDERING
+     TOP 3 FAN & LEADERBOARD RENDERING (BIG CARDS, ZERO PADDING)
      ========================================================================== */
   async renderTop3Fan() {
     const fanContainer = document.getElementById('top3CardsFan');
@@ -797,24 +980,24 @@ class SwiperApp {
 
     // Card 2 (Left): -20deg, middle height
     if (rank2) {
-      const card2El = this.createFanCardElement(rank2, 2, 'fan-rank-2', '★ #2 MJESTO');
+      const card2El = this.createFanCardElement(rank2, 2, 'fan-rank-2', '★ #2 MJESTO', topRanked);
       fanContainer.appendChild(card2El);
     }
 
     // Card 1 (Center): 2deg, HIGHEST height
     if (rank1) {
-      const card1El = this.createFanCardElement(rank1, 1, 'fan-rank-1', '👑 #1 FAVORIT');
+      const card1El = this.createFanCardElement(rank1, 1, 'fan-rank-1', '👑 #1 FAVORIT', topRanked);
       fanContainer.appendChild(card1El);
     }
 
     // Card 3 (Right): 23deg, LOWEST height
     if (rank3) {
-      const card3El = this.createFanCardElement(rank3, 3, 'fan-rank-3', '★ #3 MJESTO');
+      const card3El = this.createFanCardElement(rank3, 3, 'fan-rank-3', '★ #3 MJESTO', topRanked);
       fanContainer.appendChild(card3El);
     }
   }
 
-  createFanCardElement(item, rankNum, modifierClass, badgeText) {
+  createFanCardElement(item, rankNum, modifierClass, badgeText, activeList = null) {
     const card = document.createElement('div');
     card.className = `fan-card ${modifierClass}`;
     card.title = `Klikni za puni 2K prikaz: ${item.title}`;
@@ -836,7 +1019,7 @@ class SwiperApp {
     `;
 
     card.addEventListener('click', () => {
-      this.openHighResViewer(item);
+      this.openHighResViewer(item, activeList);
     });
 
     return card;
@@ -850,6 +1033,27 @@ class SwiperApp {
 
     let items = stats.topRanked || [];
 
+    // Fallback or merge with catalog if no backend votes yet
+    if (!items.length) {
+      items = [...this.catalog].map(it => {
+        const localLikes = this.analytics ? this.analytics.sessionVotes.filter(v => v.id === it.id && v.action === 'like').length : 0;
+        const localSuper = this.analytics ? this.analytics.sessionVotes.filter(v => v.id === it.id && v.action === 'superlike').length : 0;
+        const localPass = this.analytics ? this.analytics.sessionVotes.filter(v => v.id === it.id && v.action === 'pass').length : 0;
+        const total = localLikes + localSuper + localPass;
+        const score = (it.likes || 0) + localLikes + (((it.superlikes || 0) + localSuper) * 3);
+        return {
+          ...it,
+          likes: (it.likes || 0) + localLikes,
+          superlikes: (it.superlikes || 0) + localSuper,
+          passes: (it.passes || 0) + localPass,
+          score: score,
+          totalVotes: total,
+          approvalRate: total > 0 ? Math.round(((localLikes + localSuper) / total) * 100) : 0
+        };
+      });
+      items.sort((a, b) => b.score - a.score);
+    }
+
     if (totalVotesLabel) {
       totalVotesLabel.textContent = `GLASOVA: ${(stats.totalVotes || items.length).toLocaleString()}`;
     }
@@ -858,7 +1062,7 @@ class SwiperApp {
 
     if (!items.length) {
       listEl.innerHTML = `
-        <div style="text-align:center; padding: 2.5rem 1.5rem; color: var(--text-muted);">
+        <div style="grid-column: 1 / -1; text-align:center; padding: 2.5rem 1.5rem; color: var(--text-muted);">
           <div style="font-size: 1.8rem; margin-bottom: 0.5rem;">⚔️</div>
           <p style="font-family:var(--font-hero); font-weight: 800; color: var(--accent-gold); margin-bottom: 4px;">GLASANJE JE UPRAVO OTVORENO</p>
           <p style="font-size: 0.88rem;">Glasaj za motive u špilu ili mreži za ulazak na rang listu!</p>
@@ -869,29 +1073,48 @@ class SwiperApp {
 
     items.forEach((it, idx) => {
       const optSrc = this.resolveImageUrl(it);
-      const rankItem = document.createElement('div');
-      rankItem.className = 'leaderboard-item';
-      rankItem.title = `Klikni za 2K prikaz: ${it.title}`;
+      const rank = idx + 1;
+      const rankBadgeClass = rank === 1 ? 'rank-badge-1' : rank === 2 ? 'rank-badge-2' : rank === 3 ? 'rank-badge-3' : 'rank-badge-other';
+      const rankText = rank === 1 ? '👑 #1' : rank === 2 ? '★ #2' : rank === 3 ? '★ #3' : `#${rank}`;
+      const cat = (it.category || 'ARTWEAR').toUpperCase();
+      const score = it.score !== undefined ? it.score : ((it.likes || 0) + ((it.superlikes || 0) * 3));
+      const likes = it.likes || 0;
+      const superlikes = it.superlikes || 0;
+      const passes = it.passes || 0;
 
-      rankItem.innerHTML = `
-        <div class="item-rank-pill">#${idx + 1}</div>
-        <div class="item-thumb-box">
-          <img src="${optSrc}" alt="${it.title}" loading="lazy">
+      const card = document.createElement('article');
+      card.className = 'leaderboard-card';
+      card.dataset.id = it.id;
+      card.title = `Klikni za puni 2K prikaz: ${it.title}`;
+
+      card.innerHTML = `
+        <span class="rank-floating-badge ${rankBadgeClass}">${rankText}</span>
+        <span class="leaderboard-cat-tag">${cat}</span>
+
+        <div class="leaderboard-card-img-wrap">
+          <img src="${optSrc}" alt="${it.title}" class="leaderboard-card-img" loading="${idx < 8 ? 'eager' : 'lazy'}">
+          <div class="scanline-overlay"></div>
         </div>
-        <div class="item-details">
-          <h4 class="item-title">${it.title}</h4>
-          <span class="item-cat-sub">${(it.category || 'ARTWEAR').toUpperCase()} SERIES · cCc</span>
-        </div>
-        <div class="item-stats-right">
-          <span class="item-score-badge">${(it.score || 0).toLocaleString()} PTS</span>
+
+        <div class="leaderboard-card-info">
+          <h3 class="leaderboard-card-title">${it.title}</h3>
+          
+          <div class="leaderboard-stats-row">
+            <span class="leaderboard-score-pill">★ ${score.toLocaleString()} BODOVA</span>
+            <div class="leaderboard-votes-breakdown">
+              <span style="color:var(--accent-green); font-weight:800;" title="Lajkovi">♥ ${likes}</span>
+              <span style="color:var(--accent-gold); font-weight:800;" title="Superlike">★ ${superlikes}</span>
+              <span style="color:var(--text-muted);" title="Preskočeno">✕ ${passes}</span>
+            </div>
+          </div>
         </div>
       `;
 
-      rankItem.addEventListener('click', () => {
-        this.openHighResViewer(it);
+      card.addEventListener('click', () => {
+        this.openHighResViewer(it, items);
       });
 
-      listEl.appendChild(rankItem);
+      listEl.appendChild(card);
     });
   }
 
@@ -919,14 +1142,109 @@ class SwiperApp {
     if (modalInfo) modalInfo.classList.add('active');
   }
 
-  openHighResViewer(itemOrSrc) {
+  /* ==========================================================================
+     LIGHTBOX 2K GALLERY VIEWER WITH ARROW KEYS NAVIGATION
+     ========================================================================== */
+  openHighResViewer(itemOrSrc, customList = null) {
+    // 1. Establish the active gallery array
+    if (Array.isArray(customList) && customList.length > 0) {
+      this.activeLightboxList = customList;
+    } else if (this.currentView === 'grid' && this.currentFilteredGridItems.length > 0) {
+      this.activeLightboxList = this.currentFilteredGridItems;
+    } else {
+      this.activeLightboxList = this.catalog;
+    }
+
+    // 2. Find target item index
+    let targetIndex = 0;
+    if (typeof itemOrSrc === 'object' && itemOrSrc !== null) {
+      const foundIdx = this.activeLightboxList.findIndex(it => 
+        (itemOrSrc.id && it.id === itemOrSrc.id) ||
+        (itemOrSrc.slug && it.slug === itemOrSrc.slug) ||
+        (itemOrSrc.title && it.title === itemOrSrc.title)
+      );
+      if (foundIdx !== -1) targetIndex = foundIdx;
+    } else if (typeof itemOrSrc === 'string') {
+      const foundIdx = this.activeLightboxList.findIndex(it => {
+        const resolved = this.resolveImageUrl(it);
+        return resolved === itemOrSrc || it.image === itemOrSrc;
+      });
+      if (foundIdx !== -1) targetIndex = foundIdx;
+    }
+
+    this.lightboxCurrentIndex = targetIndex;
+    this.renderLightboxItem();
+
     const modalZoom = document.getElementById('modalZoom');
-    const zoomImg = document.getElementById('zoomImage');
-    if (zoomImg && modalZoom) {
-      zoomImg.src = this.resolveImageUrl(itemOrSrc);
+    if (modalZoom) {
       modalZoom.classList.add('active');
     }
   }
+
+  renderLightboxItem() {
+    const modalZoom = document.getElementById('modalZoom');
+    const zoomImg = document.getElementById('zoomImage');
+    const zoomTitle = document.getElementById('zoomTitle');
+    const zoomCat = document.getElementById('zoomCategory');
+    const zoomId = document.getElementById('zoomId');
+    const zoomPoints = document.getElementById('zoomPoints');
+    const zoomCounter = document.getElementById('zoomCounter');
+
+    if (!modalZoom || !zoomImg) return;
+
+    const currentItem = this.activeLightboxList[this.lightboxCurrentIndex] || this.currentItem || this.catalog[0];
+    if (!currentItem) return;
+
+    zoomImg.src = this.resolveImageUrl(currentItem);
+    if (zoomTitle) zoomTitle.textContent = currentItem.title || 'Motiv';
+    if (zoomCat) zoomCat.textContent = (currentItem.category || 'ARTWEAR').toUpperCase();
+    if (zoomId) zoomId.textContent = currentItem.id ? `#${currentItem.id}` : '';
+
+    const localLikes = this.analytics ? this.analytics.sessionVotes.filter(v => v.id === currentItem.id && v.action === 'like').length : 0;
+    const localSuper = this.analytics ? this.analytics.sessionVotes.filter(v => v.id === currentItem.id && v.action === 'superlike').length : 0;
+    const scoreVal = currentItem.score !== undefined ? currentItem.score : ((currentItem.likes || 0) + localLikes + (((currentItem.superlikes || 0) + localSuper) * 3));
+
+    if (zoomPoints) {
+      zoomPoints.textContent = `★ ${scoreVal} PTS`;
+      zoomPoints.style.display = 'inline-block';
+    }
+
+    if (zoomCounter) {
+      zoomCounter.textContent = `${this.lightboxCurrentIndex + 1} / ${this.activeLightboxList.length}`;
+    }
+
+    // Preload next and previous images
+    if (this.activeLightboxList.length > 1) {
+      const nextIdx = (this.lightboxCurrentIndex + 1) % this.activeLightboxList.length;
+      const prevIdx = (this.lightboxCurrentIndex - 1 + this.activeLightboxList.length) % this.activeLightboxList.length;
+      const preloadNext = new Image();
+      preloadNext.src = this.resolveImageUrl(this.activeLightboxList[nextIdx]);
+      const preloadPrev = new Image();
+      preloadPrev.src = this.resolveImageUrl(this.activeLightboxList[prevIdx]);
+    }
+  }
+
+  nextLightboxItem() {
+    if (!this.activeLightboxList.length) return;
+    this.lightboxCurrentIndex = (this.lightboxCurrentIndex + 1) % this.activeLightboxList.length;
+    this.renderLightboxItem();
+    if (this.audioHaptics) this.audioHaptics.playClick();
+  }
+
+  prevLightboxItem() {
+    if (!this.activeLightboxList.length) return;
+    this.lightboxCurrentIndex = (this.lightboxCurrentIndex - 1 + this.activeLightboxList.length) % this.activeLightboxList.length;
+    this.renderLightboxItem();
+    if (this.audioHaptics) this.audioHaptics.playClick();
+  }
+
+  closeHighResViewer() {
+    const modalZoom = document.getElementById('modalZoom');
+    if (modalZoom) {
+      modalZoom.classList.remove('active');
+    }
+  }
+
   openShareModal() {
     const modalShare = document.getElementById('modalShare');
     if (modalShare) {

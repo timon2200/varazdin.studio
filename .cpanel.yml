@@ -2,4 +2,6 @@
 deployment:
   tasks:
     - export DEPLOYPATH=$HOME/public_html/
+    - if [ -d "$DEPLOYPATH/tajno-glasanje/api/data" ]; then /bin/mkdir -p /tmp/tajno_glasanje_data_backup && /bin/cp -rf "$DEPLOYPATH/tajno-glasanje/api/data/"* /tmp/tajno_glasanje_data_backup/; fi
     - /bin/cp -R website/* $DEPLOYPATH
+    - if [ -d /tmp/tajno_glasanje_data_backup ]; then /bin/cp -rf /tmp/tajno_glasanje_data_backup/* "$DEPLOYPATH/tajno-glasanje/api/data/" && /bin/rm -rf /tmp/tajno_glasanje_data_backup; fi

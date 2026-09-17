@@ -75,8 +75,9 @@
       </div>
 
       <div class="header-right">
-        <!-- Telemetry Votes Counter -->
+        <!-- Telemetry Votes Counter & Round Badge -->
         <div class="telemetry-counter">
+          <span id="headerRoundBadge" style="font-family:'JetBrains Mono', monospace; font-size:0.68rem; font-weight:800; color:var(--accent-gold-bright); background:var(--accent-gold-bg); border:1px solid var(--accent-gold-border); padding:2px 6px; border-radius:3px; letter-spacing:0.04em;">1. KOLO</span>
           <span class="live-dot" aria-hidden="true"></span>
           <span>GLASOVA: <strong id="headerVoteCount">0</strong></span>
         </div>
@@ -189,6 +190,16 @@
 
         </div>
 
+        <!-- Bottom Swiper Bar: Quick Leaderboard Access -->
+        <div class="swiper-bottom-bar">
+          <button id="btnOpenLeaderboard" class="btn-check-leaderboard" title="Pogledaj trenutne rezultate i poredak uživo">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+            <span>🏆 POGLEDAJ RANG LISTU UŽIVO</span>
+          </button>
+        </div>
+
       </section>
 
       <!-- STAGE 2: Ponude Grid View (Mreža / Katalog) -->
@@ -224,6 +235,26 @@
             <button class="cat-pill" data-cat="Favorites">★ FAVORITI <span class="cat-badge" id="gridBadgeFavorites">0</span></button>
           </nav>
 
+          <!-- Sort & Vote Filter Controls Row -->
+          <div class="grid-controls-row">
+            <div class="sort-control-group">
+              <label for="gridSortSelect" class="sort-label">POREDAJ PO:</label>
+              <select id="gridSortSelect" class="grid-sort-select">
+                <option value="default">⚡ ZADANI REDOSLIJED</option>
+                <option value="score-desc">🏆 NAJVIŠE BODOVA (SKOR)</option>
+                <option value="likes-desc">♥ NAJVIŠE LAJKOVA</option>
+                <option value="super-desc">★ NAJVIŠE SUPERLIKE</option>
+                <option value="votes-desc">📊 UKUPNO GLASOVA</option>
+                <option value="title-asc">🔤 NAZIV MOTIVA (A-Z)</option>
+              </select>
+            </div>
+            <div class="vote-filter-pills" id="gridVoteFilterPills">
+              <button class="vote-pill active" data-votefilter="all">SVI</button>
+              <button class="vote-pill" data-votefilter="voted">S GLASOVIMA (>0)</button>
+              <button class="vote-pill" data-votefilter="top10">TOP 10 VODEĆIH</button>
+            </div>
+          </div>
+
           <!-- Search Meta Info Row -->
           <div class="search-meta-row">
             <span>PRIKAZANO: <strong id="gridResultCount" class="search-count-badge">0</strong> MOTIVA</span>
@@ -244,10 +275,10 @@
         <!-- Hero Header -->
         <div class="leaderboard-hero-header">
           <div class="completion-badge">
-            <span class="live-dot" aria-hidden="true"></span> ŠPIL JE DOVRŠEN
+            <span class="live-dot" aria-hidden="true"></span> RANG LISTA UŽIVO
           </div>
           <h1 class="leaderboard-headline">REZULTATI GLASANJA & RANG LISTA</h1>
-          <p class="leaderboard-subtitle">Ovo su pobjednički motivi s najviše glasova zajednice.</p>
+          <p class="leaderboard-subtitle">Ovo su pobjednički motivi s najviše glasova i bodova zajednice.</p>
         </div>
 
         <!-- Featured Top 3 Interactive Fan Section -->
@@ -260,6 +291,14 @@
 
         <!-- Action Buttons Bar -->
         <div class="leaderboard-action-row">
+          <button id="btnBackToSwiper" class="share-btn share-btn-gold">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            ← NATRAG NA ŠPIL
+          </button>
+
           <button id="btnExportStory" class="share-btn share-btn-primary">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
@@ -269,7 +308,7 @@
             MOJ TOP 3 KARTICA ZA STORY
           </button>
           
-          <button id="btnRestartDeck" class="share-btn share-btn-gold">
+          <button id="btnRestartDeck" class="share-btn">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="1 4 1 10 7 10"></polyline>
               <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
@@ -299,15 +338,20 @@
           </button>
         </div>
 
-        <!-- Full Ranked Leaderboard List with Big Images -->
+        <!-- Full Ranked Leaderboard Cards Grid (Big Images, Zero Padding) -->
         <div class="leaderboard-full-card">
           <div class="leaderboard-full-header">
-            <span class="section-label">POREDAK MAJICA UŽIVO</span>
-            <span id="leaderboardTotalVotesLabel" class="hud-tag">GLASOVA: 0</span>
+            <div class="leaderboard-header-left">
+              <span class="section-label">POREDAK MAJICA UŽIVO</span>
+              <span class="section-sub-label">SORTIRANO PO UKUPNIM BODOVIMA</span>
+            </div>
+            <div class="leaderboard-header-right">
+              <span id="leaderboardTotalVotesLabel" class="hud-tag">GLASOVA: 0</span>
+            </div>
           </div>
 
-          <div id="leaderboardList" class="leaderboard-list">
-            <!-- Dynamically populated with big thumbnails & progress bars -->
+          <div id="leaderboardList" class="leaderboard-cards-grid">
+            <!-- Dynamically populated with big card thumbnails without margins/padding & telemetry -->
           </div>
 
           <div class="leaderboard-footer">
@@ -345,12 +389,45 @@
     </div>
   </div>
 
-  <!-- Modal: High-Res 2K Zoom Viewer -->
+  <!-- Modal: High-Res 2K Zoom Lightbox with Gallery Arrow Navigation -->
   <div id="modalZoom" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Puna rezolucija">
-    <div class="modal-content" style="max-width:850px; max-height:92vh; display:flex; flex-direction:column; align-items:center; padding:20px;">
-      <button id="closeModalZoom" class="modal-close" aria-label="Zatvori">✕</button>
-      <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; overflow:auto;">
-        <img id="zoomImage" src="" alt="Puna 2K rezolucija" style="max-width:100%; max-height:78vh; object-fit:contain; border-radius:var(--radius-sm);">
+    <div class="modal-content modal-zoom-content">
+      <!-- Lightbox Header -->
+      <div class="modal-zoom-header">
+        <div class="modal-zoom-header-info">
+          <span id="zoomCategory" class="card-category-tag" style="position:static;">ARTWEAR</span>
+          <h3 id="zoomTitle" class="modal-zoom-title">Naziv Majice</h3>
+          <span id="zoomId" class="card-id-tag">#sv-001</span>
+          <span id="zoomPoints" class="zoom-points-badge">0 PTS</span>
+        </div>
+        <div class="modal-zoom-header-actions">
+          <span id="zoomCounter" class="lightbox-counter">1 / 1</span>
+          <button id="closeModalZoom" class="modal-close" aria-label="Zatvori">&times;</button>
+        </div>
+      </div>
+
+      <!-- Lightbox Image Body with Arrow Navigation -->
+      <div class="modal-zoom-body">
+        <button id="btnLightboxPrev" class="lightbox-nav-btn lightbox-prev" title="Prethodna slika (Lijeva strelica ←)" aria-label="Prethodna slika">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+
+        <div class="lightbox-img-container">
+          <img id="zoomImage" src="" alt="Puna 2K rezolucija" class="modal-zoom-img">
+        </div>
+
+        <button id="btnLightboxNext" class="lightbox-nav-btn lightbox-next" title="Sljedeća slika (Desna strelica →)" aria-label="Sljedeća slika">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Lightbox Footer Hint -->
+      <div class="modal-zoom-footer">
+        <span class="lightbox-hint">KORISTI STRELICE TIPKOVNICE (← / →) ZA PREGLED GALERIJE · ESC ZA IZLAZ</span>
       </div>
     </div>
   </div>
