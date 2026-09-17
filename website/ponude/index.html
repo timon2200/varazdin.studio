@@ -17,7 +17,7 @@
 
   <style>
     /* ==========================================================================
-       MERIDIAN 16 BOLD EDITORIAL CANVAS DESIGN SYSTEM
+       MERIDIAN 16 EXACT DESIGN SYSTEM
        ========================================================================== */
     :root {
       --bg-canvas: #f4efe4;
@@ -39,6 +39,7 @@
       --accent-gold: #c9933b;
       --accent-gold-bg: #faeed4;
       
+      --font-display: 'Plus Jakarta Sans', sans-serif;
       --font-hero: 'Plus Jakarta Sans', sans-serif;
       --font-sans: 'Plus Jakarta Sans', sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
@@ -117,69 +118,101 @@
       z-index: 2;
     }
 
+    /* ==========================================================================
+       MERIDIAN 16 EXACT DECK-HEADER
+       ========================================================================== */
+    header.deck-header {
+      height: 56px;
+      background: rgba(244, 239, 228, 0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 2px solid var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      flex-shrink: 0;
+    }
+
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.05rem;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+
+    .brand-mark .tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 800;
+      background: var(--text-primary);
+      color: #ffffff;
+      padding: 3px 10px;
+      border-radius: 3px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .deck-controls-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-action {
+      background: var(--bg-card);
+      border: 2px solid var(--text-primary);
+      color: var(--text-primary);
+      padding: 6px 14px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      border-radius: 4px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s var(--transition-smooth);
+      box-shadow: 2px 2px 0px var(--text-primary);
+      text-decoration: none;
+    }
+
+    .btn-action:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 3.5px 3.5px 0px var(--text-primary);
+      background: var(--accent-green-bg);
+    }
+
+    .btn-action:active {
+      transform: translate(1px, 1px);
+      box-shadow: 1px 1px 0px var(--text-primary);
+    }
+
+    /* ==========================================================================
+       MAIN DASHBOARD CONTAINER & HERO
+       ========================================================================== */
     .dashboard-wrapper {
       position: relative;
       z-index: 3;
       max-width: 1380px;
       margin: 0 auto;
-      padding: 2.25rem 2.5rem 5rem 2.5rem;
+      padding: 2.5rem 2.5rem 5rem 2.5rem;
     }
 
-    /* ==========================================================================
-       TOP META BAR (Meridian 16 .slide-meta-top style)
-       ========================================================================== */
-    .slide-meta-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--text-muted);
-      border-bottom: 2px solid var(--text-primary);
-      padding-bottom: 0.55rem;
-      margin-bottom: 1.75rem;
-    }
-
-    .slide-meta-top .category {
-      color: var(--accent-green);
-      background: var(--accent-green-bg);
-      padding: 3px 10px;
-      border-radius: 3px;
-      border: 1px solid var(--accent-green-border);
-    }
-
-    .btn-meta-audio {
-      background: transparent;
-      border: 1.5px solid var(--text-primary);
-      border-radius: 3px;
-      padding: 2px 8px;
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      font-weight: 800;
-      color: var(--text-primary);
-      cursor: pointer;
-      box-shadow: 2px 2px 0px var(--text-primary);
-      transition: all 0.15s;
-    }
-
-    .btn-meta-audio:hover {
-      background: var(--accent-green);
-      color: #f4efe4;
-    }
-
-    /* ==========================================================================
-       HERO TITLES & TYPOGRAPHY
-       ========================================================================== */
     .quote-title {
       font-family: var(--font-hero);
-      font-size: clamp(2rem, 3.8vw, 3.4rem);
+      font-size: clamp(2.1rem, 4vw, 3.6rem);
       font-weight: 900;
       line-height: 0.98;
       letter-spacing: -0.035em;
-      margin-bottom: 0.6rem;
+      margin-bottom: 1.75rem;
       text-transform: uppercase;
     }
 
@@ -191,29 +224,19 @@
       letter-spacing: -0.02em;
     }
 
-    .punchy-narration {
-      font-family: var(--font-sans);
-      font-size: clamp(0.95rem, 1.18vw, 1.08rem);
-      font-weight: 500;
-      color: var(--text-secondary);
-      line-height: 1.45;
-      margin-bottom: 1.75rem;
-      max-width: 820px;
-    }
-
     /* ==========================================================================
-       BOLD SEARCH BOX (Meridian 16 Box with Solid Shadow)
+       MERIDIAN 16 BOLD SEARCH BOX
        ========================================================================== */
     .meridian-search-card {
       background: var(--bg-card);
       border: 2px solid var(--text-primary);
       border-radius: 6px;
-      padding: 1.25rem 1.4rem;
+      padding: 1.15rem 1.35rem;
       box-shadow: var(--shadow-bold-md);
-      margin-bottom: 2.5rem;
+      margin-bottom: 2.75rem;
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      gap: 0.65rem;
     }
 
     .search-input-box {
@@ -235,7 +258,7 @@
       background: var(--bg-card-subtle);
       border: 2px solid var(--text-primary);
       border-radius: var(--radius-sm);
-      padding: 0.85rem 2.8rem 0.85rem 3rem;
+      padding: 0.85rem 2.8rem 0.85rem 3.1rem;
       font-family: var(--font-sans);
       font-size: 1rem;
       font-weight: 700;
@@ -378,7 +401,6 @@
     .badge-gold { background: var(--accent-gold); color: #111518; }
     .badge-green { background: var(--accent-green-bg); color: var(--accent-green); }
 
-    /* CanvasUI Bayer Dither dynamic layer */
     .dither-canvas-layer {
       position: absolute;
       top: 0;
@@ -477,9 +499,7 @@
       overflow: hidden;
     }
 
-    /* ==========================================================================
-       PRICE BOX & HOVER TOOLTIP FOR MULTI-OPTIONS
-       ========================================================================== */
+    /* Price Box with Hover Tooltip */
     .card-pricing-box {
       position: relative;
       background: var(--bg-card-subtle);
@@ -518,7 +538,6 @@
       color: var(--accent-green);
     }
 
-    /* Floating Tooltip */
     .pricing-tooltip {
       position: absolute;
       bottom: calc(100% + 10px);
@@ -569,9 +588,7 @@
       font-weight: 800;
     }
 
-    /* ==========================================================================
-       ACTION BUTTONS
-       ========================================================================== */
+    /* Action Buttons */
     .card-actions-grid {
       display: grid;
       grid-template-columns: 1fr auto 42px 42px;
@@ -636,9 +653,7 @@
       color: var(--accent-green);
     }
 
-    /* ==========================================================================
-       DYNAMIC QR CODE MODAL
-       ========================================================================== */
+    /* QR Code Modal */
     .dashboard-modal-backdrop {
       position: fixed;
       inset: 0;
@@ -746,13 +761,11 @@
     }
 
     @media (max-width: 768px) {
+      header.deck-header {
+        padding: 0 1.25rem;
+      }
       .dashboard-wrapper {
         padding: 1.5rem 1.15rem 4rem 1.15rem;
-      }
-      .slide-meta-top {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
       }
       .decks-grid-view {
         grid-template-columns: 1fr;
@@ -774,24 +787,33 @@
   <!-- Ambient CanvasUI particles -->
   <canvas id="canvasUiParticles"></canvas>
 
-  <div class="dashboard-wrapper">
-    
-    <!-- Top Meta Header (Meridian 16 style) -->
-    <div class="slide-meta-top">
-      <span class="category">Studio Varaždin • Web Deck Engine</span>
-      <span>8 SLUŽBENIH WEB PONUDA // 2026</span>
-      <button class="btn-meta-audio" id="btnAudioToggle" onclick="toggleAudio()" title="Zvučna haptika">
-        <span id="audioStatusText">AUDIO [ON]</span>
+  <!-- Meridian 16 Top Navigation Header -->
+  <header class="deck-header">
+    <a href="https://varazdin.studio" class="brand-mark">
+      <span>STUDIO VARAŽDIN</span>
+      <span class="tag">WEB PONUDE // 2026</span>
+    </a>
+
+    <div class="deck-controls-top">
+      <button class="btn-action btn-sound-toggle" id="btnSound" onclick="toggleSound()" title="Zvučni efekti">
+        <span id="soundIconOff" style="display:none;">🔇</span>
+        <span id="soundIconOn" style="display:inline-block;">🔊</span>
+        <span id="soundLabel">Sound: ON</span>
+      </button>
+
+      <button class="btn-action btn-fullscreen" onclick="document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen()" title="Puni zaslon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+        <span>Fullscreen</span>
       </button>
     </div>
+  </header>
 
-    <!-- Bold Quote Title & Subtitle -->
+  <div class="dashboard-wrapper">
+    
+    <!-- Bold Quote Title (Meridian 16 style) -->
     <h1 class="quote-title">
       KATALOG WEB PONUDA <span class="outline-text">& PITCH DECKOVA</span>
     </h1>
-    <p class="punchy-narration">
-      Sve službene interaktivne ponude i kinematografski pitch deckovi na jednome mjestu. Kliknite na karticu ili naslov za otvaranje prezentacije.
-    </p>
 
     <!-- Meridian 16 Bold Search Box -->
     <section class="meridian-search-card">
@@ -810,7 +832,7 @@
     <main class="decks-grid-view" id="decksGridView">
       
         <article class="deck-card video-card-crazy signature-card" data-slug="meridian16" data-folder="Meridian16_Prezentacija" data-client="meridian 16" data-title="meridian 16 — cinematic film pitch | studio varaždin" data-price="17000">
-          <!-- Direct click to open in new tab -->
+          <!-- Direct click to open deck in new tab -->
           <a href="https://varazdin.studio/meridian16/" target="_blank" class="video-thumb-crazy canvas-dither-target" title="Otvori Meridian 16 — Cinematic Film Pitch | Studio Varaždin">
             <img src="assets/thumbnails/thumb_meridian16.jpg" alt="Meridian 16 — Cinematic Film Pitch | Studio Varaždin" class="card-thumb" loading="lazy" onerror="this.src='../Meridian16_Prezentacija/slike/meridian_fpv_interior_flow.jpg'">
             <div class="play-btn-crazy">
@@ -826,14 +848,14 @@
               <span class="card-sector-pill">Industrija & Parkovi</span>
             </div>
 
-            <!-- Title opens deck in new tab -->
+            <!-- Direct Title Click to Open in New Tab -->
             <a href="https://varazdin.studio/meridian16/" target="_blank" class="card-title-link">
               <h3 class="card-title" title="Meridian 16 — Cinematic Film Pitch | Studio Varaždin">Meridian 16 — Cinematic Film Pitch | Studio Varaždin</h3>
             </a>
             
             <p class="card-tagline">1.000.000 m² vodećeg poslovno-logističkog parka. Master 4K film i modularne vertikale za društvene mreže.</p>
 
-            <!-- Price Box with Hover Tooltip for Multi-Options -->
+            <!-- Price Box with Hover Tooltip for Multiple Options -->
             <div class="card-pricing-box" title="Detalji opcija: Opcija A: € 13.000 · Opcija B Signature: € 17.000">
               <div class="pricing-amount-wrapper">
                 <span class="pricing-amount">€ 17,000</span>
@@ -871,7 +893,7 @@
         </article>
         
         <article class="deck-card video-card-crazy" data-slug="komunalni-projekt" data-folder="Komunalni_Prezentacija" data-client="grad varaždin & čistoća d.o.o." data-title="7 kilograma — edukativni video sustav | grad varaždin & čistoća d.o.o." data-price="4800">
-          <!-- Direct click to open in new tab -->
+          <!-- Direct click to open deck in new tab -->
           <a href="https://varazdin.studio/komunalni-projekt/" target="_blank" class="video-thumb-crazy canvas-dither-target" title="Otvori 7 KILOGRAMA — Edukativni Video Sustav | Grad Varaždin & Čistoća d.o.o.">
             <img src="assets/thumbnails/thumb_komunalni-projekt.jpg" alt="7 KILOGRAMA — Edukativni Video Sustav | Grad Varaždin & Čistoća d.o.o." class="card-thumb" loading="lazy" onerror="this.src='../Komunalni_Prezentacija/assets/01_Studio_Pad_Otpada_Hook.jpg'">
             <div class="play-btn-crazy">
@@ -887,14 +909,14 @@
               <span class="card-sector-pill">Ekologija & Javni sektor</span>
             </div>
 
-            <!-- Title opens deck in new tab -->
+            <!-- Direct Title Click to Open in New Tab -->
             <a href="https://varazdin.studio/komunalni-projekt/" target="_blank" class="card-title-link">
               <h3 class="card-title" title="7 KILOGRAMA — Edukativni Video Sustav | Grad Varaždin & Čistoća d.o.o.">7 KILOGRAMA — Edukativni Video Sustav | Grad Varaždin & Čistoća d.o.o.</h3>
             </a>
             
             <p class="card-tagline">7 kg hrane po stanovniku. Modularni video sustav za razvrstavanje otpada i novu sortirnicu.</p>
 
-            <!-- Price Box with Hover Tooltip for Multi-Options -->
+            <!-- Price Box with Hover Tooltip for Multiple Options -->
             <div class="card-pricing-box" title="Detalji opcija: Kompletan edukativni video sustav (4 epizode + reels)">
               <div class="pricing-amount-wrapper">
                 <span class="pricing-amount">4.800,00 €</span>
@@ -932,7 +954,7 @@
         </article>
         
         <article class="deck-card video-card-crazy" data-slug="cakovec" data-folder="Cakovec_Prezentacija" data-client="grad čakovec & međimurska županija" data-title="101 milijun — kronika međimurskog gradilišta" data-price="17500">
-          <!-- Direct click to open in new tab -->
+          <!-- Direct click to open deck in new tab -->
           <a href="https://varazdin.studio/cakovec/" target="_blank" class="video-thumb-crazy canvas-dither-target" title="Otvori 101 MILIJUN — Kronika međimurskog gradilišta">
             <img src="assets/thumbnails/thumb_cakovec.jpg" alt="101 MILIJUN — Kronika međimurskog gradilišta" class="card-thumb" loading="lazy" onerror="this.src='../Cakovec_Prezentacija/assets/01_cakovec_skola_fpv.jpg'">
             <div class="play-btn-crazy">
@@ -948,14 +970,14 @@
               <span class="card-sector-pill">Gradovi & Kulturna baština</span>
             </div>
 
-            <!-- Title opens deck in new tab -->
+            <!-- Direct Title Click to Open in New Tab -->
             <a href="https://varazdin.studio/cakovec/" target="_blank" class="card-title-link">
               <h3 class="card-title" title="101 MILIJUN — Kronika međimurskog gradilišta">101 MILIJUN — Kronika međimurskog gradilišta</h3>
             </a>
             
             <p class="card-tagline">101 milijun eura investicija. Kronika povijesnog zamašnjaka Čakovca kroz 4K FPV i dokumentarnu formu.</p>
 
-            <!-- Price Box with Hover Tooltip for Multi-Options -->
+            <!-- Price Box with Hover Tooltip for Multiple Options -->
             <div class="card-pricing-box" title="Detalji opcija: Opcija A: 14.000,00 € · Opcija B FPV Spektakl: 17.500,00 €">
               <div class="pricing-amount-wrapper">
                 <span class="pricing-amount">14.000,00 € — 17.500,00 €</span>
@@ -993,7 +1015,7 @@
         </article>
         
         <article class="deck-card video-card-crazy signature-card" data-slug="djurdjevac" data-folder="Djurdjevac_Prezentacija" data-client="grad đurđevac & tz đurđevac" data-title="opsada wasserburga 1552. — picokijada & novo jezero" data-price="20000">
-          <!-- Direct click to open in new tab -->
+          <!-- Direct click to open deck in new tab -->
           <a href="https://varazdin.studio/djurdjevac/" target="_blank" class="video-thumb-crazy canvas-dither-target" title="Otvori OPSADA WASSERBURGA 1552. — Picokijada & Novo jezero">
             <img src="assets/thumbnails/thumb_djurdjevac.jpg" alt="OPSADA WASSERBURGA 1552. — Picokijada & Novo jezero" class="card-thumb" loading="lazy" onerror="this.src='../Djurdjevac_Prezentacija/assets/01_djurdjevac_wasserburg_1552.jpg'">
             <div class="play-btn-crazy">
@@ -1009,14 +1031,14 @@
               <span class="card-sector-pill">Gradovi & Kulturna baština</span>
             </div>
 
-            <!-- Title opens deck in new tab -->
+            <!-- Direct Title Click to Open in New Tab -->
             <a href="https://varazdin.studio/djurdjevac/" target="_blank" class="card-title-link">
               <h3 class="card-title" title="OPSADA WASSERBURGA 1552. — Picokijada & Novo jezero">OPSADA WASSERBURGA 1552. — Picokijada & Novo jezero</h3>
             </a>
             
             <p class="card-tagline">Novo jezero Starog grada, Picokijada i Đurđevački peski. Kinematografski prikaz Wasserburga.</p>
 
-            <!-- Price Box with Hover Tooltip for Multi-Options -->
+            <!-- Price Box with Hover Tooltip for Multiple Options -->
             <div class="card-pricing-box" title="Detalji opcija: Opcija A: 16.000,00 € · Opcija B Noćni Spektakl: 20.000,00 €">
               <div class="pricing-amount-wrapper">
                 <span class="pricing-amount">16.000,00 € — 20.000,00 €</span>
@@ -1054,7 +1076,7 @@
         </article>
         
         <article class="deck-card video-card-crazy" data-slug="krapina" data-folder="Krapina_Prezentacija" data-client="krapinsko-zagorska županija & grad krapina" data-title="tri kule nad krapinčicom — filmska produkcija" data-price="16000">
-          <!-- Direct click to open in new tab -->
+          <!-- Direct click to open deck in new tab -->
           <a href="https://varazdin.studio/krapina/" target="_blank" class="video-thumb-crazy canvas-dither-target" title="Otvori TRI KULE NAD KRAPINČICOM — Filmska Produkcija">
             <img src="assets/thumbnails/thumb_krapina.jpg" alt="TRI KULE NAD KRAPINČICOM — Filmska Produkcija" class="card-thumb" loading="lazy" onerror="this.src='../Krapina_Prezentacija/assets/01_krapina_ceh_leh_meh.jpg'">
             <div class="play-btn-crazy">
@@ -1070,14 +1092,14 @@
               <span class="card-sector-pill">Gradovi & Kulturna baština</span>
             </div>
 
-            <!-- Title opens deck in new tab -->
+            <!-- Direct Title Click to Open in New Tab -->
             <a href="https://varazdin.studio/krapina/" target="_blank" class="card-title-link">
               <h3 class="card-title" title="TRI KULE NAD KRAPINČICOM — Filmska Produkcija">TRI KULE NAD KRAPINČICOM — Filmska Produkcija</h3>
             </a>
             
             <p class="card-tagline">Mit o Čehu, Lehu i Mehu, Hušnjakovo i tri utvrde. Spoj pretpovijesti i FPV kinematografije.</p>
 
-            <!-- Price Box with Hover Tooltip for Multi-Options -->
+            <!-- Price Box with Hover Tooltip for Multiple Options -->
             <div class="card-pricing-box" title="Detalji opcija: Master 4K film (7 min) + 3 vertikalna formata za muzeje">
               <div class="pricing-amount-wrapper">
                 <span class="pricing-amount">16.000,00 €</span>
@@ -1115,7 +1137,7 @@
         </article>
         
         <article class="deck-card video-card-crazy signature-card" data-slug="samobor" data-folder="Samobor_Prezentacija" data-client="grad samobor & tz samobor" data-title="vrudnik & samobor 2026 — kinematografski pitch" data-price="30000">
-          <!-- Direct click to open in new tab -->
+          <!-- Direct click to open deck in new tab -->
           <a href="https://varazdin.studio/samobor/" target="_blank" class="video-thumb-crazy canvas-dither-target" title="Otvori VRUDNIK & Samobor 2026 — Kinematografski Pitch">
             <img src="assets/thumbnails/thumb_samobor.jpg" alt="VRUDNIK & Samobor 2026 — Kinematografski Pitch" class="card-thumb" loading="lazy" onerror="this.src='../Samobor_Prezentacija/assets/01_vrudnik_rov_kokel_1540.jpg'">
             <div class="play-btn-crazy">
@@ -1131,14 +1153,14 @@
               <span class="card-sector-pill">Gradovi & Kulturna baština</span>
             </div>
 
-            <!-- Title opens deck in new tab -->
+            <!-- Direct Title Click to Open in New Tab -->
             <a href="https://varazdin.studio/samobor/" target="_blank" class="card-title-link">
               <h3 class="card-title" title="VRUDNIK & Samobor 2026 — Kinematografski Pitch">VRUDNIK & Samobor 2026 — Kinematografski Pitch</h3>
             </a>
             
             <p class="card-tagline">Živi rov saskih rudara iz 1540., Tepec i Bela IV. Kinematografski i VR postavi umjesto statičnih panoa.</p>
 
-            <!-- Price Box with Hover Tooltip for Multi-Options -->
+            <!-- Price Box with Hover Tooltip for Multiple Options -->
             <div class="card-pricing-box" title="Detalji opcija: Opcija A: 24.000,00 € · Opcija B VR MetaQuest Kiosk: 30.000,00 €">
               <div class="pricing-amount-wrapper">
                 <span class="pricing-amount">24.000,00 € — 30.000,00 €</span>
@@ -1176,7 +1198,7 @@
         </article>
         
         <article class="deck-card video-card-crazy" data-slug="ogulin" data-folder="Ogulin_Prezentacija" data-client="grad ogulin & tz ogulin" data-title="korijeni ponora — zavičaj bajki & frankopani" data-price="24000">
-          <!-- Direct click to open in new tab -->
+          <!-- Direct click to open deck in new tab -->
           <a href="https://varazdin.studio/ogulin/" target="_blank" class="video-thumb-crazy canvas-dither-target" title="Otvori KORIJENI PONORA — Zavičaj bajki & Frankopani">
             <img src="assets/thumbnails/thumb_ogulin.jpg" alt="KORIJENI PONORA — Zavičaj bajki & Frankopani" class="card-thumb" loading="lazy" onerror="this.src='../Ogulin_Prezentacija/assets/dvorac_ogulin.webp'">
             <div class="play-btn-crazy">
@@ -1192,14 +1214,14 @@
               <span class="card-sector-pill">Gradovi & Kulturna baština</span>
             </div>
 
-            <!-- Title opens deck in new tab -->
+            <!-- Direct Title Click to Open in New Tab -->
             <a href="https://varazdin.studio/ogulin/" target="_blank" class="card-title-link">
               <h3 class="card-title" title="KORIJENI PONORA — Zavičaj bajki & Frankopani">KORIJENI PONORA — Zavičaj bajki & Frankopani</h3>
             </a>
             
             <p class="card-tagline">Đulin ponor, Frankopanski kaštel i Klek. Pripovijedanje temeljeno na zavičaju bajki Ivane Brlić-Mažuranić.</p>
 
-            <!-- Price Box with Hover Tooltip for Multi-Options -->
+            <!-- Price Box with Hover Tooltip for Multiple Options -->
             <div class="card-pricing-box" title="Detalji opcija: Opcija A: 14.500,00 € · Opcija B Prozor u prošlost: 24.000,00 €">
               <div class="pricing-amount-wrapper">
                 <span class="pricing-amount">14.500,00 € — 24.000,00 €</span>
@@ -1237,7 +1259,7 @@
         </article>
         
         <article class="deck-card video-card-crazy" data-slug="kb-pogon" data-folder="Kb-pogon_Prezentacija" data-client="kb d.o.o. pogon" data-title="kb d.o.o. — industrijski video pitch" data-price="5800">
-          <!-- Direct click to open in new tab -->
+          <!-- Direct click to open deck in new tab -->
           <a href="https://varazdin.studio/kb-pogon/" target="_blank" class="video-thumb-crazy canvas-dither-target" title="Otvori KB D.O.O. — Industrijski Video Pitch">
             <img src="assets/thumbnails/thumb_kb-pogon.jpg" alt="KB D.O.O. — Industrijski Video Pitch" class="card-thumb" loading="lazy" onerror="this.src='../Kb-pogon_Prezentacija/assets/meridian_fpv_interior_flow.jpg'">
             <div class="play-btn-crazy">
@@ -1253,14 +1275,14 @@
               <span class="card-sector-pill">Industrija & Parkovi</span>
             </div>
 
-            <!-- Title opens deck in new tab -->
+            <!-- Direct Title Click to Open in New Tab -->
             <a href="https://varazdin.studio/kb-pogon/" target="_blank" class="card-title-link">
               <h3 class="card-title" title="KB D.O.O. — Industrijski Video Pitch">KB D.O.O. — Industrijski Video Pitch</h3>
             </a>
             
             <p class="card-tagline">Proizvodni pogoni, robotske ćelije i inženjerska preciznost. Autorski industrijski video i FPV prolet.</p>
 
-            <!-- Price Box with Hover Tooltip for Multi-Options -->
+            <!-- Price Box with Hover Tooltip for Multiple Options -->
             <div class="card-pricing-box" title="Detalji opcija: Industrijski video paket + FPV snimanje proizvodnje">
               <div class="pricing-amount-wrapper">
                 <span class="pricing-amount">5.800,00 €</span>
@@ -1330,7 +1352,7 @@
   <script>
     /* Web Audio Haptic Engine */
     let audioCtx = null;
-    let audioMuted = false;
+    let soundMuted = false;
 
     function initAudio() {
       if (!audioCtx) {
@@ -1340,7 +1362,7 @@
     }
 
     function playHapticClick(freq1 = 900, freq2 = 350) {
-      if (audioMuted) return;
+      if (soundMuted) return;
       initAudio();
       if (!audioCtx || audioCtx.state === 'suspended') return;
 
@@ -1364,16 +1386,23 @@
       } catch (e) {}
     }
 
-    function toggleAudio() {
+    function toggleSound() {
       initAudio();
       if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
-      audioMuted = !audioMuted;
+      soundMuted = !soundMuted;
       
-      const txt = document.getElementById('audioStatusText');
-      if (audioMuted) {
-        txt.textContent = 'AUDIO [OFF]';
+      const iconOff = document.getElementById('soundIconOff');
+      const iconOn = document.getElementById('soundIconOn');
+      const label = document.getElementById('soundLabel');
+
+      if (soundMuted) {
+        if (iconOff) iconOff.style.display = 'inline-block';
+        if (iconOn) iconOn.style.display = 'none';
+        if (label) label.textContent = 'Sound: OFF';
       } else {
-        txt.textContent = 'AUDIO [ON]';
+        if (iconOff) iconOff.style.display = 'none';
+        if (iconOn) iconOn.style.display = 'inline-block';
+        if (label) label.textContent = 'Sound: ON';
         playHapticClick(1000, 400);
       }
     }
