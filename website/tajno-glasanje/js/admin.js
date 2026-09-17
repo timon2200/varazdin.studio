@@ -6,6 +6,7 @@
 import { CATALOG_DATA as ACTIVE_CATALOG } from "./catalog-data.js";
 import { CATALOG_DATA as MASTER_CATALOG } from "./catalog-data.master.js";
 import { NoiseGrain } from "./noise-grain.js";
+import { LightboxZoomEngine } from "./lightbox-zoom.js";
 
 export class CatalogCurator {
   constructor() {
@@ -239,6 +240,35 @@ export class CatalogCurator {
     document.getElementById("btnSaveFloating")?.addEventListener("click", () => this.saveCuratedCatalog());
 
     // Modal Zoom Lightbox Listeners & Arrow Navigation
+    const zoomModal = document.getElementById("modalZoom");
+    const zoomImgContainer = document.querySelector("#modalZoom .lightbox-img-container");
+    const zoomImg = document.getElementById("zoomImage");
+    const zoomLevelTag = document.getElementById("zoomLevelTag");
+
+    if (zoomImgContainer && zoomImg) {
+      this.lightboxZoom = new LightboxZoomEngine({
+        container: zoomImgContainer,
+        image: zoomImg,
+        levelBadge: zoomLevelTag,
+        minScale: 1.0,
+        maxScale: 4.5,
+        cropScale: 2.5
+      });
+
+      document.getElementById("btnZoomIn")?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        this.lightboxZoom?.zoomIn();
+      });
+      document.getElementById("btnZoomOut")?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        this.lightboxZoom?.zoomOut();
+      });
+      document.getElementById("btnZoomReset")?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        this.lightboxZoom?.reset();
+      });
+    }
+
     document.getElementById("closeModalZoom")?.addEventListener("click", () => this.closeZoomModal());
     document.getElementById("btnAdminLightboxPrev")?.addEventListener("click", (e) => {
       e.stopPropagation();
@@ -250,7 +280,7 @@ export class CatalogCurator {
     });
 
     document.getElementById("modalZoom")?.addEventListener("click", (e) => {
-      if (e.target.id === "modalZoom" || e.target.classList.contains("lightbox-img-container") || e.target.classList.contains("modal-zoom-body")) {
+      if (e.target.id === "modalZoom") {
         this.closeZoomModal();
       }
     });
@@ -489,6 +519,10 @@ export class CatalogCurator {
     const currentItem = this.activeLightboxList[this.lightboxCurrentIndex] || this.masterCatalog[0];
     if (!currentItem) return;
 
+    if (this.lightboxZoom) {
+      this.lightboxZoom.reset(false);
+    }
+
     img.src = this.resolveImageUrl(currentItem);
     if (title) title.textContent = currentItem.title || 'Motiv';
     if (cat) cat.textContent = (currentItem.category || 'ARTWEAR').toUpperCase();
@@ -531,6 +565,9 @@ export class CatalogCurator {
     const modal = document.getElementById("modalZoom");
     if (!modal) return;
     modal.classList.remove("show");
+    if (this.lightboxZoom) {
+      this.lightboxZoom.reset(false);
+    }
     setTimeout(() => {
       if (!modal.classList.contains("show")) {
         modal.style.display = "none";

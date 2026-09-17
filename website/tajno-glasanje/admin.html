@@ -222,6 +222,12 @@
           <span id="zoomPoints" class="zoom-points-badge">0 PTS</span>
         </div>
         <div class="modal-zoom-header-actions">
+          <div class="zoom-controls-cluster" role="toolbar" aria-label="Kontrole zumiranja">
+            <button type="button" id="btnZoomOut" class="zoom-tool-btn" title="Umanji (−)" aria-label="Umanji">−</button>
+            <span id="zoomLevelTag" class="zoom-level-badge" title="Trenutna razina zumiranja">100%</span>
+            <button type="button" id="btnZoomIn" class="zoom-tool-btn" title="Povećaj (+)" aria-label="Povećaj">+</button>
+            <button type="button" id="btnZoomReset" class="zoom-tool-btn" title="Vrati 100% (⟲)" aria-label="Resetiraj zoom">⟲</button>
+          </div>
           <span id="zoomCounter" class="lightbox-counter">1 / 1</span>
           <button id="closeModalZoom" class="modal-close" aria-label="Zatvori">&times;</button>
         </div>
@@ -244,7 +250,7 @@
         </button>
       </div>
       <div class="modal-zoom-footer">
-        <span class="lightbox-hint">KORISTI STRELICE TIPKOVNICE (← / →) ZA PREGLED GALERIJE · ESC ZA IZLAZ</span>
+        <span class="lightbox-hint">PINCH / TRACKPAD / DVOSTRUKI KLIK ZA ZOOM · POVUCI ZA PAN · STRELICE ZA GALERIJU · ESC ZA IZLAZ</span>
       </div>
     </div>
   </div>

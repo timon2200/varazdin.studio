@@ -1663,8 +1663,67 @@ html[data-theme="dark"] .zoom-points-badge {
 .modal-zoom-header-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   flex-shrink: 0;
+}
+
+/* Zoom Controls Cluster in Lightbox Header */
+.zoom-controls-cluster {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-dark);
+  border-radius: var(--radius-xs);
+  padding: 2px 4px;
+  box-shadow: var(--shadow-bold-xs);
+}
+
+.zoom-tool-btn {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 800;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  transition: all 0.12s var(--transition-smooth);
+}
+
+.zoom-tool-btn:hover {
+  background: var(--bg-card-subtle);
+  border-color: var(--border-dark);
+  color: var(--accent-gold);
+}
+
+.zoom-tool-btn:active {
+  transform: translateY(1px);
+}
+
+.zoom-level-badge {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  padding: 0 5px;
+  min-width: 42px;
+  text-align: center;
+  user-select: none;
+  letter-spacing: 0.02em;
+  transition: color 0.15s ease;
+}
+
+.zoom-level-badge.is-zoomed {
+  color: var(--accent-gold-bright);
+  font-weight: 900;
 }
 
 .lightbox-counter {
@@ -1689,6 +1748,8 @@ html[data-theme="dark"] .zoom-points-badge {
   max-height: calc(92vh - 110px);
   padding: 16px;
   overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .lightbox-img-container {
@@ -1697,7 +1758,11 @@ html[data-theme="dark"] .zoom-points-badge {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: auto;
+  overflow: hidden;
+  position: relative;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .modal-zoom-img {
@@ -1706,8 +1771,12 @@ html[data-theme="dark"] .zoom-points-badge {
   object-fit: contain;
   border-radius: var(--radius-xs);
   display: block;
-  transition: transform 0.2s ease, opacity 0.15s ease;
   user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  transform-origin: center center;
+  will-change: transform;
+  cursor: zoom-in;
 }
 
 /* Lightbox Navigation Buttons (Floating Left / Right) */
@@ -1750,20 +1819,18 @@ html[data-theme="dark"] .zoom-points-badge {
   box-shadow: none;
 }
 
+/* Modal Zoom Footer Hint */
 .modal-zoom-footer {
-  padding: 8px 16px;
+  padding: 10px 18px;
   background: var(--bg-card-subtle);
-  border-top: 1.5px solid var(--border-dark);
+  border-top: 2px solid var(--border-dark);
   text-align: center;
-  flex-shrink: 0;
-}
-
-.lightbox-hint {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   font-weight: 700;
   color: var(--text-muted);
   letter-spacing: 0.05em;
+  user-select: none;
 }
 
 @media (max-width: 640px) {
@@ -1773,7 +1840,11 @@ html[data-theme="dark"] .zoom-points-badge {
   }
   .lightbox-prev { left: 8px; }
   .lightbox-next { right: 8px; }
-  .modal-zoom-title { max-width: 200px; font-size: 0.9rem; }
+  .modal-zoom-title { max-width: 140px; font-size: 0.85rem; }
+  .modal-zoom-header-actions { gap: 6px; }
+  .zoom-controls-cluster { padding: 1px 2px; }
+  .zoom-tool-btn { width: 22px; height: 22px; font-size: 0.75rem; }
+  .zoom-level-badge { font-size: 0.62rem; min-width: 32px; padding: 0 2px; }
 }
 
 /* ==========================================================================

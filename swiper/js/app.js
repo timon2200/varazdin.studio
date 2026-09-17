@@ -12,6 +12,7 @@ import { CompareEngine } from './compare-engine.js';
 import { IdleGuide } from './idle-guide.js';
 import { ShareCardGenerator } from './share-card.js';
 import { renderQRCodeToCanvas } from './qr.js';
+import { LightboxZoomEngine } from './lightbox-zoom.js';
 
 class SwiperApp {
   constructor() {
@@ -928,11 +929,38 @@ class SwiperApp {
     const closeZoom = document.getElementById('closeModalZoom');
     const btnPrev = document.getElementById('btnLightboxPrev');
     const btnNext = document.getElementById('btnLightboxNext');
+    const zoomImgContainer = document.querySelector('#modalZoom .lightbox-img-container');
+    const zoomImg = document.getElementById('zoomImage');
+    const zoomLevelTag = document.getElementById('zoomLevelTag');
+
+    if (zoomImgContainer && zoomImg) {
+      this.lightboxZoom = new LightboxZoomEngine({
+        container: zoomImgContainer,
+        image: zoomImg,
+        levelBadge: zoomLevelTag,
+        minScale: 1.0,
+        maxScale: 4.5,
+        cropScale: 2.5
+      });
+
+      document.getElementById('btnZoomIn')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.lightboxZoom?.zoomIn();
+      });
+      document.getElementById('btnZoomOut')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.lightboxZoom?.zoomOut();
+      });
+      document.getElementById('btnZoomReset')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.lightboxZoom?.reset();
+      });
+    }
 
     if (closeZoom && modalZoom) {
       closeZoom.addEventListener('click', () => this.closeHighResViewer());
       modalZoom.addEventListener('click', (e) => {
-        if (e.target === modalZoom || e.target.classList.contains('lightbox-img-container')) {
+        if (e.target === modalZoom) {
           this.closeHighResViewer();
         }
       });
@@ -952,22 +980,30 @@ class SwiperApp {
       });
     }
 
-    // Touch swipe support for lightbox on mobile
+    // Touch swipe support for lightbox on mobile (only when NOT zoomed in)
     if (modalZoom) {
       let touchStartX = 0;
       let touchEndX = 0;
+      let touchStartY = 0;
+      let touchEndY = 0;
+
       modalZoom.addEventListener('touchstart', (e) => {
+        if (this.lightboxZoom && this.lightboxZoom.isZoomed()) return;
         if (e.touches && e.touches[0]) {
           touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
         }
       }, { passive: true });
 
       modalZoom.addEventListener('touchend', (e) => {
+        if (this.lightboxZoom && this.lightboxZoom.isZoomed()) return;
         if (e.changedTouches && e.changedTouches[0]) {
           touchEndX = e.changedTouches[0].clientX;
-          const diff = touchEndX - touchStartX;
-          if (Math.abs(diff) > 40) {
-            if (diff > 0) this.prevLightboxItem();
+          touchEndY = e.changedTouches[0].clientY;
+          const diffX = touchEndX - touchStartX;
+          const diffY = touchEndY - touchStartY;
+          if (Math.abs(diffX) > 45 && Math.abs(diffX) > Math.abs(diffY) * 1.5) {
+            if (diffX > 0) this.prevLightboxItem();
             else this.nextLightboxItem();
           }
         }
@@ -1494,6 +1530,10 @@ class SwiperApp {
     const currentItem = this.activeLightboxList[this.lightboxCurrentIndex] || this.currentItem || this.catalog[0];
     if (!currentItem) return;
 
+    if (this.lightboxZoom) {
+      this.lightboxZoom.reset(false);
+    }
+
     zoomImg.src = this.resolveImageUrl(currentItem);
     if (zoomTitle) zoomTitle.textContent = currentItem.title || 'Motiv';
     if (zoomCat) zoomCat.textContent = (currentItem.category || 'ARTWEAR').toUpperCase();
@@ -1541,6 +1581,9 @@ class SwiperApp {
     const modalZoom = document.getElementById('modalZoom');
     if (modalZoom) {
       modalZoom.classList.remove('active');
+    }
+    if (this.lightboxZoom) {
+      this.lightboxZoom.reset(false);
     }
   }
 
