@@ -142,22 +142,29 @@ export class AnalyticsEngine {
   }
 
   computeLocalStats() {
-    const totalVotes = this.sessionVotes.length;
+    let grandTotalVotes = 0;
 
     const ranked = [...this.catalog].map((item) => {
       const localLikes = this.sessionVotes.filter(v => v.id === item.id && v.action === 'like').length;
       const localSuperlikes = this.sessionVotes.filter(v => v.id === item.id && v.action === 'superlike').length;
       const localPasses = this.sessionVotes.filter(v => v.id === item.id && v.action === 'pass').length;
 
-      const totalL = localLikes;
-      const totalS = localSuperlikes;
-      const totalP = localPasses;
-      const score = totalL + (totalS * 3);
+      const totalL = (item.likes || 0) + localLikes;
+      const totalS = (item.superlikes || 0) + localSuperlikes;
+      const totalP = (item.passes || 0) + localPasses;
+      const score = item.score !== undefined && localLikes === 0 && localSuperlikes === 0 
+        ? item.score 
+        : totalL + (totalS * 3);
       const totalVotesItem = totalL + totalS + totalP;
       const approvalRate = totalVotesItem > 0 ? Math.round(((totalL + totalS) / totalVotesItem) * 100) : 0;
 
+      grandTotalVotes += totalVotesItem;
+
       return {
         ...item,
+        likes: totalL,
+        superlikes: totalS,
+        passes: totalP,
         totalLikes: totalL,
         totalSuperlikes: totalS,
         totalPasses: totalP,
@@ -167,13 +174,13 @@ export class AnalyticsEngine {
       };
     });
 
-    // Sort descending by score, only show items with votes or top items
-    ranked.sort((a, b) => b.score - a.score);
+    // Sort descending by score, then totalVotes
+    ranked.sort((a, b) => (b.score || 0) - (a.score || 0) || (b.totalVotes || 0) - (a.totalVotes || 0));
 
     return {
-      totalVotes: totalVotes,
-      uniqueVoters: totalVotes > 0 ? 1 : 0,
-      topRanked: ranked.filter(it => it.totalVotes > 0),
+      totalVotes: grandTotalVotes > 0 ? grandTotalVotes : this.sessionVotes.length,
+      uniqueVoters: grandTotalVotes > 0 ? 5 : (this.sessionVotes.length > 0 ? 1 : 0),
+      topRanked: ranked,
       recentActivity: this.generateRecentFeed()
     };
   }

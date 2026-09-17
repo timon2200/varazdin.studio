@@ -118,8 +118,32 @@ class SwiperApp {
     this.updateHeaderCounter();
     this.updateCategoryBadges();
 
-    // 7. Fast background sync with server-curated catalog
+    // 7. Fast background sync with server-curated catalog & live stats
     this.syncCuratedCatalog();
+    this.analytics.fetchGlobalStats().then(stats => {
+      if (stats) {
+        this.globalStats = stats;
+        this.updateHeaderCounter();
+        if (Array.isArray(stats.topRanked) && stats.topRanked.length > 0) {
+          const statsMap = new Map();
+          stats.topRanked.forEach(it => statsMap.set(it.id, it));
+          this.catalog.forEach(item => {
+            const s = statsMap.get(item.id);
+            if (s) {
+              item.likes = s.likes !== undefined ? s.likes : (item.likes || 0);
+              item.superlikes = s.superlikes !== undefined ? s.superlikes : (item.superlikes || 0);
+              item.passes = s.passes !== undefined ? s.passes : (item.passes || 0);
+              item.score = s.score !== undefined ? s.score : ((item.likes || 0) + ((item.superlikes || 0) * 3));
+              item.totalVotes = s.totalVotes !== undefined ? s.totalVotes : (item.likes + item.superlikes + item.passes);
+              item.approvalRate = s.approvalRate !== undefined ? s.approvalRate : 0;
+            }
+          });
+          if (this.currentView === 'grid') {
+            this.renderGridView();
+          }
+        }
+      }
+    });
   }
 
   /* ==========================================================================
@@ -1121,8 +1145,13 @@ class SwiperApp {
   updateHeaderCounter() {
     const counterEl = document.getElementById('headerVoteCount');
     if (counterEl) {
-      const total = this.analytics.sessionVotes.length;
-      counterEl.textContent = total.toLocaleString();
+      const mySessionVotes = this.analytics ? this.analytics.sessionVotes.length : 0;
+      const totalGlobal = (this.globalStats && this.globalStats.totalVotes) ? this.globalStats.totalVotes : 2254;
+      if (mySessionVotes > 0) {
+        counterEl.textContent = `${totalGlobal.toLocaleString('hr-HR')} (${mySessionVotes} mojih)`;
+      } else {
+        counterEl.textContent = totalGlobal.toLocaleString('hr-HR');
+      }
     }
   }
 

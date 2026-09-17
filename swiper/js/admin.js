@@ -33,6 +33,20 @@ export class CatalogCurator {
     this.rankedItems = [];
     this.activeRound = 1;
     this.itemStatsMap = new Map();
+    this.masterCatalog.forEach(it => {
+      this.itemStatsMap.set(it.id, {
+        id: it.id,
+        title: it.title,
+        category: it.category,
+        image: it.image,
+        likes: it.likes || 0,
+        superlikes: it.superlikes || 0,
+        passes: it.passes || 0,
+        score: it.score !== undefined ? it.score : ((it.likes || 0) + ((it.superlikes || 0) * 3)),
+        totalVotes: it.totalVotes !== undefined ? it.totalVotes : ((it.likes || 0) + (it.superlikes || 0) + (it.passes || 0)),
+        approvalRate: it.approvalRate !== undefined ? it.approvalRate : 0
+      });
+    });
     this.activeLightboxList = [];
     this.lightboxCurrentIndex = 0;
     this.filteredItems = [];
@@ -705,6 +719,12 @@ export class CatalogCurator {
         const totalVotes = statsData.totalVotes || 2254;
         const totalVoters = statsData.uniqueVoters || 5;
 
+        if (this.rankedItems.length > 0) {
+          this.rankedItems.forEach(it => {
+            this.itemStatsMap.set(it.id, it);
+          });
+        }
+
         if (this.roundBadgeEl) {
           this.roundBadgeEl.textContent = `${this.activeRound}. KOLO · ${totalVotes.toLocaleString('hr-HR')} GLASOVA`;
         }
@@ -717,6 +737,7 @@ export class CatalogCurator {
         if (leadItems) leadItems.textContent = this.rankedItems.length;
 
         this.renderLeaderboardTable();
+        this.render();
       }
     } catch (e) {
       console.warn("Stats fetch warning:", e);
