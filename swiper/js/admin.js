@@ -33,7 +33,8 @@ export class CatalogCurator {
       }
     } catch (e) {}
 
-    this.selectedIds = initialSelected;
+    const masterIdSet = new Set(this.masterCatalog.map(it => it.id));
+    this.selectedIds = new Set(Array.from(initialSelected).filter(id => masterIdSet.has(id)));
     this.activeCategory = "ALL";
     this.searchQuery = "";
     this.sortOption = "score-desc"; // 'score-desc' | 'default' | 'likes-desc' | 'super-desc' | 'votes-desc' | 'approval-desc' | 'title-asc'
@@ -145,7 +146,9 @@ export class CatalogCurator {
             this.masterCatalog = data.master;
           }
           if (Array.isArray(data.active)) {
-            this.selectedIds = new Set(data.active.map(it => it.id));
+            const masterIdSet = new Set(this.masterCatalog.map(it => it.id));
+            const validActiveIds = data.active.map(it => it.id).filter(id => masterIdSet.has(id));
+            this.selectedIds = new Set(validActiveIds);
             try {
               localStorage.setItem("sv_curated_active_ids", JSON.stringify(Array.from(this.selectedIds)));
             } catch (e) {}
@@ -720,7 +723,9 @@ export class CatalogCurator {
 
   updateCounters() {
     const total = this.masterCatalog.length;
-    const active = this.selectedIds.size;
+    const masterIdSet = new Set(this.masterCatalog.map(it => it.id));
+    const validSelected = Array.from(this.selectedIds).filter(id => masterIdSet.has(id));
+    const active = validSelected.length;
 
     if (this.activeCountEl) this.activeCountEl.textContent = active;
     if (this.totalCountEl) this.totalCountEl.textContent = total;

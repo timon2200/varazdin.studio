@@ -245,6 +245,10 @@ class SwiperDevHandler(SimpleHTTPRequestHandler):
             if not master_list and active_list:
                 master_list = active_list
 
+            if master_list:
+                master_ids = set(it.get("id") for it in master_list if "id" in it)
+                active_list = [it for it in active_list if it.get("id") in master_ids]
+
             self.send_response(200)
             self.send_header("Content-Type", "application/json; charset=utf-8")
             self.send_header("Access-Control-Allow-Origin", "*")

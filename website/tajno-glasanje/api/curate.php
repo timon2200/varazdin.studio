@@ -57,6 +57,18 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
         $masterData = $activeData;
     }
 
+    // Sanitize activeData: only keep items that exist in masterData
+    if (!empty($masterData)) {
+        $masterIds = array_flip(array_column($masterData, 'id'));
+        $filteredActive = [];
+        foreach ($activeData as $it) {
+            if (isset($it['id']) && isset($masterIds[$it['id']])) {
+                $filteredActive[] = $it;
+            }
+        }
+        $activeData = $filteredActive;
+    }
+
     echo json_encode([
         "status" => "success",
         "master" => $masterData,
