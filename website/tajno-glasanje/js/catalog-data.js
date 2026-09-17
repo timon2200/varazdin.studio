@@ -9,13 +9,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 7,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 7,
     "tags": [
       "city",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 7,
+    "approvalRate": 0,
+    "bayesianMean": 0.161
   },
   {
     "id": "sv-002",
@@ -27,13 +29,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 6,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "city",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
   },
   {
     "id": "sv-003",
@@ -45,13 +49,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 6,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "city",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
   },
   {
     "id": "sv-004",
@@ -63,13 +69,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 7,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 8,
     "tags": [
       "city",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 8,
+    "approvalRate": 13,
+    "bayesianMean": 0.224
   },
   {
     "id": "sv-005",
@@ -81,13 +89,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 8,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 8,
     "tags": [
       "city",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 8,
+    "approvalRate": 0,
+    "bayesianMean": 0.147
   },
   {
     "id": "sv-006",
@@ -99,13 +109,15 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 6,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 8,
     "tags": [
       "city",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 8,
+    "approvalRate": 25,
+    "bayesianMean": 0.303
   },
   {
     "id": "sv-007",
@@ -115,15 +127,17 @@ export const CATALOG_DATA = [
     "image": "assets/optimized/SV Tee - Akcija Clapperboard.webp",
     "description": "Službeni filmski i cehovski motiv — Akcija Clapperboard.",
     "likes": 1,
-    "passes": 6,
+    "passes": 8,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "studio",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 9,
+    "approvalRate": 11,
+    "bayesianMean": 0.205
   },
   {
     "id": "sv-008",
@@ -135,13 +149,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 6,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "studio",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
   },
   {
     "id": "sv-009",
@@ -153,13 +169,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 7,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 7,
     "tags": [
       "studio",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 7,
+    "approvalRate": 0,
+    "bayesianMean": 0.161
   },
   {
     "id": "sv-010",
@@ -171,13 +189,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 7,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 8,
     "tags": [
       "studio",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 8,
+    "approvalRate": 13,
+    "bayesianMean": 0.224
   },
   {
     "id": "sv-011",
@@ -189,13 +209,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 7,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 8,
     "tags": [
       "studio",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 8,
+    "approvalRate": 13,
+    "bayesianMean": 0.224
   },
   {
     "id": "sv-012",
@@ -207,13 +229,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 8,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 8,
     "tags": [
       "studio",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 8,
+    "approvalRate": 0,
+    "bayesianMean": 0.147
   },
   {
     "id": "sv-013",
@@ -225,13 +249,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 7,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 7,
     "tags": [
       "studio",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 7,
+    "approvalRate": 0,
+    "bayesianMean": 0.161
   },
   {
     "id": "sv-014",
@@ -243,13 +269,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 9,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 9,
     "tags": [
       "studio",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 9,
+    "approvalRate": 0,
+    "bayesianMean": 0.135
   },
   {
     "id": "sv-015",
@@ -258,16 +286,18 @@ export const CATALOG_DATA = [
     "category": "Studio",
     "image": "assets/optimized/SV Tee - Visually Articulate.webp",
     "description": "Službeni filmski i cehovski motiv — Visually Articulate.",
-    "likes": 2,
+    "likes": 3,
     "passes": 5,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 7,
     "tags": [
       "studio",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 3,
+    "totalVotes": 8,
+    "approvalRate": 38,
+    "bayesianMean": 0.385
   },
   {
     "id": "sv-016",
@@ -279,13 +309,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 7,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 8,
     "tags": [
       "garda",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 8,
+    "approvalRate": 13,
+    "bayesianMean": 0.224
   },
   {
     "id": "sv-017",
@@ -297,13 +329,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 6,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "garda",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
   },
   {
     "id": "sv-018",
@@ -315,13 +349,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 7,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 7,
     "tags": [
       "garda",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 7,
+    "approvalRate": 0,
+    "bayesianMean": 0.161
   },
   {
     "id": "sv-019",
@@ -333,13 +369,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 6,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "garda",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
   },
   {
     "id": "sv-020",
@@ -351,13 +389,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 9,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 9,
     "tags": [
       "garda",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 9,
+    "approvalRate": 0,
+    "bayesianMean": 0.135
   },
   {
     "id": "sv-021",
@@ -369,13 +409,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 8,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 8,
     "tags": [
       "towers",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 8,
+    "approvalRate": 0,
+    "bayesianMean": 0.147
   },
   {
     "id": "sv-022",
@@ -387,13 +429,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 7,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 7,
     "tags": [
       "towers",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 7,
+    "approvalRate": 0,
+    "bayesianMean": 0.161
   },
   {
     "id": "sv-023",
@@ -405,13 +449,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 7,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 7,
     "tags": [
       "towers",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 7,
+    "approvalRate": 0,
+    "bayesianMean": 0.161
   },
   {
     "id": "sv-024",
@@ -423,13 +469,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 1,
-    "score": 3,
-    "totalVotes": 7,
     "tags": [
       "towers",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 3,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.343
   },
   {
     "id": "sv-025",
@@ -441,13 +489,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 6,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "towers",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
   },
   {
     "id": "sv-026",
@@ -459,13 +509,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 6,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "towers",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
   },
   {
     "id": "sv-027",
@@ -477,13 +529,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 1,
-    "score": 3,
-    "totalVotes": 7,
     "tags": [
       "towers",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 3,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.343
   },
   {
     "id": "sv-028",
@@ -495,13 +549,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 6,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "towers",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
   },
   {
     "id": "sv-029",
@@ -510,16 +566,18 @@ export const CATALOG_DATA = [
     "category": "Towers",
     "image": "assets/optimized/T-Shirt - Tower Lisakova Kula Graffiti.webp",
     "description": "Varaždin grad zvonika — arhitektonski profil tornja Tower Lisakova Kula Graffiti.",
-    "likes": 1,
+    "likes": 2,
     "passes": 7,
     "superlikes": 1,
-    "score": 4,
-    "totalVotes": 9,
     "tags": [
       "towers",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 5,
+    "totalVotes": 10,
+    "approvalRate": 30,
+    "bayesianMean": 0.395
   },
   {
     "id": "sv-030",
@@ -531,13 +589,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 7,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 7,
     "tags": [
       "towers",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 7,
+    "approvalRate": 0,
+    "bayesianMean": 0.161
   },
   {
     "id": "sv-031",
@@ -549,13 +609,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 7,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 8,
     "tags": [
       "towers",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 8,
+    "approvalRate": 13,
+    "bayesianMean": 0.224
   },
   {
     "id": "sv-032",
@@ -567,13 +629,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 6,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "towers",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
   },
   {
     "id": "sv-033",
@@ -585,13 +649,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 8,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 9,
     "tags": [
       "towers",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 9,
+    "approvalRate": 11,
+    "bayesianMean": 0.205
   },
   {
     "id": "sv-034",
@@ -603,13 +669,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 6,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "towers",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
   },
   {
     "id": "sv-035",
@@ -621,13 +689,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "towers",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-036",
@@ -639,13 +709,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "towers",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-037",
@@ -657,13 +729,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 7,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 7,
     "tags": [
       "towers",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 7,
+    "approvalRate": 0,
+    "bayesianMean": 0.161
   },
   {
     "id": "sv-038",
@@ -675,13 +749,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "towers",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-039",
@@ -693,13 +769,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "towers",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-040",
@@ -711,13 +789,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 7,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 7,
     "tags": [
       "utility",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 7,
+    "approvalRate": 0,
+    "bayesianMean": 0.161
   },
   {
     "id": "sv-041",
@@ -729,13 +809,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 7,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 7,
     "tags": [
       "utility",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 7,
+    "approvalRate": 0,
+    "bayesianMean": 0.161
   },
   {
     "id": "sv-042",
@@ -747,13 +829,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "utility",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-043",
@@ -765,13 +849,15 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 6,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 8,
     "tags": [
       "utility",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 8,
+    "approvalRate": 25,
+    "bayesianMean": 0.303
   },
   {
     "id": "sv-044",
@@ -783,13 +869,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "utility",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-045",
@@ -799,15 +887,17 @@ export const CATALOG_DATA = [
     "image": "assets/optimized/SV_Utility_04_Brutalist_Grid_Back.webp",
     "description": "Filmska Produkcija Utility serija — tehnička matrica SV Utility 04 — Neo-Gothic Brutalist Grid.",
     "likes": 2,
-    "passes": 4,
+    "passes": 5,
     "superlikes": 1,
-    "score": 5,
-    "totalVotes": 7,
     "tags": [
       "utility",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 5,
+    "totalVotes": 8,
+    "approvalRate": 38,
+    "bayesianMean": 0.459
   },
   {
     "id": "sv-046",
@@ -819,13 +909,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 6,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "utility",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
   },
   {
     "id": "sv-047",
@@ -837,13 +929,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 7,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 8,
     "tags": [
       "utility",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 8,
+    "approvalRate": 13,
+    "bayesianMean": 0.224
   },
   {
     "id": "sv-048",
@@ -855,13 +949,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "utility",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
     "id": "sv-049",
@@ -873,13 +969,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "utility",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
     "id": "sv-050",
@@ -891,13 +989,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 1,
-    "score": 3,
-    "totalVotes": 7,
     "tags": [
       "utility",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 3,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.343
   },
   {
     "id": "sv-051",
@@ -909,13 +1009,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "utility",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-052",
@@ -927,13 +1029,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "utility",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
     "id": "sv-053",
@@ -945,13 +1049,15 @@ export const CATALOG_DATA = [
     "likes": 3,
     "passes": 4,
     "superlikes": 0,
-    "score": 3,
-    "totalVotes": 7,
     "tags": [
       "utility",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 3,
+    "totalVotes": 7,
+    "approvalRate": 43,
+    "bayesianMean": 0.424
   },
   {
     "id": "sv-054",
@@ -963,13 +1069,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "utility",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
     "id": "sv-055",
@@ -981,13 +1089,15 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 5,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 7,
     "tags": [
       "utility",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 7,
+    "approvalRate": 29,
+    "bayesianMean": 0.333
   },
   {
     "id": "sv-056",
@@ -999,13 +1109,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "utility",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
     "id": "sv-057",
@@ -1017,13 +1129,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 6,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "utility",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
   },
   {
     "id": "sv-058",
@@ -1035,13 +1149,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "utility",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
     "id": "sv-059",
@@ -1053,13 +1169,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-060",
@@ -1071,13 +1189,15 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 4,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 6,
+    "approvalRate": 33,
+    "bayesianMean": 0.37
   },
   {
     "id": "sv-061",
@@ -1089,13 +1209,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 7,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 7,
+    "approvalRate": 0,
+    "bayesianMean": 0.161
   },
   {
     "id": "sv-062",
@@ -1107,13 +1229,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 5,
     "superlikes": 1,
-    "score": 3,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 3,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.375
   },
   {
     "id": "sv-063",
@@ -1125,13 +1249,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-064",
@@ -1143,13 +1269,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-065",
@@ -1161,13 +1289,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
     "id": "sv-066",
@@ -1179,13 +1309,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 7,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 7,
+    "approvalRate": 0,
+    "bayesianMean": 0.161
   },
   {
     "id": "sv-067",
@@ -1197,13 +1329,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-068",
@@ -1215,13 +1349,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
     "id": "sv-069",
@@ -1233,13 +1369,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-070",
@@ -1251,13 +1389,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 6,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
   },
   {
     "id": "sv-071",
@@ -1269,13 +1409,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 6,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
   },
   {
     "id": "sv-072",
@@ -1287,13 +1429,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
     "id": "sv-073",
@@ -1305,13 +1449,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 7,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 7,
+    "approvalRate": 0,
+    "bayesianMean": 0.161
   },
   {
     "id": "sv-074",
@@ -1323,13 +1469,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 6,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
   },
   {
     "id": "sv-075",
@@ -1341,13 +1489,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-076",
@@ -1359,13 +1509,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-077",
@@ -1377,13 +1529,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 6,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
   },
   {
     "id": "sv-078",
@@ -1395,13 +1549,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 6,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
   },
   {
     "id": "sv-079",
@@ -1413,13 +1569,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
     "id": "sv-080",
@@ -1431,13 +1589,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-081",
@@ -1449,13 +1609,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-082",
@@ -1467,13 +1629,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 5,
     "superlikes": 1,
-    "score": 3,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 3,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.375
   },
   {
     "id": "sv-083",
@@ -1485,13 +1649,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-084",
@@ -1503,13 +1669,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-085",
@@ -1521,13 +1689,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-086",
@@ -1539,13 +1709,15 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 4,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 6,
+    "approvalRate": 33,
+    "bayesianMean": 0.37
   },
   {
     "id": "sv-087",
@@ -1557,13 +1729,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-088",
@@ -1575,13 +1749,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
     "id": "sv-089",
@@ -1593,13 +1769,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 7,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 7,
+    "approvalRate": 0,
+    "bayesianMean": 0.161
   },
   {
     "id": "sv-090",
@@ -1611,13 +1789,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 7,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 7,
+    "approvalRate": 0,
+    "bayesianMean": 0.161
   },
   {
     "id": "sv-091",
@@ -1629,13 +1809,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-092",
@@ -1647,13 +1829,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
     "id": "sv-093",
@@ -1665,13 +1849,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-094",
@@ -1683,13 +1869,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-095",
@@ -1701,13 +1889,15 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 4,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 6,
+    "approvalRate": 33,
+    "bayesianMean": 0.37
   },
   {
     "id": "sv-096",
@@ -1719,13 +1909,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
     "id": "sv-097",
@@ -1737,13 +1929,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
     "id": "sv-098",
@@ -1755,13 +1949,15 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 4,
     "superlikes": 1,
-    "score": 5,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 5,
+    "totalVotes": 7,
+    "approvalRate": 43,
+    "bayesianMean": 0.5
   },
   {
     "id": "sv-099",
@@ -1773,13 +1969,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 5,
     "superlikes": 1,
-    "score": 3,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 3,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.375
   },
   {
     "id": "sv-100",
@@ -1788,16 +1986,18 @@ export const CATALOG_DATA = [
     "category": "Creative",
     "image": "assets/optimized/CV Tee - Creative Block Rock Masked.webp",
     "description": "Autorski konceptualni streetwear dizajn — Creative Block Rock Masked.",
-    "likes": 1,
+    "likes": 2,
     "passes": 3,
     "superlikes": 2,
-    "score": 7,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 8,
+    "totalVotes": 7,
+    "approvalRate": 57,
+    "bayesianMean": 0.632
   },
   {
     "id": "sv-101",
@@ -1809,13 +2009,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 5,
     "superlikes": 1,
-    "score": 3,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 3,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.375
   },
   {
     "id": "sv-102",
@@ -1827,13 +2029,15 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 4,
     "superlikes": 1,
-    "score": 5,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 5,
+    "totalVotes": 7,
+    "approvalRate": 43,
+    "bayesianMean": 0.5
   },
   {
     "id": "sv-103",
@@ -1845,13 +2049,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 6,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
   },
   {
     "id": "sv-104",
@@ -1863,13 +2069,15 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 5,
     "superlikes": 1,
-    "score": 5,
-    "totalVotes": 8,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 5,
+    "totalVotes": 8,
+    "approvalRate": 38,
+    "bayesianMean": 0.459
   },
   {
     "id": "sv-105",
@@ -1881,13 +2089,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-106",
@@ -1899,13 +2109,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 6,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
   },
   {
     "id": "sv-107",
@@ -1917,13 +2129,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 5,
     "superlikes": 1,
-    "score": 3,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 3,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.375
   },
   {
     "id": "sv-108",
@@ -1935,13 +2149,15 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 4,
     "superlikes": 1,
-    "score": 5,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 5,
+    "totalVotes": 7,
+    "approvalRate": 43,
+    "bayesianMean": 0.5
   },
   {
     "id": "sv-109",
@@ -1953,13 +2169,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
     "id": "sv-110",
@@ -1971,13 +2189,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 4,
     "superlikes": 1,
-    "score": 4,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 4,
+    "totalVotes": 6,
+    "approvalRate": 33,
+    "bayesianMean": 0.46
   },
   {
     "id": "sv-111",
@@ -1989,13 +2209,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
     "id": "sv-112",
@@ -2007,13 +2229,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 6,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
   },
   {
     "id": "sv-113",
@@ -2025,13 +2249,15 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 4,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 6,
+    "approvalRate": 33,
+    "bayesianMean": 0.37
   },
   {
     "id": "sv-114",
@@ -2043,13 +2269,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-115",
@@ -2061,13 +2289,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 7,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 8,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 8,
+    "approvalRate": 13,
+    "bayesianMean": 0.224
   },
   {
     "id": "sv-116",
@@ -2079,13 +2309,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-117",
@@ -2097,13 +2329,15 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 5,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 7,
+    "approvalRate": 29,
+    "bayesianMean": 0.333
   },
   {
     "id": "sv-118",
@@ -2115,13 +2349,15 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 6,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 8,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 8,
+    "approvalRate": 25,
+    "bayesianMean": 0.303
   },
   {
     "id": "sv-119",
@@ -2133,13 +2369,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-120",
@@ -2151,13 +2389,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-121",
@@ -2169,13 +2409,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-122",
@@ -2187,13 +2429,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-123",
@@ -2205,13 +2449,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 5,
     "superlikes": 1,
-    "score": 3,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 3,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.375
   },
   {
     "id": "sv-124",
@@ -2223,13 +2469,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
     "id": "sv-125",
@@ -2241,13 +2489,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
     "id": "sv-126",
@@ -2259,13 +2509,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-127",
@@ -2277,13 +2529,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
     "id": "sv-128",
@@ -2295,13 +2549,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-129",
@@ -2313,13 +2569,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-130",
@@ -2331,13 +2589,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
     "id": "sv-131",
@@ -2349,13 +2609,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 8,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 9,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 9,
+    "approvalRate": 11,
+    "bayesianMean": 0.205
   },
   {
     "id": "sv-132",
@@ -2367,13 +2629,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 7,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 7,
+    "approvalRate": 0,
+    "bayesianMean": 0.161
   },
   {
     "id": "sv-133",
@@ -2385,13 +2649,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-134",
@@ -2403,13 +2669,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-135",
@@ -2421,13 +2689,15 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 5,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 7,
+    "approvalRate": 29,
+    "bayesianMean": 0.333
   },
   {
     "id": "sv-136",
@@ -2439,13 +2709,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-137",
@@ -2457,13 +2729,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-138",
@@ -2475,13 +2749,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-139",
@@ -2493,13 +2769,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
     "id": "sv-140",
@@ -2511,13 +2789,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-141",
@@ -2529,13 +2809,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-142",
@@ -2547,13 +2829,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
     "id": "sv-143",
@@ -2562,16 +2846,18 @@ export const CATALOG_DATA = [
     "category": "Creative",
     "image": "assets/optimized/CV Tee - Not Overthinking Storyboard Collage.webp",
     "description": "Autorski konceptualni streetwear dizajn — Not Overthinking Storyboard Collage.",
-    "likes": 3,
+    "likes": 4,
     "passes": 3,
     "superlikes": 1,
-    "score": 6,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 7,
+    "totalVotes": 8,
+    "approvalRate": 63,
+    "bayesianMean": 0.611
   },
   {
     "id": "sv-144",
@@ -2583,13 +2869,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-145",
@@ -2601,13 +2889,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-146",
@@ -2619,13 +2909,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-147",
@@ -2637,13 +2929,15 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 4,
     "superlikes": 1,
-    "score": 5,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 5,
+    "totalVotes": 7,
+    "approvalRate": 43,
+    "bayesianMean": 0.5
   },
   {
     "id": "sv-148",
@@ -2655,13 +2949,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 5,
     "superlikes": 1,
-    "score": 3,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 3,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.375
   },
   {
     "id": "sv-149",
@@ -2673,13 +2969,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 6,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
   },
   {
     "id": "sv-150",
@@ -2691,13 +2989,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-151",
@@ -2709,13 +3009,15 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 4,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 6,
+    "approvalRate": 33,
+    "bayesianMean": 0.37
   },
   {
     "id": "sv-152",
@@ -2727,13 +3029,15 @@ export const CATALOG_DATA = [
     "likes": 3,
     "passes": 3,
     "superlikes": 0,
-    "score": 3,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 3,
+    "totalVotes": 6,
+    "approvalRate": 50,
+    "bayesianMean": 0.472
   },
   {
     "id": "sv-153",
@@ -2742,16 +3046,18 @@ export const CATALOG_DATA = [
     "category": "Creative",
     "image": "assets/optimized/SV_4Ref_02_Praying_Guardian_Riso_Back.webp",
     "description": "Autorski konceptualni streetwear dizajn — SV 4Ref 02 — Praying Guardian Riso.",
-    "likes": 2,
+    "likes": 3,
     "passes": 4,
     "superlikes": 1,
-    "score": 5,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 6,
+    "totalVotes": 8,
+    "approvalRate": 50,
+    "bayesianMean": 0.534
   },
   {
     "id": "sv-154",
@@ -2763,13 +3069,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
     "id": "sv-155",
@@ -2778,16 +3086,18 @@ export const CATALOG_DATA = [
     "category": "Creative",
     "image": "assets/optimized/SV_4Ref_04_Rearing_CyberGothic_Back.webp",
     "description": "Autorski konceptualni streetwear dizajn — SV 4Ref 04 — Rearing CyberGothic.",
-    "likes": 2,
+    "likes": 3,
     "passes": 4,
     "superlikes": 1,
-    "score": 5,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 6,
+    "totalVotes": 8,
+    "approvalRate": 50,
+    "bayesianMean": 0.534
   },
   {
     "id": "sv-156",
@@ -2799,13 +3109,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
     "id": "sv-157",
@@ -2817,13 +3129,15 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 5,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 7,
+    "approvalRate": 29,
+    "bayesianMean": 0.333
   },
   {
     "id": "sv-158",
@@ -2835,13 +3149,15 @@ export const CATALOG_DATA = [
     "likes": 3,
     "passes": 4,
     "superlikes": 0,
-    "score": 3,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 3,
+    "totalVotes": 7,
+    "approvalRate": 43,
+    "bayesianMean": 0.424
   },
   {
     "id": "sv-159",
@@ -2853,13 +3169,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 5,
     "superlikes": 1,
-    "score": 3,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 3,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.375
   },
   {
     "id": "sv-160",
@@ -2871,13 +3189,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 4,
     "superlikes": 1,
-    "score": 4,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 4,
+    "totalVotes": 6,
+    "approvalRate": 33,
+    "bayesianMean": 0.46
   },
   {
     "id": "sv-161",
@@ -2889,13 +3209,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-162",
@@ -2907,13 +3229,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
     "id": "sv-163",
@@ -2925,13 +3249,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 4,
     "superlikes": 1,
-    "score": 4,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 4,
+    "totalVotes": 6,
+    "approvalRate": 33,
+    "bayesianMean": 0.46
   },
   {
     "id": "sv-164",
@@ -2943,13 +3269,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 7,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 8,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 8,
+    "approvalRate": 13,
+    "bayesianMean": 0.224
   },
   {
     "id": "sv-165",
@@ -2961,13 +3289,15 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 4,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 6,
+    "approvalRate": 33,
+    "bayesianMean": 0.37
   },
   {
     "id": "sv-166",
@@ -2979,13 +3309,15 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
     "id": "sv-167",
@@ -2997,13 +3329,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-168",
@@ -3015,13 +3349,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-169",
@@ -3033,13 +3369,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-170",
@@ -3051,13 +3389,15 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-171",
@@ -3069,37 +3409,138 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
     "id": "sv-172",
-    "slug": "sv_lovers_03_kneeling_martyr_back",
-    "title": "The Lovers Betrayal — Kneeling Martyr",
+    "slug": "sv_lovers_01_dark_comix_blade_back",
+    "title": "The Lovers 01 — Dark Comix Blade",
     "category": "Creative",
-    "image": "assets/optimized/SV_Lovers_03_Kneeling_Martyr_Back.webp",
-    "description": "Poljubac i oštrica u istoj sekundi. Oklopnik kleči na koplju dok mu dlanovi klize niz dršku, a ona drži krvavi vrh što izbija iz prsiju.",
-    "likes": 2,
-    "passes": 4,
-    "superlikes": 0,
-    "score": 2,
-    "totalVotes": 6,
+    "image": "assets/optimized/SV_Lovers_01_Dark_Comix_Blade_Back.webp",
+    "description": "Autorski konceptualni streetwear dizajn — The Lovers 01 — Dark Comix Blade.",
+    "likes": 0,
+    "passes": 5,
+    "superlikes": 1,
     "tags": [
       "creative",
       "streetwear",
-      "varazdin",
-      "lovers",
-      "tarot",
-      "ideas-cant-die"
-    ]
+      "varazdin"
+    ],
+    "score": 3,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.375
   },
   {
     "id": "sv-173",
+    "slug": "sv_lovers_02_dedication_fatal_kiss_back",
+    "title": "The Lovers 02 — Fatal Kiss Dedication",
+    "category": "Creative",
+    "image": "assets/optimized/SV_Lovers_02_Dedication_Fatal_Kiss_Back.webp",
+    "description": "Autorski konceptualni streetwear dizajn — The Lovers 02 — Fatal Kiss Dedication.",
+    "likes": 2,
+    "passes": 4,
+    "superlikes": 1,
+    "tags": [
+      "creative",
+      "streetwear",
+      "varazdin"
+    ],
+    "score": 5,
+    "totalVotes": 7,
+    "approvalRate": 43,
+    "bayesianMean": 0.5
+  },
+  {
+    "id": "sv-174",
+    "slug": "sv_lovers_03_kneeling_martyr_back",
+    "title": "The Lovers 03 — Kneeling Martyr",
+    "category": "Creative",
+    "image": "assets/optimized/SV_Lovers_03_Kneeling_Martyr_Back.webp",
+    "description": "Autorski konceptualni streetwear dizajn — The Lovers 03 — Kneeling Martyr.",
+    "likes": 2,
+    "passes": 4,
+    "superlikes": 0,
+    "tags": [
+      "creative",
+      "streetwear",
+      "varazdin"
+    ],
+    "score": 2,
+    "totalVotes": 6,
+    "approvalRate": 33,
+    "bayesianMean": 0.37
+  },
+  {
+    "id": "sv-175",
+    "slug": "sv_lovers_04_acid_riso_betrayal_back",
+    "title": "The Lovers 04 — Acid Riso Betrayal",
+    "category": "Creative",
+    "image": "assets/optimized/SV_Lovers_04_Acid_Riso_Betrayal_Back.webp",
+    "description": "Autorski konceptualni streetwear dizajn — The Lovers 04 — Acid Riso Betrayal.",
+    "likes": 2,
+    "passes": 4,
+    "superlikes": 0,
+    "tags": [
+      "creative",
+      "streetwear",
+      "varazdin"
+    ],
+    "score": 2,
+    "totalVotes": 6,
+    "approvalRate": 33,
+    "bayesianMean": 0.37
+  },
+  {
+    "id": "sv-176",
+    "slug": "sv_lovers_05_rebirth_sacrifice_back",
+    "title": "The Lovers 05 — Rebirth Sacrifice",
+    "category": "Creative",
+    "image": "assets/optimized/SV_Lovers_05_Rebirth_Sacrifice_Back.webp",
+    "description": "Autorski konceptualni streetwear dizajn — The Lovers 05 — Rebirth Sacrifice.",
+    "likes": 0,
+    "passes": 6,
+    "superlikes": 0,
+    "tags": [
+      "creative",
+      "streetwear",
+      "varazdin"
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
+  },
+  {
+    "id": "sv-177",
+    "slug": "sv_lovers_06_anamorphic_split_back",
+    "title": "The Lovers 06 — Anamorphic Split",
+    "category": "Creative",
+    "image": "assets/optimized/SV_Lovers_06_Anamorphic_Split_Back.webp",
+    "description": "Autorski konceptualni streetwear dizajn — The Lovers 06 — Anamorphic Split.",
+    "likes": 0,
+    "passes": 6,
+    "superlikes": 0,
+    "tags": [
+      "creative",
+      "streetwear",
+      "varazdin"
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
+  },
+  {
+    "id": "sv-178",
     "slug": "cv_tee_they_who_dance",
     "title": "They Who Dance",
     "category": "Creative",
@@ -3108,16 +3549,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 5,
     "superlikes": 1,
-    "score": 3,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 3,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.375
   },
   {
-    "id": "sv-174",
+    "id": "sv-179",
     "slug": "cv_tee_they_who_dance_celestial_grid",
     "title": "They Who Dance Celestial Grid",
     "category": "Creative",
@@ -3126,16 +3569,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-175",
+    "id": "sv-180",
     "slug": "cv_tee_they_who_dance_kinetic_back",
     "title": "They Who Dance Kinetic Back",
     "category": "Creative",
@@ -3144,16 +3589,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-176",
+    "id": "sv-181",
     "slug": "cv_tee_they_who_dance_music",
     "title": "They Who Dance Music",
     "category": "Creative",
@@ -3162,16 +3609,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 7,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 7,
+    "approvalRate": 0,
+    "bayesianMean": 0.161
   },
   {
-    "id": "sv-177",
+    "id": "sv-182",
     "slug": "cv_tee_they_who_dance_psychedelic_wave",
     "title": "They Who Dance Psychedelic Wave",
     "category": "Creative",
@@ -3180,16 +3629,18 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 4,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 6,
+    "approvalRate": 33,
+    "bayesianMean": 0.37
   },
   {
-    "id": "sv-178",
+    "id": "sv-183",
     "slug": "cv_tee_they_who_dance_rider_waves",
     "title": "They Who Dance Rider Waves",
     "category": "Creative",
@@ -3198,16 +3649,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 5,
     "superlikes": 1,
-    "score": 3,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 3,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.375
   },
   {
-    "id": "sv-179",
+    "id": "sv-184",
     "slug": "cv_tee_utility_spec_dtf_bold_black_on_white",
     "title": "Utility Spec DTF Bold Black On White",
     "category": "Creative",
@@ -3216,16 +3669,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 6,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
   },
   {
-    "id": "sv-180",
+    "id": "sv-185",
     "slug": "cv_tee_utility_spec_dtf_bold_white_on_black",
     "title": "Utility Spec DTF Bold White On Black",
     "category": "Creative",
@@ -3234,16 +3689,18 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 5,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 7,
+    "approvalRate": 29,
+    "bayesianMean": 0.333
   },
   {
-    "id": "sv-181",
+    "id": "sv-186",
     "slug": "cv_tee_utility_spec_print",
     "title": "Utility Spec Print",
     "category": "Creative",
@@ -3252,16 +3709,18 @@ export const CATALOG_DATA = [
     "likes": 3,
     "passes": 4,
     "superlikes": 0,
-    "score": 3,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 3,
+    "totalVotes": 7,
+    "approvalRate": 43,
+    "bayesianMean": 0.424
   },
   {
-    "id": "sv-182",
+    "id": "sv-187",
     "slug": "cv_tee_utility_spec_print_black_on_white_runover",
     "title": "Utility Spec Print Black On White Runover",
     "category": "Creative",
@@ -3270,34 +3729,38 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 6,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
   },
   {
-    "id": "sv-183",
+    "id": "sv-188",
     "slug": "cv_tee_utility_spec_print_white_on_black_brutalist",
     "title": "Utility Spec Print White On Black Brutalist",
     "category": "Creative",
     "image": "assets/optimized/CV Tee - Utility Spec Print - White on Black Brutalist.webp",
     "description": "Autorski konceptualni streetwear dizajn — Utility Spec Print White On Black Brutalist.",
-    "likes": 3,
+    "likes": 4,
     "passes": 4,
     "superlikes": 0,
-    "score": 3,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 4,
+    "totalVotes": 8,
+    "approvalRate": 50,
+    "bayesianMean": 0.469
   },
   {
-    "id": "sv-184",
+    "id": "sv-189",
     "slug": "cv_tee_vertical_spine_type",
     "title": "Vertical Spine Type",
     "category": "Creative",
@@ -3306,16 +3769,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 5,
     "superlikes": 1,
-    "score": 3,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 3,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.375
   },
   {
-    "id": "sv-185",
+    "id": "sv-190",
     "slug": "cv_tee_visually_articulate",
     "title": "Visually Articulate",
     "category": "Creative",
@@ -3324,16 +3789,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-186",
+    "id": "sv-191",
     "slug": "cv_tee_visually_articulate_calibration_back",
     "title": "Visually Articulate Calibration Back",
     "category": "Creative",
@@ -3342,16 +3809,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-187",
+    "id": "sv-192",
     "slug": "cv_tee_visually_articulate_maker",
     "title": "Visually Articulate Maker",
     "category": "Creative",
@@ -3360,16 +3829,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 5,
     "superlikes": 1,
-    "score": 3,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 3,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.375
   },
   {
-    "id": "sv-188",
+    "id": "sv-193",
     "slug": "cv_tee_visually_articulate_skyline",
     "title": "Visually Articulate Skyline",
     "category": "Creative",
@@ -3378,16 +3849,18 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 4,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 6,
+    "approvalRate": 33,
+    "bayesianMean": 0.37
   },
   {
-    "id": "sv-189",
+    "id": "sv-194",
     "slug": "cv_tee_what_keeps_you_up_at_night",
     "title": "What Keeps You Up At Night",
     "category": "Creative",
@@ -3396,16 +3869,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 6,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
   },
   {
-    "id": "sv-190",
+    "id": "sv-195",
     "slug": "cv_tee_what_keeps_you_up_hud",
     "title": "What Keeps You Up Hud",
     "category": "Creative",
@@ -3414,16 +3889,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 4,
     "superlikes": 1,
-    "score": 4,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 4,
+    "totalVotes": 6,
+    "approvalRate": 33,
+    "bayesianMean": 0.46
   },
   {
-    "id": "sv-191",
+    "id": "sv-196",
     "slug": "cv_tee_when_you_cant_fall_asleep_botanical_paf",
     "title": "When You Cant Fall Asleep Botanical Paf",
     "category": "Creative",
@@ -3432,16 +3909,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 7,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 7,
+    "approvalRate": 0,
+    "bayesianMean": 0.161
   },
   {
-    "id": "sv-192",
+    "id": "sv-197",
     "slug": "cv_tee_when_you_cant_fall_asleep_cyber_hud",
     "title": "When You Cant Fall Asleep Cyber Hud",
     "category": "Creative",
@@ -3450,16 +3929,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 7,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 7,
+    "approvalRate": 0,
+    "bayesianMean": 0.161
   },
   {
-    "id": "sv-193",
+    "id": "sv-198",
     "slug": "cv_tee_when_you_cant_fall_asleep_grgur_nocturne",
     "title": "When You Cant Fall Asleep Grgur Nocturne",
     "category": "Creative",
@@ -3468,16 +3949,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-194",
+    "id": "sv-199",
     "slug": "cv_tee_when_you_cant_fall_asleep_raw_marker",
     "title": "When You Cant Fall Asleep Raw Marker",
     "category": "Creative",
@@ -3486,16 +3969,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-195",
+    "id": "sv-200",
     "slug": "cv_tee_when_you_cant_fall_asleep_sculpture_maker",
     "title": "When You Cant Fall Asleep Sculpture Maker",
     "category": "Creative",
@@ -3504,16 +3989,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-196",
+    "id": "sv-201",
     "slug": "cv_tee_when_you_cant_fall_asleep_star_chart",
     "title": "When You Cant Fall Asleep Star Chart",
     "category": "Creative",
@@ -3522,16 +4009,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-197",
+    "id": "sv-202",
     "slug": "cv_tee_the_alchemist_magic_work",
     "title": "the Alchemist Magic Work",
     "category": "Creative",
@@ -3540,16 +4029,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 7,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 7,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 7,
+    "approvalRate": 0,
+    "bayesianMean": 0.161
   },
   {
-    "id": "sv-198",
+    "id": "sv-203",
     "slug": "cv_tee_the_lovers_betrayal_tarot",
     "title": "the Lovers Betrayal Tarot",
     "category": "Creative",
@@ -3558,19 +4049,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
-      "varazdin",
-      "lovers",
-      "tarot",
-      "ideas-cant-die"
-    ]
+      "varazdin"
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-199",
+    "id": "sv-204",
     "slug": "cv_tee_the_magic_alchemist_tarot",
     "title": "the Magic Alchemist Tarot",
     "category": "Creative",
@@ -3579,16 +4069,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-200",
+    "id": "sv-205",
     "slug": "cv_tee_the_magic_alchemist_tarot_back",
     "title": "the Magic Alchemist Tarot Back",
     "category": "Creative",
@@ -3597,16 +4089,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-201",
+    "id": "sv-206",
     "slug": "cv_tee_the_magic_botanical_lithograph",
     "title": "the Magic Botanical Lithograph",
     "category": "Creative",
@@ -3615,16 +4109,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 5,
     "superlikes": 1,
-    "score": 3,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 3,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.375
   },
   {
-    "id": "sv-202",
+    "id": "sv-207",
     "slug": "cv_tee_the_magic_dragon_red_seals",
     "title": "the Magic Dragon Red Seals",
     "category": "Creative",
@@ -3633,16 +4129,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
-    "id": "sv-203",
+    "id": "sv-208",
     "slug": "cv_tee_the_magic_in_work_you_avoid",
     "title": "the Magic in Work You Avoid",
     "category": "Creative",
@@ -3651,16 +4149,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "creative",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-204",
+    "id": "sv-209",
     "slug": "sv_artwear_atelier_alchimia_1181",
     "title": "Atelier Alchimia 1181",
     "category": "Artwear",
@@ -3669,16 +4169,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-205",
+    "id": "sv-210",
     "slug": "sv_artwear_atelier_modular_green",
     "title": "Atelier Modular Green",
     "category": "Artwear",
@@ -3687,16 +4189,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 7,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 8,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 8,
+    "approvalRate": 13,
+    "bayesianMean": 0.224
   },
   {
-    "id": "sv-206",
+    "id": "sv-211",
     "slug": "sv_tee_beram_galija_1474",
     "title": "Beram Galija 1474",
     "category": "Artwear",
@@ -3705,16 +4209,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 5,
     "superlikes": 1,
-    "score": 3,
-    "totalVotes": 6,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 3,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.375
   },
   {
-    "id": "sv-207",
+    "id": "sv-212",
     "slug": "sv_print_fisheye_ambition_black",
     "title": "Fisheye Ambition Black",
     "category": "Artwear",
@@ -3723,16 +4229,18 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 5,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 7,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 7,
+    "approvalRate": 29,
+    "bayesianMean": 0.333
   },
   {
-    "id": "sv-208",
+    "id": "sv-213",
     "slug": "sv_print_garda_purgar_flare",
     "title": "Garda Purgar Flare",
     "category": "Artwear",
@@ -3741,16 +4249,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 7,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 7,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 7,
+    "approvalRate": 0,
+    "bayesianMean": 0.161
   },
   {
-    "id": "sv-209",
+    "id": "sv-214",
     "slug": "sv_print_garda_purgar_sigil_white",
     "title": "Garda Purgar Sigil White",
     "category": "Artwear",
@@ -3759,16 +4269,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-210",
+    "id": "sv-215",
     "slug": "sv_print_garda_purgar_sunburst",
     "title": "Garda Purgar Sunburst",
     "category": "Artwear",
@@ -3777,16 +4289,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
-    "id": "sv-211",
+    "id": "sv-216",
     "slug": "sv_tee_glagolitic_initial_s_gryphon",
     "title": "Glagolitic Initial S Gryphon",
     "category": "Artwear",
@@ -3795,16 +4309,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-212",
+    "id": "sv-217",
     "slug": "sv_tee_glagolitic_tarot_ideas_cant_die",
     "title": "Glagolitic Tarot Ideas Cant Die",
     "category": "Artwear",
@@ -3813,16 +4329,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-213",
+    "id": "sv-218",
     "slug": "sv_artwear_guardian_of_radimlja",
     "title": "Guardian of Radimlja",
     "category": "Artwear",
@@ -3831,16 +4349,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-214",
+    "id": "sv-219",
     "slug": "sv_artwear_inspired_by_craft_black",
     "title": "Inspired By Craft Black",
     "category": "Artwear",
@@ -3849,16 +4369,18 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 4,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 6,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 6,
+    "approvalRate": 33,
+    "bayesianMean": 0.37
   },
   {
-    "id": "sv-215",
+    "id": "sv-220",
     "slug": "sv_print_inspired_by_studio_black",
     "title": "Inspired By Studio Black",
     "category": "Artwear",
@@ -3867,16 +4389,18 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 4,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 6,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 6,
+    "approvalRate": 33,
+    "bayesianMean": 0.37
   },
   {
-    "id": "sv-216",
+    "id": "sv-221",
     "slug": "sv_tee_kameni_vitez_radimlja",
     "title": "Kameni Vitez Radimlja",
     "category": "Artwear",
@@ -3885,34 +4409,38 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-217",
+    "id": "sv-222",
     "slug": "sv_print_knight_sigil_white",
     "title": "Knight Sigil White",
     "category": "Artwear",
     "image": "assets/optimized/SV Print - Knight Sigil White.webp",
     "description": "Povijesni sakralni i heraldički motiv — Knight Sigil White.",
-    "likes": 5,
+    "likes": 6,
     "passes": 3,
     "superlikes": 0,
-    "score": 5,
-    "totalVotes": 8,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 6,
+    "totalVotes": 9,
+    "approvalRate": 67,
+    "bayesianMean": 0.588
   },
   {
-    "id": "sv-218",
+    "id": "sv-223",
     "slug": "sv_artwear_knights_vow_cream",
     "title": "Knights Vow Cream",
     "category": "Artwear",
@@ -3921,16 +4449,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 6,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
   },
   {
-    "id": "sv-219",
+    "id": "sv-224",
     "slug": "sv_print_knights_vow_cream",
     "title": "Knights Vow Cream",
     "category": "Artwear",
@@ -3939,16 +4469,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 1,
-    "score": 4,
-    "totalVotes": 7,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 4,
+    "totalVotes": 7,
+    "approvalRate": 29,
+    "bayesianMean": 0.42
   },
   {
-    "id": "sv-220",
+    "id": "sv-225",
     "slug": "sv_print_maker_archives_white",
     "title": "Maker Archives White",
     "category": "Artwear",
@@ -3957,16 +4489,18 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 5,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 7,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 7,
+    "approvalRate": 29,
+    "bayesianMean": 0.333
   },
   {
-    "id": "sv-221",
+    "id": "sv-226",
     "slug": "sv_artwear_perun_sacred_geometry",
     "title": "Perun Sacred Geometry",
     "category": "Artwear",
@@ -3974,17 +4508,19 @@ export const CATALOG_DATA = [
     "description": "Povijesni sakralni i heraldički motiv — Perun Sacred Geometry.",
     "likes": 0,
     "passes": 6,
-    "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
+    "superlikes": 1,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 3,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.343
   },
   {
-    "id": "sv-222",
+    "id": "sv-227",
     "slug": "sv_tee_perunova_rozeta_gromovnik",
     "title": "Perunova Rozeta Gromovnik",
     "category": "Artwear",
@@ -3993,16 +4529,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 6,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
   },
   {
-    "id": "sv-223",
+    "id": "sv-228",
     "slug": "sv_artwear_phoenix_of_1776",
     "title": "Phoenix of 1776",
     "category": "Artwear",
@@ -4011,16 +4549,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 7,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 7,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 7,
+    "approvalRate": 0,
+    "bayesianMean": 0.161
   },
   {
-    "id": "sv-224",
+    "id": "sv-229",
     "slug": "sv_tee_pozar_varazdina_1776_iz_pepela",
     "title": "Pozar Varazdina 1776 Iz Pepela",
     "category": "Artwear",
@@ -4029,16 +4569,18 @@ export const CATALOG_DATA = [
     "likes": 3,
     "passes": 3,
     "superlikes": 0,
-    "score": 3,
-    "totalVotes": 6,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 3,
+    "totalVotes": 6,
+    "approvalRate": 50,
+    "bayesianMean": 0.472
   },
   {
-    "id": "sv-225",
+    "id": "sv-230",
     "slug": "sv_tee_purgar_straza_night_march",
     "title": "Purgar Straza Night March",
     "category": "Artwear",
@@ -4047,16 +4589,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 6,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
   },
   {
-    "id": "sv-226",
+    "id": "sv-231",
     "slug": "sv_print_silent_knight_black",
     "title": "Silent Knight Black",
     "category": "Artwear",
@@ -4065,16 +4609,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 1,
-    "score": 4,
-    "totalVotes": 7,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 4,
+    "totalVotes": 7,
+    "approvalRate": 29,
+    "bayesianMean": 0.42
   },
   {
-    "id": "sv-227",
+    "id": "sv-232",
     "slug": "sv_print_silent_knight_studio_black",
     "title": "Silent Knight Studio Black",
     "category": "Artwear",
@@ -4083,16 +4629,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 4,
     "superlikes": 1,
-    "score": 4,
-    "totalVotes": 6,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 4,
+    "totalVotes": 6,
+    "approvalRate": 33,
+    "bayesianMean": 0.46
   },
   {
-    "id": "sv-228",
+    "id": "sv-233",
     "slug": "sv_print_silent_knight_studio_sunburst",
     "title": "Silent Knight Studio Sunburst",
     "category": "Artwear",
@@ -4101,16 +4649,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 4,
     "superlikes": 1,
-    "score": 4,
-    "totalVotes": 6,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 4,
+    "totalVotes": 6,
+    "approvalRate": 33,
+    "bayesianMean": 0.46
   },
   {
-    "id": "sv-229",
+    "id": "sv-234",
     "slug": "sv_tee_stari_grad_barokna_kula_master",
     "title": "Stari Grad Barokna Kula Master",
     "category": "Artwear",
@@ -4119,16 +4669,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
-    "id": "sv-230",
+    "id": "sv-235",
     "slug": "sv_tee_studio_guild_pisemo_svjetlom",
     "title": "Studio Guild Pisemo Svjetlom",
     "category": "Artwear",
@@ -4137,16 +4689,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-231",
+    "id": "sv-236",
     "slug": "t_shirt_studio_varazdin_gpt2_dynamic_cluster",
     "title": "Studio Varazdin GPT2 Dynamic Cluster",
     "category": "Artwear",
@@ -4155,16 +4709,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-232",
+    "id": "sv-237",
     "slug": "t_shirt_studio_varazdin_gpt2_skyline_portrait",
     "title": "Studio Varazdin GPT2 Skyline Portrait",
     "category": "Artwear",
@@ -4173,16 +4729,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 7,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 8,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 8,
+    "approvalRate": 13,
+    "bayesianMean": 0.224
   },
   {
-    "id": "sv-233",
+    "id": "sv-238",
     "slug": "t_shirt_studio_varazdin_gpt2_totem_portrait",
     "title": "Studio Varazdin GPT2 Totem Portrait",
     "category": "Artwear",
@@ -4191,34 +4749,38 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-234",
+    "id": "sv-239",
     "slug": "sv_artwear_teratomorpha_sigil_white",
     "title": "Teratomorpha Sigil White",
     "category": "Artwear",
     "image": "assets/optimized/SV Artwear - Teratomorpha Sigil White.webp",
     "description": "Povijesni sakralni i heraldički motiv — Teratomorpha Sigil White.",
-    "likes": 4,
+    "likes": 5,
     "passes": 3,
     "superlikes": 1,
-    "score": 7,
-    "totalVotes": 8,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 8,
+    "totalVotes": 9,
+    "approvalRate": 67,
+    "bayesianMean": 0.636
   },
   {
-    "id": "sv-235",
+    "id": "sv-240",
     "slug": "sv_artwear_teratomorphic_dragon_1404",
     "title": "Teratomorphic Dragon 1404",
     "category": "Artwear",
@@ -4227,16 +4789,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-236",
+    "id": "sv-241",
     "slug": "sv_tee_trakostyan_black_queen",
     "title": "Trakostyan Black Queen",
     "category": "Artwear",
@@ -4245,16 +4809,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 7,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 7,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 7,
+    "approvalRate": 0,
+    "bayesianMean": 0.161
   },
   {
-    "id": "sv-237",
+    "id": "sv-242",
     "slug": "sv_tee_varazdin_stari_grad_1181",
     "title": "Varazdin Stari Grad 1181",
     "category": "Artwear",
@@ -4263,16 +4829,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-238",
+    "id": "sv-243",
     "slug": "sv_tee_veles_lord_of_sacred_horns",
     "title": "Veles Lord of Sacred Horns",
     "category": "Artwear",
@@ -4281,16 +4849,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-239",
+    "id": "sv-244",
     "slug": "sv_artwear_vertical_spine_1181_black",
     "title": "Vertical Spine 1181 Black",
     "category": "Artwear",
@@ -4299,16 +4869,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-240",
+    "id": "sv-245",
     "slug": "sv_tee_vitez_sa_stecka_master",
     "title": "Vitez sa Stecka Master",
     "category": "Artwear",
@@ -4317,16 +4889,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-241",
+    "id": "sv-246",
     "slug": "sv_tee_zgoscanski_stecak_royal_fortress",
     "title": "Zgoscanski Stecak Royal Fortress",
     "category": "Artwear",
@@ -4335,16 +4909,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 7,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 7,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 7,
+    "approvalRate": 0,
+    "bayesianMean": 0.161
   },
   {
-    "id": "sv-242",
+    "id": "sv-247",
     "slug": "sv_tee_zmaj_hrvojev_misal_ultra",
     "title": "Zmaj Hrvojev Misal Ultra",
     "category": "Artwear",
@@ -4353,16 +4929,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 7,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 7,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 7,
+    "approvalRate": 0,
+    "bayesianMean": 0.161
   },
   {
-    "id": "sv-243",
+    "id": "sv-248",
     "slug": "sv_tee_zmaj_hrvojeva_misala",
     "title": "Zmaj Hrvojeva Misala",
     "category": "Artwear",
@@ -4371,16 +4949,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "artwear",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
-    "id": "sv-244",
+    "id": "sv-249",
     "slug": "front_hit_35mm_film_frame_timecode",
     "title": "35MM Film Frame Timecode",
     "category": "Front Hits",
@@ -4389,16 +4969,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-245",
+    "id": "sv-250",
     "slug": "front_hit_ccc_middle_ground_blueprint_front",
     "title": "CCC Middle Ground Blueprint Front",
     "category": "Front Hits",
@@ -4407,16 +4989,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-246",
+    "id": "sv-251",
     "slug": "front_hit_ccc_they_who_dance_front",
     "title": "CCC They Who Dance Front",
     "category": "Front Hits",
@@ -4425,16 +5009,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
-    "id": "sv-247",
+    "id": "sv-252",
     "slug": "front_hit_can_you_change_the_music_comix_front",
     "title": "Can You Change the Music Comix Front",
     "category": "Front Hits",
@@ -4443,16 +5029,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-248",
+    "id": "sv-253",
     "slug": "front_hit_cash_value_guilloche_front",
     "title": "Cash Value Guilloche Front",
     "category": "Front Hits",
@@ -4461,16 +5049,18 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 4,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 6,
+    "approvalRate": 33,
+    "bayesianMean": 0.37
   },
   {
-    "id": "sv-249",
+    "id": "sv-254",
     "slug": "front_hit_ccc_swiss_pocket_spec",
     "title": "Ccc. Swiss Pocket Spec",
     "category": "Front Hits",
@@ -4479,16 +5069,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 6,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
   },
   {
-    "id": "sv-250",
+    "id": "sv-255",
     "slug": "collab_01_studio_varazdin_alchemist_laborer_front",
     "title": "Collab 01 — The Alchemist Front Hit",
     "category": "Front Hits",
@@ -4497,16 +5089,18 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 4,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 6,
+    "approvalRate": 33,
+    "bayesianMean": 0.37
   },
   {
-    "id": "sv-251",
+    "id": "sv-256",
     "slug": "collab_02_ccc_middle_ground_horizon_front",
     "title": "Collab 02 — Middle Ground Front Hit",
     "category": "Front Hits",
@@ -4515,16 +5109,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
-    "id": "sv-252",
+    "id": "sv-257",
     "slug": "collab_03_ccc_morska_dekla_siren_front",
     "title": "Collab 03 — Morska Dekla Front Hit",
     "category": "Front Hits",
@@ -4533,16 +5129,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-253",
+    "id": "sv-258",
     "slug": "collab_03_studio_varazdin_semiotic_matrix_front",
     "title": "Collab 03 — Semiotic Matrix Front Hit",
     "category": "Front Hits",
@@ -4551,16 +5149,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-254",
+    "id": "sv-259",
     "slug": "collab_04_studio_varazdin_fire_1776_disaster_front",
     "title": "Collab 04 — Fire 1776 Front Hit",
     "category": "Front Hits",
@@ -4569,16 +5169,18 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 4,
     "superlikes": 1,
-    "score": 5,
-    "totalVotes": 7,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 5,
+    "totalVotes": 7,
+    "approvalRate": 43,
+    "bayesianMean": 0.5
   },
   {
-    "id": "sv-255",
+    "id": "sv-260",
     "slug": "collab_04_ccc_kinetic_madmen_front",
     "title": "Collab 04 — Kinetic Madmen Front Hit",
     "category": "Front Hits",
@@ -4587,16 +5189,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-256",
+    "id": "sv-261",
     "slug": "collab_05_studio_varazdin_midnight_reticle_front",
     "title": "Collab 05 — Midnight Reticle Front Hit",
     "category": "Front Hits",
@@ -4605,16 +5209,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-257",
+    "id": "sv-262",
     "slug": "collab_05_ccc_sleeping_angels_acid_front",
     "title": "Collab 05 — Sleeping Angels Front Hit",
     "category": "Front Hits",
@@ -4623,16 +5229,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-258",
+    "id": "sv-263",
     "slug": "collab_06_ccc_constrained_monolith_front",
     "title": "Collab 06 — Constrained Monolith Front Hit",
     "category": "Front Hits",
@@ -4641,16 +5249,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
-    "id": "sv-259",
+    "id": "sv-264",
     "slug": "collab_06_studio_varazdin_vischer_panorama_front",
     "title": "Collab 06 — Vischer Panorama Front Hit",
     "category": "Front Hits",
@@ -4659,16 +5269,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
-    "id": "sv-260",
+    "id": "sv-265",
     "slug": "collab_07_studio_varazdin_mountain_editor_front",
     "title": "Collab 07 — Mountain Editor Front Hit",
     "category": "Front Hits",
@@ -4677,16 +5289,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-261",
+    "id": "sv-266",
     "slug": "collab_08_ccc_iron_turtle_guild_front",
     "title": "Collab 08 — Iron Turtle Front Hit",
     "category": "Front Hits",
@@ -4695,16 +5309,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-262",
+    "id": "sv-267",
     "slug": "front_hit_constrained_environment_blueprint_front",
     "title": "Constrained Environment Blueprint Front",
     "category": "Front Hits",
@@ -4713,16 +5329,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-263",
+    "id": "sv-268",
     "slug": "front_hit_creative_block_1181_front",
     "title": "Creative Block 1181 Front",
     "category": "Front Hits",
@@ -4731,16 +5349,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 1,
-    "score": 3,
-    "totalVotes": 7,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 3,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.343
   },
   {
-    "id": "sv-264",
+    "id": "sv-269",
     "slug": "front_hit_cyber_3d_angled_sv_monogram",
     "title": "Cyber 3d Angled SV Monogram",
     "category": "Front Hits",
@@ -4749,16 +5369,18 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 5,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 7,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 7,
+    "approvalRate": 29,
+    "bayesianMean": 0.333
   },
   {
-    "id": "sv-265",
+    "id": "sv-270",
     "slug": "front_hit_deadpan_knight_arrow_cartoon",
     "title": "Deadpan Knight Arrow Cartoon",
     "category": "Front Hits",
@@ -4767,16 +5389,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 6,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
   },
   {
-    "id": "sv-266",
+    "id": "sv-271",
     "slug": "front_hit_everything_says_something_matrix_front",
     "title": "Everything Says Something Matrix Front",
     "category": "Front Hits",
@@ -4785,16 +5409,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-267",
+    "id": "sv-272",
     "slug": "front_hit_good_work_great_work_anvil_front",
     "title": "Good Work Great Work Anvil Front",
     "category": "Front Hits",
@@ -4803,34 +5429,38 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-268",
+    "id": "sv-273",
     "slug": "front_hit_grgur_ninski_pointing_finger_icon",
     "title": "Grgur Ninski Pointing Finger Icon",
     "category": "Front Hits",
     "image": "assets/optimized/Front Hit - Grgur Ninski Pointing Finger Icon.webp",
     "description": "Minimalistički prsni motiv — Grgur Ninski Pointing Finger Icon.",
     "likes": 3,
-    "passes": 3,
+    "passes": 4,
     "superlikes": 1,
-    "score": 6,
-    "totalVotes": 7,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 6,
+    "totalVotes": 8,
+    "approvalRate": 50,
+    "bayesianMean": 0.534
   },
   {
-    "id": "sv-269",
+    "id": "sv-274",
     "slug": "heritage_combo_01_florijan_brutalist_front",
     "title": "Heritage Combo 01 — St. Florian Spec Front Hit",
     "category": "Front Hits",
@@ -4839,16 +5469,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
-    "id": "sv-270",
+    "id": "sv-275",
     "slug": "heritage_combo_02_angels_comix_front",
     "title": "Heritage Combo 02 — Angelic Soundwave Front Hit",
     "category": "Front Hits",
@@ -4857,16 +5489,18 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 5,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 7,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 7,
+    "approvalRate": 29,
+    "bayesianMean": 0.333
   },
   {
-    "id": "sv-271",
+    "id": "sv-276",
     "slug": "heritage_combo_03_erdody_gothiclitho_front",
     "title": "Heritage Combo 03 — Probitati 1842 Front Hit",
     "category": "Front Hits",
@@ -4875,16 +5509,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-272",
+    "id": "sv-277",
     "slug": "heritage_combo_04_baroqueangel_botanical_front",
     "title": "Heritage Combo 04 — Cherub Nocturne Front Hit",
     "category": "Front Hits",
@@ -4893,16 +5529,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-273",
+    "id": "sv-278",
     "slug": "front_hit_horizontal_barcode_chest_tape",
     "title": "Horizontal Barcode Chest Tape",
     "category": "Front Hits",
@@ -4911,16 +5549,18 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 4,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 6,
+    "approvalRate": 33,
+    "bayesianMean": 0.37
   },
   {
-    "id": "sv-274",
+    "id": "sv-279",
     "slug": "front_hit_kittl_warped_circular_badge",
     "title": "Kittl Warped Circular Badge",
     "category": "Front Hits",
@@ -4929,16 +5569,18 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 4,
     "superlikes": 1,
-    "score": 5,
-    "totalVotes": 7,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 5,
+    "totalVotes": 7,
+    "approvalRate": 43,
+    "bayesianMean": 0.5
   },
   {
-    "id": "sv-275",
+    "id": "sv-280",
     "slug": "front_hit_knight_helmet_minimal_icon",
     "title": "Knight Helmet Minimal Icon",
     "category": "Front Hits",
@@ -4947,16 +5589,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
-    "id": "sv-276",
+    "id": "sv-281",
     "slug": "front_minimal_knight_helmet_pure_minimal_icon",
     "title": "Knight Helmet — Pure Minimal Icon",
     "category": "Front Hits",
@@ -4965,16 +5609,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 5,
     "superlikes": 1,
-    "score": 3,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 3,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.375
   },
   {
-    "id": "sv-277",
+    "id": "sv-282",
     "slug": "front_hit_middle_ground_blueprint_front",
     "title": "Middle Ground Blueprint Front",
     "category": "Front Hits",
@@ -4983,16 +5629,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
-    "id": "sv-278",
+    "id": "sv-283",
     "slug": "front_hit_nocturne_dreams_0300_front",
     "title": "Nocturne Dreams 0300 Front",
     "category": "Front Hits",
@@ -5001,16 +5649,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-279",
+    "id": "sv-284",
     "slug": "front_hit_optical_lens_calibration_target",
     "title": "Optical Lens Calibration Target",
     "category": "Front Hits",
@@ -5019,16 +5669,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
-    "id": "sv-280",
+    "id": "sv-285",
     "slug": "front_hit_paf_botanical_oak_branch",
     "title": "Paf Botanical Oak Branch",
     "category": "Front Hits",
@@ -5037,16 +5689,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
-    "id": "sv-281",
+    "id": "sv-286",
     "slug": "front_hit_philosopher_knight_front",
     "title": "Philosopher Knight Front",
     "category": "Front Hits",
@@ -5055,16 +5709,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-282",
+    "id": "sv-287",
     "slug": "sv_4ref_01_sidequest_woodcut_front",
     "title": "SV 4Ref 01 — Side Quest Front Hit",
     "category": "Front Hits",
@@ -5073,16 +5729,18 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 5,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 7,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 7,
+    "approvalRate": 29,
+    "bayesianMean": 0.333
   },
   {
-    "id": "sv-283",
+    "id": "sv-288",
     "slug": "sv_4ref_02_praying_guardian_riso_front",
     "title": "SV 4Ref 02 — Praying Guardian Front Hit",
     "category": "Front Hits",
@@ -5091,16 +5749,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 1,
-    "score": 4,
-    "totalVotes": 7,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 4,
+    "totalVotes": 7,
+    "approvalRate": 29,
+    "bayesianMean": 0.42
   },
   {
-    "id": "sv-284",
+    "id": "sv-289",
     "slug": "sv_4ref_03_dual_knights_vigil_front",
     "title": "SV 4Ref 03 — Dual Knights Front Hit",
     "category": "Front Hits",
@@ -5109,16 +5769,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 1,
-    "score": 4,
-    "totalVotes": 7,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 4,
+    "totalVotes": 7,
+    "approvalRate": 29,
+    "bayesianMean": 0.42
   },
   {
-    "id": "sv-285",
+    "id": "sv-290",
     "slug": "sv_4ref_04_rearing_cybergothic_front",
     "title": "SV 4Ref 04 — CyberGothic Front Hit",
     "category": "Front Hits",
@@ -5127,16 +5789,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
-    "id": "sv-286",
+    "id": "sv-291",
     "slug": "sv_4ref_05_grand_synthesis_master_front",
     "title": "SV 4Ref 05 — Grand Synthesis Front Hit",
     "category": "Front Hits",
@@ -5145,16 +5809,18 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 5,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 7,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 7,
+    "approvalRate": 29,
+    "bayesianMean": 0.333
   },
   {
-    "id": "sv-287",
+    "id": "sv-292",
     "slug": "front_hit_sv_maker_signature_script",
     "title": "SV Maker Signature Script",
     "category": "Front Hits",
@@ -5163,34 +5829,38 @@ export const CATALOG_DATA = [
     "likes": 3,
     "passes": 5,
     "superlikes": 0,
-    "score": 3,
-    "totalVotes": 8,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 3,
+    "totalVotes": 8,
+    "approvalRate": 38,
+    "bayesianMean": 0.385
   },
   {
-    "id": "sv-288",
+    "id": "sv-293",
     "slug": "sv_single_01_woodcut_knight_front",
     "title": "SV Single 01 — Woodcut Knight Front Hit",
     "category": "Front Hits",
     "image": "assets/optimized/SV_Single_01_Woodcut_Knight_Front.webp",
     "description": "Minimalistički prsni motiv — SV Single 01 — Woodcut Knight Front Hit.",
-    "likes": 4,
+    "likes": 5,
     "passes": 3,
     "superlikes": 0,
-    "score": 4,
-    "totalVotes": 7,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 5,
+    "totalVotes": 8,
+    "approvalRate": 63,
+    "bayesianMean": 0.556
   },
   {
-    "id": "sv-289",
+    "id": "sv-294",
     "slug": "sv_single_02_praying_knight_front",
     "title": "SV Single 02 — Praying Knight Front Hit",
     "category": "Front Hits",
@@ -5199,16 +5869,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 4,
     "superlikes": 1,
-    "score": 4,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 4,
+    "totalVotes": 6,
+    "approvalRate": 33,
+    "bayesianMean": 0.46
   },
   {
-    "id": "sv-290",
+    "id": "sv-295",
     "slug": "sv_single_03_sigil_brutalist_front",
     "title": "SV Single 03 — Brutalist Sigil Front Hit",
     "category": "Front Hits",
@@ -5217,34 +5889,38 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 5,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 7,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 7,
+    "approvalRate": 29,
+    "bayesianMean": 0.333
   },
   {
-    "id": "sv-291",
+    "id": "sv-296",
     "slug": "sv_single_04_riso_rearing_knight_front",
     "title": "SV Single 04 — Rearing Knight Front Hit",
     "category": "Front Hits",
     "image": "assets/optimized/SV_Single_04_Riso_Rearing_Knight_Front.webp",
     "description": "Minimalistički prsni motiv — SV Single 04 — Rearing Knight Front Hit.",
-    "likes": 2,
+    "likes": 3,
     "passes": 4,
     "superlikes": 2,
-    "score": 8,
-    "totalVotes": 8,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 9,
+    "totalVotes": 9,
+    "approvalRate": 56,
+    "bayesianMean": 0.609
   },
   {
-    "id": "sv-292",
+    "id": "sv-297",
     "slug": "sv_single_05_spray_stencil_front",
     "title": "SV Single 05 — Spray Stencil Front Hit",
     "category": "Front Hits",
@@ -5253,16 +5929,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
-    "id": "sv-293",
+    "id": "sv-298",
     "slug": "sv_single_06_botanical_arch_front",
     "title": "SV Single 06 — Botanical Arch Front Hit",
     "category": "Front Hits",
@@ -5271,16 +5949,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-294",
+    "id": "sv-299",
     "slug": "sv_single_07_gothic_metal_front",
     "title": "SV Single 07 — Gothic Metal Front Hit",
     "category": "Front Hits",
@@ -5289,16 +5969,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 4,
     "superlikes": 2,
-    "score": 7,
-    "totalVotes": 7,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 7,
+    "totalVotes": 7,
+    "approvalRate": 43,
+    "bayesianMean": 0.558
   },
   {
-    "id": "sv-295",
+    "id": "sv-300",
     "slug": "sv_single_08_acid_pop_front",
     "title": "SV Single 08 — Acid Pop Front Hit",
     "category": "Front Hits",
@@ -5307,16 +5989,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-296",
+    "id": "sv-301",
     "slug": "sv_single_09_comix_ink_front",
     "title": "SV Single 09 — Comix Ink Front Hit",
     "category": "Front Hits",
@@ -5325,16 +6009,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-297",
+    "id": "sv-302",
     "slug": "sv_utility_01_viewfinder_front",
     "title": "SV Utility 01 — Viewfinder Front Hit",
     "category": "Front Hits",
@@ -5343,16 +6029,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-298",
+    "id": "sv-303",
     "slug": "sv_utility_02_lens_specs_front",
     "title": "SV Utility 02 — Lens Specs Front Hit",
     "category": "Front Hits",
@@ -5361,16 +6049,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 4,
     "superlikes": 1,
-    "score": 4,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 4,
+    "totalVotes": 6,
+    "approvalRate": 33,
+    "bayesianMean": 0.46
   },
   {
-    "id": "sv-299",
+    "id": "sv-304",
     "slug": "sv_utility_03_spine_stencil_front",
     "title": "SV Utility 03 — Spine Stencil Front Hit",
     "category": "Front Hits",
@@ -5379,16 +6069,18 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 4,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 6,
+    "approvalRate": 33,
+    "bayesianMean": 0.37
   },
   {
-    "id": "sv-300",
+    "id": "sv-305",
     "slug": "sv_utility_04_brutalist_grid_front",
     "title": "SV Utility 04 — Brutalist Grid Front Hit",
     "category": "Front Hits",
@@ -5397,16 +6089,18 @@ export const CATALOG_DATA = [
     "likes": 3,
     "passes": 3,
     "superlikes": 0,
-    "score": 3,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 3,
+    "totalVotes": 6,
+    "approvalRate": 50,
+    "bayesianMean": 0.472
   },
   {
-    "id": "sv-301",
+    "id": "sv-306",
     "slug": "sv_utility_05_slate_box_front",
     "title": "SV Utility 05 — Slate Box Front Hit",
     "category": "Front Hits",
@@ -5415,16 +6109,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 6,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
   },
   {
-    "id": "sv-302",
+    "id": "sv-307",
     "slug": "sv_utility_06_timecode_horizon_front",
     "title": "SV Utility 06 — Timecode Horizon Front Hit",
     "category": "Front Hits",
@@ -5433,16 +6129,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-303",
+    "id": "sv-308",
     "slug": "sv_utility_07_lab_seal_front",
     "title": "SV Utility 07 — Film Lab Seal Front Hit",
     "category": "Front Hits",
@@ -5451,16 +6149,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 7,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 8,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 8,
+    "approvalRate": 13,
+    "bayesianMean": 0.224
   },
   {
-    "id": "sv-304",
+    "id": "sv-309",
     "slug": "sv_utility_08_swiss_manifest_front",
     "title": "SV Utility 08 — Swiss Manifest Front Hit",
     "category": "Front Hits",
@@ -5469,16 +6169,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-305",
+    "id": "sv-310",
     "slug": "sv_utility_09_audio_waveform_front",
     "title": "SV Utility 09 — Audio Waveform Front Hit",
     "category": "Front Hits",
@@ -5487,16 +6189,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 6,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
   },
   {
-    "id": "sv-306",
+    "id": "sv-311",
     "slug": "sv_utility_10_magazine_label_front",
     "title": "SV Utility 10 — Magazine Label Front Hit",
     "category": "Front Hits",
@@ -5505,16 +6209,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
-    "id": "sv-307",
+    "id": "sv-312",
     "slug": "front_hit_stari_grad_fortress_vector_icon",
     "title": "Stari Grad Fortress Vector Icon",
     "category": "Front Hits",
@@ -5523,16 +6229,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-308",
+    "id": "sv-313",
     "slug": "front_hit_studio_nicholson_tech_spec",
     "title": "Studio Nicholson Tech Spec",
     "category": "Front Hits",
@@ -5541,16 +6249,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-309",
+    "id": "sv-314",
     "slug": "front_hit_studio_varazdin_cash_value_guilloche_front",
     "title": "Studio Varazdin Cash Value Guilloche Front",
     "category": "Front Hits",
@@ -5559,16 +6269,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-310",
+    "id": "sv-315",
     "slug": "front_hit_studio_varazdin_good_work_great_work_front",
     "title": "Studio Varazdin Good Work Great Work Front",
     "category": "Front Hits",
@@ -5577,16 +6289,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
-    "id": "sv-311",
+    "id": "sv-316",
     "slug": "front_hit_studio_varazdin_nocturne_dreams_front",
     "title": "Studio Varazdin Nocturne Dreams Front",
     "category": "Front Hits",
@@ -5595,16 +6309,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-312",
+    "id": "sv-317",
     "slug": "front_minimal_studio_varazdin_part_of_ccc",
     "title": "Studio Varazdin Part of CCC",
     "category": "Front Hits",
@@ -5613,16 +6329,18 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 4,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 6,
+    "approvalRate": 33,
+    "bayesianMean": 0.37
   },
   {
-    "id": "sv-313",
+    "id": "sv-318",
     "slug": "front_hit_studio_varazdin_philosopher_knight_front",
     "title": "Studio Varazdin Philosopher Knight Front",
     "category": "Front Hits",
@@ -5631,16 +6349,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-314",
+    "id": "sv-319",
     "slug": "front_minimal_studio_varazdin_center_chest_large",
     "title": "Studio Varaždin — Center Chest Large",
     "category": "Front Hits",
@@ -5649,16 +6369,18 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 4,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 6,
+    "approvalRate": 33,
+    "bayesianMean": 0.37
   },
   {
-    "id": "sv-315",
+    "id": "sv-320",
     "slug": "front_minimal_studio_varazdin_minimal_box",
     "title": "Studio Varaždin — Minimal Bounding Box",
     "category": "Front Hits",
@@ -5667,16 +6389,18 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 5,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 7,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 7,
+    "approvalRate": 29,
+    "bayesianMean": 0.333
   },
   {
-    "id": "sv-316",
+    "id": "sv-321",
     "slug": "front_minimal_studio_varazdin_red_dot_accent",
     "title": "Studio Varaždin — Red Dot Accent",
     "category": "Front Hits",
@@ -5685,16 +6409,18 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 5,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 7,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 7,
+    "approvalRate": 29,
+    "bayesianMean": 0.333
   },
   {
-    "id": "sv-317",
+    "id": "sv-322",
     "slug": "front_minimal_studio_varazdin_stacked_two_tone",
     "title": "Studio Varaždin — Stacked Two-Tone",
     "category": "Front Hits",
@@ -5703,37 +6429,138 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 4,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 6,
+    "approvalRate": 33,
+    "bayesianMean": 0.37
   },
   {
-    "id": "sv-318",
-    "slug": "sv_lovers_03_kneeling_martyr_front",
-    "title": "The Lovers — Martyr Front Hit",
+    "id": "sv-323",
+    "slug": "sv_lovers_01_dark_comix_blade_front",
+    "title": "The Lovers 01 — Blade Front Hit",
     "category": "Front Hits",
-    "image": "assets/optimized/SV_Lovers_03_Kneeling_Martyr_Front.webp",
-    "description": "Minimalistički prsni motiv — The Lovers & Ideas Can't Die.",
-    "likes": 3,
+    "image": "assets/optimized/SV_Lovers_01_Dark_Comix_Blade_Front.webp",
+    "description": "Minimalistički prsni motiv — The Lovers 01 — Blade Front Hit.",
+    "likes": 2,
     "passes": 4,
-    "superlikes": 1,
-    "score": 6,
-    "totalVotes": 8,
+    "superlikes": 0,
     "tags": [
       "front hits",
       "streetwear",
-      "varazdin",
-      "lovers",
-      "tarot",
-      "ideas-cant-die"
-    ]
+      "varazdin"
+    ],
+    "score": 2,
+    "totalVotes": 6,
+    "approvalRate": 33,
+    "bayesianMean": 0.37
   },
   {
-    "id": "sv-319",
+    "id": "sv-324",
+    "slug": "sv_lovers_02_dedication_fatal_kiss_front",
+    "title": "The Lovers 02 — Fatal Kiss Front Hit",
+    "category": "Front Hits",
+    "image": "assets/optimized/SV_Lovers_02_Dedication_Fatal_Kiss_Front.webp",
+    "description": "Minimalistički prsni motiv — The Lovers 02 — Fatal Kiss Front Hit.",
+    "likes": 2,
+    "passes": 5,
+    "superlikes": 0,
+    "tags": [
+      "front hits",
+      "streetwear",
+      "varazdin"
+    ],
+    "score": 2,
+    "totalVotes": 7,
+    "approvalRate": 29,
+    "bayesianMean": 0.333
+  },
+  {
+    "id": "sv-325",
+    "slug": "sv_lovers_03_kneeling_martyr_front",
+    "title": "The Lovers 03 — Martyr Front Hit",
+    "category": "Front Hits",
+    "image": "assets/optimized/SV_Lovers_03_Kneeling_Martyr_Front.webp",
+    "description": "Minimalistički prsni motiv — The Lovers 03 — Martyr Front Hit.",
+    "likes": 3,
+    "passes": 4,
+    "superlikes": 1,
+    "tags": [
+      "front hits",
+      "streetwear",
+      "varazdin"
+    ],
+    "score": 6,
+    "totalVotes": 8,
+    "approvalRate": 50,
+    "bayesianMean": 0.534
+  },
+  {
+    "id": "sv-326",
+    "slug": "sv_lovers_04_acid_riso_betrayal_front",
+    "title": "The Lovers 04 — Acid Betrayal Front Hit",
+    "category": "Front Hits",
+    "image": "assets/optimized/SV_Lovers_04_Acid_Riso_Betrayal_Front.webp",
+    "description": "Minimalistički prsni motiv — The Lovers 04 — Acid Betrayal Front Hit.",
+    "likes": 1,
+    "passes": 6,
+    "superlikes": 0,
+    "tags": [
+      "front hits",
+      "streetwear",
+      "varazdin"
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
+  },
+  {
+    "id": "sv-327",
+    "slug": "sv_lovers_05_rebirth_sacrifice_front",
+    "title": "The Lovers 05 — Rebirth Front Hit",
+    "category": "Front Hits",
+    "image": "assets/optimized/SV_Lovers_05_Rebirth_Sacrifice_Front.webp",
+    "description": "Minimalistički prsni motiv — The Lovers 05 — Rebirth Front Hit.",
+    "likes": 0,
+    "passes": 6,
+    "superlikes": 0,
+    "tags": [
+      "front hits",
+      "streetwear",
+      "varazdin"
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
+  },
+  {
+    "id": "sv-328",
+    "slug": "sv_lovers_06_anamorphic_split_front",
+    "title": "The Lovers 06 — Anamorphic Front Hit",
+    "category": "Front Hits",
+    "image": "assets/optimized/SV_Lovers_06_Anamorphic_Split_Front.webp",
+    "description": "Minimalistički prsni motiv — The Lovers 06 — Anamorphic Front Hit.",
+    "likes": 0,
+    "passes": 6,
+    "superlikes": 0,
+    "tags": [
+      "front hits",
+      "streetwear",
+      "varazdin"
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
+  },
+  {
+    "id": "sv-329",
     "slug": "front_hit_they_who_dance_kinetic_front",
     "title": "They Who Dance Kinetic Front",
     "category": "Front Hits",
@@ -5742,16 +6569,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 6,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
   },
   {
-    "id": "sv-320",
+    "id": "sv-330",
     "slug": "front_minimal_varazdin_pure_red_script",
     "title": "Varaždin — Pure Red Script",
     "category": "Front Hits",
@@ -5760,16 +6589,18 @@ export const CATALOG_DATA = [
     "likes": 3,
     "passes": 4,
     "superlikes": 0,
-    "score": 3,
-    "totalVotes": 7,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 3,
+    "totalVotes": 7,
+    "approvalRate": 43,
+    "bayesianMean": 0.424
   },
   {
-    "id": "sv-321",
+    "id": "sv-331",
     "slug": "front_hit_vermilion_red_seal_stamp",
     "title": "Vermilion Red Seal Stamp",
     "category": "Front Hits",
@@ -5778,16 +6609,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
-    "id": "sv-322",
+    "id": "sv-332",
     "slug": "front_hit_visually_articulate_calibration_front",
     "title": "Visually Articulate Calibration Front",
     "category": "Front Hits",
@@ -5796,16 +6629,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-323",
+    "id": "sv-333",
     "slug": "front_minimal_creative_collective_center_chest_black",
     "title": "cCc — Center Chest Minimal Black",
     "category": "Front Hits",
@@ -5814,16 +6649,18 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 4,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 6,
+    "approvalRate": 33,
+    "bayesianMean": 0.37
   },
   {
-    "id": "sv-324",
+    "id": "sv-334",
     "slug": "front_minimal_creative_collective_minimal_box",
     "title": "cCc — Minimal Bounding Box",
     "category": "Front Hits",
@@ -5832,16 +6669,18 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 5,
     "superlikes": 0,
-    "score": 2,
-    "totalVotes": 7,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 2,
+    "totalVotes": 7,
+    "approvalRate": 29,
+    "bayesianMean": 0.333
   },
   {
-    "id": "sv-325",
+    "id": "sv-335",
     "slug": "front_minimal_ccc_monogram_creative_collective",
     "title": "cCc. — Monogram Creative Collective",
     "category": "Front Hits",
@@ -5850,16 +6689,18 @@ export const CATALOG_DATA = [
     "likes": 2,
     "passes": 5,
     "superlikes": 1,
-    "score": 5,
-    "totalVotes": 8,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 5,
+    "totalVotes": 8,
+    "approvalRate": 38,
+    "bayesianMean": 0.459
   },
   {
-    "id": "sv-326",
+    "id": "sv-336",
     "slug": "front_minimal_studio_varazdin_lowercase_black",
     "title": "studio varaždin — Lowercase Minimal Black",
     "category": "Front Hits",
@@ -5868,16 +6709,18 @@ export const CATALOG_DATA = [
     "likes": 3,
     "passes": 4,
     "superlikes": 0,
-    "score": 3,
-    "totalVotes": 7,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 3,
+    "totalVotes": 7,
+    "approvalRate": 43,
+    "bayesianMean": 0.424
   },
   {
-    "id": "sv-327",
+    "id": "sv-337",
     "slug": "front_minimal_studio_varazdin_lowercase_bone",
     "title": "studio varaždin — Lowercase Minimal Bone",
     "category": "Front Hits",
@@ -5886,16 +6729,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
-    "id": "sv-328",
+    "id": "sv-338",
     "slug": "front_hit_the_magic_alchemist_tarot_front",
     "title": "the Magic Alchemist Tarot Front",
     "category": "Front Hits",
@@ -5904,16 +6749,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "front hits",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
-    "id": "sv-329",
+    "id": "sv-339",
     "slug": "design_1_knight_gpt_image_2",
     "title": "Design 1 Knight GPT Image 2",
     "category": "Experimental",
@@ -5922,16 +6769,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "experimental",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-330",
+    "id": "sv-340",
     "slug": "design_1_knight_gpt_image_2_5_flare",
     "title": "Design 1 Knight GPT Image 2.5 Flare",
     "category": "Experimental",
@@ -5940,16 +6789,18 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "experimental",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-331",
+    "id": "sv-341",
     "slug": "design_1_knight_gpt_image_2_5_sunburst",
     "title": "Design 1 Knight GPT Image 2.5 Sunburst",
     "category": "Experimental",
@@ -5958,34 +6809,38 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 6,
     "superlikes": 0,
-    "score": 0,
-    "totalVotes": 6,
     "tags": [
       "experimental",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 0,
+    "totalVotes": 6,
+    "approvalRate": 0,
+    "bayesianMean": 0.179
   },
   {
-    "id": "sv-332",
+    "id": "sv-342",
     "slug": "design_2_stari_grad_gpt_image_2",
     "title": "Design 2 Stari Grad GPT Image 2",
     "category": "Experimental",
     "image": "assets/optimized/design_2_stari_grad__gpt-image-2.webp",
     "description": "Eksperimentalni vizualni motiv — Design 2 Stari Grad GPT Image 2.",
-    "likes": 3,
+    "likes": 4,
     "passes": 4,
     "superlikes": 0,
-    "score": 3,
-    "totalVotes": 7,
     "tags": [
       "experimental",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 4,
+    "totalVotes": 8,
+    "approvalRate": 50,
+    "bayesianMean": 0.469
   },
   {
-    "id": "sv-333",
+    "id": "sv-343",
     "slug": "design_2_stari_grad_gpt_image_2_5_flare",
     "title": "Design 2 Stari Grad GPT Image 2.5 Flare",
     "category": "Experimental",
@@ -5994,16 +6849,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 6,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "experimental",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
   },
   {
-    "id": "sv-334",
+    "id": "sv-344",
     "slug": "design_2_stari_grad_gpt_image_2_5_sunburst",
     "title": "Design 2 Stari Grad GPT Image 2.5 Sunburst",
     "category": "Experimental",
@@ -6012,16 +6869,18 @@ export const CATALOG_DATA = [
     "likes": 3,
     "passes": 5,
     "superlikes": 0,
-    "score": 3,
-    "totalVotes": 8,
     "tags": [
       "experimental",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 3,
+    "totalVotes": 8,
+    "approvalRate": 38,
+    "bayesianMean": 0.385
   },
   {
-    "id": "sv-335",
+    "id": "sv-345",
     "slug": "design_3_church_towers_gpt_image_2",
     "title": "Design 3 Church Towers GPT Image 2",
     "category": "Experimental",
@@ -6030,16 +6889,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 5,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 6,
     "tags": [
       "experimental",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.273
   },
   {
-    "id": "sv-336",
+    "id": "sv-346",
     "slug": "design_3_church_towers_gpt_image_2_5_flare",
     "title": "Design 3 Church Towers GPT Image 2.5 Flare",
     "category": "Experimental",
@@ -6048,16 +6909,18 @@ export const CATALOG_DATA = [
     "likes": 1,
     "passes": 6,
     "superlikes": 0,
-    "score": 1,
-    "totalVotes": 7,
     "tags": [
       "experimental",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 1,
+    "totalVotes": 7,
+    "approvalRate": 14,
+    "bayesianMean": 0.246
   },
   {
-    "id": "sv-337",
+    "id": "sv-347",
     "slug": "design_3_church_towers_gpt_image_2_5_sunburst",
     "title": "Design 3 Church Towers GPT Image 2.5 Sunburst",
     "category": "Experimental",
@@ -6066,12 +6929,14 @@ export const CATALOG_DATA = [
     "likes": 0,
     "passes": 5,
     "superlikes": 1,
-    "score": 3,
-    "totalVotes": 6,
     "tags": [
       "experimental",
       "streetwear",
       "varazdin"
-    ]
+    ],
+    "score": 3,
+    "totalVotes": 6,
+    "approvalRate": 17,
+    "bayesianMean": 0.375
   }
 ];
