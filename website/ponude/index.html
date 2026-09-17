@@ -171,7 +171,7 @@
     }
 
     /* ==========================================================================
-       HERO TITLES & TYPOGRAPHY (Meridian 16 quote-title & outline-text)
+       HERO TITLES & TYPOGRAPHY
        ========================================================================== */
     .quote-title {
       font-family: var(--font-hero);
@@ -202,7 +202,7 @@
     }
 
     /* ==========================================================================
-       BOLD SEARCH & FILTER BOX (Meridian 16 Box with Solid Shadow)
+       BOLD SEARCH BOX (Meridian 16 Box with Solid Shadow)
        ========================================================================== */
     .meridian-search-card {
       background: var(--bg-card);
@@ -213,23 +213,17 @@
       margin-bottom: 2.5rem;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
-    }
-
-    .search-row-top {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
+      gap: 0.75rem;
     }
 
     .search-input-box {
       position: relative;
-      flex: 1;
+      width: 100%;
     }
 
     .search-icon {
       position: absolute;
-      left: 1.1rem;
+      left: 1.15rem;
       top: 50%;
       transform: translateY(-50%);
       color: var(--text-muted);
@@ -241,9 +235,9 @@
       background: var(--bg-card-subtle);
       border: 2px solid var(--text-primary);
       border-radius: var(--radius-sm);
-      padding: 0.75rem 2.8rem 0.75rem 2.8rem;
+      padding: 0.85rem 2.8rem 0.85rem 3rem;
       font-family: var(--font-sans);
-      font-size: 0.95rem;
+      font-size: 1rem;
       font-weight: 700;
       color: var(--text-primary);
       outline: none;
@@ -258,11 +252,11 @@
 
     .search-kbd-hint {
       position: absolute;
-      right: 0.85rem;
+      right: 1rem;
       top: 50%;
       transform: translateY(-50%);
       font-family: var(--font-mono);
-      font-size: 0.72rem;
+      font-size: 0.75rem;
       font-weight: 800;
       color: var(--text-muted);
       background: var(--bg-card);
@@ -272,71 +266,23 @@
       pointer-events: none;
     }
 
-    .sort-select-box select {
-      background: var(--bg-card-subtle);
-      border: 2px solid var(--text-primary);
-      color: var(--text-primary);
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      font-weight: 800;
-      padding: 0.75rem 1rem;
-      border-radius: var(--radius-sm);
-      outline: none;
-      cursor: pointer;
-      box-shadow: 2px 2px 0px var(--text-primary);
-    }
-
-    .search-row-bottom {
+    .search-meta-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      padding-top: 0.75rem;
-      border-top: 1.5px solid var(--border-color);
-    }
-
-    .filter-pills-group {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
-
-    .filter-pill {
-      background: var(--bg-card-subtle);
-      border: 2px solid var(--text-primary);
-      color: var(--text-primary);
       font-family: var(--font-mono);
       font-size: 0.75rem;
-      font-weight: 800;
-      padding: 0.45rem 0.85rem;
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      box-shadow: 2px 2px 0px var(--text-primary);
-      transition: all 0.15s var(--transition-smooth);
+      font-weight: 700;
+      color: var(--text-muted);
     }
 
-    .filter-pill:hover {
-      background: #ffffff;
-      transform: translate(-1px, -1px);
-      box-shadow: 3px 3px 0px var(--text-primary);
-    }
-
-    .filter-pill:active {
-      transform: translate(2px, 2px);
-      box-shadow: 0px 0px 0px var(--text-primary);
-    }
-
-    .filter-pill.active {
-      background: var(--accent-green);
-      color: #f4efe4;
-    }
-
-    .filter-count-badge {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
+    .search-count-badge {
       font-weight: 800;
       color: var(--accent-green);
+      background: var(--accent-green-bg);
+      padding: 2px 8px;
+      border-radius: 3px;
+      border: 1px solid var(--accent-green-border);
     }
 
     /* ==========================================================================
@@ -372,7 +318,9 @@
       overflow: hidden;
       background: #000;
       cursor: pointer;
+      display: block;
       border-bottom: 2px solid var(--text-primary);
+      text-decoration: none;
     }
 
     .video-thumb-crazy img {
@@ -491,6 +439,17 @@
       white-space: nowrap;
     }
 
+    .card-title-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .card-title-link:hover .card-title {
+      color: var(--accent-green);
+      text-decoration: underline;
+    }
+
     .card-title {
       font-family: var(--font-hero);
       font-size: 1.22rem;
@@ -502,6 +461,7 @@
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
+      transition: color 0.15s;
     }
 
     .card-tagline {
@@ -517,38 +477,26 @@
       overflow: hidden;
     }
 
+    /* ==========================================================================
+       PRICE BOX & HOVER TOOLTIP FOR MULTI-OPTIONS
+       ========================================================================== */
     .card-pricing-box {
+      position: relative;
       background: var(--bg-card-subtle);
       border: 2px solid var(--text-primary);
       border-radius: var(--radius-sm);
-      padding: 0.85rem 1rem;
+      padding: 0.85rem 1.1rem;
       margin-bottom: 1.25rem;
       box-shadow: 3px 3px 0px var(--text-primary);
-    }
-
-    .pricing-label-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.2rem;
+      cursor: help;
     }
 
-    .pricing-label {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      font-weight: 800;
-      color: var(--text-muted);
-      letter-spacing: 0.06em;
-    }
-
-    .pricing-options-hint {
-      font-size: 0.72rem;
-      color: var(--text-secondary);
-      font-weight: 700;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    .pricing-amount-wrapper {
+      position: relative;
+      display: inline-block;
     }
 
     .pricing-amount {
@@ -559,21 +507,74 @@
       letter-spacing: -0.01em;
     }
 
-    .card-actions-wrapper {
+    .pricing-hint-icon {
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      transition: color 0.15s;
+    }
+
+    .card-pricing-box:hover .pricing-hint-icon {
+      color: var(--accent-green);
+    }
+
+    /* Floating Tooltip */
+    .pricing-tooltip {
+      position: absolute;
+      bottom: calc(100% + 10px);
+      left: 0;
+      background: #111518;
+      color: #f4efe4;
+      border: 1.5px solid #111518;
+      padding: 0.55rem 0.85rem;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      white-space: nowrap;
+      box-shadow: 4px 4px 0px rgba(17, 21, 24, 0.35);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(6px);
+      transition: all 0.18s var(--transition-smooth);
+      z-index: 30;
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: 2px;
     }
 
-    .actions-row-primary {
-      display: grid;
-      grid-template-columns: 1.3fr 1fr;
-      gap: 0.5rem;
+    .pricing-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 24px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #111518 transparent transparent transparent;
     }
 
-    .actions-row-secondary {
+    .card-pricing-box:hover .pricing-tooltip {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .tooltip-label {
+      font-size: 0.65rem;
+      color: #a7bbb3;
+      letter-spacing: 0.05em;
+    }
+
+    .tooltip-val {
+      color: #34d399;
+      font-weight: 800;
+    }
+
+    /* ==========================================================================
+       ACTION BUTTONS
+       ========================================================================== */
+    .card-actions-grid {
       display: grid;
-      grid-template-columns: 1.4fr 44px 44px;
+      grid-template-columns: 1fr auto 42px 42px;
       gap: 0.5rem;
     }
 
@@ -583,7 +584,7 @@
       font-size: 0.75rem;
       font-weight: 800;
       letter-spacing: 0.03em;
-      padding: 0.62rem 0.5rem;
+      padding: 0.62rem 0.65rem;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -593,6 +594,7 @@
       transition: all 0.15s var(--transition-smooth);
       border: 2px solid var(--text-primary);
       box-shadow: 3px 3px 0px var(--text-primary);
+      white-space: nowrap;
     }
 
     .btn-card-action:hover {
@@ -612,15 +614,6 @@
 
     .btn-primary:hover {
       background: var(--accent-green-bright);
-    }
-
-    .btn-secondary {
-      background: #ffffff;
-      color: var(--text-primary);
-    }
-
-    .btn-secondary:hover {
-      background: var(--bg-card-subtle);
     }
 
     .btn-subtle {
@@ -644,7 +637,7 @@
     }
 
     /* ==========================================================================
-       MODAL PREVIEW & QR CODE
+       DYNAMIC QR CODE MODAL
        ========================================================================== */
     .dashboard-modal-backdrop {
       position: fixed;
@@ -665,105 +658,6 @@
       opacity: 1;
     }
 
-    .modal-frame {
-      background: var(--bg-card);
-      border: 3px solid var(--text-primary);
-      border-radius: 6px;
-      box-shadow: var(--shadow-bold-modal);
-      width: 100%;
-      max-width: 1200px;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      animation: modalPop 0.25s var(--transition-smooth);
-    }
-
-    @keyframes modalPop {
-      0% { transform: scale(0.96) translateY(15px); opacity: 0; }
-      100% { transform: scale(1) translateY(0); opacity: 1; }
-    }
-
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.95rem 1.35rem;
-      background: var(--bg-card-subtle);
-      border-bottom: 2px solid var(--text-primary);
-    }
-
-    .modal-title-box {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .modal-title {
-      font-family: var(--font-hero);
-      font-size: 1.15rem;
-      font-weight: 900;
-      color: var(--text-primary);
-    }
-
-    .modal-header-actions {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .btn-modal-action {
-      background: #ffffff;
-      border: 2px solid var(--text-primary);
-      color: var(--text-primary);
-      padding: 0.45rem 0.75rem;
-      border-radius: var(--radius-sm);
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      font-weight: 800;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-      text-decoration: none;
-      box-shadow: 2px 2px 0px var(--text-primary);
-    }
-
-    .btn-modal-action:hover {
-      background: var(--accent-green-bg);
-      color: var(--accent-green);
-    }
-
-    .btn-modal-close {
-      background: #fee2e2;
-      border: 2px solid var(--text-primary);
-      color: #b91c1c;
-      padding: 0.45rem 0.75rem;
-      border-radius: var(--radius-sm);
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      font-weight: 800;
-      cursor: pointer;
-      box-shadow: 2px 2px 0px var(--text-primary);
-    }
-
-    .btn-modal-close:hover {
-      background: #ef4444;
-      color: #fff;
-    }
-
-    .modal-viewport {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      background: #000;
-      position: relative;
-    }
-
-    .modal-iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
     .qr-modal-frame {
       max-width: 440px;
       text-align: center;
@@ -772,6 +666,12 @@
       border: 3px solid var(--text-primary);
       border-radius: 6px;
       box-shadow: var(--shadow-bold-modal);
+      animation: modalPop 0.25s var(--transition-smooth);
+    }
+
+    @keyframes modalPop {
+      0% { transform: scale(0.96) translateY(15px); opacity: 0; }
+      100% { transform: scale(1) translateY(0); opacity: 1; }
     }
 
     .qr-modal-title {
@@ -854,11 +754,11 @@
         align-items: flex-start;
         gap: 0.5rem;
       }
-      .search-row-top {
-        flex-direction: column;
-      }
       .decks-grid-view {
         grid-template-columns: 1fr;
+      }
+      .card-actions-grid {
+        grid-template-columns: 1fr 1fr 42px 42px;
       }
       .dashboard-modal-backdrop {
         padding: 0.5rem;
@@ -879,7 +779,7 @@
     <!-- Top Meta Header (Meridian 16 style) -->
     <div class="slide-meta-top">
       <span class="category">Studio Varaždin • Web Deck Engine</span>
-      <span>8 AKTIVNIH WEB PONUDA • 16:9 KINEMATOGRAFSKI FORMAT</span>
+      <span>8 SLUŽBENIH WEB PONUDA // 2026</span>
       <button class="btn-meta-audio" id="btnAudioToggle" onclick="toggleAudio()" title="Zvučna haptika">
         <span id="audioStatusText">AUDIO [ON]</span>
       </button>
@@ -890,51 +790,35 @@
       KATALOG WEB PONUDA <span class="outline-text">& PITCH DECKOVA</span>
     </h1>
     <p class="punchy-narration">
-      Sve službene interaktivne ponude i pitch deckovi na jednome mjestu. Odaberite projekt za 16:9 pregled uživo ili preuzimanje ponude.
+      Sve službene interaktivne ponude i kinematografski pitch deckovi na jednome mjestu. Kliknite na karticu ili naslov za otvaranje prezentacije.
     </p>
 
-    <!-- Meridian 16 Bold Search & Filter Box -->
+    <!-- Meridian 16 Bold Search Box -->
     <section class="meridian-search-card">
-      <div class="search-row-top">
-        <div class="search-input-box">
-          <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-          <input type="text" id="searchInput" class="search-input" placeholder="Pretraži ponude, gradove, industriju ili klijenta..." oninput="handleSearch(this.value)">
-          <span class="search-kbd-hint">/</span>
-        </div>
-        <div class="sort-select-box">
-          <select id="sortSelect" onchange="handleSort(this.value)">
-            <option value="default">Zadano sortiranje</option>
-            <option value="price-desc">Vrijednost: Najviša</option>
-            <option value="price-asc">Vrijednost: Najniža</option>
-            <option value="client-az">Klijent: A-Z</option>
-            <option value="client-za">Klijent: Z-A</option>
-          </select>
-        </div>
+      <div class="search-input-box">
+        <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="searchInput" class="search-input" placeholder="Pretraži web ponude (npr. Meridian 16, Čakovec, Varaždin, Samobor...)" oninput="handleSearch(this.value)">
+        <span class="search-kbd-hint">/</span>
       </div>
-
-      <div class="search-row-bottom">
-        <div class="filter-pills-group">
-          <button type="button" class="filter-pill active" data-filter="all" onclick="setFilter('all', this)">Sve ponude (8)</button>
-          <button type="button" class="filter-pill" data-filter="heritage" onclick="setFilter('heritage', this)">Kulturna baština & Gradovi (5)</button>
-          <button type="button" class="filter-pill" data-filter="industry" onclick="setFilter('industry', this)">Industrija & Parkovi (2)</button>
-          <button type="button" class="filter-pill" data-filter="eco" onclick="setFilter('eco', this)">Ekologija & Javni sektor (1)</button>
-        </div>
-        <div class="filter-count-badge" id="resultsCount">Prikazano: 8 / 8</div>
+      <div class="search-meta-row">
+        <span>Instantno filtriranje po nazivu klijenta, projektu ili gradu</span>
+        <span class="search-count-badge" id="resultsCount">8 / 8 PONUDA</span>
       </div>
     </section>
 
     <!-- PURE HIGH-IMPACT GRID VIEW -->
     <main class="decks-grid-view" id="decksGridView">
       
-        <article class="deck-card video-card-crazy signature-card" data-slug="meridian16" data-folder="Meridian16_Prezentacija" data-sector="industry" data-client="meridian 16" data-title="meridian 16 — cinematic film pitch | studio varaždin" data-price="17000">
-          <div class="video-thumb-crazy canvas-dither-target" onclick="openPreviewModal('meridian16', 'Meridian16_Prezentacija', 'Meridian 16 — Cinematic Film Pitch | Studio Varaždin', 'https://varazdin.studio/meridian16/')">
+        <article class="deck-card video-card-crazy signature-card" data-slug="meridian16" data-folder="Meridian16_Prezentacija" data-client="meridian 16" data-title="meridian 16 — cinematic film pitch | studio varaždin" data-price="17000">
+          <!-- Direct click to open in new tab -->
+          <a href="https://varazdin.studio/meridian16/" target="_blank" class="video-thumb-crazy canvas-dither-target" title="Otvori Meridian 16 — Cinematic Film Pitch | Studio Varaždin">
             <img src="assets/thumbnails/thumb_meridian16.jpg" alt="Meridian 16 — Cinematic Film Pitch | Studio Varaždin" class="card-thumb" loading="lazy" onerror="this.src='../Meridian16_Prezentacija/slike/meridian_fpv_interior_flow.jpg'">
             <div class="play-btn-crazy">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
             </div>
             <span class="card-tag badge-gold">SIGNATURE PACK</span>
             <div class="scanline-overlay"></div>
-          </div>
+          </a>
 
           <div class="video-info-crazy">
             <div class="card-client-row">
@@ -942,57 +826,60 @@
               <span class="card-sector-pill">Industrija & Parkovi</span>
             </div>
 
-            <h3 class="card-title" title="Meridian 16 — Cinematic Film Pitch | Studio Varaždin">Meridian 16 — Cinematic Film Pitch | Studio Varaždin</h3>
+            <!-- Title opens deck in new tab -->
+            <a href="https://varazdin.studio/meridian16/" target="_blank" class="card-title-link">
+              <h3 class="card-title" title="Meridian 16 — Cinematic Film Pitch | Studio Varaždin">Meridian 16 — Cinematic Film Pitch | Studio Varaždin</h3>
+            </a>
+            
             <p class="card-tagline">1.000.000 m² vodećeg poslovno-logističkog parka. Master 4K film i modularne vertikale za društvene mreže.</p>
 
-            <div class="card-pricing-box">
-              <div class="pricing-label-row">
-                <span class="pricing-label">PRODUKCIJSKI PAKETI</span>
-                <span class="pricing-options-hint">Opcija A (€ 13.000) · Opcija B Signature (€ 17.000)</span>
+            <!-- Price Box with Hover Tooltip for Multi-Options -->
+            <div class="card-pricing-box" title="Detalji opcija: Opcija A: € 13.000 · Opcija B Signature: € 17.000">
+              <div class="pricing-amount-wrapper">
+                <span class="pricing-amount">€ 17,000</span>
+                <div class="pricing-tooltip">
+                  <span class="tooltip-label">DOSTUPNE OPCIJE:</span>
+                  <span class="tooltip-val">Opcija A: € 13.000 · Opcija B Signature: € 17.000</span>
+                </div>
               </div>
-              <div class="pricing-amount">€ 17,000</div>
+              <span class="pricing-hint-icon" title="Hover za opcije">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              </span>
             </div>
 
-            <div class="card-actions-wrapper">
-              <div class="actions-row-primary">
-                <a href="https://varazdin.studio/meridian16/" target="_blank" class="btn-card-action btn-primary" title="Otvori puni 16:9 web deck">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                  <span>OTVORI DECK</span>
-                </a>
-                
-                <button type="button" class="btn-card-action btn-secondary" onclick="openPreviewModal('meridian16', 'Meridian16_Prezentacija', 'Meridian 16 — Cinematic Film Pitch | Studio Varaždin', 'https://varazdin.studio/meridian16/')" title="Pregledaj deck unutar modala">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                  <span>PREGLED (16:9)</span>
-                </button>
-              </div>
+            <!-- Action Buttons -->
+            <div class="card-actions-grid">
+              <a href="https://varazdin.studio/meridian16/" target="_blank" class="btn-card-action btn-primary" title="Otvori web pitch deck">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                <span>OTVORI DECK</span>
+              </a>
 
-              <div class="actions-row-secondary">
-                <a href="https://varazdin.studio/meridian16/Quote_No15_OptionB_17000.pdf" target="_blank" class="btn-card-action btn-subtle" title="Preuzmi službenu A4 PDF ponudu">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                  <span>PDF PONUDA</span>
-                </a>
+              <a href="https://varazdin.studio/meridian16/Quote_No15_OptionB_17000.pdf" target="_blank" class="btn-card-action btn-subtle" title="Preuzmi službenu A4 PDF ponudu">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                <span>PDF</span>
+              </a>
 
-                <button type="button" class="btn-card-action btn-icon" onclick="copyDeckUrl('https://varazdin.studio/meridian16/', this)" title="Kopiraj poveznicu na deck">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                </button>
+              <button type="button" class="btn-card-action btn-icon" onclick="copyDeckUrl('https://varazdin.studio/meridian16/', this)" title="Kopiraj poveznicu">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              </button>
 
-                <button type="button" class="btn-card-action btn-icon" onclick="openQrModal('meridian16', 'Meridian 16 — Cinematic Film Pitch | Studio Varaždin', 'https://varazdin.studio/meridian16/')" title="Pokaži QR kod za mobitel">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                </button>
-              </div>
+              <button type="button" class="btn-card-action btn-icon" onclick="openQrModal('meridian16', 'Meridian 16 — Cinematic Film Pitch | Studio Varaždin', 'https://varazdin.studio/meridian16/')" title="Pokaži QR kod za mobitel">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              </button>
             </div>
           </div>
         </article>
         
-        <article class="deck-card video-card-crazy" data-slug="komunalni-projekt" data-folder="Komunalni_Prezentacija" data-sector="eco" data-client="grad varaždin & čistoća d.o.o." data-title="7 kilograma — edukativni video sustav | grad varaždin & čistoća d.o.o." data-price="4800">
-          <div class="video-thumb-crazy canvas-dither-target" onclick="openPreviewModal('komunalni-projekt', 'Komunalni_Prezentacija', '7 KILOGRAMA — Edukativni Video Sustav | Grad Varaždin & Čistoća d.o.o.', 'https://varazdin.studio/komunalni-projekt/')">
+        <article class="deck-card video-card-crazy" data-slug="komunalni-projekt" data-folder="Komunalni_Prezentacija" data-client="grad varaždin & čistoća d.o.o." data-title="7 kilograma — edukativni video sustav | grad varaždin & čistoća d.o.o." data-price="4800">
+          <!-- Direct click to open in new tab -->
+          <a href="https://varazdin.studio/komunalni-projekt/" target="_blank" class="video-thumb-crazy canvas-dither-target" title="Otvori 7 KILOGRAMA — Edukativni Video Sustav | Grad Varaždin & Čistoća d.o.o.">
             <img src="assets/thumbnails/thumb_komunalni-projekt.jpg" alt="7 KILOGRAMA — Edukativni Video Sustav | Grad Varaždin & Čistoća d.o.o." class="card-thumb" loading="lazy" onerror="this.src='../Komunalni_Prezentacija/assets/01_Studio_Pad_Otpada_Hook.jpg'">
             <div class="play-btn-crazy">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
             </div>
             <span class="card-tag badge-green">JAVNI SEKTOR</span>
             <div class="scanline-overlay"></div>
-          </div>
+          </a>
 
           <div class="video-info-crazy">
             <div class="card-client-row">
@@ -1000,57 +887,60 @@
               <span class="card-sector-pill">Ekologija & Javni sektor</span>
             </div>
 
-            <h3 class="card-title" title="7 KILOGRAMA — Edukativni Video Sustav | Grad Varaždin & Čistoća d.o.o.">7 KILOGRAMA — Edukativni Video Sustav | Grad Varaždin & Čistoća d.o.o.</h3>
+            <!-- Title opens deck in new tab -->
+            <a href="https://varazdin.studio/komunalni-projekt/" target="_blank" class="card-title-link">
+              <h3 class="card-title" title="7 KILOGRAMA — Edukativni Video Sustav | Grad Varaždin & Čistoća d.o.o.">7 KILOGRAMA — Edukativni Video Sustav | Grad Varaždin & Čistoća d.o.o.</h3>
+            </a>
+            
             <p class="card-tagline">7 kg hrane po stanovniku. Modularni video sustav za razvrstavanje otpada i novu sortirnicu.</p>
 
-            <div class="card-pricing-box">
-              <div class="pricing-label-row">
-                <span class="pricing-label">PRODUKCIJSKI PAKETI</span>
-                <span class="pricing-options-hint">Kompletan edukativni video sustav (4 epizode + reels)</span>
+            <!-- Price Box with Hover Tooltip for Multi-Options -->
+            <div class="card-pricing-box" title="Detalji opcija: Kompletan edukativni video sustav (4 epizode + reels)">
+              <div class="pricing-amount-wrapper">
+                <span class="pricing-amount">4.800,00 €</span>
+                <div class="pricing-tooltip">
+                  <span class="tooltip-label">DOSTUPNE OPCIJE:</span>
+                  <span class="tooltip-val">Kompletan edukativni video sustav (4 epizode + reels)</span>
+                </div>
               </div>
-              <div class="pricing-amount">4.800,00 €</div>
+              <span class="pricing-hint-icon" title="Hover za opcije">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              </span>
             </div>
 
-            <div class="card-actions-wrapper">
-              <div class="actions-row-primary">
-                <a href="https://varazdin.studio/komunalni-projekt/" target="_blank" class="btn-card-action btn-primary" title="Otvori puni 16:9 web deck">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                  <span>OTVORI DECK</span>
-                </a>
-                
-                <button type="button" class="btn-card-action btn-secondary" onclick="openPreviewModal('komunalni-projekt', 'Komunalni_Prezentacija', '7 KILOGRAMA — Edukativni Video Sustav | Grad Varaždin & Čistoća d.o.o.', 'https://varazdin.studio/komunalni-projekt/')" title="Pregledaj deck unutar modala">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                  <span>PREGLED (16:9)</span>
-                </button>
-              </div>
+            <!-- Action Buttons -->
+            <div class="card-actions-grid">
+              <a href="https://varazdin.studio/komunalni-projekt/" target="_blank" class="btn-card-action btn-primary" title="Otvori web pitch deck">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                <span>OTVORI DECK</span>
+              </a>
 
-              <div class="actions-row-secondary">
-                <a href="https://varazdin.studio/komunalni-projekt/assets/Ponuda_Grad_Varazdin_Cistoca_Br17.pdf" target="_blank" class="btn-card-action btn-subtle" title="Preuzmi službenu A4 PDF ponudu">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                  <span>PDF PONUDA</span>
-                </a>
+              <a href="https://varazdin.studio/komunalni-projekt/assets/Ponuda_Grad_Varazdin_Cistoca_Br17.pdf" target="_blank" class="btn-card-action btn-subtle" title="Preuzmi službenu A4 PDF ponudu">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                <span>PDF</span>
+              </a>
 
-                <button type="button" class="btn-card-action btn-icon" onclick="copyDeckUrl('https://varazdin.studio/komunalni-projekt/', this)" title="Kopiraj poveznicu na deck">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                </button>
+              <button type="button" class="btn-card-action btn-icon" onclick="copyDeckUrl('https://varazdin.studio/komunalni-projekt/', this)" title="Kopiraj poveznicu">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              </button>
 
-                <button type="button" class="btn-card-action btn-icon" onclick="openQrModal('komunalni-projekt', '7 KILOGRAMA — Edukativni Video Sustav | Grad Varaždin & Čistoća d.o.o.', 'https://varazdin.studio/komunalni-projekt/')" title="Pokaži QR kod za mobitel">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                </button>
-              </div>
+              <button type="button" class="btn-card-action btn-icon" onclick="openQrModal('komunalni-projekt', '7 KILOGRAMA — Edukativni Video Sustav | Grad Varaždin & Čistoća d.o.o.', 'https://varazdin.studio/komunalni-projekt/')" title="Pokaži QR kod za mobitel">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              </button>
             </div>
           </div>
         </article>
         
-        <article class="deck-card video-card-crazy" data-slug="cakovec" data-folder="Cakovec_Prezentacija" data-sector="heritage" data-client="grad čakovec & međimurska županija" data-title="101 milijun — kronika međimurskog gradilišta" data-price="17500">
-          <div class="video-thumb-crazy canvas-dither-target" onclick="openPreviewModal('cakovec', 'Cakovec_Prezentacija', '101 MILIJUN — Kronika međimurskog gradilišta', 'https://varazdin.studio/cakovec/')">
+        <article class="deck-card video-card-crazy" data-slug="cakovec" data-folder="Cakovec_Prezentacija" data-client="grad čakovec & međimurska županija" data-title="101 milijun — kronika međimurskog gradilišta" data-price="17500">
+          <!-- Direct click to open in new tab -->
+          <a href="https://varazdin.studio/cakovec/" target="_blank" class="video-thumb-crazy canvas-dither-target" title="Otvori 101 MILIJUN — Kronika međimurskog gradilišta">
             <img src="assets/thumbnails/thumb_cakovec.jpg" alt="101 MILIJUN — Kronika međimurskog gradilišta" class="card-thumb" loading="lazy" onerror="this.src='../Cakovec_Prezentacija/assets/01_cakovec_skola_fpv.jpg'">
             <div class="play-btn-crazy">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
             </div>
             <span class="card-tag badge-green">INFRASTRUKTURA</span>
             <div class="scanline-overlay"></div>
-          </div>
+          </a>
 
           <div class="video-info-crazy">
             <div class="card-client-row">
@@ -1058,57 +948,60 @@
               <span class="card-sector-pill">Gradovi & Kulturna baština</span>
             </div>
 
-            <h3 class="card-title" title="101 MILIJUN — Kronika međimurskog gradilišta">101 MILIJUN — Kronika međimurskog gradilišta</h3>
+            <!-- Title opens deck in new tab -->
+            <a href="https://varazdin.studio/cakovec/" target="_blank" class="card-title-link">
+              <h3 class="card-title" title="101 MILIJUN — Kronika međimurskog gradilišta">101 MILIJUN — Kronika međimurskog gradilišta</h3>
+            </a>
+            
             <p class="card-tagline">101 milijun eura investicija. Kronika povijesnog zamašnjaka Čakovca kroz 4K FPV i dokumentarnu formu.</p>
 
-            <div class="card-pricing-box">
-              <div class="pricing-label-row">
-                <span class="pricing-label">PRODUKCIJSKI PAKETI</span>
-                <span class="pricing-options-hint">Opcija A (14.000 €) · Opcija B FPV Spektakl (17.500 €)</span>
+            <!-- Price Box with Hover Tooltip for Multi-Options -->
+            <div class="card-pricing-box" title="Detalji opcija: Opcija A: 14.000,00 € · Opcija B FPV Spektakl: 17.500,00 €">
+              <div class="pricing-amount-wrapper">
+                <span class="pricing-amount">14.000,00 € — 17.500,00 €</span>
+                <div class="pricing-tooltip">
+                  <span class="tooltip-label">DOSTUPNE OPCIJE:</span>
+                  <span class="tooltip-val">Opcija A: 14.000,00 € · Opcija B FPV Spektakl: 17.500,00 €</span>
+                </div>
               </div>
-              <div class="pricing-amount">14.000,00 € — 17.500,00 €</div>
+              <span class="pricing-hint-icon" title="Hover za opcije">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              </span>
             </div>
 
-            <div class="card-actions-wrapper">
-              <div class="actions-row-primary">
-                <a href="https://varazdin.studio/cakovec/" target="_blank" class="btn-card-action btn-primary" title="Otvori puni 16:9 web deck">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                  <span>OTVORI DECK</span>
-                </a>
-                
-                <button type="button" class="btn-card-action btn-secondary" onclick="openPreviewModal('cakovec', 'Cakovec_Prezentacija', '101 MILIJUN — Kronika međimurskog gradilišta', 'https://varazdin.studio/cakovec/')" title="Pregledaj deck unutar modala">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                  <span>PREGLED (16:9)</span>
-                </button>
-              </div>
+            <!-- Action Buttons -->
+            <div class="card-actions-grid">
+              <a href="https://varazdin.studio/cakovec/" target="_blank" class="btn-card-action btn-primary" title="Otvori web pitch deck">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                <span>OTVORI DECK</span>
+              </a>
 
-              <div class="actions-row-secondary">
-                <a href="https://varazdin.studio/cakovec/assets/Ponuda_Grad_Cakovec_Medimurje_2026_CK_03.pdf" target="_blank" class="btn-card-action btn-subtle" title="Preuzmi službenu A4 PDF ponudu">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                  <span>PDF PONUDA</span>
-                </a>
+              <a href="https://varazdin.studio/cakovec/assets/Ponuda_Grad_Cakovec_Medimurje_2026_CK_03.pdf" target="_blank" class="btn-card-action btn-subtle" title="Preuzmi službenu A4 PDF ponudu">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                <span>PDF</span>
+              </a>
 
-                <button type="button" class="btn-card-action btn-icon" onclick="copyDeckUrl('https://varazdin.studio/cakovec/', this)" title="Kopiraj poveznicu na deck">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                </button>
+              <button type="button" class="btn-card-action btn-icon" onclick="copyDeckUrl('https://varazdin.studio/cakovec/', this)" title="Kopiraj poveznicu">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              </button>
 
-                <button type="button" class="btn-card-action btn-icon" onclick="openQrModal('cakovec', '101 MILIJUN — Kronika međimurskog gradilišta', 'https://varazdin.studio/cakovec/')" title="Pokaži QR kod za mobitel">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                </button>
-              </div>
+              <button type="button" class="btn-card-action btn-icon" onclick="openQrModal('cakovec', '101 MILIJUN — Kronika međimurskog gradilišta', 'https://varazdin.studio/cakovec/')" title="Pokaži QR kod za mobitel">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              </button>
             </div>
           </div>
         </article>
         
-        <article class="deck-card video-card-crazy signature-card" data-slug="djurdjevac" data-folder="Djurdjevac_Prezentacija" data-sector="heritage" data-client="grad đurđevac & tz đurđevac" data-title="opsada wasserburga 1552. — picokijada & novo jezero" data-price="20000">
-          <div class="video-thumb-crazy canvas-dither-target" onclick="openPreviewModal('djurdjevac', 'Djurdjevac_Prezentacija', 'OPSADA WASSERBURGA 1552. — Picokijada & Novo jezero', 'https://varazdin.studio/djurdjevac/')">
+        <article class="deck-card video-card-crazy signature-card" data-slug="djurdjevac" data-folder="Djurdjevac_Prezentacija" data-client="grad đurđevac & tz đurđevac" data-title="opsada wasserburga 1552. — picokijada & novo jezero" data-price="20000">
+          <!-- Direct click to open in new tab -->
+          <a href="https://varazdin.studio/djurdjevac/" target="_blank" class="video-thumb-crazy canvas-dither-target" title="Otvori OPSADA WASSERBURGA 1552. — Picokijada & Novo jezero">
             <img src="assets/thumbnails/thumb_djurdjevac.jpg" alt="OPSADA WASSERBURGA 1552. — Picokijada & Novo jezero" class="card-thumb" loading="lazy" onerror="this.src='../Djurdjevac_Prezentacija/assets/01_djurdjevac_wasserburg_1552.jpg'">
             <div class="play-btn-crazy">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
             </div>
             <span class="card-tag badge-gold">TURIZAM & SPEKTAKL</span>
             <div class="scanline-overlay"></div>
-          </div>
+          </a>
 
           <div class="video-info-crazy">
             <div class="card-client-row">
@@ -1116,57 +1009,60 @@
               <span class="card-sector-pill">Gradovi & Kulturna baština</span>
             </div>
 
-            <h3 class="card-title" title="OPSADA WASSERBURGA 1552. — Picokijada & Novo jezero">OPSADA WASSERBURGA 1552. — Picokijada & Novo jezero</h3>
+            <!-- Title opens deck in new tab -->
+            <a href="https://varazdin.studio/djurdjevac/" target="_blank" class="card-title-link">
+              <h3 class="card-title" title="OPSADA WASSERBURGA 1552. — Picokijada & Novo jezero">OPSADA WASSERBURGA 1552. — Picokijada & Novo jezero</h3>
+            </a>
+            
             <p class="card-tagline">Novo jezero Starog grada, Picokijada i Đurđevački peski. Kinematografski prikaz Wasserburga.</p>
 
-            <div class="card-pricing-box">
-              <div class="pricing-label-row">
-                <span class="pricing-label">PRODUKCIJSKI PAKETI</span>
-                <span class="pricing-options-hint">Opcija A (16.000 €) · Opcija B Noćni Spektakl (20.000 €)</span>
+            <!-- Price Box with Hover Tooltip for Multi-Options -->
+            <div class="card-pricing-box" title="Detalji opcija: Opcija A: 16.000,00 € · Opcija B Noćni Spektakl: 20.000,00 €">
+              <div class="pricing-amount-wrapper">
+                <span class="pricing-amount">16.000,00 € — 20.000,00 €</span>
+                <div class="pricing-tooltip">
+                  <span class="tooltip-label">DOSTUPNE OPCIJE:</span>
+                  <span class="tooltip-val">Opcija A: 16.000,00 € · Opcija B Noćni Spektakl: 20.000,00 €</span>
+                </div>
               </div>
-              <div class="pricing-amount">16.000,00 € — 20.000,00 €</div>
+              <span class="pricing-hint-icon" title="Hover za opcije">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              </span>
             </div>
 
-            <div class="card-actions-wrapper">
-              <div class="actions-row-primary">
-                <a href="https://varazdin.studio/djurdjevac/" target="_blank" class="btn-card-action btn-primary" title="Otvori puni 16:9 web deck">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                  <span>OTVORI DECK</span>
-                </a>
-                
-                <button type="button" class="btn-card-action btn-secondary" onclick="openPreviewModal('djurdjevac', 'Djurdjevac_Prezentacija', 'OPSADA WASSERBURGA 1552. — Picokijada & Novo jezero', 'https://varazdin.studio/djurdjevac/')" title="Pregledaj deck unutar modala">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                  <span>PREGLED (16:9)</span>
-                </button>
-              </div>
+            <!-- Action Buttons -->
+            <div class="card-actions-grid">
+              <a href="https://varazdin.studio/djurdjevac/" target="_blank" class="btn-card-action btn-primary" title="Otvori web pitch deck">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                <span>OTVORI DECK</span>
+              </a>
 
-              <div class="actions-row-secondary">
-                <a href="https://varazdin.studio/djurdjevac/assets/Ponuda_Djurdjevac_Wasserburg_2026_DJ_02.pdf" target="_blank" class="btn-card-action btn-subtle" title="Preuzmi službenu A4 PDF ponudu">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                  <span>PDF PONUDA</span>
-                </a>
+              <a href="https://varazdin.studio/djurdjevac/assets/Ponuda_Djurdjevac_Wasserburg_2026_DJ_02.pdf" target="_blank" class="btn-card-action btn-subtle" title="Preuzmi službenu A4 PDF ponudu">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                <span>PDF</span>
+              </a>
 
-                <button type="button" class="btn-card-action btn-icon" onclick="copyDeckUrl('https://varazdin.studio/djurdjevac/', this)" title="Kopiraj poveznicu na deck">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                </button>
+              <button type="button" class="btn-card-action btn-icon" onclick="copyDeckUrl('https://varazdin.studio/djurdjevac/', this)" title="Kopiraj poveznicu">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              </button>
 
-                <button type="button" class="btn-card-action btn-icon" onclick="openQrModal('djurdjevac', 'OPSADA WASSERBURGA 1552. — Picokijada & Novo jezero', 'https://varazdin.studio/djurdjevac/')" title="Pokaži QR kod za mobitel">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                </button>
-              </div>
+              <button type="button" class="btn-card-action btn-icon" onclick="openQrModal('djurdjevac', 'OPSADA WASSERBURGA 1552. — Picokijada & Novo jezero', 'https://varazdin.studio/djurdjevac/')" title="Pokaži QR kod za mobitel">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              </button>
             </div>
           </div>
         </article>
         
-        <article class="deck-card video-card-crazy" data-slug="krapina" data-folder="Krapina_Prezentacija" data-sector="heritage" data-client="krapinsko-zagorska županija & grad krapina" data-title="tri kule nad krapinčicom — filmska produkcija" data-price="16000">
-          <div class="video-thumb-crazy canvas-dither-target" onclick="openPreviewModal('krapina', 'Krapina_Prezentacija', 'TRI KULE NAD KRAPINČICOM — Filmska Produkcija', 'https://varazdin.studio/krapina/')">
+        <article class="deck-card video-card-crazy" data-slug="krapina" data-folder="Krapina_Prezentacija" data-client="krapinsko-zagorska županija & grad krapina" data-title="tri kule nad krapinčicom — filmska produkcija" data-price="16000">
+          <!-- Direct click to open in new tab -->
+          <a href="https://varazdin.studio/krapina/" target="_blank" class="video-thumb-crazy canvas-dither-target" title="Otvori TRI KULE NAD KRAPINČICOM — Filmska Produkcija">
             <img src="assets/thumbnails/thumb_krapina.jpg" alt="TRI KULE NAD KRAPINČICOM — Filmska Produkcija" class="card-thumb" loading="lazy" onerror="this.src='../Krapina_Prezentacija/assets/01_krapina_ceh_leh_meh.jpg'">
             <div class="play-btn-crazy">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
             </div>
             <span class="card-tag badge-green">KULTURNA BAŠTINA</span>
             <div class="scanline-overlay"></div>
-          </div>
+          </a>
 
           <div class="video-info-crazy">
             <div class="card-client-row">
@@ -1174,57 +1070,60 @@
               <span class="card-sector-pill">Gradovi & Kulturna baština</span>
             </div>
 
-            <h3 class="card-title" title="TRI KULE NAD KRAPINČICOM — Filmska Produkcija">TRI KULE NAD KRAPINČICOM — Filmska Produkcija</h3>
+            <!-- Title opens deck in new tab -->
+            <a href="https://varazdin.studio/krapina/" target="_blank" class="card-title-link">
+              <h3 class="card-title" title="TRI KULE NAD KRAPINČICOM — Filmska Produkcija">TRI KULE NAD KRAPINČICOM — Filmska Produkcija</h3>
+            </a>
+            
             <p class="card-tagline">Mit o Čehu, Lehu i Mehu, Hušnjakovo i tri utvrde. Spoj pretpovijesti i FPV kinematografije.</p>
 
-            <div class="card-pricing-box">
-              <div class="pricing-label-row">
-                <span class="pricing-label">PRODUKCIJSKI PAKETI</span>
-                <span class="pricing-options-hint">Master 4K film (7 min) + 3 vertikalna formata za muzeje</span>
+            <!-- Price Box with Hover Tooltip for Multi-Options -->
+            <div class="card-pricing-box" title="Detalji opcija: Master 4K film (7 min) + 3 vertikalna formata za muzeje">
+              <div class="pricing-amount-wrapper">
+                <span class="pricing-amount">16.000,00 €</span>
+                <div class="pricing-tooltip">
+                  <span class="tooltip-label">DOSTUPNE OPCIJE:</span>
+                  <span class="tooltip-val">Master 4K film (7 min) + 3 vertikalna formata za muzeje</span>
+                </div>
               </div>
-              <div class="pricing-amount">16.000,00 €</div>
+              <span class="pricing-hint-icon" title="Hover za opcije">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              </span>
             </div>
 
-            <div class="card-actions-wrapper">
-              <div class="actions-row-primary">
-                <a href="https://varazdin.studio/krapina/" target="_blank" class="btn-card-action btn-primary" title="Otvori puni 16:9 web deck">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                  <span>OTVORI DECK</span>
-                </a>
-                
-                <button type="button" class="btn-card-action btn-secondary" onclick="openPreviewModal('krapina', 'Krapina_Prezentacija', 'TRI KULE NAD KRAPINČICOM — Filmska Produkcija', 'https://varazdin.studio/krapina/')" title="Pregledaj deck unutar modala">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                  <span>PREGLED (16:9)</span>
-                </button>
-              </div>
+            <!-- Action Buttons -->
+            <div class="card-actions-grid">
+              <a href="https://varazdin.studio/krapina/" target="_blank" class="btn-card-action btn-primary" title="Otvori web pitch deck">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                <span>OTVORI DECK</span>
+              </a>
 
-              <div class="actions-row-secondary">
-                <a href="https://varazdin.studio/krapina/assets/Ponuda_Krapina_Tri_Kule_2026_KR_05.pdf" target="_blank" class="btn-card-action btn-subtle" title="Preuzmi službenu A4 PDF ponudu">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                  <span>PDF PONUDA</span>
-                </a>
+              <a href="https://varazdin.studio/krapina/assets/Ponuda_Krapina_Tri_Kule_2026_KR_05.pdf" target="_blank" class="btn-card-action btn-subtle" title="Preuzmi službenu A4 PDF ponudu">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                <span>PDF</span>
+              </a>
 
-                <button type="button" class="btn-card-action btn-icon" onclick="copyDeckUrl('https://varazdin.studio/krapina/', this)" title="Kopiraj poveznicu na deck">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                </button>
+              <button type="button" class="btn-card-action btn-icon" onclick="copyDeckUrl('https://varazdin.studio/krapina/', this)" title="Kopiraj poveznicu">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              </button>
 
-                <button type="button" class="btn-card-action btn-icon" onclick="openQrModal('krapina', 'TRI KULE NAD KRAPINČICOM — Filmska Produkcija', 'https://varazdin.studio/krapina/')" title="Pokaži QR kod za mobitel">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                </button>
-              </div>
+              <button type="button" class="btn-card-action btn-icon" onclick="openQrModal('krapina', 'TRI KULE NAD KRAPINČICOM — Filmska Produkcija', 'https://varazdin.studio/krapina/')" title="Pokaži QR kod za mobitel">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              </button>
             </div>
           </div>
         </article>
         
-        <article class="deck-card video-card-crazy signature-card" data-slug="samobor" data-folder="Samobor_Prezentacija" data-sector="heritage" data-client="grad samobor & tz samobor" data-title="vrudnik & samobor 2026 — kinematografski pitch" data-price="30000">
-          <div class="video-thumb-crazy canvas-dither-target" onclick="openPreviewModal('samobor', 'Samobor_Prezentacija', 'VRUDNIK & Samobor 2026 — Kinematografski Pitch', 'https://varazdin.studio/samobor/')">
+        <article class="deck-card video-card-crazy signature-card" data-slug="samobor" data-folder="Samobor_Prezentacija" data-client="grad samobor & tz samobor" data-title="vrudnik & samobor 2026 — kinematografski pitch" data-price="30000">
+          <!-- Direct click to open in new tab -->
+          <a href="https://varazdin.studio/samobor/" target="_blank" class="video-thumb-crazy canvas-dither-target" title="Otvori VRUDNIK & Samobor 2026 — Kinematografski Pitch">
             <img src="assets/thumbnails/thumb_samobor.jpg" alt="VRUDNIK & Samobor 2026 — Kinematografski Pitch" class="card-thumb" loading="lazy" onerror="this.src='../Samobor_Prezentacija/assets/01_vrudnik_rov_kokel_1540.jpg'">
             <div class="play-btn-crazy">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
             </div>
             <span class="card-tag badge-gold">VR & FILM</span>
             <div class="scanline-overlay"></div>
-          </div>
+          </a>
 
           <div class="video-info-crazy">
             <div class="card-client-row">
@@ -1232,57 +1131,60 @@
               <span class="card-sector-pill">Gradovi & Kulturna baština</span>
             </div>
 
-            <h3 class="card-title" title="VRUDNIK & Samobor 2026 — Kinematografski Pitch">VRUDNIK & Samobor 2026 — Kinematografski Pitch</h3>
+            <!-- Title opens deck in new tab -->
+            <a href="https://varazdin.studio/samobor/" target="_blank" class="card-title-link">
+              <h3 class="card-title" title="VRUDNIK & Samobor 2026 — Kinematografski Pitch">VRUDNIK & Samobor 2026 — Kinematografski Pitch</h3>
+            </a>
+            
             <p class="card-tagline">Živi rov saskih rudara iz 1540., Tepec i Bela IV. Kinematografski i VR postavi umjesto statičnih panoa.</p>
 
-            <div class="card-pricing-box">
-              <div class="pricing-label-row">
-                <span class="pricing-label">PRODUKCIJSKI PAKETI</span>
-                <span class="pricing-options-hint">Opcija A (24.000 €) · Opcija B VR MetaQuest Kiosk (30.000 €)</span>
+            <!-- Price Box with Hover Tooltip for Multi-Options -->
+            <div class="card-pricing-box" title="Detalji opcija: Opcija A: 24.000,00 € · Opcija B VR MetaQuest Kiosk: 30.000,00 €">
+              <div class="pricing-amount-wrapper">
+                <span class="pricing-amount">24.000,00 € — 30.000,00 €</span>
+                <div class="pricing-tooltip">
+                  <span class="tooltip-label">DOSTUPNE OPCIJE:</span>
+                  <span class="tooltip-val">Opcija A: 24.000,00 € · Opcija B VR MetaQuest Kiosk: 30.000,00 €</span>
+                </div>
               </div>
-              <div class="pricing-amount">24.000,00 € — 30.000,00 €</div>
+              <span class="pricing-hint-icon" title="Hover za opcije">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              </span>
             </div>
 
-            <div class="card-actions-wrapper">
-              <div class="actions-row-primary">
-                <a href="https://varazdin.studio/samobor/" target="_blank" class="btn-card-action btn-primary" title="Otvori puni 16:9 web deck">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                  <span>OTVORI DECK</span>
-                </a>
-                
-                <button type="button" class="btn-card-action btn-secondary" onclick="openPreviewModal('samobor', 'Samobor_Prezentacija', 'VRUDNIK & Samobor 2026 — Kinematografski Pitch', 'https://varazdin.studio/samobor/')" title="Pregledaj deck unutar modala">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                  <span>PREGLED (16:9)</span>
-                </button>
-              </div>
+            <!-- Action Buttons -->
+            <div class="card-actions-grid">
+              <a href="https://varazdin.studio/samobor/" target="_blank" class="btn-card-action btn-primary" title="Otvori web pitch deck">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                <span>OTVORI DECK</span>
+              </a>
 
-              <div class="actions-row-secondary">
-                <a href="https://varazdin.studio/samobor/assets/Ponuda_Grad_Samobor_2026_SA_04.pdf" target="_blank" class="btn-card-action btn-subtle" title="Preuzmi službenu A4 PDF ponudu">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                  <span>PDF PONUDA</span>
-                </a>
+              <a href="https://varazdin.studio/samobor/assets/Ponuda_Grad_Samobor_2026_SA_04.pdf" target="_blank" class="btn-card-action btn-subtle" title="Preuzmi službenu A4 PDF ponudu">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                <span>PDF</span>
+              </a>
 
-                <button type="button" class="btn-card-action btn-icon" onclick="copyDeckUrl('https://varazdin.studio/samobor/', this)" title="Kopiraj poveznicu na deck">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                </button>
+              <button type="button" class="btn-card-action btn-icon" onclick="copyDeckUrl('https://varazdin.studio/samobor/', this)" title="Kopiraj poveznicu">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              </button>
 
-                <button type="button" class="btn-card-action btn-icon" onclick="openQrModal('samobor', 'VRUDNIK & Samobor 2026 — Kinematografski Pitch', 'https://varazdin.studio/samobor/')" title="Pokaži QR kod za mobitel">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                </button>
-              </div>
+              <button type="button" class="btn-card-action btn-icon" onclick="openQrModal('samobor', 'VRUDNIK & Samobor 2026 — Kinematografski Pitch', 'https://varazdin.studio/samobor/')" title="Pokaži QR kod za mobitel">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              </button>
             </div>
           </div>
         </article>
         
-        <article class="deck-card video-card-crazy" data-slug="ogulin" data-folder="Ogulin_Prezentacija" data-sector="heritage" data-client="grad ogulin & tz ogulin" data-title="korijeni ponora — zavičaj bajki & frankopani" data-price="24000">
-          <div class="video-thumb-crazy canvas-dither-target" onclick="openPreviewModal('ogulin', 'Ogulin_Prezentacija', 'KORIJENI PONORA — Zavičaj bajki & Frankopani', 'https://varazdin.studio/ogulin/')">
+        <article class="deck-card video-card-crazy" data-slug="ogulin" data-folder="Ogulin_Prezentacija" data-client="grad ogulin & tz ogulin" data-title="korijeni ponora — zavičaj bajki & frankopani" data-price="24000">
+          <!-- Direct click to open in new tab -->
+          <a href="https://varazdin.studio/ogulin/" target="_blank" class="video-thumb-crazy canvas-dither-target" title="Otvori KORIJENI PONORA — Zavičaj bajki & Frankopani">
             <img src="assets/thumbnails/thumb_ogulin.jpg" alt="KORIJENI PONORA — Zavičaj bajki & Frankopani" class="card-thumb" loading="lazy" onerror="this.src='../Ogulin_Prezentacija/assets/dvorac_ogulin.webp'">
             <div class="play-btn-crazy">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
             </div>
             <span class="card-tag badge-green">DESTINACIJSKI FILM</span>
             <div class="scanline-overlay"></div>
-          </div>
+          </a>
 
           <div class="video-info-crazy">
             <div class="card-client-row">
@@ -1290,57 +1192,60 @@
               <span class="card-sector-pill">Gradovi & Kulturna baština</span>
             </div>
 
-            <h3 class="card-title" title="KORIJENI PONORA — Zavičaj bajki & Frankopani">KORIJENI PONORA — Zavičaj bajki & Frankopani</h3>
+            <!-- Title opens deck in new tab -->
+            <a href="https://varazdin.studio/ogulin/" target="_blank" class="card-title-link">
+              <h3 class="card-title" title="KORIJENI PONORA — Zavičaj bajki & Frankopani">KORIJENI PONORA — Zavičaj bajki & Frankopani</h3>
+            </a>
+            
             <p class="card-tagline">Đulin ponor, Frankopanski kaštel i Klek. Pripovijedanje temeljeno na zavičaju bajki Ivane Brlić-Mažuranić.</p>
 
-            <div class="card-pricing-box">
-              <div class="pricing-label-row">
-                <span class="pricing-label">PRODUKCIJSKI PAKETI</span>
-                <span class="pricing-options-hint">Opcija A (14.500 €) · Opcija B Prozor u prošlost (24.000 €)</span>
+            <!-- Price Box with Hover Tooltip for Multi-Options -->
+            <div class="card-pricing-box" title="Detalji opcija: Opcija A: 14.500,00 € · Opcija B Prozor u prošlost: 24.000,00 €">
+              <div class="pricing-amount-wrapper">
+                <span class="pricing-amount">14.500,00 € — 24.000,00 €</span>
+                <div class="pricing-tooltip">
+                  <span class="tooltip-label">DOSTUPNE OPCIJE:</span>
+                  <span class="tooltip-val">Opcija A: 14.500,00 € · Opcija B Prozor u prošlost: 24.000,00 €</span>
+                </div>
               </div>
-              <div class="pricing-amount">14.500,00 € — 24.000,00 €</div>
+              <span class="pricing-hint-icon" title="Hover za opcije">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              </span>
             </div>
 
-            <div class="card-actions-wrapper">
-              <div class="actions-row-primary">
-                <a href="https://varazdin.studio/ogulin/" target="_blank" class="btn-card-action btn-primary" title="Otvori puni 16:9 web deck">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                  <span>OTVORI DECK</span>
-                </a>
-                
-                <button type="button" class="btn-card-action btn-secondary" onclick="openPreviewModal('ogulin', 'Ogulin_Prezentacija', 'KORIJENI PONORA — Zavičaj bajki & Frankopani', 'https://varazdin.studio/ogulin/')" title="Pregledaj deck unutar modala">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                  <span>PREGLED (16:9)</span>
-                </button>
-              </div>
+            <!-- Action Buttons -->
+            <div class="card-actions-grid">
+              <a href="https://varazdin.studio/ogulin/" target="_blank" class="btn-card-action btn-primary" title="Otvori web pitch deck">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                <span>OTVORI DECK</span>
+              </a>
 
-              <div class="actions-row-secondary">
-                <a href="https://varazdin.studio/ogulin/assets/Ponuda_ogulin.pdf" target="_blank" class="btn-card-action btn-subtle" title="Preuzmi službenu A4 PDF ponudu">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                  <span>PDF PONUDA</span>
-                </a>
+              <a href="https://varazdin.studio/ogulin/assets/Ponuda_ogulin.pdf" target="_blank" class="btn-card-action btn-subtle" title="Preuzmi službenu A4 PDF ponudu">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                <span>PDF</span>
+              </a>
 
-                <button type="button" class="btn-card-action btn-icon" onclick="copyDeckUrl('https://varazdin.studio/ogulin/', this)" title="Kopiraj poveznicu na deck">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                </button>
+              <button type="button" class="btn-card-action btn-icon" onclick="copyDeckUrl('https://varazdin.studio/ogulin/', this)" title="Kopiraj poveznicu">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              </button>
 
-                <button type="button" class="btn-card-action btn-icon" onclick="openQrModal('ogulin', 'KORIJENI PONORA — Zavičaj bajki & Frankopani', 'https://varazdin.studio/ogulin/')" title="Pokaži QR kod za mobitel">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                </button>
-              </div>
+              <button type="button" class="btn-card-action btn-icon" onclick="openQrModal('ogulin', 'KORIJENI PONORA — Zavičaj bajki & Frankopani', 'https://varazdin.studio/ogulin/')" title="Pokaži QR kod za mobitel">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              </button>
             </div>
           </div>
         </article>
         
-        <article class="deck-card video-card-crazy" data-slug="kb-pogon" data-folder="Kb-pogon_Prezentacija" data-sector="industry" data-client="kb d.o.o. pogon" data-title="kb d.o.o. — industrijski video pitch" data-price="5800">
-          <div class="video-thumb-crazy canvas-dither-target" onclick="openPreviewModal('kb-pogon', 'Kb-pogon_Prezentacija', 'KB D.O.O. — Industrijski Video Pitch', 'https://varazdin.studio/kb-pogon/')">
+        <article class="deck-card video-card-crazy" data-slug="kb-pogon" data-folder="Kb-pogon_Prezentacija" data-client="kb d.o.o. pogon" data-title="kb d.o.o. — industrijski video pitch" data-price="5800">
+          <!-- Direct click to open in new tab -->
+          <a href="https://varazdin.studio/kb-pogon/" target="_blank" class="video-thumb-crazy canvas-dither-target" title="Otvori KB D.O.O. — Industrijski Video Pitch">
             <img src="assets/thumbnails/thumb_kb-pogon.jpg" alt="KB D.O.O. — Industrijski Video Pitch" class="card-thumb" loading="lazy" onerror="this.src='../Kb-pogon_Prezentacija/assets/meridian_fpv_interior_flow.jpg'">
             <div class="play-btn-crazy">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
             </div>
             <span class="card-tag badge-green">INDUSTRIJA</span>
             <div class="scanline-overlay"></div>
-          </div>
+          </a>
 
           <div class="video-info-crazy">
             <div class="card-client-row">
@@ -1348,72 +1253,52 @@
               <span class="card-sector-pill">Industrija & Parkovi</span>
             </div>
 
-            <h3 class="card-title" title="KB D.O.O. — Industrijski Video Pitch">KB D.O.O. — Industrijski Video Pitch</h3>
+            <!-- Title opens deck in new tab -->
+            <a href="https://varazdin.studio/kb-pogon/" target="_blank" class="card-title-link">
+              <h3 class="card-title" title="KB D.O.O. — Industrijski Video Pitch">KB D.O.O. — Industrijski Video Pitch</h3>
+            </a>
+            
             <p class="card-tagline">Proizvodni pogoni, robotske ćelije i inženjerska preciznost. Autorski industrijski video i FPV prolet.</p>
 
-            <div class="card-pricing-box">
-              <div class="pricing-label-row">
-                <span class="pricing-label">PRODUKCIJSKI PAKETI</span>
-                <span class="pricing-options-hint">Industrijski video paket + FPV snimanje proizvodnje</span>
+            <!-- Price Box with Hover Tooltip for Multi-Options -->
+            <div class="card-pricing-box" title="Detalji opcija: Industrijski video paket + FPV snimanje proizvodnje">
+              <div class="pricing-amount-wrapper">
+                <span class="pricing-amount">5.800,00 €</span>
+                <div class="pricing-tooltip">
+                  <span class="tooltip-label">DOSTUPNE OPCIJE:</span>
+                  <span class="tooltip-val">Industrijski video paket + FPV snimanje proizvodnje</span>
+                </div>
               </div>
-              <div class="pricing-amount">5.800,00 €</div>
+              <span class="pricing-hint-icon" title="Hover za opcije">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              </span>
             </div>
 
-            <div class="card-actions-wrapper">
-              <div class="actions-row-primary">
-                <a href="https://varazdin.studio/kb-pogon/" target="_blank" class="btn-card-action btn-primary" title="Otvori puni 16:9 web deck">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                  <span>OTVORI DECK</span>
-                </a>
-                
-                <button type="button" class="btn-card-action btn-secondary" onclick="openPreviewModal('kb-pogon', 'Kb-pogon_Prezentacija', 'KB D.O.O. — Industrijski Video Pitch', 'https://varazdin.studio/kb-pogon/')" title="Pregledaj deck unutar modala">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                  <span>PREGLED (16:9)</span>
-                </button>
-              </div>
+            <!-- Action Buttons -->
+            <div class="card-actions-grid">
+              <a href="https://varazdin.studio/kb-pogon/" target="_blank" class="btn-card-action btn-primary" title="Otvori web pitch deck">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                <span>OTVORI DECK</span>
+              </a>
 
-              <div class="actions-row-secondary">
-                <a href="https://varazdin.studio/kb-pogon/assets/Ponuda_KB_Pogon_Br16.pdf" target="_blank" class="btn-card-action btn-subtle" title="Preuzmi službenu A4 PDF ponudu">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                  <span>PDF PONUDA</span>
-                </a>
+              <a href="https://varazdin.studio/kb-pogon/assets/Ponuda_KB_Pogon_Br16.pdf" target="_blank" class="btn-card-action btn-subtle" title="Preuzmi službenu A4 PDF ponudu">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                <span>PDF</span>
+              </a>
 
-                <button type="button" class="btn-card-action btn-icon" onclick="copyDeckUrl('https://varazdin.studio/kb-pogon/', this)" title="Kopiraj poveznicu na deck">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                </button>
+              <button type="button" class="btn-card-action btn-icon" onclick="copyDeckUrl('https://varazdin.studio/kb-pogon/', this)" title="Kopiraj poveznicu">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              </button>
 
-                <button type="button" class="btn-card-action btn-icon" onclick="openQrModal('kb-pogon', 'KB D.O.O. — Industrijski Video Pitch', 'https://varazdin.studio/kb-pogon/')" title="Pokaži QR kod za mobitel">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                </button>
-              </div>
+              <button type="button" class="btn-card-action btn-icon" onclick="openQrModal('kb-pogon', 'KB D.O.O. — Industrijski Video Pitch', 'https://varazdin.studio/kb-pogon/')" title="Pokaži QR kod za mobitel">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              </button>
             </div>
           </div>
         </article>
         
     </main>
 
-  </div>
-
-  <!-- In-Deck 16:9 Live Preview Modal -->
-  <div class="dashboard-modal-backdrop" id="previewModal" onclick="handleBackdropClick(event, 'previewModal')">
-    <div class="modal-frame">
-      <div class="modal-header">
-        <div class="modal-title-box">
-          <span class="category" style="color:var(--accent-green); background:var(--accent-green-bg); padding:2px 8px; border-radius:3px; font-family:var(--font-mono); font-size:0.75rem; font-weight:800;">16:9 PREGLED</span>
-          <span class="modal-title" id="modalPreviewTitle">Pregled decka</span>
-        </div>
-        <div class="modal-header-actions">
-          <a href="#" target="_blank" class="btn-modal-action" id="modalOpenExternal">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <span>PUNI EKRAN</span>
-          </a>
-          <button type="button" class="btn-modal-close" onclick="closePreviewModal()">ZATVORI (ESC)</button>
-        </div>
-      </div>
-      <div class="modal-viewport">
-        <iframe id="previewIframe" class="modal-iframe" src="" allow="autoplay; fullscreen"></iframe>
-      </div>
-    </div>
   </div>
 
   <!-- Dynamic QR Code Modal -->
@@ -1493,76 +1378,36 @@
       }
     }
 
-    /* Filtering & Sorting */
-    let currentFilter = 'all';
+    /* Search Filtering */
     let currentQuery = '';
-    let currentSort = 'default';
-
-    function setFilter(filter, el) {
-      playHapticClick(950, 450);
-      if (window.triggerWind) window.triggerWind();
-      currentFilter = filter;
-      document.querySelectorAll('.filter-pill').forEach(btn => btn.classList.remove('active'));
-      if (el) el.classList.add('active');
-      applyFiltersAndSort();
-    }
 
     function handleSearch(val) {
       currentQuery = val.trim().toLowerCase();
-      applyFiltersAndSort();
+      applySearch();
     }
 
-    function handleSort(val) {
-      playHapticClick(850, 450);
-      currentSort = val;
-      applyFiltersAndSort();
-    }
-
-    function applyFiltersAndSort() {
+    function applySearch() {
       const gridContainer = document.getElementById('decksGridView');
       const cards = Array.from(gridContainer.querySelectorAll('.deck-card'));
 
       let visibleCount = 0;
 
-      const filterItem = (el) => {
-        const sector = el.getAttribute('data-sector');
-        const client = el.getAttribute('data-client') || '';
-        const title = el.getAttribute('data-title') || '';
-        const slug = el.getAttribute('data-slug') || '';
-
-        const matchesSector = (currentFilter === 'all' || sector === currentFilter);
-        const matchesQuery = !currentQuery || 
-                             client.includes(currentQuery) || 
-                             title.includes(currentQuery) || 
-                             slug.includes(currentQuery);
-
-        return matchesSector && matchesQuery;
-      };
-
-      const sortFn = (a, b) => {
-        if (currentSort === 'price-desc') {
-          return parseFloat(b.getAttribute('data-price')) - parseFloat(a.getAttribute('data-price'));
-        } else if (currentSort === 'price-asc') {
-          return parseFloat(a.getAttribute('data-price')) - parseFloat(b.getAttribute('data-price'));
-        } else if (currentSort === 'client-az') {
-          return (a.getAttribute('data-client') || '').localeCompare(b.getAttribute('data-client') || '');
-        } else if (currentSort === 'client-za') {
-          return (b.getAttribute('data-client') || '').localeCompare(a.getAttribute('data-client') || '');
-        }
-        return 0;
-      };
-
-      cards.sort(sortFn);
-
       cards.forEach(card => {
-        const show = filterItem(card);
-        card.style.display = show ? 'flex' : 'none';
-        if (show) visibleCount++;
-        gridContainer.appendChild(card);
+        const client = card.getAttribute('data-client') || '';
+        const title = card.getAttribute('data-title') || '';
+        const slug = card.getAttribute('data-slug') || '';
+
+        const matches = !currentQuery || 
+                        client.includes(currentQuery) || 
+                        title.includes(currentQuery) || 
+                        slug.includes(currentQuery);
+
+        card.style.display = matches ? 'flex' : 'none';
+        if (matches) visibleCount++;
       });
 
       const counter = document.getElementById('resultsCount');
-      if (counter) counter.textContent = 'Prikazano: ' + visibleCount + ' / ' + cards.length;
+      if (counter) counter.textContent = visibleCount + ' / ' + cards.length + ' PONUDA';
     }
 
     /* Keyboard Shortcuts */
@@ -1571,7 +1416,6 @@
         e.preventDefault();
         document.getElementById('searchInput').focus();
       } else if (e.key === 'Escape') {
-        closePreviewModal();
         closeQrModal();
       }
     });
@@ -1598,35 +1442,6 @@
       }).catch(() => {
         showToast('Poveznica: ' + url);
       });
-    }
-
-    /* Modal Live Preview */
-    function openPreviewModal(slug, folder, title, liveUrl) {
-      playHapticClick(1100, 500);
-      const modal = document.getElementById('previewModal');
-      const iframe = document.getElementById('previewIframe');
-      const titleEl = document.getElementById('modalPreviewTitle');
-      const extLink = document.getElementById('modalOpenExternal');
-
-      titleEl.textContent = title;
-      extLink.href = liveUrl;
-
-      if (window.location.protocol === 'file:') {
-        iframe.src = '../' + folder + '/index.html';
-      } else {
-        iframe.src = '../' + slug + '/';
-      }
-
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closePreviewModal() {
-      const modal = document.getElementById('previewModal');
-      const iframe = document.getElementById('previewIframe');
-      modal.classList.remove('active');
-      iframe.src = '';
-      document.body.style.overflow = '';
     }
 
     /* QR Code Modal */
@@ -1661,7 +1476,6 @@
 
     function handleBackdropClick(e, modalId) {
       if (e.target.id === modalId) {
-        if (modalId === 'previewModal') closePreviewModal();
         if (modalId === 'qrModal') closeQrModal();
       }
     }
@@ -1674,11 +1488,6 @@
       let width, height;
       let particles = [];
       const particleCount = 40;
-      let wind = 0;
-
-      window.triggerWind = function() {
-        wind = -6;
-      };
 
       function resize() {
         width = canvas.width = window.innerWidth;
@@ -1708,7 +1517,6 @@
 
       function draw() {
         ctx.clearRect(0, 0, width, height);
-        wind *= 0.95;
 
         for (let p of particles) {
           const dx = p.x - mouseX;
@@ -1720,7 +1528,6 @@
             p.vy += (dy / dist) * force;
           }
 
-          p.vx += wind * 0.05;
           p.x += p.vx;
           p.y += p.vy;
 
