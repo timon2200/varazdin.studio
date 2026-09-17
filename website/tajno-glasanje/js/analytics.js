@@ -24,6 +24,22 @@ export class AnalyticsEngine {
     this.loadLocalVotes();
   }
 
+  isLocal() {
+    try {
+      const host = window.location.hostname;
+      return (
+        !host ||
+        host === 'localhost' ||
+        host === '127.0.0.1' ||
+        host === '0.0.0.0' ||
+        host.endsWith('.local') ||
+        window.location.protocol === 'file:'
+      );
+    } catch (e) {
+      return false;
+    }
+  }
+
   getApiBase() {
     try {
       let path = window.location.pathname;
@@ -87,11 +103,16 @@ export class AnalyticsEngine {
     // Trigger local live ticker update
     this.notifyTicker(voteRecord);
 
-    // Sync to backend API
+    // Sync to backend API (only when on live production)
     this.sendVoteToApi(voteRecord);
   }
 
   async sendVoteToApi(voteRecord) {
+    if (this.isLocal()) {
+      // DEV SAFEGUARD: Local test votes must NOT pollute or mutate the live production database.
+      return;
+    }
+
     if (!this.online) {
       this.queueOfflineVote(voteRecord);
       return;
@@ -112,6 +133,7 @@ export class AnalyticsEngine {
   }
 
   queueOfflineVote(voteRecord) {
+    if (this.isLocal()) return;
     try {
       const queue = JSON.parse(localStorage.getItem('sv_swiper_queue') || '[]');
       queue.push(voteRecord);
@@ -120,6 +142,7 @@ export class AnalyticsEngine {
   }
 
   async flushOfflineVotes() {
+    if (this.isLocal()) return;
     try {
       const queue = JSON.parse(localStorage.getItem('sv_swiper_queue') || '[]');
       if (!queue.length) return;
@@ -142,14 +165,26 @@ export class AnalyticsEngine {
   }
 
   async fetchGlobalStats() {
-    try {
-      const res = await fetch(`${this.apiBase}/stats.php?cache=${Date.now()}`);
-      if (res.ok) {
-        const data = await res.json();
-        this.statsCache = data;
-        return data;
-      }
-    } catch (e) {}
+    // 1. Prioritize pulling the live production stats if developing locally or on live server
+    const endpoints = [];
+    if (this.isLocal()) {
+      // In local testing, pull one-way from the live production database
+      endpoints.push(`https://varazdin.studio/tajno-glasanje/api/stats.php?cache=${Date.now()}`);
+      endpoints.push(`${this.apiBase}/stats.php?cache=${Date.now()}`);
+    } else {
+      endpoints.push(`${this.apiBase}/stats.php?cache=${Date.now()}`);
+    }
+
+    for (const ep of endpoints) {
+      try {
+        const res = await fetch(ep);
+        if (res.ok) {
+          const data = await res.json();
+          this.statsCache = data;
+          return data;
+        }
+      } catch (e) {}
+    }
 
     return this.computeLocalStats();
   }
@@ -262,6 +297,10 @@ export class AnalyticsEngine {
     });
     localStorage.removeItem('sv_swiper_votes');
     localStorage.removeItem('sv_swiper_queue');
+
+    if (this.isLocal()) {
+      return;
+    }
 
     try {
       await fetch(`${this.apiBase}/vote.php`, {
