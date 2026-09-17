@@ -133,6 +133,7 @@ class SwiperApp {
     // 6. Bind UI Controls & Modals
     this.bindControls();
     this.bindViewSwitcher();
+    this.bindMobileMenu();
     this.bindModals();
     this.bindAudioToggle();
     this.bindThemeToggle();
@@ -232,27 +233,101 @@ class SwiperApp {
      VIEW SWITCHER (SWIPER 🎴 VS DVOBOJ ⚔️ VS GRID ▦ VS POREDAK 🏆)
      ========================================================================== */
   bindViewSwitcher() {
-    const btnSwiper = document.getElementById('viewBtnSwiper');
-    const btnCompare = document.getElementById('viewBtnCompare');
-    const btnGrid = document.getElementById('viewBtnGrid');
-    const btnLeaderboard = document.getElementById('viewBtnLeaderboard');
-    const btnJumpToGrid = document.getElementById('btnJumpToGrid');
+    // Bind all desktop and mobile elements that have data-view attribute
+    document.querySelectorAll('[data-view]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const view = btn.dataset.view;
+        if (view) this.setView(view);
+      });
+    });
 
-    if (btnSwiper) {
-      btnSwiper.addEventListener('click', () => this.setView('swiper'));
-    }
-    if (btnCompare) {
-      btnCompare.addEventListener('click', () => this.setView('compare'));
-    }
-    if (btnGrid) {
-      btnGrid.addEventListener('click', () => this.setView('grid'));
-    }
-    if (btnLeaderboard) {
-      btnLeaderboard.addEventListener('click', () => this.setView('leaderboard'));
-    }
+    const btnJumpToGrid = document.getElementById('btnJumpToGrid');
     if (btnJumpToGrid) {
       btnJumpToGrid.addEventListener('click', () => this.setView('grid'));
     }
+  }
+
+  bindMobileMenu() {
+    const toggleBtn = document.getElementById('btnMobileMenuToggle');
+    const drawer = document.getElementById('mobileNavDrawer');
+    const mobileThemeBtn = document.getElementById('btnMobileThemeToggle');
+    const mobileAudioBtn = document.getElementById('btnMobileAudioToggle');
+    const mobileShareBtn = document.getElementById('btnMobileShare');
+    const mobileTelemetryBtn = document.getElementById('btnMobileTelemetry');
+
+    if (!toggleBtn || !drawer) return;
+
+    const closeDrawer = () => {
+      drawer.classList.remove('is-open');
+      toggleBtn.classList.remove('is-open');
+      toggleBtn.setAttribute('aria-expanded', 'false');
+      drawer.setAttribute('aria-hidden', 'true');
+    };
+
+    const toggleDrawer = () => {
+      const isOpen = drawer.classList.toggle('is-open');
+      toggleBtn.classList.toggle('is-open', isOpen);
+      toggleBtn.setAttribute('aria-expanded', String(isOpen));
+      drawer.setAttribute('aria-hidden', String(!isOpen));
+      if (this.audioHaptics) this.audioHaptics.playClick();
+    };
+
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleDrawer();
+    });
+
+    // Close drawer when any mobile navigation button is tapped
+    drawer.querySelectorAll('.mobile-nav-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        closeDrawer();
+      });
+    });
+
+    if (mobileTelemetryBtn) {
+      mobileTelemetryBtn.addEventListener('click', () => {
+        this.setView('leaderboard');
+        closeDrawer();
+      });
+    }
+
+    if (mobileThemeBtn) {
+      mobileThemeBtn.addEventListener('click', () => {
+        this.toggleTheme();
+      });
+    }
+
+    if (mobileAudioBtn) {
+      mobileAudioBtn.addEventListener('click', () => {
+        const isEnabled = this.audioHaptics.toggleSound();
+        mobileAudioBtn.style.opacity = isEnabled ? '1' : '0.4';
+        const btnAudio = document.getElementById('btnAudioToggle');
+        if (btnAudio) btnAudio.style.opacity = isEnabled ? '1' : '0.4';
+        this.showToast(isEnabled ? '🔊 Zvuk uključen' : '🔇 Zvuk isključen');
+      });
+    }
+
+    if (mobileShareBtn) {
+      mobileShareBtn.addEventListener('click', () => {
+        const btnShare = document.getElementById('btnShareViral');
+        if (btnShare) btnShare.click();
+        closeDrawer();
+      });
+    }
+
+    // Close on click outside
+    document.addEventListener('click', (e) => {
+      if (drawer.classList.contains('is-open') && !drawer.contains(e.target) && !toggleBtn.contains(e.target)) {
+        closeDrawer();
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && drawer.classList.contains('is-open')) {
+        closeDrawer();
+      }
+    });
   }
 
   setView(viewName) {
@@ -261,15 +336,11 @@ class SwiperApp {
     const compareStage = document.getElementById('compareStage');
     const gridView = document.getElementById('catalogGridView');
     const leaderboardView = document.getElementById('leaderboardView');
-    const btnSwiper = document.getElementById('viewBtnSwiper');
-    const btnCompare = document.getElementById('viewBtnCompare');
-    const btnGrid = document.getElementById('viewBtnGrid');
-    const btnLeaderboard = document.getElementById('viewBtnLeaderboard');
 
-    if (btnSwiper) btnSwiper.classList.toggle('active', viewName === 'swiper');
-    if (btnCompare) btnCompare.classList.toggle('active', viewName === 'compare');
-    if (btnGrid) btnGrid.classList.toggle('active', viewName === 'grid');
-    if (btnLeaderboard) btnLeaderboard.classList.toggle('active', viewName === 'leaderboard');
+    // Synchronize active status on all view buttons (both desktop header and mobile drawer)
+    document.querySelectorAll('[data-view]').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.view === viewName);
+    });
 
     if (swiperStage) swiperStage.style.display = 'none';
     if (compareStage) compareStage.style.display = 'none';
@@ -1305,14 +1376,27 @@ class SwiperApp {
 
   updateHeaderCounter() {
     const counterEl = document.getElementById('headerVoteCount');
+    const mobileHeaderEl = document.getElementById('mobileHeaderVoteCount');
+    const mobileDrawerEl = document.getElementById('mobileDrawerVoteCount');
+
+    const mySessionVotes = this.analytics ? this.analytics.sessionVotes.length : 0;
+    const totalGlobal = (this.globalStats && this.globalStats.totalVotes) ? this.globalStats.totalVotes : 2254;
+    const formatted = totalGlobal.toLocaleString('hr-HR');
+
     if (counterEl) {
-      const mySessionVotes = this.analytics ? this.analytics.sessionVotes.length : 0;
-      const totalGlobal = (this.globalStats && this.globalStats.totalVotes) ? this.globalStats.totalVotes : 2254;
       if (mySessionVotes > 0) {
-        counterEl.textContent = `${totalGlobal.toLocaleString('hr-HR')} (${mySessionVotes} mojih)`;
+        counterEl.textContent = `${formatted} (${mySessionVotes} mojih)`;
       } else {
-        counterEl.textContent = totalGlobal.toLocaleString('hr-HR');
+        counterEl.textContent = formatted;
       }
+    }
+
+    if (mobileHeaderEl) {
+      mobileHeaderEl.textContent = formatted;
+    }
+
+    if (mobileDrawerEl) {
+      mobileDrawerEl.textContent = formatted;
     }
   }
 
