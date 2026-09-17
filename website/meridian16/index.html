@@ -2635,6 +2635,8 @@ footer.deck-footer {
             <li><span class="bullet">✓</span> <span class="feat-desc"><strong>4x Vertical Video Reels</strong> (LinkedIn & Social Media)</span></li>
             <li><span class="bullet">✓</span> <span class="feat-desc"><strong>Up to 10 FPV Flights</strong> + Peak-Traffic Timelapses & Dronelapses</span></li>
             <li><span class="bullet">✓</span> <span class="feat-desc"><strong>Pre-production</strong> (Concept, Script, Moodboard, Site Scout)</span></li>
+            <li><span class="bullet">✓</span> <span class="feat-desc"><strong>Dedicated Storyboard Alignment</strong> & Location Scouting</span></li>
+            <li><span class="bullet">✓</span> <span class="feat-desc"><strong>Standard Audio Mix & Master</strong> (Licensed Commercial Soundtrack)</span></li>
             <li><span class="bullet">✓</span> <span class="feat-desc"><strong>100% Source Footage & Full Rights Transfer</strong> to Client</span></li>
           </ul>
         </div>
@@ -4238,27 +4240,34 @@ function renderCardTextureA(canvas, w, h, dpr) {
   ctx.lineWidth = 2;
   roundRect(ctx, 1, 1, w - 2, h - 2, 12, true, true);
 
+  // Top Badge
   ctx.fillStyle = '#111518';
   roundRect(ctx, 22, 20, 185, 24, 4, true, false);
   ctx.fillStyle = '#ffffff';
   ctx.font = '800 10.5px "JetBrains Mono", monospace';
   ctx.fillText('OPTION A • QUOTE NO. 9', 30, 36);
 
+  // Title
   ctx.fillStyle = '#111518';
   ctx.font = '900 20px "Plus Jakarta Sans", sans-serif';
   ctx.fillText('EXPANDED', 22, 65);
   ctx.fillText('PRODUCTION', 22, 86);
 
+  // Description
   ctx.fillStyle = '#3b454e';
-  ctx.font = '500 12px "Plus Jakarta Sans", sans-serif';
-  wrapText(ctx, 'Cinema equipment, multiple setups, leadership interview, up to 10 FPV flights, hero film & 4 verticals.', 22, 105, w - 44, 16);
+  ctx.font = '500 11.5px "Plus Jakarta Sans", sans-serif';
+  wrapText(ctx, 'Cinema equipment, multiple setups, leadership interview, up to 10 FPV flights, hero film & 4 verticals.', 22, 104, w - 44, 15);
 
+  // Divider
   ctx.strokeStyle = '#d5ccba';
   ctx.lineWidth = 1;
   ctx.beginPath();
-  ctx.moveTo(22, 140);
-  ctx.lineTo(w - 22, 140);
+  ctx.moveTo(22, 138);
+  ctx.lineTo(w - 22, 138);
   ctx.stroke();
+
+  const boxH = 72;
+  const boxY = h - boxH - 18;
 
   const features = [
     ['Hero Film up to 2:30', ' (16:9, 4K Cinema Master)'],
@@ -4266,31 +4275,32 @@ function renderCardTextureA(canvas, w, h, dpr) {
     ['4x Vertical Video Reels', ' (LinkedIn & Social Media)'],
     ['Up to 10 FPV Flights', ' + Peak-Traffic Timelapses & Dronelapses'],
     ['Pre-production', ' (Concept, Script, Moodboard, Site Scout)'],
+    ['Dedicated Storyboard Alignment', ' & Location Scouting'],
+    ['Standard Audio Mix & Master', ' (Licensed Commercial Soundtrack)'],
     ['100% Source Footage & Full Rights Transfer', ' to Client']
   ];
 
-  const startY = 160;
-  const featSpacing = 24.5;
+  const startY = 154;
+  const availH = boxY - 12 - startY;
+  const featSpacing = availH / (features.length - 1);
 
   features.forEach(([bold, norm], idx) => {
     const featY = startY + idx * featSpacing;
     ctx.fillStyle = '#11421f';
-    ctx.font = '800 13px "JetBrains Mono", monospace';
+    ctx.font = '800 12px "JetBrains Mono", monospace';
     ctx.fillText('✓', 24, featY);
 
     ctx.fillStyle = '#111518';
-    ctx.font = '700 12px "Plus Jakarta Sans", sans-serif';
+    ctx.font = '700 11px "Plus Jakarta Sans", sans-serif';
     const boldW = ctx.measureText(bold).width;
     ctx.fillText(bold, 44, featY);
 
     ctx.fillStyle = '#3b454e';
-    ctx.font = '500 12px "Plus Jakarta Sans", sans-serif';
+    ctx.font = '500 11px "Plus Jakarta Sans", sans-serif';
     ctx.fillText(norm, 44 + boldW, featY);
   });
 
-  const boxH = 72;
-  const boxY = h - boxH - 18;
-
+  // Price Bottom Row
   ctx.fillStyle = '#f4efe4';
   ctx.strokeStyle = '#d5ccba';
   ctx.lineWidth = 1.5;
