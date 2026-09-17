@@ -17,6 +17,7 @@ import time
 import csv
 import io
 import math
+import re
 from pathlib import Path
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 
@@ -131,11 +132,74 @@ def save_rounds_store(store):
     except Exception as e:
         print("[ERROR] Failed to save rounds:", e)
 
+def align_votes_store_with_catalog(store):
+    if not isinstance(store, dict) or "items" not in store:
+        return False
+    if not CATALOG_JS.exists():
+        return False
+    try:
+        content = CATALOG_JS.read_text(encoding="utf-8")
+        start = content.find("[")
+        end = content.rfind("]")
+        if start == -1 or end == -1:
+            return False
+        master = json.loads(content[start:end+1])
+        if not master or len(master) == 0:
+            return False
+
+        first_master = master[0]
+        first_vote = store.get("items", {}).get(first_master.get("id"))
+        if len(store["items"]) == len(master) and first_vote and first_vote.get("title") == first_master.get("title"):
+            return False
+
+        old_by_image = {}
+        old_by_title = {}
+        for old_item in store["items"].values():
+            img = str(old_item.get("image", "")).split("/")[-1].lower()
+            if img:
+                old_by_image[img] = old_item
+            t = re.sub(r"[^a-z0-9]", "", str(old_item.get("title", "")).lower())
+            if t:
+                old_by_title[t] = old_item
+
+        new_items = {}
+        for m in master:
+            i_id = m.get("id")
+            img = str(m.get("image", "")).split("/")[-1].lower()
+            t = re.sub(r"[^a-z0-9]", "", str(m.get("title", "")).lower())
+
+            matched = old_by_image.get(img) or old_by_title.get(t) or {}
+            likes = matched.get("likes", m.get("likes", 0))
+            passes = matched.get("passes", m.get("passes", 0))
+            superlikes = matched.get("superlikes", m.get("superlikes", 0))
+            score = likes + (superlikes * 3)
+
+            new_items[i_id] = {
+                "id": i_id,
+                "title": m.get("title", ""),
+                "category": m.get("category", ""),
+                "likes": likes,
+                "passes": passes,
+                "superlikes": superlikes,
+                "score": score,
+                "image": m.get("image", ""),
+                "impressions": likes + passes + superlikes
+            }
+
+        store["items"] = new_items
+        return True
+    except Exception as e:
+        print("[WARN] Error aligning votes store:", e)
+        return False
+
 def load_votes_store(file_path=None):
     target = file_path or VOTES_FILE
     if target.exists():
         try:
-            return json.loads(target.read_text(encoding="utf-8"))
+            store = json.loads(target.read_text(encoding="utf-8"))
+            if align_votes_store_with_catalog(store):
+                save_votes_store(store, target)
+            return store
         except Exception:
             pass
     return {

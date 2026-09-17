@@ -54,6 +54,62 @@ if (!file_exists($dataFile)) {
     exit;
 }
 
+function alignVotesStoreWithCatalog(&$store, $catalogJsFile) {
+    if (!isset($store['items']) || !is_array($store['items'])) return false;
+    if (!file_exists($catalogJsFile)) return false;
+
+    $jsContent = @file_get_contents($catalogJsFile);
+    $start = strpos($jsContent, '[');
+    $end = strrpos($jsContent, ']');
+    if ($start === false || $end === false) return false;
+    $master = json_decode(substr($jsContent, $start, ($end - $start) + 1), true);
+    if (!is_array($master) || count($master) === 0) return false;
+
+    // Fast check: if count matches and first item matches, already aligned
+    $firstMaster = $master[0];
+    $firstVote = $store['items'][$firstMaster['id']] ?? null;
+    if (count($store['items']) === count($master) && $firstVote && ($firstVote['title'] ?? '') === $firstMaster['title']) {
+        return false;
+    }
+
+    $oldByImage = [];
+    $oldByTitle = [];
+    foreach ($store['items'] as $oldItem) {
+        $imgBase = strtolower(basename($oldItem['image'] ?? ''));
+        if (!empty($imgBase)) $oldByImage[$imgBase] = $oldItem;
+        $normTitle = strtolower(preg_replace('/[^a-z0-9]/', '', $oldItem['title'] ?? ''));
+        if (!empty($normTitle)) $oldByTitle[$normTitle] = $oldItem;
+    }
+
+    $newItems = [];
+    foreach ($master as $m) {
+        $id = $m['id'];
+        $imgBase = strtolower(basename($m['image'] ?? ''));
+        $normTitle = strtolower(preg_replace('/[^a-z0-9]/', '', $m['title'] ?? ''));
+
+        $matched = $oldByImage[$imgBase] ?? ($oldByTitle[$normTitle] ?? null);
+        $likes = $matched['likes'] ?? ($m['likes'] ?? 0);
+        $passes = $matched['passes'] ?? ($m['passes'] ?? 0);
+        $superlikes = $matched['superlikes'] ?? ($m['superlikes'] ?? 0);
+        $score = $likes + ($superlikes * 3);
+
+        $newItems[$id] = [
+            'id' => $id,
+            'title' => $m['title'],
+            'category' => $m['category'],
+            'likes' => $likes,
+            'passes' => $passes,
+            'superlikes' => $superlikes,
+            'score' => $score,
+            'image' => $m['image'] ?? '',
+            'impressions' => $likes + $passes + $superlikes
+        ];
+    }
+
+    $store['items'] = $newItems;
+    return true;
+}
+
 $fp = fopen($dataFile, 'r');
 if (!$fp) {
     echo json_encode(['error' => 'Data file unreadable']);
@@ -66,6 +122,10 @@ if (flock($fp, LOCK_SH)) {
     fclose($fp);
 
     $store = $content ? json_decode($content, true) : [];
+    $catalogJsPath = dirname(__DIR__) . '/js/catalog-data.js';
+    if (alignVotesStoreWithCatalog($store, $catalogJsPath)) {
+        @file_put_contents($dataFile, json_encode($store, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+    }
     $items = isset($store['items']) ? array_values($store['items']) : [];
 
     // Calculate percentages and sort descending by score
