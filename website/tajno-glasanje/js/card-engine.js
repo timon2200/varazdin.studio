@@ -140,15 +140,6 @@ export class CardEngine {
                    draggable="false" 
                    loading="${index < 6 ? 'eager' : 'lazy'}"
                    ${index === 0 ? 'fetchpriority="high"' : ''}>
-              
-              <!-- Tactile 2K Zoom Badge -->
-              <button class="card-zoom-badge" title="Puni 2K prikaz (Klikni za zumiranje)" aria-label="2K Zoom" type="button">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-                <span>2K ZOOM</span>
-              </button>
             </div>
             
             <!-- Dynamic Interaction Stamps -->
@@ -240,19 +231,6 @@ export class CardEngine {
     const stampLike = card.querySelector('.stamp-like');
     const stampNope = card.querySelector('.stamp-nope');
     const stampSuper = card.querySelector('.stamp-superlike');
-    const zoomBadge = card.querySelector('.card-zoom-badge');
-
-    if (zoomBadge) {
-      zoomBadge.onclick = (e) => {
-        e.stopPropagation();
-        e.preventDefault();
-        const currentItem = this.deck[this.currentIndex];
-        if (currentItem) this.onImageClickCallback(currentItem);
-      };
-      zoomBadge.onpointerdown = (e) => {
-        e.stopPropagation();
-      };
-    }
 
     const onPointerMove = (e) => {
       if (!isDragging || (activePointerId !== null && e.pointerId !== activePointerId)) return;
@@ -387,7 +365,6 @@ export class CardEngine {
 
     const onPointerDown = (e) => {
       if (e.pointerType === 'mouse' && e.button !== 0) return;
-      if (e.target && e.target.closest('.card-zoom-badge')) return;
 
       isDragging = true;
       hasMoved = false;

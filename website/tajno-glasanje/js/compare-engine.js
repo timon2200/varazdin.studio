@@ -181,13 +181,6 @@ export class CompareEngine {
           <div class="scanline-overlay"></div>
           
           <div class="duel-key-hint">${keyHint}</div>
-          
-          <button class="duel-zoom-btn" title="2K Zoom" aria-label="Zoom" type="button">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-          </button>
         </div>
 
         <!-- Bold Condensed Title -->
@@ -206,28 +199,10 @@ export class CompareEngine {
     const cardRight = slotRight ? slotRight.querySelector('.duel-card') : null;
 
     if (cardLeft) {
-      const zoomBtn = cardLeft.querySelector('.duel-zoom-btn');
-      if (zoomBtn) {
-        zoomBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          e.preventDefault();
-          this.onImageClickCallback(this.leftItem);
-        });
-        zoomBtn.addEventListener('pointerdown', (e) => e.stopPropagation());
-      }
       this.attachCardGestures(cardLeft, 'left');
     }
 
     if (cardRight) {
-      const zoomBtn = cardRight.querySelector('.duel-zoom-btn');
-      if (zoomBtn) {
-        zoomBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          e.preventDefault();
-          this.onImageClickCallback(this.rightItem);
-        });
-        zoomBtn.addEventListener('pointerdown', (e) => e.stopPropagation());
-      }
       this.attachCardGestures(cardRight, 'right');
     }
   }
@@ -253,7 +228,6 @@ export class CompareEngine {
 
     const onPointerDown = (e) => {
       if (this.isAnimating) return;
-      if (e.target.closest('.duel-zoom-btn')) return;
       if (e.button !== undefined && e.button !== 0) return;
 
       startX = e.clientX;
