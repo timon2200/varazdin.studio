@@ -55,7 +55,7 @@
 
       <!-- Central View Mode Switcher -->
       <div class="view-switcher-group" id="viewSwitcher" role="group" aria-label="Način prikaza">
-        <button id="viewBtnSwiper" class="view-btn active" data-view="swiper" title="3D Špil za swipeanje">
+        <button id="viewBtnSwiper" class="view-btn active" data-view="swiper" title="3D Špil za swipeanje (1)">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <rect x="4" y="2" width="16" height="20" rx="3"></rect>
             <line x1="8" y1="6" x2="16" y2="6"></line>
@@ -63,7 +63,20 @@
           </svg>
           <span>ŠPIL</span>
         </button>
-        <button id="viewBtnGrid" class="view-btn" data-view="grid" title="Mrežni katalog majica">
+        <button id="viewBtnCompare" class="view-btn" data-view="compare" title="Usporedba 1 na 1 (Dvoboj) (2)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5"></polyline>
+            <line x1="13" y1="19" x2="19" y2="13"></line>
+            <line x1="16" y1="16" x2="20" y2="20"></line>
+            <line x1="19" y1="21" x2="21" y2="19"></line>
+            <polyline points="14.5 6.5 18 3 21 3 21 6 17.5 9.5"></polyline>
+            <line x1="5" y1="14" x2="9" y2="18"></line>
+            <line x1="7" y1="17" x2="4" y2="20"></line>
+            <line x1="3" y1="19" x2="5" y2="21"></line>
+          </svg>
+          <span>DVOBOJ</span>
+        </button>
+        <button id="viewBtnGrid" class="view-btn" data-view="grid" title="Mrežni katalog majica (3)">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <rect x="3" y="3" width="7" height="7"></rect>
             <rect x="14" y="3" width="7" height="7"></rect>
@@ -202,7 +215,43 @@
 
       </section>
 
-      <!-- STAGE 2: Ponude Grid View (Mreža / Katalog) -->
+      <!-- STAGE 2: 1-on-1 King of the Hill Duel Stage (Dvoboj) -->
+      <section id="compareStage" class="compare-stage" style="display: none;" aria-label="Dvoboj majica 1 na 1">
+        
+        <!-- Category Navigation Header Card -->
+        <div class="duel-category-card">
+          <div class="duel-category-header">
+            <div class="duel-mode-label">
+              <span class="live-dot" aria-hidden="true"></span>
+              <span>1 NA 1 DVOBOJ · KING OF THE HILL</span>
+            </div>
+            <span class="duel-mode-sub">Odaberi bolju karticu — pobjednik ostaje na mjestu i brani naslov protiv novih izazivača</span>
+          </div>
+
+          <!-- Category Navigation Pills -->
+          <nav class="category-nav" id="duelCategoryNav" aria-label="Filter kategorija za dvoboj">
+            <button class="cat-pill active" data-cat="ALL">SVE <span class="cat-badge" id="duelBadgeAll">0</span></button>
+            <button class="cat-pill" data-cat="Selected">SELECTED <span class="cat-badge" id="duelBadgeSelected">0</span></button>
+            <button class="cat-pill" data-cat="City">CITY <span class="cat-badge" id="duelBadgeCity">0</span></button>
+            <button class="cat-pill" data-cat="Studio">STUDIO <span class="cat-badge" id="duelBadgeStudio">0</span></button>
+            <button class="cat-pill" data-cat="Creative">CREATIVE <span class="cat-badge" id="duelBadgeCreative">0</span></button>
+            <button class="cat-pill" data-cat="Garda">GARDA <span class="cat-badge" id="duelBadgeGarda">0</span></button>
+            <button class="cat-pill" data-cat="Towers">TOWERS <span class="cat-badge" id="duelBadgeTowers">0</span></button>
+            <button class="cat-pill" data-cat="Utility">UTILITY <span class="cat-badge" id="duelBadgeUtility">0</span></button>
+            <button class="cat-pill" data-cat="Artwear">ARTWEAR <span class="cat-badge" id="duelBadgeArtwear">0</span></button>
+            <button class="cat-pill" data-cat="Front Hits">FRONT HITS <span class="cat-badge" id="duelBadgeFrontHits">0</span></button>
+            <button class="cat-pill" data-cat="Experimental">EXPERIMENTAL <span class="cat-badge" id="duelBadgeExperimental">0</span></button>
+          </nav>
+        </div>
+
+        <!-- Dynamic Duel Arena Container -->
+        <div id="duelArenaContainer" class="duel-arena-container">
+          <!-- Populated dynamically by CompareEngine -->
+        </div>
+
+      </section>
+
+      <!-- STAGE 3: Ponude Grid View (Mreža / Katalog) -->
       <section id="catalogGridView" class="catalog-grid-view" style="display: none;" aria-label="Mrežni katalog majica">
         
         <!-- Meridian 16 Bold Search & Filter Card -->

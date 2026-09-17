@@ -8,6 +8,7 @@ import { NoiseGrain } from './noise-grain.js';
 import { AudioHaptics } from './audio-haptics.js';
 import { AnalyticsEngine } from './analytics.js';
 import { CardEngine } from './card-engine.js';
+import { CompareEngine } from './compare-engine.js';
 import { ShareCardGenerator } from './share-card.js';
 import { renderQRCodeToCanvas } from './qr.js';
 
@@ -32,11 +33,13 @@ class SwiperApp {
     this.audioHaptics = null;
     this.analytics = null;
     this.cardEngine = null;
+    this.compareEngine = null;
     this.shareCardGen = null;
     
-    this.currentView = 'swiper'; // 'swiper' | 'grid'
+    this.currentView = 'swiper'; // 'swiper' | 'compare' | 'grid'
     this.currentTheme = 'light';  // 'light' | 'dark'
     this.activeGridCategory = 'ALL';
+    this.activeDuelCategory = 'ALL';
     this.gridSearchQuery = '';
     this.gridSortOption = 'score-desc'; // 'score-desc' | 'default' | 'likes-desc' | 'super-desc' | 'votes-desc' | 'title-asc'
     this.gridVoteFilter = 'all';     // 'all' | 'voted' | 'top10'
@@ -103,10 +106,31 @@ class SwiperApp {
     // Set initial deck
     this.cardEngine.setDeck(this.catalog, 'ALL');
 
-    // 4. Initialize Ponude Grid View
+    // 4. Initialize Compare Engine (1-on-1 King of the Hill Duel Mode)
+    const duelContainer = document.getElementById('duelArenaContainer');
+    this.compareEngine = new CompareEngine({
+      container: duelContainer,
+      catalog: this.catalog,
+      analytics: this.analytics,
+      audioHaptics: this.audioHaptics,
+      onVote: (event) => {
+        this.updateHeaderCounter();
+        this.updateCategoryBadges();
+        if (this.isDeckCompleted) {
+          this.refreshLeaderboard();
+          this.renderTop3Fan();
+        }
+      },
+      onImageClick: (item) => this.openHighResViewer(item),
+      showToast: (msg) => this.showToast(msg),
+      resolveImageUrl: (item) => this.resolveImageUrl(item)
+    });
+    this.initDuelView();
+
+    // 5. Initialize Ponude Grid View
     this.initGridView();
 
-    // 5. Bind UI Controls & Modals
+    // 6. Bind UI Controls & Modals
     this.bindControls();
     this.bindViewSwitcher();
     this.bindModals();
@@ -114,7 +138,7 @@ class SwiperApp {
     this.bindThemeToggle();
     this.bindKeyboardShortcuts();
 
-    // 6. Update initial counters & badges
+    // 7. Update initial counters & badges
     this.updateHeaderCounter();
     this.updateCategoryBadges();
 
@@ -205,15 +229,19 @@ class SwiperApp {
   }
 
   /* ==========================================================================
-     VIEW SWITCHER (SWIPER 🎴 VS GRID ▦)
+     VIEW SWITCHER (SWIPER 🎴 VS DVOBOJ ⚔️ VS GRID ▦)
      ========================================================================== */
   bindViewSwitcher() {
     const btnSwiper = document.getElementById('viewBtnSwiper');
+    const btnCompare = document.getElementById('viewBtnCompare');
     const btnGrid = document.getElementById('viewBtnGrid');
     const btnJumpToGrid = document.getElementById('btnJumpToGrid');
 
     if (btnSwiper) {
       btnSwiper.addEventListener('click', () => this.setView('swiper'));
+    }
+    if (btnCompare) {
+      btnCompare.addEventListener('click', () => this.setView('compare'));
     }
     if (btnGrid) {
       btnGrid.addEventListener('click', () => this.setView('grid'));
@@ -226,26 +254,39 @@ class SwiperApp {
   setView(viewName) {
     this.currentView = viewName;
     const swiperStage = document.getElementById('swiperStage');
+    const compareStage = document.getElementById('compareStage');
     const gridView = document.getElementById('catalogGridView');
     const leaderboardView = document.getElementById('leaderboardView');
     const btnSwiper = document.getElementById('viewBtnSwiper');
+    const btnCompare = document.getElementById('viewBtnCompare');
     const btnGrid = document.getElementById('viewBtnGrid');
 
-    if (btnSwiper && btnGrid) {
-      btnSwiper.classList.toggle('active', viewName === 'swiper');
-      btnGrid.classList.toggle('active', viewName === 'grid');
-    }
+    if (btnSwiper) btnSwiper.classList.toggle('active', viewName === 'swiper');
+    if (btnCompare) btnCompare.classList.toggle('active', viewName === 'compare');
+    if (btnGrid) btnGrid.classList.toggle('active', viewName === 'grid');
+
+    if (leaderboardView) leaderboardView.style.display = 'none';
 
     if (viewName === 'swiper') {
-      if (leaderboardView) leaderboardView.style.display = 'none';
+      if (compareStage) compareStage.style.display = 'none';
       if (gridView) gridView.style.display = 'none';
       if (swiperStage) {
         swiperStage.style.display = 'flex';
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
+    } else if (viewName === 'compare') {
+      if (swiperStage) swiperStage.style.display = 'none';
+      if (gridView) gridView.style.display = 'none';
+      if (compareStage) {
+        compareStage.style.display = 'flex';
+        if (this.compareEngine && !this.compareEngine.leftItem) {
+          this.compareEngine.setDeck(this.catalog, this.activeDuelCategory);
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     } else if (viewName === 'grid') {
       if (swiperStage) swiperStage.style.display = 'none';
-      if (leaderboardView) leaderboardView.style.display = 'none';
+      if (compareStage) compareStage.style.display = 'none';
       if (gridView) {
         gridView.style.display = 'flex';
         this.renderGridView();
@@ -254,6 +295,26 @@ class SwiperApp {
     }
 
     if (this.audioHaptics) this.audioHaptics.playClick();
+  }
+
+  /* ==========================================================================
+     DUEL & COMPARISON VIEW (1 NA 1 DVOBOJ)
+     ========================================================================== */
+  initDuelView() {
+    const catNav = document.getElementById('duelCategoryNav');
+    if (catNav) {
+      catNav.addEventListener('click', (e) => {
+        const btn = e.target.closest('.cat-pill');
+        if (!btn) return;
+        catNav.querySelectorAll('.cat-pill').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        this.activeDuelCategory = btn.dataset.cat || 'ALL';
+        if (this.compareEngine) {
+          this.compareEngine.setDeck(this.catalog, this.activeDuelCategory);
+        }
+        if (this.audioHaptics) this.audioHaptics.playClick();
+      });
+    }
   }
 
   /* ==========================================================================
@@ -343,8 +404,10 @@ class SwiperApp {
 
     for (const [cat, count] of Object.entries(counts)) {
       const key = cat.replace(/\s+/g, '');
-      const el = document.getElementById(`gridBadge${key}`);
-      if (el) el.textContent = count;
+      const elGrid = document.getElementById(`gridBadge${key}`);
+      if (elGrid) elGrid.textContent = count;
+      const elDuel = document.getElementById(`duelBadge${key}`);
+      if (elDuel) elDuel.textContent = count;
     }
   }
 
@@ -876,8 +939,27 @@ class SwiperApp {
         }
       }
 
+      if (/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
+
+      // 1, 2, 3 to switch views directly
+      if (e.key === '1') {
+        e.preventDefault();
+        this.setView('swiper');
+        return;
+      }
+      if (e.key === '2') {
+        e.preventDefault();
+        this.setView('compare');
+        return;
+      }
+      if (e.key === '3') {
+        e.preventDefault();
+        this.setView('grid');
+        return;
+      }
+
       // ⌘K or / to focus search
-      if ((e.metaKey && e.key === 'k') || (e.ctrlKey && e.key === 'k') || (e.key === '/' && !/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName))) {
+      if ((e.metaKey && e.key === 'k') || (e.ctrlKey && e.key === 'k') || e.key === '/') {
         e.preventDefault();
         this.setView('grid');
         const input = document.getElementById('gridSearchInput');
@@ -885,21 +967,50 @@ class SwiperApp {
           input.focus();
           input.select();
         }
+        return;
+      }
+
+      // In Compare / Duel mode keyboard handling
+      if (this.currentView === 'compare' && this.compareEngine) {
+        if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') {
+          e.preventDefault();
+          this.compareEngine.selectWinner('left');
+          return;
+        }
+        if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') {
+          e.preventDefault();
+          this.compareEngine.selectWinner('right');
+          return;
+        }
+        if (e.key === ' ' || e.code === 'Space') {
+          e.preventDefault();
+          this.compareEngine.skipPair();
+          return;
+        }
+        if (e.key === 'u' || e.key === 'U' || (e.ctrlKey && e.key === 'z')) {
+          e.preventDefault();
+          this.compareEngine.undo();
+          return;
+        }
       }
 
       // Shift + R to reset votes
       if (e.shiftKey && (e.key === 'R' || e.key === 'r')) {
         this.confirmResetVotes();
+        return;
       }
 
       // T to toggle theme (if not inside an input)
-      if ((e.key === 't' || e.key === 'T') && !/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) {
+      if (e.key === 't' || e.key === 'T') {
         this.toggleTheme();
+        return;
       }
 
-      // V to toggle view
-      if ((e.key === 'v' || e.key === 'V') && !/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) {
-        this.setView(this.currentView === 'swiper' ? 'grid' : 'swiper');
+      // V to toggle views (swiper -> compare -> grid -> swiper)
+      if (e.key === 'v' || e.key === 'V') {
+        const nextView = this.currentView === 'swiper' ? 'compare' : this.currentView === 'compare' ? 'grid' : 'swiper';
+        this.setView(nextView);
+        return;
       }
     });
   }
@@ -1326,6 +1437,9 @@ class SwiperApp {
     if (confirm('Želiš li poništiti sve glasove i započeti glasanje od 0?')) {
       await this.analytics.resetAllVotes();
       this.cardEngine.setDeck(this.catalog, 'ALL');
+      if (this.compareEngine) {
+        this.compareEngine.setDeck(this.catalog, this.activeDuelCategory);
+      }
       this.updateHeaderCounter();
       this.updateCategoryBadges();
       if (this.currentView === 'grid') {
