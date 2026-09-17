@@ -834,13 +834,92 @@
       color: #7de095;
     }
 
-    /* PDF Proposal Download Buttons */
+    /* PDF Proposal Download Buttons & Slide 6 Layout */
+    .slide6-grid {
+      flex: 1;
+      min-height: 0;
+      height: 100%;
+      align-items: stretch;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.2rem;
+    }
+
+    .slide6-left-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 0;
+      height: 100%;
+    }
+
+    .pdf-download-card {
+      background: var(--bg-card);
+      border: 2px solid var(--text-primary);
+      border-radius: 6px;
+      padding: 0.75rem 0.9rem;
+      margin-bottom: 0.55rem;
+      box-shadow: 3px 3px 0px var(--text-primary);
+    }
+
+    .pdf-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.45rem;
+    }
+
+    .pdf-card-tag {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 800;
+      color: var(--accent-green);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .pdf-spec-badge {
+      font-family: var(--font-mono);
+      font-size: 0.64rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: var(--bg-card-subtle);
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+
+    .pdf-download-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+      margin-bottom: 0.5rem;
+    }
+
     .btn-pdf-download {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding: 7px 9px;
+      border: 2px solid var(--text-primary);
+      border-radius: 5px;
+      background: var(--bg-card-subtle);
+      color: var(--text-primary);
+      text-decoration: none;
+      box-shadow: 2px 2px 0px var(--text-primary);
       transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
     }
     .btn-pdf-download:hover {
       transform: translate(-2px, -2px) !important;
       box-shadow: 4px 4px 0px var(--text-primary) !important;
+    }
+    .btn-pdf-download.signature-dl {
+      border: 2px solid var(--accent-green-bright);
+      background: #0a0e12;
+      color: #ffffff;
+      box-shadow: 2px 2px 0px var(--accent-green);
     }
     .btn-pdf-download.signature-dl:hover {
       transform: translate(-2px, -2px) !important;
@@ -849,6 +928,109 @@
     .btn-pdf-download:active {
       transform: translate(1px, 1px) !important;
       box-shadow: 1px 1px 0px var(--text-primary) !important;
+    }
+
+    .btn-dl-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .dl-quote-num {
+      font-family: var(--font-mono);
+      font-size: 0.64rem;
+      font-weight: 800;
+      color: var(--accent-green);
+    }
+
+    .dl-quote-num.star {
+      color: #7de095;
+    }
+
+    .dl-quote-title {
+      font-family: var(--font-hero);
+      font-size: 0.95rem;
+      font-weight: 900;
+      line-height: 1.1;
+    }
+
+    .btn-pdf-download.signature-dl .dl-quote-title {
+      color: #ffffff;
+    }
+
+    .dl-quote-sub {
+      font-size: 0.66rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    .btn-pdf-download.signature-dl .dl-quote-sub {
+      color: #9cb3a2;
+    }
+
+    .pdf-auth-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1.5px dashed var(--border-color);
+      padding-top: 0.45rem;
+    }
+
+    .schedule-text {
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    .btn-auth-action {
+      text-decoration: none;
+      padding: 5px 12px;
+      font-size: 0.75rem;
+      background: var(--text-primary);
+      color: #fff;
+      border-radius: 4px;
+      font-weight: 800;
+      display: inline-block;
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+    .btn-auth-action:hover {
+      background: var(--accent-green);
+      transform: translate(-1px, -1px);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.35rem 1rem;
+      border-top: 2px solid var(--text-primary);
+      padding-top: 0.45rem;
+      margin-top: 0.15rem;
+    }
+
+    .contact-label {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      color: var(--text-muted);
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .contact-val {
+      font-weight: 800;
+      font-size: 0.85rem;
+    }
+
+    .slide6-right-col {
+      height: 100%;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .slide6-right-col .media-frame-bold {
+      height: 100%;
+      min-height: 0;
+      flex: 1;
     }
 
     /* Bottom Deck Navigation Bar */
@@ -1543,26 +1725,155 @@
         font-size: 0.65rem;
       }
 
+      /* Slide 6 Specific Mobile Layout */
+      .slide[data-slide="6"] {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        height: 100% !important;
+        max-height: 100% !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch;
+        padding: 1rem 0.85rem 1.75rem 0.85rem !important;
+        gap: 0.85rem !important;
+      }
+
+      .slide[data-slide="6"] .grid-2col.equal,
+      .slide6-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        height: auto !important;
+        min-height: auto !important;
+        flex: none !important;
+        gap: 0.9rem !important;
+        width: 100% !important;
+      }
+
+      .slide6-left-col {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        height: auto !important;
+        min-height: auto !important;
+        flex: none !important;
+        gap: 0.75rem !important;
+        width: 100% !important;
+      }
+
+      .pdf-download-card {
+        padding: 0.7rem 0.75rem !important;
+        margin-bottom: 0 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      .pdf-card-header {
+        margin-bottom: 0.4rem !important;
+        flex-wrap: wrap !important;
+        gap: 4px !important;
+      }
+
+      .pdf-card-tag {
+        font-size: 0.62rem !important;
+      }
+
+      .pdf-spec-badge {
+        font-size: 0.58rem !important;
+      }
+
+      .pdf-download-grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0.5rem !important;
+        margin-bottom: 0.45rem !important;
+      }
+
+      .btn-pdf-download {
+        padding: 6px 8px !important;
+      }
+
+      .dl-quote-num {
+        font-size: 0.58rem !important;
+      }
+
+      .dl-quote-title {
+        font-size: 0.85rem !important;
+      }
+
+      .dl-quote-sub {
+        font-size: 0.6rem !important;
+      }
+
+      .pdf-auth-row {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        flex-wrap: wrap !important;
+        gap: 6px !important;
+        padding-top: 0.4rem !important;
+      }
+
+      .schedule-text {
+        font-size: 0.66rem !important;
+      }
+
+      .btn-auth-action {
+        padding: 6px 12px !important;
+        font-size: 0.72rem !important;
+      }
+
       /* Contact Details Grid in Slide 6 */
       .contact-grid {
-        grid-template-columns: 1fr !important;
-        gap: 0.7rem !important;
-        width: 100%;
-        box-sizing: border-box;
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0.5rem 0.75rem !important;
+        border-top: 2px solid var(--text-primary) !important;
+        padding-top: 0.5rem !important;
+        margin-top: 0.15rem !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      .contact-label {
+        font-size: 0.56rem !important;
+      }
+
+      .contact-val {
+        font-size: 0.76rem !important;
+        word-break: break-all;
+      }
+
+      .slide6-right-col {
+        height: auto !important;
+        min-height: auto !important;
+        flex: none !important;
+        width: 100% !important;
+      }
+
+      .slide6-right-col .media-frame-bold {
+        min-height: 180px !important;
+        height: 190px !important;
+        max-height: 220px !important;
+        width: 100% !important;
+        flex: none !important;
+        box-shadow: 3px 3px 0px var(--text-primary) !important;
       }
 
       /* Slide Footer Meta */
-      .slide-footer-meta {
-        font-size: 0.62rem !important;
+      .slide-footer-meta,
+      .slide-meta-bottom {
+        font-size: 0.58rem !important;
         flex-direction: column !important;
         align-items: flex-start !important;
-        gap: 3px !important;
-        padding-top: 0.5rem;
-        margin-top: auto;
-        width: 100%;
+        gap: 2px !important;
+        padding-top: 0.4rem !important;
+        margin-top: 0.35rem !important;
+        width: 100% !important;
         box-sizing: border-box;
       }
-      .slide-footer-meta span {
+      .slide-footer-meta span,
+      .slide-meta-bottom span {
         white-space: normal !important;
         word-break: break-word !important;
       }
@@ -1967,86 +2278,86 @@
           <span>Next Steps</span>
         </div>
 
-        <div class="grid-2col equal" style="flex:1; min-height:0; align-items:stretch;">
-          <div style="display:flex; flex-direction:column; justify-content:space-between; min-height:0;">
-            <div>
-              <span style="font-family:var(--font-mono); font-size:0.72rem; color:var(--accent-green); font-weight:800; text-transform:uppercase; letter-spacing:0.08em; display:block; margin-bottom:0.25rem;">06 / The Conversation</span>
-              <h1 class="quote-title" style="font-size:clamp(1.65rem, 2.2vw, 2.35rem); line-height:0.95; margin-bottom:0.35rem; letter-spacing:-0.03em;">
+        <div class="grid-2col equal slide6-grid">
+          <div class="slide6-left-col">
+            <div class="slide6-header-group">
+              <span class="slide-cat-badge" style="font-family:var(--font-mono); font-size:0.72rem; color:var(--accent-green); font-weight:800; text-transform:uppercase; letter-spacing:0.08em; display:block; margin-bottom:0.25rem;">06 / The Conversation</span>
+              <h1 class="quote-title" style="margin-bottom:0.35rem;">
                 “WHAT ARE YOUR <span class="outline-text">GOALS FOR THE FUTURE?”</span>
               </h1>
-              <p class="punchy-narration" style="font-size:0.85rem; line-height:1.4; margin-bottom:0.6rem; color:var(--text-secondary);">
+              <p class="punchy-narration" style="margin-bottom:0.55rem; color:var(--text-secondary);">
                 <em>“Where do you see Meridian 16 in the next five years? We want to put that scale, the green corridors, and the international tenants into a single film before the year ends.”</em>
               </p>
 
-              <div class="pdf-download-card" style="background:var(--bg-card); border:2px solid var(--text-primary); border-radius:6px; padding:0.75rem 0.9rem; margin-bottom:0.55rem; box-shadow:3px 3px 0px var(--text-primary);">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.45rem;">
-                  <div style="font-family:var(--font-mono); font-size:0.68rem; font-weight:800; color:var(--accent-green); text-transform:uppercase; letter-spacing:0.06em; display:flex; align-items:center; gap:5px;">
+              <div class="pdf-download-card">
+                <div class="pdf-card-header">
+                  <div class="pdf-card-tag">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>
                     OFFICIAL PROPOSAL DOWNLOAD
                   </div>
-                  <span style="font-family:var(--font-mono); font-size:0.64rem; font-weight:700; color:var(--text-muted); background:var(--bg-card-subtle); padding:1px 5px; border-radius:3px;">PDF • A4 SPECIFICATION</span>
+                  <span class="pdf-spec-badge">PDF • A4 SPECIFICATION</span>
                 </div>
 
-                <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.6rem; margin-bottom:0.5rem;">
+                <div class="pdf-download-grid">
                   <!-- Download Quote No. 9 -->
-                  <a href="Quote_No9_OptionA_13000.pdf" download="Meridian16_Quote_No9_OptionA.pdf" target="_blank" class="btn-pdf-download" style="display:flex; flex-direction:column; gap:2px; padding:7px 9px; border:2px solid var(--text-primary); border-radius:5px; background:var(--bg-card-subtle); color:var(--text-primary); text-decoration:none; box-shadow:2px 2px 0px var(--text-primary); transition:all 0.15s ease;">
-                    <div style="display:flex; justify-content:space-between; align-items:center;">
-                      <span style="font-family:var(--font-mono); font-size:0.64rem; font-weight:800; color:var(--accent-green);">QUOTE NO. 9</span>
+                  <a href="Quote_No9_OptionA_13000.pdf" download="Meridian16_Quote_No9_OptionA.pdf" target="_blank" class="btn-pdf-download">
+                    <div class="btn-dl-top">
+                      <span class="dl-quote-num">QUOTE NO. 9</span>
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                     </div>
-                    <div style="font-family:var(--font-hero); font-size:0.95rem; font-weight:900; line-height:1.1;">Option A: € 13,000</div>
-                    <span style="font-size:0.66rem; color:var(--text-secondary); font-weight:600;">Download Official Quote PDF &darr;</span>
+                    <div class="dl-quote-title">Option A: € 13,000</div>
+                    <span class="dl-quote-sub">Download Official Quote PDF &darr;</span>
                   </a>
 
                   <!-- Download Quote No. 15 -->
-                  <a href="Quote_No15_OptionB_17000.pdf" download="Meridian16_Quote_No15_OptionB.pdf" target="_blank" class="btn-pdf-download signature-dl" style="display:flex; flex-direction:column; gap:2px; padding:7px 9px; border:2px solid var(--accent-green-bright); border-radius:5px; background:#0a0e12; color:#ffffff; text-decoration:none; box-shadow:2px 2px 0px var(--accent-green); transition:all 0.15s ease;">
-                    <div style="display:flex; justify-content:space-between; align-items:center;">
-                      <span style="font-family:var(--font-mono); font-size:0.64rem; font-weight:800; color:#7de095;">QUOTE NO. 15 ★</span>
+                  <a href="Quote_No15_OptionB_17000.pdf" download="Meridian16_Quote_No15_OptionB.pdf" target="_blank" class="btn-pdf-download signature-dl">
+                    <div class="btn-dl-top">
+                      <span class="dl-quote-num star">QUOTE NO. 15 ★</span>
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#7de095" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                     </div>
-                    <div style="font-family:var(--font-hero); font-size:0.95rem; font-weight:900; line-height:1.1; color:#ffffff;">Option B: € 17,000</div>
-                    <span style="font-size:0.66rem; color:#9cb3a2; font-weight:600;">Full Vision PDF (Recommended) &darr;</span>
+                    <div class="dl-quote-title">Option B: € 17,000</div>
+                    <span class="dl-quote-sub">Full Vision PDF (Recommended) &darr;</span>
                   </a>
                 </div>
 
-                <div style="display:flex; align-items:center; justify-content:space-between; border-top:1.5px dashed var(--border-color); padding-top:0.45rem;">
-                  <span style="font-size:0.72rem; color:var(--text-secondary); font-weight:600;">Autumn 2026 filming schedule open</span>
-                  <a href="mailto:timon.terzic@gmail.com?subject=Meridian%2016%20Proposal%20Confirmation" class="btn-action" style="text-decoration:none; padding:5px 12px; font-size:0.75rem; background:var(--text-primary); color:#fff; border-radius:4px; font-weight:800;">
+                <div class="pdf-auth-row">
+                  <span class="schedule-text">Autumn 2026 filming schedule open</span>
+                  <a href="mailto:timon.terzic@gmail.com?subject=Meridian%2016%20Proposal%20Confirmation" class="btn-auth-action">
                     Authorize via Email &rarr;
                   </a>
                 </div>
               </div>
             </div>
 
-            <div class="contact-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:0.35rem 1rem; border-top:2px solid var(--text-primary); padding-top:0.45rem; margin-top:0.15rem;">
+            <div class="contact-grid">
               <div>
-                <div style="font-family:var(--font-mono); font-size:0.62rem; color:var(--text-muted); font-weight:800; text-transform:uppercase;">CREATIVE COLLECTIVE</div>
-                <div style="font-weight:800; font-size:0.85rem;">Studio Varaždin</div>
+                <div class="contact-label">CREATIVE COLLECTIVE</div>
+                <div class="contact-val">Studio Varaždin</div>
               </div>
               <div>
-                <div style="font-family:var(--font-mono); font-size:0.62rem; color:var(--text-muted); font-weight:800; text-transform:uppercase;">LEAD PRODUCER</div>
-                <div style="font-weight:800; font-size:0.85rem;">Jasenka Martinčević</div>
+                <div class="contact-label">LEAD PRODUCER</div>
+                <div class="contact-val">Jasenka Martinčević</div>
               </div>
               <div>
-                <div style="font-family:var(--font-mono); font-size:0.62rem; color:var(--text-muted); font-weight:800; text-transform:uppercase;">EMAIL CONTACT</div>
-                <div style="font-weight:800; font-size:0.85rem;">timon.terzic@gmail.com</div>
+                <div class="contact-label">EMAIL CONTACT</div>
+                <div class="contact-val">timon.terzic@gmail.com</div>
               </div>
               <div>
-                <div style="font-family:var(--font-mono); font-size:0.62rem; color:var(--text-muted); font-weight:800; text-transform:uppercase;">BASE LOCATION</div>
-                <div style="font-weight:800; font-size:0.85rem;">Varaždin / Zagreb</div>
+                <div class="contact-label">BASE LOCATION</div>
+                <div class="contact-val">Varaždin / Zagreb</div>
               </div>
             </div>
           </div>
 
-          <div style="height:100%; min-height:0; display:flex; flex-direction:column;">
-            <div class="media-frame-bold" style="height:100%; min-height:0; flex:1;">
-              <img src="slike/meridian_twilight_cinematic.jpg" alt="Meridian 16 Twilight Vision" style="width:100%; height:100%; object-fit:cover; object-position:center center; display:block;">
-              <div class="frame-tag" style="bottom:10px; left:10px;">MERIDIAN 16 • 105 HECTARES AT VELIKA GORICA</div>
+          <div class="slide6-right-col">
+            <div class="media-frame-bold">
+              <img src="slike/meridian_twilight_cinematic.jpg" alt="Meridian 16 Twilight Vision">
+              <div class="frame-tag">MERIDIAN 16 • 105 HECTARES AT VELIKA GORICA</div>
             </div>
           </div>
         </div>
 
-        <div class="slide-meta-bottom" style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.68rem; color:var(--text-muted); font-weight:800; text-transform:uppercase; letter-spacing:0.04em; border-top:1.5px solid var(--border-color); padding-top:0.4rem; margin-top:0.2rem; flex-shrink:0;">
+        <div class="slide-meta-bottom">
           <span>STUDIO VARAŽDIN • ALL RIGHTS RESERVED 2026</span>
           <span>06 / 06</span>
         </div>
