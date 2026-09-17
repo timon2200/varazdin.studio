@@ -1,54 +1,7 @@
 /* Studio Varaždin — Kustoski Panel & Galerija CSS (Meridian 16 Light & Dark) */
 :root,
-html[data-theme="light"],
-html:not([data-theme="dark"]) {
-  --theme: light;
-  --bg-canvas: #f4efe4;
-  --bg-card: #fbf7ee;
-  --bg-card-subtle: #eae3d2;
-  --bg-card-elevated: #ffffff;
-  
-  --text-primary: #111518;
-  --text-secondary: #3b454e;
-  --text-muted: #79828a;
-  
-  --border-dark: #111518;
-  --border-color: #d5ccba;
-  --border-subtle: #e2dac9;
-  
-  --accent-green: #11421f;
-  --accent-green-bright: #177331;
-  --accent-green-bg: #e1ede4;
-  --accent-green-border: #a6cbb4;
-  
-  --accent-gold: #c9933b;
-  --accent-gold-bright: #e2a842;
-  --accent-gold-bg: #faeed4;
-  --accent-gold-border: #e3caa0;
-  
-  --accent-red: #c92a2a;
-  --accent-red-bright: #e03131;
-  --accent-red-bg: #ffe3e3;
-  --accent-red-border: #ffc9c9;
-  
-  --shadow-bold-xs: 2px 2px 0px var(--border-dark);
-  --shadow-bold-sm: 3px 3px 0px var(--border-dark);
-  --shadow-bold-md: 6px 6px 0px var(--border-dark);
-  --shadow-bold-lg: 8px 8px 0px var(--border-dark);
-  
-  --radius-xs: 3px;
-  --radius-sm: 5px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  
-  color-scheme: light;
-  --scrollbar-thumb: #c8beab;
-  --scrollbar-thumb-hover: #11421f;
-  --scrollbar-track: rgba(0, 0, 0, 0.05);
-}
-
 html[data-theme="dark"],
-html.dark {
+html:not([data-theme="light"]) {
   --theme: dark;
   color-scheme: dark;
   --bg-canvas: #0c100e;
@@ -87,6 +40,53 @@ html.dark {
   --shadow-bold-sm: 3px 3px 0px rgba(0, 0, 0, 0.9);
   --shadow-bold-md: 6px 6px 0px rgba(0, 0, 0, 0.9);
   --shadow-bold-lg: 8px 8px 0px rgba(0, 0, 0, 0.9);
+
+  --radius-xs: 3px;
+  --radius-sm: 5px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+
+html[data-theme="light"],
+html.light {
+  --theme: light;
+  color-scheme: light;
+  --bg-canvas: #f4efe4;
+  --bg-card: #fbf7ee;
+  --bg-card-subtle: #eae3d2;
+  --bg-card-elevated: #ffffff;
+  
+  --text-primary: #111518;
+  --text-secondary: #3b454e;
+  --text-muted: #79828a;
+  
+  --border-dark: #111518;
+  --border-color: #d5ccba;
+  --border-subtle: #e2dac9;
+  
+  --accent-green: #11421f;
+  --accent-green-bright: #177331;
+  --accent-green-bg: #e1ede4;
+  --accent-green-border: #a6cbb4;
+  
+  --accent-gold: #c9933b;
+  --accent-gold-bright: #e2a842;
+  --accent-gold-bg: #faeed4;
+  --accent-gold-border: #e3caa0;
+  
+  --accent-red: #c92a2a;
+  --accent-red-bright: #e03131;
+  --accent-red-bg: #ffe3e3;
+  --accent-red-border: #ffc9c9;
+  
+  --shadow-bold-xs: 2px 2px 0px var(--border-dark);
+  --shadow-bold-sm: 3px 3px 0px var(--border-dark);
+  --shadow-bold-md: 6px 6px 0px var(--border-dark);
+  --shadow-bold-lg: 8px 8px 0px var(--border-dark);
+  
+  --scrollbar-thumb: #c8beab;
+  --scrollbar-thumb-hover: #11421f;
+  --scrollbar-track: rgba(0, 0, 0, 0.05);
 }
 
 * {

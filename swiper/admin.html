@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="hr" data-theme="light">
+<html lang="hr" data-theme="dark" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Studio Varaždin — Kustoski Panel & Galerija Majica</title>
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <meta name="theme-color" content="#0c100e">
+
+  <!-- Immediate Theme Initializer to eliminate flash of light mode -->
+  <script>
+    (function() {
+      try {
+        const stored = localStorage.getItem('sv_theme');
+        const theme = stored ? stored : 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+        if (theme === 'dark') document.documentElement.classList.add('dark');
+        else document.documentElement.classList.remove('dark');
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
   
   <link rel="icon" type="image/svg+xml" href="../../favicon-dark.svg">
   <link rel="stylesheet" href="css/grain.css?v=3.0.0">
@@ -52,7 +69,7 @@
         <!-- Primary Actions & Theme Toggle -->
         <div class="header-actions">
           <button id="btnThemeToggleAdmin" class="btn-secondary" title="Prebaci temu (Light / Dark)">
-            <span id="adminThemeIcon">☀️ / 🌙</span>
+            <span id="adminThemeIcon">🌙 Dark</span>
           </button>
           <button id="btnSave" class="btn-primary" title="Spremi odabir u aktivni swiper špil">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">

@@ -11,14 +11,14 @@
   height: 100vh;
   pointer-events: none;
   z-index: 9999;
-  mix-blend-mode: multiply;
-  opacity: 0.045;
-}
-
-html[data-theme="dark"] .grain-overlay,
-html.dark .grain-overlay {
   mix-blend-mode: overlay;
   opacity: 0.12;
+}
+
+html[data-theme="light"] .grain-overlay,
+html.light .grain-overlay {
+  mix-blend-mode: multiply;
+  opacity: 0.045;
 }
 
 /* Paper texture pattern layer */

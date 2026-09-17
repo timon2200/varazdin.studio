@@ -120,9 +120,9 @@ class SwiperApp {
      THEME SYSTEM (LIGHT & DARK MODE)
      ========================================================================== */
   initTheme() {
-    let savedTheme = 'light';
+    let savedTheme = 'dark';
     try {
-      savedTheme = localStorage.getItem('sv_theme') || 'light';
+      savedTheme = localStorage.getItem('sv_theme') || 'dark';
     } catch (e) {}
 
     this.setTheme(savedTheme);
