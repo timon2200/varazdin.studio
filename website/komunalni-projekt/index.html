@@ -994,12 +994,14 @@ footer.deck-footer {
 }
 
 
-/* --- Core: mobile.css --- */
+
+
+/* --- Responsive: mobile.css --- */
 /* ======================================================== */
 /* RESPONSIVE DESIGN - TABLET & MOBILE                      */
 /* ======================================================== */
 
-@media (max-width: 1024px) {
+@media (max-width: 1100px) {
   .quote-title {
     font-size: 2.4rem;
   }
@@ -1054,6 +1056,7 @@ footer.deck-footer {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    position: relative;
   }
 
   .slide-wrapper {
@@ -1073,7 +1076,7 @@ footer.deck-footer {
     box-sizing: border-box !important;
   }
 
-  /* Universal Constrained Absolute Slide Scrolling */
+  /* Universal Constrained Absolute Slide Scrolling for ALL slides (1-6) */
   .slide {
     display: none !important;
     position: absolute !important;
@@ -1086,11 +1089,12 @@ footer.deck-footer {
     max-height: 100% !important;
     min-height: 0 !important;
     box-sizing: border-box !important;
-    padding: 1rem 0.85rem 3.5rem 0.85rem !important;
+    padding: 1rem 0.85rem 4rem 0.85rem !important;
     overflow-y: scroll !important;
     overflow-x: hidden !important;
     -webkit-overflow-scrolling: touch !important;
     touch-action: pan-y !important;
+    overscroll-behavior-y: contain !important;
     background: var(--bg-card) !important;
     flex-direction: column !important;
     justify-content: flex-start !important;
@@ -1103,68 +1107,173 @@ footer.deck-footer {
     z-index: 2;
   }
 
-  /* Grids & Cards on Mobile */
-  .grid-2col {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 0.9rem !important;
-    height: auto !important;
-    min-height: auto !important;
+  .slide::-webkit-scrollbar {
+    width: 4px;
+  }
+  .slide::-webkit-scrollbar-thumb {
+    background: rgba(17, 21, 24, 0.25);
+    border-radius: 4px;
   }
 
-  .grid-3col {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 0.75rem !important;
-    margin-top: 0.5rem !important;
+  /* Hide decorative corner markers on mobile */
+  .slide::before,
+  .slide::after {
+    display: none !important;
   }
 
+  /* Slide Header Meta */
+  .slide-meta-top {
+    font-size: 0.62rem !important;
+    padding-bottom: 0.35rem !important;
+    margin-bottom: 0.4rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 2px !important;
+    border-bottom: 1.5px solid var(--text-primary) !important;
+    width: 100% !important;
+    flex: none !important;
+    box-sizing: border-box !important;
+  }
+  .slide-meta-top span {
+    white-space: normal !important;
+    word-break: break-word !important;
+  }
+  .slide-meta-top span.category {
+    gap: 5px !important;
+  }
+
+  /* Typography */
+  .quote-title {
+    font-size: clamp(1.2rem, 4.6vw, 1.55rem) !important;
+    line-height: 1.05 !important;
+    letter-spacing: -0.02em !important;
+    margin-bottom: 0.4rem !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    width: 100% !important;
+    flex: none !important;
+  }
+  .quote-sub {
+    font-size: 0.92rem !important;
+    margin-bottom: 0.5rem !important;
+    flex: none !important;
+  }
+  .punchy-narration {
+    font-size: 0.85rem !important;
+    line-height: 1.42 !important;
+    margin-bottom: 0.75rem !important;
+    flex: none !important;
+  }
+
+  /* All Grids Stack Vertically on Mobile */
+  .grid-2col,
+  .grid-2col.equal,
+  .grid-3col,
+  .dual-offers-grid,
+  .offer-package-grid,
+  .slide6-grid,
   .slide-actions-grid {
     display: flex !important;
     flex-direction: column !important;
-    gap: 0.75rem !important;
-    margin-top: 0.75rem !important;
+    gap: 1rem !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    flex: none !important;
+    box-sizing: border-box !important;
   }
 
-  .btn-pdf-hero,
-  .btn-auth-hero {
-    padding: 0.9rem 1rem !important;
-    gap: 0.9rem !important;
+  .grid-2col > div,
+  .grid-2col.equal > div,
+  .grid-3col > div,
+  .story-frame-card,
+  .cloth-card-container,
+  .slide6-left-col,
+  .slide6-right-col,
+  .offer-main-card,
+  .offer-total-box {
+    width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    flex: none !important;
+    box-sizing: border-box !important;
   }
 
-  .btn-pdf-icon,
-  .btn-auth-icon {
-    width: 40px !important;
-    height: 40px !important;
+  /* Team Badge Row */
+  .team-badge-row {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 0.5rem !important;
+    margin-top: 0.5rem !important;
+    width: 100% !important;
+    flex: none !important;
+  }
+  .team-badge-card {
+    padding: 0.65rem 0.8rem !important;
+    box-sizing: border-box !important;
+  }
+  .team-badge-card .name {
+    font-size: 1rem !important;
   }
 
-  .btn-pdf-title,
-  .btn-auth-title {
-    font-size: 0.98rem !important;
+  /* Media Frames & Video Cards */
+  .media-frame-bold {
+    min-height: 200px !important;
+    height: 200px !important;
+    max-height: 200px !important;
+    width: 100% !important;
+    flex: none !important;
+    box-sizing: border-box !important;
+    box-shadow: 3px 3px 0px var(--text-primary) !important;
+  }
+  .video-card-crazy {
+    box-shadow: 3px 3px 0px var(--text-primary) !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    flex: none !important;
+    box-sizing: border-box !important;
+  }
+  .video-thumb-crazy {
+    aspect-ratio: 16 / 9 !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+  .play-btn-crazy {
+    width: 44px !important;
+    height: 44px !important;
+  }
+  .play-btn-crazy svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+  .video-info-crazy {
+    padding: 0.85rem !important;
+  }
+  .video-info-crazy h4 {
+    font-size: 1rem !important;
   }
 
-  .quote-title {
-    font-size: clamp(1.4rem, 6.5vw, 1.95rem) !important;
-    line-height: 1.05 !important;
-    letter-spacing: -0.03em !important;
-    margin-bottom: 0.35rem !important;
+  /* Slide 4 Story Frames */
+  .story-frame-card {
+    padding: 1rem !important;
+    box-sizing: border-box !important;
+  }
+  .story-frame-img {
+    height: 180px !important;
+    min-height: 180px !important;
+    max-height: 180px !important;
+    flex: none !important;
+    width: 100% !important;
+    margin-top: 0.6rem !important;
   }
 
-  .quote-sub {
-    font-size: 0.88rem !important;
-    line-height: 1.35 !important;
-  }
-
-  .category-badge {
-    font-size: 0.65rem !important;
-    padding: 3px 8px !important;
-  }
-
-  .meta-coords {
-    font-size: 0.65rem !important;
-  }
-
-  /* Slide 5 3D WebGL Cloth to Native HTML Card on Mobile */
+  /* Slide 5 Offers on Mobile */
   .cloth-card-container {
     display: block !important;
     position: relative !important;
@@ -1192,6 +1301,165 @@ footer.deck-footer {
     padding: 1.2rem 1rem !important;
     cursor: default !important;
     transform: none !important;
+  }
+  .offer-box h3.tier-title {
+    font-size: 1.25rem !important;
+    line-height: 1.1 !important;
+  }
+  .tier-badge {
+    font-size: 0.62rem !important;
+    white-space: normal !important;
+    padding: 3px 6px !important;
+  }
+  .tier-features {
+    gap: 0.4rem !important;
+    margin-bottom: 0.85rem !important;
+  }
+  .tier-features li {
+    font-size: 0.76rem !important;
+    line-height: 1.35 !important;
+  }
+  .tier-price-row {
+    padding-top: 0.75rem !important;
+    margin-top: 0.5rem !important;
+  }
+  .tier-price-row .price-label {
+    font-size: 0.62rem !important;
+  }
+  .tier-price-row .price-val {
+    font-size: clamp(1.7rem, 6.5vw, 2.2rem) !important;
+  }
+  .tier-price-row .vat-text {
+    font-size: 0.65rem !important;
+  }
+
+  /* Slide 6 Specific Mobile Layout */
+  .slide6-left-col {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    height: auto !important;
+    min-height: auto !important;
+    flex: none !important;
+    gap: 0.75rem !important;
+    width: 100% !important;
+  }
+
+  .pdf-download-card {
+    padding: 0.7rem 0.75rem !important;
+    margin-bottom: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .pdf-card-header {
+    margin-bottom: 0.4rem !important;
+    flex-wrap: wrap !important;
+    gap: 4px !important;
+  }
+  .pdf-card-tag {
+    font-size: 0.62rem !important;
+  }
+  .pdf-spec-badge {
+    font-size: 0.58rem !important;
+  }
+  .pdf-download-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.5rem !important;
+    margin-bottom: 0.45rem !important;
+  }
+  .btn-pdf-download {
+    padding: 6px 8px !important;
+  }
+  .dl-quote-num {
+    font-size: 0.58rem !important;
+  }
+  .dl-quote-title {
+    font-size: 0.85rem !important;
+  }
+  .dl-quote-sub {
+    font-size: 0.6rem !important;
+  }
+  .pdf-auth-row {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    padding-top: 0.4rem !important;
+  }
+  .schedule-text {
+    font-size: 0.66rem !important;
+  }
+  .btn-auth-action {
+    padding: 6px 12px !important;
+    font-size: 0.72rem !important;
+  }
+
+  .contact-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.5rem 0.75rem !important;
+    border-top: 2px solid var(--text-primary) !important;
+    padding-top: 0.5rem !important;
+    margin-top: 0.15rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .contact-label {
+    font-size: 0.56rem !important;
+  }
+  .contact-val {
+    font-size: 0.76rem !important;
+    word-break: break-all;
+  }
+
+  .slide6-right-col {
+    height: auto !important;
+    min-height: auto !important;
+    flex: none !important;
+    width: 100% !important;
+  }
+  .slide6-right-col .media-frame-bold {
+    min-height: 200px !important;
+    height: 200px !important;
+    max-height: 200px !important;
+    width: 100% !important;
+    flex: none !important;
+    box-shadow: 3px 3px 0px var(--text-primary) !important;
+  }
+
+  /* Slide Footer Meta */
+  .slide-footer-meta,
+  .slide-meta-bottom {
+    font-size: 0.58rem !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 2px !important;
+    padding-top: 0.5rem !important;
+    margin-top: 0.4rem !important;
+    border-top: 1.5px solid var(--border-color) !important;
+    width: 100% !important;
+    flex: none !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Buttons on Mobile */
+  .btn-pdf-hero,
+  .btn-auth-hero {
+    padding: 0.9rem 1rem !important;
+    gap: 0.9rem !important;
+  }
+
+  .btn-pdf-icon,
+  .btn-auth-icon {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .btn-pdf-title,
+  .btn-auth-title {
+    font-size: 0.98rem !important;
   }
 
   /* Footer Navigation HUD on Mobile */
@@ -1257,8 +1525,6 @@ footer.deck-footer {
     display: none !important;
   }
 }
-
-
 
   </style>
 </head>
