@@ -373,24 +373,43 @@ export class CompareEngine {
     const loserSlot = side === 'left' ? this.container.querySelector('#slotLeft') : this.container.querySelector('#slotRight');
     const winnerSlot = side === 'left' ? this.container.querySelector('#slotRight') : this.container.querySelector('#slotLeft');
     const loserCard = loserSlot ? loserSlot.querySelector('.duel-card') : null;
+    const winnerCard = winnerSlot ? winnerSlot.querySelector('.duel-card') : null;
 
-    if (winnerSlot) {
-      winnerSlot.classList.remove('anim-winner-pulse');
-      void winnerSlot.offsetWidth;
-      winnerSlot.classList.add('anim-winner-pulse');
+    if (winnerCard) {
+      winnerCard.classList.remove('anim-winner-pulse');
+      void winnerCard.offsetWidth;
+      winnerCard.classList.add('anim-winner-pulse');
     }
 
-    if (loserCard && dragVector && Math.hypot(dragVector.dx, dragVector.dy) > 10) {
-      // Swiped via drag gesture in any direction: fly out along vector
-      const mult = 3.5;
-      loserCard.style.transition = 'transform 0.28s var(--spring-easing), opacity 0.22s ease';
-      loserCard.style.transform = `translate3d(${dragVector.dx * mult}px, ${dragVector.dy * mult}px, 0px) rotate(${dragVector.dx * 0.1}deg)`;
-      loserCard.style.opacity = '0';
-    } else if (loserSlot) {
-      // Standard directional exit animation (left flies right, right flies left)
-      loserSlot.classList.remove('anim-exit-left', 'anim-exit-right');
-      void loserSlot.offsetWidth;
-      loserSlot.classList.add(side === 'left' ? 'anim-exit-right' : 'anim-exit-left');
+    if (loserCard) {
+      loserCard.classList.add('is-discarding');
+      loserCard.style.pointerEvents = 'none';
+
+      if (dragVector && Math.hypot(dragVector.dx, dragVector.dy) > 10) {
+        // Drag gesture fling along user's flick vector
+        const dist = Math.hypot(dragVector.dx, dragVector.dy);
+        const factor = Math.max(3.5, 900 / (dist || 1));
+        const endX = dragVector.dx * factor;
+        const endY = dragVector.dy * factor;
+        const endRot = Math.max(-35, Math.min(35, dragVector.dx * 0.08));
+
+        loserCard.style.transition = 'transform 0.44s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, box-shadow 0.3s ease';
+        loserCard.style.transform = `translate3d(${endX}px, ${endY}px, 0px) rotate(${endRot}deg) scale(0.9)`;
+        loserCard.style.opacity = '0';
+      } else {
+        // Click or Arrow Key: dramatic directional fly away!
+        // Left card flies right (following MAKNI [ → ]), Right card flies left (following MAKNI [ ← ])
+        const flyToRight = (side === 'left');
+        const screenW = typeof window !== 'undefined' ? window.innerWidth : 1200;
+        const flyDistance = Math.max(screenW * 0.85, 850);
+        const endX = flyToRight ? flyDistance : -flyDistance;
+        const endY = -50;
+        const endRot = flyToRight ? 26 : -26;
+
+        loserCard.style.transition = 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.36s ease 0.04s, box-shadow 0.3s ease';
+        loserCard.style.transform = `translate3d(${endX}px, ${endY}px, 0px) rotate(${endRot}deg) scale(0.92)`;
+        loserCard.style.opacity = '0';
+      }
     }
 
     const currentStreak = winnerSide === 'left' ? this.leftStreak : this.rightStreak;
@@ -410,15 +429,16 @@ export class CompareEngine {
         this.renderArena();
 
         const newSlot = loserSide === 'left' ? this.container.querySelector('#slotLeft') : this.container.querySelector('#slotRight');
-        if (newSlot) {
-          newSlot.classList.add(loserSide === 'left' ? 'anim-enter-left' : 'anim-enter-right');
+        const newCard = newSlot ? newSlot.querySelector('.duel-card') : null;
+        if (newCard) {
+          newCard.classList.add('anim-card-enter');
         }
 
         this.isAnimating = false;
       } else {
         this.handleDeckComplete(winnerItem, currentStreak);
       }
-    }, 240);
+    }, 390);
   }
 
   /**

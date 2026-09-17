@@ -214,6 +214,19 @@
   border-color: #991b1b !important;
 }
 
+.duel-card.is-discarding {
+  pointer-events: none !important;
+  z-index: 100 !important;
+  border-color: #ef4444 !important;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.65), 0 0 0 2px #ef4444 !important;
+}
+
+.duel-card.is-discarding .duel-key-hint {
+  background: #ef4444 !important;
+  color: #ffffff !important;
+  border-color: #991b1b !important;
+}
+
 /* Champion Crown Tag */
 .duel-crown-badge {
   position: absolute;
@@ -311,49 +324,64 @@
 
 /* Animations */
 .anim-winner-pulse {
-  animation: duelWinnerPulse 0.32s var(--spring-easing) both;
+  animation: duelWinnerPulse 0.4s var(--spring-easing) both;
 }
 
 @keyframes duelWinnerPulse {
   0% { transform: scale(1); }
-  50% { transform: scale(1.04); }
+  45% { transform: scale(1.045); }
   100% { transform: scale(1); }
 }
 
+.anim-card-enter {
+  animation: duelCardEnter 0.35s var(--spring-easing) both;
+}
+
+@keyframes duelCardEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(28px) scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 .anim-exit-left {
-  animation: duelExitLeft 0.24s var(--transition-smooth) both;
+  animation: duelExitLeft 0.38s var(--transition-smooth) both;
 }
 
 @keyframes duelExitLeft {
   0% { opacity: 1; transform: translateX(0) scale(1); }
-  100% { opacity: 0; transform: translateX(-50px) scale(0.92); }
+  100% { opacity: 0; transform: translateX(-80vw) rotate(-22deg) scale(0.9); }
 }
 
 .anim-exit-right {
-  animation: duelExitRight 0.24s var(--transition-smooth) both;
+  animation: duelExitRight 0.38s var(--transition-smooth) both;
 }
 
 @keyframes duelExitRight {
   0% { opacity: 1; transform: translateX(0) scale(1); }
-  100% { opacity: 0; transform: translateX(50px) scale(0.92); }
+  100% { opacity: 0; transform: translateX(80vw) rotate(22deg) scale(0.9); }
 }
 
 .anim-enter-left {
-  animation: duelEnterLeft 0.28s var(--spring-easing) both;
+  animation: duelEnterLeft 0.32s var(--spring-easing) both;
 }
 
 @keyframes duelEnterLeft {
-  0% { opacity: 0; transform: translateX(-50px) scale(0.92); }
-  100% { opacity: 1; transform: translateX(0) scale(1); }
+  0% { opacity: 0; transform: translateY(24px) scale(0.92); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .anim-enter-right {
-  animation: duelEnterRight 0.28s var(--spring-easing) both;
+  animation: duelEnterRight 0.32s var(--spring-easing) both;
 }
 
 @keyframes duelEnterRight {
-  0% { opacity: 0; transform: translateX(50px) scale(0.92); }
-  100% { opacity: 1; transform: translateX(0) scale(1); }
+  0% { opacity: 0; transform: translateY(24px) scale(0.92); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 /* Responsive Media Queries */
