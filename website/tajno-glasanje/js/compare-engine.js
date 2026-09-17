@@ -103,12 +103,19 @@ export class CompareEngine {
       duelCounterEl.textContent = `#${this.matchupIndex} · ${this.queue.length} PREOSTALO`;
     }
 
+    const stackLayer3 = this.queue.length >= 3 ? '<div class="duel-deck-stack-layer stack-layer-3"></div>' : '';
+    const stackLayer2 = this.queue.length >= 2 ? '<div class="duel-deck-stack-layer stack-layer-2"></div>' : '';
+    const stackLayer1 = this.queue.length >= 1 ? '<div class="duel-deck-stack-layer stack-layer-1"></div>' : '';
+
     this.container.innerHTML = `
-      <!-- Main 1-on-1 Battle Arena Grid -->
+      <!-- Main 1-on-1 Battle Arena Grid (Dual Deck Stack) -->
       <div class="duel-arena-grid">
         
-        <!-- Left Card Slot -->
+        <!-- Left Card Slot (Left Deck Stack) -->
         <div class="duel-card-slot slot-left" id="slotLeft">
+          ${stackLayer3}
+          ${stackLayer2}
+          ${stackLayer1}
           ${this.createCardHtml(this.leftItem, 'left')}
         </div>
 
@@ -117,8 +124,11 @@ export class CompareEngine {
           <span class="duel-vs-text">VS</span>
         </div>
 
-        <!-- Right Card Slot -->
+        <!-- Right Card Slot (Right Deck Stack) -->
         <div class="duel-card-slot slot-right" id="slotRight">
+          ${stackLayer3}
+          ${stackLayer2}
+          ${stackLayer1}
           ${this.createCardHtml(this.rightItem, 'right')}
         </div>
 
