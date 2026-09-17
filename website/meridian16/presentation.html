@@ -219,7 +219,10 @@
       justify-content: space-between;
       opacity: 0;
       transition: opacity 0.25s ease;
-      overflow: hidden;
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-y;
       background: var(--bg-card);
       box-sizing: border-box;
     }
@@ -591,6 +594,58 @@
       width: fit-content;
       text-transform: uppercase;
       box-shadow: 2px 2px 0px var(--text-primary);
+    }
+
+    /* Slide 4 Story Frames */
+    .story-frame-card {
+      background: var(--bg-card);
+      border: 2px solid var(--text-primary);
+      border-radius: 6px;
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 3px 3px 0px var(--text-primary);
+      box-sizing: border-box;
+    }
+    .story-frame-card.subtle {
+      background: var(--bg-card-subtle);
+    }
+    .story-frame-tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--accent-green);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+    .story-frame-title {
+      font-family: var(--font-hero);
+      font-size: 1.15rem;
+      font-weight: 900;
+      margin-bottom: 0.3rem;
+      color: var(--text-primary);
+    }
+    .story-frame-desc {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+      line-height: 1.4;
+    }
+    .story-frame-img {
+      flex: 1;
+      min-height: 160px;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 0.8rem;
+      border: 1.5px solid var(--text-primary);
+      position: relative;
+    }
+    .story-frame-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     /* Side-by-Side Dual Offer Comparison Layout */
@@ -1556,12 +1611,14 @@
         width: 100%;
         max-width: 100%;
         box-sizing: border-box;
-        padding: 1rem 0.85rem 1.25rem 0.85rem;
-        overflow-y: auto;
-        overflow-x: hidden;
-        -webkit-overflow-scrolling: touch;
+        padding: 1rem 0.85rem 1.4rem 0.85rem;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        touch-action: pan-y !important;
         justify-content: flex-start;
         gap: 1rem;
+        height: 100% !important;
       }
       .slide::-webkit-scrollbar {
         width: 4px;
@@ -1630,18 +1687,32 @@
         display: flex !important;
         flex-direction: column !important;
         gap: 1rem !important;
-        min-width: 0;
-        width: 100%;
+        min-width: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        flex: none !important;
         box-sizing: border-box;
       }
 
       .grid-2col > div,
       .grid-3col > div,
+      .story-frame-card,
       .offer-box,
       .cloth-card-container {
         width: 100% !important;
         min-width: 0 !important;
+        height: auto !important;
+        min-height: auto !important;
+        flex: none !important;
         box-sizing: border-box !important;
+      }
+
+      .story-frame-img {
+        height: 180px !important;
+        min-height: 180px !important;
+        max-height: 200px !important;
+        flex: none !important;
       }
 
       /* Team Badge Row */
@@ -2033,7 +2104,7 @@
             </h1>
             <h2 class="quote-sub">A Small, Highly Specialized Creative Team.</h2>
             <p class="punchy-narration">
-              We don't do generic corporate videos. Just the two of us on set: large-format cinema lenses on the ground and custom-built FPV drones in the air.
+              We don't do generic corporate videos. Direct execution on set: large-format cinema optics on the ground and custom-built FPV drones in the air.
             </p>
 
             <div class="team-badge-row">
@@ -2062,24 +2133,24 @@
       <!-- SLIDE 2: THE CROATIAN MINT (DEDICATION BENCHMARK) -->
       <section class="slide" data-slide="2">
         <div class="slide-meta-top">
-          <span class="category">Proof of Quality • Precision Benchmark</span>
+          <span class="category">Proof of Quality • Scale Duality</span>
           <span>CLICK CARD TO WATCH FILM</span>
           <span>Croatian Mint</span>
         </div>
 
         <div class="grid-2col equal">
           <div>
-            <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-green); font-weight:800; text-transform:uppercase; letter-spacing:0.08em; display:block; margin-bottom:0.4rem;">01 / Obsessive Dedication</span>
+            <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-green); font-weight:800; text-transform:uppercase; letter-spacing:0.08em; display:block; margin-bottom:0.4rem;">01 / Duality of Scale</span>
             <h1 class="quote-title">
-              “JUST TWO OF US. <span class="outline-text">EXTREME</span> PRECISION.”
+              “FROM MILLIMETER MACRO <span class="outline-text">TO COLOSSAL SCALE.”</span>
             </h1>
             <p class="punchy-narration" style="font-size:1.05rem; margin-bottom:1.4rem;">
-              <em>“The mint had strict security—no wide shots allowed, only macro close-ups. Look at the level of dedication we delivered with just the two of us. Now imagine that precision unleashed on your expansive 105-hectare park.”</em>
+              <em>“At the Croatian Mint, security strictly forbade wide shots. The camera was locked entirely to extreme macro optics, capturing coin strikes and metallurgy at millimeter precision. Meridian 16 is the exact opposite canvas: 105 hectares of sweeping horizon and massive logistics hubs. The obsessive optical discipline that makes a coin strike captivating translates directly into monumental clarity across your entire park.”</em>
             </p>
 
             <div style="background:var(--bg-card-subtle); border:2px solid var(--text-primary); padding:1rem 1.2rem; border-radius:6px; box-shadow:3px 3px 0px var(--text-primary);">
               <div style="font-family:var(--font-mono); font-size:0.72rem; font-weight:800; color:var(--accent-green); text-transform:uppercase;">KEY TAKEAWAY FOR MERIDIAN 16</div>
-              <p style="font-size:0.85rem; color:var(--text-primary); font-weight:700; margin-top:2px;">We bring cinema lighting, macro texture, and deliberate pacing to industrial architecture.</p>
+              <p style="font-size:0.85rem; color:var(--text-primary); font-weight:700; margin-top:2px;">Precision honed on microscopic security footage brings uncompromising sharpness and cinematic weight to massive industrial spaces.</p>
             </div>
           </div>
 
@@ -2105,36 +2176,36 @@
         <div class="slide-meta-top">
           <span class="category">Drone Cinema • Global Brands</span>
           <span>CLICK CARD TO WATCH FPV REEL</span>
-          <span>FPV Velocity</span>
+          <span>FPV Velocity & Scale</span>
         </div>
 
         <div class="grid-2col equal">
           <div>
             <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-green); font-weight:800; text-transform:uppercase; letter-spacing:0.08em; display:block; margin-bottom:0.4rem;">02 / World-Class FPV Specialty</span>
             <h1 class="quote-title">
-              “IMPOSSIBLE SHOTS AT <span class="outline-text">CRAZY SPEEDS.”</span>
+              “CAPTURING MONUMENTAL <span class="outline-text">SPEED & SCALE.”</span>
             </h1>
             <p class="punchy-narration" style="font-size:1.05rem; margin-bottom:1.4rem;">
-              <em>“After three years of flying FPV across Europe, the workflow is second nature. We fly sub-250g prop-guarded drones through active warehouse racks—inches from conveyor belts without stopping the floor.”</em>
+              <em>“We use custom-engineered FPV cinema drones to reveal true scale. Rather than static wide shots, we carve dynamic flight lines from high altitudes down through the park’s vast transit corridors—capturing the magnitude of 105 hectares in continuous, high-speed motion.”</em>
             </p>
 
             <div style="background:var(--bg-card-subtle); border:2px solid var(--text-primary); padding:1rem 1.2rem; border-radius:6px; box-shadow:3px 3px 0px var(--text-primary);">
               <div style="font-family:var(--font-mono); font-size:0.72rem; font-weight:800; color:var(--accent-green); text-transform:uppercase;">APPLICATION AT MERIDIAN 16</div>
-              <p style="font-size:0.85rem; color:var(--text-primary); font-weight:700; margin-top:2px;">Uninterrupted dynamic dives through Atlantic Grupa, Eurospin & Log Expert One facilities.</p>
+              <p style="font-size:0.85rem; color:var(--text-primary); font-weight:700; margin-top:2px;">Sweeping high-altitude dives over Atlantic Grupa, Eurospin, and Log Expert One to showcase expansive infrastructure.</p>
             </div>
           </div>
 
-          <div class="video-card-crazy" onclick="openVideoModal('CBkZEic9iSg', 'Indoor FPV Reel #4 Short RSMB')">
+          <div class="video-card-crazy" onclick="openVideoModal('53BPKq6rt4A', 'FPV Cinematic Showreel • Vast Horizon & Scale')">
             <div class="video-thumb-crazy">
-              <img src="slike/thumb_indoor_fpv_reel.jpg" alt="Indoor FPV Reel">
+              <img src="slike/thumb_fpv_scale_reel.jpg" alt="FPV Cinematic Showreel">
               <div class="play-btn-crazy">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
               </div>
             </div>
             <div class="video-info-crazy">
               <div>
-                <h4>Indoor FPV Flight</h4>
-                <p>Continuous flight through automated sorting lines, narrow high-bay racks, and forklift corridors.</p>
+                <h4>FPV Cinema Reel</h4>
+                <p>Dynamic sweeping lines, massive landscape scale, and cinematic high-speed motion across expansive infrastructure.</p>
               </div>
             </div>
           </div>
@@ -2158,38 +2229,38 @@
 
         <div class="grid-3col">
           <!-- Frame 1 -->
-          <div style="background:var(--bg-card); border:2px solid var(--text-primary); border-radius:6px; padding:1.2rem; display:flex; flex-direction:column; justify-content:space-between; box-shadow:3px 3px 0px var(--text-primary);">
+          <div class="story-frame-card">
             <div>
-              <div style="font-family:var(--font-mono); font-size:0.72rem; font-weight:800; color:var(--accent-green); margin-bottom:4px;">01 / DAWN & ROOTS</div>
-              <h4 style="font-family:var(--font-hero); font-size:1.15rem; font-weight:900; margin-bottom:0.3rem;">Zelena Aleja & The Trees</h4>
-              <p style="font-size:0.82rem; color:var(--text-secondary); font-weight:600; line-height:1.4;">Morning mist lifting over 70+ plane trees along <em>Zelena aleja</em>. The 2017 foundation story.</p>
+              <div class="story-frame-tag">01 / DAWN & ROOTS</div>
+              <h4 class="story-frame-title">Zelena Aleja & The Trees</h4>
+              <p class="story-frame-desc">Morning mist lifting over 70+ plane trees along <em>Zelena aleja</em>. The 2017 foundation story.</p>
             </div>
-            <div style="flex:1; min-height:180px; border-radius:4px; overflow:hidden; margin-top:0.8rem; border:1.5px solid var(--text-primary);">
-              <img src="slike/magnific_apply-a-very-subtle-cinem_UPGlbT8wny.jpeg" style="width:100%; height:100%; object-fit:cover;">
+            <div class="story-frame-img">
+              <img src="slike/magnific_apply-a-very-subtle-cinem_UPGlbT8wny.jpeg" alt="Dawn over Zelena Aleja">
             </div>
           </div>
 
           <!-- Frame 2 -->
-          <div style="background:var(--bg-card-subtle); border:2px solid var(--text-primary); border-radius:6px; padding:1.2rem; display:flex; flex-direction:column; justify-content:space-between; box-shadow:3px 3px 0px var(--text-primary);">
+          <div class="story-frame-card subtle">
             <div>
-              <div style="font-family:var(--font-mono); font-size:0.72rem; font-weight:800; color:var(--accent-green); margin-bottom:4px;">02 / KINETIC SPEED</div>
-              <h4 style="font-family:var(--font-hero); font-size:1.15rem; font-weight:900; margin-bottom:0.3rem;">Robotics & High-Bay Flow</h4>
-              <p style="font-size:0.82rem; color:var(--text-secondary); font-weight:600; line-height:1.4;">Indoor FPV flight through 60,000 m² automated logistics, sorting arms, and truck dispatch bays.</p>
+              <div class="story-frame-tag">02 / KINETIC SPEED</div>
+              <h4 class="story-frame-title">Robotics & High-Bay Flow</h4>
+              <p class="story-frame-desc">Indoor FPV flight through 60,000 m² automated logistics, sorting arms, and truck dispatch bays.</p>
             </div>
-            <div style="flex:1; min-height:180px; border-radius:4px; overflow:hidden; margin-top:0.8rem; border:1.5px solid var(--text-primary);">
-              <img src="slike/meridian_fpv_interior_flow.jpg" style="width:100%; height:100%; object-fit:cover;">
+            <div class="story-frame-img">
+              <img src="slike/meridian_fpv_interior_flow.jpg" alt="Automated logistics high-bay flow">
             </div>
           </div>
 
           <!-- Frame 3 -->
-          <div style="background:var(--bg-card); border:2px solid var(--text-primary); border-radius:6px; padding:1.2rem; display:flex; flex-direction:column; justify-content:space-between; box-shadow:3px 3px 0px var(--text-primary);">
+          <div class="story-frame-card">
             <div>
-              <div style="font-family:var(--font-mono); font-size:0.72rem; font-weight:800; color:var(--accent-green); margin-bottom:4px;">03 / TWILIGHT SCALE</div>
-              <h4 style="font-family:var(--font-hero); font-size:1.15rem; font-weight:900; margin-bottom:0.3rem;">The Arteries at Dusk</h4>
-              <p style="font-size:0.82rem; color:var(--text-secondary); font-weight:600; line-height:1.4;">Blue-hour dronelapses over illuminated A3/A11 junctions and Zagreb Airport approach lights.</p>
+              <div class="story-frame-tag">03 / TWILIGHT SCALE</div>
+              <h4 class="story-frame-title">The Arteries at Dusk</h4>
+              <p class="story-frame-desc">Blue-hour dronelapses over illuminated A3/A11 junctions and Zagreb Airport approach lights.</p>
             </div>
-            <div style="flex:1; min-height:180px; border-radius:4px; overflow:hidden; margin-top:0.8rem; border:1.5px solid var(--text-primary);">
-              <img src="slike/meridian_twilight_cinematic.jpg" style="width:100%; height:100%; object-fit:cover;">
+            <div class="story-frame-img">
+              <img src="slike/meridian_twilight_cinematic.jpg" alt="Meridian 16 twilight illumination">
             </div>
           </div>
         </div>
@@ -2211,7 +2282,7 @@
               <div class="cloth-sheen-overlay"></div>
               <div>
                 <div class="tier-badge">OPTION A • QUOTE NO. 9</div>
-                <h3 class="tier-title">EXPANDED PRODUCTION</h3>
+                <h3 class="tier-title">EXPANDED<br>PRODUCTION</h3>
                 <p class="tier-desc">Cinema equipment, multiple setups, director interview, up to 10 FPV flights, hero film & 4 verticals.</p>
 
                 <ul class="tier-features">
@@ -2239,7 +2310,7 @@
               <div class="cloth-sheen-overlay"></div>
               <div>
                 <div class="tier-badge">OPTION B • QUOTE NO. 15 (RECOMMENDED)</div>
-                <h3 class="tier-title">FULL VISION PACKAGE</h3>
+                <h3 class="tier-title">FULL VISION<br>PACKAGE</h3>
                 <p class="tier-desc">Full cinematic rollout: dedicated storyboard, indoor FPV route test, teleprompter, sound designer score & teaser.</p>
 
                 <ul class="tier-features">
@@ -2391,18 +2462,18 @@
             <span class="dot-tt-title">The Creative Collective</span>
           </span>
         </button>
-        <button class="slide-dot" data-slide-index="2" onclick="goToSlide(2)" title="Slide 2: Croatian Mint (Dedication Benchmark)" aria-label="Go to Slide 2">
+        <button class="slide-dot" data-slide-index="2" onclick="goToSlide(2)" title="Slide 2: Croatian Mint (Duality of Scale)" aria-label="Go to Slide 2">
           <span class="slide-dot-fill"></span>
           <span class="slide-dot-tooltip">
             <span class="dot-tt-index">02</span>
-            <span class="dot-tt-title">Croatian Mint (Dedication)</span>
+            <span class="dot-tt-title">Croatian Mint (Scale Duality)</span>
           </span>
         </button>
-        <button class="slide-dot" data-slide-index="3" onclick="goToSlide(3)" title="Slide 3: FPV Specialty (Impossible Speed)" aria-label="Go to Slide 3">
+        <button class="slide-dot" data-slide-index="3" onclick="goToSlide(3)" title="Slide 3: FPV Specialty (Speed & Scale)" aria-label="Go to Slide 3">
           <span class="slide-dot-fill"></span>
           <span class="slide-dot-tooltip">
             <span class="dot-tt-index">03</span>
-            <span class="dot-tt-title">FPV Specialty (Impossible Speed)</span>
+            <span class="dot-tt-title">FPV Specialty (Speed & Scale)</span>
           </span>
         </button>
         <button class="slide-dot" data-slide-index="4" onclick="goToSlide(4)" title="Slide 4: The Meridian 16 Vision (Sunrise & Scale)" aria-label="Go to Slide 4">
@@ -2463,8 +2534,8 @@
   <script>
     const slideTitles = [
       "The Creative Collective",
-      "Croatian Mint (Dedication Benchmark)",
-      "FPV Specialty (Impossible Speed)",
+      "Croatian Mint (Duality of Scale)",
+      "FPV Specialty (Speed & Scale)",
       "The Meridian 16 Vision (Sunrise & Scale)",
       "Commercial Proposals (Essential vs Signature)",
       "What Are Your Goals For The Future?"
@@ -2765,15 +2836,33 @@
 
     window.addEventListener('blur', clearAllButtonPresses);
 
-    // Trackpad / Mouse Wheel Navigation (Smoothly Debounced)
+    // Trackpad / Mouse Wheel Navigation (Smoothly Debounced & Scroll-Aware)
     let wheelDebounceTimer = null;
     let isWheelLocked = false;
     window.addEventListener('wheel', (e) => {
       if (document.getElementById('videoModal').classList.contains('active')) return;
       if (isWheelLocked) return;
 
+      // On mobile / small screens, don't intercept wheel events for slide transitions
+      if (window.innerWidth <= 768) return;
+
+      const activeSlideEl = document.querySelector('.slide.active');
+      if (activeSlideEl) {
+        // Check if the active slide has scrollable overflow content
+        const isScrollable = activeSlideEl.scrollHeight > (activeSlideEl.clientHeight + 8);
+        if (isScrollable) {
+          const atTop = activeSlideEl.scrollTop <= 5;
+          const atBottom = activeSlideEl.scrollTop + activeSlideEl.clientHeight >= (activeSlideEl.scrollHeight - 6);
+          
+          // If user is scrolling down and not at bottom, let natural vertical scroll occur
+          if (e.deltaY > 0 && !atBottom) return;
+          // If user is scrolling up and not at top, let natural vertical scroll occur
+          if (e.deltaY < 0 && !atTop) return;
+        }
+      }
+
       const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-      if (Math.abs(delta) > 30) {
+      if (Math.abs(delta) > 45) {
         isWheelLocked = true;
         if (delta > 0) {
           nextSlide();
@@ -2783,7 +2872,7 @@
         clearTimeout(wheelDebounceTimer);
         wheelDebounceTimer = setTimeout(() => {
           isWheelLocked = false;
-        }, 400);
+        }, 500);
       }
     }, { passive: true });
 
@@ -3234,20 +3323,21 @@
 
           // Title
           ctx.fillStyle = '#111518';
-          ctx.font = '900 21px "Syne", sans-serif';
-          ctx.fillText('EXPANDED PRODUCTION', 22, 72);
+          ctx.font = '900 20px "Syne", sans-serif';
+          ctx.fillText('EXPANDED', 22, 65);
+          ctx.fillText('PRODUCTION', 22, 86);
 
           // Description
           ctx.fillStyle = '#3b454e';
-          ctx.font = '500 12.5px "Plus Jakarta Sans", sans-serif';
-          wrapText(ctx, 'Cinema equipment, multiple setups, director interview, up to 10 FPV flights, hero film & 4 verticals.', 22, 92, w - 44, 17);
+          ctx.font = '500 12px "Plus Jakarta Sans", sans-serif';
+          wrapText(ctx, 'Cinema equipment, multiple setups, director interview, up to 10 FPV flights, hero film & 4 verticals.', 22, 105, w - 44, 16);
 
           // Divider
           ctx.strokeStyle = '#d5ccba';
           ctx.lineWidth = 1;
           ctx.beginPath();
-          ctx.moveTo(22, 134);
-          ctx.lineTo(w - 22, 134);
+          ctx.moveTo(22, 140);
+          ctx.lineTo(w - 22, 140);
           ctx.stroke();
 
           // Price Bottom Row box calculation
@@ -3330,20 +3420,21 @@
 
           // Title
           ctx.fillStyle = '#ffffff';
-          ctx.font = '900 21px "Syne", sans-serif';
-          ctx.fillText('FULL VISION PACKAGE', 22, 72);
+          ctx.font = '900 20px "Syne", sans-serif';
+          ctx.fillText('FULL VISION', 22, 65);
+          ctx.fillText('PACKAGE', 22, 86);
 
           // Description
           ctx.fillStyle = '#9cb1a8';
-          ctx.font = '500 12.5px "Plus Jakarta Sans", sans-serif';
-          wrapText(ctx, 'Full cinematic rollout: dedicated storyboard, indoor FPV route test, teleprompter, sound designer score & teaser.', 22, 92, w - 44, 17);
+          ctx.font = '500 12px "Plus Jakarta Sans", sans-serif';
+          wrapText(ctx, 'Full cinematic rollout: dedicated storyboard, indoor FPV route test, teleprompter, sound designer score & teaser.', 22, 105, w - 44, 16);
 
           // Divider
           ctx.strokeStyle = '#1d362a';
           ctx.lineWidth = 1;
           ctx.beginPath();
-          ctx.moveTo(22, 134);
-          ctx.lineTo(w - 22, 134);
+          ctx.moveTo(22, 140);
+          ctx.lineTo(w - 22, 140);
           ctx.stroke();
 
           // Price Bottom Row box calculation
