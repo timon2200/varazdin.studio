@@ -328,7 +328,7 @@ html[data-theme="dark"] .view-btn:hover {
 }
 
 .telemetry-counter {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
   font-family: var(--font-mono);
@@ -341,6 +341,27 @@ html[data-theme="dark"] .view-btn:hover {
   border: 1.5px solid var(--border-dark);
   box-shadow: var(--shadow-bold-xs);
   letter-spacing: 0.04em;
+  cursor: pointer;
+  outline: none;
+  text-decoration: none;
+  transition: all 0.15s var(--transition-smooth);
+  user-select: none;
+}
+
+.telemetry-counter:hover {
+  background: var(--bg-card);
+  transform: translate(-1px, -1px);
+  box-shadow: 2px 2px 0px var(--border-dark);
+}
+
+.telemetry-counter:active {
+  transform: translate(1px, 1px);
+  box-shadow: 0px 0px 0px var(--border-dark);
+}
+
+.telemetry-counter:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 2px;
 }
 
 .telemetry-counter strong {

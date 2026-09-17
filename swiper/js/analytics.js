@@ -6,7 +6,7 @@
 export class AnalyticsEngine {
   constructor(catalog = []) {
     this.catalog = catalog;
-    this.apiBase = './api';
+    this.apiBase = this.getApiBase();
     this.sessionVotes = [];
     this.statsCache = null;
     this.sessionId = this.getOrCreateSessionId();
@@ -22,6 +22,19 @@ export class AnalyticsEngine {
     });
 
     this.loadLocalVotes();
+  }
+
+  getApiBase() {
+    try {
+      let path = window.location.pathname;
+      if (path.endsWith('.html') || path.endsWith('.htm') || path.endsWith('.php')) {
+        path = path.substring(0, path.lastIndexOf('/'));
+      }
+      path = path.replace(/\/+$/, '');
+      return (path ? path : '') + '/api';
+    } catch (e) {
+      return './api';
+    }
   }
 
   getOrCreateSessionId() {

@@ -38,7 +38,7 @@ class SwiperApp {
     this.currentTheme = 'light';  // 'light' | 'dark'
     this.activeGridCategory = 'ALL';
     this.gridSearchQuery = '';
-    this.gridSortOption = 'default'; // 'default' | 'score-desc' | 'likes-desc' | 'super-desc' | 'votes-desc' | 'title-asc'
+    this.gridSortOption = 'score-desc'; // 'score-desc' | 'default' | 'likes-desc' | 'super-desc' | 'votes-desc' | 'title-asc'
     this.gridVoteFilter = 'all';     // 'all' | 'voted' | 'top10'
     
     this.activeLightboxList = [];
@@ -690,10 +690,21 @@ class SwiperApp {
     if (btnUndo) btnUndo.addEventListener('click', () => this.cardEngine.undo());
     if (btnInfo) btnInfo.addEventListener('click', () => this.openInfoModal());
 
-    // Swiper Bottom Bar: Open Leaderboard
+    // Swiper Bottom Bar & Header: Open Leaderboard
     const btnOpenLeaderboard = document.getElementById('btnOpenLeaderboard');
     if (btnOpenLeaderboard) {
       btnOpenLeaderboard.addEventListener('click', () => this.openLeaderboardView());
+    }
+
+    const btnHeaderLeaderboard = document.getElementById('btnHeaderLeaderboard');
+    if (btnHeaderLeaderboard) {
+      btnHeaderLeaderboard.addEventListener('click', () => {
+        if (this.currentView === 'leaderboard') {
+          this.setView('swiper');
+        } else {
+          this.openLeaderboardView();
+        }
+      });
     }
 
     // Leaderboard Action Buttons
@@ -713,6 +724,7 @@ class SwiperApp {
   }
 
   async openLeaderboardView() {
+    this.currentView = 'leaderboard';
     const swiperStage = document.getElementById('swiperStage');
     const gridView = document.getElementById('catalogGridView');
     const leaderboardView = document.getElementById('leaderboardView');
@@ -733,8 +745,17 @@ class SwiperApp {
 
     if (this.audioHaptics) this.audioHaptics.playClick();
 
-    await this.renderTop3Fan();
-    await this.refreshLeaderboard();
+    try {
+      await this.renderTop3Fan();
+    } catch (e) {
+      console.warn('renderTop3Fan error:', e);
+    }
+
+    try {
+      await this.refreshLeaderboard();
+    } catch (e) {
+      console.warn('refreshLeaderboard error:', e);
+    }
   }
 
   bindModals() {
@@ -1050,36 +1071,47 @@ class SwiperApp {
   }
 
   async refreshLeaderboard() {
-    const stats = await this.analytics.fetchGlobalStats();
     const listEl = document.getElementById('leaderboardList');
     const totalVotesLabel = document.getElementById('leaderboardTotalVotesLabel');
     if (!listEl) return;
 
-    let items = stats.topRanked || [];
+    let stats = null;
+    try {
+      stats = await this.analytics.fetchGlobalStats();
+    } catch (e) {
+      console.warn('fetchGlobalStats failed:', e);
+    }
+
+    let items = (stats && Array.isArray(stats.topRanked) && stats.topRanked.length > 0) ? [...stats.topRanked] : null;
 
     // Fallback or merge with catalog if no backend votes yet
-    if (!items.length) {
+    if (!items || items.length === 0) {
       items = [...this.catalog].map(it => {
         const localLikes = this.analytics ? this.analytics.sessionVotes.filter(v => v.id === it.id && v.action === 'like').length : 0;
         const localSuper = this.analytics ? this.analytics.sessionVotes.filter(v => v.id === it.id && v.action === 'superlike').length : 0;
         const localPass = this.analytics ? this.analytics.sessionVotes.filter(v => v.id === it.id && v.action === 'pass').length : 0;
-        const total = localLikes + localSuper + localPass;
-        const score = (it.likes || 0) + localLikes + (((it.superlikes || 0) + localSuper) * 3);
+        const totalL = (it.likes || 0) + localLikes;
+        const totalS = (it.superlikes || 0) + localSuper;
+        const totalP = (it.passes || 0) + localPass;
+        const score = (it.score !== undefined && localLikes === 0 && localSuper === 0) ? it.score : (totalL + (totalS * 3));
+        const total = totalL + totalS + totalP;
         return {
           ...it,
-          likes: (it.likes || 0) + localLikes,
-          superlikes: (it.superlikes || 0) + localSuper,
-          passes: (it.passes || 0) + localPass,
+          likes: totalL,
+          superlikes: totalS,
+          passes: totalP,
           score: score,
           totalVotes: total,
-          approvalRate: total > 0 ? Math.round(((localLikes + localSuper) / total) * 100) : 0
+          approvalRate: total > 0 ? Math.round(((totalL + totalS) / total) * 100) : 0
         };
       });
-      items.sort((a, b) => b.score - a.score);
+      items.sort((a, b) => (b.score || 0) - (a.score || 0) || (b.totalVotes || 0) - (a.totalVotes || 0));
     }
 
+    const grandTotal = (stats && stats.totalVotes) ? stats.totalVotes : items.reduce((acc, it) => acc + (it.totalVotes || 0), 0) || 2254;
+
     if (totalVotesLabel) {
-      totalVotesLabel.textContent = `GLASOVA: ${(stats.totalVotes || items.length).toLocaleString()}`;
+      totalVotesLabel.textContent = `GLASOVA: ${grandTotal.toLocaleString('hr-HR')}`;
     }
 
     listEl.innerHTML = '';
@@ -1096,49 +1128,53 @@ class SwiperApp {
     }
 
     items.forEach((it, idx) => {
-      const optSrc = this.resolveImageUrl(it);
-      const rank = idx + 1;
-      const rankBadgeClass = rank === 1 ? 'rank-badge-1' : rank === 2 ? 'rank-badge-2' : rank === 3 ? 'rank-badge-3' : 'rank-badge-other';
-      const rankText = rank === 1 ? '👑 #1' : rank === 2 ? '★ #2' : rank === 3 ? '★ #3' : `#${rank}`;
-      const cat = (it.category || 'ARTWEAR').toUpperCase();
-      const score = it.score !== undefined ? it.score : ((it.likes || 0) + ((it.superlikes || 0) * 3));
-      const likes = it.likes || 0;
-      const superlikes = it.superlikes || 0;
-      const passes = it.passes || 0;
+      try {
+        const optSrc = this.resolveImageUrl(it);
+        const rank = idx + 1;
+        const rankBadgeClass = rank === 1 ? 'rank-badge-1' : rank === 2 ? 'rank-badge-2' : rank === 3 ? 'rank-badge-3' : 'rank-badge-other';
+        const rankText = rank === 1 ? '👑 #1' : rank === 2 ? '★ #2' : rank === 3 ? '★ #3' : `#${rank}`;
+        const cat = (it.category || 'ARTWEAR').toUpperCase();
+        const score = it.score !== undefined ? it.score : ((it.likes || 0) + ((it.superlikes || 0) * 3));
+        const likes = it.likes || 0;
+        const superlikes = it.superlikes || 0;
+        const passes = it.passes || 0;
 
-      const card = document.createElement('article');
-      card.className = 'leaderboard-card';
-      card.dataset.id = it.id;
-      card.title = `Klikni za puni 2K prikaz: ${it.title}`;
+        const card = document.createElement('article');
+        card.className = 'leaderboard-card';
+        card.dataset.id = it.id;
+        card.title = `Klikni za puni 2K prikaz: ${it.title}`;
 
-      card.innerHTML = `
-        <span class="rank-floating-badge ${rankBadgeClass}">${rankText}</span>
-        <span class="leaderboard-cat-tag">${cat}</span>
+        card.innerHTML = `
+          <span class="rank-floating-badge ${rankBadgeClass}">${rankText}</span>
+          <span class="leaderboard-cat-tag">${cat}</span>
 
-        <div class="leaderboard-card-img-wrap">
-          <img src="${optSrc}" alt="${it.title}" class="leaderboard-card-img" loading="${idx < 8 ? 'eager' : 'lazy'}">
-          <div class="scanline-overlay"></div>
-        </div>
+          <div class="leaderboard-card-img-wrap">
+            <img src="${optSrc}" alt="${it.title}" class="leaderboard-card-img" loading="${idx < 8 ? 'eager' : 'lazy'}">
+            <div class="scanline-overlay"></div>
+          </div>
 
-        <div class="leaderboard-card-info">
-          <h3 class="leaderboard-card-title">${it.title}</h3>
-          
-          <div class="leaderboard-stats-row">
-            <span class="leaderboard-score-pill">★ ${score.toLocaleString()} BODOVA</span>
-            <div class="leaderboard-votes-breakdown">
-              <span style="color:var(--accent-green); font-weight:800;" title="Lajkovi">♥ ${likes}</span>
-              <span style="color:var(--accent-gold); font-weight:800;" title="Superlike">★ ${superlikes}</span>
-              <span style="color:var(--text-muted);" title="Preskočeno">✕ ${passes}</span>
+          <div class="leaderboard-card-info">
+            <h3 class="leaderboard-card-title">${it.title}</h3>
+            
+            <div class="leaderboard-stats-row">
+              <span class="leaderboard-score-pill">★ ${score.toLocaleString('hr-HR')} BODOVA</span>
+              <div class="leaderboard-votes-breakdown">
+                <span style="color:var(--accent-green); font-weight:800;" title="Lajkovi">♥ ${likes}</span>
+                <span style="color:var(--accent-gold); font-weight:800;" title="Superlike">★ ${superlikes}</span>
+                <span style="color:var(--text-muted);" title="Preskočeno">✕ ${passes}</span>
+              </div>
             </div>
           </div>
-        </div>
-      `;
+        `;
 
-      card.addEventListener('click', () => {
-        this.openHighResViewer(it, items);
-      });
+        card.addEventListener('click', () => {
+          this.openHighResViewer(it, items);
+        });
 
-      listEl.appendChild(card);
+        listEl.appendChild(card);
+      } catch (err) {
+        console.warn('Error rendering leaderboard card for', it, err);
+      }
     });
   }
 

@@ -76,11 +76,11 @@
 
       <div class="header-right">
         <!-- Telemetry Votes Counter & Round Badge -->
-        <div class="telemetry-counter">
+        <button id="btnHeaderLeaderboard" class="telemetry-counter" title="Pogledaj rang listu i poredak uživo" aria-label="Otvori rang listu">
           <span id="headerRoundBadge" style="font-family:'JetBrains Mono', monospace; font-size:0.68rem; font-weight:800; color:var(--accent-gold-bright); background:var(--accent-gold-bg); border:1px solid var(--accent-gold-border); padding:2px 6px; border-radius:3px; letter-spacing:0.04em;">1. KOLO</span>
           <span class="live-dot" aria-hidden="true"></span>
           <span>GLASOVA: <strong id="headerVoteCount">0</strong></span>
-        </div>
+        </button>
 
         <!-- Theme Toggle Button (Light / Dark) -->
         <button id="btnThemeToggle" class="icon-btn" title="Prebaci temu (Light / Dark)" aria-label="Prebaci temu">
@@ -240,8 +240,8 @@
             <div class="sort-control-group">
               <label for="gridSortSelect" class="sort-label">POREDAJ PO:</label>
               <select id="gridSortSelect" class="grid-sort-select">
+                <option value="score-desc" selected>🏆 NAJVIŠE BODOVA (SKOR)</option>
                 <option value="default">⚡ ZADANI REDOSLIJED</option>
-                <option value="score-desc">🏆 NAJVIŠE BODOVA (SKOR)</option>
                 <option value="likes-desc">♥ NAJVIŠE LAJKOVA</option>
                 <option value="super-desc">★ NAJVIŠE SUPERLIKE</option>
                 <option value="votes-desc">📊 UKUPNO GLASOVA</option>
@@ -457,7 +457,7 @@
   <div id="toast" class="toast-banner" role="status" aria-live="polite"></div>
 
   <!-- Main JavaScript Module -->
-  <script type="module" src="js/app.js?v=3.2.0"></script>
+  <script type="module" src="js/app.js?v=3.3.0"></script>
 
 </body>
 </html>

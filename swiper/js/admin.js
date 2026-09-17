@@ -28,7 +28,7 @@ export class CatalogCurator {
     this.selectedIds = initialSelected;
     this.activeCategory = "ALL";
     this.searchQuery = "";
-    this.sortOption = "default"; // 'default' | 'score-desc' | 'likes-desc' | 'super-desc' | 'votes-desc' | 'approval-desc' | 'title-asc'
+    this.sortOption = "score-desc"; // 'score-desc' | 'default' | 'likes-desc' | 'super-desc' | 'votes-desc' | 'approval-desc' | 'title-asc'
     this.voteFilter = "all";     // 'all' | 'voted' | 'top20' | 'unvoted'
     this.rankedItems = [];
     this.activeRound = 1;
