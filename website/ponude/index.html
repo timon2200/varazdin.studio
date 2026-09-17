@@ -349,6 +349,12 @@
       mix-blend-mode: multiply;
     }
 
+    .video-thumb-crazy-wrapper {
+      position: relative;
+      width: 100%;
+      overflow: visible;
+    }
+
     .video-thumb-crazy {
       position: relative;
       width: 100%;
@@ -399,25 +405,6 @@
       background: var(--accent-green-bright);
     }
 
-    .card-tag {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      font-weight: 800;
-      letter-spacing: 0.05em;
-      padding: 3px 8px;
-      border-radius: 3px;
-      text-transform: uppercase;
-      border: 1.5px solid var(--text-primary);
-      box-shadow: 2px 2px 0px var(--text-primary);
-      z-index: 6;
-    }
-
-    .badge-gold { background: var(--accent-gold); color: #111518; }
-    .badge-green { background: var(--accent-green-bg); color: var(--accent-green); }
-
     .scanline-overlay {
       position: absolute;
       inset: 0;
@@ -460,22 +447,41 @@
     }
 
     /* ==========================================================================
-       CARD FAN STATUS SWITCHER
+       CARD FAN STATUS SWITCHER (Top-Left Thumbnail & Upward Fan with Deadzone Bridge)
        ========================================================================== */
     .status-fan-container {
-      position: relative;
+      position: absolute;
+      top: 10px;
+      left: 10px;
       display: inline-flex;
       align-items: center;
-      z-index: 25;
+      z-index: 35;
       user-select: none;
+    }
+
+    /* Seamless hover deadzone / bridge extending upward over fanned cards */
+    .status-fan-container::before {
+      content: '';
+      position: absolute;
+      left: -15px;
+      right: -30px;
+      bottom: -12px;
+      top: -95px; /* Bridges entire upward fanned area so hover is never accidentally dropped */
+      background: transparent;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .status-fan-container:hover::before {
+      pointer-events: auto; /* Active hover bridge while hovering */
     }
 
     .status-badge {
       font-family: var(--font-mono);
       font-size: 0.68rem;
       font-weight: 800;
-      letter-spacing: 0.04em;
-      padding: 3px 9px;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
       border-radius: 3px;
       text-transform: uppercase;
       border: 1.5px solid var(--text-primary);
@@ -483,10 +489,12 @@
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
       white-space: nowrap;
       transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s, opacity 0.2s, background 0.2s;
       outline: none;
+      position: relative;
+      z-index: 20;
     }
 
     .status-badge .status-dot {
@@ -518,14 +526,14 @@
     }
 
     .status-fan-container:hover .active-status-badge {
-      transform: scale(1.04) translateY(-1px);
+      transform: scale(1.04);
       box-shadow: 3px 3px 0px var(--text-primary);
     }
 
     .status-fan-deck {
       position: absolute;
       top: 0;
-      right: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       pointer-events: none;
@@ -534,43 +542,44 @@
     .status-card-flyout {
       position: absolute;
       top: 0;
-      right: 0;
+      left: 0;
       opacity: 0;
       pointer-events: none;
-      transform: translate(0, 0) rotate(0deg) scale(0.85);
-      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.22s ease, box-shadow 0.2s;
+      transform: translate(0, 0) rotate(0deg) scale(0.9);
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease, box-shadow 0.2s;
+      z-index: 15;
     }
 
-    /* Fluid Card Fan Spread on Hover */
+    /* Fluid Upward Card Fan Spread on Hover */
     .status-fan-container:hover .status-fan-deck {
       pointer-events: auto;
     }
 
-    /* Slot 1: flies to left rotated -8deg */
+    /* Slot 1: flies UPWARD rotated -6deg */
     .status-fan-container:hover .status-card-flyout.card-slot-1 {
       opacity: 1;
       pointer-events: auto;
-      transform: translate(-104%, -3px) rotate(-8deg);
-      z-index: 29;
+      transform: translate(4px, -114%) rotate(-6deg);
+      z-index: 25;
     }
 
-    /* Slot 2: flies further left rotated -15deg */
+    /* Slot 2: flies further UPWARD rotated +9deg */
     .status-fan-container:hover .status-card-flyout.card-slot-2 {
       opacity: 1;
       pointer-events: auto;
-      transform: translate(-210%, -7px) rotate(-15deg);
-      z-index: 28;
+      transform: translate(12px, -226%) rotate(9deg);
+      z-index: 24;
     }
 
     /* Hovering individual fanned card raises and straightens it */
     .status-fan-deck .status-card-flyout.card-slot-1:hover {
-      transform: translate(-104%, -6px) rotate(-3deg) scale(1.08) !important;
+      transform: translate(4px, -118%) rotate(-2deg) scale(1.08) !important;
       box-shadow: 4px 4px 0px var(--text-primary) !important;
       z-index: 35 !important;
     }
 
     .status-fan-deck .status-card-flyout.card-slot-2:hover {
-      transform: translate(-210%, -10px) rotate(-6deg) scale(1.08) !important;
+      transform: translate(12px, -232%) rotate(3deg) scale(1.08) !important;
       box-shadow: 4px 4px 0px var(--text-primary) !important;
       z-index: 35 !important;
     }
@@ -956,41 +965,42 @@
           <!-- Full-card CanvasUI 4x4 Bayer Dither layer -->
           <canvas class="card-dither-canvas"></canvas>
 
-          <!-- Direct click to open deck in new tab -->
-          <a href="https://varazdin.studio/meridian16/" target="_blank" class="video-thumb-crazy" title="Otvori Meridian 16 — Cinematic Film Pitch | Studio Varaždin">
-            <img src="assets/thumbnails/thumb_meridian16.jpg" alt="Meridian 16 — Cinematic Film Pitch | Studio Varaždin" class="card-thumb" loading="lazy" onerror="this.src='../Meridian16_Prezentacija/slike/meridian_fpv_interior_flow.jpg'">
-            <div class="play-btn-crazy">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          <div class="video-thumb-crazy-wrapper">
+            <!-- Direct click to open deck in new tab -->
+            <a href="https://varazdin.studio/meridian16/" target="_blank" class="video-thumb-crazy" title="Otvori Meridian 16 — Cinematic Film Pitch | Studio Varaždin">
+              <img src="assets/thumbnails/thumb_meridian16.jpg" alt="Meridian 16 — Cinematic Film Pitch | Studio Varaždin" class="card-thumb" loading="lazy" onerror="this.src='../Meridian16_Prezentacija/slike/meridian_fpv_interior_flow.jpg'">
+              <div class="play-btn-crazy">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+              <div class="scanline-overlay"></div>
+            </a>
+
+            <!-- Interactive Card-Fan Status Switcher on top-left of thumbnail -->
+            <div class="status-fan-container" data-slug="meridian16" onclick="event.stopPropagation();">
+              <button type="button" class="status-badge active-status-badge status-poslano" onclick="cycleStatus('meridian16', event)" title="Status ponude (hoveraj za opcije, klikni za rotaciju)">
+                <span class="status-dot"></span>
+                <span class="status-label">POSLANO</span>
+              </button>
+              <div class="status-fan-deck">
+                <button type="button" class="status-badge status-card-flyout status-odobreno card-slot-1" data-status-val="odobreno" onclick="setStatus('meridian16', 'odobreno', event)" title="Označi: ODOBRENO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">ODOBRENO</span>
+                </button>
+                <button type="button" class="status-badge status-card-flyout status-odbijeno card-slot-2" data-status-val="odbijeno" onclick="setStatus('meridian16', 'odbijeno', event)" title="Označi: ODBIJENO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">ODBIJENO</span>
+                </button>
+                <button type="button" class="status-badge status-card-flyout status-poslano" data-status-val="poslano" style="display:none;" onclick="setStatus('meridian16', 'poslano', event)" title="Označi: POSLANO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">POSLANO</span>
+                </button>
+              </div>
             </div>
-            <span class="card-tag badge-gold">SIGNATURE PACK</span>
-            <div class="scanline-overlay"></div>
-          </a>
+          </div>
 
           <div class="video-info-crazy">
             <div class="card-client-row">
               <span class="card-client-name">Meridian 16</span>
-
-              <!-- Interactive Card-Fan Status Switcher -->
-              <div class="status-fan-container" data-slug="meridian16">
-                <button type="button" class="status-badge active-status-badge status-poslano" onclick="cycleStatus('meridian16', event)" title="Status ponude (hoveraj za opcije, klikni za rotaciju)">
-                  <span class="status-dot"></span>
-                  <span class="status-label">POSLANO</span>
-                </button>
-                <div class="status-fan-deck">
-                  <button type="button" class="status-badge status-card-flyout status-odobreno card-slot-1" data-status-val="odobreno" onclick="setStatus('meridian16', 'odobreno', event)" title="Označi: ODOBRENO">
-                    <span class="status-dot"></span>
-                    <span class="status-label">ODOBRENO</span>
-                  </button>
-                  <button type="button" class="status-badge status-card-flyout status-odbijeno card-slot-2" data-status-val="odbijeno" onclick="setStatus('meridian16', 'odbijeno', event)" title="Označi: ODBIJENO">
-                    <span class="status-dot"></span>
-                    <span class="status-label">ODBIJENO</span>
-                  </button>
-                  <button type="button" class="status-badge status-card-flyout status-poslano" data-status-val="poslano" style="display:none;" onclick="setStatus('meridian16', 'poslano', event)" title="Označi: POSLANO">
-                    <span class="status-dot"></span>
-                    <span class="status-label">POSLANO</span>
-                  </button>
-                </div>
-              </div>
             </div>
 
             <!-- Direct Title Click to Open in New Tab -->
@@ -1041,41 +1051,42 @@
           <!-- Full-card CanvasUI 4x4 Bayer Dither layer -->
           <canvas class="card-dither-canvas"></canvas>
 
-          <!-- Direct click to open deck in new tab -->
-          <a href="https://varazdin.studio/komunalni-projekt/" target="_blank" class="video-thumb-crazy" title="Otvori 7 KILOGRAMA — Edukativni Video Sustav | Grad Varaždin & Čistoća d.o.o.">
-            <img src="assets/thumbnails/thumb_komunalni-projekt.jpg" alt="7 KILOGRAMA — Edukativni Video Sustav | Grad Varaždin & Čistoća d.o.o." class="card-thumb" loading="lazy" onerror="this.src='../Komunalni_Prezentacija/assets/01_Studio_Pad_Otpada_Hook.jpg'">
-            <div class="play-btn-crazy">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          <div class="video-thumb-crazy-wrapper">
+            <!-- Direct click to open deck in new tab -->
+            <a href="https://varazdin.studio/komunalni-projekt/" target="_blank" class="video-thumb-crazy" title="Otvori 7 KILOGRAMA — Edukativni Video Sustav | Grad Varaždin & Čistoća d.o.o.">
+              <img src="assets/thumbnails/thumb_komunalni-projekt.jpg" alt="7 KILOGRAMA — Edukativni Video Sustav | Grad Varaždin & Čistoća d.o.o." class="card-thumb" loading="lazy" onerror="this.src='../Komunalni_Prezentacija/assets/01_Studio_Pad_Otpada_Hook.jpg'">
+              <div class="play-btn-crazy">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+              <div class="scanline-overlay"></div>
+            </a>
+
+            <!-- Interactive Card-Fan Status Switcher on top-left of thumbnail -->
+            <div class="status-fan-container" data-slug="komunalni-projekt" onclick="event.stopPropagation();">
+              <button type="button" class="status-badge active-status-badge status-poslano" onclick="cycleStatus('komunalni-projekt', event)" title="Status ponude (hoveraj za opcije, klikni za rotaciju)">
+                <span class="status-dot"></span>
+                <span class="status-label">POSLANO</span>
+              </button>
+              <div class="status-fan-deck">
+                <button type="button" class="status-badge status-card-flyout status-odobreno card-slot-1" data-status-val="odobreno" onclick="setStatus('komunalni-projekt', 'odobreno', event)" title="Označi: ODOBRENO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">ODOBRENO</span>
+                </button>
+                <button type="button" class="status-badge status-card-flyout status-odbijeno card-slot-2" data-status-val="odbijeno" onclick="setStatus('komunalni-projekt', 'odbijeno', event)" title="Označi: ODBIJENO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">ODBIJENO</span>
+                </button>
+                <button type="button" class="status-badge status-card-flyout status-poslano" data-status-val="poslano" style="display:none;" onclick="setStatus('komunalni-projekt', 'poslano', event)" title="Označi: POSLANO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">POSLANO</span>
+                </button>
+              </div>
             </div>
-            <span class="card-tag badge-green">JAVNI SEKTOR</span>
-            <div class="scanline-overlay"></div>
-          </a>
+          </div>
 
           <div class="video-info-crazy">
             <div class="card-client-row">
               <span class="card-client-name">Grad Varaždin & Čistoća d.o.o.</span>
-
-              <!-- Interactive Card-Fan Status Switcher -->
-              <div class="status-fan-container" data-slug="komunalni-projekt">
-                <button type="button" class="status-badge active-status-badge status-poslano" onclick="cycleStatus('komunalni-projekt', event)" title="Status ponude (hoveraj za opcije, klikni za rotaciju)">
-                  <span class="status-dot"></span>
-                  <span class="status-label">POSLANO</span>
-                </button>
-                <div class="status-fan-deck">
-                  <button type="button" class="status-badge status-card-flyout status-odobreno card-slot-1" data-status-val="odobreno" onclick="setStatus('komunalni-projekt', 'odobreno', event)" title="Označi: ODOBRENO">
-                    <span class="status-dot"></span>
-                    <span class="status-label">ODOBRENO</span>
-                  </button>
-                  <button type="button" class="status-badge status-card-flyout status-odbijeno card-slot-2" data-status-val="odbijeno" onclick="setStatus('komunalni-projekt', 'odbijeno', event)" title="Označi: ODBIJENO">
-                    <span class="status-dot"></span>
-                    <span class="status-label">ODBIJENO</span>
-                  </button>
-                  <button type="button" class="status-badge status-card-flyout status-poslano" data-status-val="poslano" style="display:none;" onclick="setStatus('komunalni-projekt', 'poslano', event)" title="Označi: POSLANO">
-                    <span class="status-dot"></span>
-                    <span class="status-label">POSLANO</span>
-                  </button>
-                </div>
-              </div>
             </div>
 
             <!-- Direct Title Click to Open in New Tab -->
@@ -1126,41 +1137,42 @@
           <!-- Full-card CanvasUI 4x4 Bayer Dither layer -->
           <canvas class="card-dither-canvas"></canvas>
 
-          <!-- Direct click to open deck in new tab -->
-          <a href="https://varazdin.studio/cakovec/" target="_blank" class="video-thumb-crazy" title="Otvori 101 MILIJUN — Kronika međimurskog gradilišta">
-            <img src="assets/thumbnails/thumb_cakovec.jpg" alt="101 MILIJUN — Kronika međimurskog gradilišta" class="card-thumb" loading="lazy" onerror="this.src='../Cakovec_Prezentacija/assets/01_cakovec_skola_fpv.jpg'">
-            <div class="play-btn-crazy">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          <div class="video-thumb-crazy-wrapper">
+            <!-- Direct click to open deck in new tab -->
+            <a href="https://varazdin.studio/cakovec/" target="_blank" class="video-thumb-crazy" title="Otvori 101 MILIJUN — Kronika međimurskog gradilišta">
+              <img src="assets/thumbnails/thumb_cakovec.jpg" alt="101 MILIJUN — Kronika međimurskog gradilišta" class="card-thumb" loading="lazy" onerror="this.src='../Cakovec_Prezentacija/assets/01_cakovec_skola_fpv.jpg'">
+              <div class="play-btn-crazy">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+              <div class="scanline-overlay"></div>
+            </a>
+
+            <!-- Interactive Card-Fan Status Switcher on top-left of thumbnail -->
+            <div class="status-fan-container" data-slug="cakovec" onclick="event.stopPropagation();">
+              <button type="button" class="status-badge active-status-badge status-poslano" onclick="cycleStatus('cakovec', event)" title="Status ponude (hoveraj za opcije, klikni za rotaciju)">
+                <span class="status-dot"></span>
+                <span class="status-label">POSLANO</span>
+              </button>
+              <div class="status-fan-deck">
+                <button type="button" class="status-badge status-card-flyout status-odobreno card-slot-1" data-status-val="odobreno" onclick="setStatus('cakovec', 'odobreno', event)" title="Označi: ODOBRENO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">ODOBRENO</span>
+                </button>
+                <button type="button" class="status-badge status-card-flyout status-odbijeno card-slot-2" data-status-val="odbijeno" onclick="setStatus('cakovec', 'odbijeno', event)" title="Označi: ODBIJENO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">ODBIJENO</span>
+                </button>
+                <button type="button" class="status-badge status-card-flyout status-poslano" data-status-val="poslano" style="display:none;" onclick="setStatus('cakovec', 'poslano', event)" title="Označi: POSLANO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">POSLANO</span>
+                </button>
+              </div>
             </div>
-            <span class="card-tag badge-green">INFRASTRUKTURA</span>
-            <div class="scanline-overlay"></div>
-          </a>
+          </div>
 
           <div class="video-info-crazy">
             <div class="card-client-row">
               <span class="card-client-name">Grad Čakovec & Međimurska županija</span>
-
-              <!-- Interactive Card-Fan Status Switcher -->
-              <div class="status-fan-container" data-slug="cakovec">
-                <button type="button" class="status-badge active-status-badge status-poslano" onclick="cycleStatus('cakovec', event)" title="Status ponude (hoveraj za opcije, klikni za rotaciju)">
-                  <span class="status-dot"></span>
-                  <span class="status-label">POSLANO</span>
-                </button>
-                <div class="status-fan-deck">
-                  <button type="button" class="status-badge status-card-flyout status-odobreno card-slot-1" data-status-val="odobreno" onclick="setStatus('cakovec', 'odobreno', event)" title="Označi: ODOBRENO">
-                    <span class="status-dot"></span>
-                    <span class="status-label">ODOBRENO</span>
-                  </button>
-                  <button type="button" class="status-badge status-card-flyout status-odbijeno card-slot-2" data-status-val="odbijeno" onclick="setStatus('cakovec', 'odbijeno', event)" title="Označi: ODBIJENO">
-                    <span class="status-dot"></span>
-                    <span class="status-label">ODBIJENO</span>
-                  </button>
-                  <button type="button" class="status-badge status-card-flyout status-poslano" data-status-val="poslano" style="display:none;" onclick="setStatus('cakovec', 'poslano', event)" title="Označi: POSLANO">
-                    <span class="status-dot"></span>
-                    <span class="status-label">POSLANO</span>
-                  </button>
-                </div>
-              </div>
             </div>
 
             <!-- Direct Title Click to Open in New Tab -->
@@ -1211,41 +1223,42 @@
           <!-- Full-card CanvasUI 4x4 Bayer Dither layer -->
           <canvas class="card-dither-canvas"></canvas>
 
-          <!-- Direct click to open deck in new tab -->
-          <a href="https://varazdin.studio/djurdjevac/" target="_blank" class="video-thumb-crazy" title="Otvori OPSADA WASSERBURGA 1552. — Picokijada & Novo jezero">
-            <img src="assets/thumbnails/thumb_djurdjevac.jpg" alt="OPSADA WASSERBURGA 1552. — Picokijada & Novo jezero" class="card-thumb" loading="lazy" onerror="this.src='../Djurdjevac_Prezentacija/assets/01_djurdjevac_wasserburg_1552.jpg'">
-            <div class="play-btn-crazy">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          <div class="video-thumb-crazy-wrapper">
+            <!-- Direct click to open deck in new tab -->
+            <a href="https://varazdin.studio/djurdjevac/" target="_blank" class="video-thumb-crazy" title="Otvori OPSADA WASSERBURGA 1552. — Picokijada & Novo jezero">
+              <img src="assets/thumbnails/thumb_djurdjevac.jpg" alt="OPSADA WASSERBURGA 1552. — Picokijada & Novo jezero" class="card-thumb" loading="lazy" onerror="this.src='../Djurdjevac_Prezentacija/assets/01_djurdjevac_wasserburg_1552.jpg'">
+              <div class="play-btn-crazy">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+              <div class="scanline-overlay"></div>
+            </a>
+
+            <!-- Interactive Card-Fan Status Switcher on top-left of thumbnail -->
+            <div class="status-fan-container" data-slug="djurdjevac" onclick="event.stopPropagation();">
+              <button type="button" class="status-badge active-status-badge status-poslano" onclick="cycleStatus('djurdjevac', event)" title="Status ponude (hoveraj za opcije, klikni za rotaciju)">
+                <span class="status-dot"></span>
+                <span class="status-label">POSLANO</span>
+              </button>
+              <div class="status-fan-deck">
+                <button type="button" class="status-badge status-card-flyout status-odobreno card-slot-1" data-status-val="odobreno" onclick="setStatus('djurdjevac', 'odobreno', event)" title="Označi: ODOBRENO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">ODOBRENO</span>
+                </button>
+                <button type="button" class="status-badge status-card-flyout status-odbijeno card-slot-2" data-status-val="odbijeno" onclick="setStatus('djurdjevac', 'odbijeno', event)" title="Označi: ODBIJENO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">ODBIJENO</span>
+                </button>
+                <button type="button" class="status-badge status-card-flyout status-poslano" data-status-val="poslano" style="display:none;" onclick="setStatus('djurdjevac', 'poslano', event)" title="Označi: POSLANO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">POSLANO</span>
+                </button>
+              </div>
             </div>
-            <span class="card-tag badge-gold">TURIZAM & SPEKTAKL</span>
-            <div class="scanline-overlay"></div>
-          </a>
+          </div>
 
           <div class="video-info-crazy">
             <div class="card-client-row">
               <span class="card-client-name">Grad Đurđevac & TZ Đurđevac</span>
-
-              <!-- Interactive Card-Fan Status Switcher -->
-              <div class="status-fan-container" data-slug="djurdjevac">
-                <button type="button" class="status-badge active-status-badge status-poslano" onclick="cycleStatus('djurdjevac', event)" title="Status ponude (hoveraj za opcije, klikni za rotaciju)">
-                  <span class="status-dot"></span>
-                  <span class="status-label">POSLANO</span>
-                </button>
-                <div class="status-fan-deck">
-                  <button type="button" class="status-badge status-card-flyout status-odobreno card-slot-1" data-status-val="odobreno" onclick="setStatus('djurdjevac', 'odobreno', event)" title="Označi: ODOBRENO">
-                    <span class="status-dot"></span>
-                    <span class="status-label">ODOBRENO</span>
-                  </button>
-                  <button type="button" class="status-badge status-card-flyout status-odbijeno card-slot-2" data-status-val="odbijeno" onclick="setStatus('djurdjevac', 'odbijeno', event)" title="Označi: ODBIJENO">
-                    <span class="status-dot"></span>
-                    <span class="status-label">ODBIJENO</span>
-                  </button>
-                  <button type="button" class="status-badge status-card-flyout status-poslano" data-status-val="poslano" style="display:none;" onclick="setStatus('djurdjevac', 'poslano', event)" title="Označi: POSLANO">
-                    <span class="status-dot"></span>
-                    <span class="status-label">POSLANO</span>
-                  </button>
-                </div>
-              </div>
             </div>
 
             <!-- Direct Title Click to Open in New Tab -->
@@ -1296,41 +1309,42 @@
           <!-- Full-card CanvasUI 4x4 Bayer Dither layer -->
           <canvas class="card-dither-canvas"></canvas>
 
-          <!-- Direct click to open deck in new tab -->
-          <a href="https://varazdin.studio/krapina/" target="_blank" class="video-thumb-crazy" title="Otvori TRI KULE NAD KRAPINČICOM — Filmska Produkcija">
-            <img src="assets/thumbnails/thumb_krapina.jpg" alt="TRI KULE NAD KRAPINČICOM — Filmska Produkcija" class="card-thumb" loading="lazy" onerror="this.src='../Krapina_Prezentacija/assets/01_krapina_ceh_leh_meh.jpg'">
-            <div class="play-btn-crazy">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          <div class="video-thumb-crazy-wrapper">
+            <!-- Direct click to open deck in new tab -->
+            <a href="https://varazdin.studio/krapina/" target="_blank" class="video-thumb-crazy" title="Otvori TRI KULE NAD KRAPINČICOM — Filmska Produkcija">
+              <img src="assets/thumbnails/thumb_krapina.jpg" alt="TRI KULE NAD KRAPINČICOM — Filmska Produkcija" class="card-thumb" loading="lazy" onerror="this.src='../Krapina_Prezentacija/assets/01_krapina_ceh_leh_meh.jpg'">
+              <div class="play-btn-crazy">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+              <div class="scanline-overlay"></div>
+            </a>
+
+            <!-- Interactive Card-Fan Status Switcher on top-left of thumbnail -->
+            <div class="status-fan-container" data-slug="krapina" onclick="event.stopPropagation();">
+              <button type="button" class="status-badge active-status-badge status-poslano" onclick="cycleStatus('krapina', event)" title="Status ponude (hoveraj za opcije, klikni za rotaciju)">
+                <span class="status-dot"></span>
+                <span class="status-label">POSLANO</span>
+              </button>
+              <div class="status-fan-deck">
+                <button type="button" class="status-badge status-card-flyout status-odobreno card-slot-1" data-status-val="odobreno" onclick="setStatus('krapina', 'odobreno', event)" title="Označi: ODOBRENO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">ODOBRENO</span>
+                </button>
+                <button type="button" class="status-badge status-card-flyout status-odbijeno card-slot-2" data-status-val="odbijeno" onclick="setStatus('krapina', 'odbijeno', event)" title="Označi: ODBIJENO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">ODBIJENO</span>
+                </button>
+                <button type="button" class="status-badge status-card-flyout status-poslano" data-status-val="poslano" style="display:none;" onclick="setStatus('krapina', 'poslano', event)" title="Označi: POSLANO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">POSLANO</span>
+                </button>
+              </div>
             </div>
-            <span class="card-tag badge-green">KULTURNA BAŠTINA</span>
-            <div class="scanline-overlay"></div>
-          </a>
+          </div>
 
           <div class="video-info-crazy">
             <div class="card-client-row">
               <span class="card-client-name">Krapinsko-zagorska županija & Grad Krapina</span>
-
-              <!-- Interactive Card-Fan Status Switcher -->
-              <div class="status-fan-container" data-slug="krapina">
-                <button type="button" class="status-badge active-status-badge status-poslano" onclick="cycleStatus('krapina', event)" title="Status ponude (hoveraj za opcije, klikni za rotaciju)">
-                  <span class="status-dot"></span>
-                  <span class="status-label">POSLANO</span>
-                </button>
-                <div class="status-fan-deck">
-                  <button type="button" class="status-badge status-card-flyout status-odobreno card-slot-1" data-status-val="odobreno" onclick="setStatus('krapina', 'odobreno', event)" title="Označi: ODOBRENO">
-                    <span class="status-dot"></span>
-                    <span class="status-label">ODOBRENO</span>
-                  </button>
-                  <button type="button" class="status-badge status-card-flyout status-odbijeno card-slot-2" data-status-val="odbijeno" onclick="setStatus('krapina', 'odbijeno', event)" title="Označi: ODBIJENO">
-                    <span class="status-dot"></span>
-                    <span class="status-label">ODBIJENO</span>
-                  </button>
-                  <button type="button" class="status-badge status-card-flyout status-poslano" data-status-val="poslano" style="display:none;" onclick="setStatus('krapina', 'poslano', event)" title="Označi: POSLANO">
-                    <span class="status-dot"></span>
-                    <span class="status-label">POSLANO</span>
-                  </button>
-                </div>
-              </div>
             </div>
 
             <!-- Direct Title Click to Open in New Tab -->
@@ -1381,41 +1395,42 @@
           <!-- Full-card CanvasUI 4x4 Bayer Dither layer -->
           <canvas class="card-dither-canvas"></canvas>
 
-          <!-- Direct click to open deck in new tab -->
-          <a href="https://varazdin.studio/samobor/" target="_blank" class="video-thumb-crazy" title="Otvori VRUDNIK & Samobor 2026 — Kinematografski Pitch">
-            <img src="assets/thumbnails/thumb_samobor.jpg" alt="VRUDNIK & Samobor 2026 — Kinematografski Pitch" class="card-thumb" loading="lazy" onerror="this.src='../Samobor_Prezentacija/assets/01_vrudnik_rov_kokel_1540.jpg'">
-            <div class="play-btn-crazy">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          <div class="video-thumb-crazy-wrapper">
+            <!-- Direct click to open deck in new tab -->
+            <a href="https://varazdin.studio/samobor/" target="_blank" class="video-thumb-crazy" title="Otvori VRUDNIK & Samobor 2026 — Kinematografski Pitch">
+              <img src="assets/thumbnails/thumb_samobor.jpg" alt="VRUDNIK & Samobor 2026 — Kinematografski Pitch" class="card-thumb" loading="lazy" onerror="this.src='../Samobor_Prezentacija/assets/01_vrudnik_rov_kokel_1540.jpg'">
+              <div class="play-btn-crazy">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+              <div class="scanline-overlay"></div>
+            </a>
+
+            <!-- Interactive Card-Fan Status Switcher on top-left of thumbnail -->
+            <div class="status-fan-container" data-slug="samobor" onclick="event.stopPropagation();">
+              <button type="button" class="status-badge active-status-badge status-poslano" onclick="cycleStatus('samobor', event)" title="Status ponude (hoveraj za opcije, klikni za rotaciju)">
+                <span class="status-dot"></span>
+                <span class="status-label">POSLANO</span>
+              </button>
+              <div class="status-fan-deck">
+                <button type="button" class="status-badge status-card-flyout status-odobreno card-slot-1" data-status-val="odobreno" onclick="setStatus('samobor', 'odobreno', event)" title="Označi: ODOBRENO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">ODOBRENO</span>
+                </button>
+                <button type="button" class="status-badge status-card-flyout status-odbijeno card-slot-2" data-status-val="odbijeno" onclick="setStatus('samobor', 'odbijeno', event)" title="Označi: ODBIJENO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">ODBIJENO</span>
+                </button>
+                <button type="button" class="status-badge status-card-flyout status-poslano" data-status-val="poslano" style="display:none;" onclick="setStatus('samobor', 'poslano', event)" title="Označi: POSLANO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">POSLANO</span>
+                </button>
+              </div>
             </div>
-            <span class="card-tag badge-gold">VR & FILM</span>
-            <div class="scanline-overlay"></div>
-          </a>
+          </div>
 
           <div class="video-info-crazy">
             <div class="card-client-row">
               <span class="card-client-name">Grad Samobor & TZ Samobor</span>
-
-              <!-- Interactive Card-Fan Status Switcher -->
-              <div class="status-fan-container" data-slug="samobor">
-                <button type="button" class="status-badge active-status-badge status-poslano" onclick="cycleStatus('samobor', event)" title="Status ponude (hoveraj za opcije, klikni za rotaciju)">
-                  <span class="status-dot"></span>
-                  <span class="status-label">POSLANO</span>
-                </button>
-                <div class="status-fan-deck">
-                  <button type="button" class="status-badge status-card-flyout status-odobreno card-slot-1" data-status-val="odobreno" onclick="setStatus('samobor', 'odobreno', event)" title="Označi: ODOBRENO">
-                    <span class="status-dot"></span>
-                    <span class="status-label">ODOBRENO</span>
-                  </button>
-                  <button type="button" class="status-badge status-card-flyout status-odbijeno card-slot-2" data-status-val="odbijeno" onclick="setStatus('samobor', 'odbijeno', event)" title="Označi: ODBIJENO">
-                    <span class="status-dot"></span>
-                    <span class="status-label">ODBIJENO</span>
-                  </button>
-                  <button type="button" class="status-badge status-card-flyout status-poslano" data-status-val="poslano" style="display:none;" onclick="setStatus('samobor', 'poslano', event)" title="Označi: POSLANO">
-                    <span class="status-dot"></span>
-                    <span class="status-label">POSLANO</span>
-                  </button>
-                </div>
-              </div>
             </div>
 
             <!-- Direct Title Click to Open in New Tab -->
@@ -1466,41 +1481,42 @@
           <!-- Full-card CanvasUI 4x4 Bayer Dither layer -->
           <canvas class="card-dither-canvas"></canvas>
 
-          <!-- Direct click to open deck in new tab -->
-          <a href="https://varazdin.studio/ogulin/" target="_blank" class="video-thumb-crazy" title="Otvori KORIJENI PONORA — Zavičaj bajki & Frankopani">
-            <img src="assets/thumbnails/thumb_ogulin.jpg" alt="KORIJENI PONORA — Zavičaj bajki & Frankopani" class="card-thumb" loading="lazy" onerror="this.src='../Ogulin_Prezentacija/assets/dvorac_ogulin.webp'">
-            <div class="play-btn-crazy">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          <div class="video-thumb-crazy-wrapper">
+            <!-- Direct click to open deck in new tab -->
+            <a href="https://varazdin.studio/ogulin/" target="_blank" class="video-thumb-crazy" title="Otvori KORIJENI PONORA — Zavičaj bajki & Frankopani">
+              <img src="assets/thumbnails/thumb_ogulin.jpg" alt="KORIJENI PONORA — Zavičaj bajki & Frankopani" class="card-thumb" loading="lazy" onerror="this.src='../Ogulin_Prezentacija/assets/dvorac_ogulin.webp'">
+              <div class="play-btn-crazy">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+              <div class="scanline-overlay"></div>
+            </a>
+
+            <!-- Interactive Card-Fan Status Switcher on top-left of thumbnail -->
+            <div class="status-fan-container" data-slug="ogulin" onclick="event.stopPropagation();">
+              <button type="button" class="status-badge active-status-badge status-poslano" onclick="cycleStatus('ogulin', event)" title="Status ponude (hoveraj za opcije, klikni za rotaciju)">
+                <span class="status-dot"></span>
+                <span class="status-label">POSLANO</span>
+              </button>
+              <div class="status-fan-deck">
+                <button type="button" class="status-badge status-card-flyout status-odobreno card-slot-1" data-status-val="odobreno" onclick="setStatus('ogulin', 'odobreno', event)" title="Označi: ODOBRENO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">ODOBRENO</span>
+                </button>
+                <button type="button" class="status-badge status-card-flyout status-odbijeno card-slot-2" data-status-val="odbijeno" onclick="setStatus('ogulin', 'odbijeno', event)" title="Označi: ODBIJENO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">ODBIJENO</span>
+                </button>
+                <button type="button" class="status-badge status-card-flyout status-poslano" data-status-val="poslano" style="display:none;" onclick="setStatus('ogulin', 'poslano', event)" title="Označi: POSLANO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">POSLANO</span>
+                </button>
+              </div>
             </div>
-            <span class="card-tag badge-green">DESTINACIJSKI FILM</span>
-            <div class="scanline-overlay"></div>
-          </a>
+          </div>
 
           <div class="video-info-crazy">
             <div class="card-client-row">
               <span class="card-client-name">Grad Ogulin & TZ Ogulin</span>
-
-              <!-- Interactive Card-Fan Status Switcher -->
-              <div class="status-fan-container" data-slug="ogulin">
-                <button type="button" class="status-badge active-status-badge status-poslano" onclick="cycleStatus('ogulin', event)" title="Status ponude (hoveraj za opcije, klikni za rotaciju)">
-                  <span class="status-dot"></span>
-                  <span class="status-label">POSLANO</span>
-                </button>
-                <div class="status-fan-deck">
-                  <button type="button" class="status-badge status-card-flyout status-odobreno card-slot-1" data-status-val="odobreno" onclick="setStatus('ogulin', 'odobreno', event)" title="Označi: ODOBRENO">
-                    <span class="status-dot"></span>
-                    <span class="status-label">ODOBRENO</span>
-                  </button>
-                  <button type="button" class="status-badge status-card-flyout status-odbijeno card-slot-2" data-status-val="odbijeno" onclick="setStatus('ogulin', 'odbijeno', event)" title="Označi: ODBIJENO">
-                    <span class="status-dot"></span>
-                    <span class="status-label">ODBIJENO</span>
-                  </button>
-                  <button type="button" class="status-badge status-card-flyout status-poslano" data-status-val="poslano" style="display:none;" onclick="setStatus('ogulin', 'poslano', event)" title="Označi: POSLANO">
-                    <span class="status-dot"></span>
-                    <span class="status-label">POSLANO</span>
-                  </button>
-                </div>
-              </div>
             </div>
 
             <!-- Direct Title Click to Open in New Tab -->
@@ -1551,41 +1567,42 @@
           <!-- Full-card CanvasUI 4x4 Bayer Dither layer -->
           <canvas class="card-dither-canvas"></canvas>
 
-          <!-- Direct click to open deck in new tab -->
-          <a href="https://varazdin.studio/kb-pogon/" target="_blank" class="video-thumb-crazy" title="Otvori KB D.O.O. — Industrijski Video Pitch">
-            <img src="assets/thumbnails/thumb_kb-pogon.jpg" alt="KB D.O.O. — Industrijski Video Pitch" class="card-thumb" loading="lazy" onerror="this.src='../Kb-pogon_Prezentacija/assets/meridian_fpv_interior_flow.jpg'">
-            <div class="play-btn-crazy">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          <div class="video-thumb-crazy-wrapper">
+            <!-- Direct click to open deck in new tab -->
+            <a href="https://varazdin.studio/kb-pogon/" target="_blank" class="video-thumb-crazy" title="Otvori KB D.O.O. — Industrijski Video Pitch">
+              <img src="assets/thumbnails/thumb_kb-pogon.jpg" alt="KB D.O.O. — Industrijski Video Pitch" class="card-thumb" loading="lazy" onerror="this.src='../Kb-pogon_Prezentacija/assets/meridian_fpv_interior_flow.jpg'">
+              <div class="play-btn-crazy">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+              <div class="scanline-overlay"></div>
+            </a>
+
+            <!-- Interactive Card-Fan Status Switcher on top-left of thumbnail -->
+            <div class="status-fan-container" data-slug="kb-pogon" onclick="event.stopPropagation();">
+              <button type="button" class="status-badge active-status-badge status-poslano" onclick="cycleStatus('kb-pogon', event)" title="Status ponude (hoveraj za opcije, klikni za rotaciju)">
+                <span class="status-dot"></span>
+                <span class="status-label">POSLANO</span>
+              </button>
+              <div class="status-fan-deck">
+                <button type="button" class="status-badge status-card-flyout status-odobreno card-slot-1" data-status-val="odobreno" onclick="setStatus('kb-pogon', 'odobreno', event)" title="Označi: ODOBRENO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">ODOBRENO</span>
+                </button>
+                <button type="button" class="status-badge status-card-flyout status-odbijeno card-slot-2" data-status-val="odbijeno" onclick="setStatus('kb-pogon', 'odbijeno', event)" title="Označi: ODBIJENO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">ODBIJENO</span>
+                </button>
+                <button type="button" class="status-badge status-card-flyout status-poslano" data-status-val="poslano" style="display:none;" onclick="setStatus('kb-pogon', 'poslano', event)" title="Označi: POSLANO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">POSLANO</span>
+                </button>
+              </div>
             </div>
-            <span class="card-tag badge-green">INDUSTRIJA</span>
-            <div class="scanline-overlay"></div>
-          </a>
+          </div>
 
           <div class="video-info-crazy">
             <div class="card-client-row">
               <span class="card-client-name">KB d.o.o. Pogon</span>
-
-              <!-- Interactive Card-Fan Status Switcher -->
-              <div class="status-fan-container" data-slug="kb-pogon">
-                <button type="button" class="status-badge active-status-badge status-poslano" onclick="cycleStatus('kb-pogon', event)" title="Status ponude (hoveraj za opcije, klikni za rotaciju)">
-                  <span class="status-dot"></span>
-                  <span class="status-label">POSLANO</span>
-                </button>
-                <div class="status-fan-deck">
-                  <button type="button" class="status-badge status-card-flyout status-odobreno card-slot-1" data-status-val="odobreno" onclick="setStatus('kb-pogon', 'odobreno', event)" title="Označi: ODOBRENO">
-                    <span class="status-dot"></span>
-                    <span class="status-label">ODOBRENO</span>
-                  </button>
-                  <button type="button" class="status-badge status-card-flyout status-odbijeno card-slot-2" data-status-val="odbijeno" onclick="setStatus('kb-pogon', 'odbijeno', event)" title="Označi: ODBIJENO">
-                    <span class="status-dot"></span>
-                    <span class="status-label">ODBIJENO</span>
-                  </button>
-                  <button type="button" class="status-badge status-card-flyout status-poslano" data-status-val="poslano" style="display:none;" onclick="setStatus('kb-pogon', 'poslano', event)" title="Označi: POSLANO">
-                    <span class="status-dot"></span>
-                    <span class="status-label">POSLANO</span>
-                  </button>
-                </div>
-              </div>
             </div>
 
             <!-- Direct Title Click to Open in New Tab -->
