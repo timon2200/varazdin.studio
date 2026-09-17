@@ -22,6 +22,7 @@ export class CommentTooltip {
   }
 
   initDOM() {
+    if (typeof document === 'undefined') return;
     let existing = document.getElementById('svCommentTooltipOverlay');
     if (existing) {
       this.overlayEl = existing;
@@ -29,33 +30,43 @@ export class CommentTooltip {
       return;
     }
 
-    const overlay = document.createElement('div');
-    overlay.id = 'svCommentTooltipOverlay';
-    overlay.className = 'comment-tooltip-overlay';
-    overlay.setAttribute('aria-hidden', 'true');
-    overlay.style.display = 'none';
+    const mount = () => {
+      if (document.getElementById('svCommentTooltipOverlay')) return;
+      const overlay = document.createElement('div');
+      overlay.id = 'svCommentTooltipOverlay';
+      overlay.className = 'comment-tooltip-overlay';
+      overlay.setAttribute('aria-hidden', 'true');
+      overlay.style.display = 'none';
 
-    overlay.innerHTML = `
-      <div id="svCommentTooltipCard" class="comment-box-minimal" role="dialog" aria-modal="true" aria-label="Bilješka">
-        <textarea id="commentTextInput" 
-                  class="comment-minimal-textarea" 
-                  placeholder="Upiši bilješku..."
-                  rows="3"
-                  spellcheck="false"></textarea>
+      overlay.innerHTML = `
+        <div id="svCommentTooltipCard" class="comment-box-minimal" role="dialog" aria-modal="true" aria-label="Bilješka">
+          <textarea id="commentTextInput" 
+                    class="comment-minimal-textarea" 
+                    placeholder="Upiši bilješku..."
+                    rows="3"
+                    spellcheck="false"></textarea>
 
-        <button type="button" id="btnTooltipSave" class="comment-btn-check" aria-label="Spremi" title="Spremi (Enter)">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="20 6 9 17 4 12"></polyline>
-          </svg>
-        </button>
-      </div>
-    `;
+          <button type="button" id="btnTooltipSave" class="comment-btn-check" aria-label="Spremi" title="Spremi (Enter)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </button>
+        </div>
+      `;
 
-    document.body.appendChild(overlay);
-    this.overlayEl = overlay;
-    this.tooltipEl = overlay.querySelector('#svCommentTooltipCard');
+      if (document.body) {
+        document.body.appendChild(overlay);
+        this.overlayEl = overlay;
+        this.tooltipEl = overlay.querySelector('#svCommentTooltipCard');
+        this.bindEvents();
+      }
+    };
 
-    this.bindEvents();
+    if (document.body) {
+      mount();
+    } else {
+      document.addEventListener('DOMContentLoaded', mount);
+    }
   }
 
   bindEvents() {
