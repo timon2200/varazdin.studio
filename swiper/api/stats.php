@@ -32,13 +32,16 @@ $dataFile = $dataDir . '/votes.json';
 $currentViewingRound = $activeRound;
 
 if ($roundParam !== 'active' && is_numeric($roundParam)) {
-    $currentViewingRound = (int)$roundParam;
-    $possibleSnapshot = $dataDir . '/votes_round_' . $currentViewingRound . '.json';
-    $possibleSnapshotAlt = $dataDir . '/votes-round' . $currentViewingRound . '-snapshot.json';
-    if (file_exists($possibleSnapshot)) {
-        $dataFile = $possibleSnapshot;
-    } elseif (file_exists($possibleSnapshotAlt)) {
-        $dataFile = $possibleSnapshotAlt;
+    $reqRound = (int)$roundParam;
+    if ($reqRound !== $activeRound) {
+        $currentViewingRound = $reqRound;
+        $possibleSnapshot = $dataDir . '/votes_round_' . $reqRound . '.json';
+        $possibleSnapshotAlt = $dataDir . '/votes-round' . $reqRound . '-snapshot.json';
+        if (file_exists($possibleSnapshot)) {
+            $dataFile = $possibleSnapshot;
+        } elseif (file_exists($possibleSnapshotAlt)) {
+            $dataFile = $possibleSnapshotAlt;
+        }
     }
 }
 
@@ -54,16 +57,32 @@ if (!file_exists($dataFile)) {
     exit;
 }
 
-function alignVotesStoreWithCatalog(&$store, $catalogJsFile) {
+function alignVotesStoreWithCatalog(&$store, $dataDir, $catalogJsFile) {
     if (!isset($store['items']) || !is_array($store['items'])) return false;
-    if (!file_exists($catalogJsFile)) return false;
 
-    $jsContent = @file_get_contents($catalogJsFile);
-    $start = strpos($jsContent, '[');
-    $end = strrpos($jsContent, ']');
-    if ($start === false || $end === false) return false;
-    $master = json_decode(substr($jsContent, $start, ($end - $start) + 1), true);
-    if (!is_array($master) || count($master) === 0) return false;
+    $master = null;
+    $activeJsonFile = $dataDir . '/active-catalog.json';
+    if (file_exists($activeJsonFile)) {
+        $raw = @file_get_contents($activeJsonFile);
+        $parsed = @json_decode($raw, true);
+        if (is_array($parsed) && count($parsed) >= 300) {
+            $master = $parsed;
+        }
+    }
+
+    if (!$master && file_exists($catalogJsFile)) {
+        $jsContent = @file_get_contents($catalogJsFile);
+        $start = strpos($jsContent, '[');
+        $end = strrpos($jsContent, ']');
+        if ($start !== false && $end !== false) {
+            $parsed = @json_decode(substr($jsContent, $start, ($end - $start) + 1), true);
+            if (is_array($parsed) && count($parsed) >= 300) {
+                $master = $parsed;
+            }
+        }
+    }
+
+    if (!$master || !is_array($master) || count($master) === 0) return false;
 
     // Fast check: if count matches and first item matches, already aligned
     $firstMaster = $master[0];
@@ -123,7 +142,7 @@ if (flock($fp, LOCK_SH)) {
 
     $store = $content ? json_decode($content, true) : [];
     $catalogJsPath = dirname(__DIR__) . '/js/catalog-data.js';
-    if (alignVotesStoreWithCatalog($store, $catalogJsPath)) {
+    if (alignVotesStoreWithCatalog($store, $dataDir, $catalogJsPath)) {
         @file_put_contents($dataFile, json_encode($store, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
     }
     $items = isset($store['items']) ? array_values($store['items']) : [];
