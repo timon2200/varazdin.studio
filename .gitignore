@@ -6,4 +6,5 @@ dist/
 scratch_favicon/
 **/assets/designs/
 assets/designs/
-
+__pycache__/
+*.pyc

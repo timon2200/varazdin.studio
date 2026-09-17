@@ -7,9 +7,16 @@ import { CATALOG_DATA as ACTIVE_CATALOG } from "./catalog-data.js";
 import { CATALOG_DATA as MASTER_CATALOG } from "./catalog-data.master.js";
 import { NoiseGrain } from "./noise-grain.js";
 import { LightboxZoomEngine } from "./lightbox-zoom.js";
+import { globalCommentsManager } from "./comments-manager.js";
+import { globalCommentTooltip } from "./comment-tooltip.js";
+import { globalHoldGesture } from "./hold-gesture.js";
+import { initAllBrutalistSelects } from "./custom-select.js";
 
 export class CatalogCurator {
   constructor() {
+    this.commentsManager = globalCommentsManager;
+    this.commentTooltip = globalCommentTooltip;
+    this.holdGesture = globalHoldGesture;
     this.masterCatalog = (Array.isArray(MASTER_CATALOG) && MASTER_CATALOG.length > 0) 
       ? [...MASTER_CATALOG] 
       : [...ACTIVE_CATALOG];
@@ -18,9 +25,9 @@ export class CatalogCurator {
     let initialSelected = new Set(ACTIVE_CATALOG.map(it => it.id));
     try {
       const rawStored = localStorage.getItem("sv_curated_active_ids");
-      if (rawStored) {
+      if (rawStored !== null) {
         const parsed = JSON.parse(rawStored);
-        if (Array.isArray(parsed) && parsed.length > 0) {
+        if (Array.isArray(parsed)) {
           initialSelected = new Set(parsed);
         }
       }
@@ -78,6 +85,12 @@ export class CatalogCurator {
     // 2. Bind UI event listeners
     this.bindEvents();
 
+    // 2.1 Comments real-time sync
+    this.commentsManager.fetchServerComments();
+    window.addEventListener("sv-comments-updated", () => {
+      this.render();
+    });
+
     // 3. Render immediately from local bundle (0ms instant paint)
     this.render();
 
@@ -131,7 +144,7 @@ export class CatalogCurator {
           if (Array.isArray(data.master) && data.master.length > 0) {
             this.masterCatalog = data.master;
           }
-          if (Array.isArray(data.active) && data.active.length > 0) {
+          if (Array.isArray(data.active)) {
             this.selectedIds = new Set(data.active.map(it => it.id));
             try {
               localStorage.setItem("sv_curated_active_ids", JSON.stringify(Array.from(this.selectedIds)));
@@ -167,6 +180,9 @@ export class CatalogCurator {
       this.sortOption = e.target.value;
       this.render();
     });
+
+    // Initialize custom brutalist styled dropdown selects
+    initAllBrutalistSelects(document);
 
     // Vote Filter Group
     const voteGroup = document.getElementById("adminVoteFilterGroup");
@@ -332,24 +348,29 @@ export class CatalogCurator {
     });
 
     let filtered = items.filter(item => {
-      if (this.activeCategory !== "ALL") {
+      if (this.activeCategory === "Comments") {
+        if (!this.commentsManager || !this.commentsManager.hasComment(item.id)) return false;
+      } else if (this.activeCategory !== "ALL") {
         if (item.category.toUpperCase() !== this.activeCategory.toUpperCase()) {
           return false;
         }
       }
 
-      // Vote Filter (all, voted, top20, unvoted)
+      // Vote Filter (all, voted, top20, commented, unvoted)
       if (this.voteFilter === "voted") {
         if (item._statTotalVotes <= 0) return false;
       } else if (this.voteFilter === "unvoted") {
         if (item._statTotalVotes > 0) return false;
+      } else if (this.voteFilter === "commented") {
+        if (!this.commentsManager || !this.commentsManager.hasComment(item.id)) return false;
       }
 
       if (this.searchQuery) {
         const titleMatch = item.title.toLowerCase().includes(this.searchQuery);
         const catMatch = item.category.toLowerCase().includes(this.searchQuery);
         const tagMatch = item.tags && item.tags.some(t => t.toLowerCase().includes(this.searchQuery));
-        if (!titleMatch && !catMatch && !tagMatch) return false;
+        const commentMatch = this.commentsManager && (this.commentsManager.getCommentText(item.id) || '').toLowerCase().includes(this.searchQuery);
+        if (!titleMatch && !catMatch && !tagMatch && !commentMatch) return false;
       }
       return true;
     });
@@ -404,8 +425,11 @@ export class CatalogCurator {
       const superVal = item._statSuper || 0;
       const passVal = item._statPasses || 0;
 
+      const commentObj = this.commentsManager ? this.commentsManager.getComment(item.id) : null;
+      const hasComment = !!(commentObj && commentObj.text && commentObj.text.trim().length > 0);
+
       card.innerHTML = `
-        <div class="gallery-img-wrap">
+        <div class="gallery-img-wrap" title="Klikni za odabir ili drži za bilješku">
           <img src="${imgSrc}" class="gallery-img" alt="${item.title}" loading="${index < 12 ? 'eager' : 'lazy'}">
           <span class="card-category-tag">${item.category.toUpperCase()}</span>
           
@@ -415,14 +439,21 @@ export class CatalogCurator {
             </svg>
           </div>
 
-          <button class="card-zoom-btn" type="button" title="Povećaj motiv u punoj rezoluciji" data-action="zoom">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              <line x1="11" y1="8" x2="11" y2="14"></line>
-              <line x1="8" y1="11" x2="14" y2="11"></line>
-            </svg>
-          </button>
+          <div class="card-corner-actions">
+            <button class="card-comment-btn ${hasComment ? 'has-comment' : ''}" type="button" title="${hasComment ? 'Uredi bilješku' : 'Dodaj bilješku'}" data-action="comment">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+            </button>
+            <button class="card-zoom-btn" type="button" title="Povećaj motiv u punoj rezoluciji" data-action="zoom">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                <line x1="11" y1="8" x2="11" y2="14"></line>
+                <line x1="8" y1="11" x2="14" y2="11"></line>
+              </svg>
+            </button>
+          </div>
         </div>
 
         <div class="card-footer-info">
@@ -436,6 +467,13 @@ export class CatalogCurator {
               <span class="stat-val-pass" title="Preskočeno">✕ ${passVal}</span>
             </div>
           </div>
+
+          ${hasComment ? `
+            <div class="card-comment-callout" title="Klikni za uređivanje bilješke" data-action="comment">
+              <span class="comment-callout-icon">💬</span>
+              <span class="comment-callout-text">"${commentObj.text}"</span>
+            </div>
+          ` : ''}
 
           <div class="card-meta-bottom">
             <span class="card-id-tag">#${item.id}</span>
@@ -451,8 +489,26 @@ export class CatalogCurator {
           this.openZoomModal(item, filtered);
           return;
         }
+
+        const commentBtn = e.target.closest('[data-action="comment"]');
+        if (commentBtn) {
+          e.stopPropagation();
+          this.commentTooltip.open(item, { x: e.clientX, y: e.clientY });
+          return;
+        }
+
         this.toggleItem(item.id, card);
       });
+
+      // Attach Long-Press hold gesture to admin gallery card
+      if (this.holdGesture) {
+        this.holdGesture.attach(card, {
+          getItem: () => item,
+          onTrigger: ({ x, y }) => {
+            this.commentTooltip.open(item, { x, y });
+          }
+        });
+      }
 
       this.gridEl.appendChild(card);
     });
@@ -686,6 +742,11 @@ export class CatalogCurator {
       const b = document.getElementById(badgeId);
       if (b) b.textContent = counts[cat] || 0;
     });
+
+    const badgeComments = document.getElementById("badgeComments");
+    if (badgeComments) {
+      badgeComments.textContent = this.commentsManager ? this.commentsManager.getCommentCount() : 0;
+    }
   }
 
   async saveCuratedCatalog() {

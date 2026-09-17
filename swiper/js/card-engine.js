@@ -1,9 +1,6 @@
-/**
- * Studio Varaždin — Card Engine (Tinder-style 3D Physics Swiper)
- * 60fps gesture-driven swipe stack with modern linear() spring curves and dynamic adaptive ordering.
- */
-
 import { DynamicDeckOrdering } from './deck-ordering.js?v=3.1.0';
+import { globalCommentsManager } from './comments-manager.js';
+import { globalCommentTooltip } from './comment-tooltip.js';
 
 export class CardEngine {
   constructor(options = {}) {
@@ -11,11 +8,17 @@ export class CardEngine {
     this.catalog = options.catalog || [];
     this.analytics = options.analytics;
     this.audioHaptics = options.audioHaptics;
+    this.commentsManager = options.commentsManager || globalCommentsManager;
     this.orderingEngine = options.orderingEngine || new DynamicDeckOrdering();
     this.onVoteCallback = options.onVote || (() => {});
     this.onDeckEmptyCallback = options.onDeckEmpty || (() => {});
     this.onCardChangeCallback = options.onCardChange || (() => {});
     this.onImageClickCallback = options.onImageClick || (() => {});
+
+    // Listen for comment updates to refresh HUD comment badges
+    window.addEventListener('sv-comments-updated', (e) => {
+      this.refreshCommentBadges();
+    });
 
     this.deck = [];
     this.cardsEl = [];
@@ -130,6 +133,8 @@ export class CardEngine {
         : data.image.replace('assets/designs/', 'assets/optimized/').replace(/\.(png|jpg)$/, '.webp');
       const safeSrc = encodeURI(rawSrc);
 
+      const hasComment = this.commentsManager ? this.commentsManager.hasComment(data.id) : false;
+
       card.innerHTML = `
         <div class="card-inner">
           <div class="card-photo-wrapper">
@@ -151,12 +156,12 @@ export class CardEngine {
           <!-- Bottom Card Meta HUD -->
           <div class="card-hud">
             <div class="card-hud-left">
-              <span class="hud-category">${(data.category || 'ARTWEAR').toUpperCase()} SERIES</span>
               <h2 class="hud-title">${data.title}</h2>
             </div>
+            ${hasComment ? `
             <div class="card-hud-right">
-              <span class="hud-tag">1181 • cCc</span>
-            </div>
+              <span class="card-comment-indicator" title="Otvori bilješku">💬 BILJEŠKA</span>
+            </div>` : ''}
           </div>
         </div>
       `;
@@ -165,6 +170,15 @@ export class CardEngine {
       this.container.appendChild(card);
       this.cardsEl.push(card);
       this.applySlotTransform(card, index);
+
+      // Bind direct click on comment indicator
+      const commentBadge = card.querySelector('.card-comment-indicator');
+      if (commentBadge) {
+        commentBadge.addEventListener('click', (e) => {
+          e.stopPropagation();
+          globalCommentTooltip.open(data, { x: e.clientX, y: e.clientY });
+        });
+      }
 
       // Entrance cascade animation for top items
       if (index <= this.VISIBLE_DEPTH) {
@@ -227,10 +241,30 @@ export class CardEngine {
     let activePointerId = null;
     let targetIsArtwork = false;
     let positions = [];
+    let holdDelayTimer = null;
+    let holdChargeTimer = null;
+    let holdIndicatorEl = null;
+    let isHoldCompleted = false;
 
     const stampLike = card.querySelector('.stamp-like');
     const stampNope = card.querySelector('.stamp-nope');
     const stampSuper = card.querySelector('.stamp-superlike');
+
+    const removeHoldIndicator = () => {
+      if (holdDelayTimer) {
+        clearTimeout(holdDelayTimer);
+        holdDelayTimer = null;
+      }
+      if (holdChargeTimer) {
+        clearTimeout(holdChargeTimer);
+        holdChargeTimer = null;
+      }
+      if (holdIndicatorEl && holdIndicatorEl.parentNode) {
+        holdIndicatorEl.remove();
+      }
+      holdIndicatorEl = null;
+      card.classList.remove('is-holding');
+    };
 
     const onPointerMove = (e) => {
       if (!isDragging || (activePointerId !== null && e.pointerId !== activePointerId)) return;
@@ -239,8 +273,9 @@ export class CardEngine {
       dy = e.clientY - startY;
       const dist = Math.hypot(dx, dy);
 
-      if (dist > 6) {
+      if (dist > 7) {
         hasMoved = true;
+        removeHoldIndicator();
       }
 
       // Track rolling points for accurate release velocity
@@ -287,6 +322,7 @@ export class CardEngine {
     };
 
     const cleanUpListeners = () => {
+      removeHoldIndicator();
       window.removeEventListener('pointermove', onPointerMove);
       window.removeEventListener('pointerup', onPointerEnd);
       window.removeEventListener('pointercancel', onPointerCancel);
@@ -323,6 +359,13 @@ export class CardEngine {
       isDragging = false;
       card.classList.remove('is-dragging');
       cleanUpListeners();
+
+      if (isHoldCompleted) {
+        // Hold was triggered to open comment, ignore swipe or zoom
+        card.style.transition = 'transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease';
+        this.applySlotTransform(card, this.currentIndex);
+        return;
+      }
 
       const nextCard = this.cardsEl[this.currentIndex + 1];
       if (nextCard) nextCard.style.transition = '';
@@ -365,9 +408,11 @@ export class CardEngine {
 
     const onPointerDown = (e) => {
       if (e.pointerType === 'mouse' && e.button !== 0) return;
+      if (e.target.closest('.card-comment-indicator')) return;
 
       isDragging = true;
       hasMoved = false;
+      isHoldCompleted = false;
       dx = 0;
       dy = 0;
       vx = 0;
@@ -382,6 +427,60 @@ export class CardEngine {
       card.classList.remove('is-idle-teasing');
       card.classList.add('is-dragging');
       card.style.transition = 'none';
+
+      // Start Long-Press Hold Detection with 0.5s Silent Delay
+      removeHoldIndicator();
+
+      holdDelayTimer = setTimeout(() => {
+        if (!isDragging || hasMoved) return;
+        card.classList.add('is-holding');
+
+        holdIndicatorEl = document.createElement('div');
+        holdIndicatorEl.className = 'card-charge-indicator';
+        holdIndicatorEl.style.left = `${startX}px`;
+        holdIndicatorEl.style.top = `${startY}px`;
+        holdIndicatorEl.innerHTML = `
+          <div class="charge-meter-wrap">
+            <svg class="charge-svg" viewBox="0 0 48 48">
+              <circle class="charge-bg-circle" cx="24" cy="24" r="20"></circle>
+              <circle class="charge-progress-circle" cx="24" cy="24" r="20"></circle>
+            </svg>
+            <div class="charge-center-icon">💬</div>
+          </div>
+          <div class="charge-label-chip">DRŽI ZA BILJEŠKU</div>
+        `;
+        document.body.appendChild(holdIndicatorEl);
+
+        const circle = holdIndicatorEl.querySelector('.charge-progress-circle');
+        requestAnimationFrame(() => {
+          if (circle) {
+            circle.style.transition = 'stroke-dashoffset 600ms cubic-bezier(0.1, 0.7, 0.1, 1)';
+            circle.style.strokeDashoffset = '0';
+          }
+        });
+
+        holdChargeTimer = setTimeout(() => {
+          if (!isDragging || hasMoved) return;
+          isHoldCompleted = true;
+          removeHoldIndicator();
+
+          card.classList.add('is-hold-activated');
+          setTimeout(() => card.classList.remove('is-hold-activated'), 400);
+
+          if (this.audioHaptics) {
+            this.audioHaptics.playTap();
+          }
+
+          // Snap back
+          card.style.transition = 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+          this.applySlotTransform(card, this.currentIndex);
+
+          const currentItem = this.deck[this.currentIndex];
+          if (currentItem) {
+            globalCommentTooltip.open(currentItem, { x: startX, y: startY });
+          }
+        }, 600);
+      }, 500);
 
       try {
         if (card.setPointerCapture) card.setPointerCapture(e.pointerId);
@@ -534,11 +633,65 @@ export class CardEngine {
       img.alt = `Studio Varaždin T-Shirt: ${data.title}`;
     }
 
-    const hudCat = card.querySelector('.hud-category');
-    if (hudCat) hudCat.textContent = `${(data.category || 'ARTWEAR').toUpperCase()} SERIES`;
-
     const hudTitle = card.querySelector('.hud-title');
     if (hudTitle) hudTitle.textContent = data.title;
+
+    const hud = card.querySelector('.card-hud');
+    let hudRight = card.querySelector('.card-hud-right');
+    let indicator = card.querySelector('.card-comment-indicator');
+    const hasComment = this.commentsManager ? this.commentsManager.hasComment(data.id) : false;
+
+    if (hasComment) {
+      if (!hudRight && hud) {
+        hudRight = document.createElement('div');
+        hudRight.className = 'card-hud-right';
+        hud.appendChild(hudRight);
+      }
+      if (!indicator && hudRight) {
+        indicator = document.createElement('span');
+        indicator.className = 'card-comment-indicator';
+        indicator.title = 'Otvori bilješku';
+        indicator.textContent = '💬 BILJEŠKA';
+        indicator.addEventListener('click', (e) => {
+          e.stopPropagation();
+          globalCommentTooltip.open(data, { x: e.clientX, y: e.clientY });
+        });
+        hudRight.appendChild(indicator);
+      }
+    } else if (hudRight) {
+      hudRight.remove();
+    }
+  }
+
+  refreshCommentBadges() {
+    this.cardsEl.forEach((card, index) => {
+      const item = this.deck[index];
+      if (!card || !item) return;
+      const hasComment = this.commentsManager ? this.commentsManager.hasComment(item.id) : false;
+      const hud = card.querySelector('.card-hud');
+      let hudRight = card.querySelector('.card-hud-right');
+      let indicator = card.querySelector('.card-comment-indicator');
+      if (hasComment) {
+        if (!hudRight && hud) {
+          hudRight = document.createElement('div');
+          hudRight.className = 'card-hud-right';
+          hud.appendChild(hudRight);
+        }
+        if (!indicator && hudRight) {
+          indicator = document.createElement('span');
+          indicator.className = 'card-comment-indicator';
+          indicator.title = 'Otvori bilješku';
+          indicator.textContent = '💬 BILJEŠKA';
+          indicator.addEventListener('click', (e) => {
+            e.stopPropagation();
+            globalCommentTooltip.open(item, { x: e.clientX, y: e.clientY });
+          });
+          hudRight.appendChild(indicator);
+        }
+      } else if (hudRight) {
+        hudRight.remove();
+      }
+    });
   }
 
   undo() {

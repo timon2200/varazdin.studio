@@ -1,8 +1,5 @@
-/**
- * Studio Varaždin — Compare Engine (1-on-1 King of the Hill Duel)
- * Ultra-minimalist, bold, high-contrast typography, zero-fluff pairwise comparison.
- * Zero external dependencies — pure Vanilla ES6 module.
- */
+import { globalCommentsManager } from './comments-manager.js';
+import { globalCommentTooltip } from './comment-tooltip.js';
 
 export class CompareEngine {
   constructor(options = {}) {
@@ -10,10 +7,16 @@ export class CompareEngine {
     this.catalog = options.catalog || [];
     this.analytics = options.analytics;
     this.audioHaptics = options.audioHaptics;
+    this.commentsManager = options.commentsManager || globalCommentsManager;
     this.onVoteCallback = options.onVote || (() => {});
     this.onImageClickCallback = options.onImageClick || (() => {});
     this.showToast = options.showToast || (() => {});
     this.resolveImageUrl = options.resolveImageUrl || ((item) => item.image || '');
+
+    // Listen for comment updates
+    window.addEventListener('sv-comments-updated', () => {
+      this.refreshCommentBadges();
+    });
 
     this.activeFilter = 'ALL';
     this.deck = [];
@@ -178,6 +181,7 @@ export class CompareEngine {
     const streak = isChampion ? (side === 'left' ? this.leftStreak : this.rightStreak) : 0;
     const optSrc = this.resolveImageUrl(item);
     const keyHint = this.getKeyHintHtml(side);
+    const hasComment = this.commentsManager ? this.commentsManager.hasComment(item.id) : false;
 
     return `
       <article class="duel-card ${isChampion ? 'is-champion' : ''}" data-side="${side}" data-id="${item.id}">
@@ -194,11 +198,43 @@ export class CompareEngine {
 
         <!-- Bold Condensed Title -->
         <div class="duel-card-meta">
-          <h2 class="duel-title-condensed">${item.title}</h2>
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:6px;">
+            <h2 class="duel-title-condensed">${item.title}</h2>
+            ${hasComment ? `<span class="card-comment-indicator" title="Otvori bilješku">💬 BILJEŠKA</span>` : ''}
+          </div>
         </div>
 
       </article>
     `;
+  }
+
+  refreshCommentBadges() {
+    if (!this.container) return;
+    const cardLeft = this.container.querySelector('#slotLeft .duel-card');
+    const cardRight = this.container.querySelector('#slotRight .duel-card');
+
+    [ { card: cardLeft, item: this.leftItem }, { card: cardRight, item: this.rightItem } ].forEach(({ card, item }) => {
+      if (!card || !item) return;
+      const meta = card.querySelector('.duel-card-meta > div');
+      let indicator = card.querySelector('.card-comment-indicator');
+      const hasComment = this.commentsManager ? this.commentsManager.hasComment(item.id) : false;
+
+      if (hasComment) {
+        if (!indicator && meta) {
+          indicator = document.createElement('span');
+          indicator.className = 'card-comment-indicator';
+          indicator.title = 'Otvori bilješku';
+          indicator.textContent = '💬 BILJEŠKA';
+          indicator.addEventListener('click', (e) => {
+            e.stopPropagation();
+            globalCommentTooltip.open(item, { x: e.clientX, y: e.clientY });
+          });
+          meta.appendChild(indicator);
+        }
+      } else if (indicator) {
+        indicator.remove();
+      }
+    });
   }
 
   bindArenaEvents() {
@@ -209,10 +245,24 @@ export class CompareEngine {
 
     if (cardLeft) {
       this.attachCardGestures(cardLeft, 'left');
+      const commentBadge = cardLeft.querySelector('.card-comment-indicator');
+      if (commentBadge) {
+        commentBadge.addEventListener('click', (e) => {
+          e.stopPropagation();
+          globalCommentTooltip.open(this.leftItem, { x: e.clientX, y: e.clientY });
+        });
+      }
     }
 
     if (cardRight) {
       this.attachCardGestures(cardRight, 'right');
+      const commentBadge = cardRight.querySelector('.card-comment-indicator');
+      if (commentBadge) {
+        commentBadge.addEventListener('click', (e) => {
+          e.stopPropagation();
+          globalCommentTooltip.open(this.rightItem, { x: e.clientX, y: e.clientY });
+        });
+      }
     }
   }
 
@@ -231,13 +281,35 @@ export class CompareEngine {
     let hasMoved = false;
     let startTime = 0;
     let activePointerId = null;
+    let holdDelayTimer = null;
+    let holdChargeTimer = null;
+    let holdIndicatorEl = null;
+    let isHoldCompleted = false;
 
+    const item = side === 'left' ? this.leftItem : this.rightItem;
     const slot = side === 'left' ? this.container.querySelector('#slotLeft') : this.container.querySelector('#slotRight');
     const underlyingCard = slot ? slot.querySelector('.duel-underlying-card') : null;
+
+    const removeHoldIndicator = () => {
+      if (holdDelayTimer) {
+        clearTimeout(holdDelayTimer);
+        holdDelayTimer = null;
+      }
+      if (holdChargeTimer) {
+        clearTimeout(holdChargeTimer);
+        holdChargeTimer = null;
+      }
+      if (holdIndicatorEl && holdIndicatorEl.parentNode) {
+        holdIndicatorEl.remove();
+      }
+      holdIndicatorEl = null;
+      card.classList.remove('is-holding');
+    };
 
     const onPointerDown = (e) => {
       if (this.isAnimating) return;
       if (e.button !== undefined && e.button !== 0) return;
+      if (e.target.closest('.card-comment-indicator')) return;
 
       startX = e.clientX;
       startY = e.clientY;
@@ -246,8 +318,68 @@ export class CompareEngine {
       dy = 0;
       isDragging = true;
       hasMoved = false;
+      isHoldCompleted = false;
       activePointerId = e.pointerId;
       card.classList.remove('is-idle-teasing');
+
+      // Start Long-Press Hold Detection with 0.5s Silent Delay
+      removeHoldIndicator();
+
+      holdDelayTimer = setTimeout(() => {
+        if (!isDragging || hasMoved) return;
+        card.classList.add('is-holding');
+
+        holdIndicatorEl = document.createElement('div');
+        holdIndicatorEl.className = 'card-charge-indicator';
+        holdIndicatorEl.style.left = `${startX}px`;
+        holdIndicatorEl.style.top = `${startY}px`;
+        holdIndicatorEl.innerHTML = `
+          <div class="charge-meter-wrap">
+            <svg class="charge-svg" viewBox="0 0 48 48">
+              <circle class="charge-bg-circle" cx="24" cy="24" r="20"></circle>
+              <circle class="charge-progress-circle" cx="24" cy="24" r="20"></circle>
+            </svg>
+            <div class="charge-center-icon">💬</div>
+          </div>
+          <div class="charge-label-chip">DRŽI ZA BILJEŠKU</div>
+        `;
+        document.body.appendChild(holdIndicatorEl);
+
+        const circle = holdIndicatorEl.querySelector('.charge-progress-circle');
+        requestAnimationFrame(() => {
+          if (circle) {
+            circle.style.transition = 'stroke-dashoffset 600ms cubic-bezier(0.1, 0.7, 0.1, 1)';
+            circle.style.strokeDashoffset = '0';
+          }
+        });
+
+        holdChargeTimer = setTimeout(() => {
+          if (!isDragging || hasMoved) return;
+          isHoldCompleted = true;
+          removeHoldIndicator();
+
+          card.classList.add('is-hold-activated');
+          setTimeout(() => card.classList.remove('is-hold-activated'), 400);
+
+          if (this.audioHaptics) {
+            this.audioHaptics.playTap();
+          }
+
+          // Reset transform
+          card.style.transition = 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease';
+          card.style.transform = '';
+          card.style.opacity = '';
+
+          if (underlyingCard) {
+            underlyingCard.style.transition = 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1)';
+            underlyingCard.style.transform = '';
+          }
+
+          if (item) {
+            globalCommentTooltip.open(item, { x: startX, y: startY });
+          }
+        }, 600);
+      }, 500);
 
       try {
         if (card.setPointerCapture) card.setPointerCapture(e.pointerId);
@@ -265,8 +397,9 @@ export class CompareEngine {
       dy = e.clientY - startY;
       const dist = Math.hypot(dx, dy);
 
-      if (dist > 6) {
+      if (dist > 7) {
         hasMoved = true;
+        removeHoldIndicator();
         card.classList.add('is-dragging');
       }
 
@@ -297,6 +430,7 @@ export class CompareEngine {
     };
 
     const cleanUp = () => {
+      removeHoldIndicator();
       window.removeEventListener('pointermove', onPointerMove);
       window.removeEventListener('pointerup', onPointerEnd);
       window.removeEventListener('pointercancel', onPointerCancel);
@@ -331,6 +465,10 @@ export class CompareEngine {
       card.classList.remove('is-dragging');
       cleanUp();
 
+      if (isHoldCompleted) {
+        return;
+      }
+
       const dist = Math.hypot(dx, dy);
       const duration = performance.now() - startTime;
       const velocity = dist / Math.max(duration, 1);
@@ -354,7 +492,7 @@ export class CompareEngine {
       }
     };
 
-    card.addEventListener('pointerdown', onPointerDown);
+    card.onpointerdown = onPointerDown;
   }
 
   /**

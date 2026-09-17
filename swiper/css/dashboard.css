@@ -484,17 +484,16 @@
   display: flex;
   flex-direction: column;
   gap: 1.75rem;
-  animation: gridFadeIn 0.35s var(--transition-smooth) both;
+  animation: gridFadeIn 0.3s ease both;
+  overflow-x: hidden;
 }
 
 @keyframes gridFadeIn {
   from {
     opacity: 0;
-    transform: translateY(16px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
@@ -731,6 +730,8 @@ html[data-theme="dark"] .search-count-badge {
   flex-direction: column;
   position: relative;
   overflow: hidden;
+  content-visibility: auto;
+  contain-intrinsic-size: 0 420px;
 }
 
 .tshirt-grid-card:hover {
@@ -997,7 +998,8 @@ html[data-theme="dark"] .stat-super { color: var(--accent-gold-bright); }
   align-items: center;
   gap: 2rem;
   padding: 1rem 0 4rem 0;
-  animation: gridFadeIn 0.45s var(--transition-smooth) both;
+  animation: gridFadeIn 0.3s ease both;
+  overflow-x: hidden;
 }
 
 .leaderboard-hero-header {
@@ -1054,6 +1056,7 @@ html[data-theme="dark"] .completion-badge {
   flex-direction: column;
   align-items: center;
   gap: 12px;
+  overflow-x: hidden;
 }
 
 .section-tag-gold {
@@ -1117,6 +1120,52 @@ html[data-theme="dark"] .completion-badge {
   transform: translateY(24px) rotate(23deg);
   z-index: 1;
   box-shadow: none !important;
+}
+
+@media (max-width: 640px) {
+  .top3-cards-fan {
+    height: 290px;
+    margin: 10px auto 18px auto;
+    perspective: 800px;
+    max-width: 100%;
+  }
+
+  .fan-card {
+    width: clamp(108px, 29vw, 138px);
+    height: clamp(185px, 46vw, 230px);
+    padding: 7px;
+    border-radius: var(--radius-sm);
+  }
+
+  .fan-card.fan-rank-2 {
+    left: calc(50% - clamp(110px, 30vw, 140px));
+    transform: translateY(10px) rotate(-12deg);
+  }
+
+  .fan-card.fan-rank-1 {
+    left: calc(50% - clamp(54px, 14.5vw, 69px));
+    transform: translateY(-12px) rotate(1deg);
+  }
+
+  .fan-card.fan-rank-3 {
+    left: calc(50% + clamp(6px, 1.5vw, 8px));
+    transform: translateY(12px) rotate(13deg);
+  }
+
+  .fan-badge {
+    font-size: 0.62rem;
+    padding: 2px 6px;
+    top: 5px;
+    left: 5px;
+  }
+
+  .fan-title {
+    font-size: 0.78rem;
+  }
+
+  .fan-score {
+    font-size: 0.68rem;
+  }
 }
 
 /* Fan Card Hover Interactions */
@@ -1249,6 +1298,207 @@ html[data-theme="dark"] .section-sub-label {
   color: var(--accent-gold-bright);
 }
 
+.leaderboard-sort-trigger-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 3px;
+  flex-wrap: wrap;
+}
+
+.sort-badge-prefix {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: var(--accent-gold);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+html[data-theme="dark"] .sort-badge-prefix {
+  color: var(--accent-gold-bright);
+}
+
+/* ==========================================================================
+   BRUTALIST CUSTOM DROPDOWN SELECT ENGINE
+   ========================================================================== */
+.brutalist-select-wrap {
+  position: relative;
+  display: inline-block;
+  user-select: none;
+  font-family: var(--font-mono);
+}
+
+.brutalist-select-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 2px solid var(--border-dark);
+  border-radius: var(--radius-xs);
+  padding: 6px 12px;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  box-shadow: var(--shadow-bold-xs);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+  outline: none;
+  white-space: nowrap;
+}
+
+.brutalist-select-trigger:hover {
+  transform: translate(-1.5px, -1.5px);
+  box-shadow: var(--shadow-bold-sm);
+  border-color: var(--accent-gold);
+  background: var(--bg-card-subtle);
+}
+
+.brutalist-select-trigger:focus-visible {
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 2px var(--accent-gold);
+}
+
+.brutalist-select-wrap.is-open .brutalist-select-trigger {
+  border-color: var(--accent-gold);
+  box-shadow: var(--shadow-bold-sm);
+  background: var(--bg-card-subtle);
+}
+
+.select-label-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-transform: uppercase;
+}
+
+.select-chevron {
+  transition: transform 0.22s var(--transition-smooth);
+  color: var(--accent-gold);
+  flex-shrink: 0;
+}
+
+html[data-theme="dark"] .select-chevron {
+  color: var(--accent-gold-bright);
+}
+
+.brutalist-select-wrap.is-open .select-chevron {
+  transform: rotate(180deg);
+}
+
+/* Custom Dropdown Popover Menu */
+.brutalist-select-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  min-width: 250px;
+  max-width: 340px;
+  max-height: 290px;
+  overflow-y: auto;
+  background: var(--bg-card);
+  border: 2px solid var(--border-dark);
+  border-radius: var(--radius-xs);
+  box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.35);
+  z-index: 1000;
+  display: none;
+  flex-direction: column;
+  padding: 5px;
+  outline: none;
+}
+
+html[data-theme="dark"] .brutalist-select-menu {
+  background: #171E19;
+  border-color: var(--accent-gold);
+  box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.7);
+}
+
+.brutalist-select-menu.open-upwards {
+  top: auto;
+  bottom: calc(100% + 4px);
+}
+
+.brutalist-select-wrap.is-open .brutalist-select-menu {
+  display: flex;
+  animation: selectMenuFadeIn 0.16s ease both;
+}
+
+@keyframes selectMenuFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.brutalist-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 11px;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.12s ease;
+  letter-spacing: 0.03em;
+  gap: 8px;
+  user-select: none;
+}
+
+.brutalist-option:hover,
+.brutalist-option.is-highlighted {
+  background: var(--bg-card-subtle);
+  color: var(--accent-gold);
+  transform: translateX(2px);
+}
+
+html[data-theme="dark"] .brutalist-option:hover,
+html[data-theme="dark"] .brutalist-option.is-highlighted {
+  background: #25332a;
+  color: var(--accent-gold-bright);
+}
+
+.brutalist-option.is-selected {
+  background: var(--accent-gold-bg);
+  color: var(--accent-gold);
+  border-left: 3px solid var(--accent-gold);
+  font-weight: 900;
+}
+
+html[data-theme="dark"] .brutalist-option.is-selected {
+  background: rgba(208, 160, 65, 0.18);
+  color: var(--accent-gold-bright);
+  border-left-color: var(--accent-gold-bright);
+}
+
+.option-text {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+}
+
+.option-check {
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: var(--accent-gold);
+  margin-left: 6px;
+}
+
+html[data-theme="dark"] .option-check {
+  color: var(--accent-gold-bright);
+}
+
 /* ==========================================================================
    LEADERBOARD CARDS GRID (BIG IMAGES, ZERO MARGIN & PADDING)
    ========================================================================== */
@@ -1288,6 +1538,8 @@ html[data-theme="dark"] .section-sub-label {
   cursor: pointer;
   transition: transform 0.22s var(--transition-smooth), box-shadow 0.22s var(--transition-smooth), border-color 0.2s ease;
   user-select: none;
+  content-visibility: auto;
+  contain-intrinsic-size: 0 450px;
 }
 
 .leaderboard-card:hover {
@@ -1461,6 +1713,47 @@ html[data-theme="dark"] .leaderboard-score-pill {
   padding: 1rem 1.35rem;
   background: var(--bg-card-subtle);
   border-top: 2px solid var(--border-dark);
+}
+
+.leaderboard-pagination-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 1.25rem 1rem;
+}
+
+.btn-load-more-leaderboard {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--bg-card);
+  border: 2px solid var(--border-dark);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 800;
+  padding: 10px 24px;
+  border-radius: var(--radius-xs);
+  box-shadow: var(--shadow-bold-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.btn-load-more-leaderboard:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-bold-md);
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+}
+
+.btn-load-more-leaderboard:active {
+  transform: translate(1px, 1px);
+  box-shadow: var(--shadow-bold-xs);
 }
 
 .reset-votes-btn {

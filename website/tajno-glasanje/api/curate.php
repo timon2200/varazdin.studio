@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $allMaster = parseCatalogFile($masterFile) ?: parseCatalogFile($catalogFile);
     $activeItems = [];
 
-    if (isset($data["activeItems"]) && is_array($data["activeItems"]) && count($data["activeItems"]) > 0) {
+    if (isset($data["activeItems"]) && is_array($data["activeItems"])) {
         $activeItems = $data["activeItems"];
     } elseif (isset($data["activeIds"]) && is_array($data["activeIds"])) {
         $allowedIds = array_flip($data["activeIds"]);

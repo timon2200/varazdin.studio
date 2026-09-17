@@ -164,29 +164,41 @@ export class AnalyticsEngine {
     } catch (e) {}
   }
 
-  async fetchGlobalStats() {
-    // 1. Prioritize pulling the live production stats if developing locally or on live server
-    const endpoints = [];
-    if (this.isLocal()) {
-      // In local testing, pull one-way from the live production database
-      endpoints.push(`https://varazdin.studio/tajno-glasanje/api/stats.php?cache=${Date.now()}`);
-      endpoints.push(`${this.apiBase}/stats.php?cache=${Date.now()}`);
-    } else {
-      endpoints.push(`${this.apiBase}/stats.php?cache=${Date.now()}`);
+  async fetchGlobalStats(force = false) {
+    if (!force && this._inFlightStatsPromise) {
+      return this._inFlightStatsPromise;
     }
 
-    for (const ep of endpoints) {
-      try {
-        const res = await fetch(ep);
-        if (res.ok) {
-          const data = await res.json();
-          this.statsCache = data;
-          return data;
-        }
-      } catch (e) {}
-    }
+    this._inFlightStatsPromise = (async () => {
+      // 1. Prioritize pulling the live production stats if developing locally or on live server
+      const endpoints = [];
+      if (this.isLocal()) {
+        // In local testing, pull one-way from the live production database
+        endpoints.push(`https://varazdin.studio/tajno-glasanje/api/stats.php?cache=${Date.now()}`);
+        endpoints.push(`${this.apiBase}/stats.php?cache=${Date.now()}`);
+      } else {
+        endpoints.push(`${this.apiBase}/stats.php?cache=${Date.now()}`);
+      }
 
-    return this.computeLocalStats();
+      for (const ep of endpoints) {
+        try {
+          const res = await fetch(ep);
+          if (res.ok) {
+            const data = await res.json();
+            this.statsCache = data;
+            return data;
+          }
+        } catch (e) {}
+      }
+
+      return this.computeLocalStats();
+    })();
+
+    try {
+      return await this._inFlightStatsPromise;
+    } finally {
+      this._inFlightStatsPromise = null;
+    }
   }
 
   computeLocalStats() {

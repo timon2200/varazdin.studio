@@ -215,7 +215,7 @@ body {
 
 @media (max-width: 768px) {
   .app-container {
-    padding: 0.75rem 0.85rem 2.5rem 0.85rem;
+    padding: 0.5rem 0.75rem 1.5rem 0.75rem;
   }
 }
 
@@ -434,8 +434,8 @@ html[data-theme="dark"] .telemetry-counter strong {
     flex-wrap: nowrap !important;
     justify-content: space-between !important;
     align-items: center !important;
-    padding: 0.65rem 0.95rem !important;
-    margin-bottom: 1rem !important;
+    padding: 0.55rem 0.85rem !important;
+    margin-bottom: 0.65rem !important;
     position: sticky;
     top: 0.5rem;
     z-index: 1000;
@@ -762,7 +762,7 @@ html[data-theme="dark"] .telemetry-counter strong {
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 460px;
+  max-width: 436px;
   margin: 0 auto;
   position: relative;
 }
@@ -975,16 +975,18 @@ html[data-theme="dark"] .swipe-count {
   position: relative;
   width: 100%;
   aspect-ratio: 3 / 4;
-  min-height: 520px;
-  max-height: 610px;
+  min-height: 475px;
+  max-height: 560px;
   perspective: 1200px;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
 @media (max-width: 480px) {
   .card-stack-container {
-    min-height: 470px;
-    max-height: 540px;
+    max-width: 95%;
+    min-height: 360px;
+    max-height: min(480px, calc(100svh - 235px));
+    margin-bottom: 0.6rem;
   }
 }
 
@@ -1035,7 +1037,8 @@ html[data-theme="dark"] .swipe-count {
   justify-content: center;
   overflow: hidden;
   border-bottom: 2px solid var(--border-dark);
-  padding: 12px;
+  padding: 0;
+  margin: 0;
   touch-action: none;
 }
 
@@ -1046,17 +1049,22 @@ html[data-theme="dark"] .swipe-count {
   align-items: center;
   justify-content: center;
   position: relative;
-  border-radius: var(--radius-sm);
+  border-radius: 0;
   background: var(--card-tshirt-img-bg);
-  border: 1px solid var(--border-subtle);
+  border: none;
+  margin: 0;
+  padding: 0;
   overflow: hidden;
   touch-action: none;
 }
 
 .tshirt-artwork {
-  max-width: 95%;
-  max-height: 95%;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  object-position: center;
   pointer-events: none;
   transition: transform 0.3s var(--transition-smooth);
 }
@@ -1114,40 +1122,34 @@ html[data-theme="dark"] .swipe-count {
 
 /* Bottom Card Meta HUD */
 .card-hud {
-  padding: 1rem 1.25rem;
+  padding: 0.75rem 1.15rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: var(--bg-card);
   gap: 0.75rem;
+  min-height: 48px;
 }
 
 .card-hud-left {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
   overflow: hidden;
 }
 
 .hud-category {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  color: var(--accent-green);
-  text-transform: uppercase;
-}
-
-html[data-theme="dark"] .hud-category {
-  color: var(--accent-green-bright);
+  display: none;
 }
 
 .hud-title {
   font-family: var(--font-hero);
-  font-size: 1.15rem;
+  font-size: 1.12rem;
   font-weight: 800;
   color: var(--text-primary);
-  line-height: 1.2;
+  line-height: 1.25;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1155,6 +1157,8 @@ html[data-theme="dark"] .hud-category {
 
 .card-hud-right {
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
 }
 
 .hud-tag {
@@ -1207,7 +1211,7 @@ html[data-theme="dark"] .hud-category {
   justify-content: center;
   gap: 14px;
   width: 100%;
-  padding: 0.5rem 0;
+  padding: 0.4rem 0;
 }
 
 .action-btn {
@@ -1284,6 +1288,36 @@ html[data-theme="dark"] .hud-category {
 .btn-like:hover {
   background: var(--accent-green-bright);
   color: #ffffff;
+}
+
+@media (max-width: 480px) {
+  .controls-bar {
+    gap: 10px;
+    padding: 0.2rem 0;
+  }
+  .btn-undo, .btn-info {
+    width: 42px;
+    height: 42px;
+  }
+  .btn-pass {
+    width: 52px;
+    height: 52px;
+  }
+  .btn-superlike {
+    width: 46px;
+    height: 46px;
+  }
+  .btn-like {
+    width: 60px;
+    height: 60px;
+  }
+  .card-hud {
+    padding: 0.55rem 0.85rem;
+    min-height: 40px;
+  }
+  .hud-title {
+    font-size: 0.98rem;
+  }
 }
 
 /* ==========================================================================
@@ -1861,7 +1895,8 @@ html[data-theme="dark"] .zoom-points-badge {
   color: var(--text-muted);
   min-height: 18px;
   line-height: 18px;
-  margin-bottom: 6px;
+  margin-top: 8px;
+  margin-bottom: 2px;
   pointer-events: none;
   user-select: none;
   opacity: 0;
@@ -1959,4 +1994,309 @@ html[data-theme="dark"] .idle-guide-text-banner.is-active {
     letter-spacing: 0.05em;
   }
 }
+
+/* ==========================================================================
+   LONG-PRESS CHARGING FEEDBACK & RADIAL PROGRESS METER
+   ========================================================================== */
+.card-charge-indicator {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  animation: chargeIndicatorFadeIn 0.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes chargeIndicatorFadeIn {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.7); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+.charge-meter-wrap {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.charge-svg {
+  width: 64px;
+  height: 64px;
+  transform: rotate(-90deg);
+  filter: drop-shadow(0 0 10px rgba(246, 207, 101, 0.5));
+}
+
+.charge-bg-circle {
+  fill: rgba(12, 16, 14, 0.75);
+  stroke: rgba(255, 255, 255, 0.15);
+  stroke-width: 4px;
+}
+
+.charge-progress-circle {
+  fill: none;
+  stroke: var(--accent-gold-bright);
+  stroke-width: 4.5px;
+  stroke-linecap: round;
+  stroke-dasharray: 125.6; /* 2 * PI * 20 */
+  stroke-dashoffset: 125.6;
+  transition: stroke-dashoffset 0.5s linear;
+}
+
+.charge-center-icon {
+  position: absolute;
+  font-size: 1.25rem;
+  line-height: 1;
+  animation: chargeCenterPulse 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes chargeCenterPulse {
+  from { transform: scale(0.9); }
+  to { transform: scale(1.18); }
+}
+
+.charge-label-chip {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-gold-bright);
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-dark);
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  box-shadow: var(--shadow-bold-xs);
+  white-space: nowrap;
+}
+
+.tshirt-card.is-holding,
+.duel-card.is-holding,
+.tshirt-grid-card.is-holding,
+.admin-card.is-holding {
+  transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease !important;
+  filter: brightness(1.08) contrast(1.05) !important;
+  box-shadow: 0 0 28px rgba(246, 207, 101, 0.45), var(--shadow-bold-lg) !important;
+}
+
+.is-hold-activated {
+  animation: holdActivationFlash 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes holdActivationFlash {
+  0% { transform: scale(1.04); filter: brightness(1.4); }
+  50% { transform: scale(0.98); }
+  100% { transform: scale(1); filter: brightness(1); }
+}
+
+/* ==========================================================================
+   COMMENT TOOLTIP / POPOVER COMPONENT
+   ========================================================================== */
+/* ==========================================================================
+   MINIMAL COMMENT TOOLTIP / FLOATING BOX
+   ========================================================================== */
+.comment-tooltip-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.68);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease;
+}
+
+html[data-theme="light"] .comment-tooltip-overlay {
+  background: rgba(244, 239, 228, 0.65);
+}
+
+.comment-tooltip-overlay.is-open,
+.comment-tooltip-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.comment-tooltip-overlay.is-closing {
+  opacity: 0;
+}
+
+.comment-box-minimal {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  background: var(--bg-card);
+  border: 2px solid var(--border-dark);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55), var(--shadow-bold-md);
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  transform: scale(0.94);
+  opacity: 0;
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.15s ease;
+  z-index: 2;
+}
+
+.comment-tooltip-overlay.is-open .comment-box-minimal,
+.comment-tooltip-overlay.active .comment-box-minimal {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.comment-minimal-textarea {
+  width: 100%;
+  min-height: 96px;
+  max-height: 180px;
+  display: block;
+  box-sizing: border-box;
+  padding: 12px 14px 44px 14px;
+  margin: 0;
+  background: var(--bg-canvas);
+  color: var(--text-primary);
+  border: none;
+  outline: none;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 0.92rem;
+  font-weight: 500;
+  line-height: 1.45;
+  resize: none;
+}
+
+.comment-minimal-textarea:focus {
+  background: var(--bg-card);
+}
+
+.comment-minimal-textarea::placeholder {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  opacity: 0.7;
+}
+
+.comment-btn-check {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  width: 30px;
+  height: 30px;
+  border: 1.5px solid var(--border-dark);
+  background: var(--accent-gold-bright);
+  color: #0c100e;
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 3;
+  padding: 0;
+  margin: 0;
+  box-shadow: var(--shadow-bold-xs);
+  transition: all 0.15s ease;
+}
+
+.comment-btn-check:hover {
+  background: #ffd978;
+  transform: scale(1.1) translate(-1px, -1px);
+  box-shadow: var(--shadow-bold-sm);
+}
+
+.comment-btn-check:active {
+  transform: scale(0.95);
+  box-shadow: none;
+}
+
+/* ==========================================================================
+   COMMENT BADGES & HUD CALLOUTS
+   ========================================================================== */
+.card-comment-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 800;
+  color: var(--accent-gold-bright);
+  background: var(--accent-gold-bg);
+  border: 1px solid var(--accent-gold-border);
+  border-radius: var(--radius-xs);
+  padding: 2px 6px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.card-comment-indicator:hover {
+  transform: scale(1.05);
+}
+
+/* Grid & Admin Comment Callouts */
+.card-comment-callout {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 6px 8px;
+  margin-top: 6px;
+  background: var(--accent-gold-bg);
+  border: 1.5px solid var(--accent-gold-border);
+  border-radius: var(--radius-xs);
+  font-size: 0.76rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.card-comment-callout:hover {
+  transform: translateY(-1px);
+  border-color: var(--accent-gold-bright);
+}
+
+.comment-callout-icon {
+  font-size: 0.82rem;
+  line-height: 1.2;
+  flex-shrink: 0;
+}
+
+.comment-callout-text {
+  font-family: var(--font-sans);
+  font-style: italic;
+  line-height: 1.35;
+  color: var(--text-primary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.btn-card-comment {
+  background: var(--bg-card-subtle);
+  border: 1.5px solid var(--border-dark);
+  color: var(--text-muted);
+  cursor: pointer;
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.btn-card-comment:hover {
+  color: var(--accent-gold-bright);
+  background: var(--accent-gold-bg);
+  border-color: var(--accent-gold);
+}
+
+.btn-card-comment.has-comment {
+  color: var(--accent-gold-bright);
+  background: var(--accent-gold-bg);
+  border-color: var(--accent-gold-border);
+}
+
 
