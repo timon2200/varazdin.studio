@@ -170,6 +170,19 @@ export class CatalogCurator {
     // Save Buttons
     document.getElementById("btnSave")?.addEventListener("click", () => this.saveCuratedCatalog());
     document.getElementById("btnSaveFloating")?.addEventListener("click", () => this.saveCuratedCatalog());
+
+    // Modal Zoom Listeners
+    document.getElementById("closeModalZoom")?.addEventListener("click", () => this.closeZoomModal());
+    document.getElementById("modalZoom")?.addEventListener("click", (e) => {
+      if (e.target.id === "modalZoom" || e.target.classList.contains("modal-backdrop") || e.target.classList.contains("modal-zoom-body")) {
+        this.closeZoomModal();
+      }
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        this.closeZoomModal();
+      }
+    });
   }
 
   getFilteredItems() {
@@ -213,22 +226,45 @@ export class CatalogCurator {
       const imgSrc = this.resolveImageUrl(item);
 
       card.innerHTML = `
-        <img src="${imgSrc}" class="gallery-img" alt="${item.title}" loading="${index < 8 ? 'eager' : 'lazy'}">
-        
-        <div class="check-badge">
-          <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <polyline points="20 6 9 17 4 12"></polyline>
-          </svg>
+        <div class="gallery-img-wrap">
+          <img src="${imgSrc}" class="gallery-img" alt="${item.title}" loading="${index < 12 ? 'eager' : 'lazy'}">
+          <span class="card-category-tag">${item.category.toUpperCase()}</span>
+          
+          <div class="check-badge" title="${isChecked ? 'Označeno za swiper' : 'Nije označeno'}">
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+
+          <button class="card-zoom-btn" type="button" title="Povećaj motiv u punoj rezoluciji" data-action="zoom">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              <line x1="11" y1="8" x2="11" y2="14"></line>
+              <line x1="8" y1="11" x2="14" y2="11"></line>
+            </svg>
+          </button>
         </div>
 
-        <div class="card-overlay">
-          <span class="card-category-badge">${item.category.toUpperCase()}</span>
-          <div class="card-title-text">${item.title}</div>
-          <div class="card-id-tag">#${item.id}</div>
+        <div class="card-footer-info">
+          <div class="card-title-text" title="${item.title}">${item.title}</div>
+          <div class="card-meta-bottom">
+            <span class="card-id-tag">#${item.id}</span>
+            <span class="card-status-label">${isChecked ? 'AKTIVNO' : 'NEAKTIVNO'}</span>
+          </div>
         </div>
       `;
 
-      card.addEventListener("click", () => this.toggleItem(item.id, card));
+      card.addEventListener("click", (e) => {
+        const zoomBtn = e.target.closest('[data-action="zoom"]');
+        if (zoomBtn) {
+          e.stopPropagation();
+          this.openZoomModal(item, imgSrc);
+          return;
+        }
+        this.toggleItem(item.id, card);
+      });
+
       this.gridEl.appendChild(card);
     });
 
@@ -236,19 +272,57 @@ export class CatalogCurator {
   }
 
   toggleItem(id, cardEl) {
+    const statusLabel = cardEl.querySelector(".card-status-label");
+    const checkBadge = cardEl.querySelector(".check-badge");
     if (this.selectedIds.has(id)) {
       this.selectedIds.delete(id);
       cardEl.classList.remove("is-checked");
       cardEl.setAttribute("aria-checked", "false");
+      if (statusLabel) statusLabel.textContent = "NEAKTIVNO";
+      if (checkBadge) checkBadge.setAttribute("title", "Nije označeno");
     } else {
       this.selectedIds.add(id);
       cardEl.classList.add("is-checked");
       cardEl.setAttribute("aria-checked", "true");
+      if (statusLabel) statusLabel.textContent = "AKTIVNO";
+      if (checkBadge) checkBadge.setAttribute("title", "Označeno za swiper");
     }
     try {
       localStorage.setItem("sv_curated_active_ids", JSON.stringify(Array.from(this.selectedIds)));
     } catch (e) {}
     this.updateCounters();
+  }
+
+  openZoomModal(item, imgSrc) {
+    const modal = document.getElementById("modalZoom");
+    const img = document.getElementById("zoomImage");
+    const title = document.getElementById("zoomTitle");
+    const cat = document.getElementById("zoomCategory");
+    const idEl = document.getElementById("zoomId");
+    if (!modal || !img) return;
+
+    img.src = imgSrc;
+    if (title) title.textContent = item.title;
+    if (cat) cat.textContent = item.category.toUpperCase();
+    if (idEl) idEl.textContent = `#${item.id}`;
+
+    modal.style.display = "flex";
+    requestAnimationFrame(() => {
+      modal.classList.add("show");
+    });
+    document.body.style.overflow = "hidden";
+  }
+
+  closeZoomModal() {
+    const modal = document.getElementById("modalZoom");
+    if (!modal) return;
+    modal.classList.remove("show");
+    setTimeout(() => {
+      if (!modal.classList.contains("show")) {
+        modal.style.display = "none";
+      }
+    }, 200);
+    document.body.style.overflow = "";
   }
 
   selectAllFiltered(select = true) {
