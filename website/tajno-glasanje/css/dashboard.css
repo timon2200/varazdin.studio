@@ -324,7 +324,7 @@
 
 /* Animations */
 .anim-winner-pulse {
-  animation: duelWinnerPulse 0.4s var(--spring-easing) both;
+  animation: duelWinnerPulse 0.38s var(--spring-easing);
 }
 
 @keyframes duelWinnerPulse {
@@ -334,7 +334,7 @@
 }
 
 .anim-card-enter {
-  animation: duelCardEnter 0.35s var(--spring-easing) both;
+  animation: duelCardEnter 0.32s var(--spring-easing);
 }
 
 @keyframes duelCardEnter {
@@ -349,7 +349,7 @@
 }
 
 .anim-exit-left {
-  animation: duelExitLeft 0.38s var(--transition-smooth) both;
+  animation: duelExitLeft 0.38s var(--transition-smooth);
 }
 
 @keyframes duelExitLeft {
@@ -358,7 +358,7 @@
 }
 
 .anim-exit-right {
-  animation: duelExitRight 0.38s var(--transition-smooth) both;
+  animation: duelExitRight 0.38s var(--transition-smooth);
 }
 
 @keyframes duelExitRight {
@@ -367,7 +367,7 @@
 }
 
 .anim-enter-left {
-  animation: duelEnterLeft 0.32s var(--spring-easing) both;
+  animation: duelEnterLeft 0.32s var(--spring-easing);
 }
 
 @keyframes duelEnterLeft {
@@ -376,7 +376,7 @@
 }
 
 .anim-enter-right {
-  animation: duelEnterRight 0.32s var(--spring-easing) both;
+  animation: duelEnterRight 0.32s var(--spring-easing);
 }
 
 @keyframes duelEnterRight {

@@ -376,14 +376,21 @@ export class CompareEngine {
     const winnerCard = winnerSlot ? winnerSlot.querySelector('.duel-card') : null;
 
     if (winnerCard) {
-      winnerCard.classList.remove('anim-winner-pulse');
+      winnerCard.classList.remove('anim-winner-pulse', 'anim-card-enter');
       void winnerCard.offsetWidth;
       winnerCard.classList.add('anim-winner-pulse');
+      winnerCard.addEventListener('animationend', () => {
+        winnerCard.classList.remove('anim-winner-pulse');
+      }, { once: true });
     }
 
     if (loserCard) {
+      loserCard.classList.remove('anim-card-enter', 'anim-winner-pulse', 'is-dragging');
       loserCard.classList.add('is-discarding');
       loserCard.style.pointerEvents = 'none';
+
+      // Force layout flush before applying inline transition and transform
+      void loserCard.offsetWidth;
 
       if (dragVector && Math.hypot(dragVector.dx, dragVector.dy) > 10) {
         // Drag gesture fling along user's flick vector
@@ -432,6 +439,9 @@ export class CompareEngine {
         const newCard = newSlot ? newSlot.querySelector('.duel-card') : null;
         if (newCard) {
           newCard.classList.add('anim-card-enter');
+          newCard.addEventListener('animationend', () => {
+            newCard.classList.remove('anim-card-enter');
+          }, { once: true });
         }
 
         this.isAnimating = false;
