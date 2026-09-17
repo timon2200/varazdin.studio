@@ -264,6 +264,11 @@
       <!-- STAGE 1: Centered Swiper Stage (Active during swiping) -->
       <section id="swiperStage" class="swiper-stage">
         
+        <!-- Idle Inactivity Guide (Pure minimalist text above controls & stack) -->
+        <div id="idleGuideSwiper" class="idle-guide-text-banner" aria-hidden="true">
+          POVUCI LIJEVO ZA DALJE &bull; POVUCI DESNO ZA SVIĐA MI SE
+        </div>
+
         <!-- Swiper Progress / Card Counter -->
         <div class="swiper-counter-bar">
           <div class="retro-hints-bar" role="toolbar" aria-label="Tipkovničke prečice za glasanje">
@@ -301,13 +306,6 @@
         <!-- 3D Physics Card Stack Container -->
         <div id="cardStack" class="card-stack-container" role="region" aria-label="Majice za glasanje">
           <!-- Dynamically populated by CardEngine -->
-        </div>
-
-        <!-- Floating Idle Guide Hint Pill (Appears on inactivity) -->
-        <div id="idleGuideSwiper" class="idle-guide-pill" aria-hidden="true">
-          <span class="idle-guide-icon idle-bounce-left">👈</span>
-          <span class="idle-guide-text">POVUCI LIJEVO (NE) &bull; POVUCI DESNO (SVIĐA MI SE)</span>
-          <span class="idle-guide-icon idle-bounce-right">👉</span>
         </div>
 
         <!-- Tactile Control Buttons Bar -->
@@ -359,6 +357,11 @@
       <!-- STAGE 2: 1-on-1 King of the Hill Duel Stage (Dvoboj) -->
       <section id="compareStage" class="compare-stage" style="display: none;" aria-label="Dvoboj majica 1 na 1">
         
+        <!-- Idle Inactivity Guide (Pure minimalist text above controls & arena) -->
+        <div id="idleGuideDuel" class="idle-guide-text-banner" aria-hidden="true">
+          KLIKNI ILI POVUCI KARTICU KOJU ŽELIŠ MAKNUTI
+        </div>
+
         <!-- Dvoboj Counter & Hint Bar -->
         <div class="duel-counter-bar">
           <div class="retro-hints-bar" role="toolbar" aria-label="Tipkovničke prečice za dvoboj">
@@ -387,13 +390,6 @@
 
         <div id="duelArenaContainer" class="duel-arena-container">
           <!-- Populated dynamically by CompareEngine -->
-        </div>
-
-        <!-- Floating Idle Guide Hint Pill for Duel -->
-        <div id="idleGuideDuel" class="idle-guide-pill" aria-hidden="true">
-          <span class="idle-guide-icon idle-bounce-left">👈</span>
-          <span class="idle-guide-text">KLIKNI ILI POVUCI KARTICU KOJU ŽELIŠ MAKNUTI</span>
-          <span class="idle-guide-icon idle-bounce-right">👉</span>
         </div>
       </section>
 
