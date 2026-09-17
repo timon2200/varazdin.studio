@@ -1,11 +1,12 @@
 {
-  "totalVotes": 2254,
+  "totalVotes": 2271,
   "uniqueVoters": [
     "usr_6cp05b71mu4l05w1",
     "usr_8g9z9c1fmu4bfnpe",
     "usr_15f6mh1xmu5w8ud1",
     "usr_51mx6w0amu5wa4x9",
-    "usr_h2zaux7dmu5wcg5r"
+    "usr_h2zaux7dmu5wcg5r",
+    "usr_4y6rbtsmmu61phad"
   ],
   "items": {
     "sv-001": {
@@ -17,7 +18,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/T-Shirt - Film Crew Story First.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 0,
+      "bayesianMean": 0.161
     },
     "sv-002": {
       "id": "sv-002",
@@ -28,7 +32,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/T-Shirt - Knight Cuvar Prica.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.246
     },
     "sv-003": {
       "id": "sv-003",
@@ -39,7 +46,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/T-Shirt - Panorama Anno 1776.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.246
     },
     "sv-004": {
       "id": "sv-004",
@@ -50,7 +60,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/T-Shirt - Stari Grad 1181.webp",
-      "impressions": 8
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 13,
+      "bayesianMean": 0.224
     },
     "sv-005": {
       "id": "sv-005",
@@ -61,7 +74,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/T-Shirt - Typographic 1209.webp",
-      "impressions": 8
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 0,
+      "bayesianMean": 0.147
     },
     "sv-006": {
       "id": "sv-006",
@@ -72,18 +88,24 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/T-Shirt - Vijecnica Grad Baroka.webp",
-      "impressions": 8
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 25,
+      "bayesianMean": 0.303
     },
     "sv-007": {
       "id": "sv-007",
       "title": "Akcija Clapperboard",
       "category": "Studio",
       "likes": 1,
-      "passes": 6,
+      "passes": 8,
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/SV Tee - Akcija Clapperboard.webp",
-      "impressions": 7
+      "impressions": 9,
+      "totalVotes": 9,
+      "approvalRate": 11,
+      "bayesianMean": 0.205
     },
     "sv-008": {
       "id": "sv-008",
@@ -94,7 +116,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/SV Tee - Camera Coat of Arms.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.246
     },
     "sv-009": {
       "id": "sv-009",
@@ -105,7 +130,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/SV Tee - Film Reel Filigree.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 0,
+      "bayesianMean": 0.161
     },
     "sv-010": {
       "id": "sv-010",
@@ -116,7 +144,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/SV Tee - Pisemo Svjetlom.webp",
-      "impressions": 8
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 13,
+      "bayesianMean": 0.224
     },
     "sv-011": {
       "id": "sv-011",
@@ -127,7 +158,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/SV Tee - Production Seal.webp",
-      "impressions": 8
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 13,
+      "bayesianMean": 0.224
     },
     "sv-012": {
       "id": "sv-012",
@@ -138,7 +172,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/SV Tee - Redatelj.webp",
-      "impressions": 8
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 0,
+      "bayesianMean": 0.147
     },
     "sv-013": {
       "id": "sv-013",
@@ -149,7 +186,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/SV Tee - Story First.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 0,
+      "bayesianMean": 0.161
     },
     "sv-014": {
       "id": "sv-014",
@@ -160,18 +200,24 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/SV Tee - Tisina Na Setu.webp",
-      "impressions": 9
+      "impressions": 9,
+      "totalVotes": 9,
+      "approvalRate": 0,
+      "bayesianMean": 0.135
     },
     "sv-015": {
       "id": "sv-015",
       "title": "Visually Articulate",
       "category": "Studio",
-      "likes": 2,
+      "likes": 3,
       "passes": 5,
       "superlikes": 0,
-      "score": 2,
+      "score": 3,
       "image": "assets/optimized/SV Tee - Visually Articulate.webp",
-      "impressions": 7
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 38,
+      "bayesianMean": 0.385
     },
     "sv-016": {
       "id": "sv-016",
@@ -182,7 +228,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/Garda Tee - Blackletter Bust.webp",
-      "impressions": 8
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 13,
+      "bayesianMean": 0.224
     },
     "sv-017": {
       "id": "sv-017",
@@ -193,7 +242,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/Garda Tee - Garda Type Breakout.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.246
     },
     "sv-018": {
       "id": "sv-018",
@@ -204,7 +256,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/Garda Tee - Gold Crest Heritage.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 0,
+      "bayesianMean": 0.161
     },
     "sv-019": {
       "id": "sv-019",
@@ -215,7 +270,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/Garda Tee - Purgar Poster.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.246
     },
     "sv-020": {
       "id": "sv-020",
@@ -226,7 +284,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/Garda Tee - Straza Night March.webp",
-      "impressions": 9
+      "impressions": 9,
+      "totalVotes": 9,
+      "approvalRate": 0,
+      "bayesianMean": 0.135
     },
     "sv-021": {
       "id": "sv-021",
@@ -237,7 +298,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/T-Shirt - Studio Varazdin Church Towers Dynamic Portrait.webp",
-      "impressions": 8
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 0,
+      "bayesianMean": 0.147
     },
     "sv-022": {
       "id": "sv-022",
@@ -248,7 +312,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/T-Shirt - Studio Varazdin Church Towers Skyline Portrait.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 0,
+      "bayesianMean": 0.161
     },
     "sv-023": {
       "id": "sv-023",
@@ -259,7 +326,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/T-Shirt - Studio Varazdin Church Towers Totem Portrait.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 0,
+      "bayesianMean": 0.161
     },
     "sv-024": {
       "id": "sv-024",
@@ -270,7 +340,10 @@
       "superlikes": 1,
       "score": 3,
       "image": "assets/optimized/T-Shirt - Toranj Franjevacki Graffiti.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.343
     },
     "sv-025": {
       "id": "sv-025",
@@ -281,7 +354,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/T-Shirt - Toranj Franjevacki Zvonik.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.246
     },
     "sv-026": {
       "id": "sv-026",
@@ -292,7 +368,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/T-Shirt - Toranj Katedralni Pavlinski Graffiti.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.246
     },
     "sv-027": {
       "id": "sv-027",
@@ -303,7 +382,10 @@
       "superlikes": 1,
       "score": 3,
       "image": "assets/optimized/T-Shirt - Toranj Sv Nikola Graffiti.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.343
     },
     "sv-028": {
       "id": "sv-028",
@@ -314,18 +396,24 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/T-Shirt - Toranj Ursulinski Graffiti.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.246
     },
     "sv-029": {
       "id": "sv-029",
       "title": "Tower Lisakova Kula Graffiti",
       "category": "Towers",
-      "likes": 1,
+      "likes": 2,
       "passes": 7,
       "superlikes": 1,
-      "score": 4,
+      "score": 5,
       "image": "assets/optimized/T-Shirt - Tower Lisakova Kula Graffiti.webp",
-      "impressions": 9
+      "impressions": 10,
+      "totalVotes": 10,
+      "approvalRate": 30,
+      "bayesianMean": 0.395
     },
     "sv-030": {
       "id": "sv-030",
@@ -336,7 +424,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/T-Shirt - Tower Stari Grad Bastion Graffiti.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 0,
+      "bayesianMean": 0.161
     },
     "sv-031": {
       "id": "sv-031",
@@ -347,7 +438,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/T-Shirt - Tower Strazarnica Graffiti.webp",
-      "impressions": 8
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 13,
+      "bayesianMean": 0.224
     },
     "sv-032": {
       "id": "sv-032",
@@ -358,7 +452,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/T-Shirt - Tower Strazarnica S Mostom.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.246
     },
     "sv-033": {
       "id": "sv-033",
@@ -369,7 +466,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/T-Shirt - Tower Vijecnica Clock Graffiti.webp",
-      "impressions": 9
+      "impressions": 9,
+      "totalVotes": 9,
+      "approvalRate": 11,
+      "bayesianMean": 0.205
     },
     "sv-034": {
       "id": "sv-034",
@@ -380,7 +480,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/T-Shirt - Varazdin All Towers Architectural Specimen.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.246
     },
     "sv-035": {
       "id": "sv-035",
@@ -391,7 +494,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/T-Shirt - Varazdin Church Towers Panorama Lineup.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-036": {
       "id": "sv-036",
@@ -402,7 +508,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/T-Shirt - Varazdin Grad Kula i Zvonika Grand Cluster.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-037": {
       "id": "sv-037",
@@ -413,7 +522,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/T-Shirt - Varazdin Grad Zvonika Poster Graffiti.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 0,
+      "bayesianMean": 0.161
     },
     "sv-038": {
       "id": "sv-038",
@@ -424,7 +536,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/T-Shirt - Varazdin Towers Cluster Graffiti.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-039": {
       "id": "sv-039",
@@ -435,7 +550,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/T-Shirt - Varazdin Towers Panorama Lineup.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-040": {
       "id": "sv-040",
@@ -446,7 +564,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Clapperboard Run Over Black on White.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 0,
+      "bayesianMean": 0.161
     },
     "sv-041": {
       "id": "sv-041",
@@ -457,7 +578,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Kino Varazdin Ticket Run Over.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 0,
+      "bayesianMean": 0.161
     },
     "sv-042": {
       "id": "sv-042",
@@ -468,7 +592,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/SV_Utility_01_Viewfinder_Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-043": {
       "id": "sv-043",
@@ -479,7 +606,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/SV_Utility_02_Lens_Specs_Back.webp",
-      "impressions": 8
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 25,
+      "bayesianMean": 0.303
     },
     "sv-044": {
       "id": "sv-044",
@@ -490,18 +620,24 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/SV_Utility_03_Spine_Stencil_Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-045": {
       "id": "sv-045",
       "title": "SV Utility 04 — Neo-Gothic Brutalist Grid",
       "category": "Utility",
       "likes": 2,
-      "passes": 4,
+      "passes": 5,
       "superlikes": 1,
       "score": 5,
       "image": "assets/optimized/SV_Utility_04_Brutalist_Grid_Back.webp",
-      "impressions": 7
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 38,
+      "bayesianMean": 0.459
     },
     "sv-046": {
       "id": "sv-046",
@@ -512,7 +648,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/SV_Utility_05_Slate_Box_Back.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.246
     },
     "sv-047": {
       "id": "sv-047",
@@ -523,7 +662,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/SV_Utility_06_Timecode_Horizon_Back.webp",
-      "impressions": 8
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 13,
+      "bayesianMean": 0.224
     },
     "sv-048": {
       "id": "sv-048",
@@ -534,7 +676,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/SV_Utility_07_Lab_Seal_Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-049": {
       "id": "sv-049",
@@ -545,7 +690,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/SV_Utility_08_Swiss_Manifest_Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-050": {
       "id": "sv-050",
@@ -556,7 +704,10 @@
       "superlikes": 1,
       "score": 3,
       "image": "assets/optimized/SV_Utility_09_Audio_Waveform_Back.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.343
     },
     "sv-051": {
       "id": "sv-051",
@@ -567,7 +718,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/SV_Utility_10_Magazine_Label_Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-052": {
       "id": "sv-052",
@@ -578,7 +732,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/CV Tee - Snimano U Varazdin Run Over.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-053": {
       "id": "sv-053",
@@ -589,7 +746,10 @@
       "superlikes": 0,
       "score": 3,
       "image": "assets/optimized/CV Tee - Stari Grad True Photo Collage.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 43,
+      "bayesianMean": 0.424
     },
     "sv-054": {
       "id": "sv-054",
@@ -600,7 +760,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/CV Tee - Studio Varazdin Ticket Crumpled 1024-1024.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-055": {
       "id": "sv-055",
@@ -611,7 +774,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/CV Tee - Studio Varazdin Ticket Crumpled 1024-1536.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 29,
+      "bayesianMean": 0.333
     },
     "sv-056": {
       "id": "sv-056",
@@ -622,7 +788,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/CV Tee - Studio Varazdin Ticket Crumpled 1536-1024.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-057": {
       "id": "sv-057",
@@ -633,7 +802,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/CV Tee - Studio Varazdin True Photo Collage.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.246
     },
     "sv-058": {
       "id": "sv-058",
@@ -644,7 +816,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/CV Tee - VZ Plate Run Over.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-059": {
       "id": "sv-059",
@@ -655,7 +830,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Attention Cash Banknote Engraving.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-060": {
       "id": "sv-060",
@@ -666,7 +844,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/CV Tee - Attention Cash Value Swiss Techwear.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 33,
+      "bayesianMean": 0.37
     },
     "sv-061": {
       "id": "sv-061",
@@ -677,7 +858,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Attention Cash Value Of Experience.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 0,
+      "bayesianMean": 0.161
     },
     "sv-062": {
       "id": "sv-062",
@@ -688,7 +872,10 @@
       "superlikes": 1,
       "score": 3,
       "image": "assets/optimized/CV Tee - Attention Cyber Baroque Crest.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.375
     },
     "sv-063": {
       "id": "sv-063",
@@ -699,7 +886,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - cCc Botanical Bounding Box.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-064": {
       "id": "sv-064",
@@ -710,7 +900,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - cCc Botanical Spec Bounding Box.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-065": {
       "id": "sv-065",
@@ -721,7 +914,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/CV Tee - cCc Croatia Collective Collision.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-066": {
       "id": "sv-066",
@@ -732,7 +928,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - cCc Kinetic Dance Wave.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 0,
+      "bayesianMean": 0.161
     },
     "sv-067": {
       "id": "sv-067",
@@ -743,7 +942,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - cCc - Middle Ground Blueprint - Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-068": {
       "id": "sv-068",
@@ -754,7 +956,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/CV Tee - cCc - They Who Dance Kinetic - Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-069": {
       "id": "sv-069",
@@ -765,7 +970,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Can You Change The Music Client Ticket.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-070": {
       "id": "sv-070",
@@ -776,7 +984,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/CV Tee - Can You Change The Music Comix - Back.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.246
     },
     "sv-071": {
       "id": "sv-071",
@@ -787,7 +998,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/CV Tee - Can You Change The Music Liquid Freakout.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.246
     },
     "sv-072": {
       "id": "sv-072",
@@ -798,7 +1012,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/CV Tee - Can You Change The Music Peak Comix.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-073": {
       "id": "sv-073",
@@ -809,7 +1026,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Can You Change The Music Stems Deleted.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 0,
+      "bayesianMean": 0.161
     },
     "sv-074": {
       "id": "sv-074",
@@ -820,7 +1040,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/CV Tee - Cash Value Guilloche - Back.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.246
     },
     "sv-075": {
       "id": "sv-075",
@@ -831,7 +1054,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Cash Value of Experience.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-076": {
       "id": "sv-076",
@@ -842,7 +1068,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - cCc. Terracotta Heritage Collage.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-077": {
       "id": "sv-077",
@@ -853,7 +1082,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/CV Tee - Change The Music Peak Knight.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.246
     },
     "sv-078": {
       "id": "sv-078",
@@ -864,7 +1096,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/Collab_01_Studio_Varazdin_Alchemist_Laborer_Back.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.246
     },
     "sv-079": {
       "id": "sv-079",
@@ -875,7 +1110,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/Collab_02_cCc_Middle_Ground_Horizon_Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-080": {
       "id": "sv-080",
@@ -886,7 +1124,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/Collab_03_cCc_Morska_Dekla_Siren_Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-081": {
       "id": "sv-081",
@@ -897,7 +1138,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/Collab_03_Studio_Varazdin_Semiotic_Matrix_Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-082": {
       "id": "sv-082",
@@ -908,7 +1152,10 @@
       "superlikes": 1,
       "score": 3,
       "image": "assets/optimized/Collab_04_Studio_Varazdin_Fire_1776_Disaster_Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.375
     },
     "sv-083": {
       "id": "sv-083",
@@ -919,7 +1166,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/Collab_04_cCc_Kinetic_Madmen_Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-084": {
       "id": "sv-084",
@@ -930,7 +1180,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/Collab_05_Studio_Varazdin_Midnight_Reticle_Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-085": {
       "id": "sv-085",
@@ -941,7 +1194,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/Collab_05_cCc_Sleeping_Angels_Acid_Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-086": {
       "id": "sv-086",
@@ -952,7 +1208,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/Collab_06_cCc_Constrained_Monolith_Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 33,
+      "bayesianMean": 0.37
     },
     "sv-087": {
       "id": "sv-087",
@@ -963,7 +1222,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/Collab_06_Studio_Varazdin_Vischer_Panorama_Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-088": {
       "id": "sv-088",
@@ -974,7 +1236,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/Collab_07_Studio_Varazdin_Mountain_Editor_Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-089": {
       "id": "sv-089",
@@ -985,7 +1250,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/Collab_08_cCc_Iron_Turtle_Guild_Back.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 0,
+      "bayesianMean": 0.161
     },
     "sv-090": {
       "id": "sv-090",
@@ -996,7 +1264,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Constrained Environment Blueprint.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 0,
+      "bayesianMean": 0.161
     },
     "sv-091": {
       "id": "sv-091",
@@ -1007,7 +1278,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Constrained Environment Blueprint - Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-092": {
       "id": "sv-092",
@@ -1018,7 +1292,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/CV Tee - Constrained Environment vs Limitless.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-093": {
       "id": "sv-093",
@@ -1029,7 +1306,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Constrained Limitless Angular Motion.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-094": {
       "id": "sv-094",
@@ -1040,7 +1320,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Constrained vs Limitless MAKER.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-095": {
       "id": "sv-095",
@@ -1051,7 +1334,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/CV Tee - Creative Block 1181.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 33,
+      "bayesianMean": 0.37
     },
     "sv-096": {
       "id": "sv-096",
@@ -1062,7 +1348,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/CV Tee - Creative Block 1181 - Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-097": {
       "id": "sv-097",
@@ -1073,7 +1362,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/CV Tee - Creative Block All Towers 1181.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-098": {
       "id": "sv-098",
@@ -1084,7 +1376,10 @@
       "superlikes": 1,
       "score": 5,
       "image": "assets/optimized/CV Tee - Creative Block Franjevacki Toranj.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 43,
+      "bayesianMean": 0.5
     },
     "sv-099": {
       "id": "sv-099",
@@ -1095,18 +1390,24 @@
       "superlikes": 1,
       "score": 3,
       "image": "assets/optimized/CV Tee - Creative Block Monolith Black.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.375
     },
     "sv-100": {
       "id": "sv-100",
       "title": "Creative Block Rock Masked",
       "category": "Creative",
-      "likes": 1,
+      "likes": 2,
       "passes": 3,
       "superlikes": 2,
-      "score": 7,
+      "score": 8,
       "image": "assets/optimized/CV Tee - Creative Block Rock Masked.webp",
-      "impressions": 6
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 57,
+      "bayesianMean": 0.632
     },
     "sv-101": {
       "id": "sv-101",
@@ -1117,7 +1418,10 @@
       "superlikes": 1,
       "score": 3,
       "image": "assets/optimized/CV Tee - Creative Block Tactical Stencil.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.375
     },
     "sv-102": {
       "id": "sv-102",
@@ -1128,7 +1432,10 @@
       "superlikes": 1,
       "score": 5,
       "image": "assets/optimized/CV Tee - Creative Collective Croatia Botanical.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 43,
+      "bayesianMean": 0.5
     },
     "sv-103": {
       "id": "sv-103",
@@ -1139,7 +1446,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/CV Tee - Creative Collective Croatia cCc.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.246
     },
     "sv-104": {
       "id": "sv-104",
@@ -1150,7 +1460,10 @@
       "superlikes": 1,
       "score": 5,
       "image": "assets/optimized/CV Tee - Cuvar Prica Collision.webp",
-      "impressions": 8
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 38,
+      "bayesianMean": 0.459
     },
     "sv-105": {
       "id": "sv-105",
@@ -1161,7 +1474,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/SV Tee - Dragon Studio Poster.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-106": {
       "id": "sv-106",
@@ -1172,7 +1488,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/SV Tee - Dragon Studio Poster Final.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.246
     },
     "sv-107": {
       "id": "sv-107",
@@ -1183,7 +1502,10 @@
       "superlikes": 1,
       "score": 3,
       "image": "assets/optimized/CV Tee - Everything Says Something.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.375
     },
     "sv-108": {
       "id": "sv-108",
@@ -1194,7 +1516,10 @@
       "superlikes": 1,
       "score": 5,
       "image": "assets/optimized/CV Tee - Everything Says Something Liquid.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 43,
+      "bayesianMean": 0.5
     },
     "sv-109": {
       "id": "sv-109",
@@ -1205,7 +1530,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/CV Tee - Everything Says Something Matrix - Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-110": {
       "id": "sv-110",
@@ -1216,7 +1544,10 @@
       "superlikes": 1,
       "score": 4,
       "image": "assets/optimized/CV Tee - Everything Semiotic Matrix.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 33,
+      "bayesianMean": 0.46
     },
     "sv-111": {
       "id": "sv-111",
@@ -1227,7 +1558,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/CV Tee - Fall Asleep Grgur Acid Duotone.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-112": {
       "id": "sv-112",
@@ -1238,7 +1572,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/CV Tee - Filmed In Varazdin Collage.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.246
     },
     "sv-113": {
       "id": "sv-113",
@@ -1249,7 +1586,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/CV Tee - Filmed In Varazdin Collage - True Photos.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 33,
+      "bayesianMean": 0.37
     },
     "sv-114": {
       "id": "sv-114",
@@ -1260,7 +1600,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Filmmaker Label.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-115": {
       "id": "sv-115",
@@ -1271,7 +1614,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/CV Tee - Good Work Great Work.webp",
-      "impressions": 8
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 13,
+      "bayesianMean": 0.224
     },
     "sv-116": {
       "id": "sv-116",
@@ -1282,7 +1628,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Good Work Great Work Anvil - Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-117": {
       "id": "sv-117",
@@ -1293,7 +1642,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/CV Tee - Good Work Great Work DEDICATION.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 29,
+      "bayesianMean": 0.333
     },
     "sv-118": {
       "id": "sv-118",
@@ -1304,7 +1656,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/CV Tee - Good Work Great Work Folk Silhouette.webp",
-      "impressions": 8
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 25,
+      "bayesianMean": 0.303
     },
     "sv-119": {
       "id": "sv-119",
@@ -1315,7 +1670,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/SV Tee - Grateful Short Time.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-120": {
       "id": "sv-120",
@@ -1326,7 +1684,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Grateful Short Time Title Card.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-121": {
       "id": "sv-121",
@@ -1337,7 +1698,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Grateful For This Short Time.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-122": {
       "id": "sv-122",
@@ -1348,7 +1712,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Grateful For This Short Time 70s Fluid.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-123": {
       "id": "sv-123",
@@ -1359,7 +1726,10 @@
       "superlikes": 1,
       "score": 3,
       "image": "assets/optimized/Heritage_Combo_01_Florijan_Brutalist_Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.375
     },
     "sv-124": {
       "id": "sv-124",
@@ -1370,7 +1740,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/Heritage_Combo_02_Angels_Comix_Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-125": {
       "id": "sv-125",
@@ -1381,7 +1754,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/Heritage_Combo_03_Erdody_GothicLitho_Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-126": {
       "id": "sv-126",
@@ -1392,7 +1768,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/Heritage_Combo_04_BaroqueAngel_Botanical_Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-127": {
       "id": "sv-127",
@@ -1403,7 +1782,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/ideas cant die shirt design.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-128": {
       "id": "sv-128",
@@ -1414,7 +1796,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Ideas Cant Die Tarot.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-129": {
       "id": "sv-129",
@@ -1425,7 +1810,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Knight Shot in Back Comix Bone.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-130": {
       "id": "sv-130",
@@ -1436,7 +1824,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/CV Tee - Knight Shot in Back DEDICATION Black.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-131": {
       "id": "sv-131",
@@ -1447,7 +1838,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/CV Tee - Knight Shot in Back Nicholson Minimal.webp",
-      "impressions": 9
+      "impressions": 9,
+      "totalVotes": 9,
+      "approvalRate": 11,
+      "bayesianMean": 0.205
     },
     "sv-132": {
       "id": "sv-132",
@@ -1458,7 +1852,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Knight Shot in Back Raw Marker White.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 0,
+      "bayesianMean": 0.161
     },
     "sv-133": {
       "id": "sv-133",
@@ -1469,7 +1866,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Knight Thumbs Up Water.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-134": {
       "id": "sv-134",
@@ -1480,7 +1880,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Let Me Tell You A Story.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-135": {
       "id": "sv-135",
@@ -1491,7 +1894,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/CV Tee - Middle Ground Blueprint - Back.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 29,
+      "bayesianMean": 0.333
     },
     "sv-136": {
       "id": "sv-136",
@@ -1502,7 +1908,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Middle Ground Split Laser.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-137": {
       "id": "sv-137",
@@ -1513,7 +1922,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Middle Ground Technical Grid.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-138": {
       "id": "sv-138",
@@ -1524,7 +1936,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Middle Ground Work To Do.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-139": {
       "id": "sv-139",
@@ -1535,7 +1950,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/CV Tee - Night Shoot Viewfinder 0300.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-140": {
       "id": "sv-140",
@@ -1546,7 +1964,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Nocturne Dreams 0300 - Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-141": {
       "id": "sv-141",
@@ -1557,7 +1978,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Not Overthinking.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-142": {
       "id": "sv-142",
@@ -1568,18 +1992,24 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/CV Tee - Not Overthinking Raw Marker.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-143": {
       "id": "sv-143",
       "title": "Not Overthinking Storyboard Collage",
       "category": "Creative",
-      "likes": 3,
+      "likes": 4,
       "passes": 3,
       "superlikes": 1,
-      "score": 6,
+      "score": 7,
       "image": "assets/optimized/CV Tee - Not Overthinking Storyboard Collage.webp",
-      "impressions": 7
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 63,
+      "bayesianMean": 0.611
     },
     "sv-144": {
       "id": "sv-144",
@@ -1590,7 +2020,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Not Overthinking Whimsical Clouds.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-145": {
       "id": "sv-145",
@@ -1601,7 +2034,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Philosopher Knight.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-146": {
       "id": "sv-146",
@@ -1612,7 +2048,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Philosopher Knight - Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-147": {
       "id": "sv-147",
@@ -1623,7 +2062,10 @@
       "superlikes": 1,
       "score": 5,
       "image": "assets/optimized/CV Tee - Philosopher Knight PAF.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 43,
+      "bayesianMean": 0.5
     },
     "sv-148": {
       "id": "sv-148",
@@ -1634,7 +2076,10 @@
       "superlikes": 1,
       "score": 3,
       "image": "assets/optimized/CV Tee - Philosopher Tree Box.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.375
     },
     "sv-149": {
       "id": "sv-149",
@@ -1645,7 +2090,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/CV Tee - Reality Better Than Dreams.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.246
     },
     "sv-150": {
       "id": "sv-150",
@@ -1656,7 +2104,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Reality Better Than Reality Cyber.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-151": {
       "id": "sv-151",
@@ -1667,7 +2118,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/CV Tee - Reality Better Than Reality Sculpture.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 33,
+      "bayesianMean": 0.37
     },
     "sv-152": {
       "id": "sv-152",
@@ -1678,18 +2132,24 @@
       "superlikes": 0,
       "score": 3,
       "image": "assets/optimized/SV_4Ref_01_SideQuest_Woodcut_Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 50,
+      "bayesianMean": 0.472
     },
     "sv-153": {
       "id": "sv-153",
       "title": "SV 4Ref 02 — Praying Guardian Riso",
       "category": "Creative",
-      "likes": 2,
+      "likes": 3,
       "passes": 4,
       "superlikes": 1,
-      "score": 5,
+      "score": 6,
       "image": "assets/optimized/SV_4Ref_02_Praying_Guardian_Riso_Back.webp",
-      "impressions": 7
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 50,
+      "bayesianMean": 0.534
     },
     "sv-154": {
       "id": "sv-154",
@@ -1700,18 +2160,24 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/SV_4Ref_03_Dual_Knights_Vigil_Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-155": {
       "id": "sv-155",
       "title": "SV 4Ref 04 — Rearing CyberGothic",
       "category": "Creative",
-      "likes": 2,
+      "likes": 3,
       "passes": 4,
       "superlikes": 1,
-      "score": 5,
+      "score": 6,
       "image": "assets/optimized/SV_4Ref_04_Rearing_CyberGothic_Back.webp",
-      "impressions": 7
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 50,
+      "bayesianMean": 0.534
     },
     "sv-156": {
       "id": "sv-156",
@@ -1722,7 +2188,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/SV_4Ref_05_Grand_Synthesis_Master_Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-157": {
       "id": "sv-157",
@@ -1733,7 +2202,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/SV_Single_01_Woodcut_Knight_Back.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 29,
+      "bayesianMean": 0.333
     },
     "sv-158": {
       "id": "sv-158",
@@ -1744,7 +2216,10 @@
       "superlikes": 0,
       "score": 3,
       "image": "assets/optimized/SV_Single_02_Praying_Knight_Back.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 43,
+      "bayesianMean": 0.424
     },
     "sv-159": {
       "id": "sv-159",
@@ -1755,7 +2230,10 @@
       "superlikes": 1,
       "score": 3,
       "image": "assets/optimized/SV_Single_03_Sigil_Brutalist_Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.375
     },
     "sv-160": {
       "id": "sv-160",
@@ -1766,7 +2244,10 @@
       "superlikes": 1,
       "score": 4,
       "image": "assets/optimized/SV_Single_04_Riso_Rearing_Knight_Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 33,
+      "bayesianMean": 0.46
     },
     "sv-161": {
       "id": "sv-161",
@@ -1777,7 +2258,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/SV_Single_05_Spray_Stencil_Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-162": {
       "id": "sv-162",
@@ -1788,7 +2272,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/SV_Single_06_Botanical_Arch_Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-163": {
       "id": "sv-163",
@@ -1799,7 +2286,10 @@
       "superlikes": 1,
       "score": 4,
       "image": "assets/optimized/SV_Single_07_Gothic_Metal_Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 33,
+      "bayesianMean": 0.46
     },
     "sv-164": {
       "id": "sv-164",
@@ -1810,7 +2300,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/SV_Single_08_Acid_Pop_Back.webp",
-      "impressions": 8
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 13,
+      "bayesianMean": 0.224
     },
     "sv-165": {
       "id": "sv-165",
@@ -1821,7 +2314,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/SV_Single_09_Comix_Ink_Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 33,
+      "bayesianMean": 0.37
     },
     "sv-166": {
       "id": "sv-166",
@@ -1832,7 +2328,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/CV Tee - Stay Rolling Chest Print.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-167": {
       "id": "sv-167",
@@ -1843,7 +2342,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Studio Ticket Crumbled.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-168": {
       "id": "sv-168",
@@ -1854,7 +2356,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Studio Varazdin - Cash Value Guilloche - Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-169": {
       "id": "sv-169",
@@ -1865,7 +2370,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Studio Varazdin - Good Work Great Work - Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-170": {
       "id": "sv-170",
@@ -1876,7 +2384,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Studio Varazdin - Nocturne Dreams 0300 - Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-171": {
       "id": "sv-171",
@@ -1887,7 +2398,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Studio Varazdin - Philosopher Knight - Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-172": {
       "id": "sv-172",
@@ -1898,7 +2412,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/SV_Lovers_03_Kneeling_Martyr_Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 33,
+      "bayesianMean": 0.37
     },
     "sv-173": {
       "id": "sv-173",
@@ -1909,7 +2426,10 @@
       "superlikes": 1,
       "score": 3,
       "image": "assets/optimized/CV Tee - They Who Dance.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.375
     },
     "sv-174": {
       "id": "sv-174",
@@ -1920,7 +2440,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - They Who Dance Celestial Grid.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-175": {
       "id": "sv-175",
@@ -1931,7 +2454,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - They Who Dance Kinetic - Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-176": {
       "id": "sv-176",
@@ -1942,7 +2468,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - They Who Dance Music.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 0,
+      "bayesianMean": 0.161
     },
     "sv-177": {
       "id": "sv-177",
@@ -1953,7 +2482,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/CV Tee - They Who Dance Psychedelic Wave.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 33,
+      "bayesianMean": 0.37
     },
     "sv-178": {
       "id": "sv-178",
@@ -1964,7 +2496,10 @@
       "superlikes": 1,
       "score": 3,
       "image": "assets/optimized/CV Tee - They Who Dance Rider Waves.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.375
     },
     "sv-179": {
       "id": "sv-179",
@@ -1975,7 +2510,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/CV Tee - Utility Spec DTF Bold - Black on White.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.246
     },
     "sv-180": {
       "id": "sv-180",
@@ -1986,7 +2524,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/CV Tee - Utility Spec DTF Bold - White on Black.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 29,
+      "bayesianMean": 0.333
     },
     "sv-181": {
       "id": "sv-181",
@@ -1997,7 +2538,10 @@
       "superlikes": 0,
       "score": 3,
       "image": "assets/optimized/CV Tee - Utility Spec Print.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 43,
+      "bayesianMean": 0.424
     },
     "sv-182": {
       "id": "sv-182",
@@ -2008,18 +2552,24 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/CV Tee - Utility Spec Print - Black on White Runover.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.246
     },
     "sv-183": {
       "id": "sv-183",
       "title": "Utility Spec Print White On Black Brutalist",
       "category": "Creative",
-      "likes": 3,
+      "likes": 4,
       "passes": 4,
       "superlikes": 0,
-      "score": 3,
+      "score": 4,
       "image": "assets/optimized/CV Tee - Utility Spec Print - White on Black Brutalist.webp",
-      "impressions": 7
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 50,
+      "bayesianMean": 0.469
     },
     "sv-184": {
       "id": "sv-184",
@@ -2030,7 +2580,10 @@
       "superlikes": 1,
       "score": 3,
       "image": "assets/optimized/CV Tee - Vertical Spine Type.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.375
     },
     "sv-185": {
       "id": "sv-185",
@@ -2041,7 +2594,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Visually Articulate.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-186": {
       "id": "sv-186",
@@ -2052,7 +2608,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - Visually Articulate Calibration - Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-187": {
       "id": "sv-187",
@@ -2063,7 +2622,10 @@
       "superlikes": 1,
       "score": 3,
       "image": "assets/optimized/CV Tee - Visually Articulate MAKER.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.375
     },
     "sv-188": {
       "id": "sv-188",
@@ -2074,7 +2636,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/CV Tee - Visually Articulate Skyline.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 33,
+      "bayesianMean": 0.37
     },
     "sv-189": {
       "id": "sv-189",
@@ -2085,7 +2650,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/CV Tee - What Keeps You Up At Night.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.246
     },
     "sv-190": {
       "id": "sv-190",
@@ -2096,7 +2664,10 @@
       "superlikes": 1,
       "score": 4,
       "image": "assets/optimized/CV Tee - What Keeps You Up HUD.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 33,
+      "bayesianMean": 0.46
     },
     "sv-191": {
       "id": "sv-191",
@@ -2107,7 +2678,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - When You Cant Fall Asleep Botanical PAF.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 0,
+      "bayesianMean": 0.161
     },
     "sv-192": {
       "id": "sv-192",
@@ -2118,7 +2692,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - When You Cant Fall Asleep Cyber HUD.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 0,
+      "bayesianMean": 0.161
     },
     "sv-193": {
       "id": "sv-193",
@@ -2129,7 +2706,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - When You Cant Fall Asleep Grgur Nocturne.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-194": {
       "id": "sv-194",
@@ -2140,7 +2720,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - When You Cant Fall Asleep Raw Marker.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-195": {
       "id": "sv-195",
@@ -2151,7 +2734,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - When You Cant Fall Asleep Sculpture MAKER.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-196": {
       "id": "sv-196",
@@ -2162,7 +2748,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - When You Cant Fall Asleep Star Chart.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-197": {
       "id": "sv-197",
@@ -2173,7 +2762,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - The Alchemist Magic Work.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 0,
+      "bayesianMean": 0.161
     },
     "sv-198": {
       "id": "sv-198",
@@ -2184,7 +2776,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - The Lovers Betrayal Tarot.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-199": {
       "id": "sv-199",
@@ -2195,7 +2790,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - The Magic Alchemist Tarot.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-200": {
       "id": "sv-200",
@@ -2206,7 +2804,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - The Magic Alchemist Tarot - Back.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-201": {
       "id": "sv-201",
@@ -2217,7 +2818,10 @@
       "superlikes": 1,
       "score": 3,
       "image": "assets/optimized/CV Tee - The Magic Botanical Lithograph.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.375
     },
     "sv-202": {
       "id": "sv-202",
@@ -2228,7 +2832,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/CV Tee - The Magic Dragon Red Seals.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-203": {
       "id": "sv-203",
@@ -2239,7 +2846,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/CV Tee - The Magic In Work You Avoid.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-204": {
       "id": "sv-204",
@@ -2250,7 +2860,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/SV Artwear - Atelier Alchimia 1181.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-205": {
       "id": "sv-205",
@@ -2261,7 +2874,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/SV Artwear - Atelier Modular Green.webp",
-      "impressions": 8
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 13,
+      "bayesianMean": 0.224
     },
     "sv-206": {
       "id": "sv-206",
@@ -2272,7 +2888,10 @@
       "superlikes": 1,
       "score": 3,
       "image": "assets/optimized/SV Tee - Beram Galija 1474.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.375
     },
     "sv-207": {
       "id": "sv-207",
@@ -2283,7 +2902,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/SV Print - Fisheye Ambition Black.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 29,
+      "bayesianMean": 0.333
     },
     "sv-208": {
       "id": "sv-208",
@@ -2294,7 +2916,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/SV Print - Garda Purgar Flare.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 0,
+      "bayesianMean": 0.161
     },
     "sv-209": {
       "id": "sv-209",
@@ -2305,7 +2930,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/SV Print - Garda Purgar Sigil White.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-210": {
       "id": "sv-210",
@@ -2316,7 +2944,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/SV Print - Garda Purgar Sunburst.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-211": {
       "id": "sv-211",
@@ -2327,7 +2958,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/SV Tee - Glagolitic Initial S Gryphon.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-212": {
       "id": "sv-212",
@@ -2338,7 +2972,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/SV Tee - Glagolitic Tarot Ideas Cant Die.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-213": {
       "id": "sv-213",
@@ -2349,7 +2986,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/SV Artwear - Guardian of Radimlja.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-214": {
       "id": "sv-214",
@@ -2360,7 +3000,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/SV Artwear - Inspired By Craft Black.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 33,
+      "bayesianMean": 0.37
     },
     "sv-215": {
       "id": "sv-215",
@@ -2371,7 +3014,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/SV Print - Inspired By Studio Black.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 33,
+      "bayesianMean": 0.37
     },
     "sv-216": {
       "id": "sv-216",
@@ -2382,18 +3028,24 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/SV Tee - Kameni Vitez Radimlja.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-217": {
       "id": "sv-217",
       "title": "Knight Sigil White",
       "category": "Artwear",
-      "likes": 5,
+      "likes": 6,
       "passes": 3,
       "superlikes": 0,
-      "score": 5,
+      "score": 6,
       "image": "assets/optimized/SV Print - Knight Sigil White.webp",
-      "impressions": 8
+      "impressions": 9,
+      "totalVotes": 9,
+      "approvalRate": 67,
+      "bayesianMean": 0.588
     },
     "sv-218": {
       "id": "sv-218",
@@ -2404,7 +3056,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/SV Artwear - Knights Vow Cream.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.246
     },
     "sv-219": {
       "id": "sv-219",
@@ -2415,7 +3070,10 @@
       "superlikes": 1,
       "score": 4,
       "image": "assets/optimized/SV Print - Knights Vow Cream.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 29,
+      "bayesianMean": 0.42
     },
     "sv-220": {
       "id": "sv-220",
@@ -2426,7 +3084,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/SV Print - Maker Archives White.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 29,
+      "bayesianMean": 0.333
     },
     "sv-221": {
       "id": "sv-221",
@@ -2434,10 +3095,13 @@
       "category": "Artwear",
       "likes": 0,
       "passes": 6,
-      "superlikes": 0,
-      "score": 0,
+      "superlikes": 1,
+      "score": 3,
       "image": "assets/optimized/SV Artwear - Perun Sacred Geometry.webp",
-      "impressions": 6
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.343
     },
     "sv-222": {
       "id": "sv-222",
@@ -2448,7 +3112,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/SV Tee - Perunova Rozeta Gromovnik.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.246
     },
     "sv-223": {
       "id": "sv-223",
@@ -2459,7 +3126,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/SV Artwear - Phoenix of 1776.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 0,
+      "bayesianMean": 0.161
     },
     "sv-224": {
       "id": "sv-224",
@@ -2470,7 +3140,10 @@
       "superlikes": 0,
       "score": 3,
       "image": "assets/optimized/SV Tee - Pozar Varazdina 1776 Iz Pepela.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 50,
+      "bayesianMean": 0.472
     },
     "sv-225": {
       "id": "sv-225",
@@ -2481,7 +3154,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/SV Tee - Purgar Straza Night March.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.246
     },
     "sv-226": {
       "id": "sv-226",
@@ -2492,7 +3168,10 @@
       "superlikes": 1,
       "score": 4,
       "image": "assets/optimized/SV Print - Silent Knight Black.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 29,
+      "bayesianMean": 0.42
     },
     "sv-227": {
       "id": "sv-227",
@@ -2503,7 +3182,10 @@
       "superlikes": 1,
       "score": 4,
       "image": "assets/optimized/SV Print - Silent Knight Studio Black.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 33,
+      "bayesianMean": 0.46
     },
     "sv-228": {
       "id": "sv-228",
@@ -2514,7 +3196,10 @@
       "superlikes": 1,
       "score": 4,
       "image": "assets/optimized/SV Print - Silent Knight Studio Sunburst.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 33,
+      "bayesianMean": 0.46
     },
     "sv-229": {
       "id": "sv-229",
@@ -2525,7 +3210,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/SV Tee - Stari Grad Barokna Kula Master.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-230": {
       "id": "sv-230",
@@ -2536,7 +3224,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/SV Tee - Studio Guild Pisemo Svjetlom.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-231": {
       "id": "sv-231",
@@ -2547,7 +3238,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/T-Shirt - Studio Varazdin GPT2 Dynamic Cluster.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-232": {
       "id": "sv-232",
@@ -2558,7 +3252,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/T-Shirt - Studio Varazdin GPT2 Skyline Portrait.webp",
-      "impressions": 8
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 13,
+      "bayesianMean": 0.224
     },
     "sv-233": {
       "id": "sv-233",
@@ -2569,18 +3266,24 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/T-Shirt - Studio Varazdin GPT2 Totem Portrait.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-234": {
       "id": "sv-234",
       "title": "Teratomorpha Sigil White",
       "category": "Artwear",
-      "likes": 4,
+      "likes": 5,
       "passes": 3,
       "superlikes": 1,
-      "score": 7,
+      "score": 8,
       "image": "assets/optimized/SV Artwear - Teratomorpha Sigil White.webp",
-      "impressions": 8
+      "impressions": 9,
+      "totalVotes": 9,
+      "approvalRate": 67,
+      "bayesianMean": 0.636
     },
     "sv-235": {
       "id": "sv-235",
@@ -2591,7 +3294,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/SV Artwear - Teratomorphic Dragon 1404.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-236": {
       "id": "sv-236",
@@ -2602,7 +3308,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/SV Tee - Trakostyan Black Queen.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 0,
+      "bayesianMean": 0.161
     },
     "sv-237": {
       "id": "sv-237",
@@ -2613,7 +3322,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/SV Tee - Varazdin Stari Grad 1181.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-238": {
       "id": "sv-238",
@@ -2624,7 +3336,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/SV Tee - Veles Lord of Sacred Horns.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-239": {
       "id": "sv-239",
@@ -2635,7 +3350,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/SV Artwear - Vertical Spine 1181 Black.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-240": {
       "id": "sv-240",
@@ -2646,7 +3364,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/SV Tee - Vitez sa Stecka Master.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-241": {
       "id": "sv-241",
@@ -2657,7 +3378,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/SV Tee - Zgoscanski Stecak Royal Fortress.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 0,
+      "bayesianMean": 0.161
     },
     "sv-242": {
       "id": "sv-242",
@@ -2668,7 +3392,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/SV Tee - Zmaj Hrvojev Misal Ultra.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 0,
+      "bayesianMean": 0.161
     },
     "sv-243": {
       "id": "sv-243",
@@ -2679,7 +3406,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/SV Tee - Zmaj Hrvojeva Misala.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-244": {
       "id": "sv-244",
@@ -2690,7 +3420,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/Front Hit - 35mm Film Frame Timecode.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-245": {
       "id": "sv-245",
@@ -2701,7 +3434,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/Front Hit - cCc - Middle Ground Blueprint - Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-246": {
       "id": "sv-246",
@@ -2712,7 +3448,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/Front Hit - cCc - They Who Dance - Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-247": {
       "id": "sv-247",
@@ -2723,7 +3462,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/Front Hit - Can You Change The Music Comix - Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-248": {
       "id": "sv-248",
@@ -2734,7 +3476,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/Front Hit - Cash Value Guilloche - Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 33,
+      "bayesianMean": 0.37
     },
     "sv-249": {
       "id": "sv-249",
@@ -2745,7 +3490,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/Front Hit - cCc. Swiss Pocket Spec.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.246
     },
     "sv-250": {
       "id": "sv-250",
@@ -2756,7 +3504,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/Collab_01_Studio_Varazdin_Alchemist_Laborer_Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 33,
+      "bayesianMean": 0.37
     },
     "sv-251": {
       "id": "sv-251",
@@ -2767,7 +3518,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/Collab_02_cCc_Middle_Ground_Horizon_Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-252": {
       "id": "sv-252",
@@ -2778,7 +3532,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/Collab_03_cCc_Morska_Dekla_Siren_Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-253": {
       "id": "sv-253",
@@ -2789,7 +3546,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/Collab_03_Studio_Varazdin_Semiotic_Matrix_Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-254": {
       "id": "sv-254",
@@ -2800,7 +3560,10 @@
       "superlikes": 1,
       "score": 5,
       "image": "assets/optimized/Collab_04_Studio_Varazdin_Fire_1776_Disaster_Front.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 43,
+      "bayesianMean": 0.5
     },
     "sv-255": {
       "id": "sv-255",
@@ -2811,7 +3574,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/Collab_04_cCc_Kinetic_Madmen_Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-256": {
       "id": "sv-256",
@@ -2822,7 +3588,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/Collab_05_Studio_Varazdin_Midnight_Reticle_Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-257": {
       "id": "sv-257",
@@ -2833,7 +3602,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/Collab_05_cCc_Sleeping_Angels_Acid_Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-258": {
       "id": "sv-258",
@@ -2844,7 +3616,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/Collab_06_cCc_Constrained_Monolith_Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-259": {
       "id": "sv-259",
@@ -2855,7 +3630,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/Collab_06_Studio_Varazdin_Vischer_Panorama_Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-260": {
       "id": "sv-260",
@@ -2866,7 +3644,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/Collab_07_Studio_Varazdin_Mountain_Editor_Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-261": {
       "id": "sv-261",
@@ -2877,7 +3658,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/Collab_08_cCc_Iron_Turtle_Guild_Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-262": {
       "id": "sv-262",
@@ -2888,7 +3672,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/Front Hit - Constrained Environment Blueprint - Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-263": {
       "id": "sv-263",
@@ -2899,7 +3686,10 @@
       "superlikes": 1,
       "score": 3,
       "image": "assets/optimized/Front Hit - Creative Block 1181 - Front.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.343
     },
     "sv-264": {
       "id": "sv-264",
@@ -2910,7 +3700,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/Front Hit - Cyber 3D Angled SV Monogram.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 29,
+      "bayesianMean": 0.333
     },
     "sv-265": {
       "id": "sv-265",
@@ -2921,7 +3714,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/Front Hit - Deadpan Knight Arrow Cartoon.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.246
     },
     "sv-266": {
       "id": "sv-266",
@@ -2932,7 +3728,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/Front Hit - Everything Says Something Matrix - Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-267": {
       "id": "sv-267",
@@ -2943,18 +3742,24 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/Front Hit - Good Work Great Work Anvil - Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-268": {
       "id": "sv-268",
       "title": "Grgur Ninski Pointing Finger Icon",
       "category": "Front Hits",
       "likes": 3,
-      "passes": 3,
+      "passes": 4,
       "superlikes": 1,
       "score": 6,
       "image": "assets/optimized/Front Hit - Grgur Ninski Pointing Finger Icon.webp",
-      "impressions": 7
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 50,
+      "bayesianMean": 0.534
     },
     "sv-269": {
       "id": "sv-269",
@@ -2965,7 +3770,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/Heritage_Combo_01_Florijan_Brutalist_Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-270": {
       "id": "sv-270",
@@ -2976,7 +3784,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/Heritage_Combo_02_Angels_Comix_Front.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 29,
+      "bayesianMean": 0.333
     },
     "sv-271": {
       "id": "sv-271",
@@ -2987,7 +3798,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/Heritage_Combo_03_Erdody_GothicLitho_Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-272": {
       "id": "sv-272",
@@ -2998,7 +3812,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/Heritage_Combo_04_BaroqueAngel_Botanical_Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-273": {
       "id": "sv-273",
@@ -3009,7 +3826,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/Front Hit - Horizontal Barcode Chest Tape.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 33,
+      "bayesianMean": 0.37
     },
     "sv-274": {
       "id": "sv-274",
@@ -3020,7 +3840,10 @@
       "superlikes": 1,
       "score": 5,
       "image": "assets/optimized/Front Hit - Kittl Warped Circular Badge.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 43,
+      "bayesianMean": 0.5
     },
     "sv-275": {
       "id": "sv-275",
@@ -3031,7 +3854,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/Front Hit - Knight Helmet Minimal Icon.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-276": {
       "id": "sv-276",
@@ -3042,7 +3868,10 @@
       "superlikes": 1,
       "score": 3,
       "image": "assets/optimized/Front Minimal - Knight Helmet Pure Minimal Icon.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.375
     },
     "sv-277": {
       "id": "sv-277",
@@ -3053,7 +3882,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/Front Hit - Middle Ground Blueprint - Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-278": {
       "id": "sv-278",
@@ -3064,7 +3896,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/Front Hit - Nocturne Dreams 0300 - Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-279": {
       "id": "sv-279",
@@ -3075,7 +3910,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/Front Hit - Optical Lens Calibration Target.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-280": {
       "id": "sv-280",
@@ -3086,7 +3924,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/Front Hit - PAF Botanical Oak Branch.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-281": {
       "id": "sv-281",
@@ -3097,7 +3938,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/Front Hit - Philosopher Knight - Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-282": {
       "id": "sv-282",
@@ -3108,7 +3952,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/SV_4Ref_01_SideQuest_Woodcut_Front.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 29,
+      "bayesianMean": 0.333
     },
     "sv-283": {
       "id": "sv-283",
@@ -3119,7 +3966,10 @@
       "superlikes": 1,
       "score": 4,
       "image": "assets/optimized/SV_4Ref_02_Praying_Guardian_Riso_Front.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 29,
+      "bayesianMean": 0.42
     },
     "sv-284": {
       "id": "sv-284",
@@ -3130,7 +3980,10 @@
       "superlikes": 1,
       "score": 4,
       "image": "assets/optimized/SV_4Ref_03_Dual_Knights_Vigil_Front.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 29,
+      "bayesianMean": 0.42
     },
     "sv-285": {
       "id": "sv-285",
@@ -3141,7 +3994,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/SV_4Ref_04_Rearing_CyberGothic_Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-286": {
       "id": "sv-286",
@@ -3152,7 +4008,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/SV_4Ref_05_Grand_Synthesis_Master_Front.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 29,
+      "bayesianMean": 0.333
     },
     "sv-287": {
       "id": "sv-287",
@@ -3163,18 +4022,24 @@
       "superlikes": 0,
       "score": 3,
       "image": "assets/optimized/Front Hit - SV MAKER Signature Script.webp",
-      "impressions": 8
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 38,
+      "bayesianMean": 0.385
     },
     "sv-288": {
       "id": "sv-288",
       "title": "SV Single 01 — Woodcut Knight Front Hit",
       "category": "Front Hits",
-      "likes": 4,
+      "likes": 5,
       "passes": 3,
       "superlikes": 0,
-      "score": 4,
+      "score": 5,
       "image": "assets/optimized/SV_Single_01_Woodcut_Knight_Front.webp",
-      "impressions": 7
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 63,
+      "bayesianMean": 0.556
     },
     "sv-289": {
       "id": "sv-289",
@@ -3185,7 +4050,10 @@
       "superlikes": 1,
       "score": 4,
       "image": "assets/optimized/SV_Single_02_Praying_Knight_Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 33,
+      "bayesianMean": 0.46
     },
     "sv-290": {
       "id": "sv-290",
@@ -3196,18 +4064,24 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/SV_Single_03_Sigil_Brutalist_Front.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 29,
+      "bayesianMean": 0.333
     },
     "sv-291": {
       "id": "sv-291",
       "title": "SV Single 04 — Rearing Knight Front Hit",
       "category": "Front Hits",
-      "likes": 2,
+      "likes": 3,
       "passes": 4,
       "superlikes": 2,
-      "score": 8,
+      "score": 9,
       "image": "assets/optimized/SV_Single_04_Riso_Rearing_Knight_Front.webp",
-      "impressions": 8
+      "impressions": 9,
+      "totalVotes": 9,
+      "approvalRate": 56,
+      "bayesianMean": 0.609
     },
     "sv-292": {
       "id": "sv-292",
@@ -3218,7 +4092,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/SV_Single_05_Spray_Stencil_Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-293": {
       "id": "sv-293",
@@ -3229,7 +4106,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/SV_Single_06_Botanical_Arch_Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-294": {
       "id": "sv-294",
@@ -3240,7 +4120,10 @@
       "superlikes": 2,
       "score": 7,
       "image": "assets/optimized/SV_Single_07_Gothic_Metal_Front.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 43,
+      "bayesianMean": 0.558
     },
     "sv-295": {
       "id": "sv-295",
@@ -3251,7 +4134,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/SV_Single_08_Acid_Pop_Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-296": {
       "id": "sv-296",
@@ -3262,7 +4148,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/SV_Single_09_Comix_Ink_Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-297": {
       "id": "sv-297",
@@ -3273,7 +4162,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/SV_Utility_01_Viewfinder_Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-298": {
       "id": "sv-298",
@@ -3284,7 +4176,10 @@
       "superlikes": 1,
       "score": 4,
       "image": "assets/optimized/SV_Utility_02_Lens_Specs_Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 33,
+      "bayesianMean": 0.46
     },
     "sv-299": {
       "id": "sv-299",
@@ -3295,7 +4190,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/SV_Utility_03_Spine_Stencil_Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 33,
+      "bayesianMean": 0.37
     },
     "sv-300": {
       "id": "sv-300",
@@ -3306,7 +4204,10 @@
       "superlikes": 0,
       "score": 3,
       "image": "assets/optimized/SV_Utility_04_Brutalist_Grid_Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 50,
+      "bayesianMean": 0.472
     },
     "sv-301": {
       "id": "sv-301",
@@ -3317,7 +4218,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/SV_Utility_05_Slate_Box_Front.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.246
     },
     "sv-302": {
       "id": "sv-302",
@@ -3328,7 +4232,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/SV_Utility_06_Timecode_Horizon_Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-303": {
       "id": "sv-303",
@@ -3339,7 +4246,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/SV_Utility_07_Lab_Seal_Front.webp",
-      "impressions": 8
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 13,
+      "bayesianMean": 0.224
     },
     "sv-304": {
       "id": "sv-304",
@@ -3350,7 +4260,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/SV_Utility_08_Swiss_Manifest_Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-305": {
       "id": "sv-305",
@@ -3361,7 +4274,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/SV_Utility_09_Audio_Waveform_Front.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.246
     },
     "sv-306": {
       "id": "sv-306",
@@ -3372,7 +4288,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/SV_Utility_10_Magazine_Label_Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-307": {
       "id": "sv-307",
@@ -3383,7 +4302,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/Front Hit - Stari Grad Fortress Vector Icon.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-308": {
       "id": "sv-308",
@@ -3394,7 +4316,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/Front Hit - Studio Nicholson Tech Spec.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-309": {
       "id": "sv-309",
@@ -3405,7 +4330,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/Front Hit - Studio Varazdin - Cash Value Guilloche - Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-310": {
       "id": "sv-310",
@@ -3416,7 +4344,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/Front Hit - Studio Varazdin - Good Work Great Work - Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-311": {
       "id": "sv-311",
@@ -3427,7 +4358,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/Front Hit - Studio Varazdin - Nocturne Dreams - Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-312": {
       "id": "sv-312",
@@ -3438,7 +4372,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/Front Minimal - Studio Varazdin Part of cCc.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 33,
+      "bayesianMean": 0.37
     },
     "sv-313": {
       "id": "sv-313",
@@ -3449,7 +4386,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/Front Hit - Studio Varazdin - Philosopher Knight - Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-314": {
       "id": "sv-314",
@@ -3460,7 +4400,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/Front Minimal - Studio Varazdin Center Chest Large.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 33,
+      "bayesianMean": 0.37
     },
     "sv-315": {
       "id": "sv-315",
@@ -3471,7 +4414,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/Front Minimal - Studio Varazdin Minimal Box.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 29,
+      "bayesianMean": 0.333
     },
     "sv-316": {
       "id": "sv-316",
@@ -3482,7 +4428,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/Front Minimal - Studio Varazdin Red Dot Accent.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 29,
+      "bayesianMean": 0.333
     },
     "sv-317": {
       "id": "sv-317",
@@ -3493,7 +4442,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/Front Minimal - Studio Varazdin Stacked Two-Tone.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 33,
+      "bayesianMean": 0.37
     },
     "sv-318": {
       "id": "sv-318",
@@ -3504,7 +4456,10 @@
       "superlikes": 1,
       "score": 6,
       "image": "assets/optimized/SV_Lovers_03_Kneeling_Martyr_Front.webp",
-      "impressions": 8
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 50,
+      "bayesianMean": 0.534
     },
     "sv-319": {
       "id": "sv-319",
@@ -3515,7 +4470,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/Front Hit - They Who Dance Kinetic - Front.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.246
     },
     "sv-320": {
       "id": "sv-320",
@@ -3526,7 +4484,10 @@
       "superlikes": 0,
       "score": 3,
       "image": "assets/optimized/Front Minimal - Varazdin Pure Red Script.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 43,
+      "bayesianMean": 0.424
     },
     "sv-321": {
       "id": "sv-321",
@@ -3537,7 +4498,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/Front Hit - Vermilion Red Seal Stamp.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-322": {
       "id": "sv-322",
@@ -3548,7 +4512,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/Front Hit - Visually Articulate Calibration - Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-323": {
       "id": "sv-323",
@@ -3559,7 +4526,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/Front Minimal - Creative Collective Center Chest Black.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 33,
+      "bayesianMean": 0.37
     },
     "sv-324": {
       "id": "sv-324",
@@ -3570,7 +4540,10 @@
       "superlikes": 0,
       "score": 2,
       "image": "assets/optimized/Front Minimal - Creative Collective Minimal Box.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 29,
+      "bayesianMean": 0.333
     },
     "sv-325": {
       "id": "sv-325",
@@ -3581,7 +4554,10 @@
       "superlikes": 1,
       "score": 5,
       "image": "assets/optimized/Front Minimal - cCc. Monogram Creative Collective.webp",
-      "impressions": 8
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 38,
+      "bayesianMean": 0.459
     },
     "sv-326": {
       "id": "sv-326",
@@ -3592,7 +4568,10 @@
       "superlikes": 0,
       "score": 3,
       "image": "assets/optimized/Front Minimal - Studio Varazdin Lowercase Black.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 43,
+      "bayesianMean": 0.424
     },
     "sv-327": {
       "id": "sv-327",
@@ -3603,7 +4582,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/Front Minimal - Studio Varazdin Lowercase Bone.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-328": {
       "id": "sv-328",
@@ -3614,7 +4596,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/Front Hit - The Magic Alchemist Tarot - Front.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-329": {
       "id": "sv-329",
@@ -3625,7 +4610,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/design_1_knight__gpt-image-2.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-330": {
       "id": "sv-330",
@@ -3636,7 +4624,10 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/design_1_knight__gpt-image-2.5-flare.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-331": {
       "id": "sv-331",
@@ -3647,18 +4638,24 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/design_1_knight__gpt-image-2.5-sunburst.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 0,
+      "bayesianMean": 0.179
     },
     "sv-332": {
       "id": "sv-332",
       "title": "Design 2 Stari Grad GPT Image 2",
       "category": "Experimental",
-      "likes": 3,
+      "likes": 4,
       "passes": 4,
       "superlikes": 0,
-      "score": 3,
+      "score": 4,
       "image": "assets/optimized/design_2_stari_grad__gpt-image-2.webp",
-      "impressions": 7
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 50,
+      "bayesianMean": 0.469
     },
     "sv-333": {
       "id": "sv-333",
@@ -3669,7 +4666,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/design_2_stari_grad__gpt-image-2.5-flare.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.246
     },
     "sv-334": {
       "id": "sv-334",
@@ -3680,7 +4680,10 @@
       "superlikes": 0,
       "score": 3,
       "image": "assets/optimized/design_2_stari_grad__gpt-image-2.5-sunburst.webp",
-      "impressions": 8
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 38,
+      "bayesianMean": 0.385
     },
     "sv-335": {
       "id": "sv-335",
@@ -3691,7 +4694,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/design_3_church_towers__gpt-image-2.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.273
     },
     "sv-336": {
       "id": "sv-336",
@@ -3702,7 +4708,10 @@
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/design_3_church_towers__gpt-image-2.5-flare.webp",
-      "impressions": 7
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.246
     },
     "sv-337": {
       "id": "sv-337",
@@ -3713,7 +4722,152 @@
       "superlikes": 1,
       "score": 3,
       "image": "assets/optimized/design_3_church_towers__gpt-image-2.5-sunburst.webp",
-      "impressions": 6
+      "impressions": 6,
+      "totalVotes": 6,
+      "approvalRate": 17,
+      "bayesianMean": 0.375
     }
-  }
+  },
+  "recentFeed": [
+    {
+      "user": "Gost #e6cb",
+      "action": "glasao za",
+      "item": "SV 4Ref 02 — Praying Guardian Riso",
+      "time": "upravo sada",
+      "timestamp": 1789681647
+    },
+    {
+      "user": "Gost #e6cb",
+      "action": "glasao za",
+      "item": "SV Single 04 — Rearing Knight Front Hit",
+      "time": "upravo sada",
+      "timestamp": 1789681647
+    },
+    {
+      "user": "Gost #e6cb",
+      "action": "glasao za",
+      "item": "Knight Sigil White",
+      "time": "upravo sada",
+      "timestamp": 1789681647
+    },
+    {
+      "user": "Gost #e6cb",
+      "action": "glasao za",
+      "item": "SV 4Ref 04 — Rearing CyberGothic",
+      "time": "upravo sada",
+      "timestamp": 1789681647
+    },
+    {
+      "user": "Gost #e6cb",
+      "action": "glasao za",
+      "item": "Visually Articulate",
+      "time": "upravo sada",
+      "timestamp": 1789681646
+    },
+    {
+      "user": "Gost #e6cb",
+      "action": "glasao za",
+      "item": "SV Single 01 — Woodcut Knight Front Hit",
+      "time": "upravo sada",
+      "timestamp": 1789681646
+    },
+    {
+      "user": "Gost #e6cb",
+      "action": "glasao za",
+      "item": "Not Overthinking Storyboard Collage",
+      "time": "upravo sada",
+      "timestamp": 1789681646
+    },
+    {
+      "user": "Gost #e6cb",
+      "action": "glasao za",
+      "item": "Tower Lisakova Kula Graffiti",
+      "time": "upravo sada",
+      "timestamp": 1789681645
+    },
+    {
+      "user": "Gost #e6cb",
+      "action": "glasao za",
+      "item": "Design 2 Stari Grad GPT Image 2",
+      "time": "upravo sada",
+      "timestamp": 1789681645
+    },
+    {
+      "user": "Gost #e6cb",
+      "action": "glasao za",
+      "item": "Creative Block Rock Masked",
+      "time": "upravo sada",
+      "timestamp": 1789681645
+    },
+    {
+      "user": "Gost #e6cb",
+      "action": "glasao za",
+      "item": "Teratomorpha Sigil White",
+      "time": "upravo sada",
+      "timestamp": 1789681644
+    },
+    {
+      "user": "Gost #e6cb",
+      "action": "preskočio",
+      "item": "Grgur Ninski Pointing Finger Icon",
+      "time": "upravo sada",
+      "timestamp": 1789681644
+    },
+    {
+      "user": "Gost #e6cb",
+      "action": "preskočio",
+      "item": "SV Utility 04 — Neo-Gothic Brutalist Grid",
+      "time": "upravo sada",
+      "timestamp": 1789681639
+    },
+    {
+      "user": "Gost #e6cb",
+      "action": "glasao za",
+      "item": "Utility Spec Print White On Black Brutalist",
+      "time": "upravo sada",
+      "timestamp": 1789681639
+    },
+    {
+      "user": "Gost #f9f5",
+      "action": "preskočio",
+      "item": "Akcija Clapperboard",
+      "time": "upravo sada",
+      "timestamp": 1789680927
+    },
+    {
+      "user": "Gost #f9f5",
+      "action": "preskočio",
+      "item": "Akcija Clapperboard",
+      "time": "upravo sada",
+      "timestamp": 1789680926
+    },
+    {
+      "user": "Gost #f9f5",
+      "action": "SUPERLAJKAO",
+      "item": "Silent Knight Black",
+      "time": "upravo sada",
+      "timestamp": 1789680748
+    },
+    {
+      "user": "Gost #a6d3",
+      "action": "preskočio",
+      "item": "Collab 08 — Iron Turtle Guild Cimer",
+      "time": "upravo sada",
+      "timestamp": 1789672894
+    },
+    {
+      "user": "Gost #a6d3",
+      "action": "preskočio",
+      "item": "CCC Middle Ground Blueprint Front",
+      "time": "upravo sada",
+      "timestamp": 1789672894
+    },
+    {
+      "user": "Gost #a6d3",
+      "action": "preskočio",
+      "item": "Glagolitic Initial S Gryphon",
+      "time": "upravo sada",
+      "timestamp": 1789672894
+    }
+  ]
 }

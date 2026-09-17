@@ -1,50 +1,64 @@
 {
   "round": 1,
-  "totalVotes": 2254,
-  "uniqueVoters": 5,
+  "totalVotes": 2271,
+  "uniqueVoters": 6,
   "totalItemsVoted": 337,
   "rankedItems": [
     {
       "id": "sv-291",
       "title": "SV Single 04 — Rearing Knight Front Hit",
       "category": "Front Hits",
-      "likes": 2,
+      "likes": 3,
       "passes": 4,
       "superlikes": 2,
-      "score": 8,
+      "score": 9,
       "image": "assets/optimized/SV_Single_04_Riso_Rearing_Knight_Front.webp",
-      "impressions": 8,
-      "totalVotes": 8,
-      "approvalRate": 50,
-      "bayesianMean": 0.585
+      "impressions": 9,
+      "totalVotes": 9,
+      "approvalRate": 56,
+      "bayesianMean": 0.609
     },
     {
       "id": "sv-234",
       "title": "Teratomorpha Sigil White",
       "category": "Artwear",
-      "likes": 4,
+      "likes": 5,
       "passes": 3,
       "superlikes": 1,
-      "score": 7,
+      "score": 8,
       "image": "assets/optimized/SV Artwear - Teratomorpha Sigil White.webp",
-      "impressions": 8,
-      "totalVotes": 8,
-      "approvalRate": 63,
-      "bayesianMean": 0.611
+      "impressions": 9,
+      "totalVotes": 9,
+      "approvalRate": 67,
+      "bayesianMean": 0.636
     },
     {
       "id": "sv-100",
       "title": "Creative Block Rock Masked",
       "category": "Creative",
-      "likes": 1,
+      "likes": 2,
       "passes": 3,
       "superlikes": 2,
-      "score": 7,
+      "score": 8,
       "image": "assets/optimized/CV Tee - Creative Block Rock Masked.webp",
-      "impressions": 6,
-      "totalVotes": 6,
-      "approvalRate": 50,
-      "bayesianMean": 0.606
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 57,
+      "bayesianMean": 0.632
+    },
+    {
+      "id": "sv-143",
+      "title": "Not Overthinking Storyboard Collage",
+      "category": "Creative",
+      "likes": 4,
+      "passes": 3,
+      "superlikes": 1,
+      "score": 7,
+      "image": "assets/optimized/CV Tee - Not Overthinking Storyboard Collage.webp",
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 63,
+      "bayesianMean": 0.611
     },
     {
       "id": "sv-294",
@@ -61,32 +75,60 @@
       "bayesianMean": 0.558
     },
     {
-      "id": "sv-143",
-      "title": "Not Overthinking Storyboard Collage",
+      "id": "sv-217",
+      "title": "Knight Sigil White",
+      "category": "Artwear",
+      "likes": 6,
+      "passes": 3,
+      "superlikes": 0,
+      "score": 6,
+      "image": "assets/optimized/SV Print - Knight Sigil White.webp",
+      "impressions": 9,
+      "totalVotes": 9,
+      "approvalRate": 67,
+      "bayesianMean": 0.588
+    },
+    {
+      "id": "sv-153",
+      "title": "SV 4Ref 02 — Praying Guardian Riso",
       "category": "Creative",
       "likes": 3,
-      "passes": 3,
+      "passes": 4,
       "superlikes": 1,
       "score": 6,
-      "image": "assets/optimized/CV Tee - Not Overthinking Storyboard Collage.webp",
-      "impressions": 7,
-      "totalVotes": 7,
-      "approvalRate": 57,
-      "bayesianMean": 0.582
+      "image": "assets/optimized/SV_4Ref_02_Praying_Guardian_Riso_Back.webp",
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 50,
+      "bayesianMean": 0.534
+    },
+    {
+      "id": "sv-155",
+      "title": "SV 4Ref 04 — Rearing CyberGothic",
+      "category": "Creative",
+      "likes": 3,
+      "passes": 4,
+      "superlikes": 1,
+      "score": 6,
+      "image": "assets/optimized/SV_4Ref_04_Rearing_CyberGothic_Back.webp",
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 50,
+      "bayesianMean": 0.534
     },
     {
       "id": "sv-268",
       "title": "Grgur Ninski Pointing Finger Icon",
       "category": "Front Hits",
       "likes": 3,
-      "passes": 3,
+      "passes": 4,
       "superlikes": 1,
       "score": 6,
       "image": "assets/optimized/Front Hit - Grgur Ninski Pointing Finger Icon.webp",
-      "impressions": 7,
-      "totalVotes": 7,
-      "approvalRate": 57,
-      "bayesianMean": 0.582
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 50,
+      "bayesianMean": 0.534
     },
     {
       "id": "sv-318",
@@ -103,32 +145,18 @@
       "bayesianMean": 0.534
     },
     {
-      "id": "sv-217",
-      "title": "Knight Sigil White",
-      "category": "Artwear",
+      "id": "sv-288",
+      "title": "SV Single 01 — Woodcut Knight Front Hit",
+      "category": "Front Hits",
       "likes": 5,
       "passes": 3,
       "superlikes": 0,
       "score": 5,
-      "image": "assets/optimized/SV Print - Knight Sigil White.webp",
+      "image": "assets/optimized/SV_Single_01_Woodcut_Knight_Front.webp",
       "impressions": 8,
       "totalVotes": 8,
       "approvalRate": 63,
       "bayesianMean": 0.556
-    },
-    {
-      "id": "sv-045",
-      "title": "SV Utility 04 — Neo-Gothic Brutalist Grid",
-      "category": "Utility",
-      "likes": 2,
-      "passes": 4,
-      "superlikes": 1,
-      "score": 5,
-      "image": "assets/optimized/SV_Utility_04_Brutalist_Grid_Back.webp",
-      "impressions": 7,
-      "totalVotes": 7,
-      "approvalRate": 43,
-      "bayesianMean": 0.5
     },
     {
       "id": "sv-098",
@@ -187,34 +215,6 @@
       "bayesianMean": 0.5
     },
     {
-      "id": "sv-153",
-      "title": "SV 4Ref 02 — Praying Guardian Riso",
-      "category": "Creative",
-      "likes": 2,
-      "passes": 4,
-      "superlikes": 1,
-      "score": 5,
-      "image": "assets/optimized/SV_4Ref_02_Praying_Guardian_Riso_Back.webp",
-      "impressions": 7,
-      "totalVotes": 7,
-      "approvalRate": 43,
-      "bayesianMean": 0.5
-    },
-    {
-      "id": "sv-155",
-      "title": "SV 4Ref 04 — Rearing CyberGothic",
-      "category": "Creative",
-      "likes": 2,
-      "passes": 4,
-      "superlikes": 1,
-      "score": 5,
-      "image": "assets/optimized/SV_4Ref_04_Rearing_CyberGothic_Back.webp",
-      "impressions": 7,
-      "totalVotes": 7,
-      "approvalRate": 43,
-      "bayesianMean": 0.5
-    },
-    {
       "id": "sv-254",
       "title": "Collab 04 — Fire 1776 Front Hit",
       "category": "Front Hits",
@@ -241,6 +241,20 @@
       "totalVotes": 7,
       "approvalRate": 43,
       "bayesianMean": 0.5
+    },
+    {
+      "id": "sv-045",
+      "title": "SV Utility 04 — Neo-Gothic Brutalist Grid",
+      "category": "Utility",
+      "likes": 2,
+      "passes": 5,
+      "superlikes": 1,
+      "score": 5,
+      "image": "assets/optimized/SV_Utility_04_Brutalist_Grid_Back.webp",
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 38,
+      "bayesianMean": 0.459
     },
     {
       "id": "sv-104",
@@ -271,18 +285,46 @@
       "bayesianMean": 0.459
     },
     {
-      "id": "sv-288",
-      "title": "SV Single 01 — Woodcut Knight Front Hit",
-      "category": "Front Hits",
+      "id": "sv-029",
+      "title": "Tower Lisakova Kula Graffiti",
+      "category": "Towers",
+      "likes": 2,
+      "passes": 7,
+      "superlikes": 1,
+      "score": 5,
+      "image": "assets/optimized/T-Shirt - Tower Lisakova Kula Graffiti.webp",
+      "impressions": 10,
+      "totalVotes": 10,
+      "approvalRate": 30,
+      "bayesianMean": 0.395
+    },
+    {
+      "id": "sv-183",
+      "title": "Utility Spec Print White On Black Brutalist",
+      "category": "Creative",
       "likes": 4,
-      "passes": 3,
+      "passes": 4,
       "superlikes": 0,
       "score": 4,
-      "image": "assets/optimized/SV_Single_01_Woodcut_Knight_Front.webp",
-      "impressions": 7,
-      "totalVotes": 7,
-      "approvalRate": 57,
-      "bayesianMean": 0.517
+      "image": "assets/optimized/CV Tee - Utility Spec Print - White on Black Brutalist.webp",
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 50,
+      "bayesianMean": 0.469
+    },
+    {
+      "id": "sv-332",
+      "title": "Design 2 Stari Grad GPT Image 2",
+      "category": "Experimental",
+      "likes": 4,
+      "passes": 4,
+      "superlikes": 0,
+      "score": 4,
+      "image": "assets/optimized/design_2_stari_grad__gpt-image-2.webp",
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 50,
+      "bayesianMean": 0.469
     },
     {
       "id": "sv-110",
@@ -453,20 +495,6 @@
       "bayesianMean": 0.42
     },
     {
-      "id": "sv-029",
-      "title": "Tower Lisakova Kula Graffiti",
-      "category": "Towers",
-      "likes": 1,
-      "passes": 7,
-      "superlikes": 1,
-      "score": 4,
-      "image": "assets/optimized/T-Shirt - Tower Lisakova Kula Graffiti.webp",
-      "impressions": 9,
-      "totalVotes": 9,
-      "approvalRate": 22,
-      "bayesianMean": 0.358
-    },
-    {
       "id": "sv-152",
       "title": "SV 4Ref 01 — Side Quest Woodcut",
       "category": "Creative",
@@ -551,20 +579,6 @@
       "bayesianMean": 0.424
     },
     {
-      "id": "sv-183",
-      "title": "Utility Spec Print White On Black Brutalist",
-      "category": "Creative",
-      "likes": 3,
-      "passes": 4,
-      "superlikes": 0,
-      "score": 3,
-      "image": "assets/optimized/CV Tee - Utility Spec Print - White on Black Brutalist.webp",
-      "impressions": 7,
-      "totalVotes": 7,
-      "approvalRate": 43,
-      "bayesianMean": 0.424
-    },
-    {
       "id": "sv-320",
       "title": "Varaždin — Pure Red Script",
       "category": "Front Hits",
@@ -593,18 +607,18 @@
       "bayesianMean": 0.424
     },
     {
-      "id": "sv-332",
-      "title": "Design 2 Stari Grad GPT Image 2",
-      "category": "Experimental",
+      "id": "sv-015",
+      "title": "Visually Articulate",
+      "category": "Studio",
       "likes": 3,
-      "passes": 4,
+      "passes": 5,
       "superlikes": 0,
       "score": 3,
-      "image": "assets/optimized/design_2_stari_grad__gpt-image-2.webp",
-      "impressions": 7,
-      "totalVotes": 7,
-      "approvalRate": 43,
-      "bayesianMean": 0.424
+      "image": "assets/optimized/SV Tee - Visually Articulate.webp",
+      "impressions": 8,
+      "totalVotes": 8,
+      "approvalRate": 38,
+      "bayesianMean": 0.385
     },
     {
       "id": "sv-287",
@@ -901,6 +915,20 @@
       "bayesianMean": 0.343
     },
     {
+      "id": "sv-221",
+      "title": "Perun Sacred Geometry",
+      "category": "Artwear",
+      "likes": 0,
+      "passes": 6,
+      "superlikes": 1,
+      "score": 3,
+      "image": "assets/optimized/SV Artwear - Perun Sacred Geometry.webp",
+      "impressions": 7,
+      "totalVotes": 7,
+      "approvalRate": 14,
+      "bayesianMean": 0.343
+    },
+    {
       "id": "sv-263",
       "title": "Creative Block 1181 Front",
       "category": "Front Hits",
@@ -1179,20 +1207,6 @@
       "totalVotes": 6,
       "approvalRate": 33,
       "bayesianMean": 0.37
-    },
-    {
-      "id": "sv-015",
-      "title": "Visually Articulate",
-      "category": "Studio",
-      "likes": 2,
-      "passes": 5,
-      "superlikes": 0,
-      "score": 2,
-      "image": "assets/optimized/SV Tee - Visually Articulate.webp",
-      "impressions": 7,
-      "totalVotes": 7,
-      "approvalRate": 29,
-      "bayesianMean": 0.333
     },
     {
       "id": "sv-055",
@@ -2133,20 +2147,6 @@
       "bayesianMean": 0.246
     },
     {
-      "id": "sv-007",
-      "title": "Akcija Clapperboard",
-      "category": "Studio",
-      "likes": 1,
-      "passes": 6,
-      "superlikes": 0,
-      "score": 1,
-      "image": "assets/optimized/SV Tee - Akcija Clapperboard.webp",
-      "impressions": 7,
-      "totalVotes": 7,
-      "approvalRate": 14,
-      "bayesianMean": 0.246
-    },
-    {
       "id": "sv-008",
       "title": "Camera Coat of Arms",
       "category": "Studio",
@@ -2747,6 +2747,20 @@
       "totalVotes": 8,
       "approvalRate": 13,
       "bayesianMean": 0.224
+    },
+    {
+      "id": "sv-007",
+      "title": "Akcija Clapperboard",
+      "category": "Studio",
+      "likes": 1,
+      "passes": 8,
+      "superlikes": 0,
+      "score": 1,
+      "image": "assets/optimized/SV Tee - Akcija Clapperboard.webp",
+      "impressions": 9,
+      "totalVotes": 9,
+      "approvalRate": 11,
+      "bayesianMean": 0.205
     },
     {
       "id": "sv-033",
@@ -3723,20 +3737,6 @@
       "superlikes": 0,
       "score": 0,
       "image": "assets/optimized/SV Tee - Kameni Vitez Radimlja.webp",
-      "impressions": 6,
-      "totalVotes": 6,
-      "approvalRate": 0,
-      "bayesianMean": 0.179
-    },
-    {
-      "id": "sv-221",
-      "title": "Perun Sacred Geometry",
-      "category": "Artwear",
-      "likes": 0,
-      "passes": 6,
-      "superlikes": 0,
-      "score": 0,
-      "image": "assets/optimized/SV Artwear - Perun Sacred Geometry.webp",
       "impressions": 6,
       "totalVotes": 6,
       "approvalRate": 0,

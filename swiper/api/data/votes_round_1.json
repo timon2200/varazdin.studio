@@ -1,11 +1,12 @@
 {
-  "totalVotes": 2254,
+  "totalVotes": 2271,
   "uniqueVoters": [
     "usr_6cp05b71mu4l05w1",
     "usr_8g9z9c1fmu4bfnpe",
     "usr_15f6mh1xmu5w8ud1",
     "usr_51mx6w0amu5wa4x9",
-    "usr_h2zaux7dmu5wcg5r"
+    "usr_h2zaux7dmu5wcg5r",
+    "usr_4y6rbtsmmu61phad"
   ],
   "items": {
     "sv-001": {
@@ -79,11 +80,11 @@
       "title": "Akcija Clapperboard",
       "category": "Studio",
       "likes": 1,
-      "passes": 6,
+      "passes": 8,
       "superlikes": 0,
       "score": 1,
       "image": "assets/optimized/SV Tee - Akcija Clapperboard.webp",
-      "impressions": 7
+      "impressions": 9
     },
     "sv-008": {
       "id": "sv-008",
@@ -166,12 +167,12 @@
       "id": "sv-015",
       "title": "Visually Articulate",
       "category": "Studio",
-      "likes": 2,
+      "likes": 3,
       "passes": 5,
       "superlikes": 0,
-      "score": 2,
+      "score": 3,
       "image": "assets/optimized/SV Tee - Visually Articulate.webp",
-      "impressions": 7
+      "impressions": 8
     },
     "sv-016": {
       "id": "sv-016",
@@ -320,12 +321,12 @@
       "id": "sv-029",
       "title": "Tower Lisakova Kula Graffiti",
       "category": "Towers",
-      "likes": 1,
+      "likes": 2,
       "passes": 7,
       "superlikes": 1,
-      "score": 4,
+      "score": 5,
       "image": "assets/optimized/T-Shirt - Tower Lisakova Kula Graffiti.webp",
-      "impressions": 9
+      "impressions": 10
     },
     "sv-030": {
       "id": "sv-030",
@@ -497,11 +498,11 @@
       "title": "SV Utility 04 — Neo-Gothic Brutalist Grid",
       "category": "Utility",
       "likes": 2,
-      "passes": 4,
+      "passes": 5,
       "superlikes": 1,
       "score": 5,
       "image": "assets/optimized/SV_Utility_04_Brutalist_Grid_Back.webp",
-      "impressions": 7
+      "impressions": 8
     },
     "sv-046": {
       "id": "sv-046",
@@ -1101,12 +1102,12 @@
       "id": "sv-100",
       "title": "Creative Block Rock Masked",
       "category": "Creative",
-      "likes": 1,
+      "likes": 2,
       "passes": 3,
       "superlikes": 2,
-      "score": 7,
+      "score": 8,
       "image": "assets/optimized/CV Tee - Creative Block Rock Masked.webp",
-      "impressions": 6
+      "impressions": 7
     },
     "sv-101": {
       "id": "sv-101",
@@ -1574,12 +1575,12 @@
       "id": "sv-143",
       "title": "Not Overthinking Storyboard Collage",
       "category": "Creative",
-      "likes": 3,
+      "likes": 4,
       "passes": 3,
       "superlikes": 1,
-      "score": 6,
+      "score": 7,
       "image": "assets/optimized/CV Tee - Not Overthinking Storyboard Collage.webp",
-      "impressions": 7
+      "impressions": 8
     },
     "sv-144": {
       "id": "sv-144",
@@ -1684,12 +1685,12 @@
       "id": "sv-153",
       "title": "SV 4Ref 02 — Praying Guardian Riso",
       "category": "Creative",
-      "likes": 2,
+      "likes": 3,
       "passes": 4,
       "superlikes": 1,
-      "score": 5,
+      "score": 6,
       "image": "assets/optimized/SV_4Ref_02_Praying_Guardian_Riso_Back.webp",
-      "impressions": 7
+      "impressions": 8
     },
     "sv-154": {
       "id": "sv-154",
@@ -1706,12 +1707,12 @@
       "id": "sv-155",
       "title": "SV 4Ref 04 — Rearing CyberGothic",
       "category": "Creative",
-      "likes": 2,
+      "likes": 3,
       "passes": 4,
       "superlikes": 1,
-      "score": 5,
+      "score": 6,
       "image": "assets/optimized/SV_4Ref_04_Rearing_CyberGothic_Back.webp",
-      "impressions": 7
+      "impressions": 8
     },
     "sv-156": {
       "id": "sv-156",
@@ -2014,12 +2015,12 @@
       "id": "sv-183",
       "title": "Utility Spec Print White On Black Brutalist",
       "category": "Creative",
-      "likes": 3,
+      "likes": 4,
       "passes": 4,
       "superlikes": 0,
-      "score": 3,
+      "score": 4,
       "image": "assets/optimized/CV Tee - Utility Spec Print - White on Black Brutalist.webp",
-      "impressions": 7
+      "impressions": 8
     },
     "sv-184": {
       "id": "sv-184",
@@ -2388,12 +2389,12 @@
       "id": "sv-217",
       "title": "Knight Sigil White",
       "category": "Artwear",
-      "likes": 5,
+      "likes": 6,
       "passes": 3,
       "superlikes": 0,
-      "score": 5,
+      "score": 6,
       "image": "assets/optimized/SV Print - Knight Sigil White.webp",
-      "impressions": 8
+      "impressions": 9
     },
     "sv-218": {
       "id": "sv-218",
@@ -2434,10 +2435,10 @@
       "category": "Artwear",
       "likes": 0,
       "passes": 6,
-      "superlikes": 0,
-      "score": 0,
+      "superlikes": 1,
+      "score": 3,
       "image": "assets/optimized/SV Artwear - Perun Sacred Geometry.webp",
-      "impressions": 6
+      "impressions": 7
     },
     "sv-222": {
       "id": "sv-222",
@@ -2575,12 +2576,12 @@
       "id": "sv-234",
       "title": "Teratomorpha Sigil White",
       "category": "Artwear",
-      "likes": 4,
+      "likes": 5,
       "passes": 3,
       "superlikes": 1,
-      "score": 7,
+      "score": 8,
       "image": "assets/optimized/SV Artwear - Teratomorpha Sigil White.webp",
-      "impressions": 8
+      "impressions": 9
     },
     "sv-235": {
       "id": "sv-235",
@@ -2950,11 +2951,11 @@
       "title": "Grgur Ninski Pointing Finger Icon",
       "category": "Front Hits",
       "likes": 3,
-      "passes": 3,
+      "passes": 4,
       "superlikes": 1,
       "score": 6,
       "image": "assets/optimized/Front Hit - Grgur Ninski Pointing Finger Icon.webp",
-      "impressions": 7
+      "impressions": 8
     },
     "sv-269": {
       "id": "sv-269",
@@ -3169,12 +3170,12 @@
       "id": "sv-288",
       "title": "SV Single 01 — Woodcut Knight Front Hit",
       "category": "Front Hits",
-      "likes": 4,
+      "likes": 5,
       "passes": 3,
       "superlikes": 0,
-      "score": 4,
+      "score": 5,
       "image": "assets/optimized/SV_Single_01_Woodcut_Knight_Front.webp",
-      "impressions": 7
+      "impressions": 8
     },
     "sv-289": {
       "id": "sv-289",
@@ -3202,12 +3203,12 @@
       "id": "sv-291",
       "title": "SV Single 04 — Rearing Knight Front Hit",
       "category": "Front Hits",
-      "likes": 2,
+      "likes": 3,
       "passes": 4,
       "superlikes": 2,
-      "score": 8,
+      "score": 9,
       "image": "assets/optimized/SV_Single_04_Riso_Rearing_Knight_Front.webp",
-      "impressions": 8
+      "impressions": 9
     },
     "sv-292": {
       "id": "sv-292",
@@ -3653,12 +3654,12 @@
       "id": "sv-332",
       "title": "Design 2 Stari Grad GPT Image 2",
       "category": "Experimental",
-      "likes": 3,
+      "likes": 4,
       "passes": 4,
       "superlikes": 0,
-      "score": 3,
+      "score": 4,
       "image": "assets/optimized/design_2_stari_grad__gpt-image-2.webp",
-      "impressions": 7
+      "impressions": 8
     },
     "sv-333": {
       "id": "sv-333",
@@ -3715,5 +3716,147 @@
       "image": "assets/optimized/design_3_church_towers__gpt-image-2.5-sunburst.webp",
       "impressions": 6
     }
-  }
+  },
+  "recentFeed": [
+    {
+      "user": "Gost #e6cb",
+      "action": "glasao za",
+      "item": "SV 4Ref 02 — Praying Guardian Riso",
+      "time": "upravo sada",
+      "timestamp": 1789681647
+    },
+    {
+      "user": "Gost #e6cb",
+      "action": "glasao za",
+      "item": "SV Single 04 — Rearing Knight Front Hit",
+      "time": "upravo sada",
+      "timestamp": 1789681647
+    },
+    {
+      "user": "Gost #e6cb",
+      "action": "glasao za",
+      "item": "Knight Sigil White",
+      "time": "upravo sada",
+      "timestamp": 1789681647
+    },
+    {
+      "user": "Gost #e6cb",
+      "action": "glasao za",
+      "item": "SV 4Ref 04 — Rearing CyberGothic",
+      "time": "upravo sada",
+      "timestamp": 1789681647
+    },
+    {
+      "user": "Gost #e6cb",
+      "action": "glasao za",
+      "item": "Visually Articulate",
+      "time": "upravo sada",
+      "timestamp": 1789681646
+    },
+    {
+      "user": "Gost #e6cb",
+      "action": "glasao za",
+      "item": "SV Single 01 — Woodcut Knight Front Hit",
+      "time": "upravo sada",
+      "timestamp": 1789681646
+    },
+    {
+      "user": "Gost #e6cb",
+      "action": "glasao za",
+      "item": "Not Overthinking Storyboard Collage",
+      "time": "upravo sada",
+      "timestamp": 1789681646
+    },
+    {
+      "user": "Gost #e6cb",
+      "action": "glasao za",
+      "item": "Tower Lisakova Kula Graffiti",
+      "time": "upravo sada",
+      "timestamp": 1789681645
+    },
+    {
+      "user": "Gost #e6cb",
+      "action": "glasao za",
+      "item": "Design 2 Stari Grad GPT Image 2",
+      "time": "upravo sada",
+      "timestamp": 1789681645
+    },
+    {
+      "user": "Gost #e6cb",
+      "action": "glasao za",
+      "item": "Creative Block Rock Masked",
+      "time": "upravo sada",
+      "timestamp": 1789681645
+    },
+    {
+      "user": "Gost #e6cb",
+      "action": "glasao za",
+      "item": "Teratomorpha Sigil White",
+      "time": "upravo sada",
+      "timestamp": 1789681644
+    },
+    {
+      "user": "Gost #e6cb",
+      "action": "preskočio",
+      "item": "Grgur Ninski Pointing Finger Icon",
+      "time": "upravo sada",
+      "timestamp": 1789681644
+    },
+    {
+      "user": "Gost #e6cb",
+      "action": "preskočio",
+      "item": "SV Utility 04 — Neo-Gothic Brutalist Grid",
+      "time": "upravo sada",
+      "timestamp": 1789681639
+    },
+    {
+      "user": "Gost #e6cb",
+      "action": "glasao za",
+      "item": "Utility Spec Print White On Black Brutalist",
+      "time": "upravo sada",
+      "timestamp": 1789681639
+    },
+    {
+      "user": "Gost #f9f5",
+      "action": "preskočio",
+      "item": "Akcija Clapperboard",
+      "time": "upravo sada",
+      "timestamp": 1789680927
+    },
+    {
+      "user": "Gost #f9f5",
+      "action": "preskočio",
+      "item": "Akcija Clapperboard",
+      "time": "upravo sada",
+      "timestamp": 1789680926
+    },
+    {
+      "user": "Gost #f9f5",
+      "action": "SUPERLAJKAO",
+      "item": "Silent Knight Black",
+      "time": "upravo sada",
+      "timestamp": 1789680748
+    },
+    {
+      "user": "Gost #a6d3",
+      "action": "preskočio",
+      "item": "Collab 08 — Iron Turtle Guild Cimer",
+      "time": "upravo sada",
+      "timestamp": 1789672894
+    },
+    {
+      "user": "Gost #a6d3",
+      "action": "preskočio",
+      "item": "CCC Middle Ground Blueprint Front",
+      "time": "upravo sada",
+      "timestamp": 1789672894
+    },
+    {
+      "user": "Gost #a6d3",
+      "action": "preskočio",
+      "item": "Glagolitic Initial S Gryphon",
+      "time": "upravo sada",
+      "timestamp": 1789672894
+    }
+  ]
 }
