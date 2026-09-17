@@ -1,0 +1,4489 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DVORAC I KAMPUS — Kinematografski film Svete Nedelje</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,500;0,700;0,800;1,700&family=Outfit:wght@700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Space+Grotesk:wght@700&family=Syne:wght@700;800;900&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Presentation Styles -->
+  <style>
+:root {
+  --bg-canvas: #f4efe4;
+  --bg-card: #fbf7ee;
+  --bg-card-subtle: #eae3d2;
+  --text-primary: #111518;
+  --text-secondary: #3b454e;
+  --text-muted: #79828a;
+  --border-dark: #111518;
+  --border-color: #d5ccba;
+  --accent-green: #11421f;
+  --accent-green-bright: #177331;
+  --accent-green-bg: #e1ede4;
+  --accent-green-border: #a6cbb4;
+  --font-hero: 'Plus Jakarta Sans', sans-serif;
+  --font-display: 'Plus Jakarta Sans', sans-serif;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --particle-color: #11421f;
+  --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- Core: variables.css --- */
+:root {
+  --bg-canvas: #f4efe4;
+  --bg-card: #fbf7ee;
+  --bg-card-subtle: #eae3d2;
+  --text-primary: #111518;
+  --text-secondary: #3b454e;
+  --text-muted: #79828a;
+  --border-dark: #111518;
+  --border-color: #d5ccba;
+  --accent-green: #11421f;
+  --accent-green-bright: #177331;
+  --accent-green-bg: #e1ede4;
+  --accent-green-border: #a6cbb4;
+  --font-hero: 'Plus Jakarta Sans', sans-serif;
+  --font-display: 'Plus Jakarta Sans', sans-serif;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+/* --- Core: base.css --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.35;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+  position: relative;
+}
+
+/* Background Ambient Canvas */
+#ambient-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.55;
+}
+
+/* Main Deck Stage Container (16:9 Locked & Centered) */
+main.deck-stage {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2.5rem 5.5rem 2.5rem;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.slide-wrapper {
+  width: 100%;
+  background-color: var(--bg-card);
+  max-width: 1440px;
+  aspect-ratio: 16 / 9;
+  max-height: calc(100vh - 135px);
+  background: var(--bg-card);
+  border: 2px solid var(--text-primary);
+  box-shadow: 8px 8px 0px rgba(17, 21, 24, 0.16);
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Slide Base */
+.slide {
+  display: none;
+  background-color: var(--bg-card);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: clamp(1.3rem, 2.2vw, 2.1rem) clamp(1.8rem, 2.8vw, 3.2rem);
+  flex-direction: column;
+  justify-content: space-between;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  overflow: hidden;
+  background: var(--bg-card);
+  box-sizing: border-box;
+}
+
+.slide.active {
+  display: flex;
+  opacity: 1;
+  position: relative;
+}
+
+/* Scoped View Transitions - Isolated to Active Slide */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none !important;
+}
+
+::view-transition-group(root) {
+  animation: none !important;
+}
+
+.slide.active {
+  view-transition-name: active-slide-body;
+}
+
+::view-transition-group(active-slide-body) {
+  animation-duration: 0.38s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slide-out-to-left {
+  0% { transform: translateX(0) scale(1); opacity: 1; filter: blur(0px); }
+  100% { transform: translateX(-35px) scale(0.98); opacity: 0; filter: blur(2px); }
+}
+@keyframes slide-in-from-right {
+  0% { transform: translateX(35px) scale(0.98); opacity: 0; filter: blur(2px); }
+  100% { transform: translateX(0) scale(1); opacity: 1; filter: blur(0px); }
+}
+@keyframes slide-out-to-right {
+  0% { transform: translateX(0) scale(1); opacity: 1; filter: blur(0px); }
+  100% { transform: translateX(35px) scale(0.98); opacity: 0; filter: blur(2px); }
+}
+@keyframes slide-in-from-left {
+  0% { transform: translateX(-35px) scale(0.98); opacity: 0; filter: blur(2px); }
+  100% { transform: translateX(0) scale(1); opacity: 1; filter: blur(0px); }
+}
+
+html:active-view-transition-type(forward)::view-transition-old(active-slide-body) {
+  animation-name: slide-out-to-left;
+  animation-duration: 0.32s;
+}
+html:active-view-transition-type(forward)::view-transition-new(active-slide-body) {
+  animation-name: slide-in-from-right;
+  animation-duration: 0.38s;
+}
+html:active-view-transition-type(backward)::view-transition-old(active-slide-body) {
+  animation-name: slide-out-to-right;
+  animation-duration: 0.32s;
+}
+html:active-view-transition-type(backward)::view-transition-new(active-slide-body) {
+  animation-name: slide-in-from-left;
+  animation-duration: 0.38s;
+}
+
+/* Staggered Item Entrance */
+@keyframes slideItemReveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide.active .quote-title {
+  animation: slideItemReveal 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.03s both;
+}
+.slide.active .quote-sub,
+.slide.active .punchy-narration {
+  animation: slideItemReveal 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.07s both;
+}
+.slide.active .category-badge-row,
+.slide.active .grid-2col,
+.slide.active .grid-3col,
+.slide.active .slide-actions-grid {
+  animation: slideItemReveal 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.11s both;
+}
+
+/* Print Stylesheet for 16:9 PDF Export */
+@media print {
+  @page {
+    size: 16in 9in;
+    margin: 0;
+  }
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  body {
+    height: auto !important;
+    overflow: visible !important;
+    background: var(--bg-canvas) !important;
+    display: block !important;
+  }
+  header.deck-header,
+  footer.deck-footer,
+  #canvasUiParticles,
+  .video-modal,
+  .cloth-card-canvas {
+    display: none !important;
+  }
+  main.deck-stage {
+    padding: 0 !important;
+    height: auto !important;
+    display: block !important;
+    overflow: visible !important;
+  }
+  .slide-wrapper {
+    box-shadow: none !important;
+    border: none !important;
+    max-width: 100% !important;
+    max-height: none !important;
+    height: auto !important;
+    display: block !important;
+    overflow: visible !important;
+    border-radius: 0 !important;
+  }
+  .slide {
+    display: flex !important;
+    opacity: 1 !important;
+    position: relative !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    height: 9in !important;
+    width: 16in !important;
+    max-height: 9in !important;
+    max-width: 16in !important;
+    box-sizing: border-box !important;
+    padding: 0.8in 1in !important;
+    overflow: hidden !important;
+  }
+  .offer-box {
+    opacity: 1 !important;
+  }
+}
+
+
+
+/* --- Core: header.css --- */
+header.deck-header {
+  height: 54px;
+  background: rgba(244, 239, 228, 0.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 2px solid var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3rem;
+  z-index: 100;
+  flex-shrink: 0;
+}
+
+.brand-mark {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1rem;
+  letter-spacing: -0.03em;
+}
+
+.brand-mark .tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  background: var(--text-primary);
+  color: #ffffff;
+  padding: 3px 10px;
+  border-radius: 3px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.deck-controls-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+
+/* --- Core: footer.css --- */
+/* Bottom HUD Navigation Bar */
+footer.deck-footer {
+  height: 60px;
+  background: rgba(244, 239, 228, 0.95);
+  backdrop-filter: blur(16px);
+  border-top: 2px solid var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3rem;
+  z-index: 100;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 260px;
+}
+
+.slide-counter {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.counter-cur-wrapper {
+  position: relative;
+  display: inline-block;
+  min-width: 2ch;
+  text-align: right;
+  overflow: hidden;
+  height: 1.25em;
+  line-height: 1.25em;
+  vertical-align: middle;
+}
+
+.counter-cur {
+  display: inline-block;
+  color: var(--text-primary);
+  font-weight: 900;
+  transition: transform 0.28s cubic-bezier(0.34, 1.4, 0.64, 1), opacity 0.2s ease;
+}
+
+.counter-cur.roll-up {
+  animation: counterRollUp 0.35s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+.counter-cur.roll-down {
+  animation: counterRollDown 0.35s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+@keyframes counterRollUp {
+  0% { transform: translateY(9px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+@keyframes counterRollDown {
+  0% { transform: translateY(-9px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.counter-sep {
+  color: var(--text-muted);
+  font-weight: 700;
+}
+.counter-tot {
+  color: var(--text-muted);
+  font-weight: 700;
+}
+.footer-dot-sep {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+.footer-slide-title-wrapper {
+  position: relative;
+  display: inline-block;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.footer-slide-title {
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+.footer-slide-title.fade-change {
+  opacity: 0;
+  transform: translateY(3px);
+}
+
+/* Track and Dots Container - Absolutely Anchored to Dead Center */
+.footer-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 2;
+  pointer-events: auto;
+}
+
+.slide-dots-track {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  position: relative;
+  padding: 12px 6px;
+}
+
+.slide-dot {
+  position: relative;
+  width: 32px;
+  height: 7px;
+  background: rgba(17, 20, 24, 0.05);
+  border: 1.5px solid var(--text-primary);
+  border-radius: 999px;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  box-sizing: border-box;
+  transform-origin: center center;
+  transition: width 0.44s cubic-bezier(0.34, 1.45, 0.64, 1),
+              background-color 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.28s ease,
+              transform 0.24s cubic-bezier(0.34, 1.5, 0.64, 1),
+              box-shadow 0.28s ease;
+  will-change: width, transform;
+  overflow: visible;
+}
+
+/* Active Capsule Pill */
+.slide-dot.active {
+  width: 58px;
+  background: var(--text-primary);
+  border-color: var(--text-primary);
+  box-shadow: 0 2px 7px rgba(17, 20, 24, 0.25);
+}
+
+/* Light Sheen Sweep across Active Capsule */
+.slide-dot-fill {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.slide-dot.active .slide-dot-fill::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transform: translateX(-100%);
+  animation: dotSheenSweep 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes dotSheenSweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Visited / Passed Slides */
+.slide-dot.completed:not(.active) {
+  background: rgba(20, 70, 32, 0.1);
+  border-color: var(--text-primary);
+}
+
+.slide-dot.completed:not(.active) .slide-dot-fill {
+  background: linear-gradient(90deg, var(--accent-green-bright), var(--accent-green));
+  opacity: 0.32;
+}
+
+/* Hover & Magnetic States */
+.slide-dot:hover:not(.active) {
+  background: var(--accent-green-bg);
+  border-color: var(--accent-green);
+  transform: translateY(-2px) scale(1.06);
+  box-shadow: 0 4px 10px rgba(20, 70, 32, 0.2);
+}
+
+.slide-dot.active:hover {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 4px 12px rgba(17, 20, 24, 0.32);
+}
+
+.slide-dot:active {
+  transform: scale(0.92) translateY(1px);
+}
+
+/* Direction-Aware Dynamic Kinetic Morph */
+.slide-dot.morph-forward {
+  animation: squishForward 0.44s cubic-bezier(0.34, 1.45, 0.64, 1);
+}
+.slide-dot.morph-backward {
+  animation: squishBackward 0.44s cubic-bezier(0.34, 1.45, 0.64, 1);
+}
+
+@keyframes squishForward {
+  0% { transform: scaleX(0.82) scaleY(1.15) translateX(-4px); }
+  35% { transform: scaleX(1.22) scaleY(0.88) translateX(4px); }
+  70% { transform: scaleX(0.95) scaleY(1.04) translateX(-1px); }
+  100% { transform: scaleX(1) scaleY(1) translateX(0); }
+}
+
+@keyframes squishBackward {
+  0% { transform: scaleX(0.82) scaleY(1.15) translateX(4px); }
+  35% { transform: scaleX(1.22) scaleY(0.88) translateX(-4px); }
+  70% { transform: scaleX(0.95) scaleY(1.04) translateX(1px); }
+  100% { transform: scaleX(1) scaleY(1) translateX(0); }
+}
+
+/* Micro-Card Hover Tooltips */
+.slide-dot-tooltip {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(6px) scale(0.92);
+  opacity: 0;
+  pointer-events: none;
+  background: var(--text-primary);
+  color: #ffffff;
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-family: var(--font-sans);
+  font-size: 0.73rem;
+  font-weight: 700;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  box-shadow: 0 10px 24px rgba(10, 14, 18, 0.3), 0 2px 5px rgba(10, 14, 18, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.26s cubic-bezier(0.34, 1.5, 0.64, 1);
+  z-index: 300;
+}
+
+.slide-dot-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px 5px 0 5px;
+  border-style: solid;
+  border-color: var(--text-primary) transparent transparent transparent;
+}
+
+.slide-dot:hover .slide-dot-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1);
+  transition-delay: 0.04s;
+}
+
+.slide-dot-tooltip .dot-tt-index {
+  font-family: var(--font-mono);
+  color: var(--accent-green-bright);
+  font-weight: 800;
+  font-size: 0.72rem;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 1px 5px;
+  border-radius: 2px;
+}
+
+.slide-dot-tooltip .dot-tt-title {
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-btn {
+  background: var(--bg-card);
+  border: 2px solid var(--text-primary);
+  width: 42px;
+  height: 42px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-primary);
+  transition: transform 0.15s cubic-bezier(0.34, 1.5, 0.64, 1),
+              box-shadow 0.15s cubic-bezier(0.34, 1.5, 0.64, 1),
+              background-color 0.15s ease,
+              color 0.15s ease,
+              opacity 0.2s ease;
+  box-shadow: 2.5px 2.5px 0px var(--text-primary);
+}
+
+.nav-btn:hover:not(:disabled) {
+  transform: translate(-1.5px, -1.5px);
+  box-shadow: 4.5px 4.5px 0px var(--text-primary);
+  background: var(--accent-green-bg);
+  color: var(--accent-green);
+}
+
+.nav-btn:active:not(:disabled),
+.nav-btn.pressed:not(:disabled) {
+  transform: translate(2.5px, 2.5px);
+  box-shadow: 0px 0px 0px var(--text-primary);
+  background: var(--accent-green-bg);
+  color: var(--accent-green);
+}
+
+.nav-btn.pressed:disabled {
+  animation: btnDisabledNudge 0.18s ease-in-out;
+}
+
+@keyframes btnDisabledNudge {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
+
+.nav-btn:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+
+/* --- Core: components.css --- */
+/* Action Buttons */
+.btn-action {
+  background: var(--bg-card);
+  border: 2px solid var(--text-primary);
+  color: var(--text-primary);
+  padding: 6px 16px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s var(--transition-smooth);
+  box-shadow: 2px 2px 0px var(--text-primary);
+  text-decoration: none;
+}
+
+.btn-action:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px var(--text-primary);
+  background: var(--accent-green-bg);
+}
+
+.btn-action:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px var(--text-primary);
+}
+
+/* Category Badges & Meta */
+.category-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 0.6rem;
+}
+
+.category-badge {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  background: var(--accent-green-bg);
+  color: var(--accent-green);
+  border: 1px solid var(--accent-green-border);
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.meta-coords {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+/* Titles and Typographic Hierarchy */
+.quote-title {
+  font-family: var(--font-hero);
+  font-size: clamp(1.8rem, 3.4vw, 3.2rem);
+  font-weight: 900;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.quote-sub {
+  font-family: var(--font-sans);
+  font-size: clamp(0.95rem, 1.35vw, 1.2rem);
+  font-weight: 700;
+  color: var(--text-secondary);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.outline-text {
+  font-family: var(--font-hero);
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.highlight {
+  background: linear-gradient(180deg, transparent 65%, var(--accent-green-bg) 65%);
+  padding: 0 4px;
+}
+
+.accent-bar {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--accent-green-bright);
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+/* Grids */
+.grid-2col {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 2.5rem;
+  align-items: center;
+  height: 100%;
+}
+
+.grid-3col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+/* Hero Action Grid & PDF Download (Slide 6 Standard) */
+.slide-actions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1.25rem;
+}
+
+.btn-pdf-hero,
+.btn-auth-hero {
+  border: 2px solid var(--text-primary);
+  border-radius: 6px;
+  padding: 1.2rem 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s var(--transition-smooth);
+}
+
+.btn-pdf-hero {
+  background: var(--bg-card-subtle);
+  color: var(--text-primary);
+  box-shadow: 4px 4px 0px var(--text-primary);
+}
+
+.btn-pdf-hero:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0px var(--text-primary);
+  background: var(--accent-green-bg);
+}
+
+.btn-auth-hero {
+  background: var(--text-primary);
+  color: #ffffff;
+  box-shadow: 4px 4px 0px var(--accent-green);
+}
+
+.btn-auth-hero:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0px var(--accent-green-bright);
+  background: var(--accent-green);
+}
+
+.btn-pdf-icon,
+.btn-auth-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.btn-pdf-icon {
+  background: var(--text-primary);
+  color: #ffffff;
+}
+
+.btn-auth-icon {
+  background: var(--accent-green-bright);
+  color: #ffffff;
+}
+
+.btn-pdf-content,
+.btn-auth-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.btn-pdf-tag,
+.btn-auth-tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.btn-pdf-tag {
+  color: var(--accent-green);
+}
+
+.btn-auth-tag {
+  color: var(--accent-green-bright);
+}
+
+.btn-pdf-title,
+.btn-auth-title {
+  font-family: var(--font-hero);
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.btn-pdf-sub,
+.btn-auth-sub {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.btn-auth-sub {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.issuer-footer-meta {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  border-top: 1px dashed var(--border-color);
+  padding-top: 0.75rem;
+  margin-top: 1rem;
+}
+
+
+/* --- Core: modal.css --- */
+/* ======================================================== */
+/* CINEMA VIDEO LIGHTBOX MODAL                              */
+/* ======================================================== */
+
+.video-modal {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(14px, 3.5vw, 40px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.26s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.26s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+.video-modal.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Cinematic Dark Glass Backdrop */
+.video-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 14, 11, 0.92);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  z-index: 1;
+}
+
+/* Modal Content Card */
+.video-modal-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 980px;
+  background: #0b1310;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 
+    0 32px 80px -12px rgba(0, 0, 0, 0.95),
+    0 0 0 1px rgba(255, 255, 255, 0.07),
+    0 0 50px rgba(16, 185, 129, 0.08);
+  display: flex;
+  flex-direction: column;
+  transform: scale(0.95) translateY(16px);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+.video-modal.active .video-modal-content {
+  transform: scale(1) translateY(0);
+}
+
+/* Header Bar */
+.video-modal-header {
+  background: #080e0c;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  min-height: 54px;
+  box-sizing: border-box;
+}
+
+.video-modal-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.video-modal-tag {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--accent-green-bright, #10b981);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.modal-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+  animation: liveDotPulse 2s ease-in-out infinite;
+}
+
+@keyframes liveDotPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.85); }
+}
+
+.video-modal-header h4 {
+  color: #f5f8f6;
+  font-family: var(--font-hero, 'Syne', sans-serif);
+  font-size: 0.98rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.25;
+}
+
+.video-modal-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* YouTube Direct Button */
+.btn-yt-direct {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #e5f2eb;
+  text-decoration: none;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn-yt-direct svg {
+  color: #ff3333;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.btn-yt-direct .yt-text-desktop {
+  display: inline;
+}
+
+.btn-yt-direct .yt-text-mobile {
+  display: none;
+}
+
+.btn-yt-direct:hover {
+  background: rgba(255, 0, 0, 0.14);
+  border-color: rgba(255, 60, 60, 0.4);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(255, 0, 0, 0.25);
+}
+
+.btn-yt-direct:hover svg {
+  transform: scale(1.1);
+}
+
+/* Tactile Close Button */
+.video-modal-close-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e0f6eb;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.video-modal-close-btn svg {
+  transition: transform 0.2s ease;
+}
+
+.video-modal-close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #ffffff;
+  color: #ffffff;
+  transform: rotate(90deg) scale(1.08);
+}
+
+/* 16:9 Video Player Wrapper */
+.video-iframe-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+  background: #000000;
+  overflow: hidden;
+}
+
+.video-loading-shimmer {
+  position: absolute;
+  inset: 0;
+  background: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.video-spinner {
+  width: 32px;
+  height: 32px;
+  border: 2.5px solid rgba(255, 255, 255, 0.15);
+  border-top-color: var(--accent-green-bright, #10b981);
+  border-radius: 50%;
+  animation: spinVideo 0.8s linear infinite;
+}
+
+@keyframes spinVideo {
+  to { transform: rotate(360deg); }
+}
+
+.video-iframe-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  z-index: 2;
+}
+
+/* Modal Bottom Meta Footer */
+.video-modal-footer {
+  padding: 8px 20px;
+  background: #060b09;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.vmf-badge {
+  color: rgba(255, 255, 255, 0.55);
+  font-weight: 700;
+}
+
+.vmf-hint {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+
+/* ======================================================== */
+/* SVETA NEDELJA CUSTOM PRESENTATION STYLES                */
+/* ======================================================== */
+
+.slide-meta-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  border-bottom: 2px solid var(--text-primary);
+  padding-bottom: 0.45rem;
+  margin-bottom: 0.85rem;
+}
+
+.slide-meta-top .category {
+  color: var(--accent-green);
+  background: var(--accent-green-bg);
+  padding: 2px 8px;
+  border-radius: 3px;
+  border: 1px solid var(--accent-green-border);
+}
+
+.punchy-narration {
+  font-family: var(--font-sans);
+  font-size: clamp(0.92rem, 1.15vw, 1.05rem);
+  font-weight: 500;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin-bottom: 1rem;
+}
+
+.team-badge-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+  margin-top: 0.75rem;
+}
+
+.team-badge-card {
+  background: var(--bg-card-subtle);
+  border: 2px solid var(--text-primary);
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  box-shadow: 3px 3px 0px var(--text-primary);
+}
+
+.team-badge-card .role {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--accent-green);
+  letter-spacing: 0.05em;
+}
+
+.team-badge-card .name {
+  font-family: var(--font-hero);
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: var(--text-primary);
+}
+
+.team-badge-card .desc {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+  line-height: 1.3;
+}
+
+.media-frame-bold {
+  position: relative;
+  background: #000;
+  border: 2px solid var(--text-primary);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 6px 6px 0px var(--text-primary);
+  height: 100%;
+  min-height: 280px;
+}
+
+.media-frame-bold img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.frame-tag {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background: rgba(17, 21, 24, 0.9);
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 3px;
+  letter-spacing: 0.05em;
+  backdrop-filter: blur(8px);
+}
+
+/* Video Benchmark Cards */
+.video-card-crazy {
+  background: var(--bg-card);
+  border: 2px solid var(--text-primary);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 6px 6px 0px var(--text-primary);
+  cursor: pointer;
+  transition: all 0.25s var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+}
+
+.video-card-crazy:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0px var(--text-primary);
+}
+
+.video-thumb-crazy {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #000;
+}
+
+.video-thumb-crazy img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s var(--transition-smooth);
+}
+
+.video-card-crazy:hover .video-thumb-crazy img {
+  transform: scale(1.04);
+}
+
+.play-btn-crazy {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 56px;
+  height: 56px;
+  background: var(--accent-green);
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  transition: transform 0.2s var(--transition-smooth);
+}
+
+.video-card-crazy:hover .play-btn-crazy {
+  transform: translate(-50%, -50%) scale(1.12);
+  background: var(--accent-green-bright);
+}
+
+.video-info-crazy {
+  padding: 1rem 1.25rem;
+  background: var(--bg-card);
+}
+
+.video-info-crazy h4 {
+  font-family: var(--font-hero);
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin-bottom: 0.25rem;
+}
+
+.video-info-crazy p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.35;
+}
+
+/* Slide 4 Story Frames */
+.grid-4col {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.85rem;
+  flex: 1 1 0;
+  min-height: 0;
+  margin-top: 0.4rem;
+}
+
+.story-frame-card {
+  background: var(--bg-card);
+  border: 2px solid var(--text-primary);
+  border-radius: 6px;
+  padding: 0.85rem 0.95rem;
+  box-shadow: 4px 4px 0px var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.story-frame-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--accent-green);
+  letter-spacing: 0.06em;
+  margin-bottom: 0.2rem;
+}
+
+.story-frame-title {
+  font-family: var(--font-hero);
+  font-size: 1.02rem;
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 0.3rem;
+}
+
+.story-frame-desc {
+  font-size: 0.74rem;
+  color: var(--text-secondary);
+  line-height: 1.35;
+}
+
+.story-frame-img {
+  margin-top: 0.65rem;
+  width: 100%;
+  height: 115px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1.5px solid var(--text-primary);
+}
+
+.story-frame-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Slide 5 Dual Offers Grid */
+.dual-offers-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  flex: 1 1 0;
+  min-height: 0;
+  height: 100%;
+}
+
+.cloth-card-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  perspective: 1200px;
+}
+
+.cloth-card-canvas {
+  position: absolute;
+  top: -48px;
+  left: -48px;
+  width: calc(100% + 96px);
+  height: calc(100% + 96px);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.offer-box {
+  border: 2px solid var(--text-primary);
+  border-radius: 8px;
+  padding: 1.25rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  position: relative;
+  box-sizing: border-box;
+  transition: opacity 0.4s ease;
+}
+
+.offer-box.cloth-active {
+  opacity: 0;
+}
+
+.offer-box.essential {
+  background: var(--bg-card-subtle);
+  box-shadow: 4px 4px 0px var(--text-primary);
+}
+
+.offer-box.signature {
+  background: #0d1815;
+  color: #ffffff;
+  border: 2px solid #10b981;
+  box-shadow: 6px 6px 0px var(--accent-green);
+}
+
+.tier-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  background: var(--text-primary);
+  color: #ffffff;
+  border-radius: 3px;
+  margin-bottom: 0.5rem;
+}
+
+.offer-box.essential .tier-badge {
+  background: var(--bg-card);
+  border: 1.5px solid var(--text-primary);
+  color: var(--text-primary);
+}
+
+.offer-box.signature .tier-badge {
+  background: #10b981;
+  color: #0d1815;
+  border: 1.5px solid #ffffff;
+  font-weight: 900;
+}
+
+.tier-title {
+  font-family: var(--font-hero);
+  font-size: 1.45rem;
+  font-weight: 900;
+  line-height: 1.0;
+  margin-bottom: 0.4rem;
+}
+
+.offer-box.signature .tier-title {
+  color: #ffffff;
+}
+
+.tier-desc {
+  font-size: 0.78rem;
+  line-height: 1.35;
+  margin-bottom: 0.8rem;
+}
+
+.offer-box.essential .tier-desc {
+  color: var(--text-secondary);
+}
+
+.offer-box.signature .tier-desc {
+  color: #9cb1a8;
+}
+
+.tier-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.tier-features li {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 0.8rem;
+  line-height: 1.3;
+}
+
+.offer-box.essential .tier-features li {
+  color: var(--text-primary);
+}
+
+.offer-box.signature .tier-features li {
+  color: #ffffff;
+}
+
+.tier-features .bullet {
+  font-weight: 900;
+  font-family: var(--font-mono);
+}
+
+.offer-box.essential .tier-features .bullet {
+  color: var(--accent-green);
+}
+
+.offer-box.signature .tier-features .bullet {
+  color: #10b981;
+}
+
+.tier-price-row {
+  border-top: 1.5px solid var(--border-color);
+  padding-top: 0.65rem;
+  margin-top: 0.65rem;
+}
+
+.offer-box.signature .tier-price-row {
+  border-top: 1.5px dashed rgba(16, 185, 129, 0.35);
+}
+
+.tier-price-row .price-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 800;
+}
+
+.offer-box.essential .tier-price-row .price-label {
+  color: var(--text-muted);
+}
+
+.offer-box.signature .tier-price-row .price-label {
+  color: #10b981;
+}
+
+.tier-price-row .price-val {
+  font-family: var(--font-hero);
+  font-size: 1.85rem;
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.offer-box.essential .tier-price-row .price-val {
+  color: var(--text-primary);
+}
+
+.offer-box.signature .tier-price-row .price-val {
+  color: #ffffff;
+}
+
+.tier-price-row .vat-text {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+}
+
+.offer-box.essential .tier-price-row .vat-text {
+  color: var(--text-muted);
+}
+
+.offer-box.signature .tier-price-row .vat-text {
+  color: #10b981;
+}
+
+/* Slide 6 PDF and Contact Grid */
+.pdf-download-card {
+  background: var(--bg-card);
+  border: 2px solid var(--text-primary);
+  border-radius: 6px;
+  padding: 0.75rem 0.9rem;
+  margin-bottom: 0.55rem;
+  box-shadow: 3px 3px 0px var(--text-primary);
+}
+
+.pdf-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.45rem;
+}
+
+.pdf-card-tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: var(--accent-green);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.pdf-spec-badge {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: var(--bg-card-subtle);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.pdf-download-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.btn-pdf-download {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 7px 9px;
+  border: 2px solid var(--text-primary);
+  border-radius: 5px;
+  background: var(--bg-card-subtle);
+  color: var(--text-primary);
+  text-decoration: none;
+  box-shadow: 2px 2px 0px var(--text-primary);
+  transition: all 0.15s ease;
+}
+
+.btn-pdf-download:hover {
+  transform: translate(-2px, -2px) !important;
+  box-shadow: 4px 4px 0px var(--text-primary) !important;
+  background: var(--accent-green-bg);
+}
+
+.btn-pdf-download:active {
+  transform: translate(1px, 1px) !important;
+  box-shadow: 1px 1px 0px var(--text-primary) !important;
+}
+
+.btn-pdf-download.signature-dl {
+  border: 2px solid var(--accent-green-bright);
+  border-radius: 5px;
+  background: #0a0e12;
+  color: #ffffff;
+  box-shadow: 2px 2px 0px var(--accent-green);
+}
+
+.btn-pdf-download.signature-dl:hover {
+  transform: translate(-2px, -2px) !important;
+  box-shadow: 5px 5px 0px var(--accent-green) !important;
+  background: #000000;
+}
+
+.btn-dl-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dl-quote-num {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 800;
+  color: var(--accent-green);
+}
+
+.btn-pdf-download.signature-dl .dl-quote-num {
+  color: #7de095;
+}
+
+.dl-quote-title {
+  font-family: var(--font-hero);
+  font-size: 0.95rem;
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--text-primary);
+}
+
+.btn-pdf-download.signature-dl .dl-quote-title {
+  color: #ffffff;
+}
+
+.dl-quote-sub {
+  font-size: 0.66rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.btn-pdf-download.signature-dl .dl-quote-sub {
+  color: #9cb3a2;
+}
+
+.pdf-auth-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px dashed var(--border-color);
+  padding-top: 0.6rem;
+}
+
+.schedule-text {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+
+.btn-auth-action {
+  background: var(--text-primary);
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn-auth-action:hover {
+  background: var(--accent-green);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem 1rem;
+  margin-top: 0.85rem;
+}
+
+.contact-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  font-weight: 800;
+}
+
+.contact-val {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.ready-hero-title {
+  font-family: var(--font-hero);
+  font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+  color: var(--text-primary);
+}
+
+.ready-sub-query {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent-green);
+  margin-bottom: 0.45rem;
+}
+
+@media (max-width: 768px) {
+  .grid-4col {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* --- Responsive: mobile.css --- */
+/* ======================================================== */
+/* RESPONSIVE DESIGN - TABLET & MOBILE                      */
+/* ======================================================== */
+
+@media (max-width: 1100px) {
+  .quote-title {
+    font-size: 2.4rem;
+  }
+  .grid-2col {
+    gap: 1.5rem;
+  }
+  .slide {
+    padding: 2rem 2.5rem;
+  }
+  header.deck-header {
+    padding: 0 1.5rem;
+  }
+  footer.deck-footer {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  html, body {
+    height: 100vh;
+    height: 100dvh;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Header */
+  header.deck-header {
+    height: 48px;
+    padding: 0 1rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .brand-mark {
+    font-size: 0.85rem;
+    gap: 8px;
+  }
+  .brand-mark .tag {
+    font-size: 0.6rem;
+    padding: 2px 6px;
+  }
+
+  /* Stage & Constrained Absolute Slide Wrapper */
+  main.deck-stage {
+    padding: 0.35rem 0.5rem;
+    min-height: 0;
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .slide-wrapper {
+    display: block !important;
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    min-height: 0 !important;
+    flex: 1 1 auto !important;
+    aspect-ratio: auto !important;
+    box-shadow: 4px 4px 0px rgba(17, 21, 24, 0.16) !important;
+    border-radius: 6px !important;
+    border-width: 1.5px !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Universal Constrained Absolute Slide Scrolling for ALL slides (1-6) */
+  .slide {
+    display: none !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    min-height: 0 !important;
+    box-sizing: border-box !important;
+    padding: 1rem 0.85rem 4rem 0.85rem !important;
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important;
+    overscroll-behavior-y: contain !important;
+    background: var(--bg-card) !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    gap: 0.9rem !important;
+  }
+
+  .slide.active {
+    display: flex !important;
+    opacity: 1 !important;
+    z-index: 2;
+  }
+
+  .slide::-webkit-scrollbar {
+    width: 4px;
+  }
+  .slide::-webkit-scrollbar-thumb {
+    background: rgba(17, 21, 24, 0.25);
+    border-radius: 4px;
+  }
+
+  /* Hide decorative corner markers on mobile */
+  .slide::before,
+  .slide::after {
+    display: none !important;
+  }
+
+  /* Slide Header Meta */
+  .slide-meta-top {
+    font-size: 0.62rem !important;
+    padding-bottom: 0.35rem !important;
+    margin-bottom: 0.4rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 2px !important;
+    border-bottom: 1.5px solid var(--text-primary) !important;
+    width: 100% !important;
+    flex: none !important;
+    box-sizing: border-box !important;
+  }
+  .slide-meta-top span {
+    white-space: normal !important;
+    word-break: break-word !important;
+  }
+  .slide-meta-top span.category {
+    gap: 5px !important;
+  }
+
+  /* Typography */
+  .quote-title {
+    font-size: clamp(1.2rem, 4.6vw, 1.55rem) !important;
+    line-height: 1.05 !important;
+    letter-spacing: -0.02em !important;
+    margin-bottom: 0.4rem !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    width: 100% !important;
+    flex: none !important;
+  }
+  .quote-sub {
+    font-size: 0.92rem !important;
+    margin-bottom: 0.5rem !important;
+    flex: none !important;
+  }
+  .punchy-narration {
+    font-size: 0.85rem !important;
+    line-height: 1.42 !important;
+    margin-bottom: 0.75rem !important;
+    flex: none !important;
+  }
+
+  /* All Grids Stack Vertically on Mobile */
+  .grid-2col,
+  .grid-2col.equal,
+  .grid-3col,
+  .dual-offers-grid,
+  .offer-package-grid,
+  .slide6-grid,
+  .slide-actions-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    flex: none !important;
+    box-sizing: border-box !important;
+  }
+
+  .grid-2col > div,
+  .grid-2col.equal > div,
+  .grid-3col > div,
+  .story-frame-card,
+  .cloth-card-container,
+  .slide6-left-col,
+  .slide6-right-col,
+  .offer-main-card,
+  .offer-total-box {
+    width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    flex: none !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Team Badge Row */
+  .team-badge-row {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 0.5rem !important;
+    margin-top: 0.5rem !important;
+    width: 100% !important;
+    flex: none !important;
+  }
+  .team-badge-card {
+    padding: 0.65rem 0.8rem !important;
+    box-sizing: border-box !important;
+  }
+  .team-badge-card .name {
+    font-size: 1rem !important;
+  }
+
+  /* Media Frames & Video Cards */
+  .media-frame-bold {
+    min-height: 200px !important;
+    height: 200px !important;
+    max-height: 200px !important;
+    width: 100% !important;
+    flex: none !important;
+    box-sizing: border-box !important;
+    box-shadow: 3px 3px 0px var(--text-primary) !important;
+  }
+  .video-card-crazy {
+    box-shadow: 3px 3px 0px var(--text-primary) !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    flex: none !important;
+    box-sizing: border-box !important;
+  }
+  .video-thumb-crazy {
+    aspect-ratio: 16 / 9 !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+  .play-btn-crazy {
+    width: 44px !important;
+    height: 44px !important;
+  }
+  .play-btn-crazy svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+  .video-info-crazy {
+    padding: 0.85rem !important;
+  }
+  .video-info-crazy h4 {
+    font-size: 1rem !important;
+  }
+
+  /* Slide 4 Story Frames */
+  .story-frame-card {
+    padding: 1rem !important;
+    box-sizing: border-box !important;
+  }
+  .story-frame-img {
+    height: 180px !important;
+    min-height: 180px !important;
+    max-height: 180px !important;
+    flex: none !important;
+    width: 100% !important;
+    margin-top: 0.6rem !important;
+  }
+
+  /* Slide 5 Offers on Mobile */
+  .cloth-card-container {
+    display: block !important;
+    position: relative !important;
+    perspective: none !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    flex: none !important;
+  }
+
+  .cloth-card-canvas {
+    display: none !important;
+  }
+
+  .offer-box,
+  .offer-box.cloth-active {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    box-sizing: border-box !important;
+    padding: 1.2rem 1rem !important;
+    cursor: default !important;
+    transform: none !important;
+  }
+  .offer-box h3.tier-title {
+    font-size: 1.25rem !important;
+    line-height: 1.1 !important;
+  }
+  .tier-badge {
+    font-size: 0.62rem !important;
+    white-space: normal !important;
+    padding: 3px 6px !important;
+  }
+  .tier-features {
+    gap: 0.4rem !important;
+    margin-bottom: 0.85rem !important;
+  }
+  .tier-features li {
+    font-size: 0.76rem !important;
+    line-height: 1.35 !important;
+  }
+  .tier-price-row {
+    padding-top: 0.75rem !important;
+    margin-top: 0.5rem !important;
+  }
+  .tier-price-row .price-label {
+    font-size: 0.62rem !important;
+  }
+  .tier-price-row .price-val {
+    font-size: clamp(1.7rem, 6.5vw, 2.2rem) !important;
+  }
+  .tier-price-row .vat-text {
+    font-size: 0.65rem !important;
+  }
+
+  /* Slide 6 Specific Mobile Layout */
+  .slide6-left-col {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    height: auto !important;
+    min-height: auto !important;
+    flex: none !important;
+    gap: 0.75rem !important;
+    width: 100% !important;
+  }
+
+  .pdf-download-card {
+    padding: 0.7rem 0.75rem !important;
+    margin-bottom: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .pdf-card-header {
+    margin-bottom: 0.4rem !important;
+    flex-wrap: wrap !important;
+    gap: 4px !important;
+  }
+  .pdf-card-tag {
+    font-size: 0.62rem !important;
+  }
+  .pdf-spec-badge {
+    font-size: 0.58rem !important;
+  }
+  .pdf-download-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.5rem !important;
+    margin-bottom: 0.45rem !important;
+  }
+  .btn-pdf-download {
+    padding: 6px 8px !important;
+  }
+  .dl-quote-num {
+    font-size: 0.58rem !important;
+  }
+  .dl-quote-title {
+    font-size: 0.85rem !important;
+  }
+  .dl-quote-sub {
+    font-size: 0.6rem !important;
+  }
+  .pdf-auth-row {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    padding-top: 0.4rem !important;
+  }
+  .schedule-text {
+    font-size: 0.66rem !important;
+  }
+  .btn-auth-action {
+    padding: 6px 12px !important;
+    font-size: 0.72rem !important;
+  }
+
+  .contact-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.5rem 0.75rem !important;
+    border-top: 2px solid var(--text-primary) !important;
+    padding-top: 0.5rem !important;
+    margin-top: 0.15rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .contact-label {
+    font-size: 0.56rem !important;
+  }
+  .contact-val {
+    font-size: 0.76rem !important;
+    word-break: break-all;
+  }
+
+  .slide6-right-col {
+    height: auto !important;
+    min-height: auto !important;
+    flex: none !important;
+    width: 100% !important;
+  }
+  .slide6-right-col .media-frame-bold {
+    min-height: 200px !important;
+    height: 200px !important;
+    max-height: 200px !important;
+    width: 100% !important;
+    flex: none !important;
+    box-shadow: 3px 3px 0px var(--text-primary) !important;
+  }
+
+  /* Slide Footer Meta */
+  .slide-footer-meta,
+  .slide-meta-bottom {
+    font-size: 0.58rem !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 2px !important;
+    padding-top: 0.5rem !important;
+    margin-top: 0.4rem !important;
+    border-top: 1.5px solid var(--border-color) !important;
+    width: 100% !important;
+    flex: none !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Buttons on Mobile */
+  .btn-pdf-hero,
+  .btn-auth-hero {
+    padding: 0.9rem 1rem !important;
+    gap: 0.9rem !important;
+  }
+
+  .btn-pdf-icon,
+  .btn-auth-icon {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .btn-pdf-title,
+  .btn-auth-title {
+    font-size: 0.98rem !important;
+  }
+
+  /* Footer Navigation HUD on Mobile */
+  footer.deck-footer {
+    height: 52px;
+    padding: 0 0.75rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-left {
+    min-width: 0;
+    gap: 8px;
+    flex: 0 0 auto;
+  }
+
+  .slide-counter {
+    font-size: 0.82rem;
+  }
+
+  .footer-dot-sep,
+  .footer-slide-title-wrapper {
+    display: none;
+  }
+
+  .footer-center {
+    position: static;
+    transform: none;
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+
+  .slide-dots-track {
+    gap: 6px;
+    padding: 6px 2px;
+  }
+
+  .slide-dot {
+    width: 18px;
+    height: 6px;
+  }
+
+  .slide-dot.active {
+    width: 34px;
+  }
+
+  .footer-right {
+    gap: 6px;
+    flex: 0 0 auto;
+  }
+
+  .nav-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .btn-sound-toggle,
+  .btn-fullscreen {
+    display: none !important;
+  }
+
+  /* Mobile Video Modal */
+  .video-modal {
+    padding: 10px 8px !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .video-modal-content {
+    max-width: 100% !important;
+    width: 100% !important;
+    border-radius: 10px !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.95) !important;
+  }
+
+  .video-modal-header {
+    padding: 10px 12px !important;
+    min-height: 48px !important;
+    gap: 8px !important;
+  }
+
+  .video-modal-tag {
+    font-size: 0.52rem !important;
+    letter-spacing: 0.08em !important;
+  }
+
+  .video-modal-header h4 {
+    font-size: 0.82rem !important;
+    max-width: 155px !important;
+  }
+
+  .btn-yt-direct {
+    padding: 5px 10px !important;
+    font-size: 0.65rem !important;
+    gap: 5px !important;
+  }
+
+  .btn-yt-direct .yt-text-desktop {
+    display: none !important;
+  }
+
+  .btn-yt-direct .yt-text-mobile {
+    display: inline !important;
+  }
+
+  .video-modal-close-btn {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .video-modal-footer {
+    padding: 6px 12px !important;
+    font-size: 0.54rem !important;
+  }
+
+  .vmf-hint {
+    display: none !important;
+  }
+}
+
+
+  </style>
+</head>
+<body>
+  <!-- Ambient Particle Canvas -->
+  <canvas id="canvasUiParticles" style="position:fixed; top:0; left:0; width:100vw; height:100vh; pointer-events:none; z-index:2;"></canvas>
+
+  <!-- Top App Navigation Bar -->
+  <header class="deck-header">
+    <div class="brand-mark">
+      <span>STUDIO VARAŽDIN</span>
+      <span class="tag">SLUŽBENI PITCH // KINEMATOGRAFSKI FILM</span>
+    </div>
+
+    <div class="deck-controls-top">
+      <button class="btn-action btn-sound-toggle" id="btnSound" onclick="toggleSound()" title="Zvučni efekti (M)">
+        <span id="soundIconOff" style="display:inline-block;">🔇</span>
+        <span id="soundIconOn" style="display:none;">🔊</span>
+        <span id="soundLabel">Sound: OFF</span>
+      </button>
+
+      <button class="btn-action btn-fullscreen" onclick="document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen()" title="Puni zaslon (F)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+        <span>Fullscreen</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Deck Stage Container (16:9 Locked & Centered) -->
+  <main class="deck-stage">
+    <div class="slide-wrapper">
+<section class="slide active" data-slide="1" data-index="1" data-title="Autorski dvojac: Dvorac i Kampus">
+  <div class="slide-meta-top">
+    <span class="category">Autorski kolektiv • Studio Varaždin</span>
+    <span>LAT 45.7942° N, LON 15.7761° E</span>
+    <span>Sveta Nedelja Pitch</span>
+  </div>
+
+  <div class="grid-2col">
+    <div>
+      <h1 class="quote-title">
+        “16. STOLJEĆE I 21. STOLJEĆE <span class="outline-text">U JEDNOM KADRU.”</span>
+      </h1>
+      <h2 class="quote-sub">Dvojac specijaliziran za filmove velikog formata.</h2>
+      <p class="punchy-narration">
+        Ne radimo tipske promo filmove niti marketinške najave. Spajamo optiku velikog formata na tlu i namjenske letjelice u zraku: prelazimo iz dvoranskih tišina dvorca Erdödy ravno u staklene atrije Rimac Campusa gdje inženjeri sklapaju baterijske module i hiperautomobile.
+      </p>
+
+      <div class="team-badge-row">
+        <div class="team-badge-card">
+          <div class="role">DIREKTOR FOTOGRAFIJE & RASVJETA</div>
+          <div class="name">BOJAN</div>
+          <div class="desc">Anamorfička optika velikog formata, rad s jutarnjim svjetlom i kompozicija u interijerima dvorca.</div>
+        </div>
+        <div class="team-badge-card">
+          <div class="role">FPV CINEMA PILOT & REŽIJA</div>
+          <div class="name">TIMON</div>
+          <div class="desc">Namjenski građene letjelice za snimanje u zatvorenom i na otvorenom. Putanje kroz arkade i hale do 100 km/h.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-media-col">
+      <div class="media-frame-bold">
+        <img src="slike/sveta_nedelja_hero.jpg" alt="Sveta Nedelja i Kerestinec">
+        <div class="frame-tag">SVETA NEDELJA • KERESTINEC &amp; KAMPUS</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-slide="2" data-index="2" data-title="Dvije točke: Erdödy i Rimac">
+  <div class="slide-meta-top">
+    <span class="category">Koncept filma • Dvojnost epohe</span>
+    <span>KLIKNITE KARTICU ZA PREGLED BENCHMARKA</span>
+    <span>Kerestinec &amp; Kampus</span>
+  </div>
+
+  <div class="grid-2col equal">
+    <div>
+      <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-green); font-weight:800; text-transform:uppercase; letter-spacing:0.08em; display:block; margin-bottom:0.4rem;">01 / Dvojnost identiteta</span>
+      <h1 class="quote-title">
+        “DVIJE EPOHE <span class="outline-text">U PET MINUTA HODA.”</span>
+      </h1>
+      <p class="punchy-narration" style="font-size:1.02rem; margin-bottom:1.2rem;">
+        <em>“Dok u halama Rimac Campusa radnici testiraju električne sklopove unutar investicije od 200 milijuna eura, nekoliko stotina metara dalje klesari slažu kamene blokove na dvorcu Erdödy čija obnova vrijedi 17 milijuna eura. Film gradi napetost na toj suprotnosti: renesansna utvrda s četiri kule i najmoderniji proizvodni centar u ovom dijelu Europe dijele istu cestu.”</em>
+      </p>
+
+      <div style="background:var(--bg-card-subtle); border:2px solid var(--text-primary); padding:0.9rem 1.1rem; border-radius:6px; box-shadow:3px 3px 0px var(--text-primary);">
+        <div style="font-family:var(--font-mono); font-size:0.72rem; font-weight:800; color:var(--accent-green); text-transform:uppercase;">PORUKA ZA SVEČANU SJEDNICU</div>
+        <p style="font-size:0.82rem; color:var(--text-primary); font-weight:700; margin-top:2px; line-height:1.35;">Svetu Nedelju ne prikazujemo kroz statističke tablice. Pokazujemo je kroz ljude: inženjere uz staklene fasade, veslače na jezeru Kipišće i restauratore na povijesnom zdanju.</p>
+      </div>
+    </div>
+
+    <div class="video-card-crazy" onclick="openVideoModal('53BPKq6rt4A', 'FPV Kinematografski Showreel • Brzina i arhitektura')">
+      <div class="video-thumb-crazy">
+        <img src="slike/thumb_fpv_campus_reel.jpg" alt="FPV Kinematografski Showreel">
+        <div class="play-btn-crazy">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
+      </div>
+      <div class="video-info-crazy">
+        <div>
+          <h4>Kinematski FPV i krupni planovi</h4>
+          <p>Kombinacija munjevitih preleta kroz tvorničke atrije i mirnih anamorfičkih portreta klesara i inženjera na radnim mjestima.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-slide="3" data-index="3" data-title="4K Master i 4 vertikale">
+  <div class="slide-meta-top">
+    <span class="category">Format isporuke • Dan grada i Županije</span>
+    <span>DVA GLAVNA KANALA DISTRIBUCIJE</span>
+    <span>4K Master &amp; Vertikale</span>
+  </div>
+
+  <div class="grid-2col equal">
+    <div>
+      <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-green); font-weight:800; text-transform:uppercase; letter-spacing:0.08em; display:block; margin-bottom:0.4rem;">02 / Modularni sustav isporuke</span>
+      <h1 class="quote-title">
+        “JEDNO SNIMANJE, <span class="outline-text">PET ZASEBNIH FILMOVA.”</span>
+      </h1>
+      <p class="punchy-narration" style="font-size:1.02rem; margin-bottom:1.1rem;">
+        <em>“Materijal sa seta ne ostaje zaključan u jednom formatu. Glavni film režiramo za velika platna svečanih dvorana u trajanju do 6 minuta, s premijerom za Dan grada u lipnju i Dan Zagrebačke županije 17. srpnja. Istodobno montiramo četiri vertikalna videa u omjeru 9:16, kadrirana zasebno za mobilne mreže i turističku promociju.”</em>
+      </p>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.6rem;">
+        <div style="background:var(--bg-card-subtle); border:1.5px solid var(--text-primary); padding:0.65rem 0.8rem; border-radius:5px;">
+          <div style="font-family:var(--font-mono); font-size:0.68rem; font-weight:800; color:var(--accent-green);">1. KAMPUS &amp; HIPERAUTOMOBILI</div>
+          <div style="font-size:0.75rem; color:var(--text-secondary); margin-top:2px;">FPV let kroz proizvodnju baterija i testnu stazu.</div>
+        </div>
+        <div style="background:var(--bg-card-subtle); border:1.5px solid var(--text-primary); padding:0.65rem 0.8rem; border-radius:5px;">
+          <div style="font-family:var(--font-mono); font-size:0.68rem; font-weight:800; color:var(--accent-green);">2. DVORAC ERDÖDY</div>
+          <div style="font-size:0.75rem; color:var(--text-secondary); margin-top:2px;">Jutarnje svjetlo nad renesansnim kulama i klesari.</div>
+        </div>
+        <div style="background:var(--bg-card-subtle); border:1.5px solid var(--text-primary); padding:0.65rem 0.8rem; border-radius:5px;">
+          <div style="font-family:var(--font-mono); font-size:0.68rem; font-weight:800; color:var(--accent-green);">3. JEZERO KIPIŠĆE</div>
+          <div style="font-size:0.75rem; color:var(--text-secondary); margin-top:2px;">Drvene šetnice u magli, veslači i rekreacija.</div>
+        </div>
+        <div style="background:var(--bg-card-subtle); border:1.5px solid var(--text-primary); padding:0.65rem 0.8rem; border-radius:5px;">
+          <div style="font-family:var(--font-mono); font-size:0.68rem; font-weight:800; color:var(--accent-green);">4. GRAD BEZ PRIREZA</div>
+          <div style="font-size:0.75rem; color:var(--text-secondary); margin-top:2px;">Poduzetnički zamah, prometna čvorišta i obitelji.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card-crazy" onclick="openVideoModal('jkFG8-GsZq8', 'Hrvatska Kovnica Novca (#valueforeternity)')">
+      <div class="video-thumb-crazy">
+        <img src="slike/rimac_campus_kerestinec.jpg" alt="Rimac Campus Kerestinec">
+        <div class="play-btn-crazy">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
+      </div>
+      <div class="video-info-crazy">
+        <div>
+          <h4>Master 4K Cinema &amp; 4x Vertikale</h4>
+          <p>Kinematografska razlučivost prilagođena za 4K projektore i razglas u dvorani, uz gotove vertikale za službene profile grada i županije.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-slide="4" data-index="4" data-title="4 stupa kinematske produkcije">
+  <div class="slide-meta-top">
+    <span class="category">Produkcija • FPV i anamorfička optika</span>
+    <span>4 KORAKA • PRECIZNA EGZEKUCIJA NA TERENU</span>
+    <span>Svetonedeljski kadar</span>
+  </div>
+
+  <div>
+    <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-green); font-weight:800; text-transform:uppercase; letter-spacing:0.08em; display:block; margin-bottom:0.2rem;">03 / Tehnološki proces</span>
+    <h1 class="quote-title">
+      “ČETIRI STUPA <span class="outline-text">KINEMATOGRAFSKOG FILMA.”</span>
+    </h1>
+  </div>
+
+  <div class="grid-4col">
+    <!-- Pillar 1 -->
+    <div class="story-frame-card">
+      <div>
+        <div class="story-frame-tag">01 / FPV PRELETI</div>
+        <h4 class="story-frame-title">Rimac Campus &amp; Staza</h4>
+        <p class="story-frame-desc">Namjenski FPV dronovi ulaze kroz staklene fasade atrija i prate vozila na testnoj stazi brzinom do 100 km/h.</p>
+      </div>
+      <div class="story-frame-img">
+        <img src="slike/thumb_fpv_campus_reel.jpg" alt="FPV prelet Rimac Campus">
+      </div>
+    </div>
+
+    <!-- Pillar 2 -->
+    <div class="story-frame-card">
+      <div>
+        <div class="story-frame-tag">02 / OPTIKA VELIKOG FORMATA</div>
+        <h4 class="story-frame-title">Kule Dvorca Erdödy</h4>
+        <p class="story-frame-desc">Snimanje u zoru pod kosim svjetlom. Krupni planovi klesanog kamena, renesansnih kula i rada restauratora.</p>
+      </div>
+      <div class="story-frame-img">
+        <img src="slike/dvorac_erdody_kerestinec.jpg" alt="Dvorac Erdody Kerestinec">
+      </div>
+    </div>
+
+    <!-- Pillar 3 -->
+    <div class="story-frame-card">
+      <div>
+        <div class="story-frame-tag">03 / PRIRODA &amp; ZAJEDNICA</div>
+        <h4 class="story-frame-title">Jezero Kipišće &amp; Park</h4>
+        <p class="story-frame-desc">Drvene šetnice nad vodom u jutarnjoj magli. Mir jezera kao prirodni protuteg industrijskom razvoju grada.</p>
+      </div>
+      <div class="story-frame-img">
+        <img src="slike/jezero_kipisce.jpg" alt="Jezero Kipisce Sveta Nedelja">
+      </div>
+    </div>
+
+    <!-- Pillar 4 -->
+    <div class="story-frame-card">
+      <div>
+        <div class="story-frame-tag">04 / ZVUK &amp; POSTPRODUKCIJA</div>
+        <h4 class="story-frame-title">Autorska partitura</h4>
+        <p class="story-frame-desc">Glazbeni miks koji spaja gudački orkestar i stvarne zvučne zapise pogona, uz precizni kinematski color grade.</p>
+      </div>
+      <div class="story-frame-img">
+        <img src="slike/sveta_nedelja_dusk_cinematic.jpg" alt="Sveta Nedelja nocni tragovi svjetla">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-slide="5" data-index="5" data-title="Komercijalna ponuda (Opcija A i B)">
+  <div class="slide-meta-top">
+    <span class="category">Komercijalna ponuda • Sveta Nedelja</span>
+    <span>ODABERITE OPSEG PRODUKCIJE</span>
+    <span>Opcija A &amp; Opcija B</span>
+  </div>
+
+  <div class="dual-offers-grid">
+    
+    <!-- Option A: Essential Production (15.000 €) -->
+    <div class="cloth-card-container" id="clothWrapOptionA">
+      <div class="offer-box essential" id="clothCardOptionA">
+        <div class="cloth-sheen-overlay"></div>
+        <div>
+          <div class="tier-badge">OPCIJA A • FESTIVALSKI MASTER</div>
+          <h3 class="tier-title">OSNOVNI<br>PAKET</h3>
+          <p class="tier-desc">Kinematografski film za Dan grada, 2 snimateljska dana, osnovni FPV preleti, 4x vertikale, licencirana glazba i 4K master.</p>
+
+          <ul class="tier-features">
+            <li><span class="bullet">✓</span> <span class="feat-desc"><strong>Master film do 4:30 min</strong> (16:9, 4K Cinema Master)</span></li>
+            <li><span class="bullet">✓</span> <span class="feat-desc"><strong>2 snimateljska dana</strong> (Dvorac Erdödy, Rimac Campus, Kipišće)</span></li>
+            <li><span class="bullet">✓</span> <span class="feat-desc"><strong>4x vertikalna videa</strong> (9:16 za društvene mreže i turizam)</span></li>
+            <li><span class="bullet">✓</span> <span class="feat-desc"><strong>Standardni FPV letovi</strong> na otvorenim lokacijama</span></li>
+            <li><span class="bullet">✓</span> <span class="feat-desc"><strong>Scenarij i naracija</strong> sa studijskim snimanjem glasa</span></li>
+            <li><span class="bullet">✓</span> <span class="feat-desc"><strong>Licencirana glazba</strong> &amp; kinematski kolor grading</span></li>
+            <li><span class="bullet">✓</span> <span class="feat-desc"><strong>100% prijenos autorskih prava</strong> na Grad i Županiju</span></li>
+          </ul>
+        </div>
+
+        <div class="tier-price-row">
+          <div class="price-label">UKUPNA INVESTICIJA (OPCIJA A)</div>
+          <div class="price-val">15.000,00 €</div>
+          <div class="vat-text">Oslobođeno PDV-a temeljem čl. 90. st. 2. Zakona o PDV-u • 0% PDV</div>
+        </div>
+      </div>
+      <canvas class="cloth-card-canvas" id="clothCanvasOptionA"></canvas>
+    </div>
+
+    <!-- Option B: Signature Full Vision (19.500 €) -->
+    <div class="cloth-card-container" id="clothWrapOptionB">
+      <div class="offer-box signature" id="clothCardOptionB">
+        <div class="cloth-sheen-overlay"></div>
+        <div>
+          <div class="tier-badge">OPCIJA B • SIGNATURE (PREPORUČENO)</div>
+          <h3 class="tier-title">SIGNATURE<br>PROŠIRENI PAKET</h3>
+          <p class="tier-desc">Puni kinematografski format: 4 snimateljska dana, FPV spektakl kroz interijere kampusa, 60s teaser trailer, autorski sound design i neograničene licence.</p>
+
+          <ul class="tier-features">
+            <li><span class="bullet">★</span> <span class="feat-desc"><strong>Master film do 6:00 min</strong> + 60s Teaser Trailer (16:9, 4K)</span></li>
+            <li><span class="bullet">★</span> <span class="feat-desc"><strong>4 snimateljska dana</strong> (zora na dvorcu i noćne vožnje na stazi)</span></li>
+            <li><span class="bullet">★</span> <span class="feat-desc"><strong>4x vertikalna videa</strong> montirana zasebno (9:16, 4K)</span></li>
+            <li><span class="bullet">★</span> <span class="feat-desc"><strong>Specijalistički FPV tim</strong>: letovi kroz atrij kampusa i arkade</span></li>
+            <li><span class="bullet">★</span> <span class="feat-desc"><strong>Integracija arhive</strong> obnove dvorca Erdödy (17 mil. €)</span></li>
+            <li><span class="bullet">★</span> <span class="feat-desc"><strong>Autorska glazbena kompozicija</strong> &amp; foley sound design</span></li>
+            <li><span class="bullet">★</span> <span class="feat-desc"><strong>Dronelapsi i timelapsi</strong> svitanja, sumraka i prometa</span></li>
+            <li><span class="bullet">★</span> <span class="feat-desc"><strong>100% sirovi materijal</strong> (RAW/ProRes) + trajna prava</span></li>
+          </ul>
+        </div>
+
+        <div class="tier-price-row">
+          <div class="price-label">UKUPNA INVESTICIJA (OPCIJA B)</div>
+          <div class="price-val">19.500,00 €</div>
+          <div class="vat-text">Oslobođeno PDV-a temeljem čl. 90. st. 2. Zakona o PDV-u • 0% PDV</div>
+        </div>
+      </div>
+      <canvas class="cloth-card-canvas" id="clothCanvasOptionB"></canvas>
+    </div>
+
+  </div>
+
+  <div class="slide-meta-bottom" style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.68rem; color:var(--text-muted); font-weight:800; text-transform:uppercase; letter-spacing:0.04em; border-top:1.5px solid var(--border-color); padding-top:0.4rem; margin-top:0.2rem;">
+    <span>RAZLIKA: 4 SNIMATELJSKA DANA, LET KROZ PROIZVODNJU KAMPUSA, 60S TEASER TRAILER, AUTORSKA PARTITURA I 100% SIROVI MATERIJAL</span>
+    <span>05 / 06</span>
+  </div>
+</section>
+
+<section class="slide" data-slide="6" data-index="6" data-title="Terminski plan i potvrda">
+  <div class="slide-meta-top">
+    <span class="category">Terminski plan &amp; Autorizacija</span>
+    <span>POTVRDA PRODUKCIJE &amp; PREUZIMANJE PONUDE</span>
+    <span>Sljedeći koraci</span>
+  </div>
+
+  <div class="grid-2col equal slide6-grid">
+    <div class="slide6-left-col">
+      <div class="slide6-header-group">
+        <span class="slide-cat-badge" style="font-family:var(--font-mono); font-size:0.72rem; color:var(--accent-green); font-weight:800; text-transform:uppercase; letter-spacing:0.08em; display:block; margin-bottom:0.25rem;">06 / Završni korak</span>
+        <h1 class="ready-hero-title">
+          SPREMNI ZA <span class="outline-text">PRODUKCIJU.</span>
+        </h1>
+        <div class="ready-sub-query">Rezervacija termina za Dan grada i Dan županije</div>
+        <p class="punchy-narration" style="margin-bottom:0.55rem; color:var(--text-secondary);">
+          <em>“Snimanje na terenu planiramo u svibnju kako bi film bio potpuno dovršen, koloriran i ozvučen prije Svečane sjednice Grada Svete Nedelje u lipnju te Dana Zagrebačke županije 17. srpnja.”</em>
+        </p>
+
+        <div class="pdf-download-card">
+          <div class="pdf-card-header">
+            <div class="pdf-card-tag">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>
+              PREUZIMANJE SLUŽBENE PONUDE
+            </div>
+            <span class="pdf-spec-badge">PDF • A4 SPECIFIKACIJA</span>
+          </div>
+
+          <div class="pdf-download-grid">
+            <!-- Download Option A -->
+            <a href="assets/Ponuda_Sveta_Nedelja_OpcijaA_15000.pdf" download="Ponuda_Sveta_Nedelja_OpcijaA_15000.pdf" target="_blank" class="btn-pdf-download">
+              <div class="btn-dl-top">
+                <span class="dl-quote-num">OPCIJA A</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </div>
+              <div class="dl-quote-title">Opcija A: 15.000,00 €</div>
+              <span class="dl-quote-sub">Preuzmi službeni PDF ponude &darr;</span>
+            </a>
+
+            <!-- Download Option B -->
+            <a href="assets/Ponuda_Sveta_Nedelja_OpcijaB_19500.pdf" download="Ponuda_Sveta_Nedelja_OpcijaB_19500.pdf" target="_blank" class="btn-pdf-download signature-dl">
+              <div class="btn-dl-top">
+                <span class="dl-quote-num star">OPCIJA B ★</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#7de095" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </div>
+              <div class="dl-quote-title">Opcija B: 19.500,00 €</div>
+              <span class="dl-quote-sub">Signature puni paket (Preporučeno) &darr;</span>
+            </a>
+          </div>
+
+          <div class="pdf-auth-row">
+            <span class="schedule-text">Termini snimanja: proljeće 2026.</span>
+            <a href="mailto:timon.terzic@gmail.com?subject=Potvrda%20ponude%20-%20Grad%20Sveta%20Nedelja%20i%20Zagreba%C4%8Dka%20%C5%BEupanija&body=Po%C5%A1tovani%2C%0A%0APotvr%C4%91ujemo%20odabir%20produkcijskog%20paketa%20za%20kinematografski%20film%20Svete%20Nedelje%20i%20Zagreba%C4%8Dke%20%C5%BEupanije.%0A%0AOdabrana%20opcija%3A%20%5BOpcija%20A%20%2F%20Opcija%20B%5D%0APlanirani%20po%C4%8Detak%20produkcije%3A%20Svibanj%202026.%0A%0ASrda%C4%8Dan%20pozdrav%2C" class="btn-auth-action">
+              Potvrdi putem e-maila &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-grid">
+        <div>
+          <div class="contact-label">AUTORSKI TIM</div>
+          <div class="contact-val">Studio Varaždin</div>
+        </div>
+        <div>
+          <div class="contact-label">VODITELJ PRODUKCIJE</div>
+          <div class="contact-val">Timon Terzić</div>
+        </div>
+        <div>
+          <div class="contact-label">SLUŽBENI KONTAKT</div>
+          <div class="contact-val">timon.terzic@gmail.com</div>
+        </div>
+        <div>
+          <div class="contact-label">LOKACIJA STUDIJA</div>
+          <div class="contact-val">Varaždin / Zagreb</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide6-right-col">
+      <div class="media-frame-bold">
+        <img src="slike/dvorac_erdody_kerestinec.jpg" alt="Dvorac Erdody Kerestinec">
+        <div class="frame-tag">DVORAC ERDÖDY • KERESTINEC, SVETA NEDELJA</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-meta-bottom">
+    <span>STUDIO VARAŽDIN • SVA PRAVA PRIDRŽANA 2026</span>
+    <span>06 / 06</span>
+  </div>
+</section>
+
+    </div>
+  </main>
+
+  <!-- Bottom HUD Navigation Bar -->
+  <footer class="deck-footer">
+    <div class="footer-left">
+      <div class="slide-counter">
+        <span class="counter-cur-wrapper"><span class="counter-cur" id="slideCurNum">01</span></span>
+        <span class="counter-sep">/</span>
+        <span class="counter-tot" id="slideTotNum">06</span>
+      </div>
+      <span class="footer-dot-sep">•</span>
+      <div class="footer-slide-title-wrapper">
+        <span class="footer-slide-title" id="slideTitleText">Autorski dvojac: Dvorac i Kampus</span>
+      </div>
+    </div>
+
+    <!-- Centered Glider Navigation Track -->
+    <div class="footer-center">
+      <div class="slide-dots-track">
+        <button class="slide-dot active" data-slide-index="1" onclick="goToSlide(1)" aria-label="Slajd 1">
+          <div class="slide-dot-fill"></div>
+          <div class="slide-dot-tooltip">
+            <span class="dot-tt-index">01</span>
+            <span class="dot-tt-title">Autorski dvojac: Dvorac i Kampus</span>
+          </div>
+        </button>
+        <button class="slide-dot" data-slide-index="2" onclick="goToSlide(2)" aria-label="Slajd 2">
+          <div class="slide-dot-fill"></div>
+          <div class="slide-dot-tooltip">
+            <span class="dot-tt-index">02</span>
+            <span class="dot-tt-title">Dvije točke: Erdödy i Rimac</span>
+          </div>
+        </button>
+        <button class="slide-dot" data-slide-index="3" onclick="goToSlide(3)" aria-label="Slajd 3">
+          <div class="slide-dot-fill"></div>
+          <div class="slide-dot-tooltip">
+            <span class="dot-tt-index">03</span>
+            <span class="dot-tt-title">4K Master i 4 vertikale</span>
+          </div>
+        </button>
+        <button class="slide-dot" data-slide-index="4" onclick="goToSlide(4)" aria-label="Slajd 4">
+          <div class="slide-dot-fill"></div>
+          <div class="slide-dot-tooltip">
+            <span class="dot-tt-index">04</span>
+            <span class="dot-tt-title">4 stupa kinematske produkcije</span>
+          </div>
+        </button>
+        <button class="slide-dot" data-slide-index="5" onclick="goToSlide(5)" aria-label="Slajd 5">
+          <div class="slide-dot-fill"></div>
+          <div class="slide-dot-tooltip">
+            <span class="dot-tt-index">05</span>
+            <span class="dot-tt-title">Komercijalna ponuda (Opcija A i B)</span>
+          </div>
+        </button>
+        <button class="slide-dot" data-slide-index="6" onclick="goToSlide(6)" aria-label="Slajd 6">
+          <div class="slide-dot-fill"></div>
+          <div class="slide-dot-tooltip">
+            <span class="dot-tt-index">06</span>
+            <span class="dot-tt-title">Terminski plan i potvrda</span>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <div class="footer-right">
+      <button class="nav-btn" id="btnPrev" onclick="prevSlide()" disabled title="Prethodni slajd (←)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="nav-btn" id="btnNext" onclick="nextSlide()" title="Sljedeći slajd (→)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+  </footer>
+
+  <!-- Video Modal Overlay -->
+  <div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-labelledby="videoModalTitle">
+    <div class="video-modal-backdrop" onclick="closeVideoModal()"></div>
+    <div class="video-modal-content" onclick="event.stopPropagation()">
+      <div class="video-modal-header">
+        <div class="video-modal-title-group">
+          <span class="video-modal-tag"><span class="modal-live-dot"></span> 4K CINEMATIC // REFERENCE</span>
+          <h4 id="videoModalTitle">Video Preview</h4>
+        </div>
+        <div class="video-modal-actions">
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn-yt-direct" id="btnWatchOnYt" title="Otvori u punoj rezoluciji na YouTubeu">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+            <span class="yt-text-desktop">Otvori na YouTube</span>
+            <span class="yt-text-mobile">YouTube ↗</span>
+          </a>
+          <button class="video-modal-close-btn" onclick="closeVideoModal()" aria-label="Zatvori video" title="Zatvori (ESC)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="video-iframe-wrapper">
+        <div class="video-loading-shimmer" id="videoLoadingShimmer">
+          <div class="video-spinner"></div>
+        </div>
+        <iframe id="videoIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+      <div class="video-modal-footer">
+        <span class="vmf-badge">STUDIO VARAŽDIN // CINEMATIC BENCHMARK</span>
+        <span class="vmf-hint">ESC ili kliknite izvan za zatvaranje</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Runtime & Physics Engines -->
+  <script>
+// --- Core Module: audio.js ---
+/**
+ * audio.js — Zero-Dependency Mechanical Sound Synthesizer (Web Audio API)
+ */
+let soundEnabled = false;
+let audioCtx = null;
+function initAudio() {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  if (audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+}
+function playTick(direction = 'forward') {
+  if (!soundEnabled) return;
+  try {
+    initAudio();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'sine';
+    const now = audioCtx.currentTime;
+    const freq = direction === 'forward' ? 1200 : 900;
+    osc.frequency.setValueAtTime(freq, now);
+    osc.frequency.exponentialRampToValueAtTime(320, now + 0.032);
+    gain.gain.setValueAtTime(0.045, now);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.032);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start(now);
+    osc.stop(now + 0.032);
+  } catch (e) {}
+}
+function toggleSound() {
+  soundEnabled = !soundEnabled;
+  if (soundEnabled) initAudio();
+  const iconOn = document.getElementById('soundIconOn');
+  const iconOff = document.getElementById('soundIconOff');
+  const label = document.getElementById('soundLabel');
+  if (iconOn && iconOff && label) {
+    iconOn.style.display = soundEnabled ? 'inline-block' : 'none';
+    iconOff.style.display = soundEnabled ? 'none' : 'inline-block';
+    label.textContent = soundEnabled ? 'Sound: ON' : 'Sound: OFF';
+  }
+  if (soundEnabled) playTick('forward');
+}
+
+window.toggleSound = toggleSound;
+window.playTick = playTick;
+
+// --- Core Module: odometer.js ---
+/**
+ * odometer.js — Precision Animated Rolling Counter for Slide Navigation
+ */
+function updateOdometer(currentSlide, totalSlides, direction = 'forward') {
+  const curNumEl = document.getElementById('slideCurNum');
+  if (curNumEl) {
+    const newText = currentSlide < 10 ? `0${currentSlide}` : `${currentSlide}`;
+    if (curNumEl.textContent !== newText) {
+      curNumEl.classList.remove('roll-up', 'roll-down');
+      void curNumEl.offsetWidth; // Force reflow
+      curNumEl.textContent = newText;
+      curNumEl.classList.add(direction === 'forward' ? 'roll-up' : 'roll-down');
+    }
+  }
+
+  const totNumEl = document.getElementById('slideTotNum');
+  if (totNumEl) {
+    const totText = totalSlides < 10 ? `0${totalSlides}` : `${totalSlides}`;
+    if (totNumEl.textContent !== totText) {
+      totNumEl.textContent = totText;
+    }
+  }
+}
+
+window.updateOdometer = updateOdometer;
+
+// --- Core Module: modal.js ---
+/**
+ * modal.js — Cinema Video Lightbox Modal Controller
+ */
+function openVideoModal(videoId, title) {
+  const modal = document.getElementById('videoModal');
+  const iframe = document.getElementById('videoIframe');
+  const titleEl = document.getElementById('videoModalTitle');
+  const ytLink = document.getElementById('btnWatchOnYt');
+  const shimmer = document.getElementById('videoLoadingShimmer');
+
+  if (!modal || !iframe) return;
+
+  if (titleEl) {
+    // Strip hashtags or format gracefully if needed, while keeping full title legible
+    titleEl.textContent = title || 'Video Preview';
+  }
+
+  if (ytLink) {
+    ytLink.href = `https://youtu.be/${videoId}`;
+  }
+  
+  if (shimmer) {
+    shimmer.style.opacity = '1';
+    shimmer.style.display = 'flex';
+  }
+
+  iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1`;
+
+  iframe.onload = () => {
+    if (shimmer) {
+      shimmer.style.opacity = '0';
+      setTimeout(() => {
+        if (shimmer) shimmer.style.display = 'none';
+      }, 300);
+    }
+  };
+
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeVideoModal() {
+  const modal = document.getElementById('videoModal');
+  const iframe = document.getElementById('videoIframe');
+  if (!modal || !iframe) return;
+  
+  iframe.src = "";
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
+}
+function initVideoModal() {
+  const modal = document.getElementById('videoModal');
+  if (!modal) return;
+  
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+      closeVideoModal();
+    }
+  });
+
+  // Close on Backdrop click
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal || e.target.classList.contains('video-modal-backdrop')) {
+      closeVideoModal();
+    }
+  });
+
+  const closeBtn = modal.querySelector('.video-modal-close-btn');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeVideoModal);
+  }
+}
+
+window.openVideoModal = openVideoModal;
+window.closeVideoModal = closeVideoModal;
+window.initVideoModal = initVideoModal;
+
+// --- Core Module: particles.js ---
+/**
+ * particles.js — CanvasUI Ambient Particle Engine & Retro Dither Lens
+ */
+function initCanvasUiParticles() {
+  const canvas = document.getElementById("canvasUiParticles");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+
+  let width = (canvas.width = window.innerWidth);
+  let height = (canvas.height = window.innerHeight);
+
+  window.addEventListener("resize", () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  });
+
+  let particleWind = 0;
+  window.triggerCanvasUiWind = function(direction) {
+    particleWind = direction === "forward" ? -8 : 8;
+  };
+
+  const particleCount = 55;
+  const particles = [];
+  for (let i = 0; i < particleCount; i++) {
+    particles.push({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.35,
+      vy: (Math.random() - 0.5) * 0.35,
+      radius: Math.random() * 1.8 + 0.8,
+      alpha: Math.random() * 0.35 + 0.15,
+      color: Math.random() > 0.3 ? "20, 70, 32" : "180, 150, 100"
+    });
+  }
+
+  let mouseX = width / 2;
+  let mouseY = height / 2;
+  let lastMouseX = mouseX;
+  let lastMouseY = mouseY;
+  let mouseSpeed = 0;
+
+  window.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    const dx = mouseX - lastMouseX;
+    const dy = mouseY - lastMouseY;
+    mouseSpeed = Math.sqrt(dx * dx + dy * dy);
+    lastMouseX = mouseX;
+    lastMouseY = mouseY;
+  }, { passive: true });
+
+  function animateParticles() {
+    ctx.clearRect(0, 0, width, height);
+
+    particleWind *= 0.94;
+    mouseSpeed *= 0.95;
+
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+
+      // Mouse repulsion
+      const dx = p.x - mouseX;
+      const dy = p.y - mouseY;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 120 && dist > 0) {
+        const force = (1 - dist / 120) * (0.8 + mouseSpeed * 0.05);
+        p.vx += (dx / dist) * force * 0.6;
+        p.vy += (dy / dist) * force * 0.6;
+      }
+
+      p.vx += particleWind * 0.08;
+      p.x += p.vx;
+      p.y += p.vy;
+
+      // Friction & natural upward drift
+      p.vx *= 0.97;
+      p.vy *= 0.97;
+      p.y -= 0.15;
+
+      // Screen wrap
+      if (p.x < 0) p.x = width;
+      if (p.x > width) p.x = 0;
+      if (p.y < 0) p.y = height;
+      if (p.y > height) p.y = 0;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${p.color}, ${p.alpha})`;
+      ctx.fill();
+    }
+
+    requestAnimationFrame(animateParticles);
+  }
+  requestAnimationFrame(animateParticles);
+}
+function initRetroDither() {
+  const bayerMatrix4x4 = [
+    0, 8, 2, 10,
+    12, 4, 14, 6,
+    3, 11, 1, 9,
+    15, 7, 13, 5
+  ];
+
+  const mediaTargets = document.querySelectorAll(".media-frame-bold, .video-thumb-crazy");
+  mediaTargets.forEach((container) => {
+    if (container.querySelector(".dither-canvas-layer")) return;
+
+    const canvas = document.createElement("canvas");
+    canvas.className = "dither-canvas-layer";
+    canvas.style.cssText = "position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:4; opacity:0; transition:opacity 0.25s ease;";
+    container.appendChild(canvas);
+
+    let isHovered = false;
+    let mouseX = -999;
+    let mouseY = -999;
+    let targetImg = container.querySelector("img");
+
+    container.addEventListener("mouseenter", () => {
+      isHovered = true;
+      canvas.style.opacity = "1";
+      canvas.width = container.clientWidth;
+      canvas.height = container.clientHeight;
+    });
+
+    container.addEventListener("mouseleave", () => {
+      isHovered = false;
+      canvas.style.opacity = "0";
+    });
+
+    container.addEventListener("mousemove", (e) => {
+      const rect = container.getBoundingClientRect();
+      mouseX = e.clientX - rect.left;
+      mouseY = e.clientY - rect.top;
+      renderDitherFrame();
+    }, { passive: true });
+
+    function renderDitherFrame() {
+      if (!isHovered || !targetImg) return;
+      const w = canvas.width;
+      const h = canvas.height;
+      if (w === 0 || h === 0) return;
+      const ctx = canvas.getContext("2d");
+
+      const scale = 0.25;
+      const sw = Math.floor(w * scale);
+      const sh = Math.floor(h * scale);
+      if (sw <= 0 || sh <= 0) return;
+
+      const offCanvas = document.createElement("canvas");
+      offCanvas.width = sw;
+      offCanvas.height = sh;
+      const offCtx = offCanvas.getContext("2d");
+      try {
+        offCtx.drawImage(targetImg, 0, 0, sw, sh);
+        const imgData = offCtx.getImageData(0, 0, sw, sh);
+        const data = imgData.data;
+
+        ctx.clearRect(0, 0, w, h);
+        const lensRadius = 140;
+
+        for (let y = 0; y < sh; y++) {
+          for (let x = 0; x < sw; x++) {
+            const idx = (y * sw + x) * 4;
+            const r = data[idx];
+            const g = data[idx + 1];
+            const b = data[idx + 2];
+            const lum = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+
+            const screenX = x / scale;
+            const screenY = y / scale;
+            const dist = Math.sqrt((screenX - mouseX) ** 2 + (screenY - mouseY) ** 2);
+
+            if (dist < lensRadius) {
+              const feather = Math.cos((dist / lensRadius) * (Math.PI / 2));
+              const bayerVal = (bayerMatrix4x4[(y % 4) * 4 + (x % 4)] + 0.5) / 16;
+              const levels = 4;
+              const quantized = Math.floor(lum * levels + (lum > bayerVal ? 0.5 : 0)) / levels;
+              
+              const finalVal = Math.floor(quantized * 255);
+              ctx.fillStyle = `rgba(${finalVal}, ${Math.floor(finalVal * 0.95)}, ${Math.floor(finalVal * 0.88)}, ${feather * 0.85})`;
+              ctx.fillRect(screenX, screenY, 1 / scale, 1 / scale);
+            }
+          }
+        }
+      } catch (err) {}
+    }
+  });
+}
+
+window.initCanvasUiParticles = initCanvasUiParticles;
+window.initRetroDither = initRetroDither;
+
+// --- Core Module: cloth.js ---
+/**
+ * cloth.js — CanvasUI 3D WebGL Cloth Physics Engine (Zero-Dependency)
+ * 96x96 Mesh, Spring-Damper Wave Physics, Wind Gusts & Interactive Brushing
+ */
+function initClothCardPhysics(customRenderers = null) {
+  const CLOTH_VERT = `#version 300 es
+  precision highp float;
+  layout(location = 0) in vec2 aGrid;
+  layout(location = 1) in vec4 aData;
+  layout(location = 2) in vec2 aOffset;
+  uniform vec2 uRes;
+  uniform vec2 uOut;
+  uniform float uBleed;
+  uniform float uFocal;
+  out vec2 vUv;
+  out vec3 vNormal;
+  out float vFold;
+  out vec2 vLocal;
+
+  void main () {
+    vUv = aGrid;
+    float z = aData.x;
+    vec2 nxy = aData.yz;
+    vNormal = vec3(nxy, sqrt(max(1.0 - dot(nxy, nxy), 0.04)));
+    vFold = aData.w;
+
+    vLocal = aGrid * uRes;
+    vec2 px = vLocal + aOffset + vec2(uBleed);
+    vec2 ndc = (px / uOut) * 2.0 - 1.0;
+    ndc.y = -ndc.y;
+    float w = (uFocal - z) / uFocal;
+    gl_Position = vec4(ndc, -z / uFocal, w);
+  }`;
+
+  const SDF_SNIPPET = `
+  float fabricDist (vec2 p, vec2 size, float radius) {
+    vec2 half_ = size * 0.5;
+    float r = min(radius, min(half_.x, half_.y));
+    vec2 q = abs(p - half_) - (half_ - vec2(r));
+    return length(max(q, vec2(0.0))) + min(max(q.x, q.y), 0.0) - r;
+  }`;
+
+  const CLOTH_FRAG = `#version 300 es
+  precision highp float;
+  in vec2 vUv;
+  in vec3 vNormal;
+  in float vFold;
+  in vec2 vLocal;
+  out vec4 outColor;
+  uniform sampler2D uContent;
+  uniform float uMaxX;
+  uniform float uLight;
+  uniform float uSheen;
+  uniform vec3 uBacking;
+  uniform vec2 uRes;
+  uniform float uRadius;
+  uniform float uDark;
+  ${SDF_SNIPPET}
+
+  void main () {
+    vec2 uv = clamp(vUv, vec2(0.001), vec2(uMaxX - 0.001, 0.999));
+    vec4 tex = texture(uContent, uv);
+    vec3 fabric = mix(uBacking, tex.rgb, tex.a);
+
+    vec3 n = normalize(vNormal);
+    vec3 lightDir = normalize(vec3(-0.3, 0.42, 0.86));
+    float diffFlat = 0.58 + 0.42 * lightDir.z;
+    float diff = 0.58 + 0.42 * dot(n, lightDir);
+    float shade = mix(1.0, (diff / diffFlat) * vFold, uLight);
+    vec3 lit = fabric * shade;
+
+    vec3 halfway = normalize(lightDir + vec3(0.0, 0.0, 1.0));
+    float specFlat = pow(halfway.z, 34.0);
+    float spec = max(pow(max(dot(n, halfway), 0.0), 34.0) - specFlat, 0.0) / (1.0 - specFlat);
+    lit += uSheen * spec * mix(vec3(1.0), fabric, 0.35);
+
+    float broadFlat = pow(halfway.z, 6.0);
+    float broad = max(pow(max(dot(n, halfway), 0.0), 6.0) - broadFlat, 0.0) / (1.0 - broadFlat);
+    lit += uDark * uLight * 0.3 * broad * vec3(1.0);
+
+    float d = fabricDist(vLocal, uRes, uRadius);
+    float hemT = smoothstep(0.0, 6.0, -d);
+    lit *= mix(1.0, mix(0.93, 1.0, hemT), uLight * (1.0 - uDark));
+    lit += vec3(uDark * uLight * 0.08 * (1.0 - hemT));
+
+    float alpha = clamp(0.5 - d, 0.0, 1.0);
+    outColor = vec4(clamp(lit, 0.0, 1.0), 1.0) * alpha;
+  }`;
+
+  const SHADOW_VERT = `#version 300 es
+  precision highp float;
+  layout(location = 0) in vec2 aGrid;
+  layout(location = 1) in vec4 aData;
+  layout(location = 2) in vec2 aOffset;
+  uniform vec2 uRes;
+  uniform vec2 uOut;
+  uniform float uBleed;
+  out vec2 vLocal;
+  out float vLift;
+
+  void main () {
+    float z = aData.x;
+    vLift = z;
+    vLocal = aGrid * uRes;
+    vec2 px = vLocal + aOffset + vec2(uBleed) + vec2(10.0, 14.0) + vec2(0.3, 0.42) * z;
+    vec2 ndc = (px / uOut) * 2.0 - 1.0;
+    ndc.y = -ndc.y;
+    gl_Position = vec4(ndc, 0.0, 1.0);
+  }`;
+
+  const SHADOW_FRAG = `#version 300 es
+  precision highp float;
+  in vec2 vLocal;
+  in float vLift;
+  out vec4 outColor;
+  uniform float uShadow;
+  uniform vec2 uRes;
+  uniform float uRadius;
+  uniform float uDark;
+  ${SDF_SNIPPET}
+
+  void main () {
+    float d = fabricDist(vLocal, uRes, uRadius);
+    float a = uShadow * smoothstep(0.0, 30.0, -d);
+    a *= mix(1.0, 0.55, clamp(vLift / 50.0, 0.0, 1.0));
+    a *= mix(1.0, 0.55, uDark);
+    vec3 tint = vec3(uDark);
+    outColor = vec4(tint * a, a);
+  }`;
+
+  const SEG = 96;
+  const NODES = SEG + 1;
+  const DT = 1 / 120;
+  const WAVE_SPEED = 26;
+  const STIFFNESS = 0.60;
+  const FORCE_GAIN = 3.25;
+  const BLEED = 48;
+
+  function createClothInstance(wrapEl, cardEl, outputCanvas, drawTextureFn, backingRgb, config = {}) {
+    const opts = {
+      pin: 'top',
+      wind: 2.1,
+      speed: 0.45,
+      amplitude: 19,
+      drape: 22,
+      brush: 1.4,
+      brushSize: 145,
+      damping: 0.92,
+      light: 0.42,
+      sheen: 0.12,
+      shadow: 0.22,
+      cornerRadius: 12,
+      perspective: 1350,
+      ...config
+    };
+
+    const gl = outputCanvas.getContext('webgl2', {
+      alpha: true,
+      depth: false,
+      stencil: false,
+      antialias: true,
+      premultipliedAlpha: true
+    });
+    if (!gl) return null;
+
+    function compile(type, text) {
+      const s = gl.createShader(type);
+      gl.shaderSource(s, text);
+      gl.compileShader(s);
+      return s;
+    }
+    function link(vertText, fragText) {
+      const vert = compile(gl.VERTEX_SHADER, vertText);
+      const frag = compile(gl.FRAGMENT_SHADER, fragText);
+      const prog = gl.createProgram();
+      gl.attachShader(prog, vert);
+      gl.attachShader(prog, frag);
+      gl.linkProgram(prog);
+      const uniforms = {};
+      const count = gl.getProgramParameter(prog, gl.ACTIVE_UNIFORMS);
+      for (let i = 0; i < count; i++) {
+        const info = gl.getActiveUniform(prog, i);
+        uniforms[info.name] = gl.getUniformLocation(prog, info.name);
+      }
+      return { program: prog, uniforms };
+    }
+
+    const cloth = link(CLOTH_VERT, CLOTH_FRAG);
+    const shadow = link(SHADOW_VERT, SHADOW_FRAG);
+
+    const gridVerts = new Float32Array(NODES * NODES * 2);
+    for (let y = 0; y < NODES; y++) {
+      for (let x = 0; x < NODES; x++) {
+        const i = (y * NODES + x) * 2;
+        gridVerts[i] = x / SEG;
+        gridVerts[i + 1] = y / SEG;
+      }
+    }
+    const gridIndices = new Uint32Array(SEG * SEG * 6);
+    let off = 0;
+    for (let y = 0; y < SEG; y++) {
+      for (let x = 0; x < SEG; x++) {
+        const a = y * NODES + x;
+        const b = a + 1;
+        const c = a + NODES;
+        const d = c + 1;
+        gridIndices[off++] = a; gridIndices[off++] = c; gridIndices[off++] = b;
+        gridIndices[off++] = b; gridIndices[off++] = c; gridIndices[off++] = d;
+      }
+    }
+
+    const clothVao = gl.createVertexArray();
+    gl.bindVertexArray(clothVao);
+    const gridBuf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, gridBuf);
+    gl.bufferData(gl.ARRAY_BUFFER, gridVerts, gl.STATIC_DRAW);
+    gl.enableVertexAttribArray(0);
+    gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
+
+    const dataBuf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, dataBuf);
+    gl.bufferData(gl.ARRAY_BUFFER, NODES * NODES * 4 * 4, gl.DYNAMIC_DRAW);
+    gl.enableVertexAttribArray(1);
+    gl.vertexAttribPointer(1, 4, gl.FLOAT, false, 0, 0);
+
+    const offsetBuf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, offsetBuf);
+    gl.bufferData(gl.ARRAY_BUFFER, NODES * NODES * 2 * 4, gl.DYNAMIC_DRAW);
+    gl.enableVertexAttribArray(2);
+    gl.vertexAttribPointer(2, 2, gl.FLOAT, false, 0, 0);
+
+    const indexBuf = gl.createBuffer();
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuf);
+    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, gridIndices, gl.STATIC_DRAW);
+    gl.bindVertexArray(null);
+
+    const texCanvas = document.createElement('canvas');
+    const contentTex = gl.createTexture();
+    gl.bindTexture(gl.TEXTURE_2D, contentTex);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array([255, 255, 255, 255]));
+
+    let hasValidTexture = false;
+
+    function updateTexture() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = wrapEl.clientWidth;
+      const h = wrapEl.clientHeight;
+      if (w < 30 || h < 30) return false;
+      if (typeof drawTextureFn === 'function') {
+        drawTextureFn(texCanvas, w, h, dpr);
+      }
+      gl.bindTexture(gl.TEXTURE_2D, contentTex);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, texCanvas);
+      hasValidTexture = true;
+      return true;
+    }
+
+    let hCur = new Float32Array(NODES * NODES);
+    let hPrev = new Float32Array(NODES * NODES);
+    let hNext = new Float32Array(NODES * NODES);
+    const vertexData = new Float32Array(NODES * NODES * 4);
+    const offsetData = new Float32Array(NODES * NODES * 2);
+    const zField = new Float32Array(NODES * NODES);
+    const rowForce = new Float32Array(NODES);
+    const colForce = new Float32Array(NODES);
+    const hangCurve = new Float32Array(NODES);
+    for (let a = 0; a < NODES; a++) {
+      hangCurve[a] = Math.pow(a / SEG, 1.3);
+    }
+
+    let simTime = Math.random() * 60;
+    let gust = 0.6;
+    const pointer = { x: -1e5, y: -1e5, inside: false };
+    const touch = { x: -1e5, y: -1e5, vx: 0, vy: 0, s: 0 };
+
+    function syncSize() {
+      if (window.innerWidth <= 768) return;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = wrapEl.clientWidth;
+      const h = wrapEl.clientHeight;
+      if (w < 30 || h < 30) return;
+
+      const cw = w + BLEED * 2;
+      const ch = h + BLEED * 2;
+      const targetW = Math.round(cw * dpr);
+      const targetH = Math.round(ch * dpr);
+
+      if (outputCanvas.width !== targetW || outputCanvas.height !== targetH || !hasValidTexture) {
+        outputCanvas.width = targetW;
+        outputCanvas.height = targetH;
+        if (updateTexture()) {
+          cardEl.classList.add('cloth-active');
+        }
+      }
+    }
+
+    function stepSim(dt) {
+      simTime += dt * opts.speed;
+      const t = simTime;
+      const windAmp = FORCE_GAIN * opts.wind * gust;
+      const kb1 = (Math.PI * 2) / (SEG / 1.5);
+      const kb2 = (Math.PI * 2) / (SEG / 3.8);
+      const ka = (Math.PI * 2) / (SEG / 2.2);
+      const w1 = WAVE_SPEED * kb1;
+      const w2 = WAVE_SPEED * kb2;
+      const drift = 1.8 * Math.sin(0.23 * t);
+      for (let b = 0; b < NODES; b++) {
+        rowForce[b] = Math.sin(kb1 * b - w1 * t + drift) + 0.45 * Math.sin(kb2 * b + w2 * t * 0.8 + 3.0);
+      }
+      for (let a = 0; a < NODES; a++) {
+        colForce[a] = (0.7 + 0.3 * Math.sin(ka * a - 1.7 * t)) * hangCurve[a];
+      }
+
+      const c2 = WAVE_SPEED * WAVE_SPEED;
+      const dt2 = dt * dt;
+      const decay = Math.exp(-opts.damping * dt);
+      for (let y = 0; y < NODES; y++) {
+        const up = Math.max(y - 1, 0) * NODES;
+        const down = Math.min(y + 1, SEG) * NODES;
+        const row = y * NODES;
+        for (let x = 0; x < NODES; x++) {
+          const i = row + x;
+          const l = row + Math.max(x - 1, 0);
+          const r = row + Math.min(x + 1, SEG);
+          const h = hCur[i];
+          const lap = hCur[l] + hCur[r] + hCur[up + x] + hCur[down + x] - 4 * h;
+          const force = windAmp * rowForce[x] * colForce[y];
+          const acc = c2 * lap - STIFFNESS * h + force;
+          const next = 2 * h - hPrev[i] + dt2 * acc;
+          let val = h + (next - h) * decay;
+          if (val > 3.5) val = 3.5; else if (val < -3.5) val = -3.5;
+          hNext[i] = val;
+        }
+      }
+      for (let b = 0; b < NODES; b++) {
+        hNext[b] = 0;
+      }
+      const spent = hPrev; hPrev = hCur; hCur = hNext; hNext = spent;
+    }
+
+    function touchImprint(delta, width, height) {
+      if (touch.s < 0.01) return;
+      const cellW = Math.max(width, 50) / SEG;
+      const cellH = Math.max(height, 50) / SEG;
+      const rx = opts.brushSize / cellW;
+      const ry = opts.brushSize / cellH;
+      const gx = touch.x / cellW;
+      const gy = touch.y / cellH;
+      const bx0 = Math.max(Math.ceil(gx - 2.5 * rx), 0);
+      const bx1 = Math.min(Math.floor(gx + 2.5 * rx), SEG);
+      const by0 = Math.max(Math.ceil(gy - 2.5 * ry), 0);
+      const by1 = Math.min(Math.floor(gy + 2.5 * ry), SEG);
+      const lift = 1.1 * opts.brush * touch.s;
+      const rate = Math.min(delta * 4, 1);
+      for (let y = by0; y <= by1; y++) {
+        const oy = (y - gy) / ry;
+        const row = y * NODES;
+        for (let x = bx0; x <= bx1; x++) {
+          const ox = (x - gx) / rx;
+          const g = Math.exp(-(ox * ox + oy * oy));
+          if (g < 0.02) continue;
+          const i = row + x;
+          hCur[i] += (lift * g - hCur[i]) * (rate * g);
+          hPrev[i] += (lift * g - hPrev[i]) * (rate * g);
+        }
+      }
+    }
+
+    function foreshorten(axisStride, lineStride, ds, anchor, comp) {
+      const ds2 = ds * ds;
+      for (let l = 0; l < NODES; l++) {
+        const base = l * lineStride;
+        offsetData[(base + anchor * axisStride) * 2 + comp] = 0;
+        let cum = 0;
+        for (let k = anchor + 1; k < NODES; k++) {
+          const i = base + k * axisStride;
+          const dz = zField[i] - zField[i - axisStride];
+          cum += ds - Math.sqrt(Math.max(ds2 - dz * dz, 0));
+          offsetData[i * 2 + comp] = -cum;
+        }
+        cum = 0;
+        for (let k = anchor - 1; k >= 0; k--) {
+          const i = base + k * axisStride;
+          const dz = zField[i] - zField[i + axisStride];
+          cum += ds - Math.sqrt(Math.max(ds2 - dz * dz, 0));
+          offsetData[i * 2 + comp] = cum;
+        }
+      }
+    }
+
+    function composeOffsets(w, h) {
+      const cellW = Math.max(w, 50) / SEG;
+      const cellH = Math.max(h, 50) / SEG;
+      const mid = SEG >> 1;
+      foreshorten(NODES, 1, cellH, 0, 1);
+      foreshorten(1, NODES, cellW, mid, 0);
+    }
+
+    function composeVertices(w, h) {
+      const drape = opts.drape * (0.3 + 0.7 * gust);
+      const cellW = Math.max(w, 50) / SEG;
+      const cellH = Math.max(h, 50) / SEG;
+      for (let y = 0; y < NODES; y++) {
+        const row = y * NODES;
+        for (let x = 0; x < NODES; x++) {
+          const i = row + x;
+          zField[i] = opts.amplitude * Math.tanh(hCur[i]) + drape * hangCurve[y];
+        }
+      }
+      for (let y = 0; y < NODES; y++) {
+        const up = Math.max(y - 1, 0) * NODES;
+        const down = Math.min(y + 1, SEG) * NODES;
+        const row = y * NODES;
+        for (let x = 0; x < NODES; x++) {
+          const i = row + x;
+          const l = row + Math.max(x - 1, 0);
+          const r = row + Math.min(x + 1, SEG);
+          const dzdx = (zField[r] - zField[l]) / (2 * cellW);
+          const dzdy = (zField[down + x] - zField[up + x]) / (2 * cellH);
+          const inv = 1 / Math.hypot(dzdx, dzdy, 1);
+          const curve = zField[l] + zField[r] + zField[up + x] + zField[down + x] - 4 * zField[i];
+          let fold = 1 - curve * 0.01;
+          if (fold < 0.86) fold = 0.86; else if (fold > 1.06) fold = 1.06;
+          const o = i * 4;
+          vertexData[o] = zField[i];
+          vertexData[o + 1] = -dzdx * inv;
+          vertexData[o + 2] = -dzdy * inv;
+          vertexData[o + 3] = fold;
+        }
+      }
+      composeOffsets(w, h);
+    }
+
+    function render() {
+      const resW = Math.max(wrapEl.clientWidth, 50);
+      const resH = Math.max(wrapEl.clientHeight, 50);
+      const outW = resW + BLEED * 2;
+      const outH = resH + BLEED * 2;
+      const dark = opts.dark || 0;
+
+      gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+      gl.viewport(0, 0, outputCanvas.width, outputCanvas.height);
+      gl.clearColor(0, 0, 0, 0);
+      gl.clear(gl.COLOR_BUFFER_BIT);
+      gl.enable(gl.BLEND);
+      gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+
+      gl.bindVertexArray(clothVao);
+      gl.bindBuffer(gl.ARRAY_BUFFER, dataBuf);
+      gl.bufferSubData(gl.ARRAY_BUFFER, 0, vertexData);
+      gl.bindBuffer(gl.ARRAY_BUFFER, offsetBuf);
+      gl.bufferSubData(gl.ARRAY_BUFFER, 0, offsetData);
+
+      // Shadow pass
+      gl.useProgram(shadow.program);
+      gl.uniform2f(shadow.uniforms.uRes, resW, resH);
+      gl.uniform2f(shadow.uniforms.uOut, outW, outH);
+      gl.uniform1f(shadow.uniforms.uBleed, BLEED);
+      gl.uniform1f(shadow.uniforms.uShadow, opts.shadow);
+      gl.uniform1f(shadow.uniforms.uRadius, opts.cornerRadius);
+      gl.uniform1f(shadow.uniforms.uDark, dark);
+      gl.drawElements(gl.TRIANGLES, gridIndices.length, gl.UNSIGNED_INT, 0);
+
+      // Cloth pass
+      gl.useProgram(cloth.program);
+      gl.activeTexture(gl.TEXTURE0);
+      gl.bindTexture(gl.TEXTURE_2D, contentTex);
+      gl.uniform1i(cloth.uniforms.uContent, 0);
+      gl.uniform2f(cloth.uniforms.uRes, resW, resH);
+      gl.uniform2f(cloth.uniforms.uOut, outW, outH);
+      gl.uniform1f(cloth.uniforms.uBleed, BLEED);
+      gl.uniform1f(cloth.uniforms.uFocal, opts.perspective);
+      gl.uniform1f(cloth.uniforms.uMaxX, 1.0);
+      gl.uniform1f(cloth.uniforms.uLight, opts.light);
+      gl.uniform1f(cloth.uniforms.uSheen, opts.sheen);
+      gl.uniform1f(cloth.uniforms.uRadius, opts.cornerRadius);
+      gl.uniform1f(cloth.uniforms.uDark, dark);
+      gl.uniform3f(cloth.uniforms.uBacking, backingRgb[0], backingRgb[1], backingRgb[2]);
+      gl.drawElements(gl.TRIANGLES, gridIndices.length, gl.UNSIGNED_INT, 0);
+      gl.bindVertexArray(null);
+    }
+
+    let lastTime = performance.now();
+    let simDebt = 0;
+    function loop(now) {
+      if (window.innerWidth <= 768) {
+        requestAnimationFrame(loop);
+        return;
+      }
+
+      const delta = Math.min((now - lastTime) / 1000, 1 / 20);
+      lastTime = now;
+      const w = wrapEl.clientWidth;
+      const h = wrapEl.clientHeight;
+
+      if (w < 30 || h < 30) {
+        requestAnimationFrame(loop);
+        return;
+      }
+
+      if (!hasValidTexture || outputCanvas.width === 0) {
+        syncSize();
+      }
+
+      const target = Math.max(0.55 + 0.35 * Math.sin(simTime * 0.31 + 1.3) + 0.25 * Math.sin(simTime * 0.83), 0.15);
+      gust += (target - gust) * Math.min(delta * 2, 1);
+
+      const sTarget = pointer.inside ? 1 : 0;
+      touch.s += (sTarget - touch.s) * Math.min(delta * 8, 1);
+      const omega = 14;
+      touch.vx += ((pointer.x - touch.x) * omega * omega - 2 * omega * touch.vx) * delta;
+      touch.vy += ((pointer.y - touch.y) * omega * omega - 2 * omega * touch.vy) * delta;
+      touch.x += touch.vx * delta;
+      touch.y += touch.vy * delta;
+      touchImprint(delta, w, h);
+
+      simDebt = Math.min(simDebt + delta, DT * 5);
+      while (simDebt >= DT) {
+        stepSim(DT);
+        simDebt -= DT;
+      }
+
+      composeVertices(w, h);
+      render();
+      requestAnimationFrame(loop);
+    }
+
+    wrapEl.addEventListener('pointermove', (e) => {
+      const rect = wrapEl.getBoundingClientRect();
+      pointer.x = e.clientX - rect.left;
+      pointer.y = e.clientY - rect.top;
+      pointer.inside = true;
+    });
+    wrapEl.addEventListener('pointerleave', () => {
+      pointer.inside = false;
+    });
+
+    requestAnimationFrame(loop);
+
+    return {
+      triggerGust: () => {
+        gust = 0.95;
+        touch.s = 0.55;
+        touch.x = wrapEl.clientWidth * 0.5;
+        touch.y = wrapEl.clientHeight * 0.3;
+        touch.vx = (Math.random() - 0.5) * 55;
+        touch.vy = (Math.random() - 0.5) * 55;
+      },
+      resize: () => {
+        syncSize();
+      }
+    };
+  }
+
+  // Setup instances
+  let instanceA = null;
+  let instanceB = null;
+
+  function setupInstances() {
+    if (window.innerWidth <= 768) return;
+
+    const renderers = customRenderers || window.customClothRenderers || {};
+    const rendererA = renderers[0] || window.renderCardTextureA;
+    const rendererB = renderers[1] || window.renderCardTextureB;
+
+    const wrapA = document.getElementById("clothWrapOptionA");
+    const cardA = document.getElementById("clothCardOptionA");
+    const canvasA = document.getElementById("clothCanvasOptionA");
+
+    const wrapB = document.getElementById("clothWrapOptionB");
+    const cardB = document.getElementById("clothCardOptionB");
+    const canvasB = document.getElementById("clothCanvasOptionB");
+
+    if (wrapA && cardA && canvasA && !instanceA && rendererA) {
+      instanceA = createClothInstance(wrapA, cardA, canvasA, rendererA, [1, 1, 1], {
+        wind: 2.0,
+        light: 0.42,
+        sheen: 0.12,
+        shadow: 0.22,
+        dark: 0
+      });
+    }
+
+    if (wrapB && cardB && canvasB && !instanceB && rendererB) {
+      instanceB = createClothInstance(wrapB, cardB, canvasB, rendererB, [0.05, 0.09, 0.08], {
+        wind: 2.2,
+        light: 0.48,
+        sheen: 0.22,
+        shadow: 0.25,
+        dark: 1
+      });
+    }
+
+    // Observe Slide 5 activation
+    const slide5 = document.querySelector('.slide[data-slide="5"], .slide[data-index="5"]');
+    if (slide5) {
+      const obs = new MutationObserver(() => {
+        if (slide5.classList.contains('active')) {
+          setTimeout(() => {
+            if (instanceA) instanceA.resize();
+            if (instanceB) instanceB.resize();
+          }, 50);
+        }
+      });
+      obs.observe(slide5, { attributes: true, attributeFilter: ['class'] });
+    }
+  }
+
+  if (document.fonts) {
+    document.fonts.ready.then(setupInstances);
+  } else {
+    setupInstances();
+  }
+
+  // Hook global wind trigger for slide transitions
+  const origTriggerWind = window.triggerCanvasUiWind;
+  window.triggerCanvasUiWind = function(direction) {
+    if (origTriggerWind) origTriggerWind(direction);
+    if (instanceA) { instanceA.resize(); instanceA.triggerGust(); }
+    if (instanceB) { instanceB.resize(); instanceB.triggerGust(); }
+  };
+
+  window.addEventListener('resize', () => {
+    if (instanceA) instanceA.resize();
+    if (instanceB) instanceB.resize();
+  });
+}
+
+window.initClothCardPhysics = initClothCardPhysics;
+
+// --- Core Module: navigation.js ---
+/**
+ * navigation.js — Core Presentation Deck Navigation & Lifecycle Engine
+ */
+class DeckNavigator {
+  constructor(config = {}) {
+    this.currentSlide = 1;
+    this.totalSlides = config.totalSlides || 6;
+    this.slideTitles = config.slideTitles || [];
+    this.isTransitioning = false;
+    this.autoplayInterval = null;
+    this.buttonPressState = {
+      btnPrev: { isKeyDown: false, pressStartTime: 0, timer: null },
+      btnNext: { isKeyDown: false, pressStartTime: 0, timer: null }
+    };
+
+    this.init();
+  }
+
+  init() {
+    this.setupUrlRouting();
+    this.setupKeyboard();
+    this.setupWheel();
+    this.setupTouch();
+    this.updateUI();
+  }
+
+  setupUrlRouting() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const hashSlide = parseInt(window.location.hash.replace('#', ''));
+    const initialSlide = parseInt(urlParams.get('slide')) || hashSlide || 1;
+
+    if (initialSlide >= 1 && initialSlide <= this.totalSlides) {
+      this.currentSlide = initialSlide;
+    }
+
+    if (urlParams.get('scroll') === 'bottom') {
+      setTimeout(() => {
+        const activeEl = document.querySelector('.slide.active');
+        if (activeEl) activeEl.scrollTop = activeEl.scrollHeight;
+      }, 50);
+    }
+  }
+
+  updateUI(direction = 'forward') {
+    // 1. Update Slides
+    const slides = document.querySelectorAll('.slide');
+    slides.forEach((s) => {
+      const slideNum = parseInt(s.getAttribute('data-slide') || s.getAttribute('data-index'));
+      if (slideNum === this.currentSlide) {
+        s.classList.add('active');
+        s.scrollTop = 0;
+      } else {
+        s.classList.remove('active');
+      }
+    });
+
+    // 2. Update Dots / Pills
+    const dots = document.querySelectorAll('.slide-dot');
+    dots.forEach((d) => {
+      const idx = parseInt(d.getAttribute('data-slide-index') || d.getAttribute('data-index'));
+      d.classList.remove('morph-forward', 'morph-backward');
+      if (idx === this.currentSlide) {
+        d.classList.add('active');
+        d.classList.remove('completed');
+        void d.offsetWidth; // Force reflow for animation
+        if (direction === 'forward') {
+          d.classList.add('morph-forward');
+        } else if (direction === 'backward') {
+          d.classList.add('morph-backward');
+        }
+      } else {
+        d.classList.remove('active');
+        if (idx < this.currentSlide) {
+          d.classList.add('completed');
+        } else {
+          d.classList.remove('completed');
+        }
+      }
+    });
+
+    // 3. Update Rolling Odometer
+    updateOdometer(this.currentSlide, this.totalSlides, direction);
+
+    // 4. Update Footer Slide Title
+    const titleEl = document.getElementById('slideTitleText');
+    if (titleEl && this.slideTitles.length >= this.currentSlide) {
+      titleEl.classList.add('fade-change');
+      setTimeout(() => {
+        titleEl.textContent = this.slideTitles[this.currentSlide - 1];
+        titleEl.classList.remove('fade-change');
+      }, 120);
+    }
+
+    // 5. Update Nav Buttons
+    const btnPrev = document.getElementById('btnPrev');
+    const btnNext = document.getElementById('btnNext');
+    if (btnPrev) btnPrev.disabled = (this.currentSlide === 1);
+    if (btnNext) btnNext.disabled = (this.currentSlide === this.totalSlides);
+  }
+
+  navigate(direction) {
+    if (this.isTransitioning) return;
+    const prevSlideNum = this.currentSlide;
+
+    if (direction === 'forward' && this.currentSlide < this.totalSlides) {
+      this.currentSlide++;
+    } else if (direction === 'backward' && this.currentSlide > 1) {
+      this.currentSlide--;
+    }
+
+    if (prevSlideNum === this.currentSlide) return;
+
+    playTick(direction);
+    if (window.triggerCanvasUiWind) window.triggerCanvasUiWind(direction);
+
+    if (!document.startViewTransition) {
+      this.updateUI(direction);
+      return;
+    }
+
+    this.isTransitioning = true;
+    const transition = document.startViewTransition({
+      update: () => {
+        this.updateUI(direction);
+      },
+      types: [direction]
+    });
+
+    transition.finished.finally(() => {
+      this.isTransitioning = false;
+    });
+  }
+
+  nextSlide() {
+    this.navigate('forward');
+  }
+
+  prevSlide() {
+    this.navigate('backward');
+  }
+
+  goToSlide(target) {
+    if (target === this.currentSlide || this.isTransitioning) return;
+    const direction = target > this.currentSlide ? 'forward' : 'backward';
+    this.currentSlide = target;
+    playTick(direction);
+    if (window.triggerCanvasUiWind) window.triggerCanvasUiWind(direction);
+
+    if (!document.startViewTransition) {
+      this.updateUI(direction);
+      return;
+    }
+
+    this.isTransitioning = true;
+    const transition = document.startViewTransition({
+      update: () => {
+        this.updateUI(direction);
+      },
+      types: [direction]
+    });
+
+    transition.finished.finally(() => {
+      this.isTransitioning = false;
+    });
+  }
+
+  triggerButtonPress(buttonId) {
+    const btn = document.getElementById(buttonId);
+    if (!btn) return;
+    const state = this.buttonPressState[buttonId];
+    if (!state) return;
+
+    state.isKeyDown = true;
+    state.pressStartTime = Date.now();
+    btn.classList.add('pressed');
+
+    if (state.timer) {
+      clearTimeout(state.timer);
+      state.timer = null;
+    }
+  }
+
+  triggerButtonRelease(buttonId) {
+    const btn = document.getElementById(buttonId);
+    if (!btn) return;
+    const state = this.buttonPressState[buttonId];
+    if (!state) return;
+
+    state.isKeyDown = false;
+    const elapsed = Date.now() - state.pressStartTime;
+    const minDuration = 140;
+
+    if (elapsed < minDuration) {
+      state.timer = setTimeout(() => {
+        if (!state.isKeyDown) {
+          btn.classList.remove('pressed');
+        }
+      }, minDuration - elapsed);
+    } else {
+      btn.classList.remove('pressed');
+    }
+  }
+
+  clearAllButtonPresses() {
+    ['btnPrev', 'btnNext'].forEach(id => {
+      const btn = document.getElementById(id);
+      const state = this.buttonPressState[id];
+      if (state) {
+        state.isKeyDown = false;
+        if (state.timer) clearTimeout(state.timer);
+      }
+      if (btn) btn.classList.remove('pressed');
+    });
+  }
+
+  setupKeyboard() {
+    window.addEventListener('keydown', (e) => {
+      const modal = document.getElementById('videoModal');
+      if (modal && modal.classList.contains('active')) {
+        if (e.key === 'Escape') closeVideoModal();
+        return;
+      }
+
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown' || e.key === 'Enter') {
+        e.preventDefault();
+        this.triggerButtonPress('btnNext');
+        this.nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp' || e.key === 'Backspace') {
+        e.preventDefault();
+        this.triggerButtonPress('btnPrev');
+        this.prevSlide();
+      } else if (e.key === 'f' || e.key === 'F') {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(() => {});
+        } else {
+          document.exitFullscreen().catch(() => {});
+        }
+      } else if (e.key === 'm' || e.key === 'M') {
+        toggleSound();
+      } else if (e.key >= '1' && e.key <= String(this.totalSlides)) {
+        this.goToSlide(parseInt(e.key));
+      }
+    });
+
+    window.addEventListener('keyup', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown' || e.key === 'Enter') {
+        this.triggerButtonRelease('btnNext');
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp' || e.key === 'Backspace') {
+        this.triggerButtonRelease('btnPrev');
+      }
+    });
+
+    window.addEventListener('blur', () => this.clearAllButtonPresses());
+  }
+
+  setupWheel() {
+    let wheelDebounceTimer = null;
+    let isWheelLocked = false;
+    window.addEventListener('wheel', (e) => {
+      const modal = document.getElementById('videoModal');
+      if (modal && modal.classList.contains('active')) return;
+      if (isWheelLocked) return;
+
+      if (window.innerWidth <= 768) return;
+
+      const activeSlideEl = document.querySelector('.slide.active');
+      if (activeSlideEl) {
+        const isScrollable = activeSlideEl.scrollHeight > (activeSlideEl.clientHeight + 8);
+        if (isScrollable) {
+          const atTop = activeSlideEl.scrollTop <= 5;
+          const atBottom = activeSlideEl.scrollTop + activeSlideEl.clientHeight >= (activeSlideEl.scrollHeight - 6);
+          if (e.deltaY > 0 && !atBottom) return;
+          if (e.deltaY < 0 && !atTop) return;
+        }
+      }
+
+      const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+      if (Math.abs(delta) > 45) {
+        isWheelLocked = true;
+        if (delta > 0) {
+          this.nextSlide();
+        } else {
+          this.prevSlide();
+        }
+        clearTimeout(wheelDebounceTimer);
+        wheelDebounceTimer = setTimeout(() => {
+          isWheelLocked = false;
+        }, 500);
+      }
+    }, { passive: true });
+  }
+
+  setupTouch() {
+    let touchStartX = 0;
+    let touchStartY = 0;
+    window.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    window.addEventListener('touchend', (e) => {
+      const diffX = e.changedTouches[0].clientX - touchStartX;
+      const diffY = e.changedTouches[0].clientY - touchStartY;
+      if (Math.abs(diffX) > 50 && Math.abs(diffX) > Math.abs(diffY)) {
+        if (diffX < 0) {
+          this.nextSlide();
+        } else {
+          this.prevSlide();
+        }
+      }
+    }, { passive: true });
+  }
+}
+
+// Sveta Nedelja Custom Scripts & WebGL Cloth Card Texture Renderers
+
+function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
+  ctx.beginPath();
+  ctx.moveTo(x + radius, y);
+  ctx.lineTo(x + width - radius, y);
+  ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+  ctx.lineTo(x + width, y + height - radius);
+  ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+  ctx.lineTo(x + radius, y + height);
+  ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+  ctx.lineTo(x, y + radius);
+  ctx.quadraticCurveTo(x, y, x + radius, y);
+  ctx.closePath();
+  if (fill) ctx.fill();
+  if (stroke) ctx.stroke();
+}
+
+function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+  const words = text.split(' ');
+  let line = '';
+  for (let n = 0; n < words.length; n++) {
+    const testLine = line + words[n] + ' ';
+    const metrics = ctx.measureText(testLine);
+    if (metrics.width > maxWidth && n > 0) {
+      ctx.fillText(line, x, y);
+      line = words[n] + ' ';
+      y += lineHeight;
+    } else {
+      line = testLine;
+    }
+  }
+  ctx.fillText(line, x, y);
+}
+
+function renderCardTextureA(canvas, w, h, dpr) {
+  canvas.width = Math.round(w * dpr);
+  canvas.height = Math.round(h * dpr);
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  ctx.fillStyle = '#ffffff';
+  ctx.strokeStyle = '#111518';
+  ctx.lineWidth = 2;
+  roundRect(ctx, 1, 1, w - 2, h - 2, 12, true, true);
+
+  // Top Badge
+  ctx.fillStyle = '#111518';
+  roundRect(ctx, 22, 20, 220, 24, 4, true, false);
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '800 10.5px "JetBrains Mono", monospace';
+  ctx.fillText('OPCIJA A • FESTIVALSKI MASTER', 30, 36);
+
+  // Title
+  ctx.fillStyle = '#111518';
+  ctx.font = '900 20px "Plus Jakarta Sans", sans-serif';
+  ctx.fillText('OSNOVNI', 22, 65);
+  ctx.fillText('PAKET', 22, 86);
+
+  // Description
+  ctx.fillStyle = '#3b454e';
+  ctx.font = '500 11.5px "Plus Jakarta Sans", sans-serif';
+  wrapText(ctx, 'Kinematografski film za Dan grada, 2 snimateljska dana, osnovni FPV preleti, 4x vertikale, licencirana glazba i 4K master.', 22, 105, w - 44, 15);
+
+  // Divider Line
+  ctx.strokeStyle = '#d5ccba';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(22, 140);
+  ctx.lineTo(w - 22, 140);
+  ctx.stroke();
+
+  const boxH = 72;
+  const boxY = h - boxH - 18;
+
+  const features = [
+    ['Master film do 4:30 min', ' (16:9, 4K Cinema Master)'],
+    ['2 snimateljska dana', ' (Dvorac Erdödy, Rimac Campus, Kipišće)'],
+    ['4x vertikalna videa', ' (9:16 za društvene mreže i turizam)'],
+    ['Standardni FPV letovi', ' na otvorenim lokacijama'],
+    ['Scenarij i naracija', ' sa studijskim snimanjem glasa'],
+    ['100% prijenos autorskih prava', ' na Grad i Županiju']
+  ];
+
+  const startY = 160;
+  const featSpacing = 24.5;
+
+  features.forEach(([bold, norm], idx) => {
+    const featY = startY + idx * featSpacing;
+    ctx.fillStyle = '#11421f';
+    ctx.font = '800 12px "JetBrains Mono", monospace';
+    ctx.fillText('✓', 24, featY);
+
+    ctx.fillStyle = '#111518';
+    ctx.font = '700 11.5px "Plus Jakarta Sans", sans-serif';
+    const boldW = ctx.measureText(bold).width;
+    ctx.fillText(bold, 44, featY);
+
+    ctx.fillStyle = '#3b454e';
+    ctx.font = '500 11px "Plus Jakarta Sans", sans-serif';
+    ctx.fillText(norm, 44 + boldW, featY);
+  });
+
+  // Price Bottom Row
+  ctx.fillStyle = '#f4efe4';
+  ctx.strokeStyle = '#d5ccba';
+  ctx.lineWidth = 1.5;
+  roundRect(ctx, 16, boxY, w - 32, boxH, 8, true, true);
+
+  ctx.fillStyle = '#79828a';
+  ctx.font = '800 9.5px "JetBrains Mono", monospace';
+  ctx.fillText('UKUPNA INVESTICIJA (OPCIJA A)', 28, boxY + 20);
+
+  ctx.fillStyle = '#111518';
+  ctx.font = '900 26px "Plus Jakarta Sans", sans-serif';
+  ctx.fillText('15.000,00 €', 28, boxY + 46);
+
+  ctx.fillStyle = '#79828a';
+  ctx.font = '600 9.5px "Plus Jakarta Sans", sans-serif';
+  ctx.fillText('Oslobođeno PDV-a temeljem čl. 90. st. 2. Zakona o PDV-u • 0% PDV', 28, boxY + 62);
+}
+
+function renderCardTextureB(canvas, w, h, dpr) {
+  canvas.width = Math.round(w * dpr);
+  canvas.height = Math.round(h * dpr);
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  // Card Background
+  ctx.fillStyle = '#0d1815';
+  ctx.strokeStyle = '#10b981';
+  ctx.lineWidth = 2.5;
+  roundRect(ctx, 1, 1, w - 2, h - 2, 12, true, true);
+
+  // Emerald Radial Glow
+  const grad = ctx.createRadialGradient(w - 60, 40, 10, w - 60, 40, 260);
+  grad.addColorStop(0, 'rgba(16, 185, 129, 0.16)');
+  grad.addColorStop(1, 'rgba(13, 24, 21, 0)');
+  ctx.fillStyle = grad;
+  roundRect(ctx, 2, 2, w - 4, h - 4, 11, true, false);
+
+  // Top Badge
+  ctx.fillStyle = '#10b981';
+  roundRect(ctx, 22, 20, 260, 24, 4, true, false);
+  ctx.fillStyle = '#0d1815';
+  ctx.font = '900 10.5px "JetBrains Mono", monospace';
+  ctx.fillText('OPCIJA B • SIGNATURE (PREPORUČENO)', 30, 36);
+
+  // Title
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '900 20px "Plus Jakarta Sans", sans-serif';
+  ctx.fillText('SIGNATURE', 22, 65);
+  ctx.fillText('PROŠIRENI PAKET', 22, 86);
+
+  // Description
+  ctx.fillStyle = '#9cb1a8';
+  ctx.font = '500 11.5px "Plus Jakarta Sans", sans-serif';
+  wrapText(ctx, 'Puni kinematografski format: 4 snimateljska dana, FPV spektakl kroz interijere kampusa, 60s teaser trailer, autorski sound design i neograničene licence.', 22, 105, w - 44, 15);
+
+  // Divider Line
+  ctx.strokeStyle = '#1d362a';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(22, 140);
+  ctx.lineTo(w - 22, 140);
+  ctx.stroke();
+
+  const boxH = 72;
+  const boxY = h - boxH - 18;
+
+  const features = [
+    ['Master film do 6:00 min + 60s Teaser', ' (16:9, 4K)'],
+    ['4 snimateljska dana', ' (zora na dvorcu i noćne vožnje na stazi)'],
+    ['4x vertikalna videa montirana zasebno', ' (9:16, 4K)'],
+    ['Specijalistički FPV tim', ': letovi kroz atrij kampusa i arkade'],
+    ['Integracija arhive obnove dvorca', ' Erdödy (17 mil. €)'],
+    ['Autorska glazbena kompozicija', ' & foley sound design'],
+    ['Dronelapsi i timelapsi svitanja', ' i sumraka'],
+    ['100% sirovi materijal (RAW/ProRes)', ' + trajna prava']
+  ];
+
+  const startY = 160;
+  const featSpacing = 24.5;
+
+  features.forEach(([bold, norm], idx) => {
+    const featY = startY + idx * featSpacing;
+    ctx.fillStyle = '#10b981';
+    ctx.font = '800 12px "JetBrains Mono", monospace';
+    ctx.fillText('★', 24, featY);
+
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '700 11.5px "Plus Jakarta Sans", sans-serif';
+    const boldW = ctx.measureText(bold).width;
+    ctx.fillText(bold, 44, featY);
+
+    ctx.fillStyle = '#9cb1a8';
+    ctx.font = '500 11px "Plus Jakarta Sans", sans-serif';
+    ctx.fillText(norm, 44 + boldW, featY);
+  });
+
+  // Price Bottom Row
+  ctx.fillStyle = '#13231e';
+  ctx.strokeStyle = '#10b981';
+  ctx.lineWidth = 1.5;
+  roundRect(ctx, 16, boxY, w - 32, boxH, 8, true, true);
+
+  ctx.fillStyle = '#10b981';
+  ctx.font = '800 9.5px "JetBrains Mono", monospace';
+  ctx.fillText('UKUPNA INVESTICIJA (OPCIJA B)', 28, boxY + 20);
+
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '900 26px "Plus Jakarta Sans", sans-serif';
+  ctx.fillText('19.500,00 €', 28, boxY + 46);
+
+  ctx.fillStyle = '#10b981';
+  ctx.font = '600 9.5px "Plus Jakarta Sans", sans-serif';
+  ctx.fillText('Oslobođeno PDV-a temeljem čl. 90. st. 2. Zakona o PDV-u • 0% PDV', 28, boxY + 62);
+}
+
+// Attach custom renderers for cloth engine
+window.customClothRenderers = {
+  0: renderCardTextureA,
+  1: renderCardTextureB
+};
+window.renderCardTextureA = renderCardTextureA;
+window.renderCardTextureB = renderCardTextureB;
+
+if (window.initClothCardPhysics) {
+  window.initClothCardPhysics(window.customClothRenderers);
+}
+
+
+    // Global navigation bindings
+    const navigator = new DeckNavigator({
+      totalSlides: 6,
+      slideTitles: ["Autorski dvojac: Dvorac i Kampus", "Dvije točke: Erdödy i Rimac", "4K Master i 4 vertikale", "4 stupa kinematske produkcije", "Komercijalna ponuda (Opcija A i B)", "Terminski plan i potvrda"]
+    });
+
+    window.navigatorInstance = navigator;
+    window.goToSlide = (idx) => navigator.goToSlide(idx);
+    window.nextSlide = () => navigator.nextSlide();
+    window.prevSlide = () => navigator.prevSlide();
+
+    // Initialize CanvasUI Effects
+    if (typeof initCanvasUiParticles === 'function') initCanvasUiParticles();
+    if (typeof initRetroDither === 'function') initRetroDither();
+    if (typeof initVideoModal === 'function') initVideoModal();
+    if (typeof initClothCardPhysics === 'function') {
+      initClothCardPhysics(window.customClothRenderers || null);
+    }
+  </script>
+</body>
+</html>

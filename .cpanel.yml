@@ -2,4 +2,10 @@
 deployment:
   tasks:
     - export DEPLOYPATH=$HOME/public_html/
+    - mkdir -p $HOME/.sv_live_backup
+    - if [ -d "$DEPLOYPATH/tajno-glasanje/api/data" ]; then mkdir -p "$HOME/.sv_live_backup/data" && /bin/cp -R "$DEPLOYPATH/tajno-glasanje/api/data/"* "$HOME/.sv_live_backup/data/" 2>/dev/null || true; fi
+    - if [ -f "$DEPLOYPATH/tajno-glasanje/js/catalog-data.js" ]; then /bin/cp "$DEPLOYPATH/tajno-glasanje/js/catalog-data.js" "$HOME/.sv_live_backup/catalog-data.js" 2>/dev/null || true; fi
     - /bin/cp -R website/* $DEPLOYPATH
+    - if [ -d "$HOME/.sv_live_backup/data" ]; then mkdir -p "$DEPLOYPATH/tajno-glasanje/api/data" && /bin/cp -R "$HOME/.sv_live_backup/data/"* "$DEPLOYPATH/tajno-glasanje/api/data/" 2>/dev/null || true; fi
+    - if [ -f "$HOME/.sv_live_backup/catalog-data.js" ]; then /bin/cp "$HOME/.sv_live_backup/catalog-data.js" "$DEPLOYPATH/tajno-glasanje/js/catalog-data.js" 2>/dev/null || true; fi
+    - if command -v php >/dev/null 2>&1; then php "$DEPLOYPATH/tajno-glasanje/api/curate.php" --sync >/dev/null 2>&1 || true; fi

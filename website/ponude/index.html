@@ -1,26 +1,14 @@
 <!DOCTYPE html>
-<html lang="hr" data-theme="dark">
+<html lang="hr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Katalog Web Ponuda & Pitch Deckova — Studio Varaždin</title>
   <meta name="description" content="Službeni centralni katalog interaktivnih 16:9 prezentacijskih mikrosajtova i ponuda Studija Varaždin.">
   <meta name="robots" content="noindex, nofollow">
-  <meta name="theme-color" id="metaThemeColor" content="#090e0b">
   
-  <link rel="icon" id="dynamicFavicon" type="image/svg+xml" href="https://varazdin.studio/favicon-dark.svg">
+  <link rel="icon" type="image/svg+xml" href="https://varazdin.studio/favicon.svg">
   <link rel="apple-touch-icon" href="https://varazdin.studio/apple-touch-icon.png">
-
-  <!-- Immediate Theme Initializer to eliminate flash of light mode -->
-  <script>
-    (function() {
-      try {
-        const stored = localStorage.getItem('varazdin_theme');
-        const theme = stored ? stored : 'dark';
-        document.documentElement.setAttribute('data-theme', theme);
-      } catch (e) {}
-    })();
-  </script>
 
   <!-- Google Fonts: Plus Jakarta Sans, JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,14 +17,12 @@
 
   <style>
     /* ==========================================================================
-       STUDIO VARAŽDIN THEME SYSTEM (Editorial Light & Dark Luxury)
+       MERIDIAN 16 EXACT DESIGN SYSTEM
        ========================================================================== */
     :root {
-      /* Editorial Canvas (Light Theme) */
       --bg-canvas: #f4efe4;
       --bg-card: #fbf7ee;
       --bg-card-subtle: #eae3d2;
-      --bg-card-hover: #ffffff;
       
       --text-primary: #111518;
       --text-secondary: #3b454e;
@@ -52,19 +38,6 @@
       
       --accent-gold: #c9933b;
       --accent-gold-bg: #faeed4;
-
-      --header-bg: rgba(244, 239, 228, 0.95);
-      --pattern-dot: #111518;
-      --pattern-opacity: 0.035;
-      --noise-blend: multiply;
-      --noise-opacity: 0.04;
-
-      --tooltip-bg: #111518;
-      --tooltip-text: #f4efe4;
-      --tooltip-border: #111518;
-      --tooltip-shadow: rgba(17, 21, 24, 0.35);
-
-      --modal-backdrop: rgba(17, 21, 24, 0.85);
       
       --font-display: 'Plus Jakarta Sans', sans-serif;
       --font-hero: 'Plus Jakarta Sans', sans-serif;
@@ -75,54 +48,12 @@
       --radius-md: 6px;
       --radius-lg: 8px;
       
-      --shadow-bold-sm: 3px 3px 0px var(--border-dark);
-      --shadow-bold-md: 6px 6px 0px var(--border-dark);
-      --shadow-bold-lg: 9px 9px 0px var(--border-dark);
-      --shadow-bold-modal: 10px 10px 0px var(--border-dark);
+      --shadow-bold-sm: 3px 3px 0px var(--text-primary);
+      --shadow-bold-md: 6px 6px 0px var(--text-primary);
+      --shadow-bold-lg: 9px 9px 0px var(--text-primary);
+      --shadow-bold-modal: 10px 10px 0px var(--text-primary);
       
       --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    /* Dark Mode: Studio Varaždin Dark Luxury */
-    html[data-theme="dark"],
-    :root[data-theme="dark"] {
-      --bg-canvas: #090e0b;
-      --bg-card: #121915;
-      --bg-card-subtle: #19241e;
-      --bg-card-hover: #223229;
-      
-      --text-primary: #f5efe3;
-      --text-secondary: #9eb1a6;
-      --text-muted: #5e7367;
-      
-      --border-dark: #2c3e34;
-      --border-color: #1f2e26;
-      
-      --accent-green: #196f3d;
-      --accent-green-bright: #22c55e;
-      --accent-green-bg: rgba(34, 197, 94, 0.14);
-      --accent-green-border: rgba(34, 197, 94, 0.35);
-      
-      --accent-gold: #d4a34b;
-      --accent-gold-bg: rgba(212, 163, 75, 0.16);
-
-      --header-bg: rgba(9, 14, 11, 0.94);
-      --pattern-dot: rgba(245, 239, 227, 0.22);
-      --pattern-opacity: 0.08;
-      --noise-blend: screen;
-      --noise-opacity: 0.03;
-
-      --tooltip-bg: #050806;
-      --tooltip-text: #f5efe3;
-      --tooltip-border: #2c3e34;
-      --tooltip-shadow: rgba(0, 0, 0, 0.65);
-
-      --modal-backdrop: rgba(4, 7, 5, 0.9);
-
-      --shadow-bold-sm: 3px 3px 0px #030604;
-      --shadow-bold-md: 6px 6px 0px #030604;
-      --shadow-bold-lg: 9px 9px 0px #030604;
-      --shadow-bold-modal: 10px 10px 0px #030604;
     }
 
     *, *::before, *::after {
@@ -145,7 +76,6 @@
       overflow-x: hidden;
       line-height: 1.45;
       position: relative;
-      transition: background-color 0.25s ease, color 0.25s ease;
     }
 
     /* Paper texture pattern layer */
@@ -157,14 +87,13 @@
       width: 100%;
       height: 100%;
       background-image: 
-        radial-gradient(var(--pattern-dot) 0.65px, transparent 0.65px),
-        radial-gradient(var(--pattern-dot) 0.65px, var(--bg-canvas) 0.65px);
+        radial-gradient(#111518 0.65px, transparent 0.65px),
+        radial-gradient(#111518 0.65px, var(--bg-canvas) 0.65px);
       background-size: 26px 26px;
       background-position: 0 0, 13px 13px;
-      opacity: var(--pattern-opacity);
+      opacity: 0.035;
       pointer-events: none;
       z-index: 1;
-      transition: opacity 0.25s ease;
     }
 
     /* Paper noise overlay */
@@ -173,10 +102,9 @@
       inset: 0;
       pointer-events: none;
       z-index: 1;
-      opacity: var(--noise-opacity);
+      opacity: 0.04;
       background: repeating-radial-gradient(#000 0 0.0001%, #fff 0 0.0002%);
-      mix-blend-mode: var(--noise-blend);
-      transition: opacity 0.25s ease;
+      mix-blend-mode: multiply;
     }
 
     /* Ambient CanvasUI particles */
@@ -195,9 +123,9 @@
        ========================================================================== */
     header.deck-header {
       height: 56px;
-      background: var(--header-bg);
+      background: rgba(244, 239, 228, 0.95);
       backdrop-filter: blur(16px);
-      border-bottom: 2px solid var(--border-dark);
+      border-bottom: 2px solid var(--text-primary);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -206,7 +134,6 @@
       top: 0;
       z-index: 100;
       flex-shrink: 0;
-      transition: background 0.25s ease, border-color 0.25s ease;
     }
 
     .brand-mark {
@@ -219,27 +146,18 @@
       letter-spacing: -0.03em;
       color: var(--text-primary);
       text-decoration: none;
-      transition: color 0.2s ease;
     }
 
     .brand-mark .tag {
       font-family: var(--font-mono);
       font-size: 0.72rem;
       font-weight: 800;
-      background: var(--border-dark);
-      color: var(--text-primary);
+      background: var(--text-primary);
+      color: #ffffff;
       padding: 3px 10px;
       border-radius: 3px;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      border: 1px solid var(--border-dark);
-      transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
-    }
-
-    html[data-theme="dark"] .brand-mark .tag {
-      background: var(--accent-green);
-      color: #ffffff;
-      border-color: var(--accent-green-bright);
     }
 
     .deck-controls-top {
@@ -250,7 +168,7 @@
 
     .btn-action {
       background: var(--bg-card);
-      border: 2px solid var(--border-dark);
+      border: 2px solid var(--text-primary);
       color: var(--text-primary);
       padding: 6px 14px;
       font-size: 0.78rem;
@@ -262,30 +180,19 @@
       align-items: center;
       gap: 6px;
       transition: all 0.15s var(--transition-smooth);
-      box-shadow: 2px 2px 0px var(--border-dark);
+      box-shadow: 2px 2px 0px var(--text-primary);
       text-decoration: none;
-      outline: none;
     }
 
     .btn-action:hover {
       transform: translate(-1px, -1px);
-      box-shadow: 3.5px 3.5px 0px var(--border-dark);
+      box-shadow: 3.5px 3.5px 0px var(--text-primary);
       background: var(--accent-green-bg);
-      color: var(--accent-green-bright);
-      border-color: var(--accent-green-bright);
     }
 
     .btn-action:active {
       transform: translate(1px, 1px);
-      box-shadow: 1px 1px 0px var(--border-dark);
-    }
-
-    .btn-theme-toggle {
-      border-color: var(--accent-gold);
-    }
-
-    html[data-theme="dark"] .btn-theme-toggle {
-      border-color: var(--accent-gold);
+      box-shadow: 1px 1px 0px var(--text-primary);
     }
 
     /* ==========================================================================
@@ -307,8 +214,6 @@
       letter-spacing: -0.035em;
       margin-bottom: 1.75rem;
       text-transform: uppercase;
-      color: var(--text-primary);
-      transition: color 0.25s ease;
     }
 
     .quote-title .outline-text {
@@ -317,7 +222,6 @@
       color: transparent;
       -webkit-text-stroke: 1.8px var(--text-primary);
       letter-spacing: -0.02em;
-      transition: -webkit-text-stroke 0.25s ease;
     }
 
     /* ==========================================================================
@@ -325,7 +229,7 @@
        ========================================================================== */
     .meridian-search-card {
       background: var(--bg-card);
-      border: 2px solid var(--border-dark);
+      border: 2px solid var(--text-primary);
       border-radius: 6px;
       padding: 1.15rem 1.35rem;
       box-shadow: var(--shadow-bold-md);
@@ -333,7 +237,6 @@
       display: flex;
       flex-direction: column;
       gap: 0.65rem;
-      transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
     }
 
     .search-input-box {
@@ -353,7 +256,7 @@
     .search-input {
       width: 100%;
       background: var(--bg-card-subtle);
-      border: 2px solid var(--border-dark);
+      border: 2px solid var(--text-primary);
       border-radius: var(--radius-sm);
       padding: 0.85rem 2.8rem 0.85rem 3.1rem;
       font-family: var(--font-sans);
@@ -364,13 +267,9 @@
       transition: all 0.18s var(--transition-smooth);
     }
 
-    .search-input::placeholder {
-      color: var(--text-muted);
-    }
-
     .search-input:focus {
-      background: var(--bg-card);
-      border-color: var(--accent-green-bright);
+      background: #ffffff;
+      border-color: var(--accent-green);
       box-shadow: 0 0 0 3px var(--accent-green-bg);
     }
 
@@ -383,8 +282,8 @@
       font-size: 0.75rem;
       font-weight: 800;
       color: var(--text-muted);
-      background: var(--bg-card-subtle);
-      border: 1.5px solid var(--border-dark);
+      background: var(--bg-card);
+      border: 1.5px solid var(--text-primary);
       padding: 0.18rem 0.45rem;
       border-radius: 3px;
       pointer-events: none;
@@ -402,7 +301,7 @@
 
     .search-count-badge {
       font-weight: 800;
-      color: var(--accent-green-bright);
+      color: var(--accent-green);
       background: var(--accent-green-bg);
       padding: 2px 8px;
       border-radius: 3px;
@@ -420,11 +319,11 @@
 
     .video-card-crazy {
       background: var(--bg-card);
-      border: 2px solid var(--border-dark);
+      border: 2px solid var(--text-primary);
       border-radius: 6px;
       overflow: visible; /* Allows fanned status cards and tooltips to be visible */
       box-shadow: var(--shadow-bold-md);
-      transition: transform 0.25s var(--transition-smooth), box-shadow 0.25s var(--transition-smooth), background 0.25s ease, border-color 0.25s ease;
+      transition: transform 0.25s var(--transition-smooth), box-shadow 0.25s var(--transition-smooth);
       display: flex;
       flex-direction: column;
       position: relative;
@@ -447,6 +346,7 @@
       opacity: 0;
       border-radius: 5px;
       transition: opacity 0.2s ease;
+      mix-blend-mode: multiply;
     }
 
     .video-thumb-crazy-wrapper {
@@ -463,7 +363,7 @@
       background: #000;
       cursor: pointer;
       display: block;
-      border-bottom: 2px solid var(--border-dark);
+      border-bottom: 2px solid var(--text-primary);
       text-decoration: none;
       border-top-left-radius: 4px;
       border-top-right-radius: 4px;
@@ -490,12 +390,12 @@
       height: 52px;
       background: var(--accent-green);
       color: #ffffff;
-      border: 2px solid var(--border-dark);
+      border: 2px solid var(--text-primary);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 3px 3px 0px var(--border-dark);
+      box-shadow: 3px 3px 0px var(--text-primary);
       transition: transform 0.2s var(--transition-smooth), background 0.2s;
       z-index: 5;
     }
@@ -503,7 +403,6 @@
     .video-card-crazy:hover .play-btn-crazy {
       transform: translate(-50%, -50%) scale(1.12);
       background: var(--accent-green-bright);
-      color: #07150c;
     }
 
     .scanline-overlay {
@@ -526,7 +425,6 @@
       z-index: 8;
       border-bottom-left-radius: 4px;
       border-bottom-right-radius: 4px;
-      transition: background 0.25s ease;
     }
 
     .card-client-row {
@@ -543,7 +441,7 @@
       font-family: var(--font-mono);
       font-size: 0.75rem;
       font-weight: 800;
-      color: var(--accent-green-bright);
+      color: var(--accent-green);
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
@@ -586,14 +484,14 @@
       padding: 4px 10px;
       border-radius: 3px;
       text-transform: uppercase;
-      border: 1.5px solid var(--border-dark);
-      box-shadow: 2px 2px 0px var(--border-dark);
+      border: 1.5px solid var(--text-primary);
+      box-shadow: 2px 2px 0px var(--text-primary);
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 6px;
       white-space: nowrap;
-      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s, opacity 0.2s, background 0.2s, border-color 0.2s;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s, opacity 0.2s, background 0.2s;
       outline: none;
       position: relative;
       z-index: 20;
@@ -610,15 +508,15 @@
 
     /* Color Variants: Oker Gold, Maslinasto Zelena, Trešnja Crvena */
     .status-poslano {
-      background: var(--accent-gold);
-      color: #0d1410;
+      background: #c9933b; /* Oker Gold */
+      color: #111518;
     }
     .status-odobreno {
-      background: #166534;
+      background: #2d5a27; /* Maslinasto zelena */
       color: #f4efe4;
     }
     .status-odbijeno {
-      background: #991b1b;
+      background: #800e13; /* Trešnja crvena */
       color: #f4efe4;
     }
 
@@ -629,7 +527,7 @@
 
     .status-fan-container:hover .active-status-badge {
       transform: scale(1.04);
-      box-shadow: 3px 3px 0px var(--border-dark);
+      box-shadow: 3px 3px 0px var(--text-primary);
     }
 
     .status-fan-deck {
@@ -676,13 +574,13 @@
     /* Hovering individual fanned card raises and straightens it */
     .status-fan-deck .status-card-flyout.card-slot-1:hover {
       transform: translate(4px, -118%) rotate(-2deg) scale(1.08) !important;
-      box-shadow: 4px 4px 0px var(--border-dark) !important;
+      box-shadow: 4px 4px 0px var(--text-primary) !important;
       z-index: 35 !important;
     }
 
     .status-fan-deck .status-card-flyout.card-slot-2:hover {
       transform: translate(12px, -232%) rotate(3deg) scale(1.08) !important;
-      box-shadow: 4px 4px 0px var(--border-dark) !important;
+      box-shadow: 4px 4px 0px var(--text-primary) !important;
       z-index: 35 !important;
     }
 
@@ -695,7 +593,7 @@
     }
 
     .card-title-link:hover .card-title {
-      color: var(--accent-green-bright);
+      color: var(--accent-green);
       text-decoration: underline;
     }
 
@@ -726,24 +624,22 @@
       overflow: hidden;
       position: relative;
       z-index: 10;
-      transition: color 0.25s ease;
     }
 
     /* Price Box with Hover Tooltip */
     .card-pricing-box {
       position: relative;
       background: var(--bg-card-subtle);
-      border: 2px solid var(--border-dark);
+      border: 2px solid var(--text-primary);
       border-radius: var(--radius-sm);
       padding: 0.85rem 1.1rem;
       margin-bottom: 1.25rem;
-      box-shadow: 3px 3px 0px var(--border-dark);
+      box-shadow: 3px 3px 0px var(--text-primary);
       display: flex;
       justify-content: space-between;
       align-items: center;
       cursor: help;
       z-index: 12;
-      transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
     }
 
     .pricing-amount-wrapper {
@@ -757,7 +653,6 @@
       font-weight: 800;
       color: var(--text-primary);
       letter-spacing: -0.01em;
-      transition: color 0.25s ease;
     }
 
     .pricing-hint-icon {
@@ -768,23 +663,23 @@
     }
 
     .card-pricing-box:hover .pricing-hint-icon {
-      color: var(--accent-green-bright);
+      color: var(--accent-green);
     }
 
     .pricing-tooltip {
       position: absolute;
       bottom: calc(100% + 10px);
       left: 0;
-      background: var(--tooltip-bg);
-      color: var(--tooltip-text);
-      border: 1.5px solid var(--tooltip-border);
+      background: #111518;
+      color: #f4efe4;
+      border: 1.5px solid #111518;
       padding: 0.55rem 0.85rem;
       border-radius: 4px;
       font-family: var(--font-mono);
       font-size: 0.72rem;
       font-weight: 700;
       white-space: nowrap;
-      box-shadow: 4px 4px 0px var(--tooltip-shadow);
+      box-shadow: 4px 4px 0px rgba(17, 21, 24, 0.35);
       opacity: 0;
       pointer-events: none;
       transform: translateY(6px);
@@ -802,7 +697,7 @@
       left: 24px;
       border-width: 5px;
       border-style: solid;
-      border-color: var(--tooltip-bg) transparent transparent transparent;
+      border-color: #111518 transparent transparent transparent;
     }
 
     .card-pricing-box:hover .pricing-tooltip {
@@ -812,12 +707,12 @@
 
     .tooltip-label {
       font-size: 0.65rem;
-      color: var(--text-muted);
+      color: #a7bbb3;
       letter-spacing: 0.05em;
     }
 
     .tooltip-val {
-      color: var(--accent-green-bright);
+      color: #34d399;
       font-weight: 800;
     }
 
@@ -844,20 +739,19 @@
       cursor: pointer;
       text-decoration: none;
       transition: all 0.15s var(--transition-smooth);
-      border: 2px solid var(--border-dark);
-      box-shadow: 3px 3px 0px var(--border-dark);
+      border: 2px solid var(--text-primary);
+      box-shadow: 3px 3px 0px var(--text-primary);
       white-space: nowrap;
-      outline: none;
     }
 
     .btn-card-action:hover {
       transform: translate(-1.5px, -1.5px);
-      box-shadow: 4.5px 4.5px 0px var(--border-dark);
+      box-shadow: 4.5px 4.5px 0px var(--text-primary);
     }
 
     .btn-card-action:active {
       transform: translate(2px, 2px);
-      box-shadow: 1px 1px 0px var(--border-dark);
+      box-shadow: 1px 1px 0px var(--text-primary);
     }
 
     .btn-primary {
@@ -867,7 +761,6 @@
 
     .btn-primary:hover {
       background: var(--accent-green-bright);
-      color: #07150c;
     }
 
     .btn-subtle {
@@ -876,36 +769,25 @@
     }
 
     .btn-subtle:hover {
-      background: var(--bg-card-hover);
+      background: #ffffff;
     }
 
     .btn-icon {
-      background: var(--bg-card-subtle);
+      background: #ffffff;
       color: var(--text-primary);
       padding: 0;
     }
 
     .btn-icon:hover {
       background: var(--accent-green-bg);
-      color: var(--accent-green-bright);
-      border-color: var(--accent-green-bright);
-    }
-
-    .btn-secondary {
-      background: var(--bg-card-subtle);
-      color: var(--text-primary);
-      border: 2px solid var(--border-dark);
-    }
-
-    .btn-secondary:hover {
-      background: var(--bg-card-hover);
+      color: var(--accent-green);
     }
 
     /* QR Code Modal */
     .dashboard-modal-backdrop {
       position: fixed;
       inset: 0;
-      background: var(--modal-backdrop);
+      background: rgba(17, 21, 24, 0.85);
       backdrop-filter: blur(8px);
       z-index: 1000;
       display: none;
@@ -926,12 +808,10 @@
       text-align: center;
       padding: 2.25rem;
       background: var(--bg-card);
-      border: 3px solid var(--border-dark);
+      border: 3px solid var(--text-primary);
       border-radius: 6px;
       box-shadow: var(--shadow-bold-modal);
-      color: var(--text-primary);
       animation: modalPop 0.25s var(--transition-smooth);
-      transition: background 0.25s ease, border-color 0.25s ease;
     }
 
     @keyframes modalPop {
@@ -944,7 +824,6 @@
       font-size: 1.4rem;
       font-weight: 900;
       margin-bottom: 0.5rem;
-      color: var(--text-primary);
     }
 
     .qr-modal-sub {
@@ -957,11 +836,11 @@
     .qr-code-box {
       background: #ffffff;
       padding: 1.25rem;
-      border: 2px solid var(--border-dark);
+      border: 2px solid var(--text-primary);
       border-radius: var(--radius-sm);
       display: inline-block;
       margin-bottom: 1.5rem;
-      box-shadow: 4px 4px 0px var(--border-dark);
+      box-shadow: 4px 4px 0px var(--text-primary);
     }
 
     .qr-code-box img {
@@ -975,10 +854,10 @@
       font-size: 0.8rem;
       font-weight: 700;
       background: var(--bg-card-subtle);
-      border: 2px solid var(--border-dark);
+      border: 2px solid var(--text-primary);
       padding: 0.65rem 0.85rem;
       border-radius: var(--radius-sm);
-      color: var(--accent-green-bright);
+      color: var(--accent-green);
       word-break: break-all;
       margin-bottom: 1.35rem;
     }
@@ -989,13 +868,13 @@
       right: 2.5rem;
       background: var(--accent-green);
       color: #f4efe4;
-      border: 2px solid var(--border-dark);
+      border: 2px solid var(--text-primary);
       font-family: var(--font-mono);
       font-weight: 800;
       font-size: 0.85rem;
       padding: 0.85rem 1.35rem;
       border-radius: var(--radius-sm);
-      box-shadow: 5px 5px 0px var(--border-dark);
+      box-shadow: 5px 5px 0px var(--text-primary);
       z-index: 2000;
       display: flex;
       align-items: center;
@@ -1046,11 +925,6 @@
     </a>
 
     <div class="deck-controls-top">
-      <button class="btn-action btn-theme-toggle" id="btnTheme" onclick="toggleTheme()" title="Prebaci temu (D)">
-        <span id="themeIcon">🌙</span>
-        <span id="themeLabel">Dark</span>
-      </button>
-
       <button class="btn-action btn-sound-toggle" id="btnSound" onclick="toggleSound()" title="Zvučni efekti">
         <span id="soundIconOff" style="display:none;">🔇</span>
         <span id="soundIconOn" style="display:inline-block;">🔊</span>
@@ -1080,7 +954,7 @@
       </div>
       <div class="search-meta-row">
         <span>Instantno filtriranje po nazivu klijenta, projektu ili statusu</span>
-        <span class="search-count-badge" id="resultsCount">8 / 8 PONUDA</span>
+        <span class="search-count-badge" id="resultsCount">12 / 12 PONUDA</span>
       </div>
     </section>
 
@@ -1775,6 +1649,350 @@
           </div>
         </article>
         
+        <article class="deck-card video-card-crazy signature-card" data-slug="zagrebacka-zupanija" data-folder="Zagrebacka_Prezentacija" data-client="zagrebačka županija" data-title="prsten koji pokreće — kinematografska kronika zagrebačke županije" data-status="poslano" data-price="22000">
+          <!-- Full-card CanvasUI 4x4 Bayer Dither layer -->
+          <canvas class="card-dither-canvas"></canvas>
+
+          <div class="video-thumb-crazy-wrapper">
+            <!-- Direct click to open deck in new tab -->
+            <a href="https://varazdin.studio/zagrebacka-zupanija/" target="_blank" class="video-thumb-crazy" title="Otvori PRSTEN KOJI POKREĆE — Kinematografska kronika Zagrebačke županije">
+              <img src="assets/thumbnails/thumb_zagrebacka-zupanija.jpg" alt="PRSTEN KOJI POKREĆE — Kinematografska kronika Zagrebačke županije" class="card-thumb" loading="lazy" onerror="this.src='../Zagrebacka_Prezentacija/assets/hero_landscape.jpg'">
+              <div class="play-btn-crazy">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+              <div class="scanline-overlay"></div>
+            </a>
+
+            <!-- Interactive Card-Fan Status Switcher on top-left of thumbnail -->
+            <div class="status-fan-container" data-slug="zagrebacka-zupanija" onclick="event.stopPropagation();">
+              <button type="button" class="status-badge active-status-badge status-poslano" onclick="cycleStatus('zagrebacka-zupanija', event)" title="Status ponude (hoveraj za opcije, klikni za rotaciju)">
+                <span class="status-dot"></span>
+                <span class="status-label">POSLANO</span>
+              </button>
+              <div class="status-fan-deck">
+                <button type="button" class="status-badge status-card-flyout status-odobreno card-slot-1" data-status-val="odobreno" onclick="setStatus('zagrebacka-zupanija', 'odobreno', event)" title="Označi: ODOBRENO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">ODOBRENO</span>
+                </button>
+                <button type="button" class="status-badge status-card-flyout status-odbijeno card-slot-2" data-status-val="odbijeno" onclick="setStatus('zagrebacka-zupanija', 'odbijeno', event)" title="Označi: ODBIJENO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">ODBIJENO</span>
+                </button>
+                <button type="button" class="status-badge status-card-flyout status-poslano" data-status-val="poslano" style="display:none;" onclick="setStatus('zagrebacka-zupanija', 'poslano', event)" title="Označi: POSLANO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">POSLANO</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="video-info-crazy">
+            <div class="card-client-row">
+              <span class="card-client-name">Zagrebačka županija</span>
+            </div>
+
+            <!-- Direct Title Click to Open in New Tab -->
+            <a href="https://varazdin.studio/zagrebacka-zupanija/" target="_blank" class="card-title-link">
+              <h3 class="card-title" title="PRSTEN KOJI POKREĆE — Kinematografska kronika Zagrebačke županije">PRSTEN KOJI POKREĆE — Kinematografska kronika Zagrebačke županije</h3>
+            </a>
+            
+            <p class="card-tagline">110+ mil. € vodovod Zagreb istok, 15 škola i logistički megakompleksi. Master 4K film za Dan županije (17. srpnja).</p>
+
+            <!-- Price Box with Hover Tooltip for Multiple Options -->
+            <div class="card-pricing-box" title="Detalji opcija: Opcija A: 18.000,00 € · Opcija B Signature: 22.000,00 €">
+              <div class="pricing-amount-wrapper">
+                <span class="pricing-amount">18.000,00 € — 22.000,00 €</span>
+                <div class="pricing-tooltip">
+                  <span class="tooltip-label">DOSTUPNE OPCIJE:</span>
+                  <span class="tooltip-val">Opcija A: 18.000,00 € · Opcija B Signature: 22.000,00 €</span>
+                </div>
+              </div>
+              <span class="pricing-hint-icon" title="Hover za opcije">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              </span>
+            </div>
+
+            <!-- Action Buttons (Kept crisp and excluded from dither) -->
+            <div class="card-actions-grid">
+              <a href="https://varazdin.studio/zagrebacka-zupanija/" target="_blank" class="btn-card-action btn-primary" title="Otvori web pitch deck">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                <span>OTVORI DECK</span>
+              </a>
+
+              <a href="https://varazdin.studio/zagrebacka-zupanija/assets/Ponuda_Zagrebacka_Zupanija_OpcijaB.pdf" target="_blank" class="btn-card-action btn-subtle" title="Preuzmi službenu A4 PDF ponudu">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                <span>PDF</span>
+              </a>
+
+              <button type="button" class="btn-card-action btn-icon" onclick="copyDeckUrl('https://varazdin.studio/zagrebacka-zupanija/', this)" title="Kopiraj poveznicu">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              </button>
+
+              <button type="button" class="btn-card-action btn-icon" onclick="openQrModal('zagrebacka-zupanija', 'PRSTEN KOJI POKREĆE — Kinematografska kronika Zagrebačke županije', 'https://varazdin.studio/zagrebacka-zupanija/')" title="Pokaži QR kod za mobitel">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              </button>
+            </div>
+          </div>
+        </article>
+        
+        <article class="deck-card video-card-crazy" data-slug="koprivnica" data-folder="Koprivnica_Prezentacija" data-client="koprivničko-križevačka županija & grad koprivnica" data-title="zemlja koja gradi — filmska kronika podravine i prigorja | studio varaždin" data-status="poslano" data-price="18500">
+          <!-- Full-card CanvasUI 4x4 Bayer Dither layer -->
+          <canvas class="card-dither-canvas"></canvas>
+
+          <div class="video-thumb-crazy-wrapper">
+            <!-- Direct click to open deck in new tab -->
+            <a href="https://varazdin.studio/koprivnica/" target="_blank" class="video-thumb-crazy" title="Otvori ZEMLJA KOJA GRADI — Filmska kronika Podravine i Prigorja | Studio Varaždin">
+              <img src="assets/thumbnails/thumb_koprivnica.jpg" alt="ZEMLJA KOJA GRADI — Filmska kronika Podravine i Prigorja | Studio Varaždin" class="card-thumb" loading="lazy" onerror="this.src='../Koprivnica_Prezentacija/assets/hero_landscape.jpg'">
+              <div class="play-btn-crazy">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+              <div class="scanline-overlay"></div>
+            </a>
+
+            <!-- Interactive Card-Fan Status Switcher on top-left of thumbnail -->
+            <div class="status-fan-container" data-slug="koprivnica" onclick="event.stopPropagation();">
+              <button type="button" class="status-badge active-status-badge status-poslano" onclick="cycleStatus('koprivnica', event)" title="Status ponude (hoveraj za opcije, klikni za rotaciju)">
+                <span class="status-dot"></span>
+                <span class="status-label">POSLANO</span>
+              </button>
+              <div class="status-fan-deck">
+                <button type="button" class="status-badge status-card-flyout status-odobreno card-slot-1" data-status-val="odobreno" onclick="setStatus('koprivnica', 'odobreno', event)" title="Označi: ODOBRENO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">ODOBRENO</span>
+                </button>
+                <button type="button" class="status-badge status-card-flyout status-odbijeno card-slot-2" data-status-val="odbijeno" onclick="setStatus('koprivnica', 'odbijeno', event)" title="Označi: ODBIJENO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">ODBIJENO</span>
+                </button>
+                <button type="button" class="status-badge status-card-flyout status-poslano" data-status-val="poslano" style="display:none;" onclick="setStatus('koprivnica', 'poslano', event)" title="Označi: POSLANO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">POSLANO</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="video-info-crazy">
+            <div class="card-client-row">
+              <span class="card-client-name">Koprivničko-križevačka županija & Grad Koprivnica</span>
+            </div>
+
+            <!-- Direct Title Click to Open in New Tab -->
+            <a href="https://varazdin.studio/koprivnica/" target="_blank" class="card-title-link">
+              <h3 class="card-title" title="ZEMLJA KOJA GRADI — Filmska kronika Podravine i Prigorja | Studio Varaždin">ZEMLJA KOJA GRADI — Filmska kronika Podravine i Prigorja | Studio Varaždin</h3>
+            </a>
+            
+            <p class="card-tagline">5 sportskih dvorana, CEKOM labovi i nova OŠ Koprivnički Ivanec. Master 4K film za Dan županije (13. travnja) i Dan grada.</p>
+
+            <!-- Price Box with Hover Tooltip for Multiple Options -->
+            <div class="card-pricing-box" title="Detalji opcija: Opcija A: 14.500,00 € · Opcija B Signature: 18.500,00 €">
+              <div class="pricing-amount-wrapper">
+                <span class="pricing-amount">14.500,00 € — 18.500,00 €</span>
+                <div class="pricing-tooltip">
+                  <span class="tooltip-label">DOSTUPNE OPCIJE:</span>
+                  <span class="tooltip-val">Opcija A: 14.500,00 € · Opcija B Signature: 18.500,00 €</span>
+                </div>
+              </div>
+              <span class="pricing-hint-icon" title="Hover za opcije">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              </span>
+            </div>
+
+            <!-- Action Buttons (Kept crisp and excluded from dither) -->
+            <div class="card-actions-grid">
+              <a href="https://varazdin.studio/koprivnica/" target="_blank" class="btn-card-action btn-primary" title="Otvori web pitch deck">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                <span>OTVORI DECK</span>
+              </a>
+
+              <a href="https://varazdin.studio/koprivnica/assets/Ponuda_Koprivnica_Zupanija_Grad.pdf" target="_blank" class="btn-card-action btn-subtle" title="Preuzmi službenu A4 PDF ponudu">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                <span>PDF</span>
+              </a>
+
+              <button type="button" class="btn-card-action btn-icon" onclick="copyDeckUrl('https://varazdin.studio/koprivnica/', this)" title="Kopiraj poveznicu">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              </button>
+
+              <button type="button" class="btn-card-action btn-icon" onclick="openQrModal('koprivnica', 'ZEMLJA KOJA GRADI — Filmska kronika Podravine i Prigorja | Studio Varaždin', 'https://varazdin.studio/koprivnica/')" title="Pokaži QR kod za mobitel">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              </button>
+            </div>
+          </div>
+        </article>
+        
+        <article class="deck-card video-card-crazy signature-card" data-slug="bjelovar" data-folder="Bjelovar_Prezentacija" data-client="grad bjelovar & bjelovarsko-bilogorska županija" data-title="wellness iz dubine — kronika geotermalnog bjelovara | grad bjelovar & bjelovarsko-bilogorska županija" data-status="poslano" data-price="18000">
+          <!-- Full-card CanvasUI 4x4 Bayer Dither layer -->
+          <canvas class="card-dither-canvas"></canvas>
+
+          <div class="video-thumb-crazy-wrapper">
+            <!-- Direct click to open deck in new tab -->
+            <a href="https://varazdin.studio/bjelovar/" target="_blank" class="video-thumb-crazy" title="Otvori WELLNESS IZ DUBINE — Kronika geotermalnog Bjelovara | Grad Bjelovar & Bjelovarsko-bilogorska županija">
+              <img src="assets/thumbnails/thumb_bjelovar.jpg" alt="WELLNESS IZ DUBINE — Kronika geotermalnog Bjelovara | Grad Bjelovar & Bjelovarsko-bilogorska županija" class="card-thumb" loading="lazy" onerror="this.src='../Bjelovar_Prezentacija/assets/03_bjelovar_bolnica_visic.jpg'">
+              <div class="play-btn-crazy">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+              <div class="scanline-overlay"></div>
+            </a>
+
+            <!-- Interactive Card-Fan Status Switcher on top-left of thumbnail -->
+            <div class="status-fan-container" data-slug="bjelovar" onclick="event.stopPropagation();">
+              <button type="button" class="status-badge active-status-badge status-poslano" onclick="cycleStatus('bjelovar', event)" title="Status ponude (hoveraj za opcije, klikni za rotaciju)">
+                <span class="status-dot"></span>
+                <span class="status-label">POSLANO</span>
+              </button>
+              <div class="status-fan-deck">
+                <button type="button" class="status-badge status-card-flyout status-odobreno card-slot-1" data-status-val="odobreno" onclick="setStatus('bjelovar', 'odobreno', event)" title="Označi: ODOBRENO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">ODOBRENO</span>
+                </button>
+                <button type="button" class="status-badge status-card-flyout status-odbijeno card-slot-2" data-status-val="odbijeno" onclick="setStatus('bjelovar', 'odbijeno', event)" title="Označi: ODBIJENO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">ODBIJENO</span>
+                </button>
+                <button type="button" class="status-badge status-card-flyout status-poslano" data-status-val="poslano" style="display:none;" onclick="setStatus('bjelovar', 'poslano', event)" title="Označi: POSLANO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">POSLANO</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="video-info-crazy">
+            <div class="card-client-row">
+              <span class="card-client-name">Grad Bjelovar & Bjelovarsko-bilogorska županija</span>
+            </div>
+
+            <!-- Direct Title Click to Open in New Tab -->
+            <a href="https://varazdin.studio/bjelovar/" target="_blank" class="card-title-link">
+              <h3 class="card-title" title="WELLNESS IZ DUBINE — Kronika geotermalnog Bjelovara | Grad Bjelovar & Bjelovarsko-bilogorska županija">WELLNESS IZ DUBINE — Kronika geotermalnog Bjelovara | Grad Bjelovar & Bjelovarsko-bilogorska županija</h3>
+            </a>
+            
+            <p class="card-tagline">50+ mil. € Terme Bjelovar, bušotina Korenovo GT-1 i nova bolnica. Master 4K film za Dan grada (29. rujna) i Dan županije.</p>
+
+            <!-- Price Box with Hover Tooltip for Multiple Options -->
+            <div class="card-pricing-box" title="Detalji opcija: Opcija A: 14.000,00 € · Opcija B Signature: 18.000,00 €">
+              <div class="pricing-amount-wrapper">
+                <span class="pricing-amount">14.000,00 € — 18.000,00 €</span>
+                <div class="pricing-tooltip">
+                  <span class="tooltip-label">DOSTUPNE OPCIJE:</span>
+                  <span class="tooltip-val">Opcija A: 14.000,00 € · Opcija B Signature: 18.000,00 €</span>
+                </div>
+              </div>
+              <span class="pricing-hint-icon" title="Hover za opcije">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              </span>
+            </div>
+
+            <!-- Action Buttons (Kept crisp and excluded from dither) -->
+            <div class="card-actions-grid">
+              <a href="https://varazdin.studio/bjelovar/" target="_blank" class="btn-card-action btn-primary" title="Otvori web pitch deck">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                <span>OTVORI DECK</span>
+              </a>
+
+              <a href="https://varazdin.studio/bjelovar/assets/Ponuda_Grad_Bjelovar_Zupanija_2026_BJ_04.pdf" target="_blank" class="btn-card-action btn-subtle" title="Preuzmi službenu A4 PDF ponudu">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                <span>PDF</span>
+              </a>
+
+              <button type="button" class="btn-card-action btn-icon" onclick="copyDeckUrl('https://varazdin.studio/bjelovar/', this)" title="Kopiraj poveznicu">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              </button>
+
+              <button type="button" class="btn-card-action btn-icon" onclick="openQrModal('bjelovar', 'WELLNESS IZ DUBINE — Kronika geotermalnog Bjelovara | Grad Bjelovar & Bjelovarsko-bilogorska županija', 'https://varazdin.studio/bjelovar/')" title="Pokaži QR kod za mobitel">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              </button>
+            </div>
+          </div>
+        </article>
+        
+        <article class="deck-card video-card-crazy" data-slug="sveta-nedelja" data-folder="SvetaNedelja_Prezentacija" data-client="grad sveta nedelja & zagrebačka županija" data-title="dvorac i kampus — kinematografski film svete nedelje" data-status="poslano" data-price="19500">
+          <!-- Full-card CanvasUI 4x4 Bayer Dither layer -->
+          <canvas class="card-dither-canvas"></canvas>
+
+          <div class="video-thumb-crazy-wrapper">
+            <!-- Direct click to open deck in new tab -->
+            <a href="https://varazdin.studio/sveta-nedelja/" target="_blank" class="video-thumb-crazy" title="Otvori DVORAC I KAMPUS — Kinematografski film Svete Nedelje">
+              <img src="assets/thumbnails/thumb_sveta-nedelja.jpg" alt="DVORAC I KAMPUS — Kinematografski film Svete Nedelje" class="card-thumb" loading="lazy" onerror="this.src='../SvetaNedelja_Prezentacija/slike/thumb_fpv_campus_reel.jpg'">
+              <div class="play-btn-crazy">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+              <div class="scanline-overlay"></div>
+            </a>
+
+            <!-- Interactive Card-Fan Status Switcher on top-left of thumbnail -->
+            <div class="status-fan-container" data-slug="sveta-nedelja" onclick="event.stopPropagation();">
+              <button type="button" class="status-badge active-status-badge status-poslano" onclick="cycleStatus('sveta-nedelja', event)" title="Status ponude (hoveraj za opcije, klikni za rotaciju)">
+                <span class="status-dot"></span>
+                <span class="status-label">POSLANO</span>
+              </button>
+              <div class="status-fan-deck">
+                <button type="button" class="status-badge status-card-flyout status-odobreno card-slot-1" data-status-val="odobreno" onclick="setStatus('sveta-nedelja', 'odobreno', event)" title="Označi: ODOBRENO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">ODOBRENO</span>
+                </button>
+                <button type="button" class="status-badge status-card-flyout status-odbijeno card-slot-2" data-status-val="odbijeno" onclick="setStatus('sveta-nedelja', 'odbijeno', event)" title="Označi: ODBIJENO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">ODBIJENO</span>
+                </button>
+                <button type="button" class="status-badge status-card-flyout status-poslano" data-status-val="poslano" style="display:none;" onclick="setStatus('sveta-nedelja', 'poslano', event)" title="Označi: POSLANO">
+                  <span class="status-dot"></span>
+                  <span class="status-label">POSLANO</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="video-info-crazy">
+            <div class="card-client-row">
+              <span class="card-client-name">Grad Sveta Nedelja & Zagrebačka županija</span>
+            </div>
+
+            <!-- Direct Title Click to Open in New Tab -->
+            <a href="https://varazdin.studio/sveta-nedelja/" target="_blank" class="card-title-link">
+              <h3 class="card-title" title="DVORAC I KAMPUS — Kinematografski film Svete Nedelje">DVORAC I KAMPUS — Kinematografski film Svete Nedelje</h3>
+            </a>
+            
+            <p class="card-tagline">200 mil. € Rimac Campus vs 17 mil. € obnovljeni dvorac Erdödy. Master 4K film za Dan grada (lipanj) i Dan županije.</p>
+
+            <!-- Price Box with Hover Tooltip for Multiple Options -->
+            <div class="card-pricing-box" title="Detalji opcija: Opcija A: 15.000,00 € · Opcija B Signature: 19.500,00 €">
+              <div class="pricing-amount-wrapper">
+                <span class="pricing-amount">15.000,00 € — 19.500,00 €</span>
+                <div class="pricing-tooltip">
+                  <span class="tooltip-label">DOSTUPNE OPCIJE:</span>
+                  <span class="tooltip-val">Opcija A: 15.000,00 € · Opcija B Signature: 19.500,00 €</span>
+                </div>
+              </div>
+              <span class="pricing-hint-icon" title="Hover za opcije">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              </span>
+            </div>
+
+            <!-- Action Buttons (Kept crisp and excluded from dither) -->
+            <div class="card-actions-grid">
+              <a href="https://varazdin.studio/sveta-nedelja/" target="_blank" class="btn-card-action btn-primary" title="Otvori web pitch deck">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                <span>OTVORI DECK</span>
+              </a>
+
+              <a href="https://varazdin.studio/sveta-nedelja/assets/Ponuda_Sveta_Nedelja_OpcijaB_19500.pdf" target="_blank" class="btn-card-action btn-subtle" title="Preuzmi službenu A4 PDF ponudu">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                <span>PDF</span>
+              </a>
+
+              <button type="button" class="btn-card-action btn-icon" onclick="copyDeckUrl('https://varazdin.studio/sveta-nedelja/', this)" title="Kopiraj poveznicu">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              </button>
+
+              <button type="button" class="btn-card-action btn-icon" onclick="openQrModal('sveta-nedelja', 'DVORAC I KAMPUS — Kinematografski film Svete Nedelje', 'https://varazdin.studio/sveta-nedelja/')" title="Pokaži QR kod za mobitel">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              </button>
+            </div>
+          </div>
+        </article>
+        
     </main>
 
   </div>
@@ -1804,60 +2022,8 @@
     <span id="toastMessage">Poveznica kopirana u međuspremnik!</span>
   </div>
 
-  <!-- DASHBOARD JAVASCRIPT: THEME SYSTEM, STATUS CARD-FAN & FULL-CARD CANVASUI ENGINE -->
+  <!-- DASHBOARD JAVASCRIPT: STATUS CARD-FAN & FULL-CARD CANVASUI ENGINE -->
   <script>
-    /* ==========================================================================
-       THEME CONTROLLER (Dark Luxury / Light Editorial)
-       ========================================================================== */
-    function getStoredTheme() {
-      try {
-        const stored = localStorage.getItem('varazdin_theme');
-        if (stored) return stored;
-      } catch (e) {}
-      return 'dark'; // Dark Luxury default
-    }
-
-    let currentTheme = getStoredTheme();
-
-    function applyTheme(theme, playSound = false) {
-      currentTheme = theme;
-      document.documentElement.setAttribute('data-theme', theme);
-      try {
-        localStorage.setItem('varazdin_theme', theme);
-      } catch (e) {}
-
-      const icon = document.getElementById('themeIcon');
-      const label = document.getElementById('themeLabel');
-      const metaTheme = document.getElementById('metaThemeColor');
-      const fav = document.getElementById('dynamicFavicon');
-
-      if (theme === 'dark') {
-        if (icon) icon.textContent = '🌙';
-        if (label) label.textContent = 'Dark';
-        if (metaTheme) metaTheme.setAttribute('content', '#090e0b');
-        if (fav) fav.setAttribute('href', 'https://varazdin.studio/favicon-dark.svg');
-      } else {
-        if (icon) icon.textContent = '☀️';
-        if (label) label.textContent = 'Light';
-        if (metaTheme) metaTheme.setAttribute('content', '#f4efe4');
-        if (fav) fav.setAttribute('href', 'https://varazdin.studio/favicon-light.svg');
-      }
-
-      if (playSound) {
-        playHapticClick(theme === 'dark' ? 880 : 1200, 380);
-      }
-
-      if (window.updateParticleTheme) {
-        window.updateParticleTheme(theme);
-      }
-    }
-
-    function toggleTheme() {
-      const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      applyTheme(nextTheme, true);
-      showToast(nextTheme === 'dark' ? '🌙 Dark Luxury tema aktivirana' : '☀️ Light Editorial tema aktivirana');
-    }
-
     /* Web Audio Haptic Engine */
     let audioCtx = null;
     let soundMuted = false;
@@ -2048,7 +2214,7 @@
         showToast('Poveznica kopirana u međuspremnik!');
         if (btnElement) {
           const original = btnElement.innerHTML;
-          btnElement.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+          btnElement.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#11421f" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
           setTimeout(() => {
             btnElement.innerHTML = original;
           }, 1400);
@@ -2120,9 +2286,6 @@
         input.focus();
         input.select();
       }
-      if ((e.key === 'd' || e.key === 'D') && document.activeElement !== document.getElementById('searchInput')) {
-        toggleTheme();
-      }
     });
 
     /* Ambient CanvasUI Particles */
@@ -2141,13 +2304,6 @@
       const particles = [];
       const count = 35;
 
-      function getParticleColor(theme) {
-        if (theme === 'dark') {
-          return Math.random() > 0.4 ? '34, 197, 94' : '212, 163, 75';
-        }
-        return Math.random() > 0.4 ? '17, 66, 31' : '201, 147, 59';
-      }
-
       for (let i = 0; i < count; i++) {
         particles.push({
           x: Math.random() * width,
@@ -2156,15 +2312,9 @@
           vy: (Math.random() - 0.5) * 0.35,
           size: Math.random() * 1.8 + 0.8,
           alpha: Math.random() * 0.3 + 0.12,
-          color: getParticleColor(currentTheme)
+          color: Math.random() > 0.4 ? '17, 66, 31' : '201, 147, 59'
         });
       }
-
-      window.updateParticleTheme = function(theme) {
-        particles.forEach(p => {
-          p.color = getParticleColor(theme);
-        });
-      };
 
       let mouseX = width / 2;
       let mouseY = height / 2;
@@ -2270,10 +2420,8 @@
           offCanvas.height = sh;
           const offCtx = offCanvas.getContext('2d');
 
-          const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-
-          // Draw base card fill
-          offCtx.fillStyle = isDark ? '#121915' : '#fbf7ee';
+          // Draw base paper fill
+          offCtx.fillStyle = '#fbf7ee';
           offCtx.fillRect(0, 0, sw, sh);
 
           // Draw thumbnail onto offscreen canvas
@@ -2327,18 +2475,11 @@
                   
                   if (y < sThumbH) {
                     // Photo halftone tone
-                    if (isDark) {
-                      ctx.fillStyle = `rgba(${finalVal}, ${Math.floor(finalVal * 1.02)}, ${Math.floor(finalVal * 0.95)}, ${feather * 0.85})`;
-                    } else {
-                      ctx.fillStyle = `rgba(${finalVal}, ${Math.floor(finalVal * 0.95)}, ${Math.floor(finalVal * 0.85)}, ${feather * 0.85})`;
-                    }
+                    ctx.fillStyle = `rgba(${finalVal}, ${Math.floor(finalVal * 0.95)}, ${Math.floor(finalVal * 0.85)}, ${feather * 0.85})`;
                   } else {
-                    // Card halftone dither field
-                    if (isDark) {
-                      ctx.fillStyle = `rgba(245, 239, 227, ${feather * (bayerVal > 0.4 ? 0.14 : 0.02)})`;
-                    } else {
-                      ctx.fillStyle = `rgba(17, 21, 24, ${feather * (bayerVal > 0.4 ? 0.22 : 0.04)})`;
-                    }
+                    // Card paper halftone dither field
+                    const inkVal = Math.floor((1 - quantized) * 120);
+                    ctx.fillStyle = `rgba(17, 21, 24, ${feather * (bayerVal > 0.4 ? 0.22 : 0.04)})`;
                   }
                   ctx.fillRect(screenX, screenY, 1 / scale, 1 / scale);
                 }
@@ -2349,12 +2490,8 @@
       });
     })();
 
-    // Initialize theme UI and all pitch deck statuses on startup
-    document.addEventListener('DOMContentLoaded', () => {
-      applyTheme(getStoredTheme(), false);
-      initAllStatuses();
-    });
-    applyTheme(getStoredTheme(), false);
+    // Initialize all pitch deck statuses on startup
+    document.addEventListener('DOMContentLoaded', initAllStatuses);
     initAllStatuses();
   </script>
 </body>

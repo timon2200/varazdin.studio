@@ -1,19 +1,24 @@
 <?php
 /**
  * Studio Varaždin — Catalog Curation API
- * Robust JSON parser and atomic writer for catalog-data.js and catalog-data.master.js
+ * Robust JSON parser and atomic writer for catalog-data.js, active-catalog.json, and active-ids.json.
+ * Guarantees that live user curation is permanently preserved across deployments and master updates.
  */
 
-header("Content-Type: application/json; charset=utf-8");
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type");
-header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-header("Pragma: no-cache");
+$isCli = (php_sapi_name() === 'cli') || (isset($argv) && count($argv) > 0);
 
-if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
-    http_response_code(200);
-    exit;
+if (!$isCli) {
+    header("Content-Type: application/json; charset=utf-8");
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type");
+    header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+    header("Pragma: no-cache");
+
+    if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
+        http_response_code(200);
+        exit;
+    }
 }
 
 $baseDir = dirname(__DIR__);
@@ -22,6 +27,7 @@ $dataDir = $baseDir . "/api/data";
 $catalogFile = $jsDir . "/catalog-data.js";
 $masterFile = $jsDir . "/catalog-data.master.js";
 $activeJsonFile = $dataDir . "/active-catalog.json";
+$activeIdsFile = $dataDir . "/active-ids.json";
 
 if (!is_dir($dataDir)) {
     @mkdir($dataDir, 0755, true);
@@ -39,42 +45,128 @@ function parseCatalogFile($filePath) {
     return [];
 }
 
-// GET: Return current master and active catalogs
-if ($_SERVER["REQUEST_METHOD"] === "GET") {
+function writeAtomicFile($filePath, $content) {
+    $tmpFile = $filePath . "." . uniqid('tmp_', true);
+    if (@file_put_contents($tmpFile, $content) !== false) {
+        if (@rename($tmpFile, $filePath)) {
+            return true;
+        }
+        @unlink($tmpFile);
+    }
+    return @file_put_contents($filePath, $content) !== false;
+}
+
+/**
+ * Reconciles master catalog with active selection IDs.
+ * Always pulls the latest metadata (titles, images, categories) from master.
+ */
+function resolveCuratedCatalogs($masterFile, $catalogFile, $activeJsonFile, $activeIdsFile) {
     $masterData = parseCatalogFile($masterFile);
+    if (empty($masterData)) {
+        $masterData = parseCatalogFile($catalogFile);
+    }
+
+    if (empty($masterData)) {
+        return [
+            'master' => [],
+            'active' => [],
+            'activeIds' => []
+        ];
+    }
+
+    // Index master by ID
+    $masterMap = [];
+    foreach ($masterData as $item) {
+        if (isset($item['id'])) {
+            $masterMap[$item['id']] = $item;
+        }
+    }
+
+    $activeIds = [];
+
+    // 1. Try reading active-ids.json (primary source of truth)
+    if (file_exists($activeIdsFile)) {
+        $rawIds = file_get_contents($activeIdsFile);
+        $decodedIds = json_decode($rawIds, true);
+        if (is_array($decodedIds) && !empty($decodedIds)) {
+            $activeIds = $decodedIds;
+        }
+    }
+
+    // 2. Fallback to active-catalog.json
+    if (empty($activeIds) && file_exists($activeJsonFile)) {
+        $rawJson = file_get_contents($activeJsonFile);
+        $decodedItems = json_decode($rawJson, true);
+        if (is_array($decodedItems) && !empty($decodedItems)) {
+            $activeIds = array_filter(array_column($decodedItems, 'id'));
+        }
+    }
+
+    // 3. Fallback to catalog-data.js if it contains a curated subset
+    if (empty($activeIds) && file_exists($catalogFile)) {
+        $existingCatalog = parseCatalogFile($catalogFile);
+        if (!empty($existingCatalog) && count($existingCatalog) !== count($masterData)) {
+            $activeIds = array_filter(array_column($existingCatalog, 'id'));
+        }
+    }
+
+    // Build active data from master using active IDs
     $activeData = [];
-
-    if (file_exists($activeJsonFile)) {
-        $jsonRaw = file_get_contents($activeJsonFile);
-        $activeData = json_decode($jsonRaw, true) ?: [];
-    }
-
-    if (empty($activeData)) {
-        $activeData = parseCatalogFile($catalogFile);
-    }
-
-    if (empty($masterData) && !empty($activeData)) {
-        $masterData = $activeData;
-    }
-
-    // Sanitize activeData: only keep items that exist in masterData
-    if (!empty($masterData)) {
-        $masterIds = array_flip(array_column($masterData, 'id'));
-        $filteredActive = [];
-        foreach ($activeData as $it) {
-            if (isset($it['id']) && isset($masterIds[$it['id']])) {
-                $filteredActive[] = $it;
+    if (!empty($activeIds)) {
+        $validIds = [];
+        foreach ($activeIds as $id) {
+            if (isset($masterMap[$id])) {
+                $activeData[] = $masterMap[$id];
+                $validIds[] = $id;
             }
         }
-        $activeData = $filteredActive;
+        $activeIds = $validIds;
     }
+
+    // If still empty (initial state), all master items are active
+    if (empty($activeData)) {
+        $activeData = $masterData;
+        $activeIds = array_column($masterData, 'id');
+    }
+
+    return [
+        'master' => $masterData,
+        'active' => $activeData,
+        'activeIds' => $activeIds
+    ];
+}
+
+// CLI Sync Mode
+if ($isCli || (isset($_GET['sync']) && $_GET['sync'] === '1')) {
+    $curated = resolveCuratedCatalogs($masterFile, $catalogFile, $activeJsonFile, $activeIdsFile);
+    
+    // Save active-ids.json
+    writeAtomicFile($activeIdsFile, json_encode($curated['activeIds'], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+    
+    // Save active-catalog.json
+    writeAtomicFile($activeJsonFile, json_encode($curated['active'], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+    
+    // Save catalog-data.js
+    $jsContent = "export const CATALOG_DATA = " . json_encode($curated['active'], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) . ";\n";
+    writeAtomicFile($catalogFile, $jsContent);
+
+    if ($isCli) {
+        echo "[OK] Tajno Glasanje Curation Synced: Active " . count($curated['active']) . " / Master " . count($curated['master']) . " items.\n";
+        exit(0);
+    }
+}
+
+// GET: Return current master and active catalogs
+if ($_SERVER["REQUEST_METHOD"] === "GET") {
+    $curated = resolveCuratedCatalogs($masterFile, $catalogFile, $activeJsonFile, $activeIdsFile);
 
     echo json_encode([
         "status" => "success",
-        "master" => $masterData,
-        "active" => $activeData,
-        "masterCount" => count($masterData),
-        "activeCount" => count($activeData)
+        "master" => $curated['master'],
+        "active" => $curated['active'],
+        "activeIds" => $curated['activeIds'],
+        "masterCount" => count($curated['master']),
+        "activeCount" => count($curated['active'])
     ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     exit;
 }
@@ -96,45 +188,46 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     $allMaster = parseCatalogFile($masterFile) ?: parseCatalogFile($catalogFile);
+    $masterMap = [];
+    foreach ($allMaster as $item) {
+        if (isset($item['id'])) {
+            $masterMap[$item['id']] = $item;
+        }
+    }
+
+    $activeIds = [];
+    if (isset($data["activeIds"]) && is_array($data["activeIds"])) {
+        $activeIds = $data["activeIds"];
+    } elseif (isset($data["activeItems"]) && is_array($data["activeItems"])) {
+        $activeIds = array_filter(array_column($data["activeItems"], 'id'));
+    }
+
+    // Build active items from latest master definitions
     $activeItems = [];
-
-    if (isset($data["activeItems"]) && is_array($data["activeItems"])) {
-        $activeItems = $data["activeItems"];
-    } elseif (isset($data["activeIds"]) && is_array($data["activeIds"])) {
-        $allowedIds = array_flip($data["activeIds"]);
-        foreach ($allMaster as $item) {
-            if (isset($allowedIds[$item["id"]])) {
-                $activeItems[] = $item;
-            }
+    $validIds = [];
+    foreach ($activeIds as $id) {
+        if (isset($masterMap[$id])) {
+            $activeItems[] = $masterMap[$id];
+            $validIds[] = $id;
         }
     }
 
-    // 1. Write JSON file
-    @file_put_contents($activeJsonFile, json_encode($activeItems, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+    // 1. Write active-ids.json
+    $idsOk = writeAtomicFile($activeIdsFile, json_encode($validIds, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 
-    // 2. Write updated catalog-data.js atomically
+    // 2. Write active-catalog.json
+    $jsonOk = writeAtomicFile($activeJsonFile, json_encode($activeItems, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+
+    // 3. Write updated catalog-data.js atomically
     $jsContent = "export const CATALOG_DATA = " . json_encode($activeItems, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) . ";\n";
-    $tmpFile = $catalogFile . ".tmp";
+    $writeOk = writeAtomicFile($catalogFile, $jsContent);
 
-    $writeOk = false;
-    if (@file_put_contents($tmpFile, $jsContent) !== false) {
-        if (@rename($tmpFile, $catalogFile)) {
-            $writeOk = true;
-        }
-    }
-
-    if (!$writeOk) {
-        // Direct write fallback
-        if (@file_put_contents($catalogFile, $jsContent) !== false) {
-            $writeOk = true;
-        }
-    }
-
-    if ($writeOk) {
+    if ($writeOk && $idsOk && $jsonOk) {
         echo json_encode([
             "status" => "success",
             "message" => "Katalog je uspješno ažuriran",
-            "activeCount" => count($activeItems)
+            "activeCount" => count($activeItems),
+            "activeIds" => $validIds
         ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     } else {
         http_response_code(500);
@@ -142,3 +235,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
     exit;
 }
+

@@ -23,12 +23,14 @@ echo "🔄 [3/5] Preuzimam arhive prethodnih kola..."
 curl -s -f "$BASE_URL/api/data/votes_round_1.json" -o "$DATA_DIR/votes_round_1.json" || true
 curl -s -f "$BASE_URL/api/data/votes_round_2.json" -o "$DATA_DIR/votes_round_2.json" || true
 
-echo "🔄 [4/5] Preuzimam aktivni katalog i JS module..."
+echo "🔄 [4/6] Preuzimam aktivni katalog i selekciju..."
+curl -s -f "$BASE_URL/api/data/active-ids.json" -o "$DATA_DIR/active-ids.json" || true
 curl -s -f "$BASE_URL/api/data/active-catalog.json" -o "$DATA_DIR/active-catalog.json" || true
+curl -s -f "$BASE_URL/api/data/comments.json" -o "$DATA_DIR/comments.json" || true
 curl -s -f "$BASE_URL/js/catalog-data.js" -o "$JS_DIR/catalog-data.js" || true
 curl -s -f "$BASE_URL/js/catalog-data.master.js" -o "$JS_DIR/catalog-data.master.js" || true
 
-echo "📊 [5/5] Generiram rang liste i izvještaje (JSON, MD, CSV)..."
+echo "📊 [5/6] Generiram rang liste i izvještaje (JSON, MD, CSV)..."
 python3 "$SCRIPT_DIR/export_round1_report.py"
 
 # Generate CSV directly

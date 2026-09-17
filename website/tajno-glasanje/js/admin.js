@@ -144,10 +144,30 @@ export class CatalogCurator {
         if (data.status === "success") {
           if (Array.isArray(data.master) && data.master.length > 0) {
             this.masterCatalog = data.master;
+            // Ensure stats map has entries for newly added master items
+            this.masterCatalog.forEach(it => {
+              if (!this.itemStatsMap.has(it.id)) {
+                this.itemStatsMap.set(it.id, {
+                  id: it.id,
+                  title: it.title,
+                  category: it.category,
+                  image: it.image,
+                  likes: it.likes || 0,
+                  superlikes: it.superlikes || 0,
+                  passes: it.passes || 0,
+                  score: it.score !== undefined ? it.score : ((it.likes || 0) + ((it.superlikes || 0) * 3)),
+                  totalVotes: it.totalVotes !== undefined ? it.totalVotes : ((it.likes || 0) + (it.superlikes || 0) + (it.passes || 0)),
+                  approvalRate: it.approvalRate !== undefined ? it.approvalRate : 0
+                });
+              }
+            });
           }
-          if (Array.isArray(data.active)) {
+          if (Array.isArray(data.activeIds) || Array.isArray(data.active)) {
+            const rawActiveIds = Array.isArray(data.activeIds) 
+              ? data.activeIds 
+              : data.active.map(it => it.id);
             const masterIdSet = new Set(this.masterCatalog.map(it => it.id));
-            const validActiveIds = data.active.map(it => it.id).filter(id => masterIdSet.has(id));
+            const validActiveIds = rawActiveIds.filter(id => masterIdSet.has(id));
             this.selectedIds = new Set(validActiveIds);
             try {
               localStorage.setItem("sv_curated_active_ids", JSON.stringify(Array.from(this.selectedIds)));

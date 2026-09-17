@@ -83,12 +83,14 @@ def optimize_image(src_path: Path, out_path: Path, max_height=1200):
 def sync_catalog():
     ensure_directories()
     
-    # Read existing catalog from swiper/js/catalog-data.js if exists
-    primary_catalog_js = BASE_DIR / "swiper" / "js" / "catalog-data.js"
+    # Read existing master catalog from swiper/js/catalog-data.master.js or catalog-data.js
+    master_catalog_js = BASE_DIR / "swiper" / "js" / "catalog-data.master.js"
+    if not master_catalog_js.exists():
+        master_catalog_js = BASE_DIR / "swiper" / "js" / "catalog-data.js"
     existing_items = []
     
-    if primary_catalog_js.exists():
-        content = primary_catalog_js.read_text(encoding="utf-8")
+    if master_catalog_js.exists():
+        content = master_catalog_js.read_text(encoding="utf-8")
         if "export const CATALOG_DATA = " in content:
             json_str = content.replace("export const CATALOG_DATA = ", "").rstrip(";\n ")
             try:
@@ -136,6 +138,8 @@ def sync_catalog():
                 "likes": 0,
                 "passes": 0,
                 "superlikes": 0,
+                "score": 0,
+                "totalVotes": 0,
                 "tags": [category.lower(), "streetwear", "varazdin"]
             }
             existing_items.append(new_entry)
@@ -143,13 +147,44 @@ def sync_catalog():
             processed_count += 1
             print(f"  [+] Added new design: '{title}' ({category}) -> {webp_filename}")
 
-    # Write updated catalog to all targets
-    js_content = "export const CATALOG_DATA = " + json.dumps(existing_items, indent=2, ensure_ascii=False) + ";\n"
+    # Write updated master catalog and active catalog to all targets
+    master_js_content = "export const CATALOG_DATA = " + json.dumps(existing_items, indent=2, ensure_ascii=False) + ";\n"
     for target in TARGET_DIRS:
-        cat_file = target / "js" / "catalog-data.js"
-        cat_file.write_text(js_content, encoding="utf-8")
+        # 1. Write catalog-data.master.js
+        master_file = target / "js" / "catalog-data.master.js"
+        master_file.parent.mkdir(parents=True, exist_ok=True)
+        master_file.write_text(master_js_content, encoding="utf-8")
 
-    print(f"[SUCCESS] Processed {processed_count} new design(s). Total catalog items: {len(existing_items)}")
+        # 2. Check active curation
+        data_dir = target / "api" / "data"
+        data_dir.mkdir(parents=True, exist_ok=True)
+        active_ids_file = data_dir / "active-ids.json"
+        active_json_file = data_dir / "active-catalog.json"
+        primary_js = target / "js" / "catalog-data.js"
+
+        active_subset = []
+        active_ids_list = []
+        if active_ids_file.exists():
+            try:
+                active_ids_list = json.loads(active_ids_file.read_text(encoding="utf-8"))
+            except Exception:
+                active_ids_list = []
+
+        if active_ids_list:
+            master_by_id = {it["id"]: it for it in existing_items}
+            active_subset = [master_by_id[aid] for aid in active_ids_list if aid in master_by_id]
+
+        if not active_subset:
+            active_subset = existing_items
+            active_ids_list = [it["id"] for it in existing_items]
+
+        active_ids_file.write_text(json.dumps(active_ids_list, indent=2, ensure_ascii=False), encoding="utf-8")
+        active_json_file.write_text(json.dumps(active_subset, indent=2, ensure_ascii=False), encoding="utf-8")
+        
+        active_js_content = "export const CATALOG_DATA = " + json.dumps(active_subset, indent=2, ensure_ascii=False) + ";\n"
+        primary_js.write_text(active_js_content, encoding="utf-8")
+
+    print(f"[SUCCESS] Processed {processed_count} new design(s). Total master catalog items: {len(existing_items)}")
 
 def watch_mode():
     print(f"[WATCH] Watching {DROP_DIR} for new files... (Press Ctrl+C to stop)")

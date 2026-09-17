@@ -464,21 +464,57 @@ def build_catalog():
     print(f"  -> Removed {cleaned_count} duplicate/orphan WebP files.")
 
     print("\n[4/5] Writing updated catalog JS and JSON data...")
-    js_content = "export const CATALOG_DATA = " + json.dumps(catalog_data, indent=2, ensure_ascii=False) + ";\n"
+    master_js_content = "export const CATALOG_DATA = " + json.dumps(catalog_data, indent=2, ensure_ascii=False) + ";\n"
 
     for target in TARGET_DIRS:
-        # Write catalog-data.master.js
+        # 1. Always write the full master catalog
         master_js = target / "js" / "catalog-data.master.js"
-        master_js.write_text(js_content, encoding="utf-8")
-        
-        # Write catalog-data.js
+        master_js.parent.mkdir(parents=True, exist_ok=True)
+        master_js.write_text(master_js_content, encoding="utf-8")
+
+        # 2. Check for existing active curation (active-ids.json or active-catalog.json)
+        data_dir = target / "api" / "data"
+        data_dir.mkdir(parents=True, exist_ok=True)
+        active_ids_file = data_dir / "active-ids.json"
+        active_json_file = data_dir / "active-catalog.json"
         primary_js = target / "js" / "catalog-data.js"
-        primary_js.write_text(js_content, encoding="utf-8")
-        
-        # Write active-catalog.json for API backend
-        active_json = target / "api" / "data" / "active-catalog.json"
-        active_json.parent.mkdir(parents=True, exist_ok=True)
-        active_json.write_text(json.dumps(catalog_data, indent=2, ensure_ascii=False), encoding="utf-8")
+
+        active_subset = []
+        active_ids_list = []
+
+        if active_ids_file.exists():
+            try:
+                active_ids_list = json.loads(active_ids_file.read_text(encoding="utf-8"))
+            except Exception:
+                active_ids_list = []
+
+        if not active_ids_list and active_json_file.exists():
+            try:
+                raw_active = json.loads(active_json_file.read_text(encoding="utf-8"))
+                if isinstance(raw_active, list):
+                    active_ids_list = [it.get("id") for it in raw_active if it.get("id")]
+            except Exception:
+                active_ids_list = []
+
+        # If an active curation exists, filter master by those IDs
+        if active_ids_list:
+            master_by_id = {it["id"]: it for it in catalog_data}
+            active_subset = [master_by_id[aid] for aid in active_ids_list if aid in master_by_id]
+
+        # If no active curation exists yet, default to all master items
+        if not active_subset:
+            active_subset = catalog_data
+            active_ids_list = [it["id"] for it in catalog_data]
+
+        # Write active-ids.json
+        active_ids_file.write_text(json.dumps(active_ids_list, indent=2, ensure_ascii=False), encoding="utf-8")
+
+        # Write active-catalog.json
+        active_json_file.write_text(json.dumps(active_subset, indent=2, ensure_ascii=False), encoding="utf-8")
+
+        # Write active catalog-data.js
+        active_js_content = "export const CATALOG_DATA = " + json.dumps(active_subset, indent=2, ensure_ascii=False) + ";\n"
+        primary_js.write_text(active_js_content, encoding="utf-8")
 
         # Write synchronized votes.json
         votes_out = {
@@ -486,7 +522,7 @@ def build_catalog():
             "uniqueVoters": unique_voters,
             "items": updated_votes_items
         }
-        target_votes_file = target / "api" / "data" / "votes.json"
+        target_votes_file = data_dir / "votes.json"
         target_votes_file.write_text(json.dumps(votes_out, indent=2, ensure_ascii=False), encoding="utf-8")
 
     print("\n[5/5] Final Catalog Statistics:")
