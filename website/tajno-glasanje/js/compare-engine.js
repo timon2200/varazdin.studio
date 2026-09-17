@@ -121,9 +121,9 @@ export class CompareEngine {
           ${this.createCardHtml(this.leftItem, 'left')}
         </div>
 
-        <!-- Minimalist VS Separator -->
-        <div class="duel-vs-box">
-          <span class="duel-vs-text">VS</span>
+        <!-- Stylized 3D VS Separator -->
+        <div class="duel-vs-box" aria-hidden="true">
+          <img src="assets/vs-graphic.png" class="duel-vs-img" alt="VS" draggable="false">
         </div>
 
         <!-- Right Card Slot (Right Deck Stack) -->
