@@ -42,9 +42,19 @@ if (flock($fp, LOCK_SH)) {
 
     // Calculate percentages and sort descending by score
     foreach ($items as &$item) {
-        $total = ($item['likes'] ?? 0) + ($item['passes'] ?? 0) + ($item['superlikes'] ?? 0);
+        $likes = $item['likes'] ?? 0;
+        $superlikes = $item['superlikes'] ?? 0;
+        $passes = $item['passes'] ?? 0;
+        $total = $likes + $passes + $superlikes;
         $item['totalVotes'] = $total;
-        $item['approvalRate'] = $total > 0 ? round((($item['likes'] + $item['superlikes']) / $total) * 100) : 0;
+        $item['approvalRate'] = $total > 0 ? round((($likes + $superlikes) / $total) * 100) : 0;
+
+        // Bayesian posterior mean and entropy calculation
+        $alpha = $likes + ($superlikes * 2.8) + 2.0;
+        $beta = ($passes * 1.2) + 2.0;
+        $item['bayesianMean'] = round($alpha / ($alpha + $beta), 3);
+        $p = $total > 0 ? ($likes + $superlikes) / $total : 0.5;
+        $item['entropy'] = ($p > 0.001 && $p < 0.999) ? round(-($p * log($p, 2) + (1 - $p) * log(1 - $p, 2)), 3) : 0.0;
     }
     unset($item);
 

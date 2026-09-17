@@ -1,29 +1,32 @@
 <!DOCTYPE html>
-<html lang="hr">
+<html lang="hr" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>Studio Varaždin · T-Shirt Swiper & Real-Time Analytics</title>
   
-  <meta name="description" content="Glasaj za svoje favorite iz Studio Varaždin & cCc kolekcije majica. Interaktivni swiper s rang listom uživo.">
+  <meta name="description" content="Glasaj za svoje favorite iz Studio Varaždin & cCc kolekcije majica. Interaktivni swiper s rang listom uživo i mrežnim katalogom.">
   <meta property="og:title" content="Studio Varaždin · T-Shirt Swiper">
   <meta property="og:description" content="Glasaj za autorske street-wear motive: Silent Knight, Artwear, City & Creative Series.">
   <meta property="og:image" content="assets/designs/SV Print - Silent Knight Studio Black.png">
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
   <meta name="googlebot" content="noindex, nofollow">
-  <meta name="theme-color" content="#080A09">
+  <meta name="theme-color" content="#f4efe4">
 
-  <!-- Typography & Icons -->
+  <!-- Typography: Plus Jakarta Sans, JetBrains Mono, Cinzel -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Space+Grotesk:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=JetBrains+Mono:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/grain.css?v=2.4.0">
-  <link rel="stylesheet" href="css/swiper.css?v=2.4.0">
-  <link rel="stylesheet" href="css/dashboard.css?v=2.4.0">
+  <link rel="stylesheet" href="css/grain.css?v=3.0.0">
+  <link rel="stylesheet" href="css/swiper.css?v=3.0.0">
+  <link rel="stylesheet" href="css/dashboard.css?v=3.0.0">
 </head>
 <body>
+
+  <!-- Film grain / paper atmosphere overlay -->
+  <canvas id="grainCanvas" class="grain-overlay" aria-hidden="true"></canvas>
 
   <div class="app-container">
 
@@ -34,30 +37,69 @@
         <span class="brand-sub">cCc · 1181</span>
       </div>
 
-      <div class="header-right">
-        <div class="telemetry-counter">
-          <span class="live-dot" aria-hidden="true"></span>
-          <span>GLASOVA: <strong id="headerVoteCount">0</strong></span>
-        </div>
-        <a href="admin.html" class="icon-btn" title="Kustoski Panel & Galerija (Uredi prikaz majica)" aria-label="Kustoski Panel">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <!-- Central View Mode Switcher -->
+      <div class="view-switcher-group" id="viewSwitcher" role="group" aria-label="Način prikaza">
+        <button id="viewBtnSwiper" class="view-btn active" data-view="swiper" title="3D Špil za swipeanje">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <rect x="4" y="2" width="16" height="20" rx="3"></rect>
+            <line x1="8" y1="6" x2="16" y2="6"></line>
+            <line x1="8" y1="18" x2="16" y2="18"></line>
+          </svg>
+          <span>ŠPIL</span>
+        </button>
+        <button id="viewBtnGrid" class="view-btn" data-view="grid" title="Mrežni katalog majica">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <rect x="3" y="3" width="7" height="7"></rect>
             <rect x="14" y="3" width="7" height="7"></rect>
             <rect x="14" y="14" width="7" height="7"></rect>
             <rect x="3" y="14" width="7" height="7"></rect>
           </svg>
-        </a>
-        <button id="btnFavorites" class="icon-btn" title="Moji Favoriti" aria-label="Moji Favoriti">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+          <span>MREŽA</span>
+        </button>
+      </div>
+
+      <div class="header-right">
+        <!-- Telemetry Votes Counter -->
+        <div class="telemetry-counter">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span>GLASOVA: <strong id="headerVoteCount">0</strong></span>
+        </div>
+
+        <!-- Theme Toggle Button (Light / Dark) -->
+        <button id="btnThemeToggle" class="icon-btn" title="Prebaci temu (Light / Dark)" aria-label="Prebaci temu">
+          <svg id="themeIconSun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg id="themeIconMoon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
           </svg>
         </button>
+
+        <!-- Kustoski Panel Link -->
+        <a href="admin.html" class="icon-btn" title="Kustoski Panel & Galerija (Uredi prikaz majica)" aria-label="Kustoski Panel">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 20h9"></path>
+            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+          </svg>
+        </a>
+
+        <!-- Audio Sound Toggle -->
         <button id="btnAudioToggle" class="icon-btn" title="Uključi / Isključi zvuk" aria-label="Prebaci zvuk">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
             <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
           </svg>
         </button>
+
+        <!-- Viral Share Button -->
         <button id="btnShareViral" class="icon-btn" title="Podijeli aplikaciju" aria-label="Podijeli">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="18" cy="5" r="3"></circle>
@@ -73,7 +115,7 @@
     <!-- Main Dynamic Layout -->
     <main class="main-layout">
 
-      <!-- Centered Swiper Stage (Active during swiping, leaderboard is hidden) -->
+      <!-- STAGE 1: Centered Swiper Stage (Active during swiping) -->
       <section id="swiperStage" class="swiper-stage">
         
         <!-- Swiper Progress / Card Counter -->
@@ -92,7 +134,7 @@
           
           <!-- Undo Button -->
           <button id="btnUndo" class="action-btn btn-undo" title="Vrati prethodnu (U)" aria-label="Vrati karticu" disabled>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M3 7v6h6"></path>
               <path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"></path>
             </svg>
@@ -100,7 +142,7 @@
 
           <!-- Pass Button (X) -->
           <button id="btnPass" class="action-btn btn-pass" title="Preskoči (Strelica Lijevo)" aria-label="Preskoči">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
               <line x1="18" y1="6" x2="6" y2="18"></line>
               <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
@@ -108,21 +150,21 @@
 
           <!-- Superlike Button (Star) -->
           <button id="btnSuperlike" class="action-btn btn-superlike" title="Superlike (Strelica Gore)" aria-label="Superlike">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none">
               <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
             </svg>
           </button>
 
           <!-- Like Button (Heart) -->
           <button id="btnLike" class="action-btn btn-like" title="Sviđa mi se (Strelica Desno)" aria-label="Sviđa mi se">
-            <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" stroke="none">
               <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
             </svg>
           </button>
 
           <!-- Info / Details Button -->
           <button id="btnInfo" class="action-btn btn-info" title="Detalji o motivu" aria-label="Detalji">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="10"></circle>
               <line x1="12" y1="16" x2="12" y2="12"></line>
               <line x1="12" y1="8" x2="12.01" y2="8"></line>
@@ -133,7 +175,54 @@
 
       </section>
 
-      <!-- Full Completion Leaderboard Section (Revealed ONLY when deck is finished) -->
+      <!-- STAGE 2: Ponude Grid View (Mreža / Katalog) -->
+      <section id="catalogGridView" class="catalog-grid-view" style="display: none;" aria-label="Mrežni katalog majica">
+        
+        <!-- Meridian 16 Bold Search & Filter Card -->
+        <div class="meridian-search-card">
+          <div class="search-input-box">
+            <span class="search-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </span>
+            <input type="text" id="gridSearchInput" class="search-input" placeholder="Pretraži motive, kategorije, serije..." autocomplete="off">
+            <button id="gridSearchClear" class="search-clear" style="display:none;" title="Očisti pretragu">&times;</button>
+            <span class="search-kbd-hint">⌘K / /</span>
+          </div>
+
+          <!-- Category Navigation Pills -->
+          <nav class="category-nav" id="gridCategoryNav" aria-label="Filter kategorija">
+            <button class="cat-pill active" data-cat="ALL">SVE <span class="cat-badge" id="gridBadgeAll">0</span></button>
+            <button class="cat-pill" data-cat="Selected">SELECTED <span class="cat-badge" id="gridBadgeSelected">0</span></button>
+            <button class="cat-pill" data-cat="City">CITY <span class="cat-badge" id="gridBadgeCity">0</span></button>
+            <button class="cat-pill" data-cat="Studio">STUDIO <span class="cat-badge" id="gridBadgeStudio">0</span></button>
+            <button class="cat-pill" data-cat="Creative">CREATIVE <span class="cat-badge" id="gridBadgeCreative">0</span></button>
+            <button class="cat-pill" data-cat="Garda">GARDA <span class="cat-badge" id="gridBadgeGarda">0</span></button>
+            <button class="cat-pill" data-cat="Towers">TOWERS <span class="cat-badge" id="gridBadgeTowers">0</span></button>
+            <button class="cat-pill" data-cat="Utility">UTILITY <span class="cat-badge" id="gridBadgeUtility">0</span></button>
+            <button class="cat-pill" data-cat="Artwear">ARTWEAR <span class="cat-badge" id="gridBadgeArtwear">0</span></button>
+            <button class="cat-pill" data-cat="Front Hits">FRONT HITS <span class="cat-badge" id="gridBadgeFrontHits">0</span></button>
+            <button class="cat-pill" data-cat="Experimental">EXPERIMENTAL <span class="cat-badge" id="gridBadgeExperimental">0</span></button>
+            <button class="cat-pill" data-cat="Favorites">★ FAVORITI <span class="cat-badge" id="gridBadgeFavorites">0</span></button>
+          </nav>
+
+          <!-- Search Meta Info Row -->
+          <div class="search-meta-row">
+            <span>PRIKAZANO: <strong id="gridResultCount" class="search-count-badge">0</strong> MOTIVA</span>
+            <span style="letter-spacing: 0.05em;">STUDIO VARAŽDIN · cCc · 1181</span>
+          </div>
+        </div>
+
+        <!-- Decks Grid View Container -->
+        <div id="catalogGridContainer" class="decks-grid-view">
+          <!-- Dynamically populated by JS -->
+        </div>
+
+      </section>
+
+      <!-- STAGE 3: Full Completion Leaderboard Section -->
       <section id="leaderboardView" class="leaderboard-view" style="display: none;" aria-label="Rang lista i rezultati glasanja">
         
         <!-- Hero Header -->
@@ -172,7 +261,7 @@
             PROMIJEŠAJ & ŠVIPAJ PONOVNO
           </button>
 
-          <button id="btnShareLeaderboard" class="share-btn share-btn-secondary">
+          <button id="btnShareLeaderboard" class="share-btn">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="18" cy="5" r="3"></circle>
               <circle cx="6" cy="12" r="3"></circle>
@@ -181,6 +270,16 @@
               <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
             </svg>
             PODIJELI LINK & QR
+          </button>
+
+          <button id="btnJumpToGrid" class="share-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            PREGLEDAJ SVE U MREŽI
           </button>
         </div>
 
@@ -192,11 +291,11 @@
           </div>
 
           <div id="leaderboardList" class="leaderboard-list">
-            <!-- Dynamically populated with BIG thumbnails (84-90px) -->
+            <!-- Dynamically populated with big thumbnails & progress bars -->
           </div>
 
           <div class="leaderboard-footer">
-            <span style="font-size:0.75rem; color:var(--text-dim); font-family:monospace;">STUDIO ARCHIVE • 1181 · cCc</span>
+            <span style="font-size:0.75rem; color:var(--text-muted); font-family:var(--font-mono);">STUDIO ARCHIVE • 1181 · cCc</span>
             <button id="btnResetVotes" class="reset-votes-btn">
               ↺ Resetiraj glasove (0)
             </button>
@@ -215,17 +314,17 @@
       <button id="closeModalInfo" class="modal-close" aria-label="Zatvori">✕</button>
       <div style="text-align:center; margin-bottom:14px;">
         <span id="infoCategory" class="hud-category">ARTWEAR SERIES</span>
-        <h3 id="infoTitle" style="font-size:1.35rem; color:#FFFFFF; margin-top:4px;">Silent Knight Studio Black</h3>
+        <h3 id="infoTitle" style="font-family:var(--font-hero); font-size:1.35rem; color:var(--text-primary); margin-top:4px;">Silent Knight Studio Black</h3>
       </div>
-      <div style="display:flex; justify-content:center; margin-bottom:14px; background:#080A09; border-radius:14px; padding:12px; border:1px solid #1E2721; cursor:pointer;" id="btnOpenHighRes" title="Klikni za 2K punu rezoluciju">
+      <div style="display:flex; justify-content:center; margin-bottom:14px; background:var(--card-tshirt-bg); border-radius:var(--radius-sm); padding:12px; border:1.5px solid var(--border-dark); cursor:pointer;" id="btnOpenHighRes" title="Klikni za 2K punu rezoluciju">
         <img id="infoImage" src="" alt="Pregled majice" style="max-height:240px; object-fit:contain;">
       </div>
-      <p id="infoDesc" style="color:var(--text-muted); font-size:0.88rem; line-height:1.5; margin-bottom:16px;">
+      <p id="infoDesc" style="color:var(--text-secondary); font-size:0.88rem; line-height:1.5; margin-bottom:16px;">
         Ekskluzivni linijski motiv s volovskom sjenom i barokno-gotičkom gravurom.
       </p>
-      <div style="display:flex; justify-content:space-between; align-items:center; font-family:monospace; font-size:0.75rem; color:var(--gold-rich); border-top:1px solid #1E2721; padding-top:12px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-gold); border-top:1.5px solid var(--border-color); padding-top:12px;">
         <span>AUTOR: STUDIO VARAŽDIN</span>
-        <span style="color:#FF4D4D; cursor:pointer;" onclick="document.getElementById('btnOpenHighRes').click()">🔍 OTVORI 2K PUNU SLIKU</span>
+        <span style="color:var(--accent-green); cursor:pointer; font-weight:800;" onclick="document.getElementById('btnOpenHighRes').click()">🔍 OTVORI 2K PUNU SLIKU</span>
       </div>
     </div>
   </div>
@@ -235,7 +334,7 @@
     <div class="modal-content" style="max-width:850px; max-height:92vh; display:flex; flex-direction:column; align-items:center; padding:20px;">
       <button id="closeModalZoom" class="modal-close" aria-label="Zatvori">✕</button>
       <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; overflow:auto;">
-        <img id="zoomImage" src="" alt="Puna 2K rezolucija" style="max-width:100%; max-height:78vh; object-fit:contain; border-radius:12px;">
+        <img id="zoomImage" src="" alt="Puna 2K rezolucija" style="max-width:100%; max-height:78vh; object-fit:contain; border-radius:var(--radius-sm);">
       </div>
     </div>
   </div>
@@ -244,11 +343,11 @@
   <div id="modalShare" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Podijeli rang listu">
     <div class="modal-content" style="text-align:center;">
       <button id="closeModalShare" class="modal-close" aria-label="Zatvori">✕</button>
-      <h3 style="font-size:1.3rem; color:var(--gold-cream); letter-spacing:1px; margin-bottom:6px;">PODIJELI S EKIPOM</h3>
-      <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:18px;">Skeniraj QR kod mobitelom ili kopiraj poveznicu za glasanje.</p>
+      <h3 style="font-family:var(--font-brand); font-size:1.3rem; color:var(--text-primary); letter-spacing:1px; margin-bottom:6px;">PODIJELI S EKIPOM</h3>
+      <p style="color:var(--text-secondary); font-size:0.85rem; margin-bottom:18px;">Skeniraj QR kod mobitelom ili kopiraj poveznicu za glasanje.</p>
       
       <div id="qrCodeContainer" style="display:flex; justify-content:center; margin-bottom:18px;">
-        <canvas id="qrCanvas" style="border: 4px solid #141A16; border-radius: 12px; background: #080A09;"></canvas>
+        <canvas id="qrCanvas" style="border: 2px solid var(--border-dark); border-radius: var(--radius-sm); background: #ffffff;"></canvas>
       </div>
 
       <button id="btnCopyLink" class="share-btn share-btn-primary" style="width:100%;">
@@ -261,27 +360,11 @@
     </div>
   </div>
 
-  <!-- Modal: Moji Favoriti -->
-  <div id="modalFavorites" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Moji favoriti">
-    <div class="modal-content">
-      <button id="closeModalFavorites" class="modal-close" aria-label="Zatvori">✕</button>
-      <div style="text-align:center; margin-bottom:18px;">
-        <h3 style="font-size:1.3rem; color:var(--gold-cream); letter-spacing:1px;">MOJI ODABRANI FAVORITI</h3>
-        <p style="color:var(--text-muted); font-size:0.82rem; margin-top:2px;">Popis majica koje si lajkao ili superlajkao u ovoj sesiji.</p>
-      </div>
-
-      <div id="favoritesGrid" class="podium-top3-grid" style="max-height:360px; overflow-y:auto; padding-right:4px;">
-        <!-- Dynamically rendered favorites -->
-      </div>
-
-      <button onclick="window.swiperApp.exportTop3Story()" class="share-btn share-btn-primary" style="width:100%;">
-        ⚡ PREUZMI SVOJU "TOP 3" KARTICU ZA STORY
-      </button>
-    </div>
-  </div>
+  <!-- Toast Notification Banner -->
+  <div id="toast" class="toast-banner" role="status" aria-live="polite"></div>
 
   <!-- Main JavaScript Module -->
-  <script type="module" src="js/app.js?v=2.4.0"></script>
+  <script type="module" src="js/app.js?v=3.1.0"></script>
 
 </body>
 </html>

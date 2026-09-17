@@ -43,6 +43,9 @@ export class CatalogCurator {
   }
 
   async init() {
+    // 0. Initialize theme
+    this.initTheme();
+
     // 1. Initialize film grain texture
     try {
       new NoiseGrain({ opacity: 0.05, fps: 24 });
@@ -56,6 +59,37 @@ export class CatalogCurator {
 
     // 4. Background sync with backend API (authoritative source)
     await this.syncWithBackend(false);
+  }
+
+  initTheme() {
+    let savedTheme = 'light';
+    try {
+      savedTheme = localStorage.getItem('sv_theme') || 'light';
+    } catch (e) {}
+    this.setTheme(savedTheme);
+  }
+
+  setTheme(theme) {
+    this.currentTheme = theme === 'dark' ? 'dark' : 'light';
+    document.documentElement.dataset.theme = this.currentTheme;
+    if (this.currentTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    try {
+      localStorage.setItem('sv_theme', this.currentTheme);
+    } catch (e) {}
+    const icon = document.getElementById('adminThemeIcon');
+    if (icon) {
+      icon.textContent = this.currentTheme === 'dark' ? '🌙 Dark' : '☀️ Light';
+    }
+  }
+
+  toggleTheme() {
+    const nextTheme = this.currentTheme === 'dark' ? 'light' : 'dark';
+    this.setTheme(nextTheme);
+    this.showToast(nextTheme === 'dark' ? '🌙 Dark Mode uključen' : '☀️ Light Mode uključen');
   }
 
   async syncWithBackend(showToast = false) {
@@ -129,6 +163,9 @@ export class CatalogCurator {
     document.getElementById("btnExportJson")?.addEventListener("click", () => this.exportSelectionJson());
     document.getElementById("btnImportJson")?.addEventListener("click", () => this.importSelectionJson());
     document.getElementById("btnSyncServer")?.addEventListener("click", () => this.syncWithBackend(true));
+
+    // Theme Toggle
+    document.getElementById("btnThemeToggleAdmin")?.addEventListener("click", () => this.toggleTheme());
 
     // Save Buttons
     document.getElementById("btnSave")?.addEventListener("click", () => this.saveCuratedCatalog());

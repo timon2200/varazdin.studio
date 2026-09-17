@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hr" class="dark">
+<html lang="hr" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -7,12 +7,12 @@
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
   
   <link rel="icon" type="image/svg+xml" href="../../favicon-dark.svg">
-  <link rel="stylesheet" href="css/grain.css?v=2.2.0">
-  <link rel="stylesheet" href="css/admin.css?v=2.2.0">
+  <link rel="stylesheet" href="css/grain.css?v=3.0.0">
+  <link rel="stylesheet" href="css/admin.css?v=3.0.0">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=JetBrains+Mono:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- Grain canvas texture -->
@@ -26,7 +26,7 @@
       <div class="admin-header-top">
         <div class="brand-cluster">
           <a href="index.html" class="back-link" title="Natrag na Swiper">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <path d="m15 18-6-6 6-6"/>
             </svg>
             <span>SWIPER</span>
@@ -49,10 +49,13 @@
           </div>
         </div>
 
-        <!-- Primary Actions -->
+        <!-- Primary Actions & Theme Toggle -->
         <div class="header-actions">
+          <button id="btnThemeToggleAdmin" class="btn-secondary" title="Prebaci temu (Light / Dark)">
+            <span id="adminThemeIcon">☀️ / 🌙</span>
+          </button>
           <button id="btnSave" class="btn-primary" title="Spremi odabir u aktivni swiper špil">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
               <polyline points="17 21 17 13 7 13 7 21"/>
               <polyline points="7 3 7 8 15 8"/>
@@ -61,7 +64,7 @@
           </button>
           <a href="index.html" class="btn-secondary" title="Pregledaj swiper uživo">
             <span>OTVORI SWIPER</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <polygon points="5 3 19 12 5 21 5 3"/>
             </svg>
           </a>
@@ -109,7 +112,7 @@
             <button id="btnSmartDuplicates" class="btn-tool btn-tool-accent" title="Označi samo po 1 unikatni motiv">
               <span>⚡ Očisti duplikate</span>
             </button>
-            <button id="btnExportJson" class="btn-tool" title="Izvezi listu odabranih ID-eva u JSON / Međuspremnik">
+            <button id="btnExportJson" class="btn-tool" title="Izvezi listu odabranih ID-eva u JSON">
               <span>📋 Izvoz</span>
             </button>
             <button id="btnImportJson" class="btn-tool" title="Uvezi listu odabranih ID-eva iz JSON-a">
@@ -126,7 +129,7 @@
     <!-- Toast Notification Banner -->
     <div id="toast" class="toast-banner" role="status" aria-live="polite"></div>
 
-    <!-- Gallery Grid (Edge-to-Edge, Zero Gutter, Strict DTF Ratio) -->
+    <!-- Gallery Grid -->
     <main class="gallery-container">
       <div id="galleryGrid" class="gallery-grid">
         <!-- Rendered dynamically by js/admin.js -->
@@ -145,6 +148,6 @@
 
   </div>
 
-  <script type="module" src="js/admin.js?v=2.3.0"></script>
+  <script type="module" src="js/admin.js?v=3.0.0"></script>
 </body>
 </html>

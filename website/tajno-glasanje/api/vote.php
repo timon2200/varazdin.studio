@@ -97,6 +97,7 @@ if (flock($fp, LOCK_EX)) {
             'likes' => 0,
             'passes' => 0,
             'superlikes' => 0,
+            'impressions' => 0,
             'score' => 0
         ];
     } else {
@@ -104,6 +105,11 @@ if (flock($fp, LOCK_EX)) {
             $store['items'][$itemId]['image'] = $itemImage;
         }
     }
+
+    if (!isset($store['items'][$itemId]['impressions'])) {
+        $store['items'][$itemId]['impressions'] = ($store['items'][$itemId]['likes'] ?? 0) + ($store['items'][$itemId]['passes'] ?? 0) + ($store['items'][$itemId]['superlikes'] ?? 0);
+    }
+    $store['items'][$itemId]['impressions']++;
 
     // Update action count
     if ($action === 'like') {

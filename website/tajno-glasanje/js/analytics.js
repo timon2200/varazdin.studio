@@ -48,7 +48,7 @@ export class AnalyticsEngine {
     } catch (e) {}
   }
 
-  async recordVote(item, action) {
+  async recordVote(item, action, positionIndex = null) {
     // action: 'like' | 'pass' | 'superlike'
     const voteRecord = {
       id: item.id,
@@ -57,6 +57,8 @@ export class AnalyticsEngine {
       category: item.category,
       image: item.image || '',
       action: action,
+      position: positionIndex !== null ? positionIndex : this.sessionVotes.length,
+      phase: (item._orderingMeta && item._orderingMeta.phase) || 'unspecified',
       timestamp: Date.now(),
       sessionId: this.sessionId
     };

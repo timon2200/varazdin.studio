@@ -136,6 +136,11 @@ button {
 }
 
 /* Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold-deep) var(--green-deep);
+}
+
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
