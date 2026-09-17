@@ -31,7 +31,7 @@ export class AudioHaptics {
     }
   }
 
-  playTap() {
+  playClick(direction = 'forward') {
     if (!this.soundEnabled) return;
     this.ensureContext();
     if (!this.audioCtx) return;
@@ -41,11 +41,15 @@ export class AudioHaptics {
       const gain = this.audioCtx.createGain();
       const now = this.audioCtx.currentTime;
 
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(420, now);
-      osc.frequency.exponentialRampToValueAtTime(160, now + 0.04);
+      const isForward = direction === 'forward' || direction === true || direction === 'right';
+      const startFreq = isForward ? 1100 : 850;
+      const endFreq = isForward ? 320 : 300;
 
-      gain.gain.setValueAtTime(0.12, now);
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(startFreq, now);
+      osc.frequency.exponentialRampToValueAtTime(endFreq, now + 0.035);
+
+      gain.gain.setValueAtTime(0.14, now);
       gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
 
       osc.connect(gain);
@@ -53,7 +57,12 @@ export class AudioHaptics {
 
       osc.start(now);
       osc.stop(now + 0.04);
+      this.vibrate(10);
     } catch (e) {}
+  }
+
+  playTap() {
+    this.playClick('forward');
   }
 
   playSuperlike() {

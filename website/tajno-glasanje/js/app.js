@@ -9,6 +9,7 @@ import { AudioHaptics } from './audio-haptics.js';
 import { AnalyticsEngine } from './analytics.js';
 import { CardEngine } from './card-engine.js';
 import { CompareEngine } from './compare-engine.js';
+import { IdleGuide } from './idle-guide.js';
 import { ShareCardGenerator } from './share-card.js';
 import { renderQRCodeToCanvas } from './qr.js';
 
@@ -34,6 +35,7 @@ class SwiperApp {
     this.analytics = null;
     this.cardEngine = null;
     this.compareEngine = null;
+    this.idleGuide = null;
     this.shareCardGen = null;
     
     this.currentView = 'swiper'; // 'swiper' | 'compare' | 'grid'
@@ -142,6 +144,9 @@ class SwiperApp {
     // 7. Update initial counters & badges
     this.updateHeaderCounter();
     this.updateCategoryBadges();
+
+    // 8. Initialize Inactivity Idle Guide (Organic kinetic hint animations)
+    this.idleGuide = new IdleGuide({ app: this, timeout: 3000 });
 
     // 7. Fast background sync with server-curated catalog & live stats
     this.syncCuratedCatalog();
@@ -254,22 +259,38 @@ class SwiperApp {
     const mobileAudioBtn = document.getElementById('btnMobileAudioToggle');
     const mobileShareBtn = document.getElementById('btnMobileShare');
     const mobileTelemetryBtn = document.getElementById('btnMobileTelemetry');
-
     if (!toggleBtn || !drawer) return;
+    drawer.inert = true;
 
     const closeDrawer = () => {
+      if (drawer.contains(document.activeElement)) {
+        if (typeof document.activeElement.blur === 'function') {
+          document.activeElement.blur();
+        }
+      }
       drawer.classList.remove('is-open');
       toggleBtn.classList.remove('is-open');
       toggleBtn.setAttribute('aria-expanded', 'false');
       drawer.setAttribute('aria-hidden', 'true');
+      drawer.inert = true;
+    };
+
+    const openDrawer = () => {
+      drawer.inert = false;
+      drawer.classList.add('is-open');
+      toggleBtn.classList.add('is-open');
+      toggleBtn.setAttribute('aria-expanded', 'true');
+      drawer.setAttribute('aria-hidden', 'false');
+      if (this.audioHaptics) this.audioHaptics.playClick();
     };
 
     const toggleDrawer = () => {
-      const isOpen = drawer.classList.toggle('is-open');
-      toggleBtn.classList.toggle('is-open', isOpen);
-      toggleBtn.setAttribute('aria-expanded', String(isOpen));
-      drawer.setAttribute('aria-hidden', String(!isOpen));
-      if (this.audioHaptics) this.audioHaptics.playClick();
+      const isOpen = drawer.classList.contains('is-open');
+      if (isOpen) {
+        closeDrawer();
+      } else {
+        openDrawer();
+      }
     };
 
     toggleBtn.addEventListener('click', (e) => {
@@ -332,6 +353,10 @@ class SwiperApp {
 
   setView(viewName) {
     this.currentView = viewName;
+    if (this.idleGuide) {
+      this.idleGuide.dismiss();
+      this.idleGuide.resetTimer();
+    }
     const swiperStage = document.getElementById('swiperStage');
     const compareStage = document.getElementById('compareStage');
     const gridView = document.getElementById('catalogGridView');

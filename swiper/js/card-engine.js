@@ -402,6 +402,7 @@ export class CardEngine {
       activePointerId = e.pointerId;
       targetIsArtwork = !!(e.target && (e.target.closest('.card-photo-wrapper') || e.target.closest('.artwork-frame') || e.target.classList.contains('tshirt-artwork')));
 
+      card.classList.remove('is-idle-teasing');
       card.classList.add('is-dragging');
       card.style.transition = 'none';
 
@@ -425,6 +426,7 @@ export class CardEngine {
 
     const card = this.cardsEl[this.currentIndex];
     const itemData = this.deck[this.currentIndex];
+    card.classList.remove('is-idle-teasing');
 
     // Trigger audio & haptic feedback
     if (this.audioHaptics) {

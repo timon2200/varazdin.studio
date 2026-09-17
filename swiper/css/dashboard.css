@@ -1444,3 +1444,40 @@ html[data-theme="dark"] .leaderboard-score-pill {
   border-color: var(--accent-red);
   background: var(--accent-red-bg);
 }
+
+/* ==========================================================================
+   DVOBOJ IDLE TEASING ANIMATIONS
+   ========================================================================== */
+.slot-left .duel-card.is-idle-teasing {
+  animation: idleDuelLeftTease 3.6s ease-in-out infinite !important;
+}
+
+.slot-right .duel-card.is-idle-teasing {
+  animation: idleDuelRightTease 3.6s ease-in-out infinite !important;
+}
+
+@keyframes idleDuelLeftTease {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  16% {
+    transform: translate3d(-20px, 0, 0) rotate(-2.4deg);
+    box-shadow: 0 0 18px rgba(239, 68, 68, 0.35), var(--shadow-bold-lg);
+  }
+  32% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+}
+
+@keyframes idleDuelRightTease {
+  0%, 32%, 100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  48% {
+    transform: translate3d(20px, 0, 0) rotate(2.4deg);
+    box-shadow: 0 0 18px rgba(239, 68, 68, 0.35), var(--shadow-bold-lg);
+  }
+  64% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+}

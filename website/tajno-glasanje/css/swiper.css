@@ -1812,3 +1812,144 @@ html[data-theme="dark"] .zoom-points-badge {
   .lightbox-next { right: 8px; }
   .modal-zoom-title { max-width: 200px; font-size: 0.9rem; }
 }
+
+/* ==========================================================================
+   IDLE GUIDE & INACTIVITY KINETIC HINTS
+   ========================================================================== */
+.idle-guide-pill {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateY(16px) scale(0.96);
+  background: var(--bg-card);
+  border: 2px solid var(--border-dark);
+  border-radius: 9999px;
+  padding: 8px 18px;
+  box-shadow: var(--shadow-bold-md);
+  z-index: 250;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s;
+  white-space: nowrap;
+}
+
+.idle-guide-pill.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) translateY(0) scale(1);
+  animation: idlePillBreathe 3.6s ease-in-out infinite;
+}
+
+@keyframes idlePillBreathe {
+  0%, 100% {
+    box-shadow: var(--shadow-bold-md);
+    transform: translate(-50%, -50%) translateY(0) scale(1);
+  }
+  50% {
+    box-shadow: 0px 0px 22px rgba(16, 185, 129, 0.32), var(--shadow-bold-lg);
+    transform: translate(-50%, -50%) translateY(-2px) scale(1.02);
+  }
+}
+
+.idle-guide-icon {
+  font-size: 1.05rem;
+  line-height: 1;
+  display: inline-block;
+}
+
+.idle-bounce-left {
+  animation: idleBounceLeft 1.8s ease-in-out infinite;
+}
+
+.idle-bounce-right {
+  animation: idleBounceRight 1.8s ease-in-out infinite;
+}
+
+@keyframes idleBounceLeft {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-4px); }
+}
+
+@keyframes idleBounceRight {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(4px); }
+}
+
+/* Card Tease Animation in Swiper */
+.tshirt-card.is-idle-teasing {
+  animation: idleCardTease 3.8s ease-in-out infinite !important;
+}
+
+@keyframes idleCardTease {
+  0%, 100% {
+    transform: translate3d(0px, 0px, 0px) scale(1) rotate(0deg);
+  }
+  14% {
+    transform: translate3d(36px, -6px, 0px) scale(1.015) rotate(4.8deg);
+    box-shadow: 0 0 24px rgba(16, 185, 129, 0.28), var(--shadow-bold-lg);
+  }
+  28% {
+    transform: translate3d(0px, 0px, 0px) scale(1) rotate(0deg);
+  }
+  42% {
+    transform: translate3d(-36px, -6px, 0px) scale(1.015) rotate(-4.8deg);
+    box-shadow: 0 0 24px rgba(239, 68, 68, 0.28), var(--shadow-bold-lg);
+  }
+  56% {
+    transform: translate3d(0px, 0px, 0px) scale(1) rotate(0deg);
+  }
+}
+
+.tshirt-card.is-idle-teasing .stamp-like {
+  animation: idleStampLikePulse 3.8s ease-in-out infinite !important;
+}
+
+.tshirt-card.is-idle-teasing .stamp-nope {
+  animation: idleStampNopePulse 3.8s ease-in-out infinite !important;
+}
+
+@keyframes idleStampLikePulse {
+  0%, 100% { opacity: 0; }
+  10%, 16% { opacity: 0.65; }
+  24% { opacity: 0; }
+}
+
+@keyframes idleStampNopePulse {
+  0%, 30%, 100% { opacity: 0; }
+  38%, 44% { opacity: 0.65; }
+  52% { opacity: 0; }
+}
+
+/* Retro Key Chips Idle Pulse */
+.retro-key-chip.is-idle-pulse {
+  animation: idleChipPulse 2s ease-in-out infinite;
+}
+
+@keyframes idleChipPulse {
+  0%, 100% {
+    transform: translateY(0);
+    box-shadow: var(--shadow-bold-xs);
+  }
+  50% {
+    transform: translateY(-2px);
+    box-shadow: 2px 2px 0px var(--border-dark);
+  }
+}
+
+@media (max-width: 768px) {
+  .idle-guide-pill {
+    padding: 6px 14px;
+    font-size: 0.68rem;
+    gap: 6px;
+  }
+}
+

@@ -261,6 +261,7 @@ export class CompareEngine {
       isDragging = true;
       hasMoved = false;
       activePointerId = e.pointerId;
+      card.classList.remove('is-idle-teasing');
 
       try {
         if (card.setPointerCapture) card.setPointerCapture(e.pointerId);
@@ -350,6 +351,7 @@ export class CompareEngine {
   async discardCard(side, dragVector = null) {
     if (this.isAnimating || !this.leftItem || !this.rightItem) return;
     this.isAnimating = true;
+    document.querySelectorAll('.is-idle-teasing').forEach(el => el.classList.remove('is-idle-teasing'));
 
     const loserSide = side;
     const winnerSide = side === 'left' ? 'right' : 'left';
