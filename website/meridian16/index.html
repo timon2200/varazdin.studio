@@ -1251,7 +1251,6 @@ footer.deck-footer {
 }
 
 .offer-box {
-  background: var(--bg-card);
   border: 2px solid var(--text-primary);
   border-radius: 8px;
   padding: 1.25rem 1.4rem;
@@ -1259,18 +1258,25 @@ footer.deck-footer {
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-  box-shadow: 5px 5px 0px var(--text-primary);
   position: relative;
   box-sizing: border-box;
+  transition: opacity 0.4s ease;
 }
 
 .offer-box.cloth-active {
   opacity: 0;
 }
 
+.offer-box.essential {
+  background: var(--bg-card-subtle);
+  box-shadow: 4px 4px 0px var(--text-primary);
+}
+
 .offer-box.signature {
-  border-color: var(--accent-green);
-  background: #fdfbf7;
+  background: #0d1815;
+  color: #ffffff;
+  border: 2px solid #10b981;
+  box-shadow: 6px 6px 0px var(--accent-green);
 }
 
 .tier-badge {
@@ -1286,8 +1292,17 @@ footer.deck-footer {
   margin-bottom: 0.5rem;
 }
 
+.offer-box.essential .tier-badge {
+  background: var(--bg-card);
+  border: 1.5px solid var(--text-primary);
+  color: var(--text-primary);
+}
+
 .offer-box.signature .tier-badge {
-  background: var(--accent-green);
+  background: #10b981;
+  color: #0d1815;
+  border: 1.5px solid #ffffff;
+  font-weight: 900;
 }
 
 .tier-title {
@@ -1298,11 +1313,22 @@ footer.deck-footer {
   margin-bottom: 0.4rem;
 }
 
+.offer-box.signature .tier-title {
+  color: #ffffff;
+}
+
 .tier-desc {
   font-size: 0.78rem;
-  color: var(--text-secondary);
   line-height: 1.35;
   margin-bottom: 0.8rem;
+}
+
+.offer-box.essential .tier-desc {
+  color: var(--text-secondary);
+}
+
+.offer-box.signature .tier-desc {
+  color: #9cb1a8;
 }
 
 .tier-features {
@@ -1320,10 +1346,25 @@ footer.deck-footer {
   line-height: 1.3;
 }
 
+.offer-box.essential .tier-features li {
+  color: var(--text-primary);
+}
+
+.offer-box.signature .tier-features li {
+  color: #ffffff;
+}
+
 .tier-features .bullet {
-  color: var(--accent-green);
   font-weight: 900;
   font-family: var(--font-mono);
+}
+
+.offer-box.essential .tier-features .bullet {
+  color: var(--accent-green);
+}
+
+.offer-box.signature .tier-features .bullet {
+  color: #10b981;
 }
 
 .tier-price-row {
@@ -1332,86 +1373,135 @@ footer.deck-footer {
   margin-top: 0.65rem;
 }
 
+.offer-box.signature .tier-price-row {
+  border-top: 1.5px dashed rgba(16, 185, 129, 0.35);
+}
+
 .tier-price-row .price-label {
   font-family: var(--font-mono);
   font-size: 0.65rem;
   font-weight: 800;
+}
+
+.offer-box.essential .tier-price-row .price-label {
   color: var(--text-muted);
+}
+
+.offer-box.signature .tier-price-row .price-label {
+  color: #10b981;
 }
 
 .tier-price-row .price-val {
   font-family: var(--font-hero);
   font-size: 1.85rem;
   font-weight: 900;
-  color: var(--text-primary);
   line-height: 1.1;
+}
+
+.offer-box.essential .tier-price-row .price-val {
+  color: var(--text-primary);
+}
+
+.offer-box.signature .tier-price-row .price-val {
+  color: #ffffff;
 }
 
 .tier-price-row .vat-text {
   font-family: var(--font-mono);
   font-size: 0.68rem;
+}
+
+.offer-box.essential .tier-price-row .vat-text {
   color: var(--text-muted);
+}
+
+.offer-box.signature .tier-price-row .vat-text {
+  color: #10b981;
 }
 
 /* Slide 6 PDF and Contact Grid */
 .pdf-download-card {
-  background: var(--bg-card-subtle);
+  background: var(--bg-card);
   border: 2px solid var(--text-primary);
   border-radius: 6px;
-  padding: 1rem 1.15rem;
-  box-shadow: 4px 4px 0px var(--text-primary);
-  margin-top: 0.65rem;
+  padding: 0.75rem 0.9rem;
+  margin-bottom: 0.55rem;
+  box-shadow: 3px 3px 0px var(--text-primary);
 }
 
 .pdf-card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.65rem;
+  margin-bottom: 0.45rem;
 }
 
 .pdf-card-tag {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 800;
   color: var(--accent-green);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
 }
 
 .pdf-spec-badge {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.64rem;
   font-weight: 700;
   color: var(--text-muted);
+  background: var(--bg-card-subtle);
+  padding: 1px 5px;
+  border-radius: 3px;
 }
 
 .pdf-download-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
-  margin-bottom: 0.75rem;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
 }
 
 .btn-pdf-download {
-  background: #ffffff;
-  border: 1.5px solid var(--text-primary);
-  border-radius: 4px;
-  padding: 8px 10px;
-  text-decoration: none;
-  color: var(--text-primary);
   display: flex;
   flex-direction: column;
   gap: 2px;
-  transition: all 0.2s;
+  padding: 7px 9px;
+  border: 2px solid var(--text-primary);
+  border-radius: 5px;
+  background: var(--bg-card-subtle);
+  color: var(--text-primary);
+  text-decoration: none;
   box-shadow: 2px 2px 0px var(--text-primary);
+  transition: all 0.15s ease;
 }
 
 .btn-pdf-download:hover {
-  transform: translate(-1px, -1px);
-  box-shadow: 3.5px 3.5px 0px var(--text-primary);
+  transform: translate(-2px, -2px) !important;
+  box-shadow: 4px 4px 0px var(--text-primary) !important;
   background: var(--accent-green-bg);
+}
+
+.btn-pdf-download:active {
+  transform: translate(1px, 1px) !important;
+  box-shadow: 1px 1px 0px var(--text-primary) !important;
+}
+
+.btn-pdf-download.signature-dl {
+  border: 2px solid var(--accent-green-bright);
+  border-radius: 5px;
+  background: #0a0e12;
+  color: #ffffff;
+  box-shadow: 2px 2px 0px var(--accent-green);
+}
+
+.btn-pdf-download.signature-dl:hover {
+  transform: translate(-2px, -2px) !important;
+  box-shadow: 5px 5px 0px var(--accent-green) !important;
+  background: #000000;
 }
 
 .btn-dl-top {
@@ -1422,24 +1512,35 @@ footer.deck-footer {
 
 .dl-quote-num {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.64rem;
   font-weight: 800;
   color: var(--accent-green);
 }
 
-.dl-quote-num.star {
-  color: #0d5c3a;
+.btn-pdf-download.signature-dl .dl-quote-num {
+  color: #7de095;
 }
 
 .dl-quote-title {
   font-family: var(--font-hero);
   font-size: 0.95rem;
-  font-weight: 800;
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--text-primary);
+}
+
+.btn-pdf-download.signature-dl .dl-quote-title {
+  color: #ffffff;
 }
 
 .dl-quote-sub {
-  font-size: 0.65rem;
+  font-size: 0.66rem;
   color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.btn-pdf-download.signature-dl .dl-quote-sub {
+  color: #9cb3a2;
 }
 
 .pdf-auth-row {
@@ -2028,7 +2129,7 @@ footer.deck-footer {
 </head>
 <body>
   <!-- Ambient Particle Canvas -->
-  <canvas id="canvasUiParticles" style="position:fixed; top:0; left:0; width:100vw; height:100vh; pointer-events:none; z-index:1;"></canvas>
+  <canvas id="canvasUiParticles" style="position:fixed; top:0; left:0; width:100vw; height:100vh; pointer-events:none; z-index:2;"></canvas>
 
   <!-- Top App Navigation Bar -->
   <header class="deck-header">
@@ -2038,11 +2139,6 @@ footer.deck-footer {
     </div>
 
     <div class="deck-controls-top">
-      <button class="btn-action" id="btnAutoplay" onclick="toggleAutoplay()" title="Automatska prezentacija">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        <span id="autoplayLabel">Auto Play</span>
-      </button>
-
       <button class="btn-action btn-sound-toggle" id="btnSound" onclick="toggleSound()" title="Zvučni efekti (M)">
         <span id="soundIconOff" style="display:inline-block;">🔇</span>
         <span id="soundIconOn" style="display:none;">🔊</span>
@@ -2492,8 +2588,8 @@ footer.deck-footer {
     </div>
   </div>
 
-  <!-- JavaScript Modules & Runtime -->
-  <script type="module">
+  <!-- JavaScript Runtime & Physics Engines -->
+  <script>
 // --- Core Module: audio.js ---
 /**
  * audio.js — Zero-Dependency Mechanical Sound Synthesizer (Web Audio API)
@@ -2814,7 +2910,7 @@ window.initRetroDither = initRetroDither;
  * cloth.js — CanvasUI 3D WebGL Cloth Physics Engine (Zero-Dependency)
  * 96x96 Mesh, Spring-Damper Wave Physics, Wind Gusts & Interactive Brushing
  */
-function initClothCardPhysics(customRenderers = {}) {
+function initClothCardPhysics(customRenderers = null) {
   const CLOTH_VERT = `#version 300 es
   precision highp float;
   layout(location = 0) in vec2 aGrid;
@@ -2948,231 +3044,493 @@ function initClothCardPhysics(customRenderers = {}) {
   const FORCE_GAIN = 3.25;
   const BLEED = 48;
 
-  function createShader(gl, type, source) {
-    const s = gl.createShader(type);
-    gl.shaderSource(s, source);
-    gl.compileShader(s);
-    return s;
-  }
+  function createClothInstance(wrapEl, cardEl, outputCanvas, drawTextureFn, backingRgb, config = {}) {
+    const opts = {
+      pin: 'top',
+      wind: 2.1,
+      speed: 0.45,
+      amplitude: 19,
+      drape: 22,
+      brush: 1.4,
+      brushSize: 145,
+      damping: 0.92,
+      light: 0.42,
+      sheen: 0.12,
+      shadow: 0.22,
+      cornerRadius: 12,
+      perspective: 1350,
+      ...config
+    };
 
-  function createProgram(gl, vs, fs) {
-    const p = gl.createProgram();
-    gl.attachShader(p, vs);
-    gl.attachShader(p, fs);
-    gl.linkProgram(p);
-    return p;
-  }
+    const gl = outputCanvas.getContext('webgl2', {
+      alpha: true,
+      depth: false,
+      stencil: false,
+      antialias: true,
+      premultipliedAlpha: true
+    });
+    if (!gl) return null;
 
-  const containers = document.querySelectorAll('.cloth-card-container');
-  if (!containers.length) return;
-
-  containers.forEach((container, cardIdx) => {
-    // Only init WebGL cloth on desktop/tablets where width > 300px and window > 768px
-    if (window.innerWidth <= 768) return;
-
-    let canvas = container.querySelector('.cloth-card-canvas');
-    if (!canvas) {
-      canvas = document.createElement('canvas');
-      canvas.className = 'cloth-card-canvas';
-      container.appendChild(canvas);
+    function compile(type, text) {
+      const s = gl.createShader(type);
+      gl.shaderSource(s, text);
+      gl.compileShader(s);
+      return s;
+    }
+    function link(vertText, fragText) {
+      const vert = compile(gl.VERTEX_SHADER, vertText);
+      const frag = compile(gl.FRAGMENT_SHADER, fragText);
+      const prog = gl.createProgram();
+      gl.attachShader(prog, vert);
+      gl.attachShader(prog, frag);
+      gl.linkProgram(prog);
+      const uniforms = {};
+      const count = gl.getProgramParameter(prog, gl.ACTIVE_UNIFORMS);
+      for (let i = 0; i < count; i++) {
+        const info = gl.getActiveUniform(prog, i);
+        uniforms[info.name] = gl.getUniformLocation(prog, info.name);
+      }
+      return { program: prog, uniforms };
     }
 
-    const gl = canvas.getContext('webgl2', { alpha: true, antialias: true, premultipliedAlpha: true });
-    if (!gl) return;
+    const cloth = link(CLOTH_VERT, CLOTH_FRAG);
+    const shadow = link(SHADOW_VERT, SHADOW_FRAG);
 
-    const vsCloth = createShader(gl, gl.VERTEX_SHADER, CLOTH_VERT);
-    const fsCloth = createShader(gl, gl.FRAGMENT_SHADER, CLOTH_FRAG);
-    const progCloth = createProgram(gl, vsCloth, fsCloth);
-
-    const vsShadow = createShader(gl, gl.VERTEX_SHADER, SHADOW_VERT);
-    const fsShadow = createShader(gl, gl.FRAGMENT_SHADER, SHADOW_FRAG);
-    const progShadow = createProgram(gl, vsShadow, fsShadow);
-
-    // Build grid vertices
-    const gridData = new Float32Array(NODES * NODES * 2);
-    for (let j = 0; j < NODES; j++) {
-      for (let i = 0; i < NODES; i++) {
-        const idx = (j * NODES + i) * 2;
-        gridData[idx] = i / SEG;
-        gridData[idx + 1] = j / SEG;
+    const gridVerts = new Float32Array(NODES * NODES * 2);
+    for (let y = 0; y < NODES; y++) {
+      for (let x = 0; x < NODES; x++) {
+        const i = (y * NODES + x) * 2;
+        gridVerts[i] = x / SEG;
+        gridVerts[i + 1] = y / SEG;
+      }
+    }
+    const gridIndices = new Uint32Array(SEG * SEG * 6);
+    let off = 0;
+    for (let y = 0; y < SEG; y++) {
+      for (let x = 0; x < SEG; x++) {
+        const a = y * NODES + x;
+        const b = a + 1;
+        const c = a + NODES;
+        const d = c + 1;
+        gridIndices[off++] = a; gridIndices[off++] = c; gridIndices[off++] = b;
+        gridIndices[off++] = b; gridIndices[off++] = c; gridIndices[off++] = d;
       }
     }
 
-    // Build index buffer
-    const indices = new Uint32Array(SEG * SEG * 6);
-    let ptr = 0;
-    for (let j = 0; j < SEG; j++) {
-      for (let i = 0; i < SEG; i++) {
-        const i0 = j * NODES + i;
-        const i1 = i0 + 1;
-        const i2 = i0 + NODES;
-        const i3 = i2 + 1;
-        indices[ptr++] = i0;
-        indices[ptr++] = i1;
-        indices[ptr++] = i2;
-        indices[ptr++] = i1;
-        indices[ptr++] = i3;
-        indices[ptr++] = i2;
-      }
-    }
+    const clothVao = gl.createVertexArray();
+    gl.bindVertexArray(clothVao);
+    const gridBuf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, gridBuf);
+    gl.bufferData(gl.ARRAY_BUFFER, gridVerts, gl.STATIC_DRAW);
+    gl.enableVertexAttribArray(0);
+    gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
 
-    const vboGrid = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, vboGrid);
-    gl.bufferData(gl.ARRAY_BUFFER, gridData, gl.STATIC_DRAW);
+    const dataBuf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, dataBuf);
+    gl.bufferData(gl.ARRAY_BUFFER, NODES * NODES * 4 * 4, gl.DYNAMIC_DRAW);
+    gl.enableVertexAttribArray(1);
+    gl.vertexAttribPointer(1, 4, gl.FLOAT, false, 0, 0);
 
-    const ibo = gl.createBuffer();
-    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ibo);
-    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, indices, gl.STATIC_DRAW);
+    const offsetBuf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, offsetBuf);
+    gl.bufferData(gl.ARRAY_BUFFER, NODES * NODES * 2 * 4, gl.DYNAMIC_DRAW);
+    gl.enableVertexAttribArray(2);
+    gl.vertexAttribPointer(2, 2, gl.FLOAT, false, 0, 0);
 
-    const pos = new Float32Array(NODES * NODES);
-    const vel = new Float32Array(NODES * NODES);
-    const dynData = new Float32Array(NODES * NODES * 4);
-    const vboDyn = gl.createBuffer();
-
-    let targetBox = container.querySelector('.offer-box');
-    if (!targetBox) return;
-
-    let dpr = Math.min(window.devicePixelRatio || 1, 2);
-    let cardW = targetBox.clientWidth || 340;
-    let cardH = targetBox.clientHeight || 460;
+    const indexBuf = gl.createBuffer();
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuf);
+    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, gridIndices, gl.STATIC_DRAW);
+    gl.bindVertexArray(null);
 
     const texCanvas = document.createElement('canvas');
-    if (customRenderers && customRenderers[cardIdx]) {
-      customRenderers[cardIdx](texCanvas, cardW, cardH, dpr);
-    }
-
-    const tex = gl.createTexture();
-    gl.bindTexture(gl.TEXTURE_2D, tex);
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, texCanvas);
+    const contentTex = gl.createTexture();
+    gl.bindTexture(gl.TEXTURE_2D, contentTex);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array([255, 255, 255, 255]));
 
-    targetBox.classList.add('cloth-active');
+    let hasValidTexture = false;
 
-    function resize() {
+    function updateTexture() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = wrapEl.clientWidth;
+      const h = wrapEl.clientHeight;
+      if (w < 30 || h < 30) return false;
+      if (typeof drawTextureFn === 'function') {
+        drawTextureFn(texCanvas, w, h, dpr);
+      }
+      gl.bindTexture(gl.TEXTURE_2D, contentTex);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, texCanvas);
+      hasValidTexture = true;
+      return true;
+    }
+
+    let hCur = new Float32Array(NODES * NODES);
+    let hPrev = new Float32Array(NODES * NODES);
+    let hNext = new Float32Array(NODES * NODES);
+    const vertexData = new Float32Array(NODES * NODES * 4);
+    const offsetData = new Float32Array(NODES * NODES * 2);
+    const zField = new Float32Array(NODES * NODES);
+    const rowForce = new Float32Array(NODES);
+    const colForce = new Float32Array(NODES);
+    const hangCurve = new Float32Array(NODES);
+    for (let a = 0; a < NODES; a++) {
+      hangCurve[a] = Math.pow(a / SEG, 1.3);
+    }
+
+    let simTime = Math.random() * 60;
+    let gust = 0.6;
+    const pointer = { x: -1e5, y: -1e5, inside: false };
+    const touch = { x: -1e5, y: -1e5, vx: 0, vy: 0, s: 0 };
+
+    function syncSize() {
       if (window.innerWidth <= 768) return;
-      cardW = targetBox.clientWidth || 340;
-      cardH = targetBox.clientHeight || 460;
-      if (cardW < 50 || cardH < 50) return;
-
-      const outW = cardW + BLEED * 2;
-      const outH = cardH + BLEED * 2;
-      canvas.width = Math.round(outW * dpr);
-      canvas.height = Math.round(outH * dpr);
-      canvas.style.width = outW + 'px';
-      canvas.style.height = outH + 'px';
-      canvas.style.left = -BLEED + 'px';
-      canvas.style.top = -BLEED + 'px';
-
-      if (customRenderers && customRenderers[cardIdx]) {
-        customRenderers[cardIdx](texCanvas, cardW, cardH, dpr);
-        gl.bindTexture(gl.TEXTURE_2D, tex);
-        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, texCanvas);
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const cw = outputCanvas.clientWidth;
+      const ch = outputCanvas.clientHeight;
+      if (cw < 30 || ch < 30) return;
+      const targetW = Math.round(cw * dpr);
+      const targetH = Math.round(ch * dpr);
+      if (outputCanvas.width !== targetW || outputCanvas.height !== targetH || !hasValidTexture) {
+        outputCanvas.width = targetW;
+        outputCanvas.height = targetH;
+        if (updateTexture()) {
+          cardEl.classList.add('cloth-active');
+        }
       }
     }
 
-    resize();
-    window.addEventListener('resize', resize);
-
-    // Dynamic wave simulation step
-    let time = 0;
-    function simulate() {
-      time += 0.016;
-      // Spring wave update
-      const k = DT * DT * WAVE_SPEED * WAVE_SPEED;
-      for (let j = 1; j < SEG; j++) {
-        for (let i = 1; i < SEG; i++) {
-          const idx = j * NODES + i;
-          const lap = (pos[idx - 1] + pos[idx + 1] + pos[idx - NODES] + pos[idx + NODES] - 4 * pos[idx]);
-          vel[idx] += lap * k - pos[idx] * (STIFFNESS * DT * DT);
-          vel[idx] *= 0.985;
-          pos[idx] += vel[idx];
-        }
+    function stepSim(dt) {
+      simTime += dt * opts.speed;
+      const t = simTime;
+      const windAmp = FORCE_GAIN * opts.wind * gust;
+      const kb1 = (Math.PI * 2) / (SEG / 1.5);
+      const kb2 = (Math.PI * 2) / (SEG / 3.8);
+      const ka = (Math.PI * 2) / (SEG / 2.2);
+      const w1 = WAVE_SPEED * kb1;
+      const w2 = WAVE_SPEED * kb2;
+      const drift = 1.8 * Math.sin(0.23 * t);
+      for (let b = 0; b < NODES; b++) {
+        rowForce[b] = Math.sin(kb1 * b - w1 * t + drift) + 0.45 * Math.sin(kb2 * b + w2 * t * 0.8 + 3.0);
+      }
+      for (let a = 0; a < NODES; a++) {
+        colForce[a] = (0.7 + 0.3 * Math.sin(ka * a - 1.7 * t)) * hangCurve[a];
       }
 
-      // Add gentle ambient breeze
-      const breeze = Math.sin(time * 2.2 + cardIdx) * 1.5;
-      pos[Math.floor(NODES * NODES * 0.5)] += breeze * 0.05;
-
-      // Pack dynamic normal data
-      for (let j = 0; j < NODES; j++) {
-        for (let i = 0; i < NODES; i++) {
-          const idx = j * NODES + i;
-          const z = pos[idx];
-          const nx = (i > 0 && i < SEG) ? (pos[idx + 1] - pos[idx - 1]) * FORCE_GAIN : 0;
-          const ny = (j > 0 && j < SEG) ? (pos[idx + NODES] - pos[idx - NODES]) * FORCE_GAIN : 0;
-          const pIdx = idx * 4;
-          dynData[pIdx] = z;
-          dynData[pIdx + 1] = nx;
-          dynData[pIdx + 2] = ny;
-          dynData[pIdx + 3] = 1.0;
+      const c2 = WAVE_SPEED * WAVE_SPEED;
+      const dt2 = dt * dt;
+      const decay = Math.exp(-opts.damping * dt);
+      for (let y = 0; y < NODES; y++) {
+        const up = Math.max(y - 1, 0) * NODES;
+        const down = Math.min(y + 1, SEG) * NODES;
+        const row = y * NODES;
+        for (let x = 0; x < NODES; x++) {
+          const i = row + x;
+          const l = row + Math.max(x - 1, 0);
+          const r = row + Math.min(x + 1, SEG);
+          const h = hCur[i];
+          const lap = hCur[l] + hCur[r] + hCur[up + x] + hCur[down + x] - 4 * h;
+          const force = windAmp * rowForce[x] * colForce[y];
+          const acc = c2 * lap - STIFFNESS * h + force;
+          const next = 2 * h - hPrev[i] + dt2 * acc;
+          let val = h + (next - h) * decay;
+          if (val > 3.5) val = 3.5; else if (val < -3.5) val = -3.5;
+          hNext[i] = val;
         }
       }
+      for (let b = 0; b < NODES; b++) {
+        hNext[b] = 0;
+      }
+      const spent = hPrev; hPrev = hCur; hCur = hNext; hNext = spent;
+    }
 
-      gl.bindBuffer(gl.ARRAY_BUFFER, vboDyn);
-      gl.bufferData(gl.ARRAY_BUFFER, dynData, gl.DYNAMIC_DRAW);
+    function touchImprint(delta, width, height) {
+      if (touch.s < 0.01) return;
+      const cellW = Math.max(width, 50) / SEG;
+      const cellH = Math.max(height, 50) / SEG;
+      const rx = opts.brushSize / cellW;
+      const ry = opts.brushSize / cellH;
+      const gx = touch.x / cellW;
+      const gy = touch.y / cellH;
+      const bx0 = Math.max(Math.ceil(gx - 2.5 * rx), 0);
+      const bx1 = Math.min(Math.floor(gx + 2.5 * rx), SEG);
+      const by0 = Math.max(Math.ceil(gy - 2.5 * ry), 0);
+      const by1 = Math.min(Math.floor(gy + 2.5 * ry), SEG);
+      const lift = 1.1 * opts.brush * touch.s;
+      const rate = Math.min(delta * 4, 1);
+      for (let y = by0; y <= by1; y++) {
+        const oy = (y - gy) / ry;
+        const row = y * NODES;
+        for (let x = bx0; x <= bx1; x++) {
+          const ox = (x - gx) / rx;
+          const g = Math.exp(-(ox * ox + oy * oy));
+          if (g < 0.02) continue;
+          const i = row + x;
+          hCur[i] += (lift * g - hCur[i]) * (rate * g);
+          hPrev[i] += (lift * g - hPrev[i]) * (rate * g);
+        }
+      }
+    }
+
+    function foreshorten(axisStride, lineStride, ds, anchor, comp) {
+      const ds2 = ds * ds;
+      for (let l = 0; l < NODES; l++) {
+        const base = l * lineStride;
+        offsetData[(base + anchor * axisStride) * 2 + comp] = 0;
+        let cum = 0;
+        for (let k = anchor + 1; k < NODES; k++) {
+          const i = base + k * axisStride;
+          const dz = zField[i] - zField[i - axisStride];
+          cum += ds - Math.sqrt(Math.max(ds2 - dz * dz, 0));
+          offsetData[i * 2 + comp] = -cum;
+        }
+        cum = 0;
+        for (let k = anchor - 1; k >= 0; k--) {
+          const i = base + k * axisStride;
+          const dz = zField[i] - zField[i + axisStride];
+          cum += ds - Math.sqrt(Math.max(ds2 - dz * dz, 0));
+          offsetData[i * 2 + comp] = cum;
+        }
+      }
+    }
+
+    function composeOffsets(w, h) {
+      const cellW = Math.max(w, 50) / SEG;
+      const cellH = Math.max(h, 50) / SEG;
+      const mid = SEG >> 1;
+      foreshorten(NODES, 1, cellH, 0, 1);
+      foreshorten(1, NODES, cellW, mid, 0);
+    }
+
+    function composeVertices(w, h) {
+      const drape = opts.drape * (0.3 + 0.7 * gust);
+      const cellW = Math.max(w, 50) / SEG;
+      const cellH = Math.max(h, 50) / SEG;
+      for (let y = 0; y < NODES; y++) {
+        const row = y * NODES;
+        for (let x = 0; x < NODES; x++) {
+          const i = row + x;
+          zField[i] = opts.amplitude * Math.tanh(hCur[i]) + drape * hangCurve[y];
+        }
+      }
+      for (let y = 0; y < NODES; y++) {
+        const up = Math.max(y - 1, 0) * NODES;
+        const down = Math.min(y + 1, SEG) * NODES;
+        const row = y * NODES;
+        for (let x = 0; x < NODES; x++) {
+          const i = row + x;
+          const l = row + Math.max(x - 1, 0);
+          const r = row + Math.min(x + 1, SEG);
+          const dzdx = (zField[r] - zField[l]) / (2 * cellW);
+          const dzdy = (zField[down + x] - zField[up + x]) / (2 * cellH);
+          const inv = 1 / Math.hypot(dzdx, dzdy, 1);
+          const curve = zField[l] + zField[r] + zField[up + x] + zField[down + x] - 4 * zField[i];
+          let fold = 1 - curve * 0.01;
+          if (fold < 0.86) fold = 0.86; else if (fold > 1.06) fold = 1.06;
+          const o = i * 4;
+          vertexData[o] = zField[i];
+          vertexData[o + 1] = -dzdx * inv;
+          vertexData[o + 2] = -dzdy * inv;
+          vertexData[o + 3] = fold;
+        }
+      }
+      composeOffsets(w, h);
     }
 
     function render() {
-      if (window.innerWidth <= 768) {
-        requestAnimationFrame(render);
-        return;
-      }
+      const resW = Math.max(wrapEl.clientWidth, 50);
+      const resH = Math.max(wrapEl.clientHeight, 50);
+      const outW = Math.max(outputCanvas.clientWidth, 50);
+      const outH = Math.max(outputCanvas.clientHeight, 50);
+      const dark = opts.dark || 0;
 
-      simulate();
-
-      gl.viewport(0, 0, canvas.width, canvas.height);
+      gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+      gl.viewport(0, 0, outputCanvas.width, outputCanvas.height);
       gl.clearColor(0, 0, 0, 0);
       gl.clear(gl.COLOR_BUFFER_BIT);
-
       gl.enable(gl.BLEND);
       gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
 
-      // Render Shadow Pass
-      gl.useProgram(progShadow);
-      gl.uniform2f(gl.getUniformLocation(progShadow, "uRes"), cardW, cardH);
-      gl.uniform2f(gl.getUniformLocation(progShadow, "uOut"), cardW + BLEED * 2, cardH + BLEED * 2);
-      gl.uniform1f(gl.getUniformLocation(progShadow, "uBleed"), BLEED);
-      gl.uniform1f(gl.getUniformLocation(progShadow, "uShadow"), 0.22);
-      gl.uniform1f(gl.getUniformLocation(progShadow, "uRadius"), 12.0);
-      gl.uniform1f(gl.getUniformLocation(progShadow, "uDark"), 0.1);
+      gl.bindVertexArray(clothVao);
+      gl.bindBuffer(gl.ARRAY_BUFFER, dataBuf);
+      gl.bufferSubData(gl.ARRAY_BUFFER, 0, vertexData);
+      gl.bindBuffer(gl.ARRAY_BUFFER, offsetBuf);
+      gl.bufferSubData(gl.ARRAY_BUFFER, 0, offsetData);
 
-      gl.bindBuffer(gl.ARRAY_BUFFER, vboGrid);
-      gl.enableVertexAttribArray(0);
-      gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
+      // Shadow pass
+      gl.useProgram(shadow.program);
+      gl.uniform2f(shadow.uniforms.uRes, resW, resH);
+      gl.uniform2f(shadow.uniforms.uOut, outW, outH);
+      gl.uniform1f(shadow.uniforms.uBleed, BLEED);
+      gl.uniform1f(shadow.uniforms.uShadow, opts.shadow);
+      gl.uniform1f(shadow.uniforms.uRadius, opts.cornerRadius);
+      gl.uniform1f(shadow.uniforms.uDark, dark);
+      gl.drawElements(gl.TRIANGLES, gridIndices.length, gl.UNSIGNED_INT, 0);
 
-      gl.bindBuffer(gl.ARRAY_BUFFER, vboDyn);
-      gl.enableVertexAttribArray(1);
-      gl.vertexAttribPointer(1, 4, gl.FLOAT, false, 0, 0);
-
-      gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ibo);
-      gl.drawElements(gl.TRIANGLES, indices.length, gl.UNSIGNED_INT, 0);
-
-      // Render Cloth Pass
-      gl.useProgram(progCloth);
-      gl.uniform2f(gl.getUniformLocation(progCloth, "uRes"), cardW, cardH);
-      gl.uniform2f(gl.getUniformLocation(progCloth, "uOut"), cardW + BLEED * 2, cardH + BLEED * 2);
-      gl.uniform1f(gl.getUniformLocation(progCloth, "uBleed"), BLEED);
-      gl.uniform1f(gl.getUniformLocation(progCloth, "uFocal"), 850.0);
-      gl.uniform1f(gl.getUniformLocation(progCloth, "uMaxX"), 1.0);
-      gl.uniform1f(gl.getUniformLocation(progCloth, "uLight"), 0.85);
-      gl.uniform1f(gl.getUniformLocation(progCloth, "uSheen"), 0.35);
-      gl.uniform3f(gl.getUniformLocation(progCloth, "uBacking"), 1.0, 1.0, 1.0);
-      gl.uniform1f(gl.getUniformLocation(progCloth, "uRadius"), 12.0);
-      gl.uniform1f(gl.getUniformLocation(progCloth, "uDark"), 0.0);
-
+      // Cloth pass
+      gl.useProgram(cloth.program);
       gl.activeTexture(gl.TEXTURE0);
-      gl.bindTexture(gl.TEXTURE_2D, tex);
-      gl.uniform1i(gl.getUniformLocation(progCloth, "uContent"), 0);
-
-      gl.drawElements(gl.TRIANGLES, indices.length, gl.UNSIGNED_INT, 0);
-
-      requestAnimationFrame(render);
+      gl.bindTexture(gl.TEXTURE_2D, contentTex);
+      gl.uniform1i(cloth.uniforms.uContent, 0);
+      gl.uniform2f(cloth.uniforms.uRes, resW, resH);
+      gl.uniform2f(cloth.uniforms.uOut, outW, outH);
+      gl.uniform1f(cloth.uniforms.uBleed, BLEED);
+      gl.uniform1f(cloth.uniforms.uFocal, opts.perspective);
+      gl.uniform1f(cloth.uniforms.uMaxX, 1.0);
+      gl.uniform1f(cloth.uniforms.uLight, opts.light);
+      gl.uniform1f(cloth.uniforms.uSheen, opts.sheen);
+      gl.uniform1f(cloth.uniforms.uRadius, opts.cornerRadius);
+      gl.uniform1f(cloth.uniforms.uDark, dark);
+      gl.uniform3f(cloth.uniforms.uBacking, backingRgb[0], backingRgb[1], backingRgb[2]);
+      gl.drawElements(gl.TRIANGLES, gridIndices.length, gl.UNSIGNED_INT, 0);
+      gl.bindVertexArray(null);
     }
 
-    requestAnimationFrame(render);
+    let lastTime = performance.now();
+    let simDebt = 0;
+    function loop(now) {
+      if (window.innerWidth <= 768) {
+        requestAnimationFrame(loop);
+        return;
+      }
+
+      const delta = Math.min((now - lastTime) / 1000, 1 / 20);
+      lastTime = now;
+      const w = wrapEl.clientWidth;
+      const h = wrapEl.clientHeight;
+
+      if (w < 30 || h < 30) {
+        requestAnimationFrame(loop);
+        return;
+      }
+
+      if (!hasValidTexture || outputCanvas.width === 0) {
+        syncSize();
+      }
+
+      const target = Math.max(0.55 + 0.35 * Math.sin(simTime * 0.31 + 1.3) + 0.25 * Math.sin(simTime * 0.83), 0.15);
+      gust += (target - gust) * Math.min(delta * 2, 1);
+
+      const sTarget = pointer.inside ? 1 : 0;
+      touch.s += (sTarget - touch.s) * Math.min(delta * 8, 1);
+      const omega = 14;
+      touch.vx += ((pointer.x - touch.x) * omega * omega - 2 * omega * touch.vx) * delta;
+      touch.vy += ((pointer.y - touch.y) * omega * omega - 2 * omega * touch.vy) * delta;
+      touch.x += touch.vx * delta;
+      touch.y += touch.vy * delta;
+      touchImprint(delta, w, h);
+
+      simDebt = Math.min(simDebt + delta, DT * 5);
+      while (simDebt >= DT) {
+        stepSim(DT);
+        simDebt -= DT;
+      }
+
+      composeVertices(w, h);
+      render();
+      requestAnimationFrame(loop);
+    }
+
+    wrapEl.addEventListener('pointermove', (e) => {
+      const rect = wrapEl.getBoundingClientRect();
+      pointer.x = e.clientX - rect.left;
+      pointer.y = e.clientY - rect.top;
+      pointer.inside = true;
+    });
+    wrapEl.addEventListener('pointerleave', () => {
+      pointer.inside = false;
+    });
+
+    requestAnimationFrame(loop);
+
+    return {
+      triggerGust: () => {
+        gust = 0.95;
+        touch.s = 0.55;
+        touch.x = wrapEl.clientWidth * 0.5;
+        touch.y = wrapEl.clientHeight * 0.3;
+        touch.vx = (Math.random() - 0.5) * 55;
+        touch.vy = (Math.random() - 0.5) * 55;
+      },
+      resize: () => {
+        syncSize();
+      }
+    };
+  }
+
+  // Setup instances
+  let instanceA = null;
+  let instanceB = null;
+
+  function setupInstances() {
+    if (window.innerWidth <= 768) return;
+
+    const renderers = customRenderers || window.customClothRenderers || {};
+    const rendererA = renderers[0] || window.renderCardTextureA;
+    const rendererB = renderers[1] || window.renderCardTextureB;
+
+    const wrapA = document.getElementById("clothWrapOptionA");
+    const cardA = document.getElementById("clothCardOptionA");
+    const canvasA = document.getElementById("clothCanvasOptionA");
+
+    const wrapB = document.getElementById("clothWrapOptionB");
+    const cardB = document.getElementById("clothCardOptionB");
+    const canvasB = document.getElementById("clothCanvasOptionB");
+
+    if (wrapA && cardA && canvasA && !instanceA && rendererA) {
+      instanceA = createClothInstance(wrapA, cardA, canvasA, rendererA, [1, 1, 1], {
+        wind: 2.0,
+        light: 0.42,
+        sheen: 0.12,
+        shadow: 0.22,
+        dark: 0
+      });
+    }
+
+    if (wrapB && cardB && canvasB && !instanceB && rendererB) {
+      instanceB = createClothInstance(wrapB, cardB, canvasB, rendererB, [0.05, 0.09, 0.08], {
+        wind: 2.2,
+        light: 0.48,
+        sheen: 0.22,
+        shadow: 0.25,
+        dark: 1
+      });
+    }
+
+    // Observe Slide 5 activation
+    const slide5 = document.querySelector('.slide[data-slide="5"], .slide[data-index="5"]');
+    if (slide5) {
+      const obs = new MutationObserver(() => {
+        if (slide5.classList.contains('active')) {
+          setTimeout(() => {
+            if (instanceA) instanceA.resize();
+            if (instanceB) instanceB.resize();
+          }, 50);
+        }
+      });
+      obs.observe(slide5, { attributes: true, attributeFilter: ['class'] });
+    }
+  }
+
+  if (document.fonts) {
+    document.fonts.ready.then(setupInstances);
+  } else {
+    setupInstances();
+  }
+
+  // Hook global wind trigger for slide transitions
+  const origTriggerWind = window.triggerCanvasUiWind;
+  window.triggerCanvasUiWind = function(direction) {
+    if (origTriggerWind) origTriggerWind(direction);
+    if (instanceA) { instanceA.resize(); instanceA.triggerGust(); }
+    if (instanceB) { instanceB.resize(); instanceB.triggerGust(); }
+  };
+
+  window.addEventListener('resize', () => {
+    if (instanceA) instanceA.resize();
+    if (instanceB) instanceB.resize();
   });
 }
 
@@ -3493,48 +3851,6 @@ class DeckNavigator {
   }
 }
 
-    // Global navigation bindings
-    const navigator = new DeckNavigator({
-      totalSlides: 6,
-      slideTitles: ["The Creative Collective", "Croatian Mint (Scale Duality)", "FPV Specialty (Speed & Scale)", "The Meridian 16 Vision (Sunrise & Scale)", "Commercial Proposals (Essential vs Signature)", "What Are Your Goals For The Future?"]
-    });
-
-    window.navigatorInstance = navigator;
-    window.goToSlide = (idx) => navigator.goToSlide(idx);
-    window.nextSlide = () => navigator.nextSlide();
-    window.prevSlide = () => navigator.prevSlide();
-
-    // Autoplay Controller
-    let autoplayInterval = null;
-    window.toggleAutoplay = function() {
-      const btn = document.getElementById('btnAutoplay');
-      const label = document.getElementById('autoplayLabel');
-      if (autoplayInterval) {
-        clearInterval(autoplayInterval);
-        autoplayInterval = null;
-        if (label) label.textContent = 'Auto Play';
-        if (btn) btn.classList.remove('active');
-      } else {
-        if (label) label.textContent = 'Pause Auto';
-        if (btn) btn.classList.add('active');
-        autoplayInterval = setInterval(() => {
-          if (navigator.currentSlide < navigator.totalSlides) {
-            navigator.nextSlide();
-          } else {
-            navigator.goToSlide(1);
-          }
-        }, 5500);
-      }
-    };
-
-    // Initialize CanvasUI Effects
-    initCanvasUiParticles();
-    initRetroDither();
-    initVideoModal();
-  </script>
-
-  <!-- Project Specific JavaScript -->
-  <script>
 // Meridian 16 Custom Scripts & WebGL Cloth Card Texture Renderers
 
 function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
@@ -3658,91 +3974,128 @@ function renderCardTextureB(canvas, w, h, dpr) {
   const ctx = canvas.getContext('2d');
   ctx.scale(dpr, dpr);
 
-  ctx.fillStyle = '#fdfbf7';
-  ctx.strokeStyle = '#11421f';
+  // Card Background
+  ctx.fillStyle = '#0d1815';
+  ctx.strokeStyle = '#10b981';
   ctx.lineWidth = 2.5;
   roundRect(ctx, 1, 1, w - 2, h - 2, 12, true, true);
 
-  ctx.fillStyle = '#11421f';
-  roundRect(ctx, 22, 20, 260, 24, 4, true, false);
-  ctx.fillStyle = '#ffffff';
-  ctx.font = '800 10px "JetBrains Mono", monospace';
+  // Emerald Radial Glow
+  const grad = ctx.createRadialGradient(w - 60, 40, 10, w - 60, 40, 260);
+  grad.addColorStop(0, 'rgba(16, 185, 129, 0.16)');
+  grad.addColorStop(1, 'rgba(13, 24, 21, 0)');
+  ctx.fillStyle = grad;
+  roundRect(ctx, 2, 2, w - 4, h - 4, 11, true, false);
+
+  // Top Badge
+  ctx.fillStyle = '#10b981';
+  roundRect(ctx, 22, 20, 275, 24, 4, true, false);
+  ctx.fillStyle = '#0d1815';
+  ctx.font = '900 10.5px "JetBrains Mono", monospace';
   ctx.fillText('OPTION B • QUOTE NO. 15 (RECOMMENDED)', 30, 36);
 
-  ctx.fillStyle = '#111518';
+  // Title
+  ctx.fillStyle = '#ffffff';
   ctx.font = '900 20px "Syne", sans-serif';
   ctx.fillText('FULL VISION', 22, 65);
-  ctx.fillText('CAMPAIGN', 22, 86);
+  ctx.fillText('PACKAGE', 22, 86);
 
-  ctx.fillStyle = '#3b454e';
+  // Description
+  ctx.fillStyle = '#9cb1a8';
   ctx.font = '500 12px "Plus Jakarta Sans", sans-serif';
   wrapText(ctx, 'Full cinematic rollout: dedicated storyboard, indoor FPV route test, teleprompter, sound designer score & teaser.', 22, 105, w - 44, 16);
 
-  ctx.strokeStyle = '#d5ccba';
+  // Divider
+  ctx.strokeStyle = '#1d362a';
   ctx.lineWidth = 1;
   ctx.beginPath();
   ctx.moveTo(22, 140);
   ctx.lineTo(w - 22, 140);
   ctx.stroke();
 
+  const boxH = 72;
+  const boxY = h - boxH - 18;
+
   const features = [
     ['Hero Film up to 2:30 + 60s Teaser Trailer', ' (16:9, 4K)'],
     ['Director Interview + Teleprompter', ' (2 Cams, Gimbal, Lighting)'],
     ['4x Vertical Video Reels', ' (LinkedIn, Web & Social)'],
-    ['Full FPV Package with Spotter & Route Test', ' + Corridors'],
+    ['Full FPV Package with Spotter & Route Test', ' + Green Corridors'],
     ['Deep Pre-production', ' (Storyboard, Concept, Scout & FPV Test)'],
     ['Custom Sound Designer Score & SFX', ' + Master Color Grade'],
     ['100% Source Footage & Full Rights Transfer', ' to Client']
   ];
 
-  const startY = 160;
-  const featSpacing = 22;
+  const startY = 158;
+  const availH = boxY - 14 - startY;
+  const featSpacing = availH / (features.length - 1);
 
   features.forEach(([bold, norm], idx) => {
     const featY = startY + idx * featSpacing;
-    ctx.fillStyle = '#177331';
+    ctx.fillStyle = '#10b981';
     ctx.font = '800 13px "JetBrains Mono", monospace';
     ctx.fillText('★', 24, featY);
 
-    ctx.fillStyle = '#111518';
+    ctx.fillStyle = '#ffffff';
     ctx.font = '700 11.5px "Plus Jakarta Sans", sans-serif';
     const boldW = ctx.measureText(bold).width;
     ctx.fillText(bold, 44, featY);
 
-    ctx.fillStyle = '#3b454e';
+    ctx.fillStyle = '#9cb1a8';
     ctx.font = '500 11.5px "Plus Jakarta Sans", sans-serif';
     ctx.fillText(norm, 44 + boldW, featY);
   });
 
-  const boxH = 72;
-  const boxY = h - boxH - 18;
-
-  ctx.fillStyle = '#e1ede4';
-  ctx.strokeStyle = '#a6cbb4';
+  // Price Bottom Row
+  ctx.fillStyle = '#13231e';
+  ctx.strokeStyle = '#10b981';
   ctx.lineWidth = 1.5;
   roundRect(ctx, 16, boxY, w - 32, boxH, 8, true, true);
 
-  ctx.fillStyle = '#11421f';
+  ctx.fillStyle = '#10b981';
   ctx.font = '800 9.5px "JetBrains Mono", monospace';
   ctx.fillText('TOTAL INVESTMENT (QUOTE NO. 15)', 28, boxY + 20);
 
-  ctx.fillStyle = '#11421f';
+  ctx.fillStyle = '#ffffff';
   ctx.font = '900 26px "Syne", sans-serif';
   ctx.fillText('€ 17,000', 28, boxY + 46);
 
-  ctx.fillStyle = '#177331';
+  ctx.fillStyle = '#10b981';
   ctx.font = '600 9.5px "Plus Jakarta Sans", sans-serif';
   ctx.fillText('VAT exempt (Article 90(2) Croatian VAT Act) • 0% PDV', 28, boxY + 62);
 }
 
-// Initialize Cloth Cards with Meridian 16 custom renderers
+// Attach custom renderers for cloth engine
+window.customClothRenderers = {
+  0: renderCardTextureA,
+  1: renderCardTextureB
+};
+window.renderCardTextureA = renderCardTextureA;
+window.renderCardTextureB = renderCardTextureB;
+
 if (window.initClothCardPhysics) {
-  initClothCardPhysics({
-    0: renderCardTextureA,
-    1: renderCardTextureB
-  });
+  window.initClothCardPhysics(window.customClothRenderers);
 }
 
+
+    // Global navigation bindings
+    const navigator = new DeckNavigator({
+      totalSlides: 6,
+      slideTitles: ["The Creative Collective", "Croatian Mint (Scale Duality)", "FPV Specialty (Speed & Scale)", "The Meridian 16 Vision (Sunrise & Scale)", "Commercial Proposals (Essential vs Signature)", "What Are Your Goals For The Future?"]
+    });
+
+    window.navigatorInstance = navigator;
+    window.goToSlide = (idx) => navigator.goToSlide(idx);
+    window.nextSlide = () => navigator.nextSlide();
+    window.prevSlide = () => navigator.prevSlide();
+
+    // Initialize CanvasUI Effects
+    if (typeof initCanvasUiParticles === 'function') initCanvasUiParticles();
+    if (typeof initRetroDither === 'function') initRetroDither();
+    if (typeof initVideoModal === 'function') initVideoModal();
+    if (typeof initClothCardPhysics === 'function') {
+      initClothCardPhysics(window.customClothRenderers || null);
+    }
   </script>
 </body>
 </html>
