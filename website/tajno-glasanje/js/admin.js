@@ -302,6 +302,7 @@ export class CatalogCurator {
     document.getElementById("btnTop20")?.addEventListener("click", () => this.selectTopFinalists(20));
     document.getElementById("btnTop30")?.addEventListener("click", () => this.selectTopFinalists(30));
     document.getElementById("btnTop50")?.addEventListener("click", () => this.selectTopFinalists(50));
+    document.getElementById("btnPointsGt0")?.addEventListener("click", () => this.selectItemsWithMinScore(1));
     document.getElementById("btnSelectAll")?.addEventListener("click", () => this.selectAllFiltered(true));
     document.getElementById("btnDeselectAll")?.addEventListener("click", () => this.selectAllFiltered(false));
     document.getElementById("btnInvert")?.addEventListener("click", () => this.invertFiltered());
@@ -970,6 +971,40 @@ export class CatalogCurator {
     this.render();
     this.scheduleAutoSave();
     this.showToast(`🏆 Označeno Top ${this.selectedIds.size} finalista!`);
+  }
+
+  selectItemsWithMinScore(minScore = 1) {
+    if ((!this.rankedItems || this.rankedItems.length === 0) && (!this.itemStatsMap || this.itemStatsMap.size === 0)) {
+      this.showToast("⚠️ Podaci o bodovima se učitavaju...");
+      this.loadRoundAndLeaderboard().then(() => this.selectItemsWithMinScore(minScore));
+      return;
+    }
+
+    const matchingIds = new Set();
+    this.masterCatalog.forEach(item => {
+      const st = this.itemStatsMap.get(item.id) || {};
+      const likes = st.likes !== undefined ? st.likes : (item.likes || 0);
+      const superlikes = st.superlikes !== undefined ? st.superlikes : (item.superlikes || 0);
+      const score = st.score !== undefined ? st.score : (likes + (superlikes * 3));
+      if (score >= minScore) {
+        matchingIds.add(item.id);
+      }
+    });
+
+    this.selectedIds = matchingIds;
+    try {
+      localStorage.setItem("sv_curated_active_ids", JSON.stringify(Array.from(this.selectedIds)));
+    } catch (e) {}
+
+    // Switch category filter to ALL so user sees all items
+    document.querySelectorAll(".cat-pill").forEach(p => p.classList.remove("active"));
+    const allPill = document.querySelector('.cat-pill[data-cat="ALL"]');
+    if (allPill) allPill.classList.add("active");
+    this.activeCategory = "ALL";
+
+    this.render();
+    this.scheduleAutoSave();
+    this.showToast(`★ Označeno ${this.selectedIds.size} majica s bodovima (≥ ${minScore} PTS)!`);
   }
 
   renderLeaderboardTable() {
