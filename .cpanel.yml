@@ -2,10 +2,22 @@
 deployment:
   tasks:
     - export DEPLOYPATH=$HOME/public_html/
-    - mkdir -p $HOME/.sv_live_backup
-    - if [ -d "$DEPLOYPATH/tajno-glasanje/api/data" ]; then mkdir -p "$HOME/.sv_live_backup/data" && /bin/cp -R "$DEPLOYPATH/tajno-glasanje/api/data/"* "$HOME/.sv_live_backup/data/" 2>/dev/null || true; fi
-    - if [ -f "$DEPLOYPATH/tajno-glasanje/js/catalog-data.js" ]; then /bin/cp "$DEPLOYPATH/tajno-glasanje/js/catalog-data.js" "$HOME/.sv_live_backup/catalog-data.js" 2>/dev/null || true; fi
+    # 1. Sicher backup all dynamic live data before copy
+    - mkdir -p $HOME/.sv_live_backup/tajno-glasanje
+    - mkdir -p $HOME/.sv_live_backup/swiper
+    - if [ -d "$DEPLOYPATH/tajno-glasanje/api/data" ]; then /bin/cp -a "$DEPLOYPATH/tajno-glasanje/api/data/"* "$HOME/.sv_live_backup/tajno-glasanje/" 2>/dev/null || true; fi
+    - if [ -f "$DEPLOYPATH/tajno-glasanje/js/catalog-data.js" ]; then /bin/cp -a "$DEPLOYPATH/tajno-glasanje/js/catalog-data.js" "$HOME/.sv_live_backup/tajno-glasanje/catalog-data.js" 2>/dev/null || true; fi
+    - if [ -d "$DEPLOYPATH/swiper/api/data" ]; then /bin/cp -a "$DEPLOYPATH/swiper/api/data/"* "$HOME/.sv_live_backup/swiper/" 2>/dev/null || true; fi
+    - if [ -f "$DEPLOYPATH/swiper/js/catalog-data.js" ]; then /bin/cp -a "$DEPLOYPATH/swiper/js/catalog-data.js" "$HOME/.sv_live_backup/swiper/catalog-data.js" 2>/dev/null || true; fi
+
+    # 2. Copy repo website files
     - /bin/cp -R website/* $DEPLOYPATH
-    - if [ -d "$HOME/.sv_live_backup/data" ]; then mkdir -p "$DEPLOYPATH/tajno-glasanje/api/data" && /bin/cp -R "$HOME/.sv_live_backup/data/"* "$DEPLOYPATH/tajno-glasanje/api/data/" 2>/dev/null || true; fi
-    - if [ -f "$HOME/.sv_live_backup/catalog-data.js" ]; then /bin/cp "$HOME/.sv_live_backup/catalog-data.js" "$DEPLOYPATH/tajno-glasanje/js/catalog-data.js" 2>/dev/null || true; fi
+
+    # 3. Restore all dynamic live data (live state always wins over repository initial defaults)
+    - if [ -d "$HOME/.sv_live_backup/tajno-glasanje" ]; then mkdir -p "$DEPLOYPATH/tajno-glasanje/api/data" && /bin/cp -a "$HOME/.sv_live_backup/tajno-glasanje/"* "$DEPLOYPATH/tajno-glasanje/api/data/" 2>/dev/null || true; fi
+    - if [ -f "$HOME/.sv_live_backup/tajno-glasanje/catalog-data.js" ]; then /bin/cp -a "$HOME/.sv_live_backup/tajno-glasanje/catalog-data.js" "$DEPLOYPATH/tajno-glasanje/js/catalog-data.js" 2>/dev/null || true; fi
+    - if [ -d "$HOME/.sv_live_backup/swiper" ]; then mkdir -p "$DEPLOYPATH/swiper/api/data" && /bin/cp -a "$HOME/.sv_live_backup/swiper/"* "$DEPLOYPATH/swiper/api/data/" 2>/dev/null || true; fi
+    - if [ -f "$HOME/.sv_live_backup/swiper/catalog-data.js" ]; then /bin/cp -a "$HOME/.sv_live_backup/swiper/catalog-data.js" "$DEPLOYPATH/swiper/js/catalog-data.js" 2>/dev/null || true; fi
+
+    # 4. Trigger reconciliation CLI
     - if command -v php >/dev/null 2>&1; then php "$DEPLOYPATH/tajno-glasanje/api/curate.php" --sync >/dev/null 2>&1 || true; fi

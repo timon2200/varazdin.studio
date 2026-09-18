@@ -174,10 +174,31 @@ export class CatalogCurator {
             if (validActiveIds.length === 0 && this.masterCatalog.length > 0) {
               validActiveIds = this.masterCatalog.map(it => it.id);
             }
-            this.selectedIds = new Set(validActiveIds);
+
+            // Check if client has an intentional local curated draft that shouldn't be wiped by full-catalog defaults
+            let localDraft = null;
             try {
-              localStorage.setItem("sv_curated_active_ids", JSON.stringify(Array.from(this.selectedIds)));
+              const rawLocal = localStorage.getItem("sv_curated_active_ids");
+              if (rawLocal) {
+                const parsed = JSON.parse(rawLocal);
+                if (Array.isArray(parsed) && parsed.length > 0 && parsed.length < this.masterCatalog.length) {
+                  const validLocal = parsed.filter(id => masterIdSet.has(id));
+                  if (validLocal.length > 0) localDraft = validLocal;
+                }
+              }
             } catch (e) {}
+
+            // If server returned default uncurated full catalog but user has an active curated draft locally, preserve and auto-sync to server
+            if (localDraft && validActiveIds.length === this.masterCatalog.length) {
+              this.selectedIds = new Set(localDraft);
+              this.scheduleAutoSave();
+            } else {
+              this.selectedIds = new Set(validActiveIds);
+              try {
+                localStorage.setItem("sv_curated_active_ids", JSON.stringify(Array.from(this.selectedIds)));
+              } catch (e) {}
+            }
+
             this.render();
             if (showToast) {
               this.showToast(`✓ Sinkronizirano sa serverom: aktivno ${this.selectedIds.size} majica.`);
@@ -190,6 +211,37 @@ export class CatalogCurator {
       if (showToast) {
         this.showToast("ℹ️ Server API nije dostupan. Koristi se lokalni špil.");
       }
+    }
+  }
+
+  scheduleAutoSave() {
+    clearTimeout(this._autoSaveTimer);
+    this._autoSaveTimer = setTimeout(() => {
+      this.silentSaveCuratedCatalog();
+    }, 600);
+  }
+
+  async silentSaveCuratedCatalog() {
+    const activeItems = this.masterCatalog.filter(it => this.selectedIds.has(it.id));
+    const activeIdsArray = Array.from(this.selectedIds);
+    try {
+      localStorage.setItem("sv_curated_active_ids", JSON.stringify(activeIdsArray));
+    } catch (e) {}
+
+    try {
+      await fetch("api/curate.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Cache-Control": "no-store"
+        },
+        body: JSON.stringify({
+          activeIds: activeIdsArray,
+          activeItems: activeItems
+        })
+      });
+    } catch (e) {
+      // Offline / network fallback
     }
   }
 
@@ -571,6 +623,7 @@ export class CatalogCurator {
       localStorage.setItem("sv_curated_active_ids", JSON.stringify(Array.from(this.selectedIds)));
     } catch (e) {}
     this.updateCounters();
+    this.scheduleAutoSave();
   }
 
   /* ==========================================================================
@@ -677,6 +730,7 @@ export class CatalogCurator {
       localStorage.setItem("sv_curated_active_ids", JSON.stringify(Array.from(this.selectedIds)));
     } catch (e) {}
     this.render();
+    this.scheduleAutoSave();
   }
 
   invertFiltered() {
@@ -689,6 +743,7 @@ export class CatalogCurator {
       localStorage.setItem("sv_curated_active_ids", JSON.stringify(Array.from(this.selectedIds)));
     } catch (e) {}
     this.render();
+    this.scheduleAutoSave();
   }
 
   cleanSmartDuplicates() {
@@ -714,6 +769,7 @@ export class CatalogCurator {
       localStorage.setItem("sv_curated_active_ids", JSON.stringify(Array.from(this.selectedIds)));
     } catch (e) {}
     this.render();
+    this.scheduleAutoSave();
     this.showToast(`⚡ Pametni filter: ${cleanedCount} varijanti/duplikata isključeno.`);
   }
 
@@ -744,7 +800,8 @@ export class CatalogCurator {
           localStorage.setItem("sv_curated_active_ids", JSON.stringify(parsed));
         } catch (e) {}
         this.render();
-        this.showToast(`📥 Uvezeno ${this.selectedIds.size} majica! Kliknite 'SPREMI ODABIR' za trajno spremanje.`);
+        this.scheduleAutoSave();
+        this.showToast(`📥 Uvezeno ${this.selectedIds.size} majica!`);
       } else {
         this.showToast("⚠️ Nevažeći format JSON niza.");
       }
@@ -911,7 +968,8 @@ export class CatalogCurator {
     this.activeCategory = "ALL";
 
     this.render();
-    this.showToast(`🏆 Označeno Top ${this.selectedIds.size} finalista! Kliknite 'SPREMI ODABIR' ili 'POKRENI 2. KOLO'.`);
+    this.scheduleAutoSave();
+    this.showToast(`🏆 Označeno Top ${this.selectedIds.size} finalista!`);
   }
 
   renderLeaderboardTable() {
