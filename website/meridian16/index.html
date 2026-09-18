@@ -913,6 +913,121 @@ footer.deck-footer {
   margin-top: 1rem;
 }
 
+/* Media Frames (Brutalist framed container for 16:9 cinematic visuals) */
+.media-frame-bold {
+  position: relative;
+  background: var(--bg-card);
+  border: 2px solid var(--text-primary);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 6px 6px 0px var(--text-primary);
+  height: 100%;
+  min-height: 260px;
+  max-height: 440px;
+  display: flex;
+  flex-direction: column;
+}
+
+.media-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  background: #0d1815;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.media-frame-bold img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s var(--transition-smooth);
+}
+
+.media-frame-bold:hover img {
+  transform: scale(1.03);
+}
+
+.frame-tag {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background: rgba(13, 24, 21, 0.92);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 3px;
+  letter-spacing: 0.05em;
+  z-index: 5;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Punchy Narration */
+.punchy-narration {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  font-size: clamp(0.85rem, 1.15vw, 0.98rem);
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+
+.punchy-narration p {
+  margin: 0;
+}
+
+.punchy-narration strong {
+  color: var(--text-primary);
+  font-weight: 800;
+}
+
+/* Team Badge Rows */
+.team-badge-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+  margin-top: 1rem;
+}
+
+.team-badge-card {
+  background: var(--bg-card-subtle);
+  border: 1.5px solid var(--text-primary);
+  border-radius: 4px;
+  padding: 0.6rem 0.8rem;
+  box-shadow: 2px 2px 0px var(--text-primary);
+}
+
+.team-badge-card .role {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: var(--accent-green);
+  text-transform: uppercase;
+}
+
+.team-badge-card .name {
+  font-family: var(--font-hero);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-top: 2px;
+}
+
+.team-badge-card .desc {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  line-height: 1.3;
+  margin-top: 2px;
+}
+
+
 
 /* --- Core: modal.css --- */
 /* ======================================================== */

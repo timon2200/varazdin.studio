@@ -363,6 +363,7 @@ export class CatalogCurator {
       const passes = st.passes !== undefined ? st.passes : (item.passes || 0);
       const score = st.score !== undefined ? st.score : (likes + (superlikes * 3));
       const totalVotes = st.totalVotes !== undefined ? st.totalVotes : (likes + superlikes + passes);
+      const approvalRate = st.approvalRate !== undefined ? st.approvalRate : (totalVotes > 0 ? Math.round(((likes + superlikes) / totalVotes) * 100) : 0);
       const bayesianMean = st.bayesianMean !== undefined ? st.bayesianMean : (item.bayesianMean || 0);
 
       return {
