@@ -61,12 +61,23 @@ function alignVotesStoreWithCatalog(&$store, $dataDir, $catalogJsFile) {
     if (!isset($store['items']) || !is_array($store['items'])) return false;
 
     $master = null;
-    $activeJsonFile = $dataDir . '/active-catalog.json';
-    if (file_exists($activeJsonFile)) {
-        $raw = @file_get_contents($activeJsonFile);
+    $masterJsonFile = $dataDir . '/master-catalog.json';
+    if (file_exists($masterJsonFile)) {
+        $raw = @file_get_contents($masterJsonFile);
         $parsed = @json_decode($raw, true);
         if (is_array($parsed) && count($parsed) >= 300) {
             $master = $parsed;
+        }
+    }
+
+    if (!$master) {
+        $activeJsonFile = $dataDir . '/active-catalog.json';
+        if (file_exists($activeJsonFile)) {
+            $raw = @file_get_contents($activeJsonFile);
+            $parsed = @json_decode($raw, true);
+            if (is_array($parsed) && count($parsed) >= 300) {
+                $master = $parsed;
+            }
         }
     }
 

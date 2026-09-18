@@ -61,7 +61,34 @@ function writeAtomicFile($filePath, $content) {
  * Always pulls the latest metadata (titles, images, categories) from master.
  */
 function resolveCuratedCatalogs($masterFile, $catalogFile, $activeJsonFile, $activeIdsFile) {
-    $masterData = parseCatalogFile($masterFile);
+    $masterData = [];
+    $dataDir = dirname($activeJsonFile);
+    $masterJsonFile = $dataDir . '/master-catalog.json';
+
+    // 1. Direct read master-catalog.json (fast, exact pure JSON)
+    if (file_exists($masterJsonFile)) {
+        $raw = @file_get_contents($masterJsonFile);
+        $decoded = @json_decode($raw, true);
+        if (is_array($decoded) && count($decoded) > 0) {
+            $masterData = $decoded;
+        }
+    }
+
+    // 2. Direct read active-catalog.json fallback
+    if (empty($masterData) && file_exists($activeJsonFile)) {
+        $raw = @file_get_contents($activeJsonFile);
+        $decoded = @json_decode($raw, true);
+        if (is_array($decoded) && count($decoded) > 0) {
+            $masterData = $decoded;
+        }
+    }
+
+    // 3. Fallback to parsing catalog-data.master.js
+    if (empty($masterData)) {
+        $masterData = parseCatalogFile($masterFile);
+    }
+
+    // 4. Fallback to catalog-data.js
     if (empty($masterData)) {
         $masterData = parseCatalogFile($catalogFile);
     }

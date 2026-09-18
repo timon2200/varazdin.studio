@@ -19,22 +19,25 @@ export class CatalogCurator {
     this.holdGesture = globalHoldGesture;
     this.masterCatalog = (Array.isArray(MASTER_CATALOG) && MASTER_CATALOG.length > 0) 
       ? [...MASTER_CATALOG] 
-      : [...ACTIVE_CATALOG];
+      : ((Array.isArray(ACTIVE_CATALOG) && ACTIVE_CATALOG.length > 0) ? [...ACTIVE_CATALOG] : []);
     
     // Initial active selection: start from local bundle or localStorage draft
-    let initialSelected = new Set(ACTIVE_CATALOG.map(it => it.id));
+    let initialSelected = new Set(this.masterCatalog.map(it => it.id));
     try {
       const rawStored = localStorage.getItem("sv_curated_active_ids");
       if (rawStored !== null) {
         const parsed = JSON.parse(rawStored);
-        if (Array.isArray(parsed)) {
-          initialSelected = new Set(parsed);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          const masterIdSet = new Set(this.masterCatalog.map(it => it.id));
+          const valid = parsed.filter(id => masterIdSet.has(id));
+          if (valid.length > 0) {
+            initialSelected = new Set(valid);
+          }
         }
       }
     } catch (e) {}
 
-    const masterIdSet = new Set(this.masterCatalog.map(it => it.id));
-    this.selectedIds = new Set(Array.from(initialSelected).filter(id => masterIdSet.has(id)));
+    this.selectedIds = initialSelected;
     this.activeCategory = "ALL";
     this.searchQuery = "";
     this.sortOption = "score-desc"; // 'score-desc' | 'default' | 'likes-desc' | 'super-desc' | 'votes-desc' | 'approval-desc' | 'title-asc'
@@ -145,9 +148,15 @@ export class CatalogCurator {
           if (Array.isArray(data.master) && data.master.length > 0) {
             this.masterCatalog = data.master;
           }
-          if (Array.isArray(data.active)) {
+          if (Array.isArray(data.activeIds) || Array.isArray(data.active)) {
+            const rawActiveIds = Array.isArray(data.activeIds) 
+              ? data.activeIds 
+              : data.active.map(it => it.id);
             const masterIdSet = new Set(this.masterCatalog.map(it => it.id));
-            const validActiveIds = data.active.map(it => it.id).filter(id => masterIdSet.has(id));
+            let validActiveIds = rawActiveIds.filter(id => masterIdSet.has(id));
+            if (validActiveIds.length === 0 && this.masterCatalog.length > 0) {
+              validActiveIds = this.masterCatalog.map(it => it.id);
+            }
             this.selectedIds = new Set(validActiveIds);
             try {
               localStorage.setItem("sv_curated_active_ids", JSON.stringify(Array.from(this.selectedIds)));
@@ -825,13 +834,20 @@ export class CatalogCurator {
       if (statsRes.ok) {
         const statsData = await statsRes.json();
         this.rankedItems = Array.isArray(statsData.topRanked) ? statsData.topRanked : [];
-        const totalVotes = statsData.totalVotes || 2254;
-        const totalVoters = statsData.uniqueVoters || 5;
+        const totalVotes = statsData.totalVotes || 2271;
+        const totalVoters = statsData.uniqueVoters || 6;
 
         if (this.rankedItems.length > 0) {
+          if (!this.masterCatalog || this.masterCatalog.length === 0) {
+            this.masterCatalog = [...this.rankedItems];
+          }
           this.rankedItems.forEach(it => {
             this.itemStatsMap.set(it.id, it);
           });
+        }
+
+        if (this.selectedIds.size === 0 && this.masterCatalog.length > 0) {
+          this.selectedIds = new Set(this.masterCatalog.map(it => it.id));
         }
 
         if (this.roundBadgeEl) {
@@ -843,7 +859,7 @@ export class CatalogCurator {
         const leadItems = document.getElementById("leadTotalItems");
         if (leadVotes) leadVotes.textContent = totalVotes.toLocaleString('hr-HR');
         if (leadVoters) leadVoters.textContent = totalVoters;
-        if (leadItems) leadItems.textContent = this.rankedItems.length;
+        if (leadItems) leadItems.textContent = this.rankedItems.length || this.masterCatalog.length;
 
         this.renderLeaderboardTable();
         this.render();
