@@ -598,9 +598,11 @@ class SwiperApp {
         }
       }
 
-      // Vote Filter (all, voted, top10)
+      // Vote Filter (all, voted, top10, zeropts)
       if (this.gridVoteFilter === 'voted') {
         if (item._calculatedVotes <= 0) return false;
+      } else if (this.gridVoteFilter === 'zeropts') {
+        if ((item._calculatedScore || 0) > 0) return false;
       }
 
       // Text Search Filter

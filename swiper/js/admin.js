@@ -372,11 +372,13 @@ export class CatalogCurator {
         }
       }
 
-      // Vote Filter (all, voted, top20, commented, unvoted)
+      // Vote Filter (all, voted, top20, commented, zeropts, unvoted)
       if (this.voteFilter === "voted") {
         if (item._statTotalVotes <= 0) return false;
       } else if (this.voteFilter === "unvoted") {
         if (item._statTotalVotes > 0) return false;
+      } else if (this.voteFilter === "zeropts") {
+        if ((item._statScore || 0) > 0) return false;
       } else if (this.voteFilter === "commented") {
         if (!this.commentsManager || !this.commentsManager.hasComment(item.id)) return false;
       }
