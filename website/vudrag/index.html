@@ -11,8 +11,8 @@
   <style>
     :root {
       --ios-bg: #000000;
-      --ios-card: #121214;
-      --ios-card-hover: #18181b;
+      --ios-card: #111114;
+      --ios-card-hover: #17171c;
       --riso-red: #ff3344;
       --riso-red-glow: rgba(255, 51, 68, 0.2);
     }
@@ -34,7 +34,7 @@
     .font-mono { font-family: 'Space Mono', monospace; }
     .font-pixel { font-family: 'VT323', monospace; }
 
-    /* iPhone Calendar Dark Mode Item Style (No borders, pure shadow & sleek elevation) */
+    /* iPhone Calendar Dark Mode Item Style (No borders, pure soft shadow) */
     .ios-item {
       background: #111114;
       box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.75), 0 2px 6px -1px rgba(0, 0, 0, 0.5);
@@ -204,9 +204,7 @@
 
     <!-- Questions Feed (iPhone Calendar dark mode list) -->
     <main id="questionsFeed" class="space-y-10">
-      <div class="text-center py-12 text-zinc-600 font-mono text-xs animate-pulse">
-        UČITAVANJE...
-      </div>
+      <!-- Instant render by JS -->
     </main>
 
     <!-- Minimal Footer -->
@@ -221,25 +219,112 @@
   <!-- Real-Time Collaborative Sync Engine -->
   <script>
     (function() {
-      // Configuration & API Endpoints
-      const API_URL = 'api/questions.php';
+      // Default Initial Data (Guarantees 0ms Instant Rendering on file:// or offline)
+      const DEFAULT_SECTIONS = [
+        {
+          id: "sec-teologija",
+          title: "01. TEOLOGIJA, SJEMENIŠTE I POJAM BOGA",
+          navTitle: "01. Teologija & Bog",
+          questions: [
+            { id: "q1", num: "01", text: "Bio si u sjemeništu na Kaptolu jer te teologija zanimala kao znanost i sustav mišljenja. Što te u crkvenom sustavu razočaralo da si ga napustio, a što si iz teologije ponio sa sobom u kiparstvo?" },
+            { id: "q2", num: "02", text: "U teologiji Bog stvara svijet *ex nihilo* (iz ničega), a kipar se bori sa sirovom tvari. Je li tvoj rad u radioni pokušaj duhovnog stvaranja ili čisti materijalni inat?" },
+            { id: "q3", num: "03", text: "Zašto se u umjetnosti danas ljudi srame govoriti o vjeri, duhovnosti i svetom — je li moderna umjetnost izgubila vezu s metafizikom?" }
+          ]
+        },
+        {
+          id: "sec-nietzsche",
+          title: "02. NIETZSCHE, VOLJA I PREVLADAVANJE SAMOGA SEBE",
+          navTitle: "02. Nietzsche & Volja",
+          questions: [
+            { id: "q4", num: "04", text: "Znamo da u svojoj privatnoj kolekciji čuvaš skulpturu *„Friedrich Nietzsche s rogovima”* koju ne želiš prodati. Zašto baš Nietzsche i zašto rogovi?" },
+            { id: "q5", num: "05", text: "Nietzsche piše o tome da čovjek mora proći kroz vlastiti pakao i patnju da bi stvorio nešto veliko. Koliko je tvoja osobna kriza — onaj period kad si u jednom danu ostao bez posla, stana i veze — bila gorivo za ovo što danas radiš?" },
+            { id: "q6", num: "06", text: "Danas se često čuje da je kultura postala prenježna i površna. Što tebi znači Nietzscheov pojam *volje za moć* kad stojiš pred tonama hladnog željeza?" }
+          ]
+        },
+        {
+          id: "sec-persona",
+          title: "03. PERSONA & GRČKA MITOLOGIJA: IRON MAIDEN",
+          navTitle: "03. Persona & Mreže",
+          questions: [
+            { id: "q7", num: "07", text: "Tvoja serija mrežastih skulptura *Iron Maiden* (Čelična djeva) izravno se oslanja na grčki pojam *Persone* — kazališne maske. Koje sve maske ljudi nose u društvu i zašto si tu masku odlučio napraviti od varenih šipki?" },
+            { id: "q8", num: "08", text: "Mrežasta struktura tvojih glava je prozirna — kroz nju se vidi prostor iza. Je li to maska koja skriva čovjeka ili rešetka koja ga razotkriva?" },
+            { id: "q9", num: "09", text: "Kad je ta *Persona* u Varšavi dosegla 712.000 eura, jesi li osjetio da je tržište prepoznalo filozofsku ideju maske ili samo prestiž i materijalni objekt?" }
+          ]
+        },
+        {
+          id: "sec-heraklo",
+          title: "04. HERAKLOVI ZADACI: BORBA S NEDAĆAMA",
+          navTitle: "04. Heraklovi zadaci",
+          questions: [
+            { id: "q10", num: "10", text: "Tvoj ciklus *Heraklovi zadaci* (Nemejski lav, Erimantski vepar...) bavi se antičkim mitološkim podvizima. Zbog čega si odabrao baš Herakla, a ne nekog mirnijeg antičkog heroja?" },
+            { id: "q11", num: "11", text: "Svaki od tih 12 zadataka predstavlja neku nemoguću prepreku. Koji je tvoj osobni „Herkulov zadatak” bio najteži za savladati u životu i radioni?" },
+            { id: "q12", num: "12", text: "Može li uopće nastati monumentalna umjetnost bez fizičke i mentalne borbe, ili je komfor ubojica velikih ideja?" }
+          ]
+        },
+        {
+          id: "sec-prometej",
+          title: "05. PROMETEJ, TESLA I MIT O VATRI",
+          navTitle: "05. Prometej & Tesla",
+          questions: [
+            { id: "q13", num: "13", text: "Napravio si Teslu od 13 metara čelika ispred Tehnološkog parka. Vidiš li u Tesli modernog Prometeja koji je donio vatru ljudima, a na kraju ostao sam?" },
+            { id: "q14", num: "14", text: "Zašto su tvoji motivi gotovo uvijek arhetipovi vatre, munje i transformacije energije — privlači li te ideja žrtve koju takvi geniji plaćaju?" },
+            { id: "q15", num: "15", text: "Što moderna tehnologija (poput 3D skeniranja koje koristiš u radu) donosi klasičnom kiparstvu — pomaže li ideji ili prijeti da ubije dodir ruke?" }
+          ]
+        },
+        {
+          id: "sec-kunst",
+          title: "06. POJAM UMJETNOSTI (KUNST) I TRAJANJE",
+          navTitle: "06. Kunst & Trajanje",
+          questions: [
+            { id: "q16", num: "16", text: "U renesansi se kiparstvo smatralo vrhuncem zanata i filozofije. Što je za tebe *Kunst* (umjetnost) danas — koncept, provokacija ili vještina da materiji udahneš oblik?" },
+            { id: "q17", num: "17", text: "Corten čelik s godinama stvara koru hrđe i sam sebe štiti od propadanja. Je li prolaznost metala tvoja metafora za ljudsko tijelo i sjećanje?" },
+            { id: "q18", num: "18", text: "Kad se ugase svjetla galerija i nestane sav šušur oko aukcija, što je ona jedna misao zbog koje se svako jutro vraćaš u prašinu RezervArta na Dravi?" }
+          ]
+        }
+      ];
+
+      // Protocol & API Detection
+      const isFileProtocol = window.location.protocol === 'file:';
+      const API_URL = isFileProtocol 
+        ? 'https://varazdin.studio/vudrag/api/questions.php' 
+        : 'api/questions.php';
+
       const POLL_INTERVAL_MS = 1500;
       const DEBOUNCE_SAVE_MS = 350;
 
       // Unique Session ID for Multi-User Presence
-      let sessionId = sessionStorage.getItem('vudrag_session_id');
-      if (!sessionId) {
-        sessionId = 'usr_' + Math.random().toString(36).substring(2, 10) + '_' + Date.now().toString(36);
-        sessionStorage.setItem('vudrag_session_id', sessionId);
+      let sessionId = 'usr_anon';
+      try {
+        sessionId = sessionStorage.getItem('vudrag_session_id');
+        if (!sessionId) {
+          sessionId = 'usr_' + Math.random().toString(36).substring(2, 10) + '_' + Date.now().toString(36);
+          sessionStorage.setItem('vudrag_session_id', sessionId);
+        }
+      } catch (e) {
+        sessionId = 'usr_' + Math.random().toString(36).substring(2, 8);
       }
 
       // State Management
-      let currentVersion = 0;
-      let appData = { sections: [] };
+      let currentVersion = 1;
+      let appData = { sections: DEFAULT_SECTIONS };
+      
+      // Check local storage cache if available
+      try {
+        const cached = localStorage.getItem('vudrag_questions_cache');
+        if (cached) {
+          const parsed = JSON.parse(cached);
+          if (parsed && parsed.sections) {
+            appData.sections = parsed.sections;
+            if (parsed.version) currentVersion = parsed.version;
+          }
+        }
+      } catch (e) {}
+
       let debounceTimers = {};
       let activeFocusedId = null;
       let initialFocusText = {};
       let pendingRemoteUpdates = {};
+      let isOfflineOrCors = false;
 
       // DOM Elements
       const feedContainer = document.getElementById('questionsFeed');
@@ -259,7 +344,7 @@
           .replace(/'/g, '&#039;');
       }
 
-      // Helper: Tight auto-expand textarea (zero empty dead space below text)
+      // Helper: Tight auto-expand textarea (zero empty dead space)
       function autoResizeTextarea(textarea) {
         if (!textarea) return;
         textarea.style.height = 'auto';
@@ -284,6 +369,13 @@
             </svg>
             <span class="text-zinc-400">${msg || 'Sve spremljeno'}</span>
           `;
+        } else if (type === 'local') {
+          saveStatusEl.innerHTML = `
+            <svg class="w-3.5 h-3.5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span class="text-zinc-400">Spremljeno lokalno (file://)</span>
+          `;
         } else if (type === 'error') {
           saveStatusEl.innerHTML = `
             <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
@@ -305,7 +397,7 @@
         }
       }
 
-      // Render navigation links (Minimalist iOS pill segments)
+      // Render navigation links
       function renderCategoryNav() {
         if (!categoryNavEl || !appData.sections) return;
         categoryNavEl.innerHTML = appData.sections.map(sec => `
@@ -315,7 +407,7 @@
         `).join('');
       }
 
-      // Create a single question card element (iPhone Calendar dark mode minimal style)
+      // Create a single question card element
       function createQuestionCardElement(q, secId) {
         const div = document.createElement('div');
         div.className = 'ios-item rounded-xl p-4 sm:p-5 flex items-start gap-3.5 sm:gap-4 group relative';
@@ -330,7 +422,7 @@
           <!-- Minimal Number -->
           <span class="num-badge pl-1 pt-0.5" id="tag-${escapeHtml(q.id)}">${escapeHtml(q.num)}</span>
 
-          <!-- Question Textarea (Tight fit, zero dead space) -->
+          <!-- Question Textarea -->
           <div class="w-full flex-1 min-w-0">
             <textarea 
               id="input-${escapeHtml(q.id)}"
@@ -341,7 +433,7 @@
             >${escapeHtml(q.text)}</textarea>
           </div>
 
-          <!-- Delete Action (Sleek hover/touch button) -->
+          <!-- Delete Action -->
           <div class="shrink-0 flex items-center">
             <button 
               type="button" 
@@ -373,7 +465,6 @@
           sectionEl.id = sec.id;
           sectionEl.className = 'space-y-3 pt-2';
 
-          // Minimalist Section Header
           const headerDiv = document.createElement('div');
           headerDiv.className = 'flex items-center justify-between pb-1 px-1';
           headerDiv.innerHTML = `
@@ -404,7 +495,6 @@
           feedContainer.appendChild(sectionEl);
         });
 
-        // Resize all textareas tightly
         document.querySelectorAll('.question-input').forEach(ta => autoResizeTextarea(ta));
         updateHeaderCounts();
       }
@@ -464,7 +554,6 @@
                     textarea.value = q.text;
                     autoResizeTextarea(textarea);
 
-                    // Flash highlight
                     cardEl.classList.remove('remote-flash');
                     void cardEl.offsetWidth;
                     cardEl.classList.add('remote-flash');
@@ -476,12 +565,28 @@
         });
 
         appData.sections = newSections;
+        try {
+          localStorage.setItem('vudrag_questions_cache', JSON.stringify({ version: currentVersion, sections: appData.sections }));
+        } catch (e) {}
         updateHeaderCounts();
       }
 
       // API: Save Question Text
       async function saveQuestion(qId, text) {
         setStatus('saving');
+
+        // Local cache fallback
+        appData.sections.forEach(sec => {
+          if (sec.questions) {
+            sec.questions.forEach(q => {
+              if (q.id === qId) q.text = text;
+            });
+          }
+        });
+        try {
+          localStorage.setItem('vudrag_questions_cache', JSON.stringify({ version: currentVersion, sections: appData.sections }));
+        } catch (e) {}
+
         try {
           const res = await fetch(API_URL, {
             method: 'POST',
@@ -501,8 +606,12 @@
             setStatus('error', data.message || 'Greška');
           }
         } catch (e) {
-          console.error('Save error:', e);
-          setStatus('error', 'Mrežna greška');
+          // If on file:// or offline, smoothly acknowledge local save
+          if (isFileProtocol) {
+            setStatus('local', 'Spremljeno lokalno');
+          } else {
+            setStatus('error', 'Mrežna greška');
+          }
         }
       }
 
@@ -538,8 +647,19 @@
             }
           }
         } catch (e) {
-          console.error('Add question error:', e);
-          setStatus('error', 'Greška pri dodavanju');
+          // Local fallback addition if server unreachable
+          const sec = appData.sections.find(s => s.id === sectionId);
+          if (sec) {
+            if (!sec.questions) sec.questions = [];
+            const newQ = {
+              id: 'q_loc_' + Math.random().toString(36).substring(2, 7),
+              num: String(getTotalQuestionsCount(appData.sections) + 1).padStart(2, '0'),
+              text: 'Novo pitanje...'
+            };
+            sec.questions.push(newQ);
+            reconcileFeed(appData.sections);
+            setStatus(isFileProtocol ? 'local' : 'saved', 'Dodano lokalno');
+          }
         }
       }
 
@@ -564,8 +684,14 @@
             setStatus('saved', 'Obrisano');
           }
         } catch (e) {
-          console.error('Delete question error:', e);
-          setStatus('error', 'Greška pri brisanju');
+          // Local fallback delete
+          appData.sections.forEach(sec => {
+            if (sec.questions) {
+              sec.questions = sec.questions.filter(q => q.id !== qId);
+            }
+          });
+          reconcileFeed(appData.sections);
+          setStatus(isFileProtocol ? 'local' : 'saved', 'Obrisano');
         }
       }
 
@@ -624,6 +750,7 @@
           const data = await res.json();
 
           if (data.status === 'success') {
+            isOfflineOrCors = false;
             if (activeUsersCountEl && data.activeUsers) {
               const count = data.activeUsers;
               activeUsersCountEl.textContent = count === 1 
@@ -631,20 +758,27 @@
                 : `${count} aktivna suradnika`;
             }
 
-            if (currentVersion === 0) {
+            if (currentVersion === 1 && appData.sections === DEFAULT_SECTIONS) {
               currentVersion = data.version;
               appData.sections = data.sections;
               renderCategoryNav();
-              initialRenderFeed();
+              reconcileFeed(data.sections);
             } else if (data.version > currentVersion) {
               currentVersion = data.version;
               reconcileFeed(data.sections);
             }
           }
         } catch (err) {
-          console.warn('Sync poll check:', err);
+          // If on file:// or offline, render local gracefully without looping errors
+          if (!isOfflineOrCors) {
+            isOfflineOrCors = true;
+            if (isFileProtocol) {
+              setStatus('local', 'Lokalni pregled (file://)');
+            }
+          }
         } finally {
-          setTimeout(pollSync, POLL_INTERVAL_MS);
+          // Poll continuously unless hard file:// CORS lock
+          setTimeout(pollSync, isFileProtocol ? 5000 : POLL_INTERVAL_MS);
         }
       }
 
@@ -654,7 +788,9 @@
         deleteQuestion
       };
 
-      // Initial Launch
+      // Instant Initial Launch (0ms Render)
+      renderCategoryNav();
+      initialRenderFeed();
       pollSync();
 
     })();
