@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hr" class="scroll-smooth">
+<html lang="hr" class="scroll-smooth bg-black">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,100 +7,116 @@
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Pirata+One&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=VT323&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Pirata+One&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=VT323&display=swap" rel="stylesheet">
   <style>
     :root {
-      --riso-bg: #07080a;
-      --riso-card-bg: #0d1016;
-      --riso-red: #ff2a3b;
-      --riso-red-glow: rgba(255, 42, 59, 0.25);
-      --riso-white: #f8fafc;
-      --riso-sand: #cbd5e1;
-      --accent-green: #10b981;
+      --ios-bg: #000000;
+      --ios-card: #121214;
+      --ios-card-hover: #18181b;
+      --riso-red: #ff3344;
+      --riso-red-glow: rgba(255, 51, 68, 0.2);
     }
 
     body {
-      background-color: var(--riso-bg);
-      color: var(--riso-white);
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--ios-bg);
+      color: #f4f4f5;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       overflow-x: hidden;
-      background-image: 
-        radial-gradient(circle at 50% 8%, rgba(255, 42, 59, 0.14) 0%, transparent 50%),
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     .font-gothic {
       font-family: 'Pirata One', 'Cinzel', serif;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.03em;
     }
     .font-cinzel { font-family: 'Cinzel', serif; }
-    .font-pixel { font-family: 'VT323', monospace; }
     .font-mono { font-family: 'Space Mono', monospace; }
+    .font-pixel { font-family: 'VT323', monospace; }
 
-    /* Distressed Riso Chalk Typography */
-    .distressed-title {
-      text-shadow: 
-        3px 3px 0px rgba(255, 42, 59, 0.8),
-        -1px -1px 0px rgba(255, 255, 255, 0.15),
-        0 0 30px rgba(255, 42, 59, 0.25);
+    /* iPhone Calendar Dark Mode Item Style (No borders, pure shadow & sleek elevation) */
+    .ios-item {
+      background: #111114;
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.75), 0 2px 6px -1px rgba(0, 0, 0, 0.5);
+      border: none !important;
+      position: relative;
+      transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      will-change: transform, box-shadow;
+    }
+    .ios-item:hover {
+      background: #17171c;
+      box-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.85), 0 0 15px rgba(255, 51, 68, 0.08);
+      transform: translateY(-1px);
+    }
+    .ios-item:focus-within {
+      background: #191920;
+      box-shadow: 0 12px 36px -4px rgba(0, 0, 0, 0.95), 0 0 24px var(--riso-red-glow);
     }
 
-    /* Pixel Badge style [01] from Tarot poster */
-    .pixel-tag {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border: 2px solid #f8fafc;
-      background: #060709;
-      color: #f8fafc;
-      font-family: 'VT323', monospace;
-      font-size: 1.65rem;
-      line-height: 1;
-      padding: 3px 10px;
-      box-shadow: 3px 3px 0px var(--riso-red);
-      position: relative;
+    /* Minimal iOS Red Accent Bar */
+    .ios-accent-bar {
+      width: 3px;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      background: var(--riso-red);
+      border-radius: 9999px 0 0 9999px;
+      opacity: 0.85;
+      transition: opacity 0.2s ease;
+    }
+    .ios-item:focus-within .ios-accent-bar {
+      opacity: 1;
+      box-shadow: 0 0 8px var(--riso-red);
+    }
+
+    /* Minimal Number Badge */
+    .num-badge {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #ff3344;
+      letter-spacing: 0.05em;
+      line-height: 1.5;
       user-select: none;
       flex-shrink: 0;
     }
-    .pixel-tag::before {
-      content: '';
-      position: absolute;
-      inset: -4px;
-      border: 1px dashed rgba(255, 255, 255, 0.25);
-      pointer-events: none;
+
+    /* Auto-hugging Textarea */
+    .question-input {
+      width: 100%;
+      background: transparent;
+      color: #f4f4f5;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      font-weight: 400;
+      border: none;
+      outline: none;
+      padding: 0;
+      margin: 0;
+      resize: none;
+      overflow: hidden;
+      font-family: inherit;
+      display: block;
+    }
+    .question-input::placeholder {
+      color: #52525b;
     }
 
-    /* Tarot Single Page Question Card */
-    .tarot-row {
-      background: linear-gradient(180deg, #11151e 0%, #090b0f 100%);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      position: relative;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-      will-change: transform;
-    }
-    .tarot-row:hover {
-      border-color: rgba(255, 42, 59, 0.5);
-      box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.9), 0 0 15px rgba(255, 42, 59, 0.15);
-    }
-    .tarot-row:focus-within {
-      border-color: var(--riso-red);
-      box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.95), 0 0 25px var(--riso-red-glow);
-    }
-
-    /* GPU-accelerated Remote Flash Update Indicator */
-    .tarot-row::after {
+    /* GPU-accelerated Remote Flash Update */
+    .ios-item::after {
       content: '';
       position: absolute;
-      inset: -1px;
+      inset: 0;
       border-radius: inherit;
-      border: 2px solid #ff2a3b;
-      box-shadow: 0 0 30px rgba(255, 42, 59, 0.7);
+      box-shadow: inset 0 0 0 1.5px #ff3344, 0 0 25px rgba(255, 51, 68, 0.4);
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.3s ease;
       will-change: opacity;
     }
-    .tarot-row.remote-flash::after {
+    .ios-item.remote-flash::after {
       opacity: 1;
       animation: fadeOutGlow 1.8s forwards;
     }
@@ -109,43 +125,13 @@
       100% { opacity: 0; }
     }
 
-    /* Editable Question Textarea */
-    .question-input {
-      width: 100%;
-      min-height: 44px;
-      background: transparent;
-      color: #f1f5f9;
-      font-size: 1.125rem;
-      line-height: 1.65;
-      font-weight: 400;
-      border: 1px solid transparent;
-      border-radius: 4px;
-      resize: none;
-      outline: none;
-      padding: 4px 6px;
-      transition: background-color 0.15s ease, border-color 0.15s ease;
-      font-family: inherit;
-      overflow-y: hidden;
-    }
-    .question-input:hover {
-      background: rgba(255, 255, 255, 0.02);
-      border-color: rgba(255, 255, 255, 0.12);
-    }
-    .question-input:focus {
-      background: rgba(13, 16, 22, 0.95);
-      border-color: rgba(255, 42, 59, 0.7);
-      box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
-    }
-
-    /* Category Nav Links */
+    /* Category Nav Links (iOS Pill Segment style) */
     .cat-anchor {
-      transition: all 0.2s;
+      transition: all 0.2s ease;
     }
     .cat-anchor:hover {
-      background-color: var(--riso-red);
+      background-color: #27272a;
       color: #ffffff;
-      border-color: var(--riso-red);
-      box-shadow: 2px 2px 0px #ffffff;
     }
 
     /* Pulse dot for live state */
@@ -159,111 +145,74 @@
     }
   </style>
 </head>
-<body class="min-h-screen pb-16 px-4 md:px-12 selection:bg-red-600 selection:text-white">
+<body class="min-h-screen pb-20 px-4 md:px-8 selection:bg-red-600 selection:text-white">
 
-  <!-- Sticky Live Collaboration Topbar -->
-  <div class="sticky top-0 z-50 bg-[#07080a]/92 backdrop-blur-md border-b border-zinc-800/80 -mx-4 md:-mx-12 px-4 md:px-12 py-2.5 mb-8 transition-all">
-    <div class="max-w-4xl mx-auto flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+  <!-- Sticky iOS-Style Frosted Top Bar -->
+  <div class="sticky top-0 z-50 bg-black/80 backdrop-blur-xl border-b border-zinc-900 -mx-4 md:-mx-8 px-4 md:px-8 py-3 mb-8 transition-all">
+    <div class="max-w-3xl mx-auto flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
       <div class="flex items-center gap-3">
-        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 border border-red-500/40 bg-red-950/40 text-red-400 font-bold uppercase tracking-wider text-[11px]">
-          <span class="w-2 h-2 rounded-full bg-red-500 pulse-dot"></span>
-          LIVE DOKUMENT
+        <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-red-950/60 text-red-400 font-bold tracking-wider text-[11px]">
+          <span class="w-1.5 h-1.5 rounded-full bg-red-500 pulse-dot"></span>
+          LIVE
         </span>
         <span id="saveStatus" class="text-zinc-400 flex items-center gap-1.5">
           <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
           </svg>
-          Sve izmjene spremljene na poslužitelju
+          Sve spremljeno
         </span>
       </div>
 
-      <div class="flex items-center gap-4 text-zinc-400">
+      <div class="flex items-center gap-3 text-zinc-400">
         <div class="flex items-center gap-1.5">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-dot"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-dot"></span>
           <span id="activeUsersCount">1 aktivan suradnik</span>
         </div>
-        <span class="text-zinc-700">|</span>
-        <span class="text-zinc-500 hidden sm:inline">Uređivanje u stvarnom vremenu</span>
+        <span class="text-zinc-800">|</span>
+        <span class="text-zinc-500 text-[11px] hidden sm:inline">Auto-save aktivan</span>
       </div>
     </div>
   </div>
 
-  <!-- Main Single Page Container -->
-  <div class="max-w-4xl mx-auto">
+  <!-- Main Container -->
+  <div class="max-w-3xl mx-auto">
 
-    <!-- Header / Poster Cover Section -->
-    <header class="text-center mb-12 pt-2 pb-8 border-b-2 border-zinc-800/90 relative">
+    <!-- Minimal Art Header -->
+    <header class="text-center mb-12 pt-2 pb-6 relative">
       
-      <!-- Top Badge -->
-      <div class="inline-flex items-center gap-3 mb-4">
-        <span class="font-mono text-xs tracking-widest text-red-500 uppercase px-3 py-1 border border-red-900/60 bg-red-950/30">
-          STUDIO VARAŽDIN · DOKUMENTARNI DIJALOG
-        </span>
-        <span class="text-zinc-600 font-mono text-xs">/</span>
-        <span class="font-mono text-xs tracking-widest text-zinc-400 uppercase">
-          NIKOLA VUDRAG
+      <!-- Studio Tag -->
+      <div class="inline-flex items-center gap-2 mb-3">
+        <span class="font-mono text-[11px] tracking-widest text-zinc-500 uppercase">
+          STUDIO VARAŽDIN × NIKOLA VUDRAG
         </span>
       </div>
 
-      <!-- Hero Typography (Gothic Stipple Acid Riso) -->
-      <h1 class="text-6xl sm:text-7xl md:text-9xl font-gothic text-white uppercase tracking-wider mb-2 distressed-title">
+      <!-- Hero Typography -->
+      <h1 class="text-5xl sm:text-6xl md:text-8xl font-gothic text-white uppercase tracking-wider mb-2">
         PITANJA
       </h1>
       
-      <p id="totalQuestionsHeader" class="font-cinzel text-base md:text-lg text-red-500 font-bold tracking-widest uppercase">
+      <p id="totalQuestionsHeader" class="font-cinzel text-xs sm:text-sm text-red-500 font-bold tracking-widest uppercase mb-4">
         TEOLOGIJA, NIETZSCHE, MITOVI & KUNST // 18 PITANJA
       </p>
 
-      <!-- Center Acid Riso Ornament -->
-      <div class="flex items-center justify-center gap-4 my-6">
-        <div class="h-[1px] w-20 md:w-32 bg-gradient-to-r from-transparent to-red-600"></div>
-        <span id="ornamentRange" class="font-pixel text-2xl md:text-3xl text-red-500">◆ 01 — 18 ◆</span>
-        <div class="h-[1px] w-20 md:w-32 bg-gradient-to-l from-transparent to-red-600"></div>
-      </div>
-
-      <!-- Quick Smooth Scroll Category Anchors -->
-      <nav id="categoryNav" class="flex flex-wrap items-center justify-center gap-2 mt-6 text-xs font-mono">
-        <a href="#sec-teologija" class="cat-anchor px-3 py-1.5 border border-zinc-800 bg-zinc-900/90 text-zinc-300 uppercase tracking-wider">
-          01. Teologija & Bog
-        </a>
-        <a href="#sec-nietzsche" class="cat-anchor px-3 py-1.5 border border-zinc-800 bg-zinc-900/90 text-zinc-300 uppercase tracking-wider">
-          02. Nietzsche & Volja
-        </a>
-        <a href="#sec-persona" class="cat-anchor px-3 py-1.5 border border-zinc-800 bg-zinc-900/90 text-zinc-300 uppercase tracking-wider">
-          03. Persona & Mreže
-        </a>
-        <a href="#sec-heraklo" class="cat-anchor px-3 py-1.5 border border-zinc-800 bg-zinc-900/90 text-zinc-300 uppercase tracking-wider">
-          04. Heraklovi zadaci
-        </a>
-        <a href="#sec-prometej" class="cat-anchor px-3 py-1.5 border border-zinc-800 bg-zinc-900/90 text-zinc-300 uppercase tracking-wider">
-          05. Prometej & Tesla
-        </a>
-        <a href="#sec-kunst" class="cat-anchor px-3 py-1.5 border border-zinc-800 bg-zinc-900/90 text-zinc-300 uppercase tracking-wider">
-          06. Kunst & Trajanje
-        </a>
+      <!-- Category Navigation (Minimal iOS Segment Pills) -->
+      <nav id="categoryNav" class="flex flex-wrap items-center justify-center gap-1.5 mt-5 text-[11px] font-mono">
+        <!-- Rendered dynamically -->
       </nav>
     </header>
 
-    <!-- Single Page Continuous Question Feed -->
-    <main id="questionsFeed" class="space-y-12">
-      <div class="text-center py-12 text-zinc-500 font-mono text-sm animate-pulse">
-        UČITAVANJE PITANJA SA POSLUŽITELJA...
+    <!-- Questions Feed (iPhone Calendar dark mode list) -->
+    <main id="questionsFeed" class="space-y-10">
+      <div class="text-center py-12 text-zinc-600 font-mono text-xs animate-pulse">
+        UČITAVANJE...
       </div>
     </main>
 
-    <!-- Bottom Studio Baseline / Risograph Footer -->
-    <footer class="mt-20 pt-8 border-t-2 border-zinc-800 text-center space-y-4">
-      <div class="flex flex-col md:flex-row items-center justify-between gap-4 font-mono text-xs text-zinc-400">
-        <div class="flex items-center gap-2">
-          <span class="text-red-500">■</span>
-          <span class="tracking-widest uppercase">NIKOLA VUDRAG × STUDIO VARAŽDIN</span>
-        </div>
-        <div class="tracking-widest uppercase text-zinc-300">
-          —— STUDIO VARAŽDIN · FILMSKA PRODUKCIJA ——
-        </div>
-        <div class="text-zinc-500">
-          SVE IZMJENE SE SPREMAJU AUTOMATSKI
-        </div>
+    <!-- Minimal Footer -->
+    <footer class="mt-20 pt-8 text-center space-y-2 border-t border-zinc-900">
+      <div class="font-mono text-[11px] text-zinc-600 uppercase tracking-wider">
+        STUDIO VARAŽDIN · DOKUMENTARNI DIJALOG
       </div>
     </footer>
 
@@ -297,7 +246,6 @@
       const saveStatusEl = document.getElementById('saveStatus');
       const activeUsersCountEl = document.getElementById('activeUsersCount');
       const totalQuestionsHeaderEl = document.getElementById('totalQuestionsHeader');
-      const ornamentRangeEl = document.getElementById('ornamentRange');
       const categoryNavEl = document.getElementById('categoryNav');
 
       // Helper: Strict HTML Entity Escaper for Security
@@ -311,12 +259,11 @@
           .replace(/'/g, '&#039;');
       }
 
-      // Helper: Smooth, Non-flickering Auto-expand Textarea
+      // Helper: Tight auto-expand textarea (zero empty dead space below text)
       function autoResizeTextarea(textarea) {
         if (!textarea) return;
         textarea.style.height = 'auto';
-        const newHeight = Math.max(textarea.scrollHeight, 44);
-        textarea.style.height = newHeight + 'px';
+        textarea.style.height = textarea.scrollHeight + 'px';
       }
 
       // Status UI updater
@@ -328,19 +275,19 @@
               <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
               <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
-            <span class="text-amber-400">Spremanje na poslužitelj...</span>
+            <span class="text-amber-400">Spremanje...</span>
           `;
         } else if (type === 'saved') {
           saveStatusEl.innerHTML = `
             <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
             </svg>
-            <span class="text-zinc-300">${msg || 'Sve izmjene spremljene'}</span>
+            <span class="text-zinc-400">${msg || 'Sve spremljeno'}</span>
           `;
         } else if (type === 'error') {
           saveStatusEl.innerHTML = `
-            <span class="w-2 h-2 rounded-full bg-red-500"></span>
-            <span class="text-red-400">${msg || 'Greška kod spremanja'}</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
+            <span class="text-red-400">${msg || 'Greška'}</span>
           `;
         }
       }
@@ -353,46 +300,38 @@
       // Update header totals
       function updateHeaderCounts() {
         const total = getTotalQuestionsCount(appData.sections);
-        const totalFormatted = total < 10 ? '0' + total : total;
         if (totalQuestionsHeaderEl) {
           totalQuestionsHeaderEl.textContent = `TEOLOGIJA, NIETZSCHE, MITOVI & KUNST // ${total} PITANJA`;
         }
-        if (ornamentRangeEl) {
-          ornamentRangeEl.textContent = `◆ 01 — ${totalFormatted} ◆`;
-        }
       }
 
-      // Render navigation links with full HTML escaping
+      // Render navigation links (Minimalist iOS pill segments)
       function renderCategoryNav() {
         if (!categoryNavEl || !appData.sections) return;
         categoryNavEl.innerHTML = appData.sections.map(sec => `
-          <a href="#${escapeHtml(sec.id)}" class="cat-anchor px-3 py-1.5 border border-zinc-800 bg-zinc-900/90 text-zinc-300 uppercase tracking-wider">
+          <a href="#${escapeHtml(sec.id)}" class="cat-anchor px-2.5 py-1 rounded-md bg-zinc-900/80 text-zinc-400 uppercase tracking-wider text-[11px]">
             ${escapeHtml(sec.navTitle || sec.title)}
           </a>
         `).join('');
       }
 
-      // Create a single question card element (DOM Node)
+      // Create a single question card element (iPhone Calendar dark mode minimal style)
       function createQuestionCardElement(q, secId) {
         const div = document.createElement('div');
-        div.className = 'tarot-row rounded-xl p-5 md:p-6 flex flex-col md:flex-row items-start gap-4 md:gap-5 group relative';
+        div.className = 'ios-item rounded-xl p-4 sm:p-5 flex items-start gap-3.5 sm:gap-4 group relative';
         div.id = `card-${q.id}`;
         div.dataset.id = q.id;
         div.dataset.sectionId = secId;
 
         div.innerHTML = `
-          <div class="flex items-center justify-between w-full md:w-auto">
-            <span class="pixel-tag" id="tag-${escapeHtml(q.id)}">${escapeHtml(q.num)}</span>
-            <button 
-              type="button" 
-              onclick="window.vudragApp.deleteQuestion('${escapeHtml(q.id)}')"
-              title="Obriši pitanje"
-              class="md:hidden min-w-[44px] min-h-[44px] flex items-center justify-center text-zinc-500 hover:text-red-500 font-mono text-sm">
-              ✕
-            </button>
-          </div>
+          <!-- Minimal Red Accent Bar -->
+          <div class="ios-accent-bar"></div>
 
-          <div class="w-full relative flex-1">
+          <!-- Minimal Number -->
+          <span class="num-badge pl-1 pt-0.5" id="tag-${escapeHtml(q.id)}">${escapeHtml(q.num)}</span>
+
+          <!-- Question Textarea (Tight fit, zero dead space) -->
+          <div class="w-full flex-1 min-w-0">
             <textarea 
               id="input-${escapeHtml(q.id)}"
               data-id="${escapeHtml(q.id)}"
@@ -402,14 +341,15 @@
             >${escapeHtml(q.text)}</textarea>
           </div>
 
-          <div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity hidden md:flex items-center gap-2">
+          <!-- Delete Action (Sleek hover/touch button) -->
+          <div class="shrink-0 flex items-center">
             <button 
               type="button" 
               onclick="window.vudragApp.deleteQuestion('${escapeHtml(q.id)}')"
               title="Obriši pitanje"
-              class="text-zinc-600 hover:text-red-500 hover:bg-red-950/40 p-1.5 rounded transition-colors font-mono text-xs flex items-center gap-1 border border-transparent hover:border-red-900/60">
-              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+              class="text-zinc-600 hover:text-red-400 p-1.5 rounded-lg hover:bg-zinc-800 transition-all opacity-0 group-hover:opacity-100 focus:opacity-100 flex items-center justify-center">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           </div>
@@ -423,7 +363,7 @@
         return div;
       }
 
-      // Initial Full Render of DOM skeleton
+      // Initial Render of DOM skeleton
       function initialRenderFeed() {
         if (!feedContainer || !appData.sections) return;
         feedContainer.innerHTML = '';
@@ -431,25 +371,26 @@
         appData.sections.forEach(sec => {
           const sectionEl = document.createElement('section');
           sectionEl.id = sec.id;
-          sectionEl.className = 'space-y-4 pt-4';
+          sectionEl.className = 'space-y-3 pt-2';
 
+          // Minimalist Section Header
           const headerDiv = document.createElement('div');
-          headerDiv.className = 'flex items-center justify-between pb-2 border-b border-red-950/80';
+          headerDiv.className = 'flex items-center justify-between pb-1 px-1';
           headerDiv.innerHTML = `
-            <span class="text-xs font-mono text-red-500 font-bold uppercase tracking-widest">
-              // ${escapeHtml(sec.title)}
+            <span class="text-xs font-mono text-zinc-500 font-semibold tracking-wider uppercase">
+              ${escapeHtml(sec.title)}
             </span>
             <button 
               type="button" 
               onclick="window.vudragApp.addQuestion('${escapeHtml(sec.id)}')"
-              class="text-[11px] font-mono text-zinc-400 hover:text-red-400 hover:border-red-600/60 transition-colors px-2 py-0.5 border border-zinc-800 bg-zinc-900/80 uppercase tracking-wider flex items-center gap-1 cursor-pointer">
-              + Dodaj pitanje
+              class="text-[11px] font-mono text-zinc-400 hover:text-red-400 transition-colors px-2 py-0.5 rounded bg-zinc-900 hover:bg-zinc-800 uppercase tracking-wider flex items-center gap-1 cursor-pointer">
+              + Dodaj
             </button>
           `;
           sectionEl.appendChild(headerDiv);
 
           const cardsContainer = document.createElement('div');
-          cardsContainer.className = 'space-y-4';
+          cardsContainer.className = 'space-y-2.5';
           cardsContainer.id = `cards-${sec.id}`;
 
           if (sec.questions && sec.questions.length > 0) {
@@ -463,7 +404,7 @@
           feedContainer.appendChild(sectionEl);
         });
 
-        // Resize all textareas
+        // Resize all textareas tightly
         document.querySelectorAll('.question-input').forEach(ta => autoResizeTextarea(ta));
         updateHeaderCounts();
       }
@@ -475,12 +416,11 @@
         newSections.forEach(newSec => {
           let sectionCards = document.getElementById(`cards-${newSec.id}`);
           if (!sectionCards) {
-            // New section dynamically added
             initialRenderFeed();
             return;
           }
 
-          const existingCards = Array.from(sectionCards.querySelectorAll('.tarot-row'));
+          const existingCards = Array.from(sectionCards.querySelectorAll('.ios-item'));
           const existingIds = existingCards.map(c => c.dataset.id);
           const newIds = newSec.questions ? newSec.questions.map(q => q.id) : [];
 
@@ -497,7 +437,6 @@
               let cardEl = document.getElementById(`card-${q.id}`);
               
               if (!cardEl) {
-                // Insert new card node without touching existing elements
                 cardEl = createQuestionCardElement(q, newSec.id);
                 const currentChildren = sectionCards.children;
                 if (index < currentChildren.length) {
@@ -519,16 +458,15 @@
               const textarea = document.getElementById(`input-${q.id}`);
               if (textarea) {
                 if (q.id === activeFocusedId) {
-                  // User is actively focused here -> buffer remote update
                   pendingRemoteUpdates[q.id] = q.text;
                 } else {
                   if (textarea.value !== q.text) {
                     textarea.value = q.text;
                     autoResizeTextarea(textarea);
 
-                    // Flash highlight indicator
+                    // Flash highlight
                     cardEl.classList.remove('remote-flash');
-                    void cardEl.offsetWidth; // Force reflow
+                    void cardEl.offsetWidth;
                     cardEl.classList.add('remote-flash');
                   }
                 }
@@ -558,13 +496,13 @@
           const data = await res.json();
           if (data.status === 'success') {
             currentVersion = data.version;
-            setStatus('saved', 'Spremljeno na poslužitelj');
+            setStatus('saved', 'Spremljeno');
           } else {
             setStatus('error', data.message || 'Greška');
           }
         } catch (e) {
           console.error('Save error:', e);
-          setStatus('error', 'Mrežna greška kod spremanja');
+          setStatus('error', 'Mrežna greška');
         }
       }
 
@@ -586,9 +524,8 @@
           if (data.status === 'success') {
             currentVersion = data.version;
             reconcileFeed(data.sections);
-            setStatus('saved', 'Novo pitanje dodano');
+            setStatus('saved', 'Dodano novo pitanje');
 
-            // Focus new element
             const lastSec = data.sections.find(s => s.id === sectionId);
             if (lastSec && lastSec.questions && lastSec.questions.length > 0) {
               const newQ = lastSec.questions[lastSec.questions.length - 1];
@@ -596,6 +533,7 @@
               if (newEl) {
                 newEl.focus();
                 newEl.select();
+                autoResizeTextarea(newEl);
               }
             }
           }
@@ -623,7 +561,7 @@
           if (data.status === 'success') {
             currentVersion = data.version;
             reconcileFeed(data.sections);
-            setStatus('saved', 'Pitanje obrisano');
+            setStatus('saved', 'Obrisano');
           }
         } catch (e) {
           console.error('Delete question error:', e);
@@ -642,7 +580,6 @@
         const currentVal = el ? el.value : '';
         const initialVal = initialFocusText[qId] || '';
 
-        // If user actively changed text, flush debounce immediately and save
         if (debounceTimers[qId]) {
           clearTimeout(debounceTimers[qId]);
           delete debounceTimers[qId];
@@ -650,7 +587,6 @@
         } else if (currentVal !== initialVal) {
           saveQuestion(qId, currentVal);
         } else if (pendingRemoteUpdates[qId] !== undefined) {
-          // If user didn't change anything, but remote update arrived while focused, apply it!
           if (el) {
             el.value = pendingRemoteUpdates[qId];
             autoResizeTextarea(el);
@@ -665,7 +601,7 @@
         }
       }
 
-      // Input change with debounce
+      // Input change with debounce & auto-height resize
       function onTextInput(qId, textarea) {
         autoResizeTextarea(textarea);
         setStatus('saving');
@@ -688,7 +624,6 @@
           const data = await res.json();
 
           if (data.status === 'success') {
-            // Update active users badge
             if (activeUsersCountEl && data.activeUsers) {
               const count = data.activeUsers;
               activeUsersCountEl.textContent = count === 1 
@@ -696,7 +631,6 @@
                 : `${count} aktivna suradnika`;
             }
 
-            // If initial load or version changed remotely
             if (currentVersion === 0) {
               currentVersion = data.version;
               appData.sections = data.sections;
