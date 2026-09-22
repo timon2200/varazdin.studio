@@ -40,6 +40,7 @@
       box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.75), 0 2px 6px -1px rgba(0, 0, 0, 0.5);
       border: none !important;
       position: relative;
+      overflow: hidden;
       transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
       will-change: transform, box-shadow;
     }
@@ -439,7 +440,7 @@
               type="button" 
               onclick="window.vudragApp.deleteQuestion('${escapeHtml(q.id)}')"
               title="Obriši pitanje"
-              class="text-zinc-600 hover:text-red-400 p-1.5 rounded-lg hover:bg-zinc-800 transition-all opacity-0 group-hover:opacity-100 focus:opacity-100 flex items-center justify-center">
+              class="text-zinc-600 hover:text-red-400 min-w-[40px] min-h-[40px] sm:min-w-[32px] sm:min-h-[32px] p-2 sm:p-1.5 rounded-lg hover:bg-zinc-800 transition-all opacity-40 sm:opacity-0 sm:group-hover:opacity-100 hover:opacity-100 focus:opacity-100 flex items-center justify-center">
               <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
               </svg>

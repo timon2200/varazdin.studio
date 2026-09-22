@@ -283,7 +283,7 @@ if ($method === 'GET') {
 
 // Handle POST request
 if ($method === 'POST') {
-    $bodyRaw = file_get_contents('php://input');
+    $bodyRaw = file_get_contents('php://input', false, null, 0, 102400);
     $payload = json_decode($bodyRaw, true);
     
     if (!$payload || !isset($payload['action'])) {
