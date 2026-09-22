@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NIKOLA VUDRAG — FILOZOFIJA, TEOLOGIJA I MITOVI // STUDIO VARAŽDIN</title>
+  <title>NIKOLA VUDRAG — PITANJA // STUDIO VARAŽDIN</title>
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,6 +16,7 @@
       --riso-red-glow: rgba(255, 42, 59, 0.25);
       --riso-white: #f8fafc;
       --riso-sand: #cbd5e1;
+      --accent-green: #10b981;
     }
 
     body {
@@ -74,12 +75,66 @@
       background: linear-gradient(180deg, #11151e 0%, #090b0f 100%);
       border: 1px solid rgba(255, 255, 255, 0.08);
       position: relative;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+      will-change: transform;
     }
     .tarot-row:hover {
+      border-color: rgba(255, 42, 59, 0.5);
+      box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.9), 0 0 15px rgba(255, 42, 59, 0.15);
+    }
+    .tarot-row:focus-within {
       border-color: var(--riso-red);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.9), 0 0 20px var(--riso-red-glow);
+      box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.95), 0 0 25px var(--riso-red-glow);
+    }
+
+    /* GPU-accelerated Remote Flash Update Indicator */
+    .tarot-row::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      border: 2px solid #ff2a3b;
+      box-shadow: 0 0 30px rgba(255, 42, 59, 0.7);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      will-change: opacity;
+    }
+    .tarot-row.remote-flash::after {
+      opacity: 1;
+      animation: fadeOutGlow 1.8s forwards;
+    }
+    @keyframes fadeOutGlow {
+      0% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    /* Editable Question Textarea */
+    .question-input {
+      width: 100%;
+      min-height: 44px;
+      background: transparent;
+      color: #f1f5f9;
+      font-size: 1.125rem;
+      line-height: 1.65;
+      font-weight: 400;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      resize: none;
+      outline: none;
+      padding: 4px 6px;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+      font-family: inherit;
+      overflow-y: hidden;
+    }
+    .question-input:hover {
+      background: rgba(255, 255, 255, 0.02);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+    .question-input:focus {
+      background: rgba(13, 16, 22, 0.95);
+      border-color: rgba(255, 42, 59, 0.7);
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
     }
 
     /* Category Nav Links */
@@ -92,20 +147,57 @@
       border-color: var(--riso-red);
       box-shadow: 2px 2px 0px #ffffff;
     }
+
+    /* Pulse dot for live state */
+    @keyframes livePulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.35; transform: scale(0.85); }
+    }
+    .pulse-dot {
+      will-change: transform, opacity;
+      animation: livePulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
   </style>
 </head>
-<body class="min-h-screen py-10 md:py-16 px-4 md:px-12 selection:bg-red-600 selection:text-white">
+<body class="min-h-screen pb-16 px-4 md:px-12 selection:bg-red-600 selection:text-white">
+
+  <!-- Sticky Live Collaboration Topbar -->
+  <div class="sticky top-0 z-50 bg-[#07080a]/92 backdrop-blur-md border-b border-zinc-800/80 -mx-4 md:-mx-12 px-4 md:px-12 py-2.5 mb-8 transition-all">
+    <div class="max-w-4xl mx-auto flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+      <div class="flex items-center gap-3">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 border border-red-500/40 bg-red-950/40 text-red-400 font-bold uppercase tracking-wider text-[11px]">
+          <span class="w-2 h-2 rounded-full bg-red-500 pulse-dot"></span>
+          LIVE DOKUMENT
+        </span>
+        <span id="saveStatus" class="text-zinc-400 flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          Sve izmjene spremljene na poslužitelju
+        </span>
+      </div>
+
+      <div class="flex items-center gap-4 text-zinc-400">
+        <div class="flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-dot"></span>
+          <span id="activeUsersCount">1 aktivan suradnik</span>
+        </div>
+        <span class="text-zinc-700">|</span>
+        <span class="text-zinc-500 hidden sm:inline">Uređivanje u stvarnom vremenu</span>
+      </div>
+    </div>
+  </div>
 
   <!-- Main Single Page Container -->
   <div class="max-w-4xl mx-auto">
 
     <!-- Header / Poster Cover Section -->
-    <header class="text-center mb-16 pt-2 pb-10 border-b-2 border-zinc-800/90 relative">
+    <header class="text-center mb-12 pt-2 pb-8 border-b-2 border-zinc-800/90 relative">
       
       <!-- Top Badge -->
       <div class="inline-flex items-center gap-3 mb-4">
         <span class="font-mono text-xs tracking-widest text-red-500 uppercase px-3 py-1 border border-red-900/60 bg-red-950/30">
-          STUDIO VARAŽDIN · FILOZOFIJA & TEOLOGIJA
+          STUDIO VARAŽDIN · DOKUMENTARNI DIJALOG
         </span>
         <span class="text-zinc-600 font-mono text-xs">/</span>
         <span class="font-mono text-xs tracking-widest text-zinc-400 uppercase">
@@ -118,325 +210,45 @@
         PITANJA
       </h1>
       
-      <p class="font-cinzel text-base md:text-lg text-red-500 font-bold tracking-widest uppercase">
+      <p id="totalQuestionsHeader" class="font-cinzel text-base md:text-lg text-red-500 font-bold tracking-widest uppercase">
         TEOLOGIJA, NIETZSCHE, MITOVI & KUNST // 18 PITANJA
       </p>
 
       <!-- Center Acid Riso Ornament -->
       <div class="flex items-center justify-center gap-4 my-6">
         <div class="h-[1px] w-20 md:w-32 bg-gradient-to-r from-transparent to-red-600"></div>
-        <span class="font-pixel text-2xl md:text-3xl text-red-500">◆ 01 — 18 ◆</span>
+        <span id="ornamentRange" class="font-pixel text-2xl md:text-3xl text-red-500">◆ 01 — 18 ◆</span>
         <div class="h-[1px] w-20 md:w-32 bg-gradient-to-l from-transparent to-red-600"></div>
       </div>
 
       <!-- Quick Smooth Scroll Category Anchors -->
-      <nav class="flex flex-wrap items-center justify-center gap-2 mt-8 text-xs font-mono">
-        <a href="#sec-teologija" class="cat-anchor px-3.5 py-1.5 border border-zinc-800 bg-zinc-900/90 text-zinc-300 uppercase tracking-wider">
+      <nav id="categoryNav" class="flex flex-wrap items-center justify-center gap-2 mt-6 text-xs font-mono">
+        <a href="#sec-teologija" class="cat-anchor px-3 py-1.5 border border-zinc-800 bg-zinc-900/90 text-zinc-300 uppercase tracking-wider">
           01. Teologija & Bog
         </a>
-        <a href="#sec-nietzsche" class="cat-anchor px-3.5 py-1.5 border border-zinc-800 bg-zinc-900/90 text-zinc-300 uppercase tracking-wider">
+        <a href="#sec-nietzsche" class="cat-anchor px-3 py-1.5 border border-zinc-800 bg-zinc-900/90 text-zinc-300 uppercase tracking-wider">
           02. Nietzsche & Volja
         </a>
-        <a href="#sec-persona" class="cat-anchor px-3.5 py-1.5 border border-zinc-800 bg-zinc-900/90 text-zinc-300 uppercase tracking-wider">
+        <a href="#sec-persona" class="cat-anchor px-3 py-1.5 border border-zinc-800 bg-zinc-900/90 text-zinc-300 uppercase tracking-wider">
           03. Persona & Mreže
         </a>
-        <a href="#sec-heraklo" class="cat-anchor px-3.5 py-1.5 border border-zinc-800 bg-zinc-900/90 text-zinc-300 uppercase tracking-wider">
+        <a href="#sec-heraklo" class="cat-anchor px-3 py-1.5 border border-zinc-800 bg-zinc-900/90 text-zinc-300 uppercase tracking-wider">
           04. Heraklovi zadaci
         </a>
-        <a href="#sec-prometej" class="cat-anchor px-3.5 py-1.5 border border-zinc-800 bg-zinc-900/90 text-zinc-300 uppercase tracking-wider">
+        <a href="#sec-prometej" class="cat-anchor px-3 py-1.5 border border-zinc-800 bg-zinc-900/90 text-zinc-300 uppercase tracking-wider">
           05. Prometej & Tesla
         </a>
-        <a href="#sec-kunst" class="cat-anchor px-3.5 py-1.5 border border-zinc-800 bg-zinc-900/90 text-zinc-300 uppercase tracking-wider">
+        <a href="#sec-kunst" class="cat-anchor px-3 py-1.5 border border-zinc-800 bg-zinc-900/90 text-zinc-300 uppercase tracking-wider">
           06. Kunst & Trajanje
         </a>
       </nav>
     </header>
 
     <!-- Single Page Continuous Question Feed -->
-    <main class="space-y-12">
-
-      <!-- ================= SECTION 1: TEOLOGIJA & BOG ================= -->
-      <section id="sec-teologija" class="space-y-4">
-        <div class="flex items-center gap-3 pb-2 border-b border-red-950">
-          <span class="text-xs font-mono text-red-500 font-bold uppercase tracking-widest">
-            // 01. TEOLOGIJA, SJEMENIŠTE I POJAM BOGA
-          </span>
-        </div>
-
-        <div class="space-y-4">
-          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
-            <span class="pixel-tag">01</span>
-            <div class="space-y-1">
-              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
-                Bio si u sjemeništu na Kaptolu jer te teologija zanimala kao znanost i sustav mišljenja. Što te u crkvenom sustavu razočaralo da si ga napustio, a što si iz teologije ponio sa sobom u kiparstvo?
-              </p>
-              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
-                KAPTOL • DOGMA VS KIPARSTVO
-              </div>
-            </div>
-          </div>
-
-          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
-            <span class="pixel-tag">02</span>
-            <div class="space-y-1">
-              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
-                U teologiji Bog stvara svijet *ex nihilo* (iz ničega), a kipar se bori sa sirovom tvari. Je li tvoj rad u radioni pokušaj duhovnog stvaranja ili čisti materijalni inat?
-              </p>
-              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
-                EX NIHILO • KREACIJA • MATERIJA
-              </div>
-            </div>
-          </div>
-
-          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
-            <span class="pixel-tag">03</span>
-            <div class="space-y-1">
-              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
-                Zašto se u umjetnosti danas ljudi srame govoriti o vjeri, duhovnosti i svetom — je li moderna umjetnost izgubila vezu s metafizikom?
-              </p>
-              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
-                METAFIZIKA • SAKRALNO U SUVREMENOSTI
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ================= SECTION 2: NIETZSCHE & VOLJA ================= -->
-      <section id="sec-nietzsche" class="space-y-4 pt-6">
-        <div class="flex items-center gap-3 pb-2 border-b border-red-950">
-          <span class="text-xs font-mono text-red-500 font-bold uppercase tracking-widest">
-            // 02. NIETZSCHE, VOLJA I PREVLADAVANJE SAMOGA SEBE
-          </span>
-        </div>
-
-        <div class="space-y-4">
-          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
-            <span class="pixel-tag">04</span>
-            <div class="space-y-1">
-              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
-                Znamo da u svojoj privatnoj kolekciji čuvaš skulpturu *„Friedrich Nietzsche s rogovima”* koju ne želiš prodati. Zašto baš Nietzsche i zašto rogovi?
-              </p>
-              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
-                NIETZSCHE S ROGOVIMA • OSOBNA ZBIRKA
-              </div>
-            </div>
-          </div>
-
-          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
-            <span class="pixel-tag">05</span>
-            <div class="space-y-1">
-              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
-                Nietzsche piše o tome da čovjek mora proći kroz vlastiti pakao i patnju da bi stvorio nešto veliko. Koliko je tvoja osobna kriza — onaj period kad si u jednom danu ostao bez posla, stana i veze — bila gorivo za ovo što danas radiš?
-              </p>
-              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
-                PATNJA • PREVLADAVANJE • ŽIVOTNI LOM
-              </div>
-            </div>
-          </div>
-
-          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
-            <span class="pixel-tag">06</span>
-            <div class="space-y-1">
-              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
-                Danas se često čuje da je kultura postala prenježna i površna. Što tebi znači Nietzscheov pojam *volje za moć* kad stojiš pred tonama hladnog željeza?
-              </p>
-              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
-                VOLJA ZA MOĆ • OTPOR SIROVOG ČELIKA
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ================= SECTION 3: PERSONA & MREŽE ================= -->
-      <section id="sec-persona" class="space-y-4 pt-6">
-        <div class="flex items-center gap-3 pb-2 border-b border-red-950">
-          <span class="text-xs font-mono text-red-500 font-bold uppercase tracking-widest">
-            // 03. PERSONA & GRČKA MITOLOGIJA: IRON MAIDEN
-          </span>
-        </div>
-
-        <div class="space-y-4">
-          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
-            <span class="pixel-tag">07</span>
-            <div class="space-y-1">
-              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
-                Tvoja serija mrežastih skulptura *Iron Maiden* (Čelična djeva) izravno se oslanja na grčki pojam *Persone* — kazališne maske. Koje sve maske ljudi nose u društvu i zašto si tu masku odlučio napraviti od varenih šipki?
-              </p>
-              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
-                PERSONA • KAZALIŠNA MASKA • IRON MAIDEN
-              </div>
-            </div>
-          </div>
-
-          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
-            <span class="pixel-tag">08</span>
-            <div class="space-y-1">
-              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
-                Mrežasta struktura tvojih glava je prozirna — kroz nju se vidi prostor iza. Je li to maska koja skriva čovjeka ili rešetka koja ga razotkriva?
-              </p>
-              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
-                PROZRAČNOST • SKRIVANJE VS RAZOTKRIVANJE
-              </div>
-            </div>
-          </div>
-
-          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
-            <span class="pixel-tag">09</span>
-            <div class="space-y-1">
-              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
-                Kad je ta *Persona* u Varšavi dosegla 712.000 eura, jesi li osjetio da je tržište prepoznalo filozofsku ideju maske ili samo prestiž i materijalni objekt?
-              </p>
-              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
-                VARŠAVA • AUKCIJA • FILOZOFIJA VS PRESTIŽ
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ================= SECTION 4: HERAKLOVI ZADACI ================= -->
-      <section id="sec-heraklo" class="space-y-4 pt-6">
-        <div class="flex items-center gap-3 pb-2 border-b border-red-950">
-          <span class="text-xs font-mono text-red-500 font-bold uppercase tracking-widest">
-            // 04. HERAKLOVI ZADACI: BORBA S NEDAĆAMA
-          </span>
-        </div>
-
-        <div class="space-y-4">
-          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
-            <span class="pixel-tag">10</span>
-            <div class="space-y-1">
-              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
-                Tvoj ciklus *Heraklovi zadaci* (Nemejski lav, Erimantski vepar...) bavi se antičkim mitološkim podvizima. Zbog čega si odabrao baš Herakla, a ne nekog mirnijeg antičkog heroja?
-              </p>
-              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
-                HERAKLO • ANTIČKI PODVIG • NEMEJSKI LAV
-              </div>
-            </div>
-          </div>
-
-          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
-            <span class="pixel-tag">11</span>
-            <div class="space-y-1">
-              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
-                Svaki od tih 12 zadataka predstavlja neku nemoguću prepreku. Koji je tvoj osobni „Herkulov zadatak” bio najteži za savladati u životu i radioni?
-              </p>
-              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
-                NEMOGUĆA PREPREKA • OSOBNI PODVIG
-              </div>
-            </div>
-          </div>
-
-          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
-            <span class="pixel-tag">12</span>
-            <div class="space-y-1">
-              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
-                Može li uopće nastati monumentalna umjetnost bez fizičke i mentalne borbe, ili je komfor ubojica velikih ideja?
-              </p>
-              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
-                KOMFOR VS BORBA • MONUMENTALNOST
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ================= SECTION 5: PROMETEJ & TESLA ================= -->
-      <section id="sec-prometej" class="space-y-4 pt-6">
-        <div class="flex items-center gap-3 pb-2 border-b border-red-950">
-          <span class="text-xs font-mono text-red-500 font-bold uppercase tracking-widest">
-            // 05. PROMETEJ, TESLA I MIT O VATRI
-          </span>
-        </div>
-
-        <div class="space-y-4">
-          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
-            <span class="pixel-tag">13</span>
-            <div class="space-y-1">
-              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
-                Napravio si Teslu od 13 metara čelika ispred Tehnološkog parka. Vidiš li u Tesli modernog Prometeja koji je donio vatru ljudima, a na kraju ostao sam?
-              </p>
-              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
-                TESLA 13M • PROMETEJ • UKRADENA VATRA
-              </div>
-            </div>
-          </div>
-
-          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
-            <span class="pixel-tag">14</span>
-            <div class="space-y-1">
-              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
-                Zašto su tvoji motivi gotovo uvijek arhetipovi vatre, munje i transformacije energije — privlači li te ideja žrtve koju takvi geniji plaćaju?
-              </p>
-              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
-                ENERGIJA • ARHETIP ŽRTVE • GENIJ
-              </div>
-            </div>
-          </div>
-
-          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
-            <span class="pixel-tag">15</span>
-            <div class="space-y-1">
-              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
-                Što moderna tehnologija (poput 3D skeniranja koje koristiš u radu) donosi klasičnom kiparstvu — pomaže li ideji ili prijeti da ubije dodir ruke?
-              </p>
-              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
-                3D SKENIRANJE • TEHNOLOGIJA VS RUKA
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ================= SECTION 6: KUNST & TRAJANJE ================= -->
-      <section id="sec-kunst" class="space-y-4 pt-6">
-        <div class="flex items-center gap-3 pb-2 border-b border-red-950">
-          <span class="text-xs font-mono text-red-500 font-bold uppercase tracking-widest">
-            // 06. POJAM UMJETNOSTI (KUNST) I TRAJANJE
-          </span>
-        </div>
-
-        <div class="space-y-4">
-          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
-            <span class="pixel-tag">16</span>
-            <div class="space-y-1">
-              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
-                U renesansi se kiparstvo smatralo vrhuncem zanata i filozofije. Što je za tebe *Kunst* (umjetnost) danas — koncept, provokacija ili vještina da materiji udahneš oblik?
-              </p>
-              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
-                KUNST • ZANAT VS KONCEPT • OBLIK
-              </div>
-            </div>
-          </div>
-
-          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
-            <span class="pixel-tag">17</span>
-            <div class="space-y-1">
-              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
-                Corten čelik s godinama stvara koru hrđe i sam sebe štiti od propadanja. Je li prolaznost metala tvoja metafora za ljudsko tijelo i sjećanje?
-              </p>
-              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
-                CORTEN PATINA • SJEĆANJE • PROLAZNOST
-              </div>
-            </div>
-          </div>
-
-          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
-            <span class="pixel-tag">18</span>
-            <div class="space-y-1">
-              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
-                Kad se ugase svjetla galerija i nestane sav šušur oko aukcija, što je ona jedna misao zbog koje se svako jutro vraćaš u prašinu RezervArta na Dravi?
-              </p>
-              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
-                REZERVART • SVRHA • KONAČNA MISAO
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
+    <main id="questionsFeed" class="space-y-12">
+      <div class="text-center py-12 text-zinc-500 font-mono text-sm animate-pulse">
+        UČITAVANJE PITANJA SA POSLUŽITELJA...
+      </div>
     </main>
 
     <!-- Bottom Studio Baseline / Risograph Footer -->
@@ -447,15 +259,472 @@
           <span class="tracking-widest uppercase">NIKOLA VUDRAG × STUDIO VARAŽDIN</span>
         </div>
         <div class="tracking-widest uppercase text-zinc-300">
-          —— STUDIO VARAŽDIN · FILMSKA PRODUKCIJA · cCc. ——
+          —— STUDIO VARAŽDIN · FILMSKA PRODUKCIJA ——
         </div>
-        <div class="text-zinc-400">
-          SESIJA DOKUMENTARNOG RAZGOVORA
+        <div class="text-zinc-500">
+          SVE IZMJENE SE SPREMAJU AUTOMATSKI
         </div>
       </div>
     </footer>
 
   </div>
+
+  <!-- Real-Time Collaborative Sync Engine -->
+  <script>
+    (function() {
+      // Configuration & API Endpoints
+      const API_URL = 'api/questions.php';
+      const POLL_INTERVAL_MS = 1500;
+      const DEBOUNCE_SAVE_MS = 350;
+
+      // Unique Session ID for Multi-User Presence
+      let sessionId = sessionStorage.getItem('vudrag_session_id');
+      if (!sessionId) {
+        sessionId = 'usr_' + Math.random().toString(36).substring(2, 10) + '_' + Date.now().toString(36);
+        sessionStorage.setItem('vudrag_session_id', sessionId);
+      }
+
+      // State Management
+      let currentVersion = 0;
+      let appData = { sections: [] };
+      let debounceTimers = {};
+      let activeFocusedId = null;
+      let initialFocusText = {};
+      let pendingRemoteUpdates = {};
+
+      // DOM Elements
+      const feedContainer = document.getElementById('questionsFeed');
+      const saveStatusEl = document.getElementById('saveStatus');
+      const activeUsersCountEl = document.getElementById('activeUsersCount');
+      const totalQuestionsHeaderEl = document.getElementById('totalQuestionsHeader');
+      const ornamentRangeEl = document.getElementById('ornamentRange');
+      const categoryNavEl = document.getElementById('categoryNav');
+
+      // Helper: Strict HTML Entity Escaper for Security
+      function escapeHtml(str) {
+        if (str === null || str === undefined) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      // Helper: Smooth, Non-flickering Auto-expand Textarea
+      function autoResizeTextarea(textarea) {
+        if (!textarea) return;
+        textarea.style.height = 'auto';
+        const newHeight = Math.max(textarea.scrollHeight, 44);
+        textarea.style.height = newHeight + 'px';
+      }
+
+      // Status UI updater
+      function setStatus(type, msg) {
+        if (!saveStatusEl) return;
+        if (type === 'saving') {
+          saveStatusEl.innerHTML = `
+            <svg class="w-3.5 h-3.5 text-amber-400 animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <span class="text-amber-400">Spremanje na poslužitelj...</span>
+          `;
+        } else if (type === 'saved') {
+          saveStatusEl.innerHTML = `
+            <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span class="text-zinc-300">${msg || 'Sve izmjene spremljene'}</span>
+          `;
+        } else if (type === 'error') {
+          saveStatusEl.innerHTML = `
+            <span class="w-2 h-2 rounded-full bg-red-500"></span>
+            <span class="text-red-400">${msg || 'Greška kod spremanja'}</span>
+          `;
+        }
+      }
+
+      // Count total questions across sections
+      function getTotalQuestionsCount(sections) {
+        return sections.reduce((acc, sec) => acc + (sec.questions ? sec.questions.length : 0), 0);
+      }
+
+      // Update header totals
+      function updateHeaderCounts() {
+        const total = getTotalQuestionsCount(appData.sections);
+        const totalFormatted = total < 10 ? '0' + total : total;
+        if (totalQuestionsHeaderEl) {
+          totalQuestionsHeaderEl.textContent = `TEOLOGIJA, NIETZSCHE, MITOVI & KUNST // ${total} PITANJA`;
+        }
+        if (ornamentRangeEl) {
+          ornamentRangeEl.textContent = `◆ 01 — ${totalFormatted} ◆`;
+        }
+      }
+
+      // Render navigation links with full HTML escaping
+      function renderCategoryNav() {
+        if (!categoryNavEl || !appData.sections) return;
+        categoryNavEl.innerHTML = appData.sections.map(sec => `
+          <a href="#${escapeHtml(sec.id)}" class="cat-anchor px-3 py-1.5 border border-zinc-800 bg-zinc-900/90 text-zinc-300 uppercase tracking-wider">
+            ${escapeHtml(sec.navTitle || sec.title)}
+          </a>
+        `).join('');
+      }
+
+      // Create a single question card element (DOM Node)
+      function createQuestionCardElement(q, secId) {
+        const div = document.createElement('div');
+        div.className = 'tarot-row rounded-xl p-5 md:p-6 flex flex-col md:flex-row items-start gap-4 md:gap-5 group relative';
+        div.id = `card-${q.id}`;
+        div.dataset.id = q.id;
+        div.dataset.sectionId = secId;
+
+        div.innerHTML = `
+          <div class="flex items-center justify-between w-full md:w-auto">
+            <span class="pixel-tag" id="tag-${escapeHtml(q.id)}">${escapeHtml(q.num)}</span>
+            <button 
+              type="button" 
+              onclick="window.vudragApp.deleteQuestion('${escapeHtml(q.id)}')"
+              title="Obriši pitanje"
+              class="md:hidden min-w-[44px] min-h-[44px] flex items-center justify-center text-zinc-500 hover:text-red-500 font-mono text-sm">
+              ✕
+            </button>
+          </div>
+
+          <div class="w-full relative flex-1">
+            <textarea 
+              id="input-${escapeHtml(q.id)}"
+              data-id="${escapeHtml(q.id)}"
+              rows="1"
+              class="question-input"
+              placeholder="Unesite pitanje..."
+            >${escapeHtml(q.text)}</textarea>
+          </div>
+
+          <div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity hidden md:flex items-center gap-2">
+            <button 
+              type="button" 
+              onclick="window.vudragApp.deleteQuestion('${escapeHtml(q.id)}')"
+              title="Obriši pitanje"
+              class="text-zinc-600 hover:text-red-500 hover:bg-red-950/40 p-1.5 rounded transition-colors font-mono text-xs flex items-center gap-1 border border-transparent hover:border-red-900/60">
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+              </svg>
+            </button>
+          </div>
+        `;
+
+        const textarea = div.querySelector('textarea');
+        textarea.addEventListener('focus', () => onInputFocus(q.id, textarea.value));
+        textarea.addEventListener('blur', () => onInputBlur(q.id));
+        textarea.addEventListener('input', () => onTextInput(q.id, textarea));
+
+        return div;
+      }
+
+      // Initial Full Render of DOM skeleton
+      function initialRenderFeed() {
+        if (!feedContainer || !appData.sections) return;
+        feedContainer.innerHTML = '';
+
+        appData.sections.forEach(sec => {
+          const sectionEl = document.createElement('section');
+          sectionEl.id = sec.id;
+          sectionEl.className = 'space-y-4 pt-4';
+
+          const headerDiv = document.createElement('div');
+          headerDiv.className = 'flex items-center justify-between pb-2 border-b border-red-950/80';
+          headerDiv.innerHTML = `
+            <span class="text-xs font-mono text-red-500 font-bold uppercase tracking-widest">
+              // ${escapeHtml(sec.title)}
+            </span>
+            <button 
+              type="button" 
+              onclick="window.vudragApp.addQuestion('${escapeHtml(sec.id)}')"
+              class="text-[11px] font-mono text-zinc-400 hover:text-red-400 hover:border-red-600/60 transition-colors px-2 py-0.5 border border-zinc-800 bg-zinc-900/80 uppercase tracking-wider flex items-center gap-1 cursor-pointer">
+              + Dodaj pitanje
+            </button>
+          `;
+          sectionEl.appendChild(headerDiv);
+
+          const cardsContainer = document.createElement('div');
+          cardsContainer.className = 'space-y-4';
+          cardsContainer.id = `cards-${sec.id}`;
+
+          if (sec.questions && sec.questions.length > 0) {
+            sec.questions.forEach(q => {
+              const card = createQuestionCardElement(q, sec.id);
+              cardsContainer.appendChild(card);
+            });
+          }
+
+          sectionEl.appendChild(cardsContainer);
+          feedContainer.appendChild(sectionEl);
+        });
+
+        // Resize all textareas
+        document.querySelectorAll('.question-input').forEach(ta => autoResizeTextarea(ta));
+        updateHeaderCounts();
+      }
+
+      // Fine-Grained Non-Destructive DOM Reconciler
+      function reconcileFeed(newSections) {
+        if (!feedContainer) return;
+
+        newSections.forEach(newSec => {
+          let sectionCards = document.getElementById(`cards-${newSec.id}`);
+          if (!sectionCards) {
+            // New section dynamically added
+            initialRenderFeed();
+            return;
+          }
+
+          const existingCards = Array.from(sectionCards.querySelectorAll('.tarot-row'));
+          const existingIds = existingCards.map(c => c.dataset.id);
+          const newIds = newSec.questions ? newSec.questions.map(q => q.id) : [];
+
+          // 1. Remove deleted cards
+          existingCards.forEach(card => {
+            if (!newIds.includes(card.dataset.id)) {
+              card.remove();
+            }
+          });
+
+          // 2. Insert or update cards
+          if (newSec.questions) {
+            newSec.questions.forEach((q, index) => {
+              let cardEl = document.getElementById(`card-${q.id}`);
+              
+              if (!cardEl) {
+                // Insert new card node without touching existing elements
+                cardEl = createQuestionCardElement(q, newSec.id);
+                const currentChildren = sectionCards.children;
+                if (index < currentChildren.length) {
+                  sectionCards.insertBefore(cardEl, currentChildren[index]);
+                } else {
+                  sectionCards.appendChild(cardEl);
+                }
+                const newTextarea = cardEl.querySelector('textarea');
+                autoResizeTextarea(newTextarea);
+              }
+
+              // Update badge number
+              const tagEl = document.getElementById(`tag-${q.id}`);
+              if (tagEl && tagEl.textContent !== q.num) {
+                tagEl.textContent = q.num;
+              }
+
+              // Update Textarea content with Focus Guard + Buffering
+              const textarea = document.getElementById(`input-${q.id}`);
+              if (textarea) {
+                if (q.id === activeFocusedId) {
+                  // User is actively focused here -> buffer remote update
+                  pendingRemoteUpdates[q.id] = q.text;
+                } else {
+                  if (textarea.value !== q.text) {
+                    textarea.value = q.text;
+                    autoResizeTextarea(textarea);
+
+                    // Flash highlight indicator
+                    cardEl.classList.remove('remote-flash');
+                    void cardEl.offsetWidth; // Force reflow
+                    cardEl.classList.add('remote-flash');
+                  }
+                }
+              }
+            });
+          }
+        });
+
+        appData.sections = newSections;
+        updateHeaderCounts();
+      }
+
+      // API: Save Question Text
+      async function saveQuestion(qId, text) {
+        setStatus('saving');
+        try {
+          const res = await fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              action: 'update_question',
+              id: qId,
+              text: text,
+              sessionId: sessionId
+            })
+          });
+          const data = await res.json();
+          if (data.status === 'success') {
+            currentVersion = data.version;
+            setStatus('saved', 'Spremljeno na poslužitelj');
+          } else {
+            setStatus('error', data.message || 'Greška');
+          }
+        } catch (e) {
+          console.error('Save error:', e);
+          setStatus('error', 'Mrežna greška kod spremanja');
+        }
+      }
+
+      // API: Add New Question
+      async function addQuestion(sectionId) {
+        setStatus('saving');
+        try {
+          const res = await fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              action: 'add_question',
+              sectionId: sectionId,
+              text: 'Novo pitanje...',
+              sessionId: sessionId
+            })
+          });
+          const data = await res.json();
+          if (data.status === 'success') {
+            currentVersion = data.version;
+            reconcileFeed(data.sections);
+            setStatus('saved', 'Novo pitanje dodano');
+
+            // Focus new element
+            const lastSec = data.sections.find(s => s.id === sectionId);
+            if (lastSec && lastSec.questions && lastSec.questions.length > 0) {
+              const newQ = lastSec.questions[lastSec.questions.length - 1];
+              const newEl = document.getElementById(`input-${newQ.id}`);
+              if (newEl) {
+                newEl.focus();
+                newEl.select();
+              }
+            }
+          }
+        } catch (e) {
+          console.error('Add question error:', e);
+          setStatus('error', 'Greška pri dodavanju');
+        }
+      }
+
+      // API: Delete Question
+      async function deleteQuestion(qId) {
+        if (!confirm('Želite li sigurno obrisati ovo pitanje?')) return;
+        setStatus('saving');
+        try {
+          const res = await fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              action: 'delete_question',
+              id: qId,
+              sessionId: sessionId
+            })
+          });
+          const data = await res.json();
+          if (data.status === 'success') {
+            currentVersion = data.version;
+            reconcileFeed(data.sections);
+            setStatus('saved', 'Pitanje obrisano');
+          }
+        } catch (e) {
+          console.error('Delete question error:', e);
+          setStatus('error', 'Greška pri brisanju');
+        }
+      }
+
+      // Focus / Blur Handlers
+      function onInputFocus(qId, currentVal) {
+        activeFocusedId = qId;
+        initialFocusText[qId] = currentVal;
+      }
+
+      function onInputBlur(qId) {
+        const el = document.getElementById(`input-${qId}`);
+        const currentVal = el ? el.value : '';
+        const initialVal = initialFocusText[qId] || '';
+
+        // If user actively changed text, flush debounce immediately and save
+        if (debounceTimers[qId]) {
+          clearTimeout(debounceTimers[qId]);
+          delete debounceTimers[qId];
+          saveQuestion(qId, currentVal);
+        } else if (currentVal !== initialVal) {
+          saveQuestion(qId, currentVal);
+        } else if (pendingRemoteUpdates[qId] !== undefined) {
+          // If user didn't change anything, but remote update arrived while focused, apply it!
+          if (el) {
+            el.value = pendingRemoteUpdates[qId];
+            autoResizeTextarea(el);
+          }
+        }
+
+        delete initialFocusText[qId];
+        delete pendingRemoteUpdates[qId];
+
+        if (activeFocusedId === qId) {
+          activeFocusedId = null;
+        }
+      }
+
+      // Input change with debounce
+      function onTextInput(qId, textarea) {
+        autoResizeTextarea(textarea);
+        setStatus('saving');
+        
+        if (debounceTimers[qId]) {
+          clearTimeout(debounceTimers[qId]);
+        }
+
+        debounceTimers[qId] = setTimeout(() => {
+          delete debounceTimers[qId];
+          saveQuestion(qId, textarea.value);
+        }, DEBOUNCE_SAVE_MS);
+      }
+
+      // Sync Loop: Smart Polling
+      async function pollSync() {
+        try {
+          const res = await fetch(`${API_URL}?sessionId=${encodeURIComponent(sessionId)}&version=${currentVersion}`);
+          if (!res.ok) throw new Error('API unreachable');
+          const data = await res.json();
+
+          if (data.status === 'success') {
+            // Update active users badge
+            if (activeUsersCountEl && data.activeUsers) {
+              const count = data.activeUsers;
+              activeUsersCountEl.textContent = count === 1 
+                ? '1 aktivan suradnik' 
+                : `${count} aktivna suradnika`;
+            }
+
+            // If initial load or version changed remotely
+            if (currentVersion === 0) {
+              currentVersion = data.version;
+              appData.sections = data.sections;
+              renderCategoryNav();
+              initialRenderFeed();
+            } else if (data.version > currentVersion) {
+              currentVersion = data.version;
+              reconcileFeed(data.sections);
+            }
+          }
+        } catch (err) {
+          console.warn('Sync poll check:', err);
+        } finally {
+          setTimeout(pollSync, POLL_INTERVAL_MS);
+        }
+      }
+
+      // Expose to window for inline events
+      window.vudragApp = {
+        addQuestion,
+        deleteQuestion
+      };
+
+      // Initial Launch
+      pollSync();
+
+    })();
+  </script>
 
 </body>
 </html>

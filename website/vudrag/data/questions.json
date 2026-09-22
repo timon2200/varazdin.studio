@@ -1,0 +1,168 @@
+{
+  "version": 11,
+  "lastModified": 1790107252,
+  "sections": [
+    {
+      "id": "sec-teologija",
+      "title": "01. TEOLOGIJA, SJEMENIŠTE I POJAM BOGA",
+      "navTitle": "01. Teologija & Bog",
+      "questions": [
+        {
+          "id": "q1",
+          "num": "01",
+          "text": "Bio si u sjemeništu na Kaptolu jer te teologija zanimala kao znanost i sustav mišljenja. Što te u crkvenom sustavu razočaralo da si ga napustio, a što si iz teologije ponio sa sobom u kiparstvo?",
+          "updatedAt": 1790107252
+        },
+        {
+          "id": "q2",
+          "num": "02",
+          "text": "U teologiji Bog stvara svijet *ex nihilo* (iz ničega), a kipar se bori sa sirovom tvari. Je li tvoj rad u radioni pokušaj duhovnog stvaranja ili čisti materijalni inat?",
+          "updatedAt": 1790107252
+        },
+        {
+          "id": "q3",
+          "num": "03",
+          "text": "Zašto se u umjetnosti danas ljudi srame govoriti o vjeri, duhovnosti i svetom — je li moderna umjetnost izgubila vezu s metafizikom?",
+          "updatedAt": 1790107252
+        }
+      ]
+    },
+    {
+      "id": "sec-nietzsche",
+      "title": "02. NIETZSCHE, VOLJA I PREVLADAVANJE SAMOGA SEBE",
+      "navTitle": "02. Nietzsche & Volja",
+      "questions": [
+        {
+          "id": "q4",
+          "num": "04",
+          "text": "Znamo da u svojoj privatnoj kolekciji čuvaš skulpturu *„Friedrich Nietzsche s rogovima”* koju ne želiš prodati. Zašto baš Nietzsche i zašto rogovi?",
+          "updatedAt": 1790107252
+        },
+        {
+          "id": "q5",
+          "num": "05",
+          "text": "Nietzsche piše o tome da čovjek mora proći kroz vlastiti pakao i patnju da bi stvorio nešto veliko. Koliko je tvoja osobna kriza — onaj period kad si u jednom danu ostao bez posla, stana i veze — bila gorivo za ovo što danas radiš?",
+          "updatedAt": 1790107252
+        },
+        {
+          "id": "q6",
+          "num": "06",
+          "text": "Danas se često čuje da je kultura postala prenježna i površna. Što tebi znači Nietzscheov pojam *volje za moć* kad stojiš pred tonama hladnog željeza?",
+          "updatedAt": 1790107252
+        }
+      ]
+    },
+    {
+      "id": "sec-persona",
+      "title": "03. PERSONA & GRČKA MITOLOGIJA: IRON MAIDEN",
+      "navTitle": "03. Persona & Mreže",
+      "questions": [
+        {
+          "id": "q7",
+          "num": "07",
+          "text": "Tvoja serija mrežastih skulptura *Iron Maiden* (Čelična djeva) izravno se oslanja na grčki pojam *Persone* — kazališne maske. Koje sve maske ljudi nose u društvu i zašto si tu masku odlučio napraviti od varenih šipki?",
+          "updatedAt": 1790107252
+        },
+        {
+          "id": "q8",
+          "num": "08",
+          "text": "Mrežasta struktura tvojih glava je prozirna — kroz nju se vidi prostor iza. Je li to maska koja skriva čovjeka ili rešetka koja ga razotkriva?",
+          "updatedAt": 1790107252
+        },
+        {
+          "id": "q9",
+          "num": "09",
+          "text": "Kad je ta *Persona* u Varšavi dosegla 712.000 eura, jesi li osjetio da je tržište prepoznalo filozofsku ideju maske ili samo prestiž i materijalni objekt?",
+          "updatedAt": 1790107252
+        }
+      ]
+    },
+    {
+      "id": "sec-heraklo",
+      "title": "04. HERAKLOVI ZADACI: BORBA S NEDAĆAMA",
+      "navTitle": "04. Heraklovi zadaci",
+      "questions": [
+        {
+          "id": "q10",
+          "num": "10",
+          "text": "Tvoj ciklus *Heraklovi zadaci* (Nemejski lav, Erimantski vepar...) bavi se antičkim mitološkim podvizima. Zbog čega si odabrao baš Herakla, a ne nekog mirnijeg antičkog heroja?",
+          "updatedAt": 1790107252
+        },
+        {
+          "id": "q11",
+          "num": "11",
+          "text": "Svaki od tih 12 zadataka predstavlja neku nemoguću prepreku. Koji je tvoj osobni „Herkulov zadatak” bio najteži za savladati u životu i radioni?",
+          "updatedAt": 1727034500
+        },
+        {
+          "id": "q12",
+          "num": "12",
+          "text": "Može li uopće nastati monumentalna umjetnost bez fizičke i mentalne borbe, ili je komfor ubojica velikih ideja?",
+          "updatedAt": 1727034500
+        }
+      ]
+    },
+    {
+      "id": "sec-prometej",
+      "title": "05. PROMETEJ, TESLA I MIT O VATRI",
+      "navTitle": "05. Prometej & Tesla",
+      "questions": [
+        {
+          "id": "q13",
+          "num": "13",
+          "text": "Napravio si Teslu od 13 metara čelika ispred Tehnološkog parka. Vidiš li u Tesli modernog Prometeja koji je donio vatru ljudima, a na kraju ostao sam?",
+          "updatedAt": 1727034500
+        },
+        {
+          "id": "q14",
+          "num": "14",
+          "text": "Zašto su tvoji motivi gotovo uvijek arhetipovi vatre, munje i transformacije energije — privlači li te ideja žrtve koju takvi geniji plaćaju?",
+          "updatedAt": 1727034500
+        },
+        {
+          "id": "q15",
+          "num": "15",
+          "text": "Što moderna tehnologija (poput 3D skeniranja koje koristiš u radu) donosi klasičnom kiparstvu — pomaže li ideji ili prijeti da ubije dodir ruke?",
+          "updatedAt": 1727034500
+        }
+      ]
+    },
+    {
+      "id": "sec-kunst",
+      "title": "06. POJAM UMJETNOSTI (KUNST) I TRAJANJE",
+      "navTitle": "06. Kunst & Trajanje",
+      "questions": [
+        {
+          "id": "q16",
+          "num": "16",
+          "text": "U renesansi se kiparstvo smatralo vrhuncem zanata i filozofije. Što je za tebe *Kunst* (umjetnost) danas — koncept, provokacija ili vještina da materiji udahneš oblik?",
+          "updatedAt": 1727034500
+        },
+        {
+          "id": "q17",
+          "num": "17",
+          "text": "Corten čelik s godinama stvara koru hrđe i sam sebe štiti od propadanja. Je li prolaznost metala tvoja metafora za ljudsko tijelo i sjećanje?",
+          "updatedAt": 1727034500
+        },
+        {
+          "id": "q18",
+          "num": "18",
+          "text": "Kad se ugase svjetla galerija i nestane sav šušur oko aukcija, što je ona jedna misao zbog koje se svako jutro vraćaš u prašinu RezervArta na Dravi?",
+          "updatedAt": 1727034500
+        }
+      ]
+    }
+  ],
+  "activeSessions": {
+    "usr_1": 1790107252,
+    "usr_8": 1790107252,
+    "usr_10": 1790107252,
+    "usr_4": 1790107252,
+    "usr_7": 1790107252,
+    "usr_5": 1790107252,
+    "usr_6": 1790107252,
+    "usr_2": 1790107252,
+    "usr_9": 1790107252,
+    "usr_3": 1790107252
+  }
+}
