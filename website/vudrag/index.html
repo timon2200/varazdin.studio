@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="hr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NIKOLA VUDRAG — FILOZOFIJA, TEOLOGIJA I MITOVI // STUDIO VARAŽDIN</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Pirata+One&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=VT323&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --riso-bg: #07080a;
+      --riso-card-bg: #0d1016;
+      --riso-red: #ff2a3b;
+      --riso-red-glow: rgba(255, 42, 59, 0.25);
+      --riso-white: #f8fafc;
+      --riso-sand: #cbd5e1;
+    }
+
+    body {
+      background-color: var(--riso-bg);
+      color: var(--riso-white);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 50% 8%, rgba(255, 42, 59, 0.14) 0%, transparent 50%),
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    .font-gothic {
+      font-family: 'Pirata One', 'Cinzel', serif;
+      letter-spacing: 0.04em;
+    }
+    .font-cinzel { font-family: 'Cinzel', serif; }
+    .font-pixel { font-family: 'VT323', monospace; }
+    .font-mono { font-family: 'Space Mono', monospace; }
+
+    /* Distressed Riso Chalk Typography */
+    .distressed-title {
+      text-shadow: 
+        3px 3px 0px rgba(255, 42, 59, 0.8),
+        -1px -1px 0px rgba(255, 255, 255, 0.15),
+        0 0 30px rgba(255, 42, 59, 0.25);
+    }
+
+    /* Pixel Badge style [01] from Tarot poster */
+    .pixel-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #f8fafc;
+      background: #060709;
+      color: #f8fafc;
+      font-family: 'VT323', monospace;
+      font-size: 1.65rem;
+      line-height: 1;
+      padding: 3px 10px;
+      box-shadow: 3px 3px 0px var(--riso-red);
+      position: relative;
+      user-select: none;
+      flex-shrink: 0;
+    }
+    .pixel-tag::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border: 1px dashed rgba(255, 255, 255, 0.25);
+      pointer-events: none;
+    }
+
+    /* Tarot Single Page Question Card */
+    .tarot-row {
+      background: linear-gradient(180deg, #11151e 0%, #090b0f 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .tarot-row:hover {
+      border-color: var(--riso-red);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.9), 0 0 20px var(--riso-red-glow);
+    }
+
+    /* Category Nav Links */
+    .cat-anchor {
+      transition: all 0.2s;
+    }
+    .cat-anchor:hover {
+      background-color: var(--riso-red);
+      color: #ffffff;
+      border-color: var(--riso-red);
+      box-shadow: 2px 2px 0px #ffffff;
+    }
+  </style>
+</head>
+<body class="min-h-screen py-10 md:py-16 px-4 md:px-12 selection:bg-red-600 selection:text-white">
+
+  <!-- Main Single Page Container -->
+  <div class="max-w-4xl mx-auto">
+
+    <!-- Header / Poster Cover Section -->
+    <header class="text-center mb-16 pt-2 pb-10 border-b-2 border-zinc-800/90 relative">
+      
+      <!-- Top Badge -->
+      <div class="inline-flex items-center gap-3 mb-4">
+        <span class="font-mono text-xs tracking-widest text-red-500 uppercase px-3 py-1 border border-red-900/60 bg-red-950/30">
+          STUDIO VARAŽDIN · FILOZOFIJA & TEOLOGIJA
+        </span>
+        <span class="text-zinc-600 font-mono text-xs">/</span>
+        <span class="font-mono text-xs tracking-widest text-zinc-400 uppercase">
+          NIKOLA VUDRAG
+        </span>
+      </div>
+
+      <!-- Hero Typography (Gothic Stipple Acid Riso) -->
+      <h1 class="text-6xl sm:text-7xl md:text-9xl font-gothic text-white uppercase tracking-wider mb-2 distressed-title">
+        PITANJA
+      </h1>
+      
+      <p class="font-cinzel text-base md:text-lg text-red-500 font-bold tracking-widest uppercase">
+        TEOLOGIJA, NIETZSCHE, MITOVI & KUNST // 18 PITANJA
+      </p>
+
+      <!-- Center Acid Riso Ornament -->
+      <div class="flex items-center justify-center gap-4 my-6">
+        <div class="h-[1px] w-20 md:w-32 bg-gradient-to-r from-transparent to-red-600"></div>
+        <span class="font-pixel text-2xl md:text-3xl text-red-500">◆ 01 — 18 ◆</span>
+        <div class="h-[1px] w-20 md:w-32 bg-gradient-to-l from-transparent to-red-600"></div>
+      </div>
+
+      <!-- Quick Smooth Scroll Category Anchors -->
+      <nav class="flex flex-wrap items-center justify-center gap-2 mt-8 text-xs font-mono">
+        <a href="#sec-teologija" class="cat-anchor px-3.5 py-1.5 border border-zinc-800 bg-zinc-900/90 text-zinc-300 uppercase tracking-wider">
+          01. Teologija & Bog
+        </a>
+        <a href="#sec-nietzsche" class="cat-anchor px-3.5 py-1.5 border border-zinc-800 bg-zinc-900/90 text-zinc-300 uppercase tracking-wider">
+          02. Nietzsche & Volja
+        </a>
+        <a href="#sec-persona" class="cat-anchor px-3.5 py-1.5 border border-zinc-800 bg-zinc-900/90 text-zinc-300 uppercase tracking-wider">
+          03. Persona & Mreže
+        </a>
+        <a href="#sec-heraklo" class="cat-anchor px-3.5 py-1.5 border border-zinc-800 bg-zinc-900/90 text-zinc-300 uppercase tracking-wider">
+          04. Heraklovi zadaci
+        </a>
+        <a href="#sec-prometej" class="cat-anchor px-3.5 py-1.5 border border-zinc-800 bg-zinc-900/90 text-zinc-300 uppercase tracking-wider">
+          05. Prometej & Tesla
+        </a>
+        <a href="#sec-kunst" class="cat-anchor px-3.5 py-1.5 border border-zinc-800 bg-zinc-900/90 text-zinc-300 uppercase tracking-wider">
+          06. Kunst & Trajanje
+        </a>
+      </nav>
+    </header>
+
+    <!-- Single Page Continuous Question Feed -->
+    <main class="space-y-12">
+
+      <!-- ================= SECTION 1: TEOLOGIJA & BOG ================= -->
+      <section id="sec-teologija" class="space-y-4">
+        <div class="flex items-center gap-3 pb-2 border-b border-red-950">
+          <span class="text-xs font-mono text-red-500 font-bold uppercase tracking-widest">
+            // 01. TEOLOGIJA, SJEMENIŠTE I POJAM BOGA
+          </span>
+        </div>
+
+        <div class="space-y-4">
+          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
+            <span class="pixel-tag">01</span>
+            <div class="space-y-1">
+              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
+                Bio si u sjemeništu na Kaptolu jer te teologija zanimala kao znanost i sustav mišljenja. Što te u crkvenom sustavu razočaralo da si ga napustio, a što si iz teologije ponio sa sobom u kiparstvo?
+              </p>
+              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
+                KAPTOL • DOGMA VS KIPARSTVO
+              </div>
+            </div>
+          </div>
+
+          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
+            <span class="pixel-tag">02</span>
+            <div class="space-y-1">
+              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
+                U teologiji Bog stvara svijet *ex nihilo* (iz ničega), a kipar se bori sa sirovom tvari. Je li tvoj rad u radioni pokušaj duhovnog stvaranja ili čisti materijalni inat?
+              </p>
+              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
+                EX NIHILO • KREACIJA • MATERIJA
+              </div>
+            </div>
+          </div>
+
+          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
+            <span class="pixel-tag">03</span>
+            <div class="space-y-1">
+              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
+                Zašto se u umjetnosti danas ljudi srame govoriti o vjeri, duhovnosti i svetom — je li moderna umjetnost izgubila vezu s metafizikom?
+              </p>
+              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
+                METAFIZIKA • SAKRALNO U SUVREMENOSTI
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SECTION 2: NIETZSCHE & VOLJA ================= -->
+      <section id="sec-nietzsche" class="space-y-4 pt-6">
+        <div class="flex items-center gap-3 pb-2 border-b border-red-950">
+          <span class="text-xs font-mono text-red-500 font-bold uppercase tracking-widest">
+            // 02. NIETZSCHE, VOLJA I PREVLADAVANJE SAMOGA SEBE
+          </span>
+        </div>
+
+        <div class="space-y-4">
+          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
+            <span class="pixel-tag">04</span>
+            <div class="space-y-1">
+              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
+                Znamo da u svojoj privatnoj kolekciji čuvaš skulpturu *„Friedrich Nietzsche s rogovima”* koju ne želiš prodati. Zašto baš Nietzsche i zašto rogovi?
+              </p>
+              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
+                NIETZSCHE S ROGOVIMA • OSOBNA ZBIRKA
+              </div>
+            </div>
+          </div>
+
+          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
+            <span class="pixel-tag">05</span>
+            <div class="space-y-1">
+              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
+                Nietzsche piše o tome da čovjek mora proći kroz vlastiti pakao i patnju da bi stvorio nešto veliko. Koliko je tvoja osobna kriza — onaj period kad si u jednom danu ostao bez posla, stana i veze — bila gorivo za ovo što danas radiš?
+              </p>
+              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
+                PATNJA • PREVLADAVANJE • ŽIVOTNI LOM
+              </div>
+            </div>
+          </div>
+
+          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
+            <span class="pixel-tag">06</span>
+            <div class="space-y-1">
+              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
+                Danas se često čuje da je kultura postala prenježna i površna. Što tebi znači Nietzscheov pojam *volje za moć* kad stojiš pred tonama hladnog željeza?
+              </p>
+              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
+                VOLJA ZA MOĆ • OTPOR SIROVOG ČELIKA
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SECTION 3: PERSONA & MREŽE ================= -->
+      <section id="sec-persona" class="space-y-4 pt-6">
+        <div class="flex items-center gap-3 pb-2 border-b border-red-950">
+          <span class="text-xs font-mono text-red-500 font-bold uppercase tracking-widest">
+            // 03. PERSONA & GRČKA MITOLOGIJA: IRON MAIDEN
+          </span>
+        </div>
+
+        <div class="space-y-4">
+          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
+            <span class="pixel-tag">07</span>
+            <div class="space-y-1">
+              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
+                Tvoja serija mrežastih skulptura *Iron Maiden* (Čelična djeva) izravno se oslanja na grčki pojam *Persone* — kazališne maske. Koje sve maske ljudi nose u društvu i zašto si tu masku odlučio napraviti od varenih šipki?
+              </p>
+              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
+                PERSONA • KAZALIŠNA MASKA • IRON MAIDEN
+              </div>
+            </div>
+          </div>
+
+          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
+            <span class="pixel-tag">08</span>
+            <div class="space-y-1">
+              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
+                Mrežasta struktura tvojih glava je prozirna — kroz nju se vidi prostor iza. Je li to maska koja skriva čovjeka ili rešetka koja ga razotkriva?
+              </p>
+              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
+                PROZRAČNOST • SKRIVANJE VS RAZOTKRIVANJE
+              </div>
+            </div>
+          </div>
+
+          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
+            <span class="pixel-tag">09</span>
+            <div class="space-y-1">
+              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
+                Kad je ta *Persona* u Varšavi dosegla 712.000 eura, jesi li osjetio da je tržište prepoznalo filozofsku ideju maske ili samo prestiž i materijalni objekt?
+              </p>
+              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
+                VARŠAVA • AUKCIJA • FILOZOFIJA VS PRESTIŽ
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SECTION 4: HERAKLOVI ZADACI ================= -->
+      <section id="sec-heraklo" class="space-y-4 pt-6">
+        <div class="flex items-center gap-3 pb-2 border-b border-red-950">
+          <span class="text-xs font-mono text-red-500 font-bold uppercase tracking-widest">
+            // 04. HERAKLOVI ZADACI: BORBA S NEDAĆAMA
+          </span>
+        </div>
+
+        <div class="space-y-4">
+          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
+            <span class="pixel-tag">10</span>
+            <div class="space-y-1">
+              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
+                Tvoj ciklus *Heraklovi zadaci* (Nemejski lav, Erimantski vepar...) bavi se antičkim mitološkim podvizima. Zbog čega si odabrao baš Herakla, a ne nekog mirnijeg antičkog heroja?
+              </p>
+              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
+                HERAKLO • ANTIČKI PODVIG • NEMEJSKI LAV
+              </div>
+            </div>
+          </div>
+
+          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
+            <span class="pixel-tag">11</span>
+            <div class="space-y-1">
+              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
+                Svaki od tih 12 zadataka predstavlja neku nemoguću prepreku. Koji je tvoj osobni „Herkulov zadatak” bio najteži za savladati u životu i radioni?
+              </p>
+              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
+                NEMOGUĆA PREPREKA • OSOBNI PODVIG
+              </div>
+            </div>
+          </div>
+
+          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
+            <span class="pixel-tag">12</span>
+            <div class="space-y-1">
+              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
+                Može li uopće nastati monumentalna umjetnost bez fizičke i mentalne borbe, ili je komfor ubojica velikih ideja?
+              </p>
+              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
+                KOMFOR VS BORBA • MONUMENTALNOST
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SECTION 5: PROMETEJ & TESLA ================= -->
+      <section id="sec-prometej" class="space-y-4 pt-6">
+        <div class="flex items-center gap-3 pb-2 border-b border-red-950">
+          <span class="text-xs font-mono text-red-500 font-bold uppercase tracking-widest">
+            // 05. PROMETEJ, TESLA I MIT O VATRI
+          </span>
+        </div>
+
+        <div class="space-y-4">
+          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
+            <span class="pixel-tag">13</span>
+            <div class="space-y-1">
+              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
+                Napravio si Teslu od 13 metara čelika ispred Tehnološkog parka. Vidiš li u Tesli modernog Prometeja koji je donio vatru ljudima, a na kraju ostao sam?
+              </p>
+              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
+                TESLA 13M • PROMETEJ • UKRADENA VATRA
+              </div>
+            </div>
+          </div>
+
+          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
+            <span class="pixel-tag">14</span>
+            <div class="space-y-1">
+              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
+                Zašto su tvoji motivi gotovo uvijek arhetipovi vatre, munje i transformacije energije — privlači li te ideja žrtve koju takvi geniji plaćaju?
+              </p>
+              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
+                ENERGIJA • ARHETIP ŽRTVE • GENIJ
+              </div>
+            </div>
+          </div>
+
+          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
+            <span class="pixel-tag">15</span>
+            <div class="space-y-1">
+              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
+                Što moderna tehnologija (poput 3D skeniranja koje koristiš u radu) donosi klasičnom kiparstvu — pomaže li ideji ili prijeti da ubije dodir ruke?
+              </p>
+              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
+                3D SKENIRANJE • TEHNOLOGIJA VS RUKA
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SECTION 6: KUNST & TRAJANJE ================= -->
+      <section id="sec-kunst" class="space-y-4 pt-6">
+        <div class="flex items-center gap-3 pb-2 border-b border-red-950">
+          <span class="text-xs font-mono text-red-500 font-bold uppercase tracking-widest">
+            // 06. POJAM UMJETNOSTI (KUNST) I TRAJANJE
+          </span>
+        </div>
+
+        <div class="space-y-4">
+          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
+            <span class="pixel-tag">16</span>
+            <div class="space-y-1">
+              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
+                U renesansi se kiparstvo smatralo vrhuncem zanata i filozofije. Što je za tebe *Kunst* (umjetnost) danas — koncept, provokacija ili vještina da materiji udahneš oblik?
+              </p>
+              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
+                KUNST • ZANAT VS KONCEPT • OBLIK
+              </div>
+            </div>
+          </div>
+
+          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
+            <span class="pixel-tag">17</span>
+            <div class="space-y-1">
+              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
+                Corten čelik s godinama stvara koru hrđe i sam sebe štiti od propadanja. Je li prolaznost metala tvoja metafora za ljudsko tijelo i sjećanje?
+              </p>
+              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
+                CORTEN PATINA • SJEĆANJE • PROLAZNOST
+              </div>
+            </div>
+          </div>
+
+          <div class="tarot-row rounded-xl p-6 md:p-7 flex flex-col md:flex-row items-start gap-5">
+            <span class="pixel-tag">18</span>
+            <div class="space-y-1">
+              <p class="text-lg md:text-xl text-zinc-100 font-normal leading-relaxed">
+                Kad se ugase svjetla galerija i nestane sav šušur oko aukcija, što je ona jedna misao zbog koje se svako jutro vraćaš u prašinu RezervArta na Dravi?
+              </p>
+              <div class="text-[11px] font-mono text-zinc-500 pt-1 uppercase tracking-wider">
+                REZERVART • SVRHA • KONAČNA MISAO
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Bottom Studio Baseline / Risograph Footer -->
+    <footer class="mt-20 pt-8 border-t-2 border-zinc-800 text-center space-y-4">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4 font-mono text-xs text-zinc-400">
+        <div class="flex items-center gap-2">
+          <span class="text-red-500">■</span>
+          <span class="tracking-widest uppercase">NIKOLA VUDRAG × STUDIO VARAŽDIN</span>
+        </div>
+        <div class="tracking-widest uppercase text-zinc-300">
+          —— STUDIO VARAŽDIN · FILMSKA PRODUKCIJA · cCc. ——
+        </div>
+        <div class="text-zinc-400">
+          SESIJA DOKUMENTARNOG RAZGOVORA
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+</body>
+</html>
