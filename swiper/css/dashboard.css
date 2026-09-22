@@ -284,6 +284,460 @@
   pointer-events: none;
 }
 
+/* Challenger Difficulty & Tier Badges */
+.duel-challenger-badge {
+  position: absolute;
+  top: 1.6rem;
+  left: 1.6rem;
+  z-index: 10;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-xs);
+  pointer-events: none;
+  text-transform: uppercase;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.duel-challenger-badge.tier-heavyweight {
+  background: #091a13;
+  color: #10b981;
+  border: 2px solid #10b981;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+}
+
+.duel-challenger-badge.tier-elite {
+  background: #241406;
+  color: #f59e0b;
+  border: 2px solid #f59e0b;
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.35);
+}
+
+.duel-challenger-badge.tier-apex {
+  background: #2b0808;
+  color: #ef4444;
+  border: 2px solid #ef4444;
+  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.45);
+  animation: apexPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes apexPulse {
+  0%, 100% {
+    box-shadow: 0 4px 16px rgba(239, 68, 68, 0.4);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 6px 24px rgba(239, 68, 68, 0.75);
+    transform: scale(1.03);
+  }
+}
+
+/* Underlying Card Tier Indicator Tag */
+.duel-underlying-tier-tag {
+  position: absolute;
+  top: 1.2rem;
+  left: 1.2rem;
+  z-index: 5;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-xs);
+  pointer-events: none;
+  opacity: 0.88;
+}
+
+.duel-underlying-tier-tag.tier-heavyweight {
+  background: #091a13;
+  color: #10b981;
+  border: 1px solid #10b981;
+}
+
+.duel-underlying-tier-tag.tier-elite {
+  background: #241406;
+  color: #f59e0b;
+  border: 1px solid #f59e0b;
+}
+
+.duel-underlying-tier-tag.tier-apex {
+  background: #2b0808;
+  color: #ef4444;
+  border: 1px solid #ef4444;
+}
+
+/* Contextual Match Header Banner */
+.duel-match-context-bar {
+  width: 100%;
+  max-width: 1280px;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto 0.75rem auto;
+}
+
+.duel-match-context-tag {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem 1.4rem;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-mono);
+  text-align: center;
+  transition: all 0.25s ease;
+  box-shadow: var(--shadow-bold-xs);
+}
+
+.context-pill-title {
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.context-pill-sub {
+  font-size: 0.65rem;
+  font-weight: 700;
+  opacity: 0.82;
+  letter-spacing: 0.02em;
+  margin-top: 1px;
+}
+
+.duel-match-context-tag.context-calibration {
+  background: #101614;
+  color: #94a3b8;
+  border: 1.5px solid #334155;
+}
+
+.duel-match-context-tag.context-derby {
+  background: #0d1e17;
+  color: #34d399;
+  border: 1.5px solid #059669;
+}
+
+.duel-match-context-tag.context-contrast {
+  background: #181228;
+  color: #c084fc;
+  border: 1.5px solid #9333ea;
+}
+
+.duel-match-context-tag.context-heavyweight {
+  background: #231405;
+  color: #fbbf24;
+  border: 1.5px solid #d97706;
+}
+
+.duel-match-context-tag.context-apex {
+  background: #2b0808;
+  color: #f87171;
+  border: 2px solid #ef4444;
+  animation: apexPulse 1.8s ease-in-out infinite;
+}
+
+.duel-match-context-tag.context-contender {
+  background: #0f172a;
+  color: #38bdf8;
+  border: 1.5px solid #0284c7;
+}
+
+/* Elo badges on cards */
+.duel-elo-badge {
+  position: absolute;
+  top: 1.6rem;
+  left: 1.6rem;
+  z-index: 10;
+  background: #0c100e;
+  color: #94a3b8;
+  border: 1.5px solid #334155;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  padding: 0.25rem 0.55rem;
+  border-radius: var(--radius-xs);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+.duel-underlying-elo-tag {
+  position: absolute;
+  top: 1.2rem;
+  left: 1.2rem;
+  z-index: 5;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #94a3b8;
+  background: #0c100e;
+  border: 1px solid #334155;
+  padding: 0.18rem 0.45rem;
+  border-radius: var(--radius-xs);
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+/* ==========================================================================
+   GRAND TOURNAMENT PODIUM & SUMMARY VIEW
+   ========================================================================== */
+.duel-completion-card.duel-podium-view {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  background: var(--bg-card);
+  border: 2px solid var(--border-dark);
+  border-radius: var(--radius-md);
+  padding: 2.2rem 2rem;
+  box-shadow: var(--shadow-bold-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  animation: duelStageFadeIn 0.4s var(--transition-smooth) both;
+}
+
+.tournament-podium-header {
+  margin-bottom: 1.8rem;
+}
+
+.duel-podium-sub {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  margin-top: 0.35rem;
+}
+
+/* 3-Column Podium Grid */
+.duel-podium-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr 1fr;
+  align-items: flex-end;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto 1.5rem auto;
+}
+
+.podium-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.podium-card-wrap {
+  width: 100%;
+  background: var(--bg-card-subtle);
+  border: 2px solid var(--border-dark);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: var(--shadow-bold-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-bottom: -2px;
+  z-index: 2;
+}
+
+.podium-card-wrap:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-bold-md);
+}
+
+.champion-podium-wrap {
+  background: #111a14;
+  border-color: var(--accent-gold-bright);
+  box-shadow: 0 12px 30px rgba(246, 207, 101, 0.18), var(--shadow-bold-md);
+  padding: 1.4rem 1.2rem;
+}
+
+.podium-rank-badge {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-xs);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+}
+
+.podium-rank-badge.rank-gold {
+  background: #291a05;
+  color: var(--accent-gold-bright);
+  border: 1.5px solid var(--accent-gold-bright);
+  box-shadow: 0 0 12px rgba(246, 207, 101, 0.4);
+}
+
+.podium-rank-badge.rank-silver {
+  background: #1e293b;
+  color: #e2e8f0;
+  border: 1.5px solid #94a3b8;
+}
+
+.podium-rank-badge.rank-bronze {
+  background: #2a1810;
+  color: #fdba74;
+  border: 1.5px solid #ea580c;
+}
+
+.podium-img-box {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-height: 240px;
+  background: var(--card-tshirt-img-bg);
+  border: 1.5px solid var(--border-dark);
+  border-radius: var(--radius-xs);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.podium-img-box img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  transition: transform 0.25s ease;
+}
+
+.podium-img-box:hover img {
+  transform: scale(1.08);
+}
+
+.champion-img-box {
+  max-height: 290px;
+  border-color: var(--accent-gold);
+}
+
+.podium-item-title {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0.75rem 0 0.5rem 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.champion-title {
+  font-size: 1.25rem;
+  color: #ffffff;
+}
+
+.podium-stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+}
+
+.podium-stat-chip {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 800;
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  padding: 0.2rem 0.45rem;
+  border-radius: var(--radius-xs);
+}
+
+.podium-stat-chip.gold-chip {
+  background: #1e1a0d;
+  color: var(--accent-gold-bright);
+  border-color: rgba(246, 207, 101, 0.4);
+}
+
+/* Brutalist Pedestals */
+.podium-pedestal {
+  width: 100%;
+  border: 2px solid var(--border-dark);
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  box-shadow: var(--shadow-bold-md);
+}
+
+.pedestal-1 {
+  height: 85px;
+  background: linear-gradient(180deg, #d97706 0%, #b45309 100%);
+  color: #ffffff;
+  font-size: 2.6rem;
+}
+
+.pedestal-2 {
+  height: 55px;
+  background: linear-gradient(180deg, #64748b 0%, #475569 100%);
+  color: #ffffff;
+  font-size: 2rem;
+}
+
+.pedestal-3 {
+  height: 38px;
+  background: linear-gradient(180deg, #b45309 0%, #78350f 100%);
+  color: #ffffff;
+  font-size: 1.6rem;
+}
+
+/* Special Awards Grid */
+.duel-awards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  width: 100%;
+  max-width: 800px;
+  margin: 1rem auto 0 auto;
+}
+
+.duel-award-card {
+  background: var(--bg-card-subtle);
+  border: 1.5px solid var(--border-dark);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  box-shadow: var(--shadow-bold-xs);
+}
+
+.award-icon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+
+.award-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.award-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.award-value {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
 /* Image Wrap */
 .duel-img-wrap {
   position: relative;
@@ -473,6 +927,20 @@
 
   .duel-title-condensed {
     font-size: 1.15rem;
+  }
+
+  .duel-crown-badge,
+  .duel-challenger-badge {
+    top: 1rem;
+    left: 1rem;
+    font-size: 0.72rem;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .duel-underlying-tier-tag {
+    top: 0.8rem;
+    left: 0.8rem;
+    font-size: 0.65rem;
   }
 }
 

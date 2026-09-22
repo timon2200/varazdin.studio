@@ -27,7 +27,8 @@ CATEGORY_PREFIX_MAP = {
     'CV Tee': 'Creative',
     'T-Shirt': 'City',
     'Garda Tee': 'Garda',
-    'SV Tee': 'Studio'
+    'SV Tee': 'Studio',
+    'SE5': 'Creative'
 }
 
 def ensure_directories():

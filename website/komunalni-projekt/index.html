@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>7 KILOGRAMA — Edukativni Video Sustav | Grad Varaždin & Čistoća d.o.o.</title>
+  <title>3.637 GRAMA — Izobrazno-informativni storyboard & sustav gospodarenja otpadom | Grad Varaždin & Čistoća d.o.o.</title>
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1308,7 +1308,7 @@ footer.deck-footer {
 
 
 /* ==========================================================================
-   KOMUNALNI PREZENTACIJA — CUSTOM STYLES
+   KOMUNALNI PREZENTACIJA — CUSTOM COMPONENT STYLES & STORYBOARD ENGINE
    ========================================================================== */
 
 /* Media Frame (Brutalist framed container for 16:9 cinematic visuals) */
@@ -1321,7 +1321,7 @@ footer.deck-footer {
   box-shadow: 6px 6px 0px rgba(13, 24, 21, 0.16);
   height: 100%;
   min-height: 280px;
-  max-height: 420px;
+  max-height: 440px;
   display: flex;
   flex-direction: column;
 }
@@ -1371,8 +1371,8 @@ footer.deck-footer {
 .punchy-narration {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
-  font-size: clamp(0.85rem, 1.15vw, 0.98rem);
+  gap: 0.75rem;
+  font-size: clamp(0.82rem, 1.1vw, 0.95rem);
   line-height: 1.45;
   color: var(--text-secondary);
 }
@@ -1386,94 +1386,466 @@ footer.deck-footer {
   font-weight: 800;
 }
 
-/* Eco cards (Slide 3) */
-.card-eco {
+/* Storyboard Narration & Voiceover Box */
+.storyboard-narration-box {
+  background: var(--bg-card);
+  border: 2px solid var(--border-dark);
+  border-left: 5px solid var(--accent-green);
   border-radius: 6px;
-  padding: 1.25rem 1.35rem;
+  padding: 0.85rem 1rem;
+  box-shadow: 3px 3px 0px rgba(13, 24, 21, 0.1);
+}
+
+.sb-box-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--accent-green);
+  letter-spacing: 0.06em;
+  margin-bottom: 0.35rem;
+}
+
+.sb-quote {
+  margin: 0;
+  font-style: italic;
+  font-size: clamp(0.78rem, 1vw, 0.88rem);
+  line-height: 1.4;
+  color: var(--text-primary);
+}
+
+/* Stats Ribbon Grid (Slide 1) */
+.stats-ribbon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+  margin: 0.2rem 0;
+}
+
+.stat-pill-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-color);
+  border-radius: 6px;
+  padding: 0.6rem 0.75rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  box-shadow: 2px 2px 0px rgba(13, 24, 21, 0.08);
 }
 
-/* Slide 5: Offer Package */
-.offer-package-grid {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 1.5rem;
-  margin-top: 0.85rem;
+.stat-pill-card.stat-alert {
+  background: #fef2f2;
+  border-color: #f87171;
 }
 
-.offer-item-row {
+.stat-pill-card.stat-alert .stat-num {
+  color: #dc2626;
+}
+
+.stat-num {
+  font-family: var(--font-hero);
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--accent-green);
+  line-height: 1.1;
+}
+
+.stat-lbl {
+  font-size: 0.68rem;
+  color: var(--text-secondary);
+  line-height: 1.25;
+  margin-top: 2px;
+}
+
+/* Badge Chips */
+.badge-chips-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.format-chip {
+  background: var(--bg-card-subtle);
+  border: 1.5px solid var(--border-color);
+  border-radius: 4px;
+  padding: 4px 10px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Waste Composition Widget (Slide 2) */
+.waste-composition-widget {
   background: var(--bg-card);
   border: 2px solid var(--border-dark);
   border-radius: 6px;
-  padding: 0.85rem 1.15rem;
+  padding: 0.85rem 1rem;
+  box-shadow: 4px 4px 0px rgba(13, 24, 21, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.comp-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 3px 3px 0px rgba(13, 24, 21, 0.12);
+  border-bottom: 1px dashed var(--border-color);
+  padding-bottom: 0.4rem;
 }
 
-.offer-item-title {
+.comp-title {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+}
+
+.comp-badge-mko {
+  background: #111518;
+  color: #ffffff;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.comp-bar-item.is-mko {
+  background: #f8fafc;
+  border: 1.5px solid #0f172a;
+  border-radius: 5px;
+  padding: 0.6rem 0.75rem;
+}
+
+.comp-bar-meta {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.comp-bar-track {
+  width: 100%;
+  height: 9px;
+  background: #e2e8f0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 5px 0;
+}
+
+.comp-bar-fill.fill-mko {
+  height: 100%;
+  background: #1e293b;
+  border-radius: 4px;
+}
+
+.comp-bar-sub {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  line-height: 1.25;
+}
+
+.comp-bars-grid-secondary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.4rem;
+}
+
+.comp-sub-badge {
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 4px 6px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.comp-footer-alert {
+  background: var(--accent-green-bg);
+  border: 1px solid var(--accent-green-border);
+  border-radius: 4px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  color: var(--accent-green);
+  line-height: 1.35;
+}
+
+/* Money Counter HUD (Slide 3) */
+.money-counter-hud {
+  background: var(--accent-green-bg);
+  border: 2px solid var(--accent-green);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 3px 3px 0px var(--accent-green);
+}
+
+.hud-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.hud-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: var(--accent-green);
+  letter-spacing: 0.05em;
+}
+
+.hud-sub {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+
+.hud-amount {
   font-family: var(--font-hero);
-  font-size: 1.05rem;
+  font-size: 1.7rem;
+  font-weight: 900;
+  color: var(--accent-green);
+  white-space: nowrap;
+}
+
+/* Replacement Grid (Slide 3) */
+.replacement-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.4rem;
+}
+
+.replace-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-dark);
+  border-radius: 5px;
+  padding: 0.45rem 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  box-shadow: 2px 2px 0px rgba(13, 24, 21, 0.08);
+}
+
+.rep-from {
+  color: #991b1b;
+  font-weight: 700;
+  flex: 1;
+}
+
+.rep-arrow {
+  color: var(--accent-green);
+  font-weight: 900;
+  padding: 0 0.5rem;
+}
+
+.rep-to {
+  color: var(--accent-green);
+  font-weight: 800;
+  flex: 1.4;
+  text-align: right;
+}
+
+/* Jar Talents Card (Slide 4) */
+.jar-talents-card {
+  background: var(--bg-card);
+  border: 2px solid var(--border-dark);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  box-shadow: 3px 3px 0px rgba(13, 24, 21, 0.1);
+}
+
+.jar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.jar-title {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
   font-weight: 800;
   color: var(--text-primary);
 }
 
-.offer-item-desc {
-  font-size: 0.76rem;
-  color: var(--text-secondary);
-  margin-top: 3px;
-  line-height: 1.35;
-}
-
-.offer-item-price {
-  font-family: var(--font-mono);
-  font-weight: 800;
-  font-size: 1.05rem;
-  color: var(--accent-green);
-  margin-left: 1.25rem;
-  white-space: nowrap;
-}
-
-.offer-total-box {
+.jar-note {
   background: var(--accent-green-bg);
-  border: 2px solid var(--accent-green);
-  border-radius: 6px;
-  padding: 1.35rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  box-shadow: 5px 5px 0px var(--accent-green);
+  color: var(--accent-green);
+  border: 1px solid var(--accent-green-border);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
 }
 
-.offer-total-header .label {
+.jar-tags-row {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.jar-tag {
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 3px 8px;
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.68rem;
+  color: var(--text-secondary);
+}
+
+.jar-tag.active {
+  background: var(--accent-green);
+  color: #ffffff;
+  border-color: var(--accent-green);
+  font-weight: 700;
+}
+
+/* Reuse Grid (Slide 4) */
+.reuse-grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+}
+
+.reuse-item {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-dark);
+  border-radius: 6px;
+  padding: 0.65rem 0.85rem;
+  box-shadow: 2px 2px 0px rgba(13, 24, 21, 0.08);
+}
+
+.reuse-badge {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
   font-weight: 800;
   color: var(--accent-green);
   display: block;
-  letter-spacing: 0.06em;
 }
 
-.offer-total-header .price {
+.reuse-title {
   font-family: var(--font-hero);
-  font-size: 2.35rem;
-  font-weight: 900;
-  color: var(--accent-green);
-  line-height: 1.05;
-  margin-top: 0.25rem;
+  font-size: 0.92rem;
+  font-weight: 800;
+  margin: 2px 0 4px 0;
+  color: var(--text-primary);
 }
 
-.legal-clause {
-  font-family: var(--font-mono);
+.reuse-desc {
   font-size: 0.72rem;
   color: var(--text-secondary);
-  line-height: 1.45;
-  border-top: 1px dashed var(--accent-green-border);
-  padding-top: 0.75rem;
-  margin-top: 0.75rem;
+  line-height: 1.3;
+  margin: 0;
+}
+
+/* Bins Matrix (Slide 5) */
+.bins-matrix-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.bin-card {
+  border-radius: 6px;
+  padding: 0.65rem 0.85rem;
+  border: 1.5px solid var(--border-dark);
+  box-shadow: 2px 2px 0px rgba(13, 24, 21, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.bin-card.bin-brown {
+  background: #fefce8;
+  border-color: #854d0e;
+}
+.bin-card.bin-yellow {
+  background: #fffbeb;
+  border-color: #ca8a04;
+}
+.bin-card.bin-blue {
+  background: #f0f9ff;
+  border-color: #0284c7;
+}
+.bin-card.bin-black {
+  background: #f8fafc;
+  border-color: #334155;
+}
+
+.bin-header {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.bin-title {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.bin-desc {
+  font-size: 0.71rem;
+  color: var(--text-secondary);
+  line-height: 1.3;
+  margin: 0;
+}
+
+/* Final Result Card (Slide 5) */
+.final-result-card {
+  background: var(--accent-green-bg);
+  border: 2px solid var(--accent-green);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 4px 4px 0px var(--accent-green);
+}
+
+.fr-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.fr-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--accent-green);
+  letter-spacing: 0.05em;
+}
+
+.fr-title {
+  font-family: var(--font-hero);
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: var(--accent-green);
+}
+
+.fr-sub {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.fr-badge {
+  background: var(--accent-green);
+  color: #ffffff;
+  font-family: var(--font-hero);
+  font-size: 1.6rem;
+  font-weight: 900;
+  padding: 0.3rem 0.85rem;
+  border-radius: 6px;
+  box-shadow: 2px 2px 0px #064e3b;
 }
 
 /* Slide 6: Timeline & Cinematic Frame Cards */
@@ -1481,7 +1853,7 @@ footer.deck-footer {
   background: var(--bg-card);
   border: 2px solid var(--border-dark);
   border-radius: 6px;
-  padding: 1.15rem 1.25rem;
+  padding: 0.95rem 1.1rem;
   box-shadow: 4px 4px 0px rgba(13, 24, 21, 0.12);
   display: flex;
   flex-direction: column;
@@ -1490,9 +1862,21 @@ footer.deck-footer {
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
-  .offer-package-grid {
+  .stats-ribbon-grid {
     grid-template-columns: 1fr;
-    gap: 1rem;
+  }
+  .comp-bars-grid-secondary {
+    grid-template-columns: 1fr 1fr;
+  }
+  .reuse-grid-2col,
+  .bins-matrix-grid {
+    grid-template-columns: 1fr;
+  }
+  .money-counter-hud,
+  .final-result-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
   }
   .media-frame-bold {
     min-height: 220px;
@@ -2100,7 +2484,7 @@ footer.deck-footer {
   <header class="deck-header">
     <div class="brand-mark">
       <span>STUDIO VARAŽDIN</span>
-      <span class="tag">EDUKATIVNI VIDEO SUSTAV // 2026</span>
+      <span class="tag">IZOBRAZNO-INFORMATIVNE AKTIVNOSTI // 2026</span>
     </div>
 
     <div class="deck-controls-top">
@@ -2120,242 +2504,358 @@ footer.deck-footer {
   <!-- Main Deck Stage Container (16:9 Locked & Centered) -->
   <main class="deck-stage">
     <div class="slide-wrapper">
-<section class="slide active" data-slide="1" data-index="1" data-title="Deadpan otvaranje: 7 kg otpada">
+<section class="slide active" data-slide="1" data-index="1" data-title="Deadpan hook: 3.637 g otpada">
   <div>
     <div class="category-badge-row">
-      <span class="category-badge">Kadar 1: Otvaranje • Bijeli studio</span>
-      <span class="meta-coords">VARAŽDIN // SEDAM KILOGRAMA TJEDNO</span>
+      <span class="category-badge">Kadar 1: Otvaranje • Bijeli studio • Deadpan hook</span>
+      <span class="meta-coords">VARAŽDIN // 3.637 GRAMA TJEDNO</span>
     </div>
     <h1 class="quote-title">
-      SEDAM KILOGRAMA. <br>
-      <span class="outline-text">TOLIKO SVAKI OD NAS</span> <span class="accent-text" style="color:var(--accent-green);">BACI U 7 DANA.</span>
+      3.637 GRAMA TJEDNO. <br>
+      <span class="outline-text">PROSJEK GRADA VARAŽDINA</span> <span class="accent-text" style="color:var(--accent-green);">I 3 KORAKA KOJA SVE MIJENJAJU.</span>
     </h1>
-    <p class="quote-sub">Deadpan vizualni hook koji gledatelja suočava sa stvarnom težinom otpada.</p>
+    <p class="quote-sub">Deadpan vizualni hook: suočavanje sa stvarnom težinom tjednog otpada u beskonačnom bijelom studiju.</p>
   </div>
 
   <div class="grid-2col">
     <div class="punchy-narration">
-      <p>U praznom bijelom studiju stoji red Varaždinaca. Djevojka stane pod otvor na stropu. Odozgo se na nju sruši sedam kilograma ambalaže — točna količina koju prosječan građanin baci u tjedan dana.</p>
-      <p>Ona ne glumi dramu niti se smije; mirno gleda ravno u objektiv dok na ekranu stoji podatak. Umjesto dosadnih tablica i kamiona, privlačimo pažnju u prve dvije sekunde.</p>
+      <p>U čistom bijelom studiju (infinite white space) stoji red Varaždinaca. Djevojka Ana mirno stane pod vertikalni otvor na stropu. Odozgo se na nju sruši točno <strong>tri kilograma i šesto grama ambalaže i ostataka</strong> — tjedni prosjek Varaždinske županije. Na kraju joj na glavu padne još jedna zalutala plastična bočica.</p>
       
-      <div style="display: flex; gap: 10px; margin-top: 1.4rem; flex-wrap: wrap;">
-        <span class="category-badge" style="background: var(--bg-card-subtle); color: var(--text-primary); border-color: var(--border-color);">
-          1x 4K Master film (60 s)
-        </span>
-        <span class="category-badge" style="background: var(--bg-card-subtle); color: var(--text-primary); border-color: var(--border-color);">
-          3x 9:16 Vertikale (Smanji • Iskoristi • Recikliraj)
-        </span>
+      <div class="stats-ribbon-grid">
+        <div class="stat-pill-card">
+          <span class="stat-num">3,6 kg</span>
+          <span class="stat-lbl">Tjedno po osobi u Varaždinu (190 kg/god)</span>
+        </div>
+        <div class="stat-pill-card">
+          <span class="stat-num">9,0 kg</span>
+          <span class="stat-lbl">Hrvatski prosjek tjedno (470 kg/god)</span>
+        </div>
+        <div class="stat-pill-card stat-alert">
+          <span class="stat-num">800 €</span>
+          <span class="stat-lbl">Godišnje bačene hrane po obitelji (79 kg/st)</span>
+        </div>
+      </div>
+
+      <div class="storyboard-narration-box">
+        <div class="sb-box-tag">VOICEOVER // GLAS SPIKERA (DEADPAN TON)</div>
+        <blockquote class="sb-quote">
+          „Ana je prošli tjedan proizvela točno tri tisuće šesto trideset i četiri… ehem… sedam grama otpada. To je točan prosjek grada Varaždina. No Ana je pogriješila u tri koraka. Velik dio svog otpada Ana bi mogla smanjiti ili prenamijeniti, a ostatak pravilno reciklirati.”
+        </blockquote>
+      </div>
+
+      <div class="badge-chips-row">
+        <span class="format-chip">1x 4K Master film (60 s)</span>
+        <span class="format-chip">3x 9:16 Vertikale (Smanji • Prenamijeni • Recikliraj)</span>
       </div>
     </div>
 
     <div class="media-frame-bold">
       <div class="media-inner" style="position:relative; width:100%; height:100%;">
-        <img src="assets/01_Studio_Pad_Otpada_Hook.jpg" alt="Pad otpada u bijelom studiju" style="width:100%; height:100%; object-fit:cover;">
-        <div class="frame-tag">KADAR 1 // BIJELI STUDIO • DEADPAN HOOK</div>
+        <img src="assets/01_Studio_Pad_Otpada_Hook.jpg" alt="Pad otpada u bijelom studiju na Anu" style="width:100%; height:100%; object-fit:cover;">
+        <div class="frame-tag">KADAR 1 // INFINITE WHITE SPACE • VERTIKALNI CHUTE</div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="slide" data-slide="2" data-index="2" data-title="Tlocrt otpada odozgo & Patkica">
+<section class="slide" data-slide="2" data-index="2" data-title="Tlocrt 90° & 60% zabluda o kanti">
   <div>
     <div class="category-badge-row">
-      <span class="category-badge">Kadar 2: Tlocrt 90° odozgo • Stvarni otpad</span>
-      <span class="meta-coords">TOP-DOWN RIG // SVI PROIZVODI IZ NAŠIH DOMOVA</span>
+      <span class="category-badge">Kadar 2: Tlocrt odozgo pod 90° • Stvarni graf otpada</span>
+      <span class="meta-coords">KOMPOZICIJA OTPADA // VARAŽDINSKA ŽUPANIJA 2024.</span>
     </div>
     <h2 class="quote-title">
-      PTICIJA PERSPEKTIVA: <br>
-      <span class="outline-text">STVARNOST NA BIJELOM PODU</span>
+      60% CRNE KANTE <br>
+      <span class="outline-text">UOPĆE NIJE</span> <span class="accent-text" style="color:var(--accent-green);">MIJEŠANI OTPAD.</span>
     </h2>
-    <p class="quote-sub">Nije prljava gomila, nego pregledan tlocrt onoga što donosimo doma.</p>
+    <p class="quote-sub">Seamless tranzicija kamere odozgo: rasuti predmeti na bijelom podu sami formiraju stvarni graf otpada.</p>
   </div>
 
   <div class="grid-2col">
     <div class="punchy-narration">
-      <p><strong>Stvarni predmeti:</strong> Dva tetrapaka mlijeka, kutija od jaja, masni papir od bureka iz pekare kod placa, četiri limenke, staklenka krastavaca, konzerva srdela, talog jutarnje kave — i jedna žuta gumena patkica.</p>
-      <p><strong>Top-down kadriranje:</strong> Kamera snima okomito pod 90 stupnjeva. Gledatelj vidi točno ono što donosi iz trgovine na kuhinjski stol.</p>
-      <p><strong>Filmska jasnoća:</strong> Bijela podloga stvara laboratorijski čist prostor bez odvlačenja pažnje, pripremljen za grafičko razvrstavanje.</p>
+      <p>Kamera prelazi u okomiti tlocrt (top-down rig pod 90°). Predmeti pali oko Ane samostalno se razmiču i raspoređuju u točne sektore statističkog dijagrama sakupljenog otpada Varaždinske županije.</p>
+      
+      <div class="waste-composition-widget">
+        <div class="comp-header">
+          <span class="comp-title">KOMPOZICIJA SAKUPLJENOG OTPADA (VŽŽ 2024.)</span>
+          <span class="comp-badge-mko">MKO: 60%</span>
+        </div>
+
+        <div class="comp-bars-list">
+          <div class="comp-bar-item is-mko">
+            <div class="comp-bar-meta">
+              <span class="comp-name">⚫ Miješani komunalni otpad (MKO)</span>
+              <span class="comp-val">60,0%</span>
+            </div>
+            <div class="comp-bar-track">
+              <div class="comp-bar-fill fill-mko" style="width: 60%;"></div>
+            </div>
+            <div class="comp-bar-sub">Analize pokazuju: 37% čini biootpad, a slijede papir, plastika i staklo.</div>
+          </div>
+
+          <div class="comp-bars-grid-secondary">
+            <div class="comp-sub-badge">🟤 Biootpad: <strong>10,0%</strong></div>
+            <div class="comp-sub-badge">🔵 Papir: <strong>10,0%</strong></div>
+            <div class="comp-sub-badge">🟡 Plastika: <strong>7,5%</strong></div>
+            <div class="comp-sub-badge">🟢 Staklo: <strong>3,5%</strong></div>
+            <div class="comp-sub-badge">⚙️ Metal: <strong>1,2%</strong></div>
+            <div class="comp-sub-badge">🧵 Tekstil: <strong>1,0%</strong></div>
+          </div>
+        </div>
+
+        <div class="comp-footer-alert">
+          <strong>Stvarno neodvojivog otpada</strong> (pelene, higijenski proizvodi, višeslojna zaprljana ambalaža) ima znatno manje nego što se misli — svega <strong>~180 grama tjedno</strong>.
+        </div>
+      </div>
     </div>
 
     <div class="media-frame-bold">
       <div class="media-inner" style="position:relative; width:100%; height:100%;">
-        <img src="assets/02_Tlocrt_Realni_Otpad_TopDown.jpg" alt="Tlocrt realnog otpada odozgo s patkicom" style="width:100%; height:100%; object-fit:cover;">
-        <div class="frame-tag">KADAR 2 // TLOCRT REALNOG OTPADA & GUMENA PATKICA</div>
+        <img src="assets/02_Tlocrt_Realni_Otpad_TopDown.jpg" alt="Tlocrt otpada odozgo koji formira graf" style="width:100%; height:100%; object-fit:cover;">
+        <div class="frame-tag">KADAR 2 // TLOCRT 90° • SEAMLESS GRAF TRANZICIJA</div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="slide" data-slide="3" data-index="3" data-title="Razvrstavanje & Kante Čistoće">
+<section class="slide" data-slide="3" data-index="3" data-title="Točka 1: Smanji & 800 € uštede">
   <div>
     <div class="category-badge-row">
-      <span class="category-badge">Kadar 3: RRR Tokovi • Spremnici Čistoće Varaždin</span>
-      <span class="meta-coords">ČISTOĆA D.O.O. // PRAVILA KOJA MIJENJAJU NAVIKE</span>
+      <span class="category-badge">Kadar 3: Točka prva: Smanji • Prevencija & Novčanik</span>
+      <span class="meta-coords">TOČKA 1 // NAJBOLJI OTPAD JE ONAJ KOJI NIJE NASTAO</span>
     </div>
     <h2 class="quote-title">
-      RAZVRSTAVANJE U <br>
-      <span class="outline-text">SPREMNIKE ČISTOĆE</span>
+      TOČKA PRVA: SMANJI. <br>
+      <span class="outline-text">POLA OTPADA NESTAJE</span> <span class="accent-text" style="color:var(--accent-green);">PRIJE NEGO UĐE U KUĆU.</span>
     </h2>
-    <p class="quote-sub">Grafika razmiče predmete prema plavoj, žutoj, smeđoj i crnoj kanti.</p>
-  </div>
-
-  <div class="grid-3col">
-    <div class="card-eco card-eco-yellow" style="background:#fffbeb; border:2px solid #ca8a04; border-radius:6px; padding:1.2rem; box-shadow:4px 4px 0px #ca8a04;">
-      <span style="font-family:var(--font-mono); font-size:0.7rem; font-weight:800; color:#ca8a04;">ŽUTA & CRNA POSUDA</span>
-      <h3 style="font-family:var(--font-hero); font-size:1.15rem; margin:0.3rem 0;">TETRAPAK & BUREK</h3>
-      <p style="font-size:0.8rem; color:var(--text-secondary); line-height:1.35;"><strong>Žuta:</strong> Tetrapak i limenke idu u žutu posudu. Dovoljno ih je spljoštiti nogom.<br><br><strong>Crna:</strong> Masni papir od bureka ide u crnu posudu jer masnoća uništava reciklažu papira.</p>
-    </div>
-
-    <div class="card-eco card-eco-brown" style="background:#fefce8; border:2px solid #854d0e; border-radius:6px; padding:1.2rem; box-shadow:4px 4px 0px #854d0e;">
-      <span style="font-family:var(--font-mono); font-size:0.7rem; font-weight:800; color:#854d0e;">SMEĐA & STAKLO</span>
-      <h3 style="font-family:var(--font-hero); font-size:1.15rem; margin:0.3rem 0;">BIOOTPAD & STAKLENKA</h3>
-      <p style="font-size:0.8rem; color:var(--text-secondary); line-height:1.35;"><strong>Smeđa:</strong> Kora banane i talog kave idu izravno u smeđu kantu.<br><br><strong>Staklenka:</strong> Operi je i spremi za čavle ili grah umjesto da je odmah baciš (Ponovno upotrijebi).</p>
-    </div>
-
-    <div class="card-eco card-eco-green" style="background:var(--accent-green-bg); border:2px solid var(--accent-green); border-radius:6px; padding:1.2rem; box-shadow:4px 4px 0px var(--accent-green);">
-      <span style="font-family:var(--font-mono); font-size:0.7rem; font-weight:800; color:var(--accent-green);">PATKICA // SMANJI</span>
-      <h3 style="font-family:var(--font-hero); font-size:1.15rem; margin:0.3rem 0;">POANTA KAMPANJE</h3>
-      <p style="font-size:0.8rem; color:var(--text-secondary); line-height:1.35;"><strong>A patkica?</strong> Na kraju sve stvari nestanu, a na bijelom podu ostane samo patkica.<br><br><em>„Nju nisi trebao ni kupiti. Najmanje smeća imaš kad ga ne doneseš doma.”</em></p>
-    </div>
-  </div>
-</section>
-
-<section class="slide" data-slide="4" data-index="4" data-title="Formati & Knolling pregled">
-  <div>
-    <div class="category-badge-row">
-      <span class="category-badge">Isporuke • 1 Master 4K + 3 Vertikale za Mreže</span>
-      <span class="meta-coords">MODULARNI FORMATI // WEB + REELS + TIKTOK</span>
-    </div>
-    <h2 class="quote-title">
-      1 MASTER FILM + <br>
-      <span class="outline-text">3 VERTIKALE ZA MREŽE</span>
-    </h2>
-    <p class="quote-sub">Jedno snimanje, četiri cjelovita video proizvoda s motion grafikom.</p>
+    <p class="quote-sub">Na polici se jednokratni predmeti zamjenjuju višekratnima uz trenutačnu uštedu u novčaniku.</p>
   </div>
 
   <div class="grid-2col">
     <div class="punchy-narration">
-      <p><strong>1x Glavni film (60 s, 16:9 4K):</strong> Cjeloviti edukativni film za web Grada Varaždina, Čistoće, LED ekrane, konferencije i YouTube.</p>
-      <p><strong>3x Modularne vertikale (30–40 s, 9:16):</strong> Namjenski montirani i titlovani za Instagram Reels, TikTok, YouTube Shorts i Facebook:
-        <br>• <em>Video 1: Smanji</em> (Patkica i nepotrebna ambalaža)
-        <br>• <em>Video 2: Ponovno upotrijebi</em> (Staklenke, kutije i namjena)
-        <br>• <em>Video 3: Recikliraj</em> (Burek, tetrapak, biootpad i kante)
-      </p>
-      <p><strong>Motion grafika & Voiceover:</strong> Animirano označavanje predmeta i profesionalni glas spikera na standardnom hrvatskom.</p>
+      <div class="money-counter-hud">
+        <div class="hud-left">
+          <span class="hud-label">ON-SCREEN MONEY COUNTER // GODIŠNJA UŠTEDA</span>
+          <span class="hud-sub">Izbjegavanje jednokratne ambalaže + planirana kupovina hrane</span>
+        </div>
+        <div class="hud-amount">+ 800,00 €</div>
+      </div>
+
+      <div class="storyboard-narration-box">
+        <div class="sb-box-tag">VOICEOVER // TOČKA PRVA (SMANJI)</div>
+        <blockquote class="sb-quote">
+          „Točka prva: Smanji — Najbolji otpad je onaj koji uopće nismo stvorili. Da je Ana išla spremna u kupovinu i pametnije upravljala svojim novčanikom, uložila bi u višekratne opcije i nikad ne bi proizvela kilograme ambalaže, od kojih 1,5 kg hrane. To je pola Aninog tjednog otpada.”
+        </blockquote>
+      </div>
+
+      <div class="replacement-grid">
+        <div class="replace-card">
+          <div class="rep-from">❌ Plastična boca</div>
+          <div class="rep-arrow">➔</div>
+          <div class="rep-to">✅ Višekratna boca za vodu</div>
+        </div>
+        <div class="replace-card">
+          <div class="rep-from">❌ Plastične vrećice</div>
+          <div class="rep-arrow">➔</div>
+          <div class="rep-to">✅ Platnene vrećice & staklenke za rinfuzu</div>
+        </div>
+        <div class="replace-card">
+          <div class="rep-from">❌ Jednokratne kapsule</div>
+          <div class="rep-arrow">➔</div>
+          <div class="rep-to">✅ Džezva & Moka kuhalo</div>
+        </div>
+        <div class="replace-card">
+          <div class="rep-from">❌ Kupovina bez plana</div>
+          <div class="rep-arrow">➔</div>
+          <div class="rep-to">✅ Popis za shopping (-1,5 kg hrane tjedno)</div>
+        </div>
+      </div>
     </div>
 
     <div class="media-frame-bold">
       <div class="media-inner" style="position:relative; width:100%; height:100%;">
-        <img src="assets/02b_Alternativa_Knolling_Grid.jpg" alt="Knolling grid layout" style="width:100%; height:100%; object-fit:cover;">
-        <div class="frame-tag">KNOLLING GRID // MODULARNI SUSTAV KADROVA</div>
+        <img src="assets/02b_Alternativa_Knolling_Grid.jpg" alt="Zamjena jednokratnih i višekratnih predmeta" style="width:100%; height:100%; object-fit:cover;">
+        <div class="frame-tag">KADAR 3 // POLICA S VIŠEKRATNIM PREDMETIMA • TOP-DOWN DISAPPEAR</div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="slide" data-slide="5" data-index="5" data-title="Komercijalna ponuda br. 17">
+<section class="slide" data-slide="4" data-index="4" data-title="Točka 2: Prenamjena & Više talenata">
   <div>
     <div class="category-badge-row">
-      <span class="category-badge">Struktura ponude • Grad Varaždin & Čistoća</span>
-      <span class="meta-coords">PONUDA BR. 17 // 11.09.2026.</span>
+      <span class="category-badge">Kadar 4: Točka druga: Prenamjena • Staklenka & Tekstil</span>
+      <span class="meta-coords">TOČKA 2 // PREDMETI S VIŠE OD JEDNOG TALENTA</span>
     </div>
     <h2 class="quote-title">
-      TRANSPARENTNA <br>
-      <span class="outline-text">RAŠČLAMBA ULAGANJA</span>
+      TOČKA DRUGA: PRENAMJENA. <br>
+      <span class="outline-text">PRIJE NEGO UOPĆE</span> <span class="accent-text" style="color:var(--accent-green);">POGLEDAMO PREMA KANTAMA.</span>
     </h2>
-    <p class="quote-sub">Puni opseg edukativno-informativnog video paketa.</p>
+    <p class="quote-sub">Jedna staklenka u dinamičnom kadru mijenja sadržaj: od zimnice do radionice.</p>
   </div>
 
-  <div class="offer-package-grid" style="display:grid; grid-template-columns:1.2fr 0.8fr; gap:1.5rem; margin-top:0.75rem;">
-    <div class="offer-main-card" style="display:flex; flex-direction:column; gap:0.6rem;">
-      <div class="offer-item-row" style="background:var(--bg-card); border:2px solid var(--border-dark); border-radius:6px; padding:0.75rem 1rem; display:flex; justify-content:space-between; align-items:center;">
-        <div>
-          <div class="offer-item-title" style="font-family:var(--font-hero); font-size:1rem; font-weight:800;">(1) Scenarij i priprema snimanja</div>
-          <div class="offer-item-desc" style="font-size:0.75rem; color:var(--text-secondary); margin-top:2px;">Knjiga snimanja, tekst naracije, odabir domaće ambalaže i rekvizita, koordinacija sa statistima, Gradom i Čistoćom d.o.o.</div>
-        </div>
-        <div class="offer-item-price" style="font-family:var(--font-mono); font-weight:800; font-size:1rem; margin-left:1rem; white-space:nowrap;">1.000,00 €</div>
+  <div class="grid-2col">
+    <div class="punchy-narration">
+      <div class="storyboard-narration-box">
+        <div class="sb-box-tag">VOICEOVER // TOČKA DRUGA (PRENAMJENA)</div>
+        <blockquote class="sb-quote">
+          „Točka druga: Prenamjena — Neki predmeti imaju više od jednog talenta. Da je Ana obratila pozornost, vidjela bi da u kući ima puno stvari kojima treba staklenka. Ova staklenka trebala je samo toplo pranje, limenka za kaktus, čarapa za čajnik. Sve prije nego uopće pomislimo na odlaganje. I tek kad iscrpimo sve druge mogućnosti, imamo pravo pogledati prema kantama.”
+        </blockquote>
       </div>
 
-      <div class="offer-item-row" style="background:var(--bg-card); border:2px solid var(--border-dark); border-radius:6px; padding:0.75rem 1rem; display:flex; justify-content:space-between; align-items:center;">
-        <div>
-          <div class="offer-item-title" style="font-family:var(--font-hero); font-size:1rem; font-weight:800;">(2) Snimanje u bijelom studiju</div>
-          <div class="offer-item-desc" style="font-size:0.75rem; color:var(--text-secondary); margin-top:2px;">Najam bijele ciklorame, filmska rasvjeta, 4K kamera, specijalizirani rig za snimanje odozgo (top-down) i rad sa statistima.</div>
+      <div class="jar-talents-card">
+        <div class="jar-header">
+          <span class="jar-title">🫙 1 STAKLENKA = 5 ŽIVOTA U KUĆANSTVU</span>
+          <span class="jar-note">Samo toplo pranje</span>
         </div>
-        <div class="offer-item-price" style="font-family:var(--font-mono); font-weight:800; font-size:1rem; margin-left:1rem; white-space:nowrap;">2.000,00 €</div>
+        <div class="jar-tags-row">
+          <span class="jar-tag active">1. Četkice za zube</span>
+          <span class="jar-tag">2. Olovke & bojice</span>
+          <span class="jar-tag">3. Gumbi & konac</span>
+          <span class="jar-tag">4. Grah & tjestenina</span>
+          <span class="jar-tag">5. Vijci & čavli</span>
+        </div>
       </div>
 
-      <div class="offer-item-row" style="background:var(--bg-card); border:2px solid var(--border-dark); border-radius:6px; padding:0.75rem 1rem; display:flex; justify-content:space-between; align-items:center;">
-        <div>
-          <div class="offer-item-title" style="font-family:var(--font-hero); font-size:1rem; font-weight:800;">(3) Montaža, grafika i voiceover</div>
-          <div class="offer-item-desc" style="font-size:0.75rem; color:var(--text-secondary); margin-top:2px;">Montaža 1 glavnog filma (60 s) i 3 kratka videa (16:9 i 9:16), profesionalni spiker, licencirana glazba, obrada zvuka, titlovi i motion grafika.</div>
+      <div class="reuse-grid-2col">
+        <div class="reuse-item">
+          <span class="reuse-badge">🧵 TEKSTIL</span>
+          <div class="reuse-title">Popravak čarapa & čajnik</div>
+          <p class="reuse-desc">Tekstil se najlakše ponovno upotrijebi: izolacija za čajnik, perive krpe za prašinu ili brzi popravak iglom.</p>
         </div>
-        <div class="offer-item-price" style="font-family:var(--font-mono); font-weight:800; font-size:1rem; margin-left:1rem; white-space:nowrap;">1.800,00 €</div>
+        <div class="reuse-item">
+          <span class="reuse-badge">🌵 METALNA LIMENKA</span>
+          <div class="reuse-title">Teglica za kaktus</div>
+          <p class="reuse-desc">Umjesto u reciklažu, oprana konzerva postaje teglica za začinsko bilje ili držač radioničkog alata.</p>
+        </div>
       </div>
     </div>
 
-    <div class="offer-total-box" style="background:var(--accent-green-bg); border:2px solid var(--accent-green); border-radius:6px; padding:1.25rem; display:flex; flex-direction:column; justify-content:space-between; box-shadow:4px 4px 0px var(--accent-green);">
-      <div class="offer-total-header">
-        <span class="label" style="font-family:var(--font-mono); font-size:0.78rem; font-weight:800; color:var(--accent-green); display:block;">UKUPNO ZA PLAĆANJE</span>
-        <span class="price" style="font-family:var(--font-hero); font-size:2.2rem; font-weight:900; color:var(--accent-green);">4.800,00 €</span>
-      </div>
-      <div class="legal-clause" style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-secondary); line-height:1.45; border-top:1px dashed var(--accent-green-border); padding-top:0.6rem; margin-top:0.6rem;">
-        • Oslobođeno PDV-a temeljem čl. 90. st. 2 Zakona o PDV-u.<br>
-        • Vremenski i prostorno neograničena autorska prava za Grad Varaždin i Čistoću d.o.o.<br>
-        • Rok valjanosti ponude: 30 dana.<br>
-        • Uključena 2 kruga dorada.
+    <div class="media-frame-bold">
+      <div class="media-inner" style="position:relative; width:100%; height:100%;">
+        <img src="assets/03_Razvrstavanje_Kante_3R.jpg" alt="Prenamjena predmeta u studiju" style="width:100%; height:100%; object-fit:cover;">
+        <div class="frame-tag">KADAR 4 // DINAMIČNA PRENAMJENA • STAKLENKA & LIMENKA</div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="slide" data-slide="6" data-index="6" data-title="Terminski plan & Autorizacija">
+<section class="slide" data-slide="5" data-index="5" data-title="Točka 3: Kante & Stvarnih 180 g">
   <div>
     <div class="category-badge-row">
-      <span class="category-badge">Terminski plan & Autorizacija</span>
-      <span class="meta-coords">ISPORUKA U 14 DANA</span>
+      <span class="category-badge">Kadar 5: Točka treća: Kante • 180 g u jednoj ruci</span>
+      <span class="meta-coords">TOČKA 3 // ŠEZDESET POSTO OVE KANTE NIJE SMEĆE</span>
     </div>
     <h2 class="quote-title">
-      OD ODOBRENJA DO <br>
-      <span class="outline-text">ISPORUKE U 14 DANA</span>
+      TOČKA TREĆA: KANTE. <br>
+      <span class="outline-text">ANIN TJEDNI OTPAD</span> <span class="accent-text" style="color:var(--accent-green);">SADA STANE U JEDNU RUKU.</span>
     </h2>
-    <p class="quote-sub">Jasne faze, precizni rokovi i jamstvo autorske kvalitete.</p>
+    <p class="quote-sub">Biootpad ide u zemlju, metal u novu sirovinu, a u crnoj kanti ostaje samo šačica od 180 grama.</p>
+  </div>
+
+  <div class="grid-2col">
+    <div class="punchy-narration">
+      <div class="bins-matrix-grid">
+        <div class="bin-card bin-brown">
+          <div class="bin-header">
+            <span class="bin-icon">🟤</span>
+            <span class="bin-title">SMEĐA // BIOOTPAD</span>
+          </div>
+          <p class="bin-desc">Kora jabuke i ostaci. <strong>1:1 potpuno obnovljivo</strong> uz minimalnu energiju — postaje prirodni kompost za zemlju.</p>
+        </div>
+
+        <div class="bin-card bin-yellow">
+          <div class="bin-header">
+            <span class="bin-icon">🟡</span>
+            <span class="bin-title">ŽUTA // METAL & PLASTIKA</span>
+          </div>
+          <p class="bin-desc">Limenke i ambalaža. <strong>Metal se beskonačno reciklira</strong> bez ikakvog gubitka mehaničke kvalitete.</p>
+        </div>
+
+        <div class="bin-card bin-blue">
+          <div class="bin-header">
+            <span class="bin-icon">🔵</span>
+            <span class="bin-title">PLAVA & ZELENA</span>
+          </div>
+          <p class="bin-desc">Čisti papir, karton i staklene boce — sekundarna sirovina za novu proizvodnju.</p>
+        </div>
+
+        <div class="bin-card bin-black">
+          <div class="bin-header">
+            <span class="bin-icon">⚫</span>
+            <span class="bin-title">CRNA // STVARNI MKO</span>
+          </div>
+          <p class="bin-desc">Samo pelene, higijenski otpad i masni papir. Vrlo malo toga zapravo.</p>
+        </div>
+      </div>
+
+      <div class="final-result-card">
+        <div class="fr-left">
+          <span class="fr-tag">KRAJNJI REZULTAT PROTOKOLA</span>
+          <span class="fr-title">STVARNI TJEDNI OTPAD STANE U JEDNU RUKU</span>
+          <span class="fr-sub">S 3.637 g ➔ smanjeno na točno 180 g stvarno neodvojivog otpada.</span>
+        </div>
+        <div class="fr-badge">180 g</div>
+      </div>
+    </div>
+
+    <div class="media-frame-bold">
+      <div class="media-inner" style="position:relative; width:100%; height:100%;">
+        <img src="assets/03_Razvrstavanje_Kante_3R.jpg" alt="Spremnici Čistoće i 180g preostalog otpada" style="width:100%; height:100%; object-fit:cover;">
+        <div class="frame-tag">KADAR 5 // SPREMNICI ČISTOĆE • 180 GRAMA U RUCI</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-slide="6" data-index="6" data-title="Isporuke & Službena ponuda br. 18">
+  <div>
+    <div class="category-badge-row">
+      <span class="category-badge">Isporuke • 1 Master 4K + 3 Vertikale • Ponuda br. 18</span>
+      <span class="meta-coords">ISPORUKA U 14 DANA // 4.800,00 €</span>
+    </div>
+    <h2 class="quote-title">
+      ISPORUKE & PONUDA: <br>
+      <span class="outline-text">1 MASTER 4K FILM +</span> <span class="accent-text" style="color:var(--accent-green);">3 VERTIKALE ZA MREŽE.</span>
+    </h2>
+    <p class="quote-sub">Jedno studijsko snimanje na bijeloj ciklorami, četiri gotova video proizvoda s motion grafikom.</p>
   </div>
 
   <div class="grid-3col">
-    <div class="cinematic-frame-card" style="background:var(--bg-card); border:2px solid var(--border-dark); border-radius:6px; padding:1.1rem; box-shadow:4px 4px 0px var(--border-dark);">
+    <div class="cinematic-frame-card">
       <span style="font-family:var(--font-mono); font-size:0.7rem; font-weight:800; color:var(--accent-green);">DANI 1 – 4</span>
-      <h4 style="font-family:var(--font-hero); font-size:1.1rem; margin:0.3rem 0;">FAZA 1: PRIPREMA</h4>
-      <p style="font-size:0.8rem; color:var(--text-secondary); line-height:1.35;">Dovršetak knjige snimanja, nabava ambalaže iz varaždinskih trgovina, odabir statista i test rasvjete.</p>
+      <h4 style="font-family:var(--font-hero); font-size:1.05rem; margin:0.3rem 0;">FAZA 1: PRIPREMA</h4>
+      <p style="font-size:0.8rem; color:var(--text-secondary); line-height:1.35;">Knjiga snimanja, nabava ambalaže iz varaždinskih trgovina, odabir statista i test rasvjete bijele ciklorame.</p>
     </div>
 
-    <div class="cinematic-frame-card" style="background:var(--bg-card); border:2px solid var(--border-dark); border-radius:6px; padding:1.1rem; box-shadow:4px 4px 0px var(--border-dark);">
+    <div class="cinematic-frame-card">
       <span style="font-family:var(--font-mono); font-size:0.7rem; font-weight:800; color:var(--accent-green);">DAN 5</span>
-      <h4 style="font-family:var(--font-hero); font-size:1.1rem; margin:0.3rem 0;">FAZA 2: SNIMANJE</h4>
-      <p style="font-size:0.8rem; color:var(--text-secondary); line-height:1.35;">Cjelodnevno studijsko snimanje na bijeloj ciklorami: pad otpada, tlocrt odozgo pod 90° i spremnici Čistoće.</p>
+      <h4 style="font-family:var(--font-hero); font-size:1.05rem; margin:0.3rem 0;">FAZA 2: SNIMANJE</h4>
+      <p style="font-size:0.8rem; color:var(--text-secondary); line-height:1.35;">Cjelodnevno studijsko snimanje: pad 3.637 g otpada na Anu, top-down tlocrt 90°, polica s višekratnim opcijama i kante.</p>
     </div>
 
-    <div class="cinematic-frame-card" style="background:var(--bg-card); border:2px solid var(--border-dark); border-radius:6px; padding:1.1rem; box-shadow:4px 4px 0px var(--border-dark);">
+    <div class="cinematic-frame-card">
       <span style="font-family:var(--font-mono); font-size:0.7rem; font-weight:800; color:var(--accent-green);">DANI 6 – 14</span>
-      <h4 style="font-family:var(--font-hero); font-size:1.1rem; margin:0.3rem 0;">FAZA 3: POSTPRODUKCIJA</h4>
-      <p style="font-size:0.8rem; color:var(--text-secondary); line-height:1.35;">Montaža 4K filma i 3 vertikale, animacija motion grafike, snimanje spikera i predaja master materijala.</p>
+      <h4 style="font-family:var(--font-hero); font-size:1.05rem; margin:0.3rem 0;">FAZA 3: POSTPRODUKCIJA</h4>
+      <p style="font-size:0.8rem; color:var(--text-secondary); line-height:1.35;">Montaža 4K Master filma (60 s) i 3 vertikale (Smanji • Prenamijeni • Recikliraj), motion grafika grafa i glas spikera.</p>
     </div>
   </div>
 
   <div class="slide-actions-grid">
     <!-- Hero PDF Download Button -->
-    <a href="assets/Ponuda_Grad_Varazdin_Cistoca_Br17.pdf" download="Ponuda_Grad_Varazdin_Cistoca_Br17.pdf" target="_blank" class="btn-pdf-hero">
+    <a href="assets/Ponuda_Grad_Varazdin_Izobrazno_Informativne_Aktivnosti_Br18.pdf" download="Ponuda_Grad_Varazdin_Izobrazno_Informativne_Aktivnosti_Br18.pdf" target="_blank" class="btn-pdf-hero">
       <div class="btn-pdf-icon">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>
       </div>
       <div class="btn-pdf-content">
         <span class="btn-pdf-tag">SLUŽBENA DOKUMENTACIJA // PDF A4</span>
         <span class="btn-pdf-title">PREUZMI SLUŽBENU PDF PONUDU ↓</span>
-        <span class="btn-pdf-sub">Ponuda br. 17 • 4.800,00 € • Službeni troškovnik i specifikacija</span>
+        <span class="btn-pdf-sub">Ponuda br. 18 • 4.800,00 € • Službeni troškovnik i specifikacija</span>
       </div>
     </a>
 
     <!-- Hero Authorize CTA Button -->
-    <a class="btn-auth-hero" href="mailto:timon.terzic@gmail.com?subject=Potvrda%20Ponude%20br.%2017%20-%20Grad%20Varaždin%20i%20Čistoća&body=Poštovani,%0D%0A%0D%0APotvrđujemo%20prihvaćanje%20Ponude%20br.%2017%20za%20izradu%20video%20serijala%20(7%20KILOGRAMA%20-%20RRR%20koncept)%20u%20iznosu%20od%204.800,00%20EUR.%0D%0A%0D%0ASrdačan%20pozdrav,">
+    <a class="btn-auth-hero" href="mailto:timon.terzic@gmail.com?subject=Potvrda%20Ponude%20br.%2018%20-%20Izobrazno-informativne%20aktivnosti%20-%20gospodarenje%20otpadom&body=Poštovani,%0D%0A%0D%0APotvrđujemo%20prihvaćanje%20Ponude%20br.%2018%20za%20izobrazno-informativne%20aktivnosti%20-%20gospodarenje%20otpadom%20u%20iznosu%20od%204.800,00%20EUR.%0D%0A%0D%0ASrdačan%20pozdrav,">
       <div class="btn-auth-icon">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
       </div>
@@ -2385,7 +2885,7 @@ footer.deck-footer {
       </div>
       <span class="footer-dot-sep">•</span>
       <div class="footer-slide-title-wrapper">
-        <span class="footer-slide-title" id="slideTitleText">Deadpan otvaranje: 7 kg otpada</span>
+        <span class="footer-slide-title" id="slideTitleText">Deadpan hook: 3.637 g otpada</span>
       </div>
     </div>
 
@@ -2396,42 +2896,42 @@ footer.deck-footer {
           <div class="slide-dot-fill"></div>
           <div class="slide-dot-tooltip">
             <span class="dot-tt-index">01</span>
-            <span class="dot-tt-title">Deadpan otvaranje: 7 kg otpada</span>
+            <span class="dot-tt-title">Deadpan hook: 3.637 g otpada</span>
           </div>
         </button>
         <button class="slide-dot" data-slide-index="2" onclick="goToSlide(2)" aria-label="Slajd 2">
           <div class="slide-dot-fill"></div>
           <div class="slide-dot-tooltip">
             <span class="dot-tt-index">02</span>
-            <span class="dot-tt-title">Tlocrt otpada odozgo & Patkica</span>
+            <span class="dot-tt-title">Tlocrt 90° & 60% zabluda o kanti</span>
           </div>
         </button>
         <button class="slide-dot" data-slide-index="3" onclick="goToSlide(3)" aria-label="Slajd 3">
           <div class="slide-dot-fill"></div>
           <div class="slide-dot-tooltip">
             <span class="dot-tt-index">03</span>
-            <span class="dot-tt-title">Razvrstavanje & Kante Čistoće</span>
+            <span class="dot-tt-title">Točka 1: Smanji & 800 € uštede</span>
           </div>
         </button>
         <button class="slide-dot" data-slide-index="4" onclick="goToSlide(4)" aria-label="Slajd 4">
           <div class="slide-dot-fill"></div>
           <div class="slide-dot-tooltip">
             <span class="dot-tt-index">04</span>
-            <span class="dot-tt-title">Formati & Knolling pregled</span>
+            <span class="dot-tt-title">Točka 2: Prenamjena & Više talenata</span>
           </div>
         </button>
         <button class="slide-dot" data-slide-index="5" onclick="goToSlide(5)" aria-label="Slajd 5">
           <div class="slide-dot-fill"></div>
           <div class="slide-dot-tooltip">
             <span class="dot-tt-index">05</span>
-            <span class="dot-tt-title">Komercijalna ponuda br. 17</span>
+            <span class="dot-tt-title">Točka 3: Kante & Stvarnih 180 g</span>
           </div>
         </button>
         <button class="slide-dot" data-slide-index="6" onclick="goToSlide(6)" aria-label="Slajd 6">
           <div class="slide-dot-fill"></div>
           <div class="slide-dot-tooltip">
             <span class="dot-tt-index">06</span>
-            <span class="dot-tt-title">Terminski plan & Autorizacija</span>
+            <span class="dot-tt-title">Isporuke & Službena ponuda br. 18</span>
           </div>
         </button>
       </div>
@@ -3785,12 +4285,57 @@ class DeckNavigator {
   }
 }
 
+/**
+ * custom.js — Komunalni Prezentacija Storyboard Interactions
+ */
+
+(function initStoryboardInteractions() {
+  // 1. Jar tag rotation on hover & interval
+  const jarTags = document.querySelectorAll('.jar-tag');
+  if (jarTags.length > 0) {
+    let activeIdx = 0;
+    setInterval(() => {
+      const activeSlide = document.querySelector('.slide.active');
+      if (activeSlide && activeSlide.getAttribute('data-slide') === '4') {
+        jarTags.forEach(t => t.classList.remove('active'));
+        activeIdx = (activeIdx + 1) % jarTags.length;
+        jarTags[activeIdx].classList.add('active');
+      }
+    }, 1800);
+
+    jarTags.forEach((tag, idx) => {
+      tag.addEventListener('mouseenter', () => {
+        jarTags.forEach(t => t.classList.remove('active'));
+        tag.classList.add('active');
+        activeIdx = idx;
+      });
+    });
+  }
+
+  // 2. Money counter pulse on slide 3
+  const observer = new MutationObserver(() => {
+    const activeSlide = document.querySelector('.slide.active');
+    if (activeSlide && activeSlide.getAttribute('data-slide') === '3') {
+      const amountEl = document.querySelector('.hud-amount');
+      if (amountEl) {
+        amountEl.style.transform = 'scale(1.08)';
+        amountEl.style.transition = 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
+        setTimeout(() => {
+          amountEl.style.transform = 'scale(1)';
+        }, 300);
+      }
+    }
+  });
+
+  const stage = document.querySelector('.stage') || document.body;
+  observer.observe(stage, { attributes: true, subtree: true, attributeFilter: ['class'] });
+})();
 
 
     // Global navigation bindings
     const navigator = new DeckNavigator({
       totalSlides: 6,
-      slideTitles: ["Deadpan otvaranje: 7 kg otpada", "Tlocrt otpada odozgo & Patkica", "Razvrstavanje & Kante Čistoće", "Formati & Knolling pregled", "Komercijalna ponuda br. 17", "Terminski plan & Autorizacija"]
+      slideTitles: ["Deadpan hook: 3.637 g otpada", "Tlocrt 90° & 60% zabluda o kanti", "Točka 1: Smanji & 800 € uštede", "Točka 2: Prenamjena & Više talenata", "Točka 3: Kante & Stvarnih 180 g", "Isporuke & Službena ponuda br. 18"]
     });
 
     window.navigatorInstance = navigator;

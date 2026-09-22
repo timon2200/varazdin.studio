@@ -73,6 +73,16 @@ COLLECTIONS_CONFIG = [
     ('T-Shirt Design/Collections/12 The Lovers Betrayal Tarot Series/Back Prints', 'Creative'),
     ('Brand Book/06 T-Shirt Designs/12 The Lovers Betrayal Tarot Series/Back Prints', 'Creative'),
 
+    # 11 SE5 Collection (Front Hits)
+    ('T-Shirt Design/Collections/11 SE5 Collection/Front Hits', 'Front Hits'),
+    ('Brand Book/06 T-Shirt Designs/11 SE5 Collection/Front Hits', 'Front Hits'),
+
+    # 11 SE5 Collection (Back Prints)
+    ('T-Shirt Design/Collections/11 SE5 Collection/Back Prints', 'Creative'),
+    ('Brand Book/06 T-Shirt Designs/11 SE5 Collection/Back Prints', 'Creative'),
+    ('T-Shirt Design/Collections/11 SE5 Collection', 'Creative'),
+    ('Brand Book/06 T-Shirt Designs/11 SE5 Collection', 'Creative'),
+
     # 03 Creative Series
     ('T-Shirt Design/Collections/03 Creative Series', 'Creative'),
     ('Brand Book/06 T-Shirt Designs/03 Creative Series', 'Creative'),
@@ -213,12 +223,112 @@ TITLE_MAP = {
     'Front Minimal - Studio Varazdin Red Dot Accent': 'Studio Varaždin — Red Dot Accent',
     'Front Minimal - Studio Varazdin Stacked Two-Tone': 'Studio Varaždin — Stacked Two-Tone',
     'Front Minimal - Varazdin Pure Red Script': 'Varaždin — Pure Red Script',
-    'Front Minimal - cCc. Monogram Creative Collective': 'cCc. — Monogram Creative Collective'
+    'Front Minimal - cCc. Monogram Creative Collective': 'cCc. — Monogram Creative Collective',
+
+    # SE5 Collection Back
+    'SE5_Minimal_01_Ecru_Back': 'SE5 Minimal 01 — Monolith Ecru Canvas',
+    'SE5_Minimal_02_Black_Back': 'SE5 Minimal 02 — Monolith Washed Black',
+    'SE5_Minimal_03_WhiteRed_Back': 'SE5 Minimal 03 — Monolith Signal Red',
+    'SE5_Single_01_SE5_Razor_Back': 'SE5 Single 01 — Razor Slice',
+    'SE5_Single_02_SE5_Liquid_Back': 'SE5 Single 02 — Liquid Melting',
+    'SE5_Single_03_SEEEPEET_Flared_Back': 'SE5 Single 03 — SEEE PEET Flared Serif',
+    'SE5_Single_04_SEEEPEET_Columns_Back': 'SE5 Single 04 — SEEE PEET Melting Columns',
+    'SE5_Single_05_SEPET_WarpedBlock_Back': 'SE5 Single 05 — SE PET Warped Block',
+    'SE5_Single_06_SEPET_Distressed_Back': 'SE5 Single 06 — SE PET Distressed Collegiate',
+    'SE5_01_Spray_Stencil_Back': 'SE5 01 — Red Spray Stencil',
+    'SE5_02_Swiss_Manifest_Back': 'SE5 02 — Swiss Manifest Grid',
+    'SE5_03_Kinetic_Wave_Back': 'SE5 03 — Kinetic Soundwave',
+    'SE5_04_Gothic_Litho_Back': 'SE5 04 — Heavy Gothic Litho',
+    'SE5_05_Editorial_Riso_Back': 'SE5 05 — Editorial Duotone Riso',
+    'SE5_Quirky_01_SE5_White_Back': 'SE5 Quirky 01 — Razor Hairline Wave',
+    'SE5_Quirky_02_SE5_Black_Back': 'SE5 Quirky 02 — Cyber Hairline Slant',
+    'SE5_Quirky_03_SEEEPEET_Ecru_Back': 'SE5 Quirky 03 — SEEE PEET Calligraphy Wave',
+    'SE5_Quirky_04_SEPET_Oatmeal_Back': 'SE5 Quirky 04 — SE PET Laser Diagonal',
+    'SE5_Weird_01_SE5_CyberSigil_Back': 'SE5 Weird 01 — Liquid Cyber-Sigil',
+    'SE5_Weird_02_SEEEPEET_Psychedelic_Back': 'SE5 Weird 02 — Psychedelic Horned Serif',
+    'SE5_Weird_03_SEPET_OrigamiBlade_Back': 'SE5 Weird 03 — Origami Razor Blade',
+    'SE5_Weird_04_SE5_MeltingBlob_Back': 'SE5 Weird 04 — Inverted Melting Blob',
+    'SE5_Weird_05_SEPET_OpArtMoire_Back': 'SE5 Weird 05 — Op-Art Kinetic Moiré',
+    'SE5_Weird_06_SEEEPEET_ConcreteGrid_Back': 'SE5 Weird 06 — Modular Brutalist Grid',
+
+    # SE5 Collection Front
+    'SE5_Minimal_01_Ecru_Front': 'SE5 Minimal 01 — Ecru Front Hit',
+    'SE5_Minimal_02_Black_Front': 'SE5 Minimal 02 — Black Front Hit',
+    'SE5_Minimal_03_WhiteRed_Front': 'SE5 Minimal 03 — White & Red Front Hit',
+    'SE5_Single_01_SE5_Razor_Front': 'SE5 Single 01 — Razor Front Hit',
+    'SE5_Single_02_SE5_Liquid_Front': 'SE5 Single 02 — Liquid Front Hit',
+    'SE5_Single_03_SEEEPEET_Flared_Front': 'SE5 Single 03 — SEEE PEET Flared Front Hit',
+    'SE5_Single_04_SEEEPEET_Columns_Front': 'SE5 Single 04 — SEEE PEET Columns Front Hit',
+    'SE5_Single_05_SEPET_WarpedBlock_Front': 'SE5 Single 05 — SE PET Warped Front Hit',
+    'SE5_Single_06_SEPET_Distressed_Front': 'SE5 Single 06 — SE PET Distressed Front Hit',
+    'SE5_01_Spray_Stencil_Front': 'SE5 01 — Spray Stencil Front Hit',
+    'SE5_02_Swiss_Manifest_Front': 'SE5 02 — Swiss Manifest Front Hit',
+    'SE5_03_Kinetic_Wave_Front': 'SE5 03 — Kinetic Wave Front Hit',
+    'SE5_04_Gothic_Litho_Front': 'SE5 04 — Gothic Litho Front Hit',
+    'SE5_05_Editorial_Riso_Front': 'SE5 05 — Editorial Riso Front Hit',
+    'SE5_Quirky_01_SE5_White_Front': 'SE5 Quirky 01 — Razor Wave Front Hit',
+    'SE5_Quirky_02_SE5_Black_Front': 'SE5 Quirky 02 — Cyber Slant Front Hit',
+    'SE5_Quirky_03_SEEEPEET_Ecru_Front': 'SE5 Quirky 03 — Calligraphy Wave Front Hit',
+    'SE5_Quirky_04_SEPET_Oatmeal_Front': 'SE5 Quirky 04 — Laser Diagonal Front Hit',
+    'SE5_Weird_01_SE5_CyberSigil_Front': 'SE5 Weird 01 — Cyber-Sigil Front Hit',
+    'SE5_Weird_02_SEEEPEET_Psychedelic_Front': 'SE5 Weird 02 — Psychedelic Front Hit',
+    'SE5_Weird_03_SEPET_OrigamiBlade_Front': 'SE5 Weird 03 — Origami Blade Front Hit',
+    'SE5_Weird_04_SE5_MeltingBlob_Front': 'SE5 Weird 04 — Melting Blob Front Hit',
+    'SE5_Weird_05_SEPET_OpArtMoire_Front': 'SE5 Weird 05 — Op-Art Moiré Front Hit',
+    'SE5_Weird_06_SEEEPEET_ConcreteGrid_Front': 'SE5 Weird 06 — Brutalist Grid Front Hit'
 }
 
 DESCRIPTION_MAP = {
     'SV_Lovers_03_Kneeling_Martyr_Back': 'Poljubac i oštrica u istoj sekundi. Oklopnik kleči na koplju dok mu dlanovi klize niz dršku, a ona drži krvavi vrh što izbija iz prsiju.',
-    'SV_Lovers_03_Kneeling_Martyr_Front': 'Minimalistički prsni motiv — The Lovers & Ideas Can\'t Die.'
+    'SV_Lovers_03_Kneeling_Martyr_Front': 'Minimalistički prsni motiv — The Lovers & Ideas Can\'t Die.',
+    'SE5_Minimal_01_Ecru_Back': 'Monolitni airbrush znak SE5 s vodoravnim prijelazom brzine na nebijeljenom ecru pamuku.',
+    'SE5_Minimal_01_Ecru_Front': 'Mali airbrush znak SE5 i mikrootisak Studio Varaždin na prsima.',
+    'SE5_Minimal_02_Black_Back': 'Kredasto-bijeli monolit SE5 s vodoravnim rasterom brzine na ispranom crnom pamuku.',
+    'SE5_Minimal_02_Black_Front': 'Kredasti prsni znak SE5 s mikrootiskom Studio Varaždin.',
+    'SE5_Minimal_03_WhiteRed_Back': 'Dvocvjetni aerodinamični motiv: crni airbrush SE i signalno crvena brojka 5 na optički bijelom platnu.',
+    'SE5_Minimal_03_WhiteRed_Front': 'Dvobojni prsni motiv SE5 s mikrootiskom Studio Varaždin.',
+    'SE5_Single_01_SE5_Razor_Back': 'Ekstremno visoka britva-tipografija SE5 s oštrim rezovima kroz vertikalne stupove.',
+    'SE5_Single_01_SE5_Razor_Front': 'Prsni britva-motiv SE5 s mikrootiskom Studio Varaždin.',
+    'SE5_Single_02_SE5_Liquid_Back': 'Puhasta rastopljena slova SE5 s tekućim kapljicama i monolitnom masom.',
+    'SE5_Single_02_SE5_Liquid_Front': 'Rastopljeni prsni motiv SE5 s mikrootiskom Studio Varaždin.',
+    'SE5_Single_03_SEEEPEET_Flared_Back': 'Izdužena serifna slova SEEE PEET s klinastim završecima i tankim strukom.',
+    'SE5_Single_03_SEEEPEET_Flared_Front': 'Prsni monogram SEEE PEET s mikrootiskom Studio Varaždin.',
+    'SE5_Single_04_SEEEPEET_Columns_Back': 'Rastopljeni valoviti stupovi teksta SEEE PEET u teškom crnom rasteru.',
+    'SE5_Single_04_SEEEPEET_Columns_Front': 'Valoviti prsni motiv SEEE PEET s mikrootiskom Studio Varaždin.',
+    'SE5_Single_05_SEPET_WarpedBlock_Back': 'Zbijeni monolitni blok SE PET s vertikalnom distorzijom i teškim obrubom.',
+    'SE5_Single_05_SEPET_WarpedBlock_Front': 'Zbijeni prsni blok SE PET s mikrootiskom Studio Varaždin.',
+    'SE5_Single_06_SEPET_Distressed_Back': 'Pohabani koledž-natpis SE PET s pukotinama u tisku i grubim sitotiskarskim zrnom.',
+    'SE5_Single_06_SEPET_Distressed_Front': 'Koledž prsni natpis SE PET s mikrootiskom Studio Varaždin.',
+    'SE5_01_Spray_Stencil_Back': 'Crveni šablonski sprej-otisak SE5 s brutalističkim linijama.',
+    'SE5_01_Spray_Stencil_Front': 'Šablonski prsni motiv SE5 s mikrootiskom Studio Varaždin.',
+    'SE5_02_Swiss_Manifest_Back': 'Švicarska višestupčana tipografska mreža SE5 s produkcijskim specifikacijama.',
+    'SE5_02_Swiss_Manifest_Front': 'Švicarski tehnički prsni blok SE5 s mikrootiskom Studio Varaždin.',
+    'SE5_03_Kinetic_Wave_Back': 'Kinetički zvučni valovi i modularni raster SE5.',
+    'SE5_03_Kinetic_Wave_Front': 'Kinetički prsni val SE5 s mikrootiskom Studio Varaždin.',
+    'SE5_04_Gothic_Litho_Back': 'Teški litografski neogotički tisak SE5 s tamnim zrnom.',
+    'SE5_04_Gothic_Litho_Front': 'Gotički prsni amblem SE5 s mikrootiskom Studio Varaždin.',
+    'SE5_05_Editorial_Riso_Back': 'Urednički dvobojni risografski otisak SE5.',
+    'SE5_05_Editorial_Riso_Front': 'Risografski prsni motiv SE5 s mikrootiskom Studio Varaždin.',
+    'SE5_Quirky_01_SE5_White_Back': 'Ekstremno tanka valovita linijska tipografija SE5 s laserskim prijelazom na optički bijelom platnu.',
+    'SE5_Quirky_01_SE5_White_Front': 'Prsni tankolinijski motiv SE5 s mikrootiskom Studio Varaždin.',
+    'SE5_Quirky_02_SE5_Black_Back': 'Kosi kibernetički natpis SE5 u tankom linijskom rezu na ispranom crnom pamuku.',
+    'SE5_Quirky_02_SE5_Black_Front': 'Kosi prsni motiv SE5 s mikrootiskom Studio Varaždin.',
+    'SE5_Quirky_03_SEEEPEET_Ecru_Back': 'Valoviti kaligrafski stupovi SEEE PEET u visokom kontrastu na toplom ecru platnu.',
+    'SE5_Quirky_03_SEEEPEET_Ecru_Front': 'Kaligrafski prsni motiv SEEE PEET s mikrootiskom Studio Varaždin.',
+    'SE5_Quirky_04_SEPET_Oatmeal_Back': 'Dijagonalni laserski ispis SE PET preko leđa na zrnatom sivom pamuku.',
+    'SE5_Quirky_04_SEPET_Oatmeal_Front': 'Dijagonalni prsni natpis SE PET s mikrootiskom Studio Varaždin.',
+    'SE5_Weird_01_SE5_CyberSigil_Back': 'Kibernetički sigil i tekući metalni raster SE5 na ispranom crnom pamuku.',
+    'SE5_Weird_01_SE5_CyberSigil_Front': 'Kibernetički prsni sigil SE5 s mikrootiskom Studio Varaždin.',
+    'SE5_Weird_02_SEEEPEET_Psychedelic_Back': 'Psihodelična izvijena slova SEEE PEET s rogatim serifima na vintage pješčanom platnu.',
+    'SE5_Weird_02_SEEEPEET_Psychedelic_Front': 'Psihodelični prsni motiv SEEE PEET s mikrootiskom Studio Varaždin.',
+    'SE5_Weird_03_SEPET_OrigamiBlade_Back': 'Origami geometrijski rezovi i oštri britva-rubovi SE PET na bijelom platnu.',
+    'SE5_Weird_03_SEPET_OrigamiBlade_Front': 'Origami prsni znak SE PET s mikrootiskom Studio Varaždin.',
+    'SE5_Weird_04_SE5_MeltingBlob_Back': 'Obrnuti masni raster i rastopljena masa SE5 na ispranoj kadulja zelenoj podlozi.',
+    'SE5_Weird_04_SE5_MeltingBlob_Front': 'Rastopljeni prsni motiv SE5 s mikrootiskom Studio Varaždin.',
+    'SE5_Weird_05_SEPET_OpArtMoire_Back': 'Optička iluzija i kinetički interferencijski moiré valovi SE PET na dubokoj crnoj podlozi.',
+    'SE5_Weird_05_SEPET_OpArtMoire_Front': 'Kinetički moiré prsni motiv SE PET s mikrootiskom Studio Varaždin.',
+    'SE5_Weird_06_SEEEPEET_ConcreteGrid_Back': 'Modularna betonska šablonska rešetka SEEE PEET na sirovom ecru platnu.',
+    'SE5_Weird_06_SEEEPEET_ConcreteGrid_Front': 'Modularni prsni raster SEEE PEET s mikrootiskom Studio Varaždin.'
 }
 
 def get_hash(path: Path) -> str:
@@ -426,7 +536,17 @@ def build_catalog():
             except Exception as e:
                 print(f"  [!] Note: Could not parse votes_round_1.json: {e}")
 
-    for idx, item in enumerate(collected_items, start=1):
+    # Collect all canonical IDs
+    assigned_ids = set()
+    next_id_counter = 1
+    for k, v in canonical_id_by_img.items():
+        assigned_ids.add(v)
+        if '-' in v and v.split('-')[1].isdigit():
+            val = int(v.split('-')[1])
+            if val >= next_id_counter:
+                next_id_counter = val + 1
+
+    for item in collected_items:
         clean_name = item['stem']
         clean_name = re.sub(r'\s*1664x2048', '', clean_name).strip()
         webp_name = f"{clean_name}.webp"
@@ -446,9 +566,17 @@ def build_catalog():
         tags = [item['category'].lower(), "streetwear", "varazdin"]
         if "lovers" in clean_name.lower():
             tags.extend(["lovers", "tarot", "ideas-cant-die"])
+        if any(k in clean_name.lower() for k in ["se5", "sepet", "seeepeet"]):
+            tags.extend(["se5", "typography", "meme", "minimal"])
         
         rel_img = f"assets/optimized/{webp_name}"
-        item_id = canonical_id_by_img.get(rel_img) or canonical_id_by_img.get(webp_name.lower()) or f"sv-{idx:03d}"
+        item_id = canonical_id_by_img.get(rel_img) or canonical_id_by_img.get(webp_name.lower())
+        if not item_id:
+            while f"sv-{next_id_counter:03d}" in assigned_ids:
+                next_id_counter += 1
+            item_id = f"sv-{next_id_counter:03d}"
+            assigned_ids.add(item_id)
+            next_id_counter += 1
 
         # Match with existing votes
         v = existing_votes.get(rel_img) or existing_votes.get(item_id)
@@ -513,9 +641,11 @@ def build_catalog():
         master_js.parent.mkdir(parents=True, exist_ok=True)
         master_js.write_text(master_js_content, encoding="utf-8")
 
-        # 2. Check for existing active curation (active-ids.json or active-catalog.json)
         data_dir = target / "api" / "data"
         data_dir.mkdir(parents=True, exist_ok=True)
+        (data_dir / "master-catalog.json").write_text(json.dumps(catalog_data, indent=2, ensure_ascii=False), encoding="utf-8")
+
+        # 2. Check for existing active curation (active-ids.json or active-catalog.json)
         active_ids_file = data_dir / "active-ids.json"
         active_json_file = data_dir / "active-catalog.json"
         primary_js = target / "js" / "catalog-data.js"
@@ -537,9 +667,12 @@ def build_catalog():
             except Exception:
                 active_ids_list = []
 
-        # If an active curation exists, filter master by those IDs
+        # If an active curation exists, include existing active IDs + newly added designs
         if active_ids_list:
             master_by_id = {it["id"]: it for it in catalog_data}
+            for it in catalog_data:
+                if it["id"] not in active_ids_list:
+                    active_ids_list.append(it["id"])
             active_subset = [master_by_id[aid] for aid in active_ids_list if aid in master_by_id]
 
         # If no active curation exists yet, default to all master items
