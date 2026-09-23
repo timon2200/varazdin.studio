@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="hr" class="scroll-smooth bg-black">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NIKOLA VUDRAG — PITANJA // STUDIO VARAŽDIN</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Pirata+One&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=VT323&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ios-bg: #000000;
+      --ios-card: #111114;
+      --ios-card-hover: #17171c;
+      --riso-red: #ff3344;
+      --riso-red-glow: rgba(255, 51, 68, 0.2);
+    }
+
+    body {
+      background-color: var(--ios-bg);
+      color: #f4f4f5;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .font-gothic {
+      font-family: 'Pirata One', 'Cinzel', serif;
+      letter-spacing: 0.03em;
+    }
+    .font-cinzel { font-family: 'Cinzel', serif; }
+    .font-mono { font-family: 'Space Mono', monospace; }
+    .font-pixel { font-family: 'VT323', monospace; }
+
+    /* iPhone Calendar Dark Mode Item Style (Hugs content tightly, zero dead space) */
+    .ios-item {
+      background: #111114;
+      box-shadow: 0 4px 18px -2px rgba(0, 0, 0, 0.75), 0 2px 6px -1px rgba(0, 0, 0, 0.5);
+      border: none !important;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 13px 16px;
+      border-radius: 12px;
+      height: fit-content;
+      min-height: 0;
+      transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      will-change: transform, box-shadow;
+    }
+    .ios-item:hover {
+      background: #17171c;
+      box-shadow: 0 8px 26px -4px rgba(0, 0, 0, 0.85), 0 0 15px rgba(255, 51, 68, 0.08);
+      transform: translateY(-1px);
+    }
+    .ios-item:focus-within {
+      background: #191920;
+      box-shadow: 0 10px 32px -4px rgba(0, 0, 0, 0.95), 0 0 22px var(--riso-red-glow);
+    }
+
+    /* Minimal iOS Red Accent Bar */
+    .ios-accent-bar {
+      width: 3px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      background: var(--riso-red);
+      opacity: 0.85;
+      transition: opacity 0.2s ease;
+    }
+    .ios-item:focus-within .ios-accent-bar {
+      opacity: 1;
+      box-shadow: 0 0 8px var(--riso-red);
+    }
+
+    /* Minimal Number Badge */
+    .num-badge {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #ff3344;
+      letter-spacing: 0.05em;
+      line-height: 1.55;
+      user-select: none;
+      flex-shrink: 0;
+      padding-top: 1px;
+    }
+
+    /* Auto-hugging Textarea: ZERO blank space below text */
+    .question-input {
+      width: 100%;
+      background: transparent;
+      color: #f4f4f5;
+      font-size: 1.05rem;
+      line-height: 1.55;
+      font-weight: 400;
+      border: none !important;
+      outline: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      resize: none !important;
+      overflow: hidden !important;
+      box-sizing: border-box !important;
+      display: block !important;
+      min-height: 0 !important;
+      height: auto;
+      field-sizing: content; /* Modern CSS dynamic content sizing */
+      font-family: inherit;
+    }
+    .question-input::placeholder {
+      color: #52525b;
+    }
+
+    /* GPU-accelerated Remote Flash Update */
+    .ios-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      box-shadow: inset 0 0 0 1.5px #ff3344, 0 0 25px rgba(255, 51, 68, 0.4);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      will-change: opacity;
+    }
+    .ios-item.remote-flash::after {
+      opacity: 1;
+      animation: fadeOutGlow 1.8s forwards;
+    }
+    @keyframes fadeOutGlow {
+      0% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    /* Category Nav Links */
+    .cat-anchor {
+      transition: all 0.2s ease;
+    }
+    .cat-anchor:hover {
+      background-color: #27272a;
+      color: #ffffff;
+    }
+
+    /* Pulse dot for live state */
+    @keyframes livePulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.35; transform: scale(0.85); }
+    }
+    .pulse-dot {
+      will-change: transform, opacity;
+      animation: livePulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-20 px-4 md:px-8 selection:bg-red-600 selection:text-white">
+
+  <!-- Sticky iOS-Style Frosted Top Bar -->
+  <div class="sticky top-0 z-50 bg-black/80 backdrop-blur-xl border-b border-zinc-900 -mx-4 md:-mx-8 px-4 md:px-8 py-3 mb-8 transition-all">
+    <div class="max-w-3xl mx-auto flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+      <div class="flex items-center gap-3">
+        <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-red-950/60 text-red-400 font-bold tracking-wider text-[11px]">
+          <span class="w-1.5 h-1.5 rounded-full bg-red-500 pulse-dot"></span>
+          LIVE
+        </span>
+        <span id="saveStatus" class="text-zinc-400 flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          Sve spremljeno
+        </span>
+      </div>
+
+      <div class="flex items-center gap-3 text-zinc-400">
+        <div class="flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-dot"></span>
+          <span id="activeUsersCount">1 aktivan suradnik</span>
+        </div>
+        <span class="text-zinc-800">|</span>
+        <span class="text-zinc-500 text-[11px] hidden sm:inline">Auto-save aktivan</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <div class="max-w-3xl mx-auto">
+
+    <!-- Minimal Art Header -->
+    <header class="text-center mb-10 pt-2 pb-6 relative">
+      <div class="inline-flex items-center gap-2 mb-3">
+        <span class="font-mono text-[11px] tracking-widest text-zinc-500 uppercase">
+          STUDIO VARAŽDIN × NIKOLA VUDRAG
+        </span>
+      </div>
+
+      <h1 class="text-5xl sm:text-6xl md:text-8xl font-gothic text-white uppercase tracking-wider mb-2">
+        PITANJA
+      </h1>
+      
+      <p id="totalQuestionsHeader" class="font-cinzel text-xs sm:text-sm text-red-500 font-bold tracking-widest uppercase mb-4">
+        TEOLOGIJA, NIETZSCHE, MITOVI & KUNST // 18 PITANJA
+      </p>
+
+      <nav id="categoryNav" class="flex flex-wrap items-center justify-center gap-1.5 mt-5 text-[11px] font-mono">
+        <!-- Rendered dynamically -->
+      </nav>
+    </header>
+
+    <!-- Questions Feed -->
+    <main id="questionsFeed" class="space-y-8">
+      <!-- Instant render by JS -->
+    </main>
+
+    <!-- Minimal Footer -->
+    <footer class="mt-20 pt-8 text-center space-y-2 border-t border-zinc-900">
+      <div class="font-mono text-[11px] text-zinc-600 uppercase tracking-wider">
+        STUDIO VARAŽDIN · DOKUMENTARNI DIJALOG
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Real-Time Collaborative Sync Engine -->
+  <script>
+    (function() {
+      const DEFAULT_SECTIONS = [
+        {
+          id: "sec-teologija",
+          title: "01. TEOLOGIJA, SJEMENIŠTE I POJAM BOGA",
+          navTitle: "01. Teologija & Bog",
+          questions: [
+            { id: "q1", num: "01", text: "Bio si u sjemeništu na Kaptolu jer te teologija zanimala kao znanost i sustav mišljenja. Što te u crkvenom sustavu razočaralo da si ga napustio, a što si iz teologije ponio sa sobom u kiparstvo?" },
+            { id: "q2", num: "02", text: "U teologiji Bog stvara svijet *ex nihilo* (iz ničega), a kipar se bori sa sirovom tvari. Je li tvoj rad u radioni pokušaj duhovnog stvaranja ili čisti materijalni inat?" },
+            { id: "q3", num: "03", text: "Zašto se u umjetnosti danas ljudi srame govoriti o vjeri, duhovnosti i svetom — je li moderna umjetnost izgubila vezu s metafizikom?" }
+          ]
+        },
+        {
+          id: "sec-nietzsche",
+          title: "02. NIETZSCHE, VOLJA I PREVLADAVANJE SAMOGA SEBE",
+          navTitle: "02. Nietzsche & Volja",
+          questions: [
+            { id: "q4", num: "04", text: "Znamo da u svojoj privatnoj kolekciji čuvaš skulpturu *„Friedrich Nietzsche s rogovima”* koju ne želiš prodati. Zašto baš Nietzsche i zašto rogovi?" },
+            { id: "q5", num: "05", text: "Nietzsche piše o tome da čovjek mora proći kroz vlastiti pakao i patnju da bi stvorio nešto veliko. Koliko je tvoja osobna kriza — onaj period kad si u jednom danu ostao bez posla, stana i veze — bila gorivo za ovo što danas radiš?" },
+            { id: "q6", num: "06", text: "Danas se često čuje da je kultura postala prenježna i površna. Što tebi znači Nietzscheov pojam *volje za moć* kad stojiš pred tonama hladnog željeza?" }
+          ]
+        },
+        {
+          id: "sec-persona",
+          title: "03. PERSONA & GRČKA MITOLOGIJA: IRON MAIDEN",
+          navTitle: "03. Persona & Mreže",
+          questions: [
+            { id: "q7", num: "07", text: "Tvoja serija mrežastih skulptura *Iron Maiden* (Čelična djeva) izravno se oslanja na grčki pojam *Persone* — kazališne maske. Koje sve maske ljudi nose u društvu i zašto si tu masku odlučio napraviti od varenih šipki?" },
+            { id: "q8", num: "08", text: "Mrežasta struktura tvojih glava je prozirna — kroz nju se vidi prostor iza. Je li to maska koja skriva čovjeka ili rešetka koja ga razotkriva?" },
+            { id: "q9", num: "09", text: "Kad je ta *Persona* u Varšavi dosegla 712.000 eura, jesi li osjetio da je tržište prepoznalo filozofsku ideju maske ili samo prestiž i materijalni objekt?" }
+          ]
+        },
+        {
+          id: "sec-heraklo",
+          title: "04. HERAKLOVI ZADACI: BORBA S NEDAĆAMA",
+          navTitle: "04. Heraklovi zadaci",
+          questions: [
+            { id: "q10", num: "10", text: "Tvoj ciklus *Heraklovi zadaci* (Nemejski lav, Erimantski vepar...) bavi se antičkim mitološkim podvizima. Zbog čega si odabrao baš Herakla, a ne nekog mirnijeg antičkog heroja?" },
+            { id: "q11", num: "11", text: "Svaki od tih 12 zadataka predstavlja neku nemoguću prepreku. Koji je tvoj osobni „Herkulov zadatak” bio najteži za savladati u životu i radioni?" },
+            { id: "q12", num: "12", text: "Može li uopće nastati monumentalna umjetnost bez fizičke i mentalne borbe, ili je komfor ubojica velikih ideja?" }
+          ]
+        },
+        {
+          id: "sec-prometej",
+          title: "05. PROMETEJ, TESLA I MIT O VATRI",
+          navTitle: "05. Prometej & Tesla",
+          questions: [
+            { id: "q13", num: "13", text: "Napravio si Teslu od 13 metara čelika ispred Tehnološkog parka. Vidiš li u Tesli modernog Prometeja koji je donio vatru ljudima, a na kraju ostao sam?" },
+            { id: "q14", num: "14", text: "Zašto su tvoji motivi gotovo uvijek arhetipovi vatre, munje i transformacije energije — privlači li te ideja žrtve koju takvi geniji plaćaju?" },
+            { id: "q15", num: "15", text: "Što moderna tehnologija (poput 3D skeniranja koje koristiš u radu) donosi klasičnom kiparstvu — pomaže li ideji ili prijeti da ubije dodir ruke?" }
+          ]
+        },
+        {
+          id: "sec-kunst",
+          title: "06. POJAM UMJETNOSTI (KUNST) I TRAJANJE",
+          navTitle: "06. Kunst & Trajanje",
+          questions: [
+            { id: "q16", num: "16", text: "U renesansi se kiparstvo smatralo vrhuncem zanata i filozofije. Što je za tebe *Kunst* (umjetnost) danas — koncept, provokacija ili vještina da materiji udahneš oblik?" },
+            { id: "q17", num: "17", text: "Corten čelik s godinama stvara koru hrđe i sam sebe štiti od propadanja. Je li prolaznost metala tvoja metafora za ljudsko tijelo i sjećanje?" },
+            { id: "q18", num: "18", text: "Kad se ugase svjetla galerija i nestane sav šušur oko aukcija, što je ona jedna misao zbog koje se svako jutro vraćaš u prašinu RezervArta na Dravi?" }
+          ]
+        }
+      ];
+
+      const isFileProtocol = window.location.protocol === 'file:';
+      const API_URL = isFileProtocol 
+        ? 'https://varazdin.studio/vudrag/api/questions.php' 
+        : 'api/questions.php';
+
+      const POLL_INTERVAL_MS = 1500;
+      const DEBOUNCE_SAVE_MS = 350;
+
+      let sessionId = 'usr_anon';
+      try {
+        sessionId = sessionStorage.getItem('vudrag_session_id');
+        if (!sessionId) {
+          sessionId = 'usr_' + Math.random().toString(36).substring(2, 10) + '_' + Date.now().toString(36);
+          sessionStorage.setItem('vudrag_session_id', sessionId);
+        }
+      } catch (e) {
+        sessionId = 'usr_' + Math.random().toString(36).substring(2, 8);
+      }
+
+      let currentVersion = 1;
+      let appData = { sections: DEFAULT_SECTIONS };
+      
+      try {
+        const cached = localStorage.getItem('vudrag_questions_cache');
+        if (cached) {
+          const parsed = JSON.parse(cached);
+          if (parsed && parsed.sections) {
+            appData.sections = parsed.sections;
+            if (parsed.version) currentVersion = parsed.version;
+          }
+        }
+      } catch (e) {}
+
+      let debounceTimers = {};
+      let activeFocusedId = null;
+      let initialFocusText = {};
+      let pendingRemoteUpdates = {};
+      let isOfflineOrCors = false;
+
+      const feedContainer = document.getElementById('questionsFeed');
+      const saveStatusEl = document.getElementById('saveStatus');
+      const activeUsersCountEl = document.getElementById('activeUsersCount');
+      const totalQuestionsHeaderEl = document.getElementById('totalQuestionsHeader');
+      const categoryNavEl = document.getElementById('categoryNav');
+
+      function escapeHtml(str) {
+        if (str === null || str === undefined) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      // Exact Dynamic Auto-Resize: Zero Blank Space
+      function autoResizeTextarea(textarea) {
+        if (!textarea) return;
+        textarea.style.height = 'auto';
+        textarea.style.height = textarea.scrollHeight + 'px';
+      }
+
+      function resizeAllTextareas() {
+        document.querySelectorAll('.question-input').forEach(ta => autoResizeTextarea(ta));
+      }
+
+      function setStatus(type, msg) {
+        if (!saveStatusEl) return;
+        if (type === 'saving') {
+          saveStatusEl.innerHTML = `
+            <svg class="w-3.5 h-3.5 text-amber-400 animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <span class="text-amber-400">Spremanje...</span>
+          `;
+        } else if (type === 'saved') {
+          saveStatusEl.innerHTML = `
+            <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span class="text-zinc-400">${msg || 'Sve spremljeno'}</span>
+          `;
+        } else if (type === 'local') {
+          saveStatusEl.innerHTML = `
+            <svg class="w-3.5 h-3.5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span class="text-zinc-400">Spremljeno lokalno</span>
+          `;
+        } else if (type === 'error') {
+          saveStatusEl.innerHTML = `
+            <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
+            <span class="text-red-400">${msg || 'Greška'}</span>
+          `;
+        }
+      }
+
+      function getTotalQuestionsCount(sections) {
+        return sections.reduce((acc, sec) => acc + (sec.questions ? sec.questions.length : 0), 0);
+      }
+
+      function updateHeaderCounts() {
+        const total = getTotalQuestionsCount(appData.sections);
+        if (totalQuestionsHeaderEl) {
+          totalQuestionsHeaderEl.textContent = `TEOLOGIJA, NIETZSCHE, MITOVI & KUNST // ${total} PITANJA`;
+        }
+      }
+
+      function renderCategoryNav() {
+        if (!categoryNavEl || !appData.sections) return;
+        categoryNavEl.innerHTML = appData.sections.map(sec => `
+          <a href="#${escapeHtml(sec.id)}" class="cat-anchor px-2.5 py-1 rounded-md bg-zinc-900/80 text-zinc-400 uppercase tracking-wider text-[11px]">
+            ${escapeHtml(sec.navTitle || sec.title)}
+          </a>
+        `).join('');
+      }
+
+      function createQuestionCardElement(q, secId) {
+        const div = document.createElement('div');
+        div.className = 'ios-item group relative';
+        div.id = `card-${q.id}`;
+        div.dataset.id = q.id;
+        div.dataset.sectionId = secId;
+
+        div.innerHTML = `
+          <div class="ios-accent-bar"></div>
+          <span class="num-badge" id="tag-${escapeHtml(q.id)}">${escapeHtml(q.num)}</span>
+          <div class="flex-1 min-w-0" style="display: flex; align-items: flex-start;">
+            <textarea id="input-${escapeHtml(q.id)}" data-id="${escapeHtml(q.id)}" class="question-input" placeholder="Unesite pitanje..." rows="1">${escapeHtml(q.text)}</textarea>
+          </div>
+          <div class="shrink-0 flex items-center pt-0.5">
+            <button 
+              type="button" 
+              onclick="window.vudragApp.deleteQuestion('${escapeHtml(q.id)}')"
+              title="Obriši pitanje"
+              class="text-zinc-600 hover:text-red-400 min-w-[32px] min-h-[32px] p-1.5 rounded-lg hover:bg-zinc-800 transition-all opacity-40 sm:opacity-0 sm:group-hover:opacity-100 hover:opacity-100 focus:opacity-100 flex items-center justify-center">
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        `;
+
+        const textarea = div.querySelector('textarea');
+        textarea.addEventListener('focus', () => onInputFocus(q.id, textarea.value));
+        textarea.addEventListener('blur', () => onInputBlur(q.id));
+        textarea.addEventListener('input', () => onTextInput(q.id, textarea));
+
+        return div;
+      }
+
+      function initialRenderFeed() {
+        if (!feedContainer || !appData.sections) return;
+        feedContainer.innerHTML = '';
+
+        appData.sections.forEach(sec => {
+          const sectionEl = document.createElement('section');
+          sectionEl.id = sec.id;
+          sectionEl.className = 'space-y-2.5 pt-2';
+
+          const headerDiv = document.createElement('div');
+          headerDiv.className = 'flex items-center justify-between pb-1 px-1';
+          headerDiv.innerHTML = `
+            <span class="text-xs font-mono text-zinc-500 font-semibold tracking-wider uppercase">
+              ${escapeHtml(sec.title)}
+            </span>
+            <button 
+              type="button" 
+              onclick="window.vudragApp.addQuestion('${escapeHtml(sec.id)}')"
+              class="text-[11px] font-mono text-zinc-400 hover:text-red-400 transition-colors px-2 py-0.5 rounded bg-zinc-900 hover:bg-zinc-800 uppercase tracking-wider flex items-center gap-1 cursor-pointer">
+              + Dodaj
+            </button>
+          `;
+          sectionEl.appendChild(headerDiv);
+
+          const cardsContainer = document.createElement('div');
+          cardsContainer.className = 'space-y-2';
+          cardsContainer.id = `cards-${sec.id}`;
+
+          if (sec.questions && sec.questions.length > 0) {
+            sec.questions.forEach(q => {
+              const card = createQuestionCardElement(q, sec.id);
+              cardsContainer.appendChild(card);
+            });
+          }
+
+          sectionEl.appendChild(cardsContainer);
+          feedContainer.appendChild(sectionEl);
+        });
+
+        requestAnimationFrame(() => {
+          resizeAllTextareas();
+          setTimeout(resizeAllTextareas, 60);
+        });
+        updateHeaderCounts();
+      }
+
+      function reconcileFeed(newSections) {
+        if (!feedContainer) return;
+
+        newSections.forEach(newSec => {
+          let sectionCards = document.getElementById(`cards-${newSec.id}`);
+          if (!sectionCards) {
+            initialRenderFeed();
+            return;
+          }
+
+          const existingCards = Array.from(sectionCards.querySelectorAll('.ios-item'));
+          const existingIds = existingCards.map(c => c.dataset.id);
+          const newIds = newSec.questions ? newSec.questions.map(q => q.id) : [];
+
+          existingCards.forEach(card => {
+            if (!newIds.includes(card.dataset.id)) {
+              card.remove();
+            }
+          });
+
+          if (newSec.questions) {
+            newSec.questions.forEach((q, index) => {
+              let cardEl = document.getElementById(`card-${q.id}`);
+              
+              if (!cardEl) {
+                cardEl = createQuestionCardElement(q, newSec.id);
+                const currentChildren = sectionCards.children;
+                if (index < currentChildren.length) {
+                  sectionCards.insertBefore(cardEl, currentChildren[index]);
+                } else {
+                  sectionCards.appendChild(cardEl);
+                }
+                const newTextarea = cardEl.querySelector('textarea');
+                autoResizeTextarea(newTextarea);
+              }
+
+              const tagEl = document.getElementById(`tag-${q.id}`);
+              if (tagEl && tagEl.textContent !== q.num) {
+                tagEl.textContent = q.num;
+              }
+
+              const textarea = document.getElementById(`input-${q.id}`);
+              if (textarea) {
+                if (q.id === activeFocusedId) {
+                  pendingRemoteUpdates[q.id] = q.text;
+                } else {
+                  if (textarea.value !== q.text) {
+                    textarea.value = q.text;
+                    autoResizeTextarea(textarea);
+
+                    cardEl.classList.remove('remote-flash');
+                    void cardEl.offsetWidth;
+                    cardEl.classList.add('remote-flash');
+                  }
+                }
+              }
+            });
+          }
+        });
+
+        appData.sections = newSections;
+        try {
+          localStorage.setItem('vudrag_questions_cache', JSON.stringify({ version: currentVersion, sections: appData.sections }));
+        } catch (e) {}
+        updateHeaderCounts();
+      }
+
+      async function saveQuestion(qId, text) {
+        setStatus('saving');
+
+        appData.sections.forEach(sec => {
+          if (sec.questions) {
+            sec.questions.forEach(q => {
+              if (q.id === qId) q.text = text;
+            });
+          }
+        });
+        try {
+          localStorage.setItem('vudrag_questions_cache', JSON.stringify({ version: currentVersion, sections: appData.sections }));
+        } catch (e) {}
+
+        try {
+          const res = await fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              action: 'update_question',
+              id: qId,
+              text: text,
+              sessionId: sessionId
+            })
+          });
+          const data = await res.json();
+          if (data.status === 'success') {
+            currentVersion = data.version;
+            setStatus('saved', 'Spremljeno');
+          } else {
+            setStatus('error', data.message || 'Greška');
+          }
+        } catch (e) {
+          if (isFileProtocol) {
+            setStatus('local', 'Spremljeno lokalno');
+          } else {
+            setStatus('error', 'Mrežna greška');
+          }
+        }
+      }
+
+      async function addQuestion(sectionId) {
+        setStatus('saving');
+        try {
+          const res = await fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              action: 'add_question',
+              sectionId: sectionId,
+              text: 'Novo pitanje...',
+              sessionId: sessionId
+            })
+          });
+          const data = await res.json();
+          if (data.status === 'success') {
+            currentVersion = data.version;
+            reconcileFeed(data.sections);
+            setStatus('saved', 'Dodano novo pitanje');
+
+            const lastSec = data.sections.find(s => s.id === sectionId);
+            if (lastSec && lastSec.questions && lastSec.questions.length > 0) {
+              const newQ = lastSec.questions[lastSec.questions.length - 1];
+              const newEl = document.getElementById(`input-${newQ.id}`);
+              if (newEl) {
+                newEl.focus();
+                newEl.select();
+                autoResizeTextarea(newEl);
+              }
+            }
+          }
+        } catch (e) {
+          const sec = appData.sections.find(s => s.id === sectionId);
+          if (sec) {
+            if (!sec.questions) sec.questions = [];
+            const newQ = {
+              id: 'q_loc_' + Math.random().toString(36).substring(2, 7),
+              num: String(getTotalQuestionsCount(appData.sections) + 1).padStart(2, '0'),
+              text: 'Novo pitanje...'
+            };
+            sec.questions.push(newQ);
+            reconcileFeed(appData.sections);
+            setStatus(isFileProtocol ? 'local' : 'saved', 'Dodano lokalno');
+          }
+        }
+      }
+
+      async function deleteQuestion(qId) {
+        if (!confirm('Želite li sigurno obrisati ovo pitanje?')) return;
+        setStatus('saving');
+        try {
+          const res = await fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              action: 'delete_question',
+              id: qId,
+              sessionId: sessionId
+            })
+          });
+          const data = await res.json();
+          if (data.status === 'success') {
+            currentVersion = data.version;
+            reconcileFeed(data.sections);
+            setStatus('saved', 'Obrisano');
+          }
+        } catch (e) {
+          appData.sections.forEach(sec => {
+            if (sec.questions) {
+              sec.questions = sec.questions.filter(q => q.id !== qId);
+            }
+          });
+          reconcileFeed(appData.sections);
+          setStatus(isFileProtocol ? 'local' : 'saved', 'Obrisano');
+        }
+      }
+
+      function onInputFocus(qId, currentVal) {
+        activeFocusedId = qId;
+        initialFocusText[qId] = currentVal;
+      }
+
+      function onInputBlur(qId) {
+        const el = document.getElementById(`input-${qId}`);
+        const currentVal = el ? el.value : '';
+        const initialVal = initialFocusText[qId] || '';
+
+        if (debounceTimers[qId]) {
+          clearTimeout(debounceTimers[qId]);
+          delete debounceTimers[qId];
+          saveQuestion(qId, currentVal);
+        } else if (currentVal !== initialVal) {
+          saveQuestion(qId, currentVal);
+        } else if (pendingRemoteUpdates[qId] !== undefined) {
+          if (el) {
+            el.value = pendingRemoteUpdates[qId];
+            autoResizeTextarea(el);
+          }
+        }
+
+        delete initialFocusText[qId];
+        delete pendingRemoteUpdates[qId];
+
+        if (activeFocusedId === qId) {
+          activeFocusedId = null;
+        }
+      }
+
+      function onTextInput(qId, textarea) {
+        autoResizeTextarea(textarea);
+        setStatus('saving');
+        
+        if (debounceTimers[qId]) {
+          clearTimeout(debounceTimers[qId]);
+        }
+
+        debounceTimers[qId] = setTimeout(() => {
+          delete debounceTimers[qId];
+          saveQuestion(qId, textarea.value);
+        }, DEBOUNCE_SAVE_MS);
+      }
+
+      async function pollSync() {
+        try {
+          const res = await fetch(`${API_URL}?sessionId=${encodeURIComponent(sessionId)}&version=${currentVersion}`);
+          if (!res.ok) throw new Error('API unreachable');
+          const data = await res.json();
+
+          if (data.status === 'success') {
+            isOfflineOrCors = false;
+            if (activeUsersCountEl && data.activeUsers) {
+              const count = data.activeUsers;
+              activeUsersCountEl.textContent = count === 1 
+                ? '1 aktivan suradnik' 
+                : `${count} aktivna suradnika`;
+            }
+
+            if (currentVersion === 1 && appData.sections === DEFAULT_SECTIONS) {
+              currentVersion = data.version;
+              appData.sections = data.sections;
+              renderCategoryNav();
+              reconcileFeed(data.sections);
+            } else if (data.version > currentVersion) {
+              currentVersion = data.version;
+              reconcileFeed(data.sections);
+            }
+          }
+        } catch (err) {
+          if (!isOfflineOrCors) {
+            isOfflineOrCors = true;
+            if (isFileProtocol) {
+              setStatus('local', 'Lokalni pregled (file://)');
+            }
+          }
+        } finally {
+          setTimeout(pollSync, isFileProtocol ? 5000 : POLL_INTERVAL_MS);
+        }
+      }
+
+      window.vudragApp = {
+        addQuestion,
+        deleteQuestion
+      };
+
+      // Ensure fonts & resize trigger
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(resizeAllTextareas);
+      }
+      window.addEventListener('load', resizeAllTextareas);
+      window.addEventListener('resize', resizeAllTextareas);
+
+      renderCategoryNav();
+      initialRenderFeed();
+      pollSync();
+
+    })();
+  </script>
+
+</body>
+</html>

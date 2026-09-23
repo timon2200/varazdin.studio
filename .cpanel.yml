@@ -5,12 +5,16 @@ deployment:
     # 1. Sicher backup all dynamic live data before copy
     - mkdir -p $HOME/.sv_live_backup/tajno-glasanje
     - mkdir -p $HOME/.sv_live_backup/swiper
-    - mkdir -p $HOME/.sv_live_backup/vudrag
+    - mkdir -p $HOME/.sv_live_backup/vudrag/data
+    - mkdir -p $HOME/.sv_live_backup/vudrag/stills_uploads
+    - mkdir -p $HOME/.sv_live_backup/vudrag/videos_uploads
     - if [ -d "$DEPLOYPATH/tajno-glasanje/api/data" ]; then /bin/cp -a "$DEPLOYPATH/tajno-glasanje/api/data/"* "$HOME/.sv_live_backup/tajno-glasanje/" 2>/dev/null || true; fi
     - if [ -f "$DEPLOYPATH/tajno-glasanje/js/catalog-data.js" ]; then /bin/cp -a "$DEPLOYPATH/tajno-glasanje/js/catalog-data.js" "$HOME/.sv_live_backup/tajno-glasanje/catalog-data.js" 2>/dev/null || true; fi
     - if [ -d "$DEPLOYPATH/swiper/api/data" ]; then /bin/cp -a "$DEPLOYPATH/swiper/api/data/"* "$HOME/.sv_live_backup/swiper/" 2>/dev/null || true; fi
     - if [ -f "$DEPLOYPATH/swiper/js/catalog-data.js" ]; then /bin/cp -a "$DEPLOYPATH/swiper/js/catalog-data.js" "$HOME/.sv_live_backup/swiper/catalog-data.js" 2>/dev/null || true; fi
-    - if [ -d "$DEPLOYPATH/vudrag/data" ]; then /bin/cp -a "$DEPLOYPATH/vudrag/data/"* "$HOME/.sv_live_backup/vudrag/" 2>/dev/null || true; fi
+    - if [ -d "$DEPLOYPATH/vudrag/data" ]; then /bin/cp -a "$DEPLOYPATH/vudrag/data/"* "$HOME/.sv_live_backup/vudrag/data/" 2>/dev/null || true; fi
+    - if [ -d "$DEPLOYPATH/vudrag/stills/uploads" ]; then /bin/cp -a "$DEPLOYPATH/vudrag/stills/uploads/"* "$HOME/.sv_live_backup/vudrag/stills_uploads/" 2>/dev/null || true; fi
+    - if [ -d "$DEPLOYPATH/vudrag/videos/uploads" ]; then /bin/cp -a "$DEPLOYPATH/vudrag/videos/uploads/"* "$HOME/.sv_live_backup/vudrag/videos_uploads/" 2>/dev/null || true; fi
 
     # 2. Copy repo website files
     - /bin/cp -R website/* $DEPLOYPATH
@@ -20,7 +24,9 @@ deployment:
     - if [ -f "$HOME/.sv_live_backup/tajno-glasanje/catalog-data.js" ]; then /bin/cp -a "$HOME/.sv_live_backup/tajno-glasanje/catalog-data.js" "$DEPLOYPATH/tajno-glasanje/js/catalog-data.js" 2>/dev/null || true; fi
     - if [ -d "$HOME/.sv_live_backup/swiper" ]; then mkdir -p "$DEPLOYPATH/swiper/api/data" && /bin/cp -a "$HOME/.sv_live_backup/swiper/"* "$DEPLOYPATH/swiper/api/data/" 2>/dev/null || true; fi
     - if [ -f "$HOME/.sv_live_backup/swiper/catalog-data.js" ]; then /bin/cp -a "$HOME/.sv_live_backup/swiper/catalog-data.js" "$DEPLOYPATH/swiper/js/catalog-data.js" 2>/dev/null || true; fi
-    - if [ -d "$HOME/.sv_live_backup/vudrag" ]; then mkdir -p "$DEPLOYPATH/vudrag/data" && /bin/cp -a "$HOME/.sv_live_backup/vudrag/"* "$DEPLOYPATH/vudrag/data/" 2>/dev/null || true; fi
+    - if [ -d "$HOME/.sv_live_backup/vudrag/data" ]; then mkdir -p "$DEPLOYPATH/vudrag/data" && /bin/cp -a "$HOME/.sv_live_backup/vudrag/data/"* "$DEPLOYPATH/vudrag/data/" 2>/dev/null || true; fi
+    - if [ -d "$HOME/.sv_live_backup/vudrag/stills_uploads" ]; then mkdir -p "$DEPLOYPATH/vudrag/stills/uploads" && /bin/cp -a "$HOME/.sv_live_backup/vudrag/stills_uploads/"* "$DEPLOYPATH/vudrag/stills/uploads/" 2>/dev/null || true; fi
+    - if [ -d "$HOME/.sv_live_backup/vudrag/videos_uploads" ]; then mkdir -p "$DEPLOYPATH/vudrag/videos/uploads" && /bin/cp -a "$HOME/.sv_live_backup/vudrag/videos_uploads/"* "$DEPLOYPATH/vudrag/videos/uploads/" 2>/dev/null || true; fi
 
     # 4. Trigger reconciliation CLI
     - if command -v php >/dev/null 2>&1; then php "$DEPLOYPATH/tajno-glasanje/api/curate.php" --sync >/dev/null 2>&1 || true; fi
