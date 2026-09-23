@@ -1870,6 +1870,50 @@
     },
     "sv-366": {
       "id": "sv-366",
+      "title": "SE5 Thin 01 — Razor Ultra-Thin",
+      "category": "Creative",
+      "likes": 0,
+      "passes": 0,
+      "superlikes": 0,
+      "score": 0,
+      "image": "assets/optimized/SE5_Thin_01_SE5_White_Back.webp",
+      "impressions": 0
+    },
+    "sv-367": {
+      "id": "sv-367",
+      "title": "SE5 Thin 02 — Cyber Ultra-Thin",
+      "category": "Creative",
+      "likes": 0,
+      "passes": 0,
+      "superlikes": 0,
+      "score": 0,
+      "image": "assets/optimized/SE5_Thin_02_SE5_Black_Back.webp",
+      "impressions": 0
+    },
+    "sv-368": {
+      "id": "sv-368",
+      "title": "SE5 Thin 03 — SEEE PEET Calligraphy Thin",
+      "category": "Creative",
+      "likes": 0,
+      "passes": 0,
+      "superlikes": 0,
+      "score": 0,
+      "image": "assets/optimized/SE5_Thin_03_SEEEPEET_Ecru_Back.webp",
+      "impressions": 0
+    },
+    "sv-369": {
+      "id": "sv-369",
+      "title": "SE5 Thin 04 — SE PET Laser Thin",
+      "category": "Creative",
+      "likes": 0,
+      "passes": 0,
+      "superlikes": 0,
+      "score": 0,
+      "image": "assets/optimized/SE5_Thin_04_SEPET_Oatmeal_Back.webp",
+      "impressions": 0
+    },
+    "sv-370": {
+      "id": "sv-370",
       "title": "SE5 Weird 01 — Liquid Cyber-Sigil",
       "category": "Creative",
       "likes": 0,
@@ -1879,8 +1923,8 @@
       "image": "assets/optimized/SE5_Weird_01_SE5_CyberSigil_Back.webp",
       "impressions": 0
     },
-    "sv-367": {
-      "id": "sv-367",
+    "sv-371": {
+      "id": "sv-371",
       "title": "SE5 Weird 02 — Psychedelic Horned Serif",
       "category": "Creative",
       "likes": 0,
@@ -1890,8 +1934,8 @@
       "image": "assets/optimized/SE5_Weird_02_SEEEPEET_Psychedelic_Back.webp",
       "impressions": 0
     },
-    "sv-368": {
-      "id": "sv-368",
+    "sv-372": {
+      "id": "sv-372",
       "title": "SE5 Weird 03 — Origami Razor Blade",
       "category": "Creative",
       "likes": 0,
@@ -1901,8 +1945,8 @@
       "image": "assets/optimized/SE5_Weird_03_SEPET_OrigamiBlade_Back.webp",
       "impressions": 0
     },
-    "sv-369": {
-      "id": "sv-369",
+    "sv-373": {
+      "id": "sv-373",
       "title": "SE5 Weird 04 — Inverted Melting Blob",
       "category": "Creative",
       "likes": 0,
@@ -1912,8 +1956,8 @@
       "image": "assets/optimized/SE5_Weird_04_SE5_MeltingBlob_Back.webp",
       "impressions": 0
     },
-    "sv-370": {
-      "id": "sv-370",
+    "sv-374": {
+      "id": "sv-374",
       "title": "SE5 Weird 05 — Op-Art Kinetic Moiré",
       "category": "Creative",
       "likes": 0,
@@ -1923,8 +1967,8 @@
       "image": "assets/optimized/SE5_Weird_05_SEPET_OpArtMoire_Back.webp",
       "impressions": 0
     },
-    "sv-371": {
-      "id": "sv-371",
+    "sv-375": {
+      "id": "sv-375",
       "title": "SE5 Weird 06 — Modular Brutalist Grid",
       "category": "Creative",
       "likes": 0,
@@ -2087,50 +2131,6 @@
       "score": 2,
       "image": "assets/optimized/SV_Single_09_Comix_Ink_Back.webp",
       "impressions": 6
-    },
-    "sv-372": {
-      "id": "sv-372",
-      "title": "Se5 Thin 01 Se5 White Back",
-      "category": "Creative",
-      "likes": 0,
-      "passes": 0,
-      "superlikes": 0,
-      "score": 0,
-      "image": "assets/optimized/SE5_Thin_01_SE5_White_Back.webp",
-      "impressions": 0
-    },
-    "sv-373": {
-      "id": "sv-373",
-      "title": "Se5 Thin 02 Se5 Black Back",
-      "category": "Creative",
-      "likes": 0,
-      "passes": 0,
-      "superlikes": 0,
-      "score": 0,
-      "image": "assets/optimized/SE5_Thin_02_SE5_Black_Back.webp",
-      "impressions": 0
-    },
-    "sv-374": {
-      "id": "sv-374",
-      "title": "Se5 Thin 03 Seeepeet Ecru Back",
-      "category": "Creative",
-      "likes": 0,
-      "passes": 0,
-      "superlikes": 0,
-      "score": 0,
-      "image": "assets/optimized/SE5_Thin_03_SEEEPEET_Ecru_Back.webp",
-      "impressions": 0
-    },
-    "sv-375": {
-      "id": "sv-375",
-      "title": "Se5 Thin 04 Sepet Oatmeal Back",
-      "category": "Creative",
-      "likes": 0,
-      "passes": 0,
-      "superlikes": 0,
-      "score": 0,
-      "image": "assets/optimized/SE5_Thin_04_SEPET_Oatmeal_Back.webp",
-      "impressions": 0
     },
     "sv-166": {
       "id": "sv-166",
@@ -3663,6 +3663,50 @@
     },
     "sv-394": {
       "id": "sv-394",
+      "title": "SE5 Thin 01 — Razor Ultra-Thin Front Hit",
+      "category": "Front Hits",
+      "likes": 0,
+      "passes": 0,
+      "superlikes": 0,
+      "score": 0,
+      "image": "assets/optimized/SE5_Thin_01_SE5_White_Front.webp",
+      "impressions": 0
+    },
+    "sv-395": {
+      "id": "sv-395",
+      "title": "SE5 Thin 02 — Cyber Ultra-Thin Front Hit",
+      "category": "Front Hits",
+      "likes": 0,
+      "passes": 0,
+      "superlikes": 0,
+      "score": 0,
+      "image": "assets/optimized/SE5_Thin_02_SE5_Black_Front.webp",
+      "impressions": 0
+    },
+    "sv-396": {
+      "id": "sv-396",
+      "title": "SE5 Thin 03 — SEEE PEET Calligraphy Thin Front Hit",
+      "category": "Front Hits",
+      "likes": 0,
+      "passes": 0,
+      "superlikes": 0,
+      "score": 0,
+      "image": "assets/optimized/SE5_Thin_03_SEEEPEET_Ecru_Front.webp",
+      "impressions": 0
+    },
+    "sv-397": {
+      "id": "sv-397",
+      "title": "SE5 Thin 04 — SE PET Laser Thin Front Hit",
+      "category": "Front Hits",
+      "likes": 0,
+      "passes": 0,
+      "superlikes": 0,
+      "score": 0,
+      "image": "assets/optimized/SE5_Thin_04_SEPET_Oatmeal_Front.webp",
+      "impressions": 0
+    },
+    "sv-398": {
+      "id": "sv-398",
       "title": "SE5 Weird 01 — Cyber-Sigil Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3672,8 +3716,8 @@
       "image": "assets/optimized/SE5_Weird_01_SE5_CyberSigil_Front.webp",
       "impressions": 0
     },
-    "sv-395": {
-      "id": "sv-395",
+    "sv-399": {
+      "id": "sv-399",
       "title": "SE5 Weird 02 — Psychedelic Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3683,8 +3727,8 @@
       "image": "assets/optimized/SE5_Weird_02_SEEEPEET_Psychedelic_Front.webp",
       "impressions": 0
     },
-    "sv-396": {
-      "id": "sv-396",
+    "sv-400": {
+      "id": "sv-400",
       "title": "SE5 Weird 03 — Origami Blade Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3694,8 +3738,8 @@
       "image": "assets/optimized/SE5_Weird_03_SEPET_OrigamiBlade_Front.webp",
       "impressions": 0
     },
-    "sv-397": {
-      "id": "sv-397",
+    "sv-401": {
+      "id": "sv-401",
       "title": "SE5 Weird 04 — Melting Blob Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3705,8 +3749,8 @@
       "image": "assets/optimized/SE5_Weird_04_SE5_MeltingBlob_Front.webp",
       "impressions": 0
     },
-    "sv-398": {
-      "id": "sv-398",
+    "sv-402": {
+      "id": "sv-402",
       "title": "SE5 Weird 05 — Op-Art Moiré Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3716,8 +3760,8 @@
       "image": "assets/optimized/SE5_Weird_05_SEPET_OpArtMoire_Front.webp",
       "impressions": 0
     },
-    "sv-399": {
-      "id": "sv-399",
+    "sv-403": {
+      "id": "sv-403",
       "title": "SE5 Weird 06 — Brutalist Grid Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -4001,50 +4045,6 @@
       "score": 1,
       "image": "assets/optimized/SV_Utility_10_Magazine_Label_Front.webp",
       "impressions": 6
-    },
-    "sv-400": {
-      "id": "sv-400",
-      "title": "Se5 Thin 01 Se5 White Front",
-      "category": "Front Hits",
-      "likes": 0,
-      "passes": 0,
-      "superlikes": 0,
-      "score": 0,
-      "image": "assets/optimized/SE5_Thin_01_SE5_White_Front.webp",
-      "impressions": 0
-    },
-    "sv-401": {
-      "id": "sv-401",
-      "title": "Se5 Thin 02 Se5 Black Front",
-      "category": "Front Hits",
-      "likes": 0,
-      "passes": 0,
-      "superlikes": 0,
-      "score": 0,
-      "image": "assets/optimized/SE5_Thin_02_SE5_Black_Front.webp",
-      "impressions": 0
-    },
-    "sv-402": {
-      "id": "sv-402",
-      "title": "Se5 Thin 03 Seeepeet Ecru Front",
-      "category": "Front Hits",
-      "likes": 0,
-      "passes": 0,
-      "superlikes": 0,
-      "score": 0,
-      "image": "assets/optimized/SE5_Thin_03_SEEEPEET_Ecru_Front.webp",
-      "impressions": 0
-    },
-    "sv-403": {
-      "id": "sv-403",
-      "title": "Se5 Thin 04 Sepet Oatmeal Front",
-      "category": "Front Hits",
-      "likes": 0,
-      "passes": 0,
-      "superlikes": 0,
-      "score": 0,
-      "image": "assets/optimized/SE5_Thin_04_SEPET_Oatmeal_Front.webp",
-      "impressions": 0
     },
     "sv-312": {
       "id": "sv-312",

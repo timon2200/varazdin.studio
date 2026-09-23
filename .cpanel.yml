@@ -2,31 +2,49 @@
 deployment:
   tasks:
     - export DEPLOYPATH=$HOME/public_html/
-    # 1. Sicher backup all dynamic live data before copy
+    # 1. Prepare backup directory
     - mkdir -p $HOME/.sv_live_backup/tajno-glasanje
     - mkdir -p $HOME/.sv_live_backup/swiper
     - mkdir -p $HOME/.sv_live_backup/vudrag/data
     - mkdir -p $HOME/.sv_live_backup/vudrag/stills_uploads
     - mkdir -p $HOME/.sv_live_backup/vudrag/videos_uploads
-    - if [ -d "$DEPLOYPATH/tajno-glasanje/api/data" ]; then /bin/cp -a "$DEPLOYPATH/tajno-glasanje/api/data/"* "$HOME/.sv_live_backup/tajno-glasanje/" 2>/dev/null || true; fi
-    - if [ -f "$DEPLOYPATH/tajno-glasanje/js/catalog-data.js" ]; then /bin/cp -a "$DEPLOYPATH/tajno-glasanje/js/catalog-data.js" "$HOME/.sv_live_backup/tajno-glasanje/catalog-data.js" 2>/dev/null || true; fi
-    - if [ -d "$DEPLOYPATH/swiper/api/data" ]; then /bin/cp -a "$DEPLOYPATH/swiper/api/data/"* "$HOME/.sv_live_backup/swiper/" 2>/dev/null || true; fi
-    - if [ -f "$DEPLOYPATH/swiper/js/catalog-data.js" ]; then /bin/cp -a "$DEPLOYPATH/swiper/js/catalog-data.js" "$HOME/.sv_live_backup/swiper/catalog-data.js" 2>/dev/null || true; fi
+
+    # 2. Clean any stale master catalog files from backup so they never overwrite repository master updates
+    - rm -f $HOME/.sv_live_backup/tajno-glasanje/master-catalog.json
+    - rm -f $HOME/.sv_live_backup/tajno-glasanje/active-catalog.json
+    - rm -f $HOME/.sv_live_backup/tajno-glasanje/active-ids.json
+    - rm -f $HOME/.sv_live_backup/tajno-glasanje/catalog-data.js
+    - rm -f $HOME/.sv_live_backup/tajno-glasanje/catalog-data.master.js
+    - rm -f $HOME/.sv_live_backup/swiper/master-catalog.json
+    - rm -f $HOME/.sv_live_backup/swiper/active-catalog.json
+    - rm -f $HOME/.sv_live_backup/swiper/active-ids.json
+    - rm -f $HOME/.sv_live_backup/swiper/catalog-data.js
+    - rm -f $HOME/.sv_live_backup/swiper/catalog-data.master.js
+
+    # 3. Backup ONLY dynamic user-generated runtime state (votes, rounds, comments, user uploads)
+    - if [ -f "$DEPLOYPATH/tajno-glasanje/api/data/votes.json" ]; then /bin/cp -a "$DEPLOYPATH/tajno-glasanje/api/data/votes.json" "$HOME/.sv_live_backup/tajno-glasanje/" 2>/dev/null || true; fi
+    - if [ -f "$DEPLOYPATH/tajno-glasanje/api/data/rounds.json" ]; then /bin/cp -a "$DEPLOYPATH/tajno-glasanje/api/data/rounds.json" "$HOME/.sv_live_backup/tajno-glasanje/" 2>/dev/null || true; fi
+    - if [ -f "$DEPLOYPATH/tajno-glasanje/api/data/round1-results-leaderboard.json" ]; then /bin/cp -a "$DEPLOYPATH/tajno-glasanje/api/data/round1-results-leaderboard.json" "$HOME/.sv_live_backup/tajno-glasanje/" 2>/dev/null || true; fi
+    - if [ -f "$DEPLOYPATH/tajno-glasanje/api/data/round1-results.csv" ]; then /bin/cp -a "$DEPLOYPATH/tajno-glasanje/api/data/round1-results.csv" "$HOME/.sv_live_backup/tajno-glasanje/" 2>/dev/null || true; fi
+    - if [ -f "$DEPLOYPATH/tajno-glasanje/api/data/round1-results-leaderboard.md" ]; then /bin/cp -a "$DEPLOYPATH/tajno-glasanje/api/data/round1-results-leaderboard.md" "$HOME/.sv_live_backup/tajno-glasanje/" 2>/dev/null || true; fi
+    - if [ -f "$DEPLOYPATH/tajno-glasanje/api/data/comments.json" ]; then /bin/cp -a "$DEPLOYPATH/tajno-glasanje/api/data/comments.json" "$HOME/.sv_live_backup/tajno-glasanje/" 2>/dev/null || true; fi
     - if [ -d "$DEPLOYPATH/vudrag/data" ]; then /bin/cp -a "$DEPLOYPATH/vudrag/data/"* "$HOME/.sv_live_backup/vudrag/data/" 2>/dev/null || true; fi
     - if [ -d "$DEPLOYPATH/vudrag/stills/uploads" ]; then /bin/cp -a "$DEPLOYPATH/vudrag/stills/uploads/"* "$HOME/.sv_live_backup/vudrag/stills_uploads/" 2>/dev/null || true; fi
     - if [ -d "$DEPLOYPATH/vudrag/videos/uploads" ]; then /bin/cp -a "$DEPLOYPATH/vudrag/videos/uploads/"* "$HOME/.sv_live_backup/vudrag/videos_uploads/" 2>/dev/null || true; fi
 
-    # 2. Copy repo website files
+    # 4. Deploy all repository website files (authoritative codebase & full 403-item master catalog)
     - /bin/cp -R website/* $DEPLOYPATH
 
-    # 3. Restore all dynamic live data (live state always wins over repository initial defaults)
-    - if [ -d "$HOME/.sv_live_backup/tajno-glasanje" ]; then mkdir -p "$DEPLOYPATH/tajno-glasanje/api/data" && /bin/cp -a "$HOME/.sv_live_backup/tajno-glasanje/"* "$DEPLOYPATH/tajno-glasanje/api/data/" 2>/dev/null || true; fi
-    - if [ -f "$HOME/.sv_live_backup/tajno-glasanje/catalog-data.js" ]; then /bin/cp -a "$HOME/.sv_live_backup/tajno-glasanje/catalog-data.js" "$DEPLOYPATH/tajno-glasanje/js/catalog-data.js" 2>/dev/null || true; fi
-    - if [ -d "$HOME/.sv_live_backup/swiper" ]; then mkdir -p "$DEPLOYPATH/swiper/api/data" && /bin/cp -a "$HOME/.sv_live_backup/swiper/"* "$DEPLOYPATH/swiper/api/data/" 2>/dev/null || true; fi
-    - if [ -f "$HOME/.sv_live_backup/swiper/catalog-data.js" ]; then /bin/cp -a "$HOME/.sv_live_backup/swiper/catalog-data.js" "$DEPLOYPATH/swiper/js/catalog-data.js" 2>/dev/null || true; fi
+    # 5. Restore dynamic live user data (user votes & media uploads remain untouched)
+    - if [ -f "$HOME/.sv_live_backup/tajno-glasanje/votes.json" ]; then /bin/cp -a "$HOME/.sv_live_backup/tajno-glasanje/votes.json" "$DEPLOYPATH/tajno-glasanje/api/data/" 2>/dev/null || true; fi
+    - if [ -f "$HOME/.sv_live_backup/tajno-glasanje/rounds.json" ]; then /bin/cp -a "$HOME/.sv_live_backup/tajno-glasanje/rounds.json" "$DEPLOYPATH/tajno-glasanje/api/data/" 2>/dev/null || true; fi
+    - if [ -f "$HOME/.sv_live_backup/tajno-glasanje/round1-results-leaderboard.json" ]; then /bin/cp -a "$HOME/.sv_live_backup/tajno-glasanje/round1-results-leaderboard.json" "$DEPLOYPATH/tajno-glasanje/api/data/" 2>/dev/null || true; fi
+    - if [ -f "$HOME/.sv_live_backup/tajno-glasanje/round1-results.csv" ]; then /bin/cp -a "$HOME/.sv_live_backup/tajno-glasanje/round1-results.csv" "$DEPLOYPATH/tajno-glasanje/api/data/" 2>/dev/null || true; fi
+    - if [ -f "$HOME/.sv_live_backup/tajno-glasanje/round1-results-leaderboard.md" ]; then /bin/cp -a "$HOME/.sv_live_backup/tajno-glasanje/round1-results-leaderboard.md" "$DEPLOYPATH/tajno-glasanje/api/data/" 2>/dev/null || true; fi
+    - if [ -f "$HOME/.sv_live_backup/tajno-glasanje/comments.json" ]; then /bin/cp -a "$HOME/.sv_live_backup/tajno-glasanje/comments.json" "$DEPLOYPATH/tajno-glasanje/api/data/" 2>/dev/null || true; fi
     - if [ -d "$HOME/.sv_live_backup/vudrag/data" ]; then mkdir -p "$DEPLOYPATH/vudrag/data" && /bin/cp -a "$HOME/.sv_live_backup/vudrag/data/"* "$DEPLOYPATH/vudrag/data/" 2>/dev/null || true; fi
     - if [ -d "$HOME/.sv_live_backup/vudrag/stills_uploads" ]; then mkdir -p "$DEPLOYPATH/vudrag/stills/uploads" && /bin/cp -a "$HOME/.sv_live_backup/vudrag/stills_uploads/"* "$DEPLOYPATH/vudrag/stills/uploads/" 2>/dev/null || true; fi
     - if [ -d "$HOME/.sv_live_backup/vudrag/videos_uploads" ]; then mkdir -p "$DEPLOYPATH/vudrag/videos/uploads" && /bin/cp -a "$HOME/.sv_live_backup/vudrag/videos_uploads/"* "$DEPLOYPATH/vudrag/videos/uploads/" 2>/dev/null || true; fi
 
-    # 4. Trigger reconciliation CLI
+    # 6. Trigger catalog reconciliation & sync
     - if command -v php >/dev/null 2>&1; then php "$DEPLOYPATH/tajno-glasanje/api/curate.php" --sync >/dev/null 2>&1 || true; fi

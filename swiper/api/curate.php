@@ -209,12 +209,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit;
     }
 
-    // Ensure master backup exists
-    if (!file_exists($masterFile) && file_exists($catalogFile)) {
-        copy($catalogFile, $masterFile);
+    // Load authoritative master catalog
+    $masterJsonFile = $dataDir . '/master-catalog.json';
+    $allMaster = [];
+    if (file_exists($masterJsonFile)) {
+        $raw = @file_get_contents($masterJsonFile);
+        $decoded = @json_decode($raw, true);
+        if (is_array($decoded) && count($decoded) > 0) {
+            $allMaster = $decoded;
+        }
     }
-
-    $allMaster = parseCatalogFile($masterFile) ?: parseCatalogFile($catalogFile);
+    if (empty($allMaster)) {
+        $allMaster = parseCatalogFile($masterFile) ?: parseCatalogFile($catalogFile);
+    }
     $masterMap = [];
     foreach ($allMaster as $item) {
         if (isset($item['id'])) {

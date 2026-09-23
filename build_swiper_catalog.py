@@ -250,6 +250,10 @@ TITLE_MAP = {
     'SE5_Weird_04_SE5_MeltingBlob_Back': 'SE5 Weird 04 — Inverted Melting Blob',
     'SE5_Weird_05_SEPET_OpArtMoire_Back': 'SE5 Weird 05 — Op-Art Kinetic Moiré',
     'SE5_Weird_06_SEEEPEET_ConcreteGrid_Back': 'SE5 Weird 06 — Modular Brutalist Grid',
+    'SE5_Thin_01_SE5_White_Back': 'SE5 Thin 01 — Razor Ultra-Thin',
+    'SE5_Thin_02_SE5_Black_Back': 'SE5 Thin 02 — Cyber Ultra-Thin',
+    'SE5_Thin_03_SEEEPEET_Ecru_Back': 'SE5 Thin 03 — SEEE PEET Calligraphy Thin',
+    'SE5_Thin_04_SEPET_Oatmeal_Back': 'SE5 Thin 04 — SE PET Laser Thin',
 
     # SE5 Collection Front
     'SE5_Minimal_01_Ecru_Front': 'SE5 Minimal 01 — Ecru Front Hit',
@@ -275,7 +279,11 @@ TITLE_MAP = {
     'SE5_Weird_03_SEPET_OrigamiBlade_Front': 'SE5 Weird 03 — Origami Blade Front Hit',
     'SE5_Weird_04_SE5_MeltingBlob_Front': 'SE5 Weird 04 — Melting Blob Front Hit',
     'SE5_Weird_05_SEPET_OpArtMoire_Front': 'SE5 Weird 05 — Op-Art Moiré Front Hit',
-    'SE5_Weird_06_SEEEPEET_ConcreteGrid_Front': 'SE5 Weird 06 — Brutalist Grid Front Hit'
+    'SE5_Weird_06_SEEEPEET_ConcreteGrid_Front': 'SE5 Weird 06 — Brutalist Grid Front Hit',
+    'SE5_Thin_01_SE5_White_Front': 'SE5 Thin 01 — Razor Ultra-Thin Front Hit',
+    'SE5_Thin_02_SE5_Black_Front': 'SE5 Thin 02 — Cyber Ultra-Thin Front Hit',
+    'SE5_Thin_03_SEEEPEET_Ecru_Front': 'SE5 Thin 03 — SEEE PEET Calligraphy Thin Front Hit',
+    'SE5_Thin_04_SEPET_Oatmeal_Front': 'SE5 Thin 04 — SE PET Laser Thin Front Hit'
 }
 
 DESCRIPTION_MAP = {
@@ -328,7 +336,15 @@ DESCRIPTION_MAP = {
     'SE5_Weird_05_SEPET_OpArtMoire_Back': 'Optička iluzija i kinetički interferencijski moiré valovi SE PET na dubokoj crnoj podlozi.',
     'SE5_Weird_05_SEPET_OpArtMoire_Front': 'Kinetički moiré prsni motiv SE PET s mikrootiskom Studio Varaždin.',
     'SE5_Weird_06_SEEEPEET_ConcreteGrid_Back': 'Modularna betonska šablonska rešetka SEEE PEET na sirovom ecru platnu.',
-    'SE5_Weird_06_SEEEPEET_ConcreteGrid_Front': 'Modularni prsni raster SEEE PEET s mikrootiskom Studio Varaždin.'
+    'SE5_Weird_06_SEEEPEET_ConcreteGrid_Front': 'Modularni prsni raster SEEE PEET s mikrootiskom Studio Varaždin.',
+    'SE5_Thin_01_SE5_White_Back': 'Ultra-tanka laserska tipografija SE5 na optički bijelom platnu.',
+    'SE5_Thin_01_SE5_White_Front': 'Ultra-tanki prsni motiv SE5 s mikrootiskom Studio Varaždin.',
+    'SE5_Thin_02_SE5_Black_Back': 'Ultra-tanki kosi kibernetički natpis SE5 na ispranom crnom pamuku.',
+    'SE5_Thin_02_SE5_Black_Front': 'Ultra-tanki kosi prsni motiv SE5 s mikrootiskom Studio Varaždin.',
+    'SE5_Thin_03_SEEEPEET_Ecru_Back': 'Ultra-tanki valoviti kaligrafski stupovi SEEE PEET na toplom ecru platnu.',
+    'SE5_Thin_03_SEEEPEET_Ecru_Front': 'Ultra-tanki kaligrafski prsni motiv SEEE PEET s mikrootiskom Studio Varaždin.',
+    'SE5_Thin_04_SEPET_Oatmeal_Back': 'Ultra-tanki dijagonalni natpis SE PET na zrnatom sivom pamuku.',
+    'SE5_Thin_04_SEPET_Oatmeal_Front': 'Ultra-tanki dijagonalni prsni natpis SE PET s mikrootiskom Studio Varaždin.'
 }
 
 def get_hash(path: Path) -> str:
