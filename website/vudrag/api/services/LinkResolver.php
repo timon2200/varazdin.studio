@@ -169,17 +169,30 @@ class LinkResolver {
     }
 
     private function resolveInstagram($url, $path) {
-        if (!preg_match('/\/(?:p|reel|tv)\/([A-Za-z0-9_-]+)/', $path, $m)) return false;
+        if (!preg_match('/\/(?:p|reel|reels|tv|share\/p|share\/reel)\/([A-Za-z0-9_-]+)/', $path, $m)) return false;
         $shortcode = $m[1];
+        $isReel = (strpos($path, '/reel') !== false || strpos($path, '/reels') !== false);
 
         // oEmbed
         $oembed = $this->fetchJson("https://api.instagram.com/oembed?url=" . urlencode("https://www.instagram.com/p/{$shortcode}/"));
         if ($oembed && !empty($oembed['thumbnail_url'])) {
             $cached = $this->downloadAndCacheImage($oembed['thumbnail_url']);
             if ($cached) {
-                $cached['title'] = $oembed['title'] ?? "Instagram @{$shortcode}";
-                $cached['original_url'] = $url;
-                return $cached;
+                return [
+                    'type' => 'instagram',
+                    'embed_type' => 'instagram',
+                    'shortcode' => $shortcode,
+                    'videoId' => $shortcode,
+                    'title' => $oembed['title'] ?? ("Instagram " . ($isReel ? "Reel" : "Post") . " @{$shortcode}"),
+                    'url' => "https://www.instagram.com/p/{$shortcode}/",
+                    'original_url' => $url,
+                    'embed_url' => "https://www.instagram.com/p/{$shortcode}/embed/",
+                    'img_src' => $cached['img_src'],
+                    'poster' => $cached['img_src'],
+                    'w' => $isReel ? 320 : 360,
+                    'h' => $isReel ? 568 : 460,
+                    'rotation' => 0
+                ];
             }
         }
 
@@ -188,17 +201,44 @@ class LinkResolver {
         if ($html) {
             $decoded = str_replace(['\u0026', '&amp;'], '&', $html);
             if (preg_match('/class=["\']EmbeddedMediaImage["\'][^>]*src=["\']([^"\']+)["\']/', $decoded, $im) ||
-                preg_match('/https:\/\/[^"\'\s<>]+\.(?:cdninstagram\.com|fbcdn\.net)[^"\'\s<>]+\.(?:jpe?g|png|webp)/i', $decoded, $im)) {
+                preg_match('/https:\/\/[^"\'\s<>]*(?:scontent)[^"\'\s<>]+\.(?:jpe?g|png|webp)/i', $decoded, $im)) {
                 $imgUrl = $im[1] ?? $im[0];
-                $cached = $this->downloadAndCacheImage($imgUrl);
-                if ($cached) {
-                    $cached['title'] = "Instagram @{$shortcode}";
-                    $cached['original_url'] = $url;
-                    return $cached;
+                if (strpos($imgUrl, 'rsrc.php') === false && strpos($imgUrl, 'static.cdninstagram') === false) {
+                    $cached = $this->downloadAndCacheImage($imgUrl);
+                    if ($cached && ($cached['w'] ?? 0) >= 150 && ($cached['h'] ?? 0) >= 150) {
+                        return [
+                            'type' => 'instagram',
+                            'embed_type' => 'instagram',
+                            'shortcode' => $shortcode,
+                            'videoId' => $shortcode,
+                            'title' => "Instagram " . ($isReel ? "Reel" : "Post") . " @{$shortcode}",
+                            'url' => "https://www.instagram.com/p/{$shortcode}/",
+                            'original_url' => $url,
+                            'embed_url' => "https://www.instagram.com/p/{$shortcode}/embed/",
+                            'img_src' => $cached['img_src'],
+                            'poster' => $cached['img_src'],
+                            'w' => $isReel ? 320 : 360,
+                            'h' => $isReel ? 568 : 460,
+                            'rotation' => 0
+                        ];
+                    }
                 }
             }
         }
-        return false;
+
+        return [
+            'type' => 'instagram',
+            'embed_type' => 'instagram',
+            'shortcode' => $shortcode,
+            'videoId' => $shortcode,
+            'title' => "Instagram " . ($isReel ? "Reel" : "Post") . " @{$shortcode}",
+            'url' => "https://www.instagram.com/p/{$shortcode}/",
+            'original_url' => $url,
+            'embed_url' => "https://www.instagram.com/p/{$shortcode}/embed/",
+            'w' => $isReel ? 320 : 360,
+            'h' => $isReel ? 568 : 460,
+            'rotation' => 0
+        ];
     }
 
     private function resolveTikTok($url) {

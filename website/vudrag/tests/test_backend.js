@@ -86,9 +86,15 @@ async function runTests() {
         });
         assert(res.status === 200 && res.data.saved === 2, 'save_positions atomic save successful');
         
-        // 7. add_link (YouTube & Remote CDN Image)
+        // 7. add_link (YouTube, Remote CDN Image & Instagram)
         res = await request('add_link', 'POST', { board: boardId, url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' });
         assert(res.status === 200 && res.data.item.type === 'youtube', 'add_link resolves YouTube URLs');
+
+        res = await request('add_link', 'POST', { board: boardId, url: 'https://www.instagram.com/p/DF2n2qyoZ3c/' });
+        assert(res.status === 200 && res.data.item.type === 'instagram' && res.data.item.embed_url && res.data.item.shortcode === 'DF2n2qyoZ3c', 'add_link resolves Instagram post URLs with embed metadata');
+
+        res = await request('add_link', 'POST', { board: boardId, url: 'https://www.instagram.com/reel/C_12345Abc/' });
+        assert(res.status === 200 && res.data.item.type === 'instagram' && res.data.item.shortcode === 'C_12345Abc' && res.data.item.w === 320, 'add_link resolves Instagram reel URLs with 9:16 vertical dimensions');
 
         res = await request('add_link', 'POST', {
             board: boardId,

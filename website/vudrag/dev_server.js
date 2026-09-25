@@ -341,57 +341,86 @@ async function resolveInstagram(linkUrl, parsed) {
   const host = parsed.hostname.toLowerCase().replace(/^www\./, '');
   if (!host.includes('instagram.com') && !host.includes('instagr.am')) return null;
 
-  const match = parsed.pathname.match(/\/(?:p|reel|tv)\/([A-Za-z0-9_-]+)/);
+  const match = parsed.pathname.match(/\/(?:p|reel|reels|tv|share\/p|share\/reel)\/([A-Za-z0-9_-]+)/);
   if (!match) return null;
   const shortcode = match[1];
+  const isReel = parsed.pathname.includes('/reel') || parsed.pathname.includes('/reels');
 
-  // 1. Try public oEmbed
-  const oembed = await fetchBuffer(`https://api.instagram.com/oembed?url=${encodeURIComponent(`https://www.instagram.com/p/${shortcode}/`)}`);
-  if (oembed) {
-    try {
+  // 1. Try public oEmbed if available
+  try {
+    const oembed = await fetchBuffer(`https://api.instagram.com/oembed?url=${encodeURIComponent(`https://www.instagram.com/p/${shortcode}/`)}`);
+    if (oembed) {
       const data = JSON.parse(oembed.buffer.toString('utf8'));
       if (data.thumbnail_url) {
         const downloaded = await downloadAndCacheImage(data.thumbnail_url);
         if (downloaded) {
           return {
-            type: 'image',
-            title: data.title || `Instagram @${data.author_name || shortcode}`,
-            url: downloaded.url,
-            img_src: downloaded.url,
+            type: 'instagram',
+            embed_type: 'instagram',
+            shortcode,
+            videoId: shortcode,
+            title: data.title || `Instagram ${isReel ? 'Reel' : 'Post'} @${data.author_name || shortcode}`,
+            url: `https://www.instagram.com/p/${shortcode}/`,
             original_url: linkUrl,
-            w: downloaded.w,
-            h: downloaded.h,
+            embed_url: `https://www.instagram.com/p/${shortcode}/embed/`,
+            img_src: downloaded.url,
+            poster: downloaded.url,
+            w: isReel ? 320 : 360,
+            h: isReel ? 568 : 460,
             rotation: 0
           };
         }
       }
-    } catch(e) {}
-  }
+    }
+  } catch (e) {}
 
   // 2. Embed page scraping
-  const embedPage = await fetchBuffer(`https://www.instagram.com/p/${shortcode}/embed/captioned/`);
-  if (embedPage) {
-    const html = embedPage.buffer.toString('utf8').replace(/\\u0026/g, '&').replace(/&amp;/g, '&');
-    const imgMatch = html.match(/class="EmbeddedMediaImage"[^>]*src="([^"]+)"/) ||
-                     html.match(/https:\/\/[^"'\s<>]+\.(?:cdninstagram\.com|fbcdn\.net)[^"'\s<>]+\.(?:jpe?g|png|webp)/i);
-    const authorMatch = html.match(/<span class="CaptionUsername"[^>]*>([^<]+)<\/span>/);
-    if (imgMatch) {
-      const downloaded = await downloadAndCacheImage(imgMatch[1] || imgMatch[0]);
-      if (downloaded) {
-        return {
-          type: 'image',
-          title: `Instagram @${authorMatch ? authorMatch[1] : shortcode}`,
-          url: downloaded.url,
-          img_src: downloaded.url,
-          original_url: linkUrl,
-          w: downloaded.w,
-          h: downloaded.h,
-          rotation: 0
-        };
+  try {
+    const embedPage = await fetchBuffer(`https://www.instagram.com/p/${shortcode}/embed/captioned/`);
+    if (embedPage) {
+      const html = embedPage.buffer.toString('utf8').replace(/\\u0026/g, '&').replace(/&amp;/g, '&');
+      const imgMatch = html.match(/class="EmbeddedMediaImage"[^>]*src="([^"]+)"/) ||
+                       html.match(/https:\/\/[^"'\s<>]*(?:scontent)[^"'\s<>]+\.(?:jpe?g|png|webp)/i);
+      const authorMatch = html.match(/<span class="CaptionUsername"[^>]*>([^<]+)<\/span>/);
+      if (imgMatch) {
+        const candidateUrl = imgMatch[1] || imgMatch[0];
+        if (!candidateUrl.includes('rsrc.php') && !candidateUrl.includes('static.cdninstagram')) {
+          const downloaded = await downloadAndCacheImage(candidateUrl);
+          if (downloaded && (downloaded.w || 0) >= 150 && (downloaded.h || 0) >= 150) {
+            return {
+              type: 'instagram',
+              embed_type: 'instagram',
+              shortcode,
+              videoId: shortcode,
+              title: `Instagram ${isReel ? 'Reel' : 'Post'} @${authorMatch ? authorMatch[1] : shortcode}`,
+              url: `https://www.instagram.com/p/${shortcode}/`,
+              original_url: linkUrl,
+              embed_url: `https://www.instagram.com/p/${shortcode}/embed/`,
+              img_src: downloaded.url,
+              poster: downloaded.url,
+              w: isReel ? 320 : 360,
+              h: isReel ? 568 : 460,
+              rotation: 0
+            };
+          }
+        }
       }
     }
-  }
-  return null;
+  } catch (e) {}
+
+  return {
+    type: 'instagram',
+    embed_type: 'instagram',
+    shortcode,
+    videoId: shortcode,
+    title: `Instagram ${isReel ? 'Reel' : 'Post'} @${shortcode}`,
+    url: `https://www.instagram.com/p/${shortcode}/`,
+    original_url: linkUrl,
+    embed_url: `https://www.instagram.com/p/${shortcode}/embed/`,
+    w: isReel ? 320 : 360,
+    h: isReel ? 568 : 460,
+    rotation: 0
+  };
 }
 
 async function resolveYouTube(linkUrl, parsed) {
