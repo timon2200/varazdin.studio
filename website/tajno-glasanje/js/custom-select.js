@@ -163,7 +163,7 @@ export class BrutalistSelect {
     this.optionsList.forEach((el, idx) => {
       el.classList.toggle('is-highlighted', idx === index);
       if (idx === index) {
-        el.scrollIntoView({ block: 'nearest' });
+        el.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
       }
     });
   }

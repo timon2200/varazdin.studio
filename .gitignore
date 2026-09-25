@@ -8,3 +8,6 @@ scratch_favicon/
 assets/designs/
 __pycache__/
 *.pyc
+*.log
+website/vudrag/data/uploads/*
+!website/vudrag/data/uploads/.gitkeep
