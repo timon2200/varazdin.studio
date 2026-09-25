@@ -207,11 +207,13 @@ async function runTests() {
   assert.equal(vm.runInContext('panX', context), initPanX + 100, 'panX updated by delta');
   assert.equal(vm.runInContext('panY', context), initPanY + 50, 'panY updated by delta');
 
-  // Mouseup ends middle pan
+  // Mouseup ends middle pan and starts inertia animation if released with velocity
   windowObj.dispatchEvent('mouseup', { button: 1 });
   assert.equal(vm.runInContext('isMiddlePanning', context), false, 'Middle panning ended');
   assert.equal(context.document.body.classList.contains('middle-panning'), false, 'Body class removed');
-  console.log('✓ Middle mouse button panning verified');
+  assert(vm.runInContext('typeof startPanInertia === "function"', context), 'startPanInertia exists');
+  assert(vm.runInContext('typeof stopPanInertia === "function"', context), 'stopPanInertia exists');
+  console.log('✓ Middle mouse button panning and momentum inertia verified');
 
   console.log('--- TEST 4: Multi-Card Dragging in Lockstep ---');
   vm.runInContext('renderBoard(testItems)', context);

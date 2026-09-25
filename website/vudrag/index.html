@@ -1333,6 +1333,62 @@
     let isPanning = false; // Touch / compatibility fallback
     let startMouseX = 0;
     let startMouseY = 0;
+    let lastPanMouseX = 0;
+    let lastPanMouseY = 0;
+    let lastPanTime = 0;
+    let panVx = 0;
+    let panVy = 0;
+    let panInertiaAnim = null;
+
+    function stopPanInertia() {
+      if (panInertiaAnim) {
+        cancelAnimationFrame(panInertiaAnim);
+        panInertiaAnim = null;
+      }
+    }
+
+    function startPanInertia() {
+      stopPanInertia();
+      let vx = panVx * 16;
+      let vy = panVy * 16;
+      const initialSpeed = Math.hypot(vx, vy);
+      if (initialSpeed < 0.6) {
+        saveCamera();
+        return;
+      }
+
+      // Clamp max speed
+      const maxSpeed = 120;
+      if (initialSpeed > maxSpeed) {
+        vx = (vx / initialSpeed) * maxSpeed;
+        vy = (vy / initialSpeed) * maxSpeed;
+      }
+
+      let lastFrameTime = performance.now();
+
+      function stepInertia(currentTime) {
+        const dt = Math.min(32, Math.max(1, currentTime - lastFrameTime)) / 16.666;
+        lastFrameTime = currentTime;
+
+        // Friction / Decay factor (0.925 gives smooth momentum glide)
+        const decay = Math.pow(0.925, dt);
+        vx *= decay;
+        vy *= decay;
+
+        panX += vx * dt;
+        panY += vy * dt;
+        updateCamera();
+
+        if (Math.hypot(vx, vy) > 0.2) {
+          panInertiaAnim = requestAnimationFrame(stepInertia);
+        } else {
+          panInertiaAnim = null;
+          saveCamera();
+        }
+      }
+
+      panInertiaAnim = requestAnimationFrame(stepInertia);
+    }
 
     // Marquee Rubber-Band Selection State
     let marqueeStartX = null;
@@ -2305,6 +2361,7 @@
     }
 
     function animateCamera(targetPanX, targetPanY, targetScale, duration = 400) {
+      stopPanInertia();
       const startX = panX;
       const startY = panY;
       const startS = scale;
@@ -2329,6 +2386,7 @@
     }
 
     function zoomToFitAll() {
+      stopPanInertia();
       const cards = document.querySelectorAll('.media-card');
       if (cards.length === 0) {
         resetView();
@@ -2365,6 +2423,7 @@
     }
 
     function jumpToMediaCard(id) {
+      stopPanInertia();
       const card = world.querySelector(`.media-card[data-id="${id}"]`);
       if (!card) return;
 
@@ -2392,6 +2451,7 @@
 
     // Wheel & Trackpad
     viewport.addEventListener('wheel', (e) => {
+      stopPanInertia();
       e.preventDefault();
       if (e.ctrlKey) {
         // Pinch zoom
@@ -2413,6 +2473,7 @@
 
     // Canvas Navigation (Middle Mouse Button Drag) & Marquee Rubber-Band Selection (Left Button Drag)
     viewport.addEventListener('mousedown', (e) => {
+      stopPanInertia();
       if (e.target.closest('#command-backdrop') || isCommandBarOpen) return;
 
       // 1. Middle Mouse Button (button 1) -> Pan Canvas on Windows/desktop mice
@@ -2421,6 +2482,11 @@
         isMiddlePanning = true;
         startMouseX = e.clientX - panX;
         startMouseY = e.clientY - panY;
+        lastPanMouseX = e.clientX;
+        lastPanMouseY = e.clientY;
+        lastPanTime = performance.now();
+        panVx = 0;
+        panVy = 0;
         document.body.classList.add('middle-panning');
         return;
       }
@@ -2448,6 +2514,20 @@
         panX = e.clientX - startMouseX;
         panY = e.clientY - startMouseY;
         updateCamera();
+
+        const now = performance.now();
+        const dt = Math.max(1, now - lastPanTime);
+        const dx = e.clientX - lastPanMouseX;
+        const dy = e.clientY - lastPanMouseY;
+
+        const instVx = dx / dt;
+        const instVy = dy / dt;
+        panVx = panVx * 0.3 + instVx * 0.7;
+        panVy = panVy * 0.3 + instVy * 0.7;
+
+        lastPanMouseX = e.clientX;
+        lastPanMouseY = e.clientY;
+        lastPanTime = now;
         return;
       }
 
@@ -2456,6 +2536,20 @@
         panX = e.clientX - startMouseX;
         panY = e.clientY - startMouseY;
         updateCamera();
+
+        const now = performance.now();
+        const dt = Math.max(1, now - lastPanTime);
+        const dx = e.clientX - lastPanMouseX;
+        const dy = e.clientY - lastPanMouseY;
+
+        const instVx = dx / dt;
+        const instVy = dy / dt;
+        panVx = panVx * 0.3 + instVx * 0.7;
+        panVy = panVy * 0.3 + instVy * 0.7;
+
+        lastPanMouseX = e.clientX;
+        lastPanMouseY = e.clientY;
+        lastPanTime = now;
         return;
       }
 
@@ -2515,13 +2609,29 @@
       if (isMiddlePanning) {
         isMiddlePanning = false;
         document.body.classList.remove('middle-panning');
-        saveCamera();
+
+        const now = performance.now();
+        if (now - lastPanTime > 60) {
+          panVx = 0;
+          panVy = 0;
+          saveCamera();
+        } else {
+          startPanInertia();
+        }
       }
 
       if (isPanning) {
         isPanning = false;
         document.body.classList.remove('panning');
-        saveCamera();
+
+        const now = performance.now();
+        if (now - lastPanTime > 60) {
+          panVx = 0;
+          panVy = 0;
+          saveCamera();
+        } else {
+          startPanInertia();
+        }
       }
 
       // Marquee Selection End
@@ -2554,6 +2664,7 @@
     let pinchStart = null;
     let lastCardTap = null;
     viewport.addEventListener('touchstart', (e) => {
+      stopPanInertia();
       if (isCommandBarOpen) return;
       e.preventDefault();
       clearTimeout(touchHoldTimer);
@@ -2588,6 +2699,11 @@
         isPanning = true;
         startMouseX = point.clientX - panX;
         startMouseY = point.clientY - panY;
+        lastPanMouseX = point.clientX;
+        lastPanMouseY = point.clientY;
+        lastPanTime = performance.now();
+        panVx = 0;
+        panVy = 0;
       }
       touchHoldTimer = setTimeout(() => {
         if (!touchStart || touchStart.moved) return;
@@ -2622,6 +2738,20 @@
         panX = point.clientX - startMouseX;
         panY = point.clientY - startMouseY;
         updateCamera();
+
+        const now = performance.now();
+        const dt = Math.max(1, now - lastPanTime);
+        const dx = point.clientX - lastPanMouseX;
+        const dy = point.clientY - lastPanMouseY;
+
+        const instVx = dx / dt;
+        const instVy = dy / dt;
+        panVx = panVx * 0.3 + instVx * 0.7;
+        panVy = panVy * 0.3 + instVy * 0.7;
+
+        lastPanMouseX = point.clientX;
+        lastPanMouseY = point.clientY;
+        lastPanTime = now;
       }
     }, { passive: false });
 
@@ -2651,8 +2781,17 @@
         }
       }
       if (activeCard) onCardMouseUp();
-      if (isPanning) saveCamera();
-      isPanning = false;
+      if (isPanning) {
+        isPanning = false;
+        const now = performance.now();
+        if (now - lastPanTime > 60) {
+          panVx = 0;
+          panVy = 0;
+          saveCamera();
+        } else {
+          startPanInertia();
+        }
+      }
       touchStart = null;
     });
 
@@ -3586,6 +3725,7 @@
       if (e.button !== 0 || isCommandBarOpen) return;
       e.stopPropagation();
 
+      stopPanInertia();
       finishPendingFling();
       clearFolderHover();
       clearTimeout(folderClickTimer);
