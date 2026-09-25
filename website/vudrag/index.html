@@ -2908,6 +2908,8 @@
         } else {
           const rot = getStackCardRotation(index, cards.length);
           card.dataset.rot = rot;
+          card.dataset.x = x;
+          card.dataset.y = y;
           setCardPose(card, x, y, rot);
         }
       });
@@ -3783,7 +3785,7 @@
       dragStartMouseWorldX = mouseWorldX;
       dragStartMouseWorldY = mouseWorldY;
 
-      draggedGroupCards = moving.map(c => {
+      draggedGroupCards = moving.map((c, idx) => {
         highestZ += 2;
         c.style.zIndex = highestZ;
         c.classList.add('dragging');
@@ -3792,10 +3794,15 @@
         let startY = Number(c.dataset.y);
         let rot = Number(c.dataset.rot || 0);
 
-        if (isDeckOpen && c.dataset.folderId) {
+        if (isDeckOpen) {
           const rect = c.getBoundingClientRect();
           startX = (rect.left + rect.width / 2 - panX) / scale;
           startY = (rect.top + rect.height / 2 - panY) / scale;
+        } else if (isClosedDeckMember) {
+          const root = fCards[0];
+          startX = Number(root.dataset.x);
+          startY = Number(root.dataset.y);
+          rot = getStackCardRotation(idx, fCards.length);
         }
 
         return {
@@ -3906,13 +3913,13 @@
         if (clickedInsideMultiSelection) {
           selectCard(card, 'replace');
         }
+        draggedGroupCards = [];
         movingEntries.forEach(entry => {
           const c = entry.card;
           if (c.dataset.folderId || folderCards(c.dataset.id).length > 1) layoutFolder(folderRootId(c));
           else setCardPose(c, Number(c.dataset.x), Number(c.dataset.y), Number(c.dataset.rot || 0));
         });
         dragStartSnapshot = null;
-        draggedGroupCards = [];
         return;
       }
 
@@ -3927,14 +3934,23 @@
           vy *= 0.90;
           rotSpeed *= 0.90;
 
-          movingEntries.forEach(entry => {
+          movingEntries.forEach((entry, idx) => {
             let curX = parseFloat(entry.card.dataset.x) + vx;
             let curY = parseFloat(entry.card.dataset.y) + vy;
-            let curRot = (parseFloat(entry.card.dataset.rot || 0) + rotSpeed).toFixed(1);
             entry.card.dataset.x = curX;
             entry.card.dataset.y = curY;
-            entry.card.dataset.rot = curRot;
-            entry.card.style.transform = `translate3d(${curX - entry.w/2}px, ${curY - entry.h/2}px, 0) rotate(${curRot}deg)`;
+
+            const rId = folderRootId(entry.card);
+            const isDeck = rId && folderCards(rId).length > 1 && !expandedFolders.has(rId);
+            if (isDeck) {
+              const rot = getStackCardRotation(idx, movingEntries.length);
+              entry.card.dataset.rot = rot;
+              entry.card.style.transform = `translate3d(${curX - entry.w/2}px, ${curY - entry.h/2}px, 0) rotate(${rot}deg)`;
+            } else {
+              let curRot = (parseFloat(entry.card.dataset.rot || 0) + rotSpeed).toFixed(1);
+              entry.card.dataset.rot = curRot;
+              entry.card.style.transform = `translate3d(${curX - entry.w/2}px, ${curY - entry.h/2}px, 0) rotate(${curRot}deg)`;
+            }
           });
 
           if (Math.hypot(vx, vy) > 0.3) {
@@ -3946,11 +3962,11 @@
               const rId = folderRootId(entry.card);
               if (rId && folderCards(rId).length > 1) updatedFolders.add(rId);
             });
+            draggedGroupCards = [];
             updatedFolders.forEach(layoutFolder);
             savePositions();
             recordBoardChange(dragStartSnapshot);
             dragStartSnapshot = null;
-            draggedGroupCards = [];
           }
         }
         activeFlingAnim = requestAnimationFrame(stepFling);
@@ -3967,11 +3983,11 @@
             entry.card.style.transform = `translate3d(${x - entry.w/2}px, ${y - entry.h/2}px, 0) rotate(${rot}deg)`;
           }
         });
+        draggedGroupCards = [];
         updatedFolders.forEach(layoutFolder);
         savePositions();
         recordBoardChange(dragStartSnapshot);
         dragStartSnapshot = null;
-        draggedGroupCards = [];
       }
     }
 
@@ -3979,11 +3995,11 @@
       if (!activeFlingAnim) return;
       cancelAnimationFrame(activeFlingAnim);
       activeFlingAnim = null;
+      draggedGroupCards = [];
       layoutAllFolders();
       savePositions();
       recordBoardChange(dragStartSnapshot);
       dragStartSnapshot = null;
-      draggedGroupCards = [];
     }
 
     // ============================================================

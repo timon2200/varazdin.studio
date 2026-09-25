@@ -105,6 +105,26 @@ async function runTests() {
   const storage = new Map();
   const requests = [];
   let nextTimer = 1;
+  const rafCallbacks = new Map();
+  let nextRaf = 1;
+  let mockTime = 1000;
+
+  function stepFrames(count = 1, dt = 16) {
+    for (let i = 0; i < count; i++) {
+      mockTime += dt;
+      const callbacks = [...rafCallbacks.values()];
+      rafCallbacks.clear();
+      callbacks.forEach(cb => cb(mockTime));
+    }
+  }
+
+  function stepUntilSettled(maxFrames = 200) {
+    let f = 0;
+    while (rafCallbacks.size > 0 && f < maxFrames) {
+      stepFrames(1, 16);
+      f++;
+    }
+  }
 
   const context = vm.createContext({
     console,
@@ -118,9 +138,9 @@ async function runTests() {
     JSON,
     URL,
     structuredClone,
-    performance: { now: () => 1000 },
-    requestAnimationFrame: () => 1,
-    cancelAnimationFrame: () => {},
+    performance: { now: () => mockTime },
+    requestAnimationFrame: fn => { const id = nextRaf++; rafCallbacks.set(id, fn); return id; },
+    cancelAnimationFrame: id => rafCallbacks.delete(id),
     setTimeout: (fn, delay) => { const id = nextTimer++; timers.set(id, { fn, delay }); return id; },
     clearTimeout: id => timers.delete(id),
     fetch: async (url, options) => {
@@ -286,7 +306,25 @@ async function runTests() {
   vm.runInContext('onCardMouseMove({ clientX: 850, clientY: 550 })', context);
   assert.equal(vm.runInContext('draggedGroupCards.length', context), 3, 'Dragging card on top of closed stack drags all 3 cards in group');
   vm.runInContext('onCardMouseUp()', context);
+  stepUntilSettled();
+  assert.equal(vm.runInContext('draggedGroupCards.length', context), 0, 'draggedGroupCards is cleared on mouse up');
   assert.equal(vm.runInContext('folderCards("card-1").length', context), 3, 'Closed stack stays intact after dragging whole group');
+
+  // Verify all cards in closed stack landed cleanly without drag scale distortion
+  const droppedStack = vm.runInContext('folderCards("card-1")', context);
+  const newRootX = Number(vm.runInContext('getCard("card-1").dataset.x', context));
+  const newRootY = Number(vm.runInContext('getCard("card-1").dataset.y', context));
+  droppedStack.forEach((c, idx) => {
+    assert(!c.style.transform.includes('scale(1.02)'), `Card ${c.dataset.id} has drag scale removed`);
+    assert.equal(Number(c.dataset.x), newRootX, `Card ${c.dataset.id} synchronized to root X`);
+    assert.equal(Number(c.dataset.y), newRootY, `Card ${c.dataset.id} synchronized to root Y`);
+    const match = c.style.transform.match(/translate3d\(([-\d.]+)px, ([-\d.]+)px/);
+    assert(match, `Card ${c.dataset.id} has valid translation`);
+    const expectedX = newRootX - Number(c.dataset.w) / 2;
+    const expectedY = newRootY - Number(c.dataset.h) / 2;
+    assert.equal(Number(match[1]), expectedX, `Card ${c.dataset.id} transform X cleanly stacked`);
+    assert.equal(Number(match[2]), expectedY, `Card ${c.dataset.id} transform Y cleanly stacked`);
+  });
 
   // TEST 5.2: Dragging card from OPEN deck detaches only that card
   vm.runInContext('toggleFolder("card-1")', context);
