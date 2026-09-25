@@ -83,6 +83,16 @@ COLLECTIONS_CONFIG = [
     ('T-Shirt Design/Collections/11 SE5 Collection', 'Creative'),
     ('Brand Book/06 T-Shirt Designs/11 SE5 Collection', 'Creative'),
 
+    # 13 Fire of 1776 Brutalist Series (Front Hits)
+    ('T-Shirt Design/Collections/13 Fire of 1776 Brutalist Series/Front Hits', 'Front Hits'),
+    ('Brand Book/06 T-Shirt Designs/13 Fire of 1776 Brutalist Series/Front Hits', 'Front Hits'),
+
+    # 13 Fire of 1776 Brutalist Series (Back Prints)
+    ('T-Shirt Design/Collections/13 Fire of 1776 Brutalist Series/Back Prints', 'Creative'),
+    ('Brand Book/06 T-Shirt Designs/13 Fire of 1776 Brutalist Series/Back Prints', 'Creative'),
+    ('T-Shirt Design/Collections/13 Fire of 1776 Brutalist Series', 'Creative'),
+    ('Brand Book/06 T-Shirt Designs/13 Fire of 1776 Brutalist Series', 'Creative'),
+
     # 03 Creative Series
     ('T-Shirt Design/Collections/03 Creative Series', 'Creative'),
     ('Brand Book/06 T-Shirt Designs/03 Creative Series', 'Creative'),
@@ -283,10 +293,24 @@ TITLE_MAP = {
     'SE5_Thin_01_SE5_White_Front': 'SE5 Thin 01 — Razor Ultra-Thin Front Hit',
     'SE5_Thin_02_SE5_Black_Front': 'SE5 Thin 02 — Cyber Ultra-Thin Front Hit',
     'SE5_Thin_03_SEEEPEET_Ecru_Front': 'SE5 Thin 03 — SEEE PEET Calligraphy Thin Front Hit',
-    'SE5_Thin_04_SEPET_Oatmeal_Front': 'SE5 Thin 04 — SE PET Laser Thin Front Hit'
+    'SE5_Thin_04_SEPET_Oatmeal_Front': 'SE5 Thin 04 — SE PET Laser Thin Front Hit',
+
+    # Fire of 1776 Brutalist Series Back
+    'SV_Fire_01_Drifting_Apart_Back': 'SV Fire 01 — Drifting Apart Copperplate',
+    'SV_Fire_02_Mein_Wille_Red_Back': 'SV Fire 02 — Mein Wille Burning Monolith',
+    'SV_Fire_03_Copperplate_Street_Back': 'SV Fire 03 — Historic Copperplate Street Disaster',
+
+    # Fire of 1776 Brutalist Series Front
+    'SV_Fire_01_Drifting_Apart_Front': 'SV Fire 01 — Drifting Apart Front Hit',
+    'SV_Fire_02_Mein_Wille_Red_Front': 'SV Fire 02 — Mein Wille Front Hit'
 }
 
 DESCRIPTION_MAP = {
+    'SV_Fire_01_Drifting_Apart_Back': 'Brutalist Drifting Apart raspored: visoki crveni naslov STUDIO VARAŽDIN, uokvirena bakrorezna gravura požara 1776. i crveni natpisi FILMSKA PRODUKCIJA // cCc.',
+    'SV_Fire_01_Drifting_Apart_Front': 'Minimalistički crveni prsni amblem tornja u plamenu s natpisima STUDIO VARAŽDIN, FILMSKA PRODUKCIJA i cCc.',
+    'SV_Fire_02_Mein_Wille_Red_Back': 'Mein Wille raspored na žarkocrvenoj podlozi: monumentalni crni naslovi STUDIO VARAŽDIN i FILMSKA PRODUKCIJA uz uokvirenu povijesnu buktinju grada 1776.',
+    'SV_Fire_02_Mein_Wille_Red_Front': 'Crni prsni blok na crvenoj podlozi s uokvirenom siluetom tornja u plamenu i oznakom Filmska produkcija cCc.',
+    'SV_Fire_03_Copperplate_Street_Back': 'Cjeloviti kolorirani povijesni bakrorez goruće barokne ulice iz 1776. uz crvene monumentalne naslove STUDIO VARAŽDIN i FILMSKA PRODUKCIJA.',
     'SV_Lovers_03_Kneeling_Martyr_Back': 'Poljubac i oštrica u istoj sekundi. Oklopnik kleči na koplju dok mu dlanovi klize niz dršku, a ona drži krvavi vrh što izbija iz prsiju.',
     'SV_Lovers_03_Kneeling_Martyr_Front': 'Minimalistički prsni motiv — The Lovers & Ideas Can\'t Die.',
     'SE5_Minimal_01_Ecru_Back': 'Monolitni airbrush znak SE5 s vodoravnim prijelazom brzine na nebijeljenom ecru pamuku.',

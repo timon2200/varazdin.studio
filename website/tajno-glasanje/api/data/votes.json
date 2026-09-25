@@ -2033,6 +2033,39 @@
       "image": "assets/optimized/SV_4Ref_05_Grand_Synthesis_Master_Back.webp",
       "impressions": 6
     },
+    "sv-376": {
+      "id": "sv-376",
+      "title": "SV Fire 01 — Drifting Apart Copperplate",
+      "category": "Creative",
+      "likes": 0,
+      "passes": 0,
+      "superlikes": 0,
+      "score": 0,
+      "image": "assets/optimized/SV_Fire_01_Drifting_Apart_Back.webp",
+      "impressions": 0
+    },
+    "sv-377": {
+      "id": "sv-377",
+      "title": "SV Fire 02 — Mein Wille Burning Monolith",
+      "category": "Creative",
+      "likes": 0,
+      "passes": 0,
+      "superlikes": 0,
+      "score": 0,
+      "image": "assets/optimized/SV_Fire_02_Mein_Wille_Red_Back.webp",
+      "impressions": 0
+    },
+    "sv-378": {
+      "id": "sv-378",
+      "title": "SV Fire 03 — Historic Copperplate Street Disaster",
+      "category": "Creative",
+      "likes": 0,
+      "passes": 0,
+      "superlikes": 0,
+      "score": 0,
+      "image": "assets/optimized/SV_Fire_03_Copperplate_Street_Back.webp",
+      "impressions": 0
+    },
     "sv-157": {
       "id": "sv-157",
       "title": "SV Single 01 — Woodcut Galloping Knight",
@@ -3463,8 +3496,8 @@
       "image": "assets/optimized/Front Hit - Philosopher Knight - Front.webp",
       "impressions": 6
     },
-    "sv-376": {
-      "id": "sv-376",
+    "sv-379": {
+      "id": "sv-379",
       "title": "SE5 01 — Spray Stencil Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3474,8 +3507,8 @@
       "image": "assets/optimized/SE5_01_Spray_Stencil_Front.webp",
       "impressions": 0
     },
-    "sv-377": {
-      "id": "sv-377",
+    "sv-380": {
+      "id": "sv-380",
       "title": "SE5 02 — Swiss Manifest Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3485,8 +3518,8 @@
       "image": "assets/optimized/SE5_02_Swiss_Manifest_Front.webp",
       "impressions": 0
     },
-    "sv-378": {
-      "id": "sv-378",
+    "sv-381": {
+      "id": "sv-381",
       "title": "SE5 03 — Kinetic Wave Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3496,8 +3529,8 @@
       "image": "assets/optimized/SE5_03_Kinetic_Wave_Front.webp",
       "impressions": 0
     },
-    "sv-379": {
-      "id": "sv-379",
+    "sv-382": {
+      "id": "sv-382",
       "title": "SE5 04 — Gothic Litho Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3507,8 +3540,8 @@
       "image": "assets/optimized/SE5_04_Gothic_Litho_Front.webp",
       "impressions": 0
     },
-    "sv-380": {
-      "id": "sv-380",
+    "sv-383": {
+      "id": "sv-383",
       "title": "SE5 05 — Editorial Riso Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3518,8 +3551,8 @@
       "image": "assets/optimized/SE5_05_Editorial_Riso_Front.webp",
       "impressions": 0
     },
-    "sv-381": {
-      "id": "sv-381",
+    "sv-384": {
+      "id": "sv-384",
       "title": "SE5 Minimal 01 — Ecru Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3529,8 +3562,8 @@
       "image": "assets/optimized/SE5_Minimal_01_Ecru_Front.webp",
       "impressions": 0
     },
-    "sv-382": {
-      "id": "sv-382",
+    "sv-385": {
+      "id": "sv-385",
       "title": "SE5 Minimal 02 — Black Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3540,8 +3573,8 @@
       "image": "assets/optimized/SE5_Minimal_02_Black_Front.webp",
       "impressions": 0
     },
-    "sv-383": {
-      "id": "sv-383",
+    "sv-386": {
+      "id": "sv-386",
       "title": "SE5 Minimal 03 — White & Red Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3551,8 +3584,8 @@
       "image": "assets/optimized/SE5_Minimal_03_WhiteRed_Front.webp",
       "impressions": 0
     },
-    "sv-384": {
-      "id": "sv-384",
+    "sv-387": {
+      "id": "sv-387",
       "title": "SE5 Quirky 01 — Razor Wave Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3562,8 +3595,8 @@
       "image": "assets/optimized/SE5_Quirky_01_SE5_White_Front.webp",
       "impressions": 0
     },
-    "sv-385": {
-      "id": "sv-385",
+    "sv-388": {
+      "id": "sv-388",
       "title": "SE5 Quirky 02 — Cyber Slant Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3573,8 +3606,8 @@
       "image": "assets/optimized/SE5_Quirky_02_SE5_Black_Front.webp",
       "impressions": 0
     },
-    "sv-386": {
-      "id": "sv-386",
+    "sv-389": {
+      "id": "sv-389",
       "title": "SE5 Quirky 03 — Calligraphy Wave Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3584,8 +3617,8 @@
       "image": "assets/optimized/SE5_Quirky_03_SEEEPEET_Ecru_Front.webp",
       "impressions": 0
     },
-    "sv-387": {
-      "id": "sv-387",
+    "sv-390": {
+      "id": "sv-390",
       "title": "SE5 Quirky 04 — Laser Diagonal Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3595,8 +3628,8 @@
       "image": "assets/optimized/SE5_Quirky_04_SEPET_Oatmeal_Front.webp",
       "impressions": 0
     },
-    "sv-388": {
-      "id": "sv-388",
+    "sv-391": {
+      "id": "sv-391",
       "title": "SE5 Single 01 — Razor Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3606,8 +3639,8 @@
       "image": "assets/optimized/SE5_Single_01_SE5_Razor_Front.webp",
       "impressions": 0
     },
-    "sv-389": {
-      "id": "sv-389",
+    "sv-392": {
+      "id": "sv-392",
       "title": "SE5 Single 02 — Liquid Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3617,8 +3650,8 @@
       "image": "assets/optimized/SE5_Single_02_SE5_Liquid_Front.webp",
       "impressions": 0
     },
-    "sv-390": {
-      "id": "sv-390",
+    "sv-393": {
+      "id": "sv-393",
       "title": "SE5 Single 03 — SEEE PEET Flared Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3628,8 +3661,8 @@
       "image": "assets/optimized/SE5_Single_03_SEEEPEET_Flared_Front.webp",
       "impressions": 0
     },
-    "sv-391": {
-      "id": "sv-391",
+    "sv-394": {
+      "id": "sv-394",
       "title": "SE5 Single 04 — SEEE PEET Columns Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3639,8 +3672,8 @@
       "image": "assets/optimized/SE5_Single_04_SEEEPEET_Columns_Front.webp",
       "impressions": 0
     },
-    "sv-392": {
-      "id": "sv-392",
+    "sv-395": {
+      "id": "sv-395",
       "title": "SE5 Single 05 — SE PET Warped Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3650,8 +3683,8 @@
       "image": "assets/optimized/SE5_Single_05_SEPET_WarpedBlock_Front.webp",
       "impressions": 0
     },
-    "sv-393": {
-      "id": "sv-393",
+    "sv-396": {
+      "id": "sv-396",
       "title": "SE5 Single 06 — SE PET Distressed Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3661,8 +3694,8 @@
       "image": "assets/optimized/SE5_Single_06_SEPET_Distressed_Front.webp",
       "impressions": 0
     },
-    "sv-394": {
-      "id": "sv-394",
+    "sv-397": {
+      "id": "sv-397",
       "title": "SE5 Thin 01 — Razor Ultra-Thin Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3672,8 +3705,8 @@
       "image": "assets/optimized/SE5_Thin_01_SE5_White_Front.webp",
       "impressions": 0
     },
-    "sv-395": {
-      "id": "sv-395",
+    "sv-398": {
+      "id": "sv-398",
       "title": "SE5 Thin 02 — Cyber Ultra-Thin Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3683,8 +3716,8 @@
       "image": "assets/optimized/SE5_Thin_02_SE5_Black_Front.webp",
       "impressions": 0
     },
-    "sv-396": {
-      "id": "sv-396",
+    "sv-399": {
+      "id": "sv-399",
       "title": "SE5 Thin 03 — SEEE PEET Calligraphy Thin Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3694,8 +3727,8 @@
       "image": "assets/optimized/SE5_Thin_03_SEEEPEET_Ecru_Front.webp",
       "impressions": 0
     },
-    "sv-397": {
-      "id": "sv-397",
+    "sv-400": {
+      "id": "sv-400",
       "title": "SE5 Thin 04 — SE PET Laser Thin Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3705,8 +3738,8 @@
       "image": "assets/optimized/SE5_Thin_04_SEPET_Oatmeal_Front.webp",
       "impressions": 0
     },
-    "sv-398": {
-      "id": "sv-398",
+    "sv-401": {
+      "id": "sv-401",
       "title": "SE5 Weird 01 — Cyber-Sigil Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3716,8 +3749,8 @@
       "image": "assets/optimized/SE5_Weird_01_SE5_CyberSigil_Front.webp",
       "impressions": 0
     },
-    "sv-399": {
-      "id": "sv-399",
+    "sv-402": {
+      "id": "sv-402",
       "title": "SE5 Weird 02 — Psychedelic Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3727,8 +3760,8 @@
       "image": "assets/optimized/SE5_Weird_02_SEEEPEET_Psychedelic_Front.webp",
       "impressions": 0
     },
-    "sv-400": {
-      "id": "sv-400",
+    "sv-403": {
+      "id": "sv-403",
       "title": "SE5 Weird 03 — Origami Blade Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3738,8 +3771,8 @@
       "image": "assets/optimized/SE5_Weird_03_SEPET_OrigamiBlade_Front.webp",
       "impressions": 0
     },
-    "sv-401": {
-      "id": "sv-401",
+    "sv-404": {
+      "id": "sv-404",
       "title": "SE5 Weird 04 — Melting Blob Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3749,8 +3782,8 @@
       "image": "assets/optimized/SE5_Weird_04_SE5_MeltingBlob_Front.webp",
       "impressions": 0
     },
-    "sv-402": {
-      "id": "sv-402",
+    "sv-405": {
+      "id": "sv-405",
       "title": "SE5 Weird 05 — Op-Art Moiré Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3760,8 +3793,8 @@
       "image": "assets/optimized/SE5_Weird_05_SEPET_OpArtMoire_Front.webp",
       "impressions": 0
     },
-    "sv-403": {
-      "id": "sv-403",
+    "sv-406": {
+      "id": "sv-406",
       "title": "SE5 Weird 06 — Brutalist Grid Front Hit",
       "category": "Front Hits",
       "likes": 0,
@@ -3825,6 +3858,28 @@
       "score": 2,
       "image": "assets/optimized/SV_4Ref_05_Grand_Synthesis_Master_Front.webp",
       "impressions": 7
+    },
+    "sv-407": {
+      "id": "sv-407",
+      "title": "SV Fire 01 — Drifting Apart Front Hit",
+      "category": "Front Hits",
+      "likes": 0,
+      "passes": 0,
+      "superlikes": 0,
+      "score": 0,
+      "image": "assets/optimized/SV_Fire_01_Drifting_Apart_Front.webp",
+      "impressions": 0
+    },
+    "sv-408": {
+      "id": "sv-408",
+      "title": "SV Fire 02 — Mein Wille Front Hit",
+      "category": "Front Hits",
+      "likes": 0,
+      "passes": 0,
+      "superlikes": 0,
+      "score": 0,
+      "image": "assets/optimized/SV_Fire_02_Mein_Wille_Red_Front.webp",
+      "impressions": 0
     },
     "sv-292": {
       "id": "sv-292",

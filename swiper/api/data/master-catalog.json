@@ -6902,6 +6902,60 @@
   },
   {
     "id": "sv-376",
+    "slug": "sv_fire_01_drifting_apart_back",
+    "title": "SV Fire 01 — Drifting Apart Copperplate",
+    "category": "Creative",
+    "image": "assets/optimized/SV_Fire_01_Drifting_Apart_Back.webp",
+    "description": "Brutalist Drifting Apart raspored: visoki crveni naslov STUDIO VARAŽDIN, uokvirena bakrorezna gravura požara 1776. i crveni natpisi FILMSKA PRODUKCIJA // cCc.",
+    "likes": 0,
+    "passes": 0,
+    "superlikes": 0,
+    "score": 0,
+    "totalVotes": 0,
+    "tags": [
+      "creative",
+      "streetwear",
+      "varazdin"
+    ]
+  },
+  {
+    "id": "sv-377",
+    "slug": "sv_fire_02_mein_wille_red_back",
+    "title": "SV Fire 02 — Mein Wille Burning Monolith",
+    "category": "Creative",
+    "image": "assets/optimized/SV_Fire_02_Mein_Wille_Red_Back.webp",
+    "description": "Mein Wille raspored na žarkocrvenoj podlozi: monumentalni crni naslovi STUDIO VARAŽDIN i FILMSKA PRODUKCIJA uz uokvirenu povijesnu buktinju grada 1776.",
+    "likes": 0,
+    "passes": 0,
+    "superlikes": 0,
+    "score": 0,
+    "totalVotes": 0,
+    "tags": [
+      "creative",
+      "streetwear",
+      "varazdin"
+    ]
+  },
+  {
+    "id": "sv-378",
+    "slug": "sv_fire_03_copperplate_street_back",
+    "title": "SV Fire 03 — Historic Copperplate Street Disaster",
+    "category": "Creative",
+    "image": "assets/optimized/SV_Fire_03_Copperplate_Street_Back.webp",
+    "description": "Cjeloviti kolorirani povijesni bakrorez goruće barokne ulice iz 1776. uz crvene monumentalne naslove STUDIO VARAŽDIN i FILMSKA PRODUKCIJA.",
+    "likes": 0,
+    "passes": 0,
+    "superlikes": 0,
+    "score": 0,
+    "totalVotes": 0,
+    "tags": [
+      "creative",
+      "streetwear",
+      "varazdin"
+    ]
+  },
+  {
+    "id": "sv-379",
     "slug": "se5_01_spray_stencil_front",
     "title": "SE5 01 — Spray Stencil Front Hit",
     "category": "Front Hits",
@@ -6923,7 +6977,7 @@
     ]
   },
   {
-    "id": "sv-377",
+    "id": "sv-380",
     "slug": "se5_02_swiss_manifest_front",
     "title": "SE5 02 — Swiss Manifest Front Hit",
     "category": "Front Hits",
@@ -6945,7 +6999,7 @@
     ]
   },
   {
-    "id": "sv-378",
+    "id": "sv-381",
     "slug": "se5_03_kinetic_wave_front",
     "title": "SE5 03 — Kinetic Wave Front Hit",
     "category": "Front Hits",
@@ -6967,7 +7021,7 @@
     ]
   },
   {
-    "id": "sv-379",
+    "id": "sv-382",
     "slug": "se5_04_gothic_litho_front",
     "title": "SE5 04 — Gothic Litho Front Hit",
     "category": "Front Hits",
@@ -6989,7 +7043,7 @@
     ]
   },
   {
-    "id": "sv-380",
+    "id": "sv-383",
     "slug": "se5_05_editorial_riso_front",
     "title": "SE5 05 — Editorial Riso Front Hit",
     "category": "Front Hits",
@@ -7011,7 +7065,7 @@
     ]
   },
   {
-    "id": "sv-381",
+    "id": "sv-384",
     "slug": "se5_minimal_01_ecru_front",
     "title": "SE5 Minimal 01 — Ecru Front Hit",
     "category": "Front Hits",
@@ -7033,7 +7087,7 @@
     ]
   },
   {
-    "id": "sv-382",
+    "id": "sv-385",
     "slug": "se5_minimal_02_black_front",
     "title": "SE5 Minimal 02 — Black Front Hit",
     "category": "Front Hits",
@@ -7055,7 +7109,7 @@
     ]
   },
   {
-    "id": "sv-383",
+    "id": "sv-386",
     "slug": "se5_minimal_03_whitered_front",
     "title": "SE5 Minimal 03 — White & Red Front Hit",
     "category": "Front Hits",
@@ -7077,7 +7131,7 @@
     ]
   },
   {
-    "id": "sv-384",
+    "id": "sv-387",
     "slug": "se5_quirky_01_se5_white_front",
     "title": "SE5 Quirky 01 — Razor Wave Front Hit",
     "category": "Front Hits",
@@ -7099,7 +7153,7 @@
     ]
   },
   {
-    "id": "sv-385",
+    "id": "sv-388",
     "slug": "se5_quirky_02_se5_black_front",
     "title": "SE5 Quirky 02 — Cyber Slant Front Hit",
     "category": "Front Hits",
@@ -7121,7 +7175,7 @@
     ]
   },
   {
-    "id": "sv-386",
+    "id": "sv-389",
     "slug": "se5_quirky_03_seeepeet_ecru_front",
     "title": "SE5 Quirky 03 — Calligraphy Wave Front Hit",
     "category": "Front Hits",
@@ -7143,7 +7197,7 @@
     ]
   },
   {
-    "id": "sv-387",
+    "id": "sv-390",
     "slug": "se5_quirky_04_sepet_oatmeal_front",
     "title": "SE5 Quirky 04 — Laser Diagonal Front Hit",
     "category": "Front Hits",
@@ -7165,7 +7219,7 @@
     ]
   },
   {
-    "id": "sv-388",
+    "id": "sv-391",
     "slug": "se5_single_01_se5_razor_front",
     "title": "SE5 Single 01 — Razor Front Hit",
     "category": "Front Hits",
@@ -7187,7 +7241,7 @@
     ]
   },
   {
-    "id": "sv-389",
+    "id": "sv-392",
     "slug": "se5_single_02_se5_liquid_front",
     "title": "SE5 Single 02 — Liquid Front Hit",
     "category": "Front Hits",
@@ -7209,7 +7263,7 @@
     ]
   },
   {
-    "id": "sv-390",
+    "id": "sv-393",
     "slug": "se5_single_03_seeepeet_flared_front",
     "title": "SE5 Single 03 — SEEE PEET Flared Front Hit",
     "category": "Front Hits",
@@ -7231,7 +7285,7 @@
     ]
   },
   {
-    "id": "sv-391",
+    "id": "sv-394",
     "slug": "se5_single_04_seeepeet_columns_front",
     "title": "SE5 Single 04 — SEEE PEET Columns Front Hit",
     "category": "Front Hits",
@@ -7253,7 +7307,7 @@
     ]
   },
   {
-    "id": "sv-392",
+    "id": "sv-395",
     "slug": "se5_single_05_sepet_warpedblock_front",
     "title": "SE5 Single 05 — SE PET Warped Front Hit",
     "category": "Front Hits",
@@ -7275,7 +7329,7 @@
     ]
   },
   {
-    "id": "sv-393",
+    "id": "sv-396",
     "slug": "se5_single_06_sepet_distressed_front",
     "title": "SE5 Single 06 — SE PET Distressed Front Hit",
     "category": "Front Hits",
@@ -7297,7 +7351,7 @@
     ]
   },
   {
-    "id": "sv-394",
+    "id": "sv-397",
     "slug": "se5_thin_01_se5_white_front",
     "title": "SE5 Thin 01 — Razor Ultra-Thin Front Hit",
     "category": "Front Hits",
@@ -7319,7 +7373,7 @@
     ]
   },
   {
-    "id": "sv-395",
+    "id": "sv-398",
     "slug": "se5_thin_02_se5_black_front",
     "title": "SE5 Thin 02 — Cyber Ultra-Thin Front Hit",
     "category": "Front Hits",
@@ -7341,7 +7395,7 @@
     ]
   },
   {
-    "id": "sv-396",
+    "id": "sv-399",
     "slug": "se5_thin_03_seeepeet_ecru_front",
     "title": "SE5 Thin 03 — SEEE PEET Calligraphy Thin Front Hit",
     "category": "Front Hits",
@@ -7363,7 +7417,7 @@
     ]
   },
   {
-    "id": "sv-397",
+    "id": "sv-400",
     "slug": "se5_thin_04_sepet_oatmeal_front",
     "title": "SE5 Thin 04 — SE PET Laser Thin Front Hit",
     "category": "Front Hits",
@@ -7385,7 +7439,7 @@
     ]
   },
   {
-    "id": "sv-398",
+    "id": "sv-401",
     "slug": "se5_weird_01_se5_cybersigil_front",
     "title": "SE5 Weird 01 — Cyber-Sigil Front Hit",
     "category": "Front Hits",
@@ -7407,7 +7461,7 @@
     ]
   },
   {
-    "id": "sv-399",
+    "id": "sv-402",
     "slug": "se5_weird_02_seeepeet_psychedelic_front",
     "title": "SE5 Weird 02 — Psychedelic Front Hit",
     "category": "Front Hits",
@@ -7429,7 +7483,7 @@
     ]
   },
   {
-    "id": "sv-400",
+    "id": "sv-403",
     "slug": "se5_weird_03_sepet_origamiblade_front",
     "title": "SE5 Weird 03 — Origami Blade Front Hit",
     "category": "Front Hits",
@@ -7451,7 +7505,7 @@
     ]
   },
   {
-    "id": "sv-401",
+    "id": "sv-404",
     "slug": "se5_weird_04_se5_meltingblob_front",
     "title": "SE5 Weird 04 — Melting Blob Front Hit",
     "category": "Front Hits",
@@ -7473,7 +7527,7 @@
     ]
   },
   {
-    "id": "sv-402",
+    "id": "sv-405",
     "slug": "se5_weird_05_sepet_opartmoire_front",
     "title": "SE5 Weird 05 — Op-Art Moiré Front Hit",
     "category": "Front Hits",
@@ -7495,7 +7549,7 @@
     ]
   },
   {
-    "id": "sv-403",
+    "id": "sv-406",
     "slug": "se5_weird_06_seeepeet_concretegrid_front",
     "title": "SE5 Weird 06 — Brutalist Grid Front Hit",
     "category": "Front Hits",
@@ -7514,6 +7568,42 @@
       "typography",
       "meme",
       "minimal"
+    ]
+  },
+  {
+    "id": "sv-407",
+    "slug": "sv_fire_01_drifting_apart_front",
+    "title": "SV Fire 01 — Drifting Apart Front Hit",
+    "category": "Front Hits",
+    "image": "assets/optimized/SV_Fire_01_Drifting_Apart_Front.webp",
+    "description": "Minimalistički crveni prsni amblem tornja u plamenu s natpisima STUDIO VARAŽDIN, FILMSKA PRODUKCIJA i cCc.",
+    "likes": 0,
+    "passes": 0,
+    "superlikes": 0,
+    "score": 0,
+    "totalVotes": 0,
+    "tags": [
+      "front hits",
+      "streetwear",
+      "varazdin"
+    ]
+  },
+  {
+    "id": "sv-408",
+    "slug": "sv_fire_02_mein_wille_red_front",
+    "title": "SV Fire 02 — Mein Wille Front Hit",
+    "category": "Front Hits",
+    "image": "assets/optimized/SV_Fire_02_Mein_Wille_Red_Front.webp",
+    "description": "Crni prsni blok na crvenoj podlozi s uokvirenom siluetom tornja u plamenu i oznakom Filmska produkcija cCc.",
+    "likes": 0,
+    "passes": 0,
+    "superlikes": 0,
+    "score": 0,
+    "totalVotes": 0,
+    "tags": [
+      "front hits",
+      "streetwear",
+      "varazdin"
     ]
   }
 ]
